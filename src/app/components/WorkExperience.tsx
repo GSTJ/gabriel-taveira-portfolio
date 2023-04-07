@@ -1,4 +1,4 @@
-import { WorkExperienceData } from "../consts/workExperience";
+import { WorkExperienceData } from "@/consts/workExperiences";
 
 const WorkExperience: React.FC<WorkExperienceData> = ({
   startDate,

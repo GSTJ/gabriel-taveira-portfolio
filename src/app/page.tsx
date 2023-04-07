@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
-import WorkExperience from "./components/WorkExperience";
-import workExperience from "./consts/workExperience";
+import WorkExperience from "@/components/WorkExperience";
+import workExperiences from "@/consts/workExperiences";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,8 +19,13 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col gap-10">
-          {workExperience.map((workExperience) => {
-            return <WorkExperience {...workExperience} />;
+          {workExperiences.map((workExperience) => {
+            return (
+              <WorkExperience
+                key={workExperience.companyName}
+                {...workExperience}
+              />
+            );
           })}
         </div>
       </div>
