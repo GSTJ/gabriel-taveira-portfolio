@@ -104,14 +104,34 @@ export default function Home() {
         <WorkExperiencesSection />
         <SectionHeader step={4} title="Publications & Media" />
         <p className="text-gray-400 whitespace-pre-line">
-          Host at the Space Cast Podcast:
-          https://www.youtube.com/@spacesquad-rocketseat
-          {"\n"} Medium articles on programming:
-          https://medium.com/@gabrieltaveira/
-          {"\n"} Awari Career Development Mentor:
-          https://app.awari.com.br/mentores/gabriel-taveira
-          {"\n"} Space Squad Ambassador:
-          https://www.rocketseat.com.br/space-squad
+          Host at the Space Cast Podcast:{" "}
+          <a
+            className="text-blue-300"
+            href="https://www.youtube.com/@spacesquad-rocketseat"
+          >
+            https://www.youtube.com/@spacesquad-rocketseat
+          </a>
+          {"\n"} Medium articles on programming:{" "}
+          <a
+            className="text-blue-300"
+            href="https://medium.com/@gabrieltaveira"
+          >
+            https://medium.com/@gabrieltaveira
+          </a>
+          {"\n"} Awari Career Development Mentor:{" "}
+          <a
+            className="text-blue-300"
+            href="https://app.awari.com.br/mentores/gabriel-taveira"
+          >
+            https://app.awari.com.br/mentores/gabriel-taveira
+          </a>
+          {"\n"} Space Squad Ambassador:{" "}
+          <a
+            className="text-blue-300"
+            href="https://www.rocketseat.com.br/space-squad"
+          >
+            https://www.rocketseat.com.br/space-squad
+          </a>
           {"\n\n"}I’ve also given talks at large events about Technology and
           Leadership such as Assemble (3 day immersion focusing on forming Tech
           Leads) and The Developer Conference on Design Systems.
