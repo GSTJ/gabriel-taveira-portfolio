@@ -29,7 +29,7 @@ const WorkExperience: React.FC<WorkExperienceData> = ({
           </div>
           <div className="flex items-end gap-2 flex-wrap">
             {jobType && (
-              <div className="bg-zinc-900 h-9 pl-4 pr-4 flex w-fit items-center text-gray-500 text-sm">
+              <div className="bg-zinc-900 h-9 pl-4 pr-4 flex w-fit items-center text-gray-500">
                 {jobType}
               </div>
             )}
