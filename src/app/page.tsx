@@ -1,11 +1,5 @@
-import { Poppins } from "next/font/google";
 import WorkExperience from "@/components/WorkExperience";
 import workExperiences from "@/consts/workExperiences";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
 
 interface SectionHeaderProps {
   title: string;
@@ -71,7 +65,7 @@ const WorkExperiencesSection = () => {
 
 export default function Home() {
   return (
-    <main className={`flex flex-col items-center p-24 ${poppins.className}`}>
+    <main className="flex flex-col items-center p-24">
       <div className="flex flex-col items-center max-w-6xl">
         <div className="flex w-full justify-center">
           <div className="lg:mx-0 lg:py-32 max-w-2xl text-center items-center flex flex-col">
@@ -88,7 +82,7 @@ export default function Home() {
               <a
                 target="_blank"
                 href="https://linktr.ee/gabrielstaveira"
-                className="flex flex-1 justify-center md:flex-initial rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="flex flex-1 justify-center md:flex-initial bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Contact me
               </a>
