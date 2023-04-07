@@ -69,11 +69,13 @@ export default function Home() {
       <div className="flex flex-col items-center max-w-6xl">
         <div className="flex w-full justify-center">
           <div className="lg:mx-0 lg:py-32 max-w-2xl text-center items-center flex flex-col">
-            <h1 className="text-3xl md:text-5xl flex gap-4 flex-wrap text-zinc-500 justify-center">
-              Hi, welcome! I’m{" "}
-              <p className="font-bold text-7xl text-zinc-50">Gabriel Taveira</p>
+            <h1 className="text-3xl md:text-5xl flex gap-4 flex-wrap justify-center">
+              <p className="text-zinc-700 dark:text-zinc-500">
+                Hi, welcome! I’m{" "}
+              </p>
+              <p className="font-bold text-7xl">Gabriel Taveira</p>
             </h1>
-            <p className="mt-6 leading-8 text-gray-300">
+            <p className="mt-6 leading-8  text-gray-800 dark:text-gray-300">
               I’m an experienced developer with a strong background in
               programming and leadership, seeking a challenging role as a
               Staff/Lead to drive innovation, mentorship, and project success.
@@ -82,7 +84,7 @@ export default function Home() {
               <a
                 target="_blank"
                 href="https://linktr.ee/gabrielstaveira"
-                className="flex flex-1 justify-center md:flex-initial bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="flex flex-1 justify-center md:flex-initial bg-gray-950 dark:bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-50 dark:text-gray-900 shadow-sm hover:bg-gray-800 dark:hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Contact me
               </a>
@@ -144,7 +146,7 @@ export default function Home() {
         <a
           target="_blank"
           href="https://linktr.ee/gabrielstaveira"
-          className="flex py-6 w-full justify-center bg-zinc-900 rounded-xl md:px-12 md:w-auto"
+          className="flex py-6 w-full justify-center bg-zinc-100 dark:bg-zinc-900 rounded-xl md:px-12 md:w-auto"
         >
           https://linktr.ee/gabrielstaveira
         </a>
