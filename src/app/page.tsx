@@ -31,11 +31,12 @@ export default function Home() {
           <Publications />
         </Section.Root>
 
-        <Section.Root id="socials">
+        <Section.Root>
           <Section.Header
             step="Final Step"
             title="Contact me"
             subtitle="Get to know more about my work and shoot me a message"
+            id="socials"
           />
           {/* @ts-ignore */}
           <Socials />

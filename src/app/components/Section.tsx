@@ -19,15 +19,19 @@ const Root: React.FC<RootProps> = ({ children, ...props }) => {
   );
 };
 
-interface HeaderProps {
+interface HeaderProps
+  extends Omit<
+    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    "className"
+  > {
   title: string;
   subtitle?: string;
   step?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, subtitle, step }) => {
+const Header: React.FC<HeaderProps> = ({ title, subtitle, step, ...props }) => {
   return (
-    <div className="text-center mt-16 mb-10">
+    <div className="text-center mt-16 mb-10" {...props}>
       {step && (
         <p className="text-rose-500 uppercase text-sm mb-4 font-semibold">
           {step}
