@@ -1,8 +1,9 @@
-import { getChannelVideos } from "usetube";
+import videos from "@/consts/videos.json";
 
 export interface SocialsData {
   name: string;
   url: string;
+  image?: string;
 }
 
 export default [
@@ -26,4 +27,5 @@ export default [
     name: "Mentorship",
     url: "https://app.awari.com.br/mentores/gabriel-taveira",
   },
+  videos[0],
 ] as SocialsData[];
