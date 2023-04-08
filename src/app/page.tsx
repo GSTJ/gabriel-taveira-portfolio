@@ -31,7 +31,7 @@ export default function Home() {
           <Publications />
         </Section.Root>
 
-        <Section.Root>
+        <Section.Root id="socials">
           <Section.Header
             step="Final Step"
             title="Contact me"

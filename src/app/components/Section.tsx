@@ -1,10 +1,19 @@
-interface RootProps {
+import { DetailedHTMLProps, HTMLAttributes } from "react";
+
+interface RootProps
+  extends Omit<
+    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    "className"
+  > {
   children: React.ReactNode;
 }
 
-const Root: React.FC<RootProps> = ({ children }) => {
+const Root: React.FC<RootProps> = ({ children, ...props }) => {
   return (
-    <div className="min-h-screen md:min-h-0 flex flex-col justify-center items-center">
+    <div
+      className="min-h-screen md:min-h-0 flex flex-col justify-center items-center"
+      {...props}
+    >
       {children}
     </div>
   );
