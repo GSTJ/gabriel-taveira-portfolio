@@ -37,6 +37,7 @@ export default function Home() {
             title="Contact me"
             subtitle="Get to know more about my work and shoot me a message"
           />
+          {/* @ts-ignore */}
           <Socials />
         </Section.Root>
       </div>
