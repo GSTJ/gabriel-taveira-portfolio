@@ -24,11 +24,11 @@ export default [
     url: "https://www.instagram.com/gabrielstaveira/",
   },
   {
-    name: "Medium",
+    name: "Medium Blog",
     url: "https://medium.com/@gabrieltaveira",
   },
   {
-    name: "Mentorship",
+    name: "Awari Mentorship",
     url: "https://app.awari.com.br/mentores/gabriel-taveira",
   },
   {

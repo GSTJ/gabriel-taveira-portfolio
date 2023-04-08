@@ -4,11 +4,19 @@ import { WorkExperiences } from "@/components/sections/WorkExperiences";
 import { Summary } from "@/components/sections/Summary";
 import { Socials } from "@/components/sections/Socials";
 import { Section } from "@/components/Section";
+import { Awards } from "@/components/sections/Awards";
+import { AwardsIllustration } from "@/components/illustrations/AwardsIllustration";
+import { LocationIcon } from "@/components/illustrations/LocationIcon";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center p-24">
+    <main className="flex flex-col items-center p-24 py-8 md:py-24">
       <div className="flex flex-col items-center max-w-6xl">
+        <div className="absolute top-8 left-12 flex text-sm items-center fill-zinc-900 dark:fill-zinc-100">
+          <LocationIcon className="mt-1 mr-1" width={22} height={22} />
+          Remote
+        </div>
+
         <Hero />
 
         <Section.Root>
@@ -31,13 +39,24 @@ export default function Home() {
           <Publications />
         </Section.Root>
 
+        <Section.Root className="pt-28 md:pt-32 w-full">
+          <div className="flex flex-col items-center">
+            <AwardsIllustration />
+            <Section.Header
+              step="Step 4"
+              title="Awards"
+              subtitle="Some of the competitions I’ve participated in over the time"
+            />
+          </div>
+          <Awards />
+        </Section.Root>
+
         <Section.Root id="socials">
           <Section.Header
             step="Final Step"
             title="Socials"
             subtitle="Get to know more about my work and shoot me a message"
           />
-          {/* @ts-ignore */}
           <Socials />
         </Section.Root>
       </div>

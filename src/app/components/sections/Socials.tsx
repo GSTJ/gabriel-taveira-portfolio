@@ -1,6 +1,6 @@
 import socials from "@/consts/socials";
 
-export const Socials = async () => {
+export const Socials = () => {
   return (
     <div className="flex flex-col gap-2 w-full items-center">
       {socials.map((social) => (
