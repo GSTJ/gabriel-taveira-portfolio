@@ -12,16 +12,16 @@ export default [
     url: "mailto:gabrielstaveira@gmail.com",
   },
   {
-    name: "Instagram",
-    url: "https://www.instagram.com/gabrielstaveira/",
-  },
-  {
     name: "Linkedin",
     url: "https://www.linkedin.com/in/gabrieltaveira/",
   },
   {
     name: "Github",
     url: "https://github.com/GSTJ",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/gabrielstaveira/",
   },
   {
     name: "Medium",
