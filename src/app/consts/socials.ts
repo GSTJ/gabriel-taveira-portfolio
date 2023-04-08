@@ -8,6 +8,10 @@ export interface SocialsData {
 
 export default [
   {
+    name: "Email",
+    url: "mailto:gabrielstaveira@gmail.com",
+  },
+  {
     name: "Instagram",
     url: "https://www.instagram.com/gabrielstaveira/",
   },
@@ -26,6 +30,10 @@ export default [
   {
     name: "Mentorship",
     url: "https://app.awari.com.br/mentores/gabriel-taveira",
+  },
+  {
+    name: "Space Cast",
+    url: "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V",
   },
   videos[0],
 ] as SocialsData[];
