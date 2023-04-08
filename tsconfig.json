@@ -23,6 +23,15 @@
       "@/*": ["./src/app/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "scripts/getVideos.js",
+    "scripts/getVideos.js",
+    "src/app/utils/getChannelVideos.js",
+    "src/app/utils/getChannelVideos.js"
+  ],
   "exclude": ["node_modules"]
 }
