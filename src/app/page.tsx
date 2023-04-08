@@ -9,9 +9,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center p-24">
       <div className="flex flex-col items-center max-w-6xl">
-        <Section.Root>
-          <Hero />
-        </Section.Root>
+        <Hero />
 
         <Section.Root>
           <Section.Header step="Step 1" title="Summary of Qualifications" />
