@@ -1,3 +1,5 @@
+import { getChannelVideos } from "usetube";
+
 export interface SocialsData {
   name: string;
   url: string;
@@ -23,9 +25,5 @@ export default [
   {
     name: "Mentorship",
     url: "https://app.awari.com.br/mentores/gabriel-taveira",
-  },
-  {
-    name: "Space Cast",
-    url: "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V",
   },
 ] as SocialsData[];
