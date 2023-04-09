@@ -1,26 +1,36 @@
-import awards from "@/consts/awards";
+import awards, { AwardsData } from "@/consts/awards";
 import Image from "next/image";
+
+interface AwardLineProps {
+  index: number;
+  award: AwardsData;
+}
+
+const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
+  return (
+    <div
+      key={award.title}
+      className={`flex justify-center flex-col sm:flex-row items-center gap-2 text-sm md:text-base p-2 text-center ${
+        !(index % 2) &&
+        "from-transparent to-transparent via-zinc-200 dark:via-zinc-900 bg-gradient-to-r"
+      }`}
+    >
+      <Image
+        src={`trophies/${award.trophy}.svg`}
+        width={12}
+        height={12}
+        alt={award.trophy}
+      />
+      {award.title}
+    </div>
+  );
+};
 
 export const Awards = () => {
   return (
-    <div className="w-full font-light flex items-center flex-col">
+    <div className="font-light flex items-center flex-col">
       {awards.map((award, index) => (
-        <div
-          key={award.title}
-          className={`flex justify-center w-full text-sm md:text-base py-2 ${
-            !(index % 2) &&
-            "from-transparent to-transparent via-zinc-200 dark:via-zinc-900 bg-gradient-to-r"
-          }`}
-        >
-          <Image
-            src={`trophies/${award.trophy}.svg`}
-            width={10}
-            height={10}
-            alt={award.trophy}
-            className="mr-2"
-          />
-          {award.title}
-        </div>
+        <AwardLine index={index} award={award} />
       ))}
 
       <a
