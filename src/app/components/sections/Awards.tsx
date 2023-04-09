@@ -9,7 +9,6 @@ interface AwardLineProps {
 const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
   return (
     <div
-      key={award.title}
       className={`flex justify-center flex-col sm:flex-row items-center gap-2 text-sm md:text-base p-2 text-center ${
         !(index % 2) &&
         "from-transparent to-transparent via-zinc-200 dark:via-zinc-900 bg-gradient-to-r"
@@ -30,7 +29,7 @@ export const Awards = () => {
   return (
     <div className="font-light flex items-center flex-col">
       {awards.map((award, index) => (
-        <AwardLine index={index} award={award} />
+        <AwardLine key={award.title} index={index} award={award} />
       ))}
 
       <a
