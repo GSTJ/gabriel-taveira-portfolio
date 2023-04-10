@@ -39,7 +39,7 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
 
 export const Awards = () => {
   return (
-    <div className="font-light flex items-center flex-col w-full max-w-md">
+    <div className="font-light flex items-center flex-col w-full ">
       {awards.map((award, index) => (
         <AwardLine key={award.title} index={index} award={award} />
       ))}
