@@ -10,7 +10,7 @@ import { LocationIcon } from "@/components/illustrations/LocationIcon";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center p-24 py-8 md:py-24">
+    <main className="flex flex-col items-center px-10 pt-14 pb-10 md:p-24">
       <div className="flex flex-col items-center max-w-6xl">
         <div className="absolute top-8 left-12 flex text-sm items-center fill-zinc-900 dark:fill-zinc-100">
           <LocationIcon className="mt-1 mr-1" width={22} height={22} />
