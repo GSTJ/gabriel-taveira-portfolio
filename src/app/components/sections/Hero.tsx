@@ -1,7 +1,7 @@
 export const Hero = () => {
   return (
     <div className="flex w-full justify-center">
-      <div className="py-14 lg:mx-0 lg:py-32 max-w-2xl text-center items-center flex flex-col">
+      <div className="py-20 lg:mx-0 lg:py-32 max-w-2xl text-center items-center flex flex-col">
         <h1 className="text-3xl md:text-5xl flex gap-4 flex-wrap justify-center">
           <p className="text-zinc-700 dark:text-zinc-500">Hi, welcome! I’m </p>
           <p className="font-bold text-7xl">Gabriel Taveira</p>
