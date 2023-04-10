@@ -41,7 +41,7 @@ export const Publications = () => {
           https://www.rocketseat.com.br/space-squad
         </a>
       </div>
-      <p>
+      <p className="break-normal">
         I’ve also given talks at large events about Technology and Leadership
         such as Assemble (3 day immersion focusing on forming Tech Leads) and
         The Developer Conference on Design Systems.
