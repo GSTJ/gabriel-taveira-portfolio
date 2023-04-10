@@ -7,27 +7,39 @@ export enum Trophy {
 export interface AwardsData {
   title: string;
   trophy: Trophy;
+  year: number;
+  position: string;
 }
 
 export default [
   {
-    title: "First place - Global Legal Hackathon SP (2020)",
+    title: "Global Legal Hackathon SP",
+    year: 2020,
+    position: "First place",
     trophy: Trophy.Gold,
   },
   {
-    title: "First place - Mão na Cevada (2019)",
+    title: "Mão na Cevada",
     trophy: Trophy.Gold,
+    position: "First place",
+    year: 2019,
   },
   {
-    title: "Second place - Hackribeirão (2019)",
+    title: "Hackribeirão",
     trophy: Trophy.Silver,
+    position: "Second place",
+    year: 2019,
   },
   {
-    title: "Second place - Prêmio Jovem Inovador (2019)",
+    title: "Prêmio Jovem Inovador",
     trophy: Trophy.Silver,
+    position: "Second place",
+    year: 2019,
   },
   {
-    title: "Finalist - NASA Space Apps Challenge RP (2019)",
+    title: "NASA Space Apps Challenge RP",
     trophy: Trophy.Bronze,
+    position: "Finalist",
+    year: 2019,
   },
 ] as AwardsData[];
