@@ -1,5 +1,6 @@
-import awards, { AwardsData } from "@/consts/awards";
 import Image from "next/image";
+
+import awards, { AwardsData } from "@/consts/awards";
 
 interface AwardLineProps {
   index: number;

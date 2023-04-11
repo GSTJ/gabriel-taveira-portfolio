@@ -1,6 +1,6 @@
 import type { WorkExperienceData } from "@/consts/workExperiences";
 
-const WorkExperience: React.FC<WorkExperienceData> = ({
+export const WorkExperience: React.FC<WorkExperienceData> = ({
   startDate,
   endDate,
   companyName,
@@ -45,5 +45,3 @@ const WorkExperience: React.FC<WorkExperienceData> = ({
     </div>
   );
 };
-
-export default WorkExperience;

@@ -1,4 +1,4 @@
-import WorkExperience from "@/components/WorkExperience";
+import { WorkExperience } from "@/components/WorkExperience";
 import workExperiences from "@/consts/workExperiences";
 
 export const WorkExperiences = () => {

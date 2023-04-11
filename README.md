@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gabriel Taveira's Open-Source Portfolio
+
+Welcome to my open-source portfolio! This project is built using Next.js, Tailwind, and Server Components.
+
+## Features
+
+- Responsive design with Tailwind CSS
+- Dark mode support
+- Server Components for improved performance
+- Integration with Youtube's API for up-to-date information on the latest Space Cast episode.
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+### Prerequisites
+
+- Node.js v14 or higher
+- Yarn package manager
+
+### Installation
+
+1. Clone the repository:
+
+```sh
+git clone https://github.com/gstj/gabriel-taveira-portfolio.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+cd gabriel-taveira-portfolio
+yarn install
+```
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+3. Run the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```sh
+yarn dev
+```
 
-## Learn More
+Open your browser and navigate to http://localhost:3000 to see the portfolio in action.
 
-To learn more about Next.js, take a look at the following resources:
+### Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To deploy this project to production, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Build the project for production:
 
-## Deploy on Vercel
+```sh
+yarn build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Start the production server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+yarn start
+```
+
+Deploy the out folder to your preferred hosting provider.
+
+### Contributing
+
+Contributions are welcome! If you find a bug or have a suggestion, please create an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Made with ❤️ by [Gabriel Taveira](www.gabrieltaveira.dev).

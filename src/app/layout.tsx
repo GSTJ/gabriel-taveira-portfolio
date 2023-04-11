@@ -1,5 +1,6 @@
 import "@total-typescript/ts-reset";
 import "./globals.css";
+
 import { Poppins } from "next/font/google";
 
 export const metadata = {
@@ -16,14 +17,8 @@ const poppins = Poppins({
   display: "swap",
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" className={poppins.className}>
-      <body>{children}</body>
-    </html>
-  );
-}
+export default ({ children }: { children: React.ReactNode }) => (
+  <html lang="en" className={poppins.className}>
+    <body>{children}</body>
+  </html>
+);
