@@ -7,6 +7,7 @@ export interface SocialsData {
 }
 
 export default [
+  videos[0],
   {
     name: "Email",
     url: "mailto:gabrielstaveira@gmail.com",
@@ -35,5 +36,4 @@ export default [
     name: "Space Cast",
     url: "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V",
   },
-  videos[0],
 ] as SocialsData[];

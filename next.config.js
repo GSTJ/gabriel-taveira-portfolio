@@ -6,20 +6,6 @@ const nextConfig = {
     appDir: true,
     optimizeCss: true,
   },
-  redirects: async () => {
-    return [
-      {
-        source: "/links",
-        destination: "/#socials",
-        permanent: false,
-      },
-      {
-        source: "/socials",
-        destination: "/#socials",
-        permanent: false,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
