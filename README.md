@@ -2,6 +2,8 @@
 
 Welcome to my open-source portfolio! This project is built using Next.js, Tailwind, and Server Components.
 
+<img width="1498" alt="Captura de Tela 2023-04-10 às 23 05 43" src="https://user-images.githubusercontent.com/50031755/231036733-732fb8f5-685c-452c-bc63-98319eb1ab45.png">
+
 ## Features
 
 - Responsive design with Tailwind CSS
@@ -15,7 +17,7 @@ To run this project locally, follow these steps:
 
 ### Prerequisites
 
-- Node.js v14 or higher
+- Node.js v16.8 or later
 - Yarn package manager
 
 ### Installation
