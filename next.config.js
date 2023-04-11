@@ -11,10 +11,12 @@ const nextConfig = {
       {
         source: "/links",
         destination: "/#socials",
+        permanent: false,
       },
       {
         source: "/socials",
         destination: "/#socials",
+        permanent: false,
       },
     ];
   },
