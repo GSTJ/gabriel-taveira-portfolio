@@ -17,7 +17,6 @@ export default [
     jobTitle: "Senior Software Engineer",
     jobType: "Contractor",
     technologies: ["React", "Node.JS"],
-
     jobDescription: `At Meta, I work within Kustomer, a platform that allows businesses to manage all their communication channels in one place. Here, I develop applications and provide feedback on UX to improve the platform. 
 
     Currently, I am working on a design system that will be open-sourced, enabling external developers to develop standardized applications that align with our brand. 

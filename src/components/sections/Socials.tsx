@@ -1,12 +1,13 @@
 import Image from "next/image";
 
 import socials from "@/consts/socials";
+import Link from "next/link";
 
 export const Socials = () => {
   return (
     <div className="flex flex-col gap-2 w-full items-center">
       {socials.map((social) => (
-        <a
+        <Link
           key={social.name}
           href={social.url}
           target="_blank"
@@ -22,7 +23,7 @@ export const Socials = () => {
             />
           )}
           <span>{social.name}</span>
-        </a>
+        </Link>
       ))}
     </div>
   );
