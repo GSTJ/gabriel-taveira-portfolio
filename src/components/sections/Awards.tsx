@@ -49,7 +49,7 @@ export const Awards = () => {
         target="_blank"
         className="mt-8 uppercase py-2 px-6 border-2 border-zinc-600 text-zinc-800 dark:text-zinc-100 dark:border-white underline w-min whitespace-nowrap text-sm font-semibold transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-900"
       >
-        See more
+        See more awards
       </a>
     </div>
   );
