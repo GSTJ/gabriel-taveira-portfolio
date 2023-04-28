@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Poppins } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Gabriel Taveira",
@@ -31,6 +32,7 @@ export default ({ children }: { children: React.ReactNode }) => (
         })(window,document,'script','dataLayer','${GTM_ID}');
       `}
     </Script>
+    <Analytics />
     <body>{children}</body>
   </html>
 );
