@@ -62,7 +62,7 @@ body {
 }
 
 .colorful-text {
-  background: linear-gradient(122.25deg, rgb(244, 63, 94) 30%, #eab308);
+  background: linear-gradient(122.25deg, rgb(244, 63, 94) 30%, #ea6608);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
