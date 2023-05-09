@@ -4,7 +4,7 @@ export const Hero = () => {
       <div className="py-20 lg:mx-0 lg:py-32 max-w-2xl text-center items-center flex flex-col">
         <h1 className="text-3xl md:text-5xl flex gap-4 flex-wrap justify-center">
           <p className="text-zinc-700 dark:text-zinc-500">Welcome! I’m </p>
-          <p className="font-bold text-7xl flex gap-4 flex-wrap justify-center">
+          <p className="font-bold text-7xl flex sm:gap-4 flex-wrap justify-center">
             <p>Gabriel</p>
             <p className="colorful-text">Taveira</p>
           </p>
