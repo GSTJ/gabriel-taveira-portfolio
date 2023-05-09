@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export const Hero = () => {
   return (
     <div className="flex w-full justify-center">
@@ -16,9 +14,12 @@ export const Hero = () => {
         <div className="mt-10 flex gap-x-6 lg:justify-start">
           <a
             href="#socials"
-            className="flex flex-1 justify-center md:flex-initial bg-gray-950 text-lg dark:bg-white px-3.5 py-2.5 font-semibold text-gray-50 dark:text-gray-900 shadow-sm hover:bg-gray-800 dark:hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="flex flex-1 md:flex-initial rounded-md text-md p-0.5 bg-gradient-to-br from-[#00000010] dark:from-[#ffffff70] group to-transparent font-semibold shadow-sm hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
           >
-            Get in Touch
+            <div className="h-12 w-36 rounded-[0.31rem] bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 blur-lg absolute z-[-1] group-hover:blur-xl transition-all" />
+            <p className="h-full w-full flex flex-1 rounded-[0.31rem] py-3.5 px-5 bg-[#fcf7fc] dark:bg-black dark:text-gray-50">
+              Get in touch
+            </p>
           </a>
         </div>
       </div>
