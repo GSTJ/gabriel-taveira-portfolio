@@ -164,6 +164,6 @@ body {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.animate-fancy {
+.animate-fade-up-shine {
   animation: fade-up 1s ease-in-out, shine 4s ease-in-out infinite;
 }
