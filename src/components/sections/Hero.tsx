@@ -24,9 +24,9 @@ export const Hero = () => {
           </p>
         </h1>
         <p className="mt-6 leading-8 text-gray-800 dark:text-gray-300">
-          I am a seasoned developer seeking a challenging role as a Staff/Lead
-          Engineer. With a solid background, I am passionate about driving
-          innovation, mentorship, and project success.
+          I am a seasoned developer seeking to thrive as a Staff/Lead Engineer.
+          With a solid background, I am passionate about driving innovation,
+          mentorship, and project success.
         </p>
         <div className="mt-10 flex gap-x-6 lg:justify-start">
           <AnimatedButton />
