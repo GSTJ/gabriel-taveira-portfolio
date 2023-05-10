@@ -8,13 +8,15 @@ import {
   Summary,
   WorkExperiences,
 } from "@/components/sections";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { WorkLocation } from "@/components/WorkLocation";
 
 export default () => (
-  <main className="flex flex-col items-center px-10 pt-20 pb-10 md:p-24">
+  <main className="flex flex-col items-center px-10 pb-10 pt-12 md:p-24 md:pt-12">
     <div className="flex flex-col items-center max-w-6xl">
-      <div className="absolute top-8 left-12">
+      <div className="flex flex-1 w-full justify-between">
         <WorkLocation />
+        <ThemeToggle />
       </div>
 
       <Hero />
