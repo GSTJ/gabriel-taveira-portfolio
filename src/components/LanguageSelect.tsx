@@ -37,9 +37,8 @@ export default function LanguageSelect() {
         >
           <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ring-1 ring-gray-300 dark:ring-gray-700 focus:outline-none sm:text-sm">
             {languages.map((language, index) => (
-              <Link href="/" locale={language.value}>
+              <Link key={index} href="/" locale={language.value}>
                 <Listbox.Option
-                  key={index}
                   className={({ active }) =>
                     `relative cursor-default select-none p-4 py-3 ${
                       active ? "bg-amber-100 text-amber-900" : "text-gray-900"
