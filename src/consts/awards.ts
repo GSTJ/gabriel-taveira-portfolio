@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 export enum Trophy {
   Gold = "gold",
   Silver = "silver",
@@ -11,35 +13,39 @@ export interface AwardsData {
   position: string;
 }
 
-export default [
-  {
-    title: "Global Legal Hackathon SP",
-    year: 2020,
-    position: "First place",
-    trophy: Trophy.Gold,
-  },
-  {
-    title: "Mão na Cevada",
-    trophy: Trophy.Gold,
-    position: "First place",
-    year: 2019,
-  },
-  {
-    title: "Hackribeirão",
-    trophy: Trophy.Silver,
-    position: "Second place",
-    year: 2019,
-  },
-  {
-    title: "Prêmio Jovem Inovador",
-    trophy: Trophy.Silver,
-    position: "Second place",
-    year: 2019,
-  },
-  {
-    title: "NASA Space Apps Challenge RP",
-    trophy: Trophy.Bronze,
-    position: "Finalist",
-    year: 2019,
-  },
-] as AwardsData[];
+export const getAwards = async () => {
+  const t = await getTranslations();
+
+  return [
+    {
+      title: t("awards.awardTitles.globalLegalHackathonSP"),
+      year: 2020,
+      position: t("awards.firstPlace"),
+      trophy: Trophy.Gold,
+    },
+    {
+      title: t("awards.awardTitles.maoNaCevada"),
+      trophy: Trophy.Gold,
+      position: t("awards.firstPlace"),
+      year: 2019,
+    },
+    {
+      title: t("awards.awardTitles.hackRibeirao"),
+      trophy: Trophy.Silver,
+      position: t("awards.secondPlace"),
+      year: 2019,
+    },
+    {
+      title: t("awards.awardTitles.jovemInovadorTrophy"),
+      trophy: Trophy.Silver,
+      position: t("awards.secondPlace"),
+      year: 2019,
+    },
+    {
+      title: t("awards.awardTitles.nasaSpaceAppsChallengeRP"),
+      trophy: Trophy.Bronze,
+      position: t("awards.finalist"),
+      year: 2019,
+    },
+  ] as AwardsData[];
+};

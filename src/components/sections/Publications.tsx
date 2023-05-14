@@ -1,53 +1,52 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export const Publications = () => {
+export const Publications = async () => {
+  const t = await getTranslations();
+
   return (
     <div className="text-zinc-500 break-all whitespace-pre-line gap-2 flex flex-col">
       <div className="lg:flex gap-1">
-        <p>Host at the Space Cast Podcast:</p>
+        <p>{t("publications.spaceCastHost")}</p>
         <Link
           target="_blank"
           className="text-blue-300"
-          href="https://www.youtube.com/@spacesquad-rocketseat"
+          href={t("publications.spaceCastLink")}
         >
-          https://www.youtube.com/@spacesquad-rocketseat
+          {t("publications.spaceCastLink")}
         </Link>
       </div>
       <div className="lg:flex gap-1">
-        <p>Medium articles on programming:</p>
+        <p>{t("publications.mediumArticles")}</p>
         <Link
           target="_blank"
           className="text-blue-300"
-          href="https://medium.com/@gabrieltaveira"
+          href={t("publications.mediumLink")}
         >
-          https://medium.com/@gabrieltaveira
+          {t("publications.mediumLink")}
         </Link>
       </div>
       <div className="lg:flex gap-1">
-        <p>Awari Career Development Mentor:</p>
+        <p>{t("publications.awariMentor")}</p>
         <Link
           target="_blank"
           className="text-blue-300"
-          href="https://app.awari.com.br/mentores/gabriel-taveira"
+          href={t("publications.awariMentorLink")}
         >
-          https://app.awari.com.br/mentores/gabriel-taveira
+          {t("publications.awariMentorLink")}
         </Link>
       </div>
       <div className="lg:flex gap-1">
-        <p>Space Squad Ambassador:</p>
+        <p>{t("publications.spaceSquadAmbassador")}</p>
         <Link
           target="_blank"
           className="text-blue-300"
-          href="https://www.rocketseat.com.br/space-squad"
+          href={t("publications.spaceSquadAmbassadorLink")}
         >
-          https://www.rocketseat.com.br/space-squad
+          {t("publications.spaceSquadAmbassadorLink")}
         </Link>
       </div>
-      <p className="break-normal">
-        I’ve also given talks at large events about Technology and Leadership
-        such as Assemble (3 day immersion focusing on forming Tech Leads) and
-        The Developer Conference on Design Systems.
-      </p>
+      <p className="break-normal">{t("publications.eventsInfo")}</p>
     </div>
   );
 };

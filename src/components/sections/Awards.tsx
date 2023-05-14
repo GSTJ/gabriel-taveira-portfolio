@@ -1,7 +1,7 @@
 import Image from "next/image";
-
-import awards, { AwardsData } from "@/consts/awards";
 import Link from "next/link";
+import { AwardsData, getAwards } from "@/consts/awards";
+import { getTranslations } from "next-intl/server";
 
 interface AwardLineProps {
   index: number;
@@ -39,7 +39,10 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
   );
 };
 
-export const Awards = () => {
+export const Awards = async () => {
+  const t = await getTranslations();
+  const awards = await getAwards();
+
   return (
     <div className="font-light flex items-center flex-col w-full ">
       {awards.map((award, index) => (
@@ -50,7 +53,7 @@ export const Awards = () => {
         target="_blank"
         className="mt-8 uppercase py-2 px-6 border-2 border-zinc-600 text-zinc-800 dark:text-zinc-100 dark:border-white underline w-min whitespace-nowrap text-sm font-semibold transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-900"
       >
-        See more awards
+        {t("awards.seeMoreAwards")}
       </Link>
     </div>
   );

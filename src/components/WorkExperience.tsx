@@ -1,6 +1,7 @@
 import type { WorkExperienceData } from "@/consts/workExperiences";
+import { getTranslations } from "next-intl/server";
 
-export const WorkExperience: React.FC<WorkExperienceData> = ({
+export const WorkExperience = async ({
   startDate,
   endDate,
   companyName,
@@ -9,13 +10,15 @@ export const WorkExperience: React.FC<WorkExperienceData> = ({
   jobDescription,
   technologies,
   jobType,
-}) => {
+}: WorkExperienceData) => {
+  const t = await getTranslations();
+
   return (
     <div className="whitespace-nowrap">
       <div className="flex justify-between mb-5 flex-col gap-4 md:flex-row md:gap-0">
         <div className="flex flex-col">
           <div className="font-medium md:self-auto md:text-right mr-4 md:absolute md:-translate-x-16 mb-2 md:mb-0 flex gap-2 md:block px-2 py-1 border border-zinc-300 dark:border-zinc-900 w-min text-sm md:text-base md:border-none md:p-0">
-            <p>{endDate ? endDate : "Now"}</p>
+            <p>{endDate ? endDate : t("workExperience.now")}</p>
             <p className="text-zinc-500">/ {startDate}</p>
           </div>
           <div>
