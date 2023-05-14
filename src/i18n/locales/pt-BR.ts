@@ -26,7 +26,8 @@ export default {
     awardsSubtitle:
       "Algumas das competições em que participei ao longo do tempo",
     socials: "Redes Sociais",
-    socialsSubtitle: "Conheça mais sobre meu trabalho e envie-me uma mensagem",
+    socialsSubtitle:
+      "Conheça mais sobre meu trabalho e entre em contato comigo",
   },
   awards: {
     firstPlace: "Primeiro lugar",
