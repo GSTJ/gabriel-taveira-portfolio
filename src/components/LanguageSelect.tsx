@@ -7,8 +7,8 @@ import Link from "next-intl/link";
 import { usePathname } from "next/navigation";
 
 const languages = [
-  { name: "🇺🇸 English", value: "en-us", pathname: "/" },
-  { name: "🇧🇷 Português", value: "pt-br", pathname: "/pt-br" },
+  { name: "🇺🇸 English", value: "en-US", pathname: "/" },
+  { name: "🇧🇷 Português", value: "pt-BR", pathname: "/pt-BR" },
 ];
 
 export default function LanguageSelect() {
