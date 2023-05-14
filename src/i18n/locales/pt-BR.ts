@@ -77,7 +77,7 @@ export default {
     remote: "Remoto",
   },
   workExperience: {
-    now: "Atualmente",
+    now: "Agora",
     seniorSoftwareEngineer: "Engenheiro de Software Sênior",
     frontendEngineerIII: "Engenheiro Frontend III",
     softwareEngineer: "Engenheiro de Software",
