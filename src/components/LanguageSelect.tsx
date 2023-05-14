@@ -1,13 +1,13 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import Link from "next-intl/link";
 import { usePathname } from "next/navigation";
 
 const languages = [
-  { name: "🇺🇸 English", value: "en-US", pathname: "/" },
+  { name: "🇺🇸 English", value: "en-US", pathname: "/en-US" },
   { name: "🇧🇷 Português", value: "pt-BR", pathname: "/pt-BR" },
 ];
 
