@@ -1,9 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(
-  request: NextApiRequest,
-  response: NextApiResponse
-) {
+export default async (request: NextApiRequest, response: NextApiResponse) => {
   // Only run if the key is correct
   if (request.query.key !== "plsRefetchYoutubeData") {
     response.status(404).end();
@@ -19,4 +16,4 @@ export default async function handler(
   await fetch(process.env.DEPLOY_URL);
 
   response.status(200).json({ success: true });
-}
+};

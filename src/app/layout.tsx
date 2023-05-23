@@ -1,11 +1,9 @@
 import "@total-typescript/ts-reset";
 import "./globals.css";
 
+import { Analytics } from "@vercel/analytics/react";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/react";
-import { useLocale } from "next-intl";
-import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "Gabriel Taveira",

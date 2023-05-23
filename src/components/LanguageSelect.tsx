@@ -1,17 +1,18 @@
 "use client";
 
 import { Fragment } from "react";
+
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import Link from "next-intl/link";
 import { usePathname } from "next/navigation";
+import Link from "next-intl/link";
 
 const languages = [
   { name: "🇺🇸 English", value: "en-US", pathname: "/en-US" },
   { name: "🇧🇷 Português", value: "pt-BR", pathname: "/pt-BR" },
 ];
 
-export default function LanguageSelect() {
+export default () => {
   const pathname = usePathname();
   const selected = languages.find((l) => l.pathname === pathname);
 
@@ -65,4 +66,4 @@ export default function LanguageSelect() {
       </div>
     </Listbox>
   );
-}
+};

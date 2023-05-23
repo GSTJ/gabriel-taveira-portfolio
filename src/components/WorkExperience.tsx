@@ -1,5 +1,6 @@
-import type { WorkExperienceData } from "@/consts/workExperiences";
 import { getTranslations } from "next-intl/server";
+
+import type { WorkExperienceData } from "@/consts/workExperiences";
 
 export const WorkExperience = async ({
   startDate,

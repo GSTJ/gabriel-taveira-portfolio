@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+
 import { LocationIcon } from "./illustrations/LocationIcon";
 
 export const WorkLocation = async () => {

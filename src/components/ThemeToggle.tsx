@@ -17,9 +17,7 @@ const toggleTheme = () => {
   localStorage.theme = isLightTheme ? "dark" : "light";
 };
 
-export function ThemeToggle() {
-  return (
-    <button
+export const ThemeToggle = () => <button
       type="button"
       aria-label="Toggle dark mode"
       className="group rounded-md ring-1 ring-gray-300 bg-white/90 px-3 py-2 transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
@@ -53,6 +51,4 @@ export function ThemeToggle() {
           d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
         ></path>
       </svg>
-    </button>
-  );
-}
+    </button>;

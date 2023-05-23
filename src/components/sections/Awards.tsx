@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AwardsData, getAwards } from "@/consts/awards";
 import { getTranslations } from "next-intl/server";
+
+import { AwardsData, getAwards } from "@/consts/awards";
 
 interface AwardLineProps {
   index: number;
