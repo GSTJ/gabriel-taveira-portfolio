@@ -2,7 +2,6 @@ import "@total-typescript/ts-reset";
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
-import { Poppins } from "next/font/google";
 import Script from "next/script";
 
 export const metadata = {
@@ -13,17 +12,11 @@ export const metadata = {
   },
 };
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
 const GTM_ID = "G-1S8PR4TDYM";
 
 export default ({ children, params }) => {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en">
       <Script id="google-tag-manager" strategy="afterInteractive">
         {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

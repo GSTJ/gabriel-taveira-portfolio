@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({
           {step}
         </p>
       )}
-      <h2 className="text-4xl font-bold mb-2">{title}</h2>
+      <h2 className="heading text-4xl font-bold mb-2">{title}</h2>
       <p className="text-sm text-zinc-500 max-w-md">{subtitle}</p>
     </div>
   );
