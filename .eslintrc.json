@@ -12,10 +12,6 @@
     "unused-imports/no-unused-imports": "error",
     "import/no-duplicates": "error",
     "react/display-name": "off",
-    "import/no-anonymous-default-export": [
-      "error",
-      { "allowArrowFunction": true }
-    ],
     "prefer-arrow-functions/prefer-arrow-functions": [
       "warn",
       {
