@@ -43,11 +43,11 @@ export default {
     seeMoreAwards: "Veja mais prêmios",
   },
   hero: {
-    welcome: "Bem-vindo! Prazer, sou o",
+    welcome: "Prazer, sou o",
     name: "Gabriel",
     surname: "Taveira",
     intro:
-      "Como um desenvolvedor especialista, busco contribuir como Sênior/Staff Software Engineer em empresas que valorizam inovação e direcionamento estratégico.",
+      "Desenvolvedor especialista, busco contribuir como Sênior/Staff Software Engineer em empresas que valorizam a inovação e o direcionamento estratégico.",
     getInTouch: "Entre em contato",
   },
   publications: {
