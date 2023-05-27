@@ -21,7 +21,7 @@ export const Hero = async () => {
           <p className="text-zinc-700 dark:text-zinc-500">
             {t("hero.welcome")}
           </p>
-          <div className="heading font-bold text-8xl flex sm:gap-4 flex-wrap justify-center">
+          <div className="heading font-bold text-8xl flex lg:gap-5 flex-wrap justify-center">
             <p>{t("hero.name")}</p>
             <p className="colorful-text">{t("hero.surname")}</p>
           </div>
