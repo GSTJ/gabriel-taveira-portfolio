@@ -1,12 +1,12 @@
 import { getTranslations } from "next-intl/server";
 
-const AnimatedButton = ({ children }) => (
+const AnimatedButton = ({ children, href }) => (
   <a
-    href="#socials"
+    href={href}
     className="w-48 h-12 animate-fade-up-shine md:flex-initial rounded-md text-md p-0.5 bg-gradient-to-br from-[#00000010] dark:from-[#ffffff70] group to-transparent font-semibold shadow-sm hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
   >
     <div className="h-12 w-48 rounded-[0.31rem] bg-gradient-rotate from-pink-500 via-yellow-500 to-rose-500 blur-lg absolute z-[-1] group-hover:blur-xl transition-all" />
-    <p className="heading h-12 rounded-[0.31rem] py-3.5 pb-2.5 px-5 bg-[#fcf7fc] dark:bg-black dark:text-gray-50">
+    <p className="heading h-full rounded-[0.31rem] py-3.5 pb-2.5 px-5 bg-[#fcf7fc] dark:bg-black dark:text-gray-50">
       {children}
     </p>
   </a>
@@ -30,7 +30,9 @@ export const Hero = async () => {
           {t("hero.intro")}
         </p>
         <div className="mt-10 flex gap-x-6 lg:justify-start">
-          <AnimatedButton>{t("hero.getInTouch")}</AnimatedButton>
+          <AnimatedButton href="#socials">
+            {t("hero.getInTouch")}
+          </AnimatedButton>
         </div>
       </div>
     </div>
