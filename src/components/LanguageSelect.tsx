@@ -19,7 +19,7 @@ export default () => {
   return (
     <Listbox value={selected}>
       <div className="relative mt-1">
-        <Listbox.Button className="ring-1 ring-black/10 dark:ring-white/10 relative w-full cursor-default rounded-md bg-black/5 font-medium dark:bg-zinc-800 py-3 pl-4 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
+        <Listbox.Button className="ring-1 cursor-pointer hover:bg-black/10 ring-black/10 dark:ring-white/10 relative w-full cursor-default rounded-md bg-black/5 font-medium dark:bg-zinc-800 py-3 pl-4 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
           <span className="dark:text-gray-50 block truncate text-xs word-space">
             {selected.name}
           </span>
