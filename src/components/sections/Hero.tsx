@@ -5,7 +5,7 @@ const AnimatedButton = ({ children, href }) => (
     href={href}
     className="w-48 h-16 animate-fade-up-shine md:flex-initial rounded-md text-md p-0.5 bg-gradient-to-br from-[#00000010] dark:from-[#ffffff70] group to-transparent font-semibold shadow-sm hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
   >
-    <div className="w-48 h-16 rounded-md bg-gradient-rotate from-pink-500 via-yellow-500 to-rose-500 blur-lg absolute z-[-1] group-hover:blur-xl transition-all" />
+    <div className="w-48 h-16 rounded-md bg-gradient-to-br from-pink-500 via-yellow-500 to-rose-500 blur-lg absolute z-[-1] group-hover:blur-xl transition-all" />
     <p className="heading h-full pt-1 justify-center items-center flex rounded-md bg-black text-gray-50">
       {children}
     </p>
@@ -21,12 +21,12 @@ export const Hero = async () => {
           <p className="text-zinc-700 dark:text-zinc-500">
             {t("hero.welcome")}
           </p>
-          <div className="heading font-bold text-8xl flex lg:gap-5 flex-wrap justify-center">
+          <div className="heading font-bold text-7xl flex md:gap-5 flex-wrap justify-center">
             <p>{t("hero.name")}</p>
             <p className="colorful-text">{t("hero.surname")}</p>
           </div>
         </h1>
-        <p className="text-lg mt-2 leading-8 text-gray-800 dark:text-gray-300">
+        <p className="text-lg  mt-2 leading-8 text-gray-800 dark:text-gray-300">
           {t("hero.intro")}
         </p>
         <div className="mt-10 flex gap-x-6 lg:justify-start">
