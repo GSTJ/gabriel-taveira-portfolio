@@ -27,11 +27,11 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
             alt={award.trophy}
             className="mr-2"
           />
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm">
+          <p className="text-black/80 dark:text-zinc-400 text-sm">
             {award.position}
           </p>
         </div>
-        <p className="text-zinc-600 dark:text-zinc-400 ml-2 text-sm">
+        <p className="text-black/80 dark:text-zinc-400 ml-2 text-sm">
           {award.year}
         </p>
       </div>
@@ -52,7 +52,7 @@ export const Awards = async () => {
       <Link
         href="https://www.linkedin.com/in/gabrieltaveira/details/certifications/"
         target="_blank"
-        className="mt-8 uppercase py-2 px-6 border-2 border-zinc-600 text-zinc-800 dark:text-zinc-100 dark:border-white underline w-min whitespace-nowrap text-sm font-semibold transition-colors hover:bg-black/5 dark:hover:bg-zinc-900"
+        className="mt-8 uppercase py-2 px-6 border-2 border-black text-black dark:text-zinc-100 dark:border-white underline w-min whitespace-nowrap text-sm font-semibold transition-colors hover:bg-black/5 dark:hover:bg-zinc-900"
       >
         {t("awards.seeMoreAwards")}
       </Link>

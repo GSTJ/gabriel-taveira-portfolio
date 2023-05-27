@@ -5,7 +5,7 @@ export const Publications = async () => {
   const t = await getTranslations();
 
   return (
-    <div className="text-zinc-500 break-all whitespace-pre-line gap-2 flex flex-col">
+    <div className="text-black/80 dark:text-zinc-500 break-all whitespace-pre-line gap-2 flex flex-col">
       <div className="lg:flex gap-1">
         <p>{t("publications.spaceCastHost")}</p>
         <Link
