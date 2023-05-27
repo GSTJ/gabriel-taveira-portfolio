@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 225, 220, 225;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 251, 232, 222;
+  --background-end-rgb: 251, 232, 222;
   scroll-behavior: smooth;
 }
 
@@ -27,14 +27,12 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
+  background-image: url(/noise.png),
+    linear-gradient(
+      rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    );
 }
-
 .animate-shine {
   animation: shine 4s ease-in-out infinite;
 }

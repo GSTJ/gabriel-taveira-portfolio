@@ -10,7 +10,7 @@ export const Publications = async () => {
         <p>{t("publications.spaceCastHost")}</p>
         <Link
           target="_blank"
-          className="text-blue-300"
+          className="text-blue-400"
           href={t("publications.spaceCastLink")}
         >
           {t("publications.spaceCastLink")}
@@ -20,7 +20,7 @@ export const Publications = async () => {
         <p>{t("publications.mediumArticles")}</p>
         <Link
           target="_blank"
-          className="text-blue-300"
+          className="text-blue-400"
           href={t("publications.mediumLink")}
         >
           {t("publications.mediumLink")}
@@ -30,7 +30,7 @@ export const Publications = async () => {
         <p>{t("publications.awariMentor")}</p>
         <Link
           target="_blank"
-          className="text-blue-300"
+          className="text-blue-400"
           href={t("publications.awariMentorLink")}
         >
           {t("publications.awariMentorLink")}
@@ -40,7 +40,7 @@ export const Publications = async () => {
         <p>{t("publications.spaceSquadAmbassador")}</p>
         <Link
           target="_blank"
-          className="text-blue-300"
+          className="text-blue-400"
           href={t("publications.spaceSquadAmbassadorLink")}
         >
           {t("publications.spaceSquadAmbassadorLink")}

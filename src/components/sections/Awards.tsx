@@ -12,10 +12,10 @@ interface AwardLineProps {
 const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
   return (
     <div
-      className={`p-4 border-l-4 border-zinc-200 dark:border-zinc-900 w-full transition-colors ${
+      className={`p-4 border-l-4 border-black/5 dark:border-zinc-900 w-full transition-colors ${
         index % 2
           ? ""
-          : "bg-gradient-to-r from-gray-200 dark:from-zinc-900 to-transparent"
+          : "bg-gradient-to-r from-black/5 dark:from-zinc-900 to-transparent"
       }`}
     >
       <div className="flex flex-1 justify-between">
@@ -35,7 +35,7 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
           {award.year}
         </p>
       </div>
-      <p className="mt-1">{award.title}</p>
+      <p className="mt-1 font-normal">{award.title}</p>
     </div>
   );
 };
