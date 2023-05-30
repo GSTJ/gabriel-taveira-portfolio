@@ -42,11 +42,11 @@ export default {
     seeMoreAwards: "See more awards",
   },
   hero: {
-    welcome: "Welcome! I’m",
+    welcome: "Welcome, I am",
     name: "Gabriel",
     surname: "Taveira",
     intro:
-      "I am a seasoned developer seeking to thrive as a Staff/Lead Engineer. With a solid background, I am passionate about driving innovation, mentorship, and project success.",
+      "A seasoned developer seeking to thrive as a Staff/Lead Engineer. With a solid background, I am passionate about driving innovation, mentorship, and project success.",
     getInTouch: "Get in touch",
   },
   publications: {

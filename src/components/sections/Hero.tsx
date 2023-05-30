@@ -17,8 +17,8 @@ export const Hero = async () => {
   return (
     <div className="flex w-full justify-center">
       <div className="py-20 lg:mx-0 lg:py-32 max-w-3xl text-center items-center flex flex-col">
-        <h1 className="text-3xl md:text-5xl flex gap-6 flex-wrap justify-center">
-          <p className="text-zinc-700 dark:text-zinc-500">
+        <h1 className="text-3xl gap-5 flex flex-col text-center">
+          <p className="tracking-[.3em] heading text-2xl uppercase dark:text-white/70">
             {t("hero.welcome")}
           </p>
           <div className="heading font-bold text-7xl flex md:gap-5 flex-wrap justify-center">
@@ -26,7 +26,7 @@ export const Hero = async () => {
             <p className="colorful-text">{t("hero.surname")}</p>
           </div>
         </h1>
-        <p className="text-lg  mt-2 leading-8 text-gray-800 dark:text-gray-300">
+        <p className="text-lg mt-2 leading-8 text-gray-800 dark:text-gray-300">
           {t("hero.intro")}
         </p>
         <div className="mt-10 flex gap-x-6 lg:justify-start">
