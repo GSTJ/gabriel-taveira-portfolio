@@ -46,7 +46,7 @@ export default {
     name: "Gabriel",
     surname: "Taveira",
     intro:
-      "A seasoned developer seeking to thrive as a Staff/Lead Engineer. With a solid background, I am passionate about driving innovation, mentorship, and project success.",
+      "An experienced developer looking to excel in a Staff/Lead Engineer role. I have a strong background, am enthusiastic about creating new solutions, teaching others, and ensuring project completion.",
     getInTouch: "Get in touch",
   },
   publications: {
