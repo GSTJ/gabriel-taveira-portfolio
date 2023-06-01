@@ -1,28 +1,20 @@
-name: Generate GIF
+name: Generate demo file
 
 on: push
 
 jobs:
-  build:
+  generate-gif:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - name: Website to file
+        uses: PabloLec/website-to-gif@2.1.0
         with:
-          node-version: 16.3.0
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile --ignore-scripts
-
-      - name: Generate GIF
-        run: node scripts/getGif.js
-
-      - name: Upload GIF
-        uses: actions/upload-artifact@v2
-        with:
-          name: mygif
-          path: ./mygif.gif
+          url: "https://www.gabrieltaveira.dev"
+      - name: Commit file to GH repo
+        run: |
+          git config --global user.name "Gabriel Taveira"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m 'Update file'
+          git push
