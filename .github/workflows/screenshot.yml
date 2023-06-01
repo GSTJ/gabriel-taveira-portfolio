@@ -3,21 +3,114 @@ name: Screenshot workflow
 on: [push]
 
 jobs:
-  screenshot:
+  take_screenshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
+      - name: Check out code
+        uses: actions/checkout@v2
         with:
-          node-version: "14"
+          fetch-depth: 0 # fetches all history so git diff works
 
-      - name: Screenshot Action
-        uses: JonathanTreffler/full-website-screenshot-action@v1.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          url: https://www.gabrieltaveira.dev
-          destination: ./screenshot.png
+          node-version: 16
 
-      - name: Upload screenshot
+      - name: Install Puppeteer
+        run: |
+          npm install puppeteer
+
+      - name: Create scrolling gif
+        run: |
+          // https://dev.to/aimerib/using-puppeteer-to-make-animated-gifs-of-page-scrolls-1lko
+          (async () => {
+            const puppeteer = require('puppeteer');
+            const GIFEncoder = require('gif-encoder');
+            const encoder = new GIFEncoder(800, 600);
+            const fs = require('fs');
+            const getPixels = require('get-pixels');
+            const workDir = './temp/';
+            let file = require('fs').createWriteStream('mygif.gif');
+            const browser = await puppeteer.launch({ headless: true });
+            const page = await browser.newPage();
+
+            if (!fs.existsSync(workDir)) {
+              fs.mkdirSync(workDir);
+            };
+
+            // Setup gif encoder parameters
+            encoder.setFrameRate(60);
+            encoder.pipe(file);
+            encoder.setQuality(40);
+            encoder.setDelay(500);
+            encoder.writeHeader();
+            encoder.setRepeat(0);
+
+            // Helper functions declaration
+            function addToGif(images, counter = 0) {
+              getPixels(images[counter], function (err, pixels) {
+
+                encoder.addFrame(pixels.data);
+                encoder.read();
+                if (counter === images.length - 1) {
+                  encoder.finish();
+                  cleanUp(images, function (err) {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      fs.rmdirSync(workDir);
+                      console.log('Gif created!');
+                      process.exit(0);
+                    }
+                  });
+
+                } else {
+                  addToGif(images, ++counter);
+                }
+              });
+            };
+
+            function cleanUp(listOfPNGs, callback) {
+              let i = listOfPNGs.length;
+              listOfPNGs.forEach(function (filepath) {
+                fs.unlink(filepath, function (err) {
+                  i--;
+                  if (err) {
+                    callback(err);
+                    return;
+                  } else if (i <= 0) {
+                    callback(null);
+                  }
+                });
+              });
+            };
+
+            async function scrollPage() {
+              await page.evaluate(async () => {
+                window.scrollBy(0, 100);
+              });
+            }
+
+            await page.setViewport({ width: 800, height: 600 });
+            await page.goto('https://en.wikipedia.org/wiki/JavaScript');
+
+            for (let i = 0; i < 60; i++) {
+              await page.screenshot({ path: workDir + i + ".png" });
+              await scrollPage();
+            }
+
+            await browser.close();
+
+            let listOfPNGs = fs.readdirSync(workDir)
+              .map(a => a.substr(0, a.length - 4) + '')
+              .sort(function (a, b) { return a - b })
+              .map(a => workDir + a.substr(0, a.length) + '.png');
+
+            addToGif(listOfPNGs);
+          })();
+
+      - name: Upload gif
         uses: actions/upload-artifact@v2
         with:
-          name: screenshot
-          path: ./screenshot.png
+          name: gif
+          path: mygif.gif
