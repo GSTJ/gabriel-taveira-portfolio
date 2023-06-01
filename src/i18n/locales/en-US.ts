@@ -92,7 +92,7 @@ export default {
       
       This makes our application review process easier, provides a better, faster and more consistent development experience, and offers a more consistent application experience for end-users.`,
 
-      kustomerDescription: `The same as Meta description, but the company was bought and is no longer part of the conglomerate. I'm still working on the same project.`,
+      kustomerDescription: `The same as Meta description, but the company was bought and is no longer part of the conglomerate. I still work on the same project.`,
 
       xteamDescription: `X-Team works with big, innovative brands like Coinbase, Riot Games, Fox Broadcasting, Twitter, Sony, Intel, Beachbody, Kaplan Inc., and more.
 
