@@ -10,8 +10,14 @@ jobs:
         with:
           node-version: "14"
 
-      - name: Test Action
+      - name: Screenshot Action
         uses: JonathanTreffler/full-website-screenshot-action@v1.0
         with:
           url: https://www.gabrieltaveira.dev
           destination: ./screenshot.png
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshot
+          path: ./screenshot.png
