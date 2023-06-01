@@ -2,7 +2,7 @@
 
 Welcome to my open-source portfolio! This project is built using Next.js, Tailwind, and Server Components.
 
-<img width="1498" alt="Captura de Tela 2023-04-10 às 23 05 43" src="https://user-images.githubusercontent.com/50031755/231036733-732fb8f5-685c-452c-bc63-98319eb1ab45.png">
+<img width="1498" alt="preview" src="./demo.gif">
 
 ## Features
 

@@ -1,0 +1,25 @@
+name: Generate demo file
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-gif:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Website to file
+        uses: PabloLec/website-to-gif@2.1.0
+        with:
+          url: "https://www.gabrieltaveira.dev"
+
+      - name: Commit file to GH repo
+        run: |
+          git config --global user.name "Gabriel Taveira"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m 'Update file'
+          git push
