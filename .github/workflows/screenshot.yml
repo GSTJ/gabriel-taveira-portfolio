@@ -1,0 +1,17 @@
+name: Screenshot workflow
+
+on: [push]
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+
+      - name: Test Action
+        uses: JonathanTreffler/full-website-screenshot-action@v1.0
+        with:
+          url: https://www.gabrieltaveira.dev
+          destination: ./screenshot.png
