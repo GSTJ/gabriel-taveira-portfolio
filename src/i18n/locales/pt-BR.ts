@@ -91,6 +91,9 @@ export default {
       Atualmente, estou trabalhando em um Design System que será open-source, permitindo que desenvolvedores externos desenvolvam aplicativos padronizados que estejam alinhados com nossa marca.
       
       Isso torna nosso processo de revisão de aplicativos mais fácil, oferece uma experiência de desenvolvimento melhor, mais rápida e mais consistente e oferece uma experiência de aplicativo mais consistente para os usuários finais.`,
+
+      kustomerDescription: `A mesma descrição da Meta, mas a empresa foi comprada e não faz mais parte do conglomerado. Ainda trabalho no mesmo projeto.`,
+
       xteamDescription: `A X-Team trabalha com grandes marcas como Coinbase, Riot Games, Fox Broadcasting, Twitter, Sony, Intel, Beachbody, Kaplan Inc., e mais.
 
       Dentro da X-Team, trabalho em uma fintech na Califórnia desenvolvendo uma plataforma de doação para empresas e funcionários. Meu foco é o aplicativo principal, feito em React Native.
@@ -118,6 +121,7 @@ export default {
       zeDelivery: "Zé Delivery",
       alfredDelivery: "Alfred Delivery",
       microImportGroup: "Micro Import Group",
+      kustomer: "Kustomer",
     },
     subCompanyNames: {
       kustomerNewYork: "Kustomer (Nova Iorque)",

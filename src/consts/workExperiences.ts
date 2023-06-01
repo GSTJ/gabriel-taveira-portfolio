@@ -17,6 +17,23 @@ export const getWorkExperiences = async () => {
   return [
     {
       startDate: "2022",
+      companyName: t("workExperience.companyNames.xteam"),
+      subCompanyName: t("workExperience.subCompanyNames.groundswellCalifornia"),
+      jobTitle: t("workExperience.seniorSoftwareEngineer"),
+      technologies: ["React", "React Native", "Node.JS"],
+      jobDescription: t("workExperience.jobDescriptions.xteamDescription"),
+    },
+    {
+      startDate: "2022",
+      companyName: t("workExperience.companyNames.kustomer"),
+      jobTitle: t("workExperience.seniorSoftwareEngineer"),
+      jobType: t("workExperience.jobTypes.contractor"),
+      technologies: ["React", "Node.JS"],
+      jobDescription: t("workExperience.jobDescriptions.kustomerDescription"),
+    },
+    {
+      startDate: "2022",
+      endDate: "2023",
       companyName: t("workExperience.companyNames.meta"),
       subCompanyName: t("workExperience.subCompanyNames.kustomerNewYork"),
       jobTitle: t("workExperience.seniorSoftwareEngineer"),
@@ -24,14 +41,7 @@ export const getWorkExperiences = async () => {
       technologies: ["React", "Node.JS"],
       jobDescription: t("workExperience.jobDescriptions.metaDescription"),
     },
-    {
-      startDate: "2022",
-      companyName: t("workExperience.companyNames.xteam"),
-      subCompanyName: t("workExperience.subCompanyNames.groundswellCalifornia"),
-      jobTitle: t("workExperience.seniorSoftwareEngineer"),
-      technologies: ["React", "React Native", "Node.JS"],
-      jobDescription: t("workExperience.jobDescriptions.xteamDescription"),
-    },
+
     {
       startDate: "2020",
       endDate: "2022",

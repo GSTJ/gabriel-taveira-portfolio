@@ -91,6 +91,9 @@ export default {
       Currently, I am working on a design system that will be open-sourced, enabling external developers to develop standardized applications that align with our brand. 
       
       This makes our application review process easier, provides a better, faster and more consistent development experience, and offers a more consistent application experience for end-users.`,
+
+      kustomerDescription: `The same as Meta description, but the company was bought and is no longer part of the conglomerate. I'm still working on the same project.`,
+
       xteamDescription: `X-Team works with big, innovative brands like Coinbase, Riot Games, Fox Broadcasting, Twitter, Sony, Intel, Beachbody, Kaplan Inc., and more.
 
       At X-Team, I work for a fintech company in California called Groundswell, developing a donation platform for businesses and employees. My focus is on the main application, which is built using React Native. 
@@ -118,6 +121,7 @@ export default {
       zeDelivery: "Zé Delivery",
       alfredDelivery: "Alfred Delivery",
       microImportGroup: "Micro Import Group",
+      kustomer: "Kustomer",
     },
     subCompanyNames: {
       kustomerNewYork: "Kustomer (New York)",
