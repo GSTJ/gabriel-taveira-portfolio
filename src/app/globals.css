@@ -169,7 +169,7 @@ body {
 }
 
 .heading {
-  font-family: "Grifter";
+  font-family: "Grifter", "SF Pro Display", "Avant Garde", Helvetica, sans-serif;
 }
 
 @font-face {

@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Plusjakartasans", "Poppins", "sans-serif"],
+        sans: ["Plusjakartasans", "SF Pro Display", "Poppins", "sans-serif"],
       },
     },
   },
