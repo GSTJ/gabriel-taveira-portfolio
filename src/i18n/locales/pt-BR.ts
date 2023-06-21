@@ -1,4 +1,6 @@
-export default {
+import enUS from "./en-US";
+
+const ptBr: typeof enUS = {
   components: {
     awardsIllustration: "Ilustração de Prêmios",
     languageSelect: "Seleção de Idioma",
@@ -129,4 +131,10 @@ export default {
       anheuserBuschInbev: "Anheuser-Busch InBev",
     },
   },
+  footer: {
+    madeWithLove: "Feito com ❤️ por Gabriel Taveira",
+    checkOutOnGithub: "Ver projeto no meu Github",
+  },
 };
+
+export default ptBr;

@@ -76,6 +76,17 @@ export default async () => {
           />
           <Socials />
         </Section.Root>
+
+        <p className="mt-8 mb-2 tracking-[.05rem]">
+          {t("footer.madeWithLove")}
+        </p>
+        <a
+          href="https://github.com/GSTJ/gabriel-taveira-portfolio"
+          target="blank"
+          className="tracking-[.05rem] underline"
+        >
+          {t("footer.checkOutOnGithub")}
+        </a>
       </div>
     </main>
   );

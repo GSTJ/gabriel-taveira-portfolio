@@ -129,4 +129,8 @@ export default {
       anheuserBuschInbev: "Anheuser-Busch InBev",
     },
   },
+  footer: {
+    madeWithLove: "Made with ❤️ by Gabriel Taveira",
+    checkOutOnGithub: "Check it out on my GitHub",
+  },
 };
