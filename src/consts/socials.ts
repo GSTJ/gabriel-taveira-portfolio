@@ -29,10 +29,6 @@ export default [
     url: "https://medium.com/@gabrieltaveira",
   },
   {
-    name: "Awari Mentorship",
-    url: "https://app.awari.com.br/mentores/gabriel-taveira",
-  },
-  {
     name: "Space Cast",
     url: "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V",
   },

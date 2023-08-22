@@ -27,16 +27,6 @@ export const Publications = async () => {
         </Link>
       </div>
       <div className="lg:flex gap-1">
-        <p>{t("publications.awariMentor")}</p>
-        <Link
-          target="_blank"
-          className="text-blue-400"
-          href={t("publications.awariMentorLink")}
-        >
-          {t("publications.awariMentorLink")}
-        </Link>
-      </div>
-      <div className="lg:flex gap-1">
         <p>{t("publications.spaceSquadAmbassador")}</p>
         <Link
           target="_blank"

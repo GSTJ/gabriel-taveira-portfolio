@@ -57,8 +57,6 @@ const ptBr: typeof enUS = {
     spaceCastLink: "https://www.youtube.com/@spacesquad-rocketseat",
     mediumArticles: "Artigos no Medium sobre programação:",
     mediumLink: "https://medium.com/@gabrieltaveira",
-    awariMentor: "Mentor de Desenvolvimento de Carreira na Awari:",
-    awariMentorLink: "https://app.awari.com.br/mentores/gabriel-taveira",
     spaceSquadAmbassador: "Embaixador do Space Squad:",
     spaceSquadAmbassadorLink: "https://www.rocketseat.com.br/space-squad",
     eventsInfo:

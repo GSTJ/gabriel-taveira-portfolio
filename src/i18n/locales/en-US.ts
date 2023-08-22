@@ -54,8 +54,6 @@ export default {
     spaceCastLink: "https://www.youtube.com/@spacesquad-rocketseat",
     mediumArticles: "Medium articles on programming:",
     mediumLink: "https://medium.com/@gabrieltaveira",
-    awariMentor: "Awari Career Development Mentor:",
-    awariMentorLink: "https://app.awari.com.br/mentores/gabriel-taveira",
     spaceSquadAmbassador: "Space Squad Ambassador:",
     spaceSquadAmbassadorLink: "https://www.rocketseat.com.br/space-squad",
     eventsInfo:
