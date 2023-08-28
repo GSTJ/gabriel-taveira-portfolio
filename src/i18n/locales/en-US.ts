@@ -92,11 +92,27 @@ export default {
 
       kustomerDescription: `The same as Meta description, but the company was bought and is no longer part of the conglomerate. I still work on the same project.`,
 
-      xteamDescription: `X-Team works with big, innovative brands like Coinbase, Riot Games, Fox Broadcasting, Twitter, Sony, Intel, Beachbody, Kaplan Inc., and more.
+      xteamDescription: `X-Team collaborates with major global brands, including Coinbase, Riot Games, Fox Broadcasting, Twitter, Sony, Intel, Beachbody, Kaplan Inc., and more.
 
-      At X-Team, I work for a fintech company in California called Groundswell, developing a donation platform for businesses and employees. My focus is on the main application, which is built using React Native. 
+      At X-Team, I'm part of a fintech in California focused on creating a donation platform for companies and their employees. My primary responsibility is the development of the main app, built using React Native.
       
-      I aim to help people and promote a culture of robust testing to ensure that anyone can safely refactor our code. As a financial platform, we have implemented various security standards, such as SOC2. I am currently working on a complete platform rewrite, which involves switching from GO to Node.JS stack.`,
+      Given the financial nature of our platform, we adhere to stringent security standards, including SOC2 compliance.
+      
+      Key Achievements:
+      
+      - Test Coverage Improvement: Elevated code coverage from 30% to over 80%, rectifying 100% of the previously broken tests, ensuring top-tier software quality and reliability.
+      
+      - Testing Infrastructure: Introduced Mock Service Workers, resulting in the removal of over 16,000 lines of redundant and unreliable test code.
+      
+      - Optimizations: Successfully refactored and enhanced numerous screens, notably boosting the performance of the Discover page by 200%.
+      
+      - Open Source Contributions: Contributed to open-source communities, such as reanimated. Notably, I developed an eslint plugin that prevented crashes due to rendering errors we had consistently.
+      
+      - Value Delivery: Delivered dozens of features and epics from inception to completion, including the migration of these features to the BEAST project, our major internal overhaul.
+      
+      - Internal Culture: Initiated the engineering forums culture with the Mobile Engineering Biweekly, where we discussed potential code improvements and issues, resulting in actionable insights.
+      
+      Skills: GraphQL · TypeScript · JavaScript · Node.js · React Native`,
       zeDeliveryDescription: `Zé Delivery is Brazil's largest beverage delivery app, with millions of users, powered by Anheuser-Busch InBev.
 
       In this role, I contributed to the development of a better user experience in the main application as part of the Consumer Purchase team, focusing on improving user price perception and conversion.
