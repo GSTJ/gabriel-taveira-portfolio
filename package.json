@@ -31,7 +31,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "@types/usetube": "^2.1.0",
-    "critters": "^0.0.16",
+    "critters": "^0.0.20",
     "eslint": "^8.41.0",
     "eslint-config-next": "13.3.0",
     "eslint-plugin-import": "^2.27.5",
