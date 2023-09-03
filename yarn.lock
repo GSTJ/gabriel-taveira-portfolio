@@ -1952,15 +1952,14 @@ negotiator@^0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-next-intl@2.15.0-beta.2:
-  version "2.15.0-beta.2"
-  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-2.15.0-beta.2.tgz#693bbce92ca92dc1be0b16ce5d4f160afd8ca1e3"
-  integrity sha512-8j/HZcD55aCJrsQ1bOMR9TX/hhHc91TKy4t7uLKI/WrwGS6NVsY9cP3sjFEcJXH43Hh4gzN9DPtEZQjUrmH+ag==
+next-intl@2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-2.20.0.tgz#654f2ae2e069c4ec33fb834df5ff7a5d1c0a0fdb"
+  integrity sha512-zeGod4WuS/j8dhDM1eLlt+GTCqqq1b09l/eHxUWQjGrK87BeN+crKasHjZWMNm38g0ddWpBW6i9KDZcTn8/p1A==
   dependencies:
     "@formatjs/intl-localematcher" "^0.2.32"
     negotiator "^0.6.3"
-    server-only "0.0.1"
-    use-intl "^2.14.1"
+    use-intl "^2.20.0"
 
 next@13.4.19:
   version "13.4.19"
@@ -2456,11 +2455,6 @@ semver@^7.3.7:
   dependencies:
     lru-cache "^6.0.0"
 
-server-only@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/server-only/-/server-only-0.0.1.tgz#0f366bb6afb618c37c9255a314535dc412cd1c9e"
-  integrity sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==
-
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz"
@@ -2799,10 +2793,10 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-use-intl@^2.14.1:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-2.14.1.tgz#67674399f71caa6ff1addeba92904518ca2fe176"
-  integrity sha512-gvN49ebxV+smTZobLdK3ECqzMGsUQjdrUmEbapm1hdlskQUYriBKz4FaR9lb9VpEVta/KhxRNbPrrc1WvhPp4g==
+use-intl@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-2.20.0.tgz#613554e8f85d59d4499c1340f8525ba381d18840"
+  integrity sha512-h9aOveHyqUSNshPvWSx88f0ny0w/F4kTG3oM1lGZYTlfK7vE6Ic9vVM7TDn/7idD3v6b2Vasp7q0le/opn6j/Q==
   dependencies:
     "@formatjs/ecma402-abstract" "^1.11.4"
     intl-messageformat "^9.3.18"
