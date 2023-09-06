@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 
+import { PdfIcon } from "../illustrations/PdfIcon";
+
 const AnimatedButton = ({ children, href }) => (
   <a
     href={href}
@@ -9,6 +11,16 @@ const AnimatedButton = ({ children, href }) => (
     <p className="heading h-full pt-1 justify-center items-center flex rounded-md bg-black text-gray-50">
       {children}
     </p>
+  </a>
+);
+
+const DownloadPdfButton = ({ children, href }) => (
+  <a
+    href={href}
+    target="_blank"
+    className="w-16 h-16 animate-shine md:flex-initial rounded-md text-md p-0.5 border-2 justify-center items-center flex border-zinc-900 hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
+  >
+    {children}
   </a>
 );
 
@@ -34,6 +46,13 @@ export const Hero = () => {
           <AnimatedButton href="#socials">
             {t("hero.getInTouch")}
           </AnimatedButton>
+          <DownloadPdfButton href="/curriculum.pdf">
+            <PdfIcon
+              width={24}
+              height={24}
+              className="fill-zinc-900 dark:fill-zinc-100"
+            />
+          </DownloadPdfButton>
         </div>
       </div>
     </div>
