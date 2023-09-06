@@ -1,0 +1,53 @@
+name: Generate static files
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-gif:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Website to file
+        uses: PabloLec/website-to-gif@2.1.0
+        with:
+          url: "https://www.gabrieltaveira.dev"
+
+      - name: Commit file to GH repo
+        run: |
+          git config --global user.name "Gabriel Taveira"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m '[skip ci] update website gif'
+          git push
+
+  # generate-pdf starts nextjs runs pnpm run get:pdf and then commits the file to the repo
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Init nextjs
+        run: pnpm run dev
+
+      - name: Generate PDF
+        run: pnpm run get:pdf
+
+      - name: Commit file to GH repo
+        run: |
+          git config --global user.name "Gabriel Taveira"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m '[skip ci] update website pdf'
+          git push

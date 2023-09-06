@@ -7,8 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "getvideos": "node ./scripts/getVideos.js",
-    "prebuild": "yarn getvideos",
+    "get:videos": "node ./scripts/getVideos.js",
+    "get:pdf": "node ./scripts/getPdf.js",
+    "prebuild": "yarn get:videos",
     "lint": "next lint"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-prefer-arrow-functions": "^3.1.4",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-unused-imports": "^3.0.0"
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "puppeteer": "^21.1.1"
   }
 }
