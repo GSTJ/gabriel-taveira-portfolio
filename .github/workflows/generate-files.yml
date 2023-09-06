@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "public/**"
 
 jobs:
   generate-gif:
@@ -56,9 +60,6 @@ jobs:
 
       - name: 📦 Install dependencies
         run: pnpm install
-
-      - name: 🚀 Init NextJS
-        run: pnpm run dev
 
       - name: 🖨️ Generate PDF
         run: pnpm run get:pdf
