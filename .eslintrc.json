@@ -29,10 +29,10 @@
           // Side effect imports.
           ["^\\u0000"],
           ["^react(/.*)?$"],
-          ["^components(/.*)?$"],
-          ["^types", "^\\u0000$"],
-          ["^utils(/.*)?$"],
-          ["^consts(/.*)?$"],
+          ["^@/components(/.*)?$"],
+          ["^@/types", "^\\u0000$"],
+          ["^@/utils(/.*)?$"],
+          ["^@/consts(/.*)?$"],
           /** Start general imports https://github.com/lydell/eslint-plugin-simple-import-sort/blob/main/examples/.eslintrc.js */
           // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
           ["^@?\\w"],

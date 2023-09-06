@@ -1,5 +1,3 @@
-import { getTranslations } from "next-intl/server";
-
 import { AwardsIllustration } from "@/components/illustrations/AwardsIllustration";
 import LanguageSelect from "@/components/LanguageSelect";
 import { Section } from "@/components/Section";
@@ -12,6 +10,8 @@ import {
   WorkExperiences,
 } from "@/components/sections";
 import { ThemeToggle } from "@/components/ThemeToggle";
+
+import { getTranslations } from "next-intl/server";
 
 export default async () => {
   const t = await getTranslations();

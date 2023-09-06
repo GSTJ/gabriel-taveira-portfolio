@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "getvideos": "node ./scripts/getVideos.js",
-    "postinstall": "yarn getvideos",
+    "prebuild": "yarn getvideos",
     "lint": "next lint"
   },
   "dependencies": {

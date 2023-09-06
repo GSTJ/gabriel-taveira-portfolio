@@ -1,4 +1,5 @@
 import { WorkExperience } from "@/components/WorkExperience";
+
 import { getWorkExperiences } from "@/consts/workExperiences";
 
 export const WorkExperiences = async () => {
