@@ -25,7 +25,6 @@ jobs:
           git commit -m '[skip ci] update website gif'
           git push
 
-  # generate-pdf starts nextjs runs pnpm run get:pdf and then commits the file to the repo
   generate-pdf:
     runs-on: ubuntu-latest
     steps:
