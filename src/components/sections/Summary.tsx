@@ -1,7 +1,7 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export const Summary = async () => {
-  const t = await getTranslations();
+export const Summary = () => {
+  const t = useTranslations();
 
   return (
     <ul className="text-black/80 dark:text-zinc-500 text-left mb-16 list-disc gap-4 flex flex-col">

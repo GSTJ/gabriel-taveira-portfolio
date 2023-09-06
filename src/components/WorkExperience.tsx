@@ -1,8 +1,8 @@
 import type { WorkExperienceData } from "@/consts/workExperiences";
 
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export const WorkExperience = async ({
+export const WorkExperience = ({
   startDate,
   endDate,
   companyName,
@@ -12,7 +12,7 @@ export const WorkExperience = async ({
   technologies,
   jobType,
 }: WorkExperienceData) => {
-  const t = await getTranslations();
+  const t = useTranslations();
 
   return (
     <div className="whitespace-nowrap">

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export const Publications = async () => {
-  const t = await getTranslations();
+export const Publications = () => {
+  const t = useTranslations();
 
   return (
     <div className="text-black/80 dark:text-zinc-500 break-all whitespace-pre-line gap-2 flex flex-col">

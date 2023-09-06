@@ -1,9 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 import { LocationIcon } from "./illustrations/LocationIcon";
 
-export const WorkLocation = async () => {
-  const t = await getTranslations();
+export const WorkLocation = () => {
+  const t = useTranslations();
 
   return (
     <div className="flex text-sm items-center fill-zinc-900 dark:fill-zinc-100">

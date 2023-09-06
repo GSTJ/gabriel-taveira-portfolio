@@ -15,7 +15,7 @@ export const metadata = {
 
 const GTM_ID = "G-1S8PR4TDYM";
 
-export default ({ children, params }) => {
+export default ({ children }) => {
   const locale = useLocale();
 
   return (

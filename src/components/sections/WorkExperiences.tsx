@@ -1,9 +1,9 @@
 import { WorkExperience } from "@/components/WorkExperience";
 
-import { getWorkExperiences } from "@/consts/workExperiences";
+import { useWorkExperiences } from "@/consts/workExperiences";
 
-export const WorkExperiences = async () => {
-  const workExperiences = await getWorkExperiences();
+export const WorkExperiences = () => {
+  const workExperiences = useWorkExperiences();
 
   return (
     <div className="flex flex-col gap-12">

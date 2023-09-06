@@ -11,10 +11,10 @@ import {
 } from "@/components/sections";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export default async () => {
-  const t = await getTranslations();
+export default () => {
+  const t = useTranslations();
 
   return (
     <main className="flex flex-col items-center px-10 pb-10 pt-12 md:p-24 md:pt-12">
@@ -24,7 +24,6 @@ export default async () => {
           <ThemeToggle />
         </div>
 
-        {/** @ts-ignore-line Server Component */}
         <Hero />
 
         <Section.Root>
@@ -32,7 +31,6 @@ export default async () => {
             step={t("sections.step1")}
             title={t("sections.summaryOfQualifications")}
           />
-          {/** @ts-ignore-line Server Component */}
           <Summary />
         </Section.Root>
 
@@ -42,7 +40,6 @@ export default async () => {
             title={t("sections.professionalExperience")}
             subtitle={t("sections.professionalExperienceSubtitle")}
           />
-          {/** @ts-ignore-line Server Component */}
           <WorkExperiences />
         </Section.Root>
 
@@ -51,7 +48,6 @@ export default async () => {
             step={t("sections.step3")}
             title={t("sections.publicationsAndMedia")}
           />
-          {/** @ts-ignore-line Server Component */}
           <Publications />
         </Section.Root>
 
@@ -64,7 +60,6 @@ export default async () => {
               subtitle={t("sections.awardsSubtitle")}
             />
           </div>
-          {/** @ts-ignore-line Server Component */}
           <Awards />
         </Section.Root>
 

@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 export interface WorkExperienceData {
   startDate: string;
@@ -11,8 +11,8 @@ export interface WorkExperienceData {
   jobType?: string;
 }
 
-export const getWorkExperiences = async () => {
-  const t = await getTranslations();
+export const useWorkExperiences = () => {
+  const t = useTranslations();
 
   return [
     {

@@ -1,8 +1,8 @@
-import { AwardsData, getAwards } from "@/consts/awards";
+import { AwardsData, useAwards } from "@/consts/awards";
 
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 interface AwardLineProps {
   index: number;
@@ -40,9 +40,9 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
   );
 };
 
-export const Awards = async () => {
-  const t = await getTranslations();
-  const awards = await getAwards();
+export const Awards = () => {
+  const t = useTranslations();
+  const awards = useAwards();
 
   return (
     <div className="font-light flex items-center flex-col w-full ">

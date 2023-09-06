@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 export enum Trophy {
   Gold = "gold",
@@ -13,8 +13,8 @@ export interface AwardsData {
   position: string;
 }
 
-export const getAwards = async () => {
-  const t = await getTranslations();
+export const useAwards = () => {
+  const t = useTranslations();
 
   return [
     {

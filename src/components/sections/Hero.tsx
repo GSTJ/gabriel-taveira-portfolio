@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 const AnimatedButton = ({ children, href }) => (
   <a
@@ -12,8 +12,9 @@ const AnimatedButton = ({ children, href }) => (
   </a>
 );
 
-export const Hero = async () => {
-  const t = await getTranslations();
+export const Hero = () => {
+  const t = useTranslations();
+
   return (
     <div className="flex w-full justify-center">
       <div className="py-20 lg:mx-0 lg:py-32 max-w-3xl text-center items-center flex flex-col">
