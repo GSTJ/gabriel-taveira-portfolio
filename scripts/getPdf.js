@@ -7,7 +7,7 @@ const getPdf = async () => {
     });
 
     const page = await browser.newPage();
-    await page.goto("http://localhost:3000/", { waitUntil: "networkidle0" });
+    await page.goto("http://gabrieltaveira.dev/", { waitUntil: "networkidle0" });
 
     // Evaluate the actual height of the page body
     const bodyHandle = await page.$("body");
@@ -18,7 +18,6 @@ const getPdf = async () => {
     // This is a hacky way to remove it.
     const EXTRA_BOTTOM_PADDING = 500;
     const WEB_WIDTH = 1200;
-
 
     const pdf = await page.pdf({
         printBackground: true,
