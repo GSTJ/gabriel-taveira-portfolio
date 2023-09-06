@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { useLocale } from "next-intl";
 
 export const metadata = {
   title: "Gabriel Taveira",
@@ -15,8 +16,10 @@ export const metadata = {
 const GTM_ID = "G-1S8PR4TDYM";
 
 export default ({ children, params }) => {
+  const locale = useLocale();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <Script id="google-tag-manager" strategy="afterInteractive">
         {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
