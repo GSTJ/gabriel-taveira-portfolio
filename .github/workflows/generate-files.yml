@@ -43,7 +43,7 @@ jobs:
       # We cannot cache the same fast way here, as it actually needs
       # to install puppeteer stuff on the machine each time.
       - name: 🏗 Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18.x
           cache: pnpm
