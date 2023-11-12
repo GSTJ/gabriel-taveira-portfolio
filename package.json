@@ -2,7 +2,7 @@
   "name": "personal-curriculum",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@8.7.4",
+  "packageManager": "pnpm@8.10.3",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
