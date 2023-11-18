@@ -16,20 +16,21 @@ export const useWorkExperiences = () => {
 
   return [
     {
+      startDate: "2023",
+      companyName: t("workExperience.companyNames.ateam"),
+      subCompanyName: t("workExperience.subCompanyNames.d-id"),
+      jobTitle: t("workExperience.seniorSoftwareEngineer"),
+      technologies: ["React Native", "Expo"],
+      jobDescription: t("workExperience.jobDescriptions.ateamDescription"),
+    },
+    {
       startDate: "2022",
+      endDate: "2023",
       companyName: t("workExperience.companyNames.xteam"),
       subCompanyName: t("workExperience.subCompanyNames.groundswellCalifornia"),
       jobTitle: t("workExperience.seniorSoftwareEngineer"),
       technologies: ["React", "React Native", "Node.JS"],
       jobDescription: t("workExperience.jobDescriptions.xteamDescription"),
-    },
-    {
-      startDate: "2022",
-      companyName: t("workExperience.companyNames.kustomer"),
-      jobTitle: t("workExperience.seniorSoftwareEngineer"),
-      jobType: t("workExperience.jobTypes.contractor"),
-      technologies: ["React", "Node.JS"],
-      jobDescription: t("workExperience.jobDescriptions.kustomerDescription"),
     },
     {
       startDate: "2022",

@@ -75,8 +75,8 @@
       "contractor": "Contractor"
     },
     "jobDescriptions": {
+      "ateamDescription": "D-ID's Customers include Fortune 500 companies, marketing agencies, production companies, social media platforms, leading e-learning platforms, and content creators of all sorts. Our solution is available through a self-service studio, and an API for enterprises, makers, and developers.\n\nWhile the web app has over 1.5M registrants per week, and 1.5M videos generated per month, the brand new mobile app I'm building is considered the company's core product.",
       "metaDescription": "At Meta, I work within Kustomer, a platform that allows businesses to manage all their communication channels in one place. Here, I develop applications and provide feedback on UX to improve the platform.\n\nCurrently, I am working on a design system that will be open-sourced, enabling external developers to develop standardized applications that align with our brand. \n\nThis makes our application review process easier, provides a better, faster and more consistent development experience, and offers a more consistent application experience for end-users.",
-      "kustomerDescription": "The same as Meta description, but the company was bought and is no longer part of the conglomerate. I still work on the same project.",
       "xteamDescription": "X-Team collaborates with major global brands, including Coinbase, Riot Games, Fox Broadcasting, Twitter, Sony, Intel, Beachbody, Kaplan Inc., and more.\n\nAt X-Team, I'm part of a fintech in California focused on creating a donation platform for companies and their employees. My primary responsibility is the development of the main app, built using React Native.\n\nGiven the financial nature of our platform, we adhere to stringent security standards, including SOC2 compliance.\n\nKey Achievements:\n\n- Test Coverage Improvement: Elevated code coverage from 30% to over 80%, rectifying 100% of the previously broken tests, ensuring top-tier software quality and reliability.\n\n- Testing Infrastructure: Introduced Mock Service Workers, resulting in the removal of over 16,000 lines of redundant and unreliable test code.\n\n- Optimizations: Successfully refactored and enhanced numerous screens, notably boosting the performance of the Discover page by 200%.\n\n- Open Source Contributions: Contributed to open-source communities, such as reanimated. Notably, I developed an eslint plugin that prevented crashes due to rendering errors we had consistently.\n\n- Value Delivery: Delivered dozens of features and epics from inception to completion, including the migration of these features to the BEAST project, our major internal overhaul.\n\n- Internal Culture: Initiated the engineering forums culture with the Mobile Engineering Biweekly, where we discussed potential code improvements and issues, resulting in actionable insights.\n\nSkills: GraphQL · TypeScript · JavaScript · Node.js · React Native",
       "zeDeliveryDescription": "Zé Delivery is Brazil's largest beverage delivery app, with millions of users, powered by Anheuser-Busch InBev.\n\nIn this role, I contributed to the development of a better user experience in the main application as part of the Consumer Purchase team, focusing on improving user price perception and conversion.\n\nDuring this time, I reduced technical debt by refactoring the \"browse\" feature, which accounted for about 1/3 of the application, significantly decreasing development delivery time.\n\nI also developed a robust implementation for handling deep links, boosting our marketing campaigns, and assisted in creating Mozeic, our design system that is currently under construction.\n\nAdditionally, I interviewed potential team members and created a new API for our Code Challenge using Node.js.",
       "alfredDeliveryDescription": " Alfred Delivery is a delivery app focused on more miniature cities and remote areas in Brazil. It currently has franchises in over 90 cities.\n\nI was responsible for maintaining and adding minor features to our production app in Ionic 3. After a few months, I got to rewrite the app in React Native, entirely revamping the interface while drastically improving performance.",
@@ -88,12 +88,13 @@
       "zeDelivery": "Zé Delivery",
       "alfredDelivery": "Alfred Delivery",
       "microImportGroup": "Micro Import Group",
-      "kustomer": "Kustomer"
+      "ateam": "A-Team"
     },
     "subCompanyNames": {
       "kustomerNewYork": "Kustomer (New York)",
       "groundswellCalifornia": "Groundswell (California)",
-      "anheuserBuschInbev": "Anheuser-Busch InBev"
+      "anheuserBuschInbev": "Anheuser-Busch InBev",
+      "d-id": "D-ID (Tel Aviv)"
     }
   },
   "footer": {
