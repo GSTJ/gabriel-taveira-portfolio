@@ -33,7 +33,7 @@ export default [
     url: "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V",
   },
   {
-    name: "Palestra - Eficiência com AI (Slides)",
+    name: "Palestra - Eficiência com IA (Slides)",
     url: "https://www.figma.com/file/nBdwnIQxwLseSXicLhzRoB/Efici%C3%AAncia-Com-AI---The-Brooklyn-Brothers?type=design&node-id=0%3A1&mode=design&t=lvANu3jt45Npg2H4-1",
   },
 ] as SocialsData[];
