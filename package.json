@@ -18,7 +18,7 @@
     "@vercel/analytics": "^1.0.2",
     "autoprefixer": "10.4.16",
     "encoding": "^0.1.13",
-    "next": "13.4.19",
+    "next": "13.5.0",
     "next-intl": "3.0.0-beta.16",
     "postcss": "8.4.31",
     "react": "18.2.0",
