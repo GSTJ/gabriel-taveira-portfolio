@@ -44,7 +44,14 @@ export const WorkExperience = ({
         </div>
       </div>
       <p className="text-black/80 dark:text-zinc-500 whitespace-pre-line text-sm">
-        {jobDescription}
+        {/* Implement ** as bold inside jobDescription */}
+        {jobDescription.split("**").map((text, index) => {
+          return index % 2 === 0 ? (
+            <span key={index}>{text}</span>
+          ) : (
+            <strong key={index}>{text}</strong>
+          );
+        })}
       </p>
     </div>
   );
