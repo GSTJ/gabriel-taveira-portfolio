@@ -40,6 +40,8 @@ jobs:
           git config --global user.email "action@github.com"
           git add .
           git commit -m 'chore: update website pdf 💾 [skip ci]'
+
+          git pull
           git push
 
   generate-gif:
@@ -60,4 +62,6 @@ jobs:
           git config --global user.email "action@github.com"
           git add .
           git commit -m 'chore: update website gif 💾 [skip ci]'
+
+          git pull
           git push
