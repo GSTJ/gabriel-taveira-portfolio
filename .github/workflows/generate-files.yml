@@ -11,28 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-gif:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏗 Setup Repo
-        uses: actions/checkout@v4
-
-      - name: 🤖 Website to file
-        uses: PabloLec/website-to-gif@2.1.1
-        with:
-          url: "https://www.gabrieltaveira.dev"
-
-      - name: 📤 Commit GIF
-        run: |
-          git config --global user.name "Gabriel Taveira"
-          git config --global user.email "action@github.com"
-          git add .
-          git commit -m 'chore: update website gif 💾 [skip ci]'
-          git push
-
   generate-pdf:
     runs-on: ubuntu-latest
-    needs: generate-gif
     steps:
       - name: 🏗 Setup Repo
         uses: actions/checkout@v4
@@ -60,4 +40,24 @@ jobs:
           git config --global user.email "action@github.com"
           git add .
           git commit -m 'chore: update website pdf 💾 [skip ci]'
+          git push
+
+  generate-gif:
+    needs: generate-pdf
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup Repo
+        uses: actions/checkout@v4
+
+      - name: 🤖 Website to file
+        uses: PabloLec/website-to-gif@2.1.1
+        with:
+          url: "https://www.gabrieltaveira.dev"
+
+      - name: 📤 Commit GIF
+        run: |
+          git config --global user.name "Gabriel Taveira"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m 'chore: update website gif 💾 [skip ci]'
           git push
