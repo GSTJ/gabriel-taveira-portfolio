@@ -60,7 +60,7 @@ devDependencies:
     version: 18.2.7
   '@types/usetube':
     specifier: ^2.1.0
-    version: 2.1.0
+    version: 2.1.2
   critters:
     specifier: ^0.0.20
     version: 0.0.20
@@ -462,12 +462,12 @@ packages:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
     dev: true
 
-  /@types/usetube@2.1.0:
-    resolution: {integrity: sha512-SdKuunDtZvd7BlYNLniCdhnCmDTzDNmcGmeyMEFINoF9OH1qV2pd3GI8r/zgzYPKucNZmBnMnzAKpryOQPe7XQ==}
+  /@types/usetube@2.1.2:
+    resolution: {integrity: sha512-UWdBd7DI6EBzxcfpkRYLeVC3Nsbw0UnQ1G/lNB7xcfXoPAId2UNtAVCnrdIQrgy1pzk5r+6d5zsMCsxyVafG3Q==}
     dev: true
 
-  /@types/yauzl@2.10.0:
-    resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
+  /@types/yauzl@2.10.3:
+    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
       '@types/node': 20.9.0
@@ -1591,7 +1591,7 @@ packages:
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
-      '@types/yauzl': 2.10.0
+      '@types/yauzl': 2.10.3
     transitivePeerDependencies:
       - supports-color
     dev: true
