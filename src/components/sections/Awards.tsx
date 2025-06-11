@@ -26,7 +26,7 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
             width={12}
             height={12}
             alt={award.trophy}
-            className="mr-2"
+            className="mr-2 h-auto"
           />
           <p className="text-black/80 dark:text-zinc-400 text-sm">
             {award.position}
