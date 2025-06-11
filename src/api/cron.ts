@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { env } from "@/env";
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
   // Only run if the key is correct
@@ -13,7 +14,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     return;
   }
 
-  await fetch(process.env.DEPLOY_URL);
+  await fetch(env.DEPLOY_URL);
 
   response.status(200).json({ success: true });
 };

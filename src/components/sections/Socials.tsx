@@ -13,7 +13,7 @@ export const Socials = () => {
           target="_blank"
           className="flex gap-2 flex-col text-center items-center text-black font-medium dark:hover:text-zinc-300 p-5 bg-black/5 dark:bg-zinc-900 dark:text-zinc-200 hover:bg-black/10 dark:hover:bg-zinc-800 w-full justify-center max-w-md"
         >
-          {social.image && (
+          {social.image ? (
             <Image
               src={social.image}
               height={400}
@@ -21,7 +21,7 @@ export const Socials = () => {
               alt={`${social.name} Thumbnail`}
               className="mb-2"
             />
-          )}
+          ) : null}
           <span>{social.name}</span>
         </Link>
       ))}
