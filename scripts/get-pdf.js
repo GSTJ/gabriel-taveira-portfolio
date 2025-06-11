@@ -32,6 +32,7 @@ const getPdf = async () => {
 
   const pdf = await page.pdf({
     printBackground: true,
+    waitForFonts: true,
     width: WEB_WIDTH,
     height: Math.ceil(height - EXTRA_BOTTOM_PADDING),
     pageRanges: "1", // Ensures that only the first page is printed.

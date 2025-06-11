@@ -65,9 +65,12 @@
   "workLocation": {
     "remote": "Remoto"
   },
+  "socials": {
+    "alt": "{{name}} Thumbnail"
+  },
   "workExperience": {
     "now": "Agora",
-    "divider": "-",
+    "divider": "/",
     "leadSoftwareEngineer": "Lead Software Engineer",
     "seniorSoftwareEngineer": "Engenheiro de Software Sênior",
     "frontendEngineerIII": "Engenheiro Frontend III",

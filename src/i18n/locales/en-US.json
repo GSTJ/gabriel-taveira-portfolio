@@ -26,6 +26,9 @@
     "socials": "Socials",
     "socialsSubtitle": "Get to know more about my work and shoot me a message"
   },
+  "socials": {
+    "alt": "{{name}} Thumbnail"
+  },
   "awards": {
     "firstPlace": "First place",
     "secondPlace": "Second place",
@@ -67,7 +70,7 @@
   },
   "workExperience": {
     "now": "Now",
-    "divider": "-",
+    "divider": "/",
     "seniorSoftwareEngineer": "Senior Software Engineer",
     "leadSoftwareEngineer": "Lead Software Engineer",
     "frontendEngineerIII": "Frontend Engineer III",

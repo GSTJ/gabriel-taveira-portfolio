@@ -1,7 +1,6 @@
 import type { AwardsData } from "@/consts/awards";
 import { useAwards } from "@/consts/awards";
 
-import Image from "next/image";
 import { Link } from "@/utils/navigation";
 import { useTranslations } from "next-intl";
 
@@ -21,12 +20,12 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
     >
       <div className="flex flex-1 justify-between">
         <div className="flex items-center">
-          <Image
+          <img
             src={`trophies/${award.trophy}.svg`}
             width={12}
             height={12}
             alt={award.trophy}
-            className="mr-2 h-auto"
+            className="mr-2"
           />
           <p className="text-black/80 dark:text-zinc-400 text-sm">
             {award.position}
