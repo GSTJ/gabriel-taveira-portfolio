@@ -1,8 +1,8 @@
 import { getRequestConfig } from "next-intl/server";
 
-export default getRequestConfig(async ({ locale }) => {
+export default getRequestConfig(async ({ requestLocale }) => {
   // Default to English if no locale is provided
-  const currentLocale = locale ?? "en-US";
+  const currentLocale = (await requestLocale) ?? "en-US";
 
   return {
     locale: currentLocale,
