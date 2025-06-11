@@ -16,7 +16,7 @@ const AwardLine: React.FC<AwardLineProps> = ({ index, award }) => {
       className={`p-4 border-l-4 border-black/5 dark:border-zinc-900 w-full transition-colors ${
         index % 2
           ? ""
-          : "bg-gradient-to-r from-black/5 dark:from-zinc-900 to-transparent"
+          : "bg-linear-to-r from-black/5 dark:from-zinc-900 to-transparent"
       }`}
     >
       <div className="flex flex-1 justify-between">
