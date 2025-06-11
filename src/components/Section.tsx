@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
 interface RootProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -32,15 +32,17 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <div className={`text-center mt-16 mb-10 ${className}`} {...props}>
-      {step && (
+      {!!step && (
         <p className="text-rose-500 uppercase text-sm mb-4 font-semibold">
           {step}
         </p>
       )}
       <h2 className="heading text-4xl font-bold mb-2">{title}</h2>
-      <p className="text-sm text-black/70 dark:text-zinc-500 max-w-md">
-        {subtitle}
-      </p>
+      {!!subtitle && (
+        <p className="text-sm text-black/70 dark:text-zinc-500 max-w-md">
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 };
