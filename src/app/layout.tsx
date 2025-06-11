@@ -6,6 +6,7 @@ import { useLocale } from "next-intl";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
+  metadataBase: new URL("https://gabrieltaveira.dev"),
   title: "Gabriel Taveira",
   description: "Gabriel Taveira's personal Curriculum",
   openGraph: {
