@@ -67,6 +67,7 @@
   },
   "workExperience": {
     "now": "Agora",
+    "divider": "-",
     "leadSoftwareEngineer": "Lead Software Engineer",
     "seniorSoftwareEngineer": "Engenheiro de Software Sênior",
     "frontendEngineerIII": "Engenheiro Frontend III",

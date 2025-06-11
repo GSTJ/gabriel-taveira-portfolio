@@ -19,10 +19,10 @@
     "finalStep": "Final Step",
     "summaryOfQualifications": "Summary of Qualifications",
     "professionalExperience": "Professional Experience",
-    "professionalExperienceSubtitle": "A showcase of the companies I’ve worked for and some of the projects that came from it",
+    "professionalExperienceSubtitle": "A showcase of the companies I've worked for and some of the projects that came from it",
     "publicationsAndMedia": "Publications & Media",
     "awards": "Awards",
-    "awardsSubtitle": "Some of the competitions I’ve participated in over the time",
+    "awardsSubtitle": "Some of the competitions I've participated in over the time",
     "socials": "Socials",
     "socialsSubtitle": "Get to know more about my work and shoot me a message"
   },
@@ -53,7 +53,7 @@
     "mediumLink": "https://medium.com/@gabrieltaveira",
     "spaceSquadAmbassador": "Space Squad Ambassador:",
     "spaceSquadAmbassadorLink": "https://www.rocketseat.com.br/space-squad",
-    "eventsInfo": "I’ve also given talks at large events about Technology and Leadership such as Assemble (3 day immersion focusing on forming Tech Leads) and The Developer Conference on Design Systems."
+    "eventsInfo": "I've also given talks at large events about Technology and Leadership such as Assemble (3 day immersion focusing on forming Tech Leads) and The Developer Conference on Design Systems."
   },
   "summary": {
     "point1": "Over 8 years of professional experience in the software development industry, working with projects of varying sizes, from startups to tech giants.",
@@ -67,6 +67,7 @@
   },
   "workExperience": {
     "now": "Now",
+    "divider": "-",
     "seniorSoftwareEngineer": "Senior Software Engineer",
     "leadSoftwareEngineer": "Lead Software Engineer",
     "frontendEngineerIII": "Frontend Engineer III",
