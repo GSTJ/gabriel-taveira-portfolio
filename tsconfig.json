@@ -5,6 +5,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -31,7 +32,8 @@
     "scripts/getVideos.js",
     "scripts/getVideos.js",
     "src/app/utils/getChannelVideos.js",
-    "src/app/utils/getChannelVideos.js"
+    "src/app/utils/getChannelVideos.js",
+    "eslint.config.js"
   ],
   "exclude": ["node_modules"]
 }
