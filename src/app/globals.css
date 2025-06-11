@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -27,7 +27,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-image: url(/noise.png),
+  background-image:
+    url(/noise.png),
     linear-gradient(
       rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
@@ -165,16 +166,20 @@ body {
 }
 
 .animate-fade-up-shine {
-  animation: fade-up 1s ease-in-out, shine 4s ease-in-out infinite;
+  animation:
+    fade-up 1s ease-in-out,
+    shine 4s ease-in-out infinite;
 }
 
 .heading {
-  font-family: "Grifter", "SF Pro Display", "Avant Garde", Helvetica, sans-serif;
+  font-family:
+    "Grifter", "SF Pro Display", "Avant Garde", Helvetica, sans-serif;
 }
 
 @font-face {
   font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/61184140db8801774ceee218_PlusJakartaSans-Bold.ttf")
+  src:
+    url("https://assets.website-files.com/5837424ae11409586f837994/61184140db8801774ceee218_PlusJakartaSans-Bold.ttf")
       format("truetype"),
     url("https://assets.website-files.com/5837424ae11409586f837994/61184140548e6753b0695e6a_PlusJakartaSans-ExtraBold.ttf")
       format("truetype");
@@ -248,7 +253,8 @@ body {
 }
 @font-face {
   font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/6118414070df9234ccf49428_PlusJakartaSans-BoldItalic.ttf")
+  src:
+    url("https://assets.website-files.com/5837424ae11409586f837994/6118414070df9234ccf49428_PlusJakartaSans-BoldItalic.ttf")
       format("truetype"),
     url("https://assets.website-files.com/5837424ae11409586f837994/611841401babbbc5473921ee_PlusJakartaSans-ExtraBoldItalic.ttf")
       format("truetype");

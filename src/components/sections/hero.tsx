@@ -1,20 +1,30 @@
 import { useTranslations } from "next-intl";
 
-import { PdfIcon } from "../illustrations/PdfIcon";
+import { PdfIcon } from "../illustrations/pdf-icon";
 
-const AnimatedButton = ({ children, href }) => (
+const AnimatedButton = ({
+  children,
+  href,
+}: React.PropsWithChildren<{
+  href: string;
+}>) => (
   <a
     href={href}
-    className="w-48 h-16 animate-shine md:flex-initial rounded-md text-md p-0.5 bg-gradient-to-br from-[#00000010] dark:from-[#ffffff70] group to-transparent font-semibold shadow-sm hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
+    className="w-48 h-16 animate-shine md:flex-initial rounded-md text-md p-0.5 bg-linear-to-br from-[#00000010] dark:from-[#ffffff70] group to-transparent font-semibold shadow-sm hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
   >
-    <div className="w-48 h-16 rounded-md bg-gradient-to-br from-pink-500 via-yellow-500 to-rose-500 blur-lg absolute z-[-1] group-hover:blur-xl transition-all" />
+    <div className="w-48 h-16 rounded-md bg-linear-to-br from-pink-500 via-yellow-500 to-rose-500 blur-lg absolute z-[-1] group-hover:blur-xl transition-all" />
     <p className="heading h-full pt-1 justify-center items-center flex rounded-md bg-black text-gray-50">
       {children}
     </p>
   </a>
 );
 
-const DownloadPdfButton = ({ children, href }) => (
+const DownloadPdfButton = ({
+  children,
+  href,
+}: React.PropsWithChildren<{
+  href: string;
+}>) => (
   <a
     href={href}
     target="_blank"

@@ -1,6 +1,6 @@
-import { AwardsIllustration } from "@/components/illustrations/AwardsIllustration";
-import LanguageSelect from "@/components/LanguageSelect";
-import { Section } from "@/components/Section";
+import { AwardsIllustration } from "@/components/illustrations/awards-illustration";
+import LanguageSelect from "@/components/language-select";
+import { Section } from "@/components/section";
 import {
   Awards,
   Hero,
@@ -9,7 +9,7 @@ import {
   Summary,
   WorkExperiences,
 } from "@/components/sections";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 import { useTranslations } from "next-intl";
 

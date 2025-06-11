@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import { LocationIcon } from "./illustrations/LocationIcon";
+import { LocationIcon } from "./illustrations/location-icon";
 
 export const WorkLocation = () => {
   const t = useTranslations();

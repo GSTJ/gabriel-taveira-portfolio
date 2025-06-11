@@ -1,4 +1,4 @@
-import { Section } from "@/components/Section";
+import { Section } from "@/components/section";
 import { Socials } from "@/components/sections";
 
 export default () => (

@@ -17,20 +17,20 @@ export const useWorkExperiences = () => {
   return [
     {
       startDate: "2023",
-      companyName: t("workExperience.companyNames.ateam"),
-      subCompanyName: t("workExperience.subCompanyNames.d-id"),
-      jobTitle: t("workExperience.leadSoftwareEngineer"),
-      technologies: ["React Native", "Expo", "Node.JS", "React"],
-      jobDescription: t("workExperience.jobDescriptions.ateamDescription"),
-    },
-    {
-      startDate: "2023",
-      endDate: "2023",
       companyName: t("workExperience.companyNames.coinbase"),
       subCompanyName: t("workExperience.subCompanyNames.g2i"),
       jobTitle: t("workExperience.appInfrastructureEngineer"),
       technologies: ["React Native", "Expo"],
       jobDescription: t("workExperience.jobDescriptions.coinbaseDescription"),
+    },
+    {
+      startDate: "2023",
+      endDate: "2025",
+      companyName: t("workExperience.companyNames.ateam"),
+      subCompanyName: t("workExperience.subCompanyNames.d-id"),
+      jobTitle: t("workExperience.leadSoftwareEngineer"),
+      technologies: ["React Native", "Expo", "Node.JS", "React"],
+      jobDescription: t("workExperience.jobDescriptions.ateamDescription"),
     },
     {
       startDate: "2022",

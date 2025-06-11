@@ -1,6 +1,6 @@
-export { Awards } from "./Awards";
-export { Hero } from "./Hero";
-export { Publications } from "./Publications";
-export { Socials } from "./Socials";
-export { Summary } from "./Summary";
-export { WorkExperiences } from "./WorkExperiences";
+export { Awards } from "./awards";
+export { Hero } from "./hero";
+export { Publications } from "./publications";
+export { Socials } from "./socials";
+export { Summary } from "./summary";
+export { WorkExperiences } from "./work-experiences";

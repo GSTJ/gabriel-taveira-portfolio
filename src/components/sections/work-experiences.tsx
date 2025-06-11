@@ -1,6 +1,6 @@
-import { WorkExperience } from "@/components/WorkExperience";
+import { WorkExperience } from "@/components/work-experience";
 
-import { useWorkExperiences } from "@/consts/workExperiences";
+import { useWorkExperiences } from "@/consts/work-experiences";
 
 export const WorkExperiences = () => {
   const workExperiences = useWorkExperiences();
@@ -8,7 +8,6 @@ export const WorkExperiences = () => {
   return (
     <div className="flex flex-col gap-12">
       {workExperiences.map((workExperience) => (
-        // @ts-ignore-line Server Component
         <WorkExperience key={workExperience.companyName} {...workExperience} />
       ))}
     </div>

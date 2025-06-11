@@ -31,9 +31,10 @@ const getPdf = async () => {
   await browser.close();
 
   // Save curriculum to disk
-  await new Promise((resolve) =>
-    fs.writeFile("public/curriculum.pdf", pdf, resolve)
-  );
+  await new Promise((resolve) => {
+    fs.writeFile("public/curriculum.pdf", pdf, resolve);
+  });
 };
 
-getPdf();
+// Properly handle the async function
+void getPdf();
