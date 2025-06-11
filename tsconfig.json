@@ -30,8 +30,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "scripts/getVideos.js",
-    "scripts/getVideos.js",
-    "src/app/utils/getChannelVideos.js",
+    "scripts/getPdf.js",
+    "postcss.config.js",
+    "tailwind.config.js",
     "src/app/utils/getChannelVideos.js",
     "eslint.config.js"
   ],

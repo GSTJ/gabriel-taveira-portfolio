@@ -1,9 +1,11 @@
-const withNextIntl = require("next-intl/plugin")(
+import type { NextConfig } from "next";
+import withNextIntl from "next-intl/plugin";
+
+const createNextIntl = withNextIntl(
   // This is the default (also the `src` folder is supported out of the box)
   "./src/i18n/index.ts"
 );
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   devIndicators: false,
   swcMinify: true,
@@ -15,6 +17,6 @@ const nextConfig = {
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
-};
+} satisfies NextConfig;
 
-module.exports = withNextIntl(nextConfig);
+export default createNextIntl(nextConfig);

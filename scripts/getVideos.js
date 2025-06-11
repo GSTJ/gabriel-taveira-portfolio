@@ -14,7 +14,6 @@ const SPACE_CAST_CHANNEL_ID = "UCQ_RmjT0te7n5RLlG381T5A";
  */
 const getVideos = async () => {
   const videos = await getChannelVideos(SPACE_CAST_CHANNEL_ID);
-  if (!videos) return;
 
   const videosData = videos
     .filter((video) => video.title.includes("Space Cast"))
@@ -27,4 +26,5 @@ const getVideos = async () => {
   fs.writeFileSync("src/consts/videos.json", JSON.stringify(videosData));
 };
 
-getVideos();
+// Properly handle the async function
+void getVideos();
