@@ -10,7 +10,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -32,7 +32,7 @@
     "scripts/getVideos.js",
     "scripts/getPdf.js",
     "postcss.config.js",
-    "tailwind.config.js",
+    "tailwind.config.ts",
     "src/app/utils/getChannelVideos.js",
     "eslint.config.js"
   ],

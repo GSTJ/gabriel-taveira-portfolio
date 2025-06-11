@@ -1,15 +1,13 @@
 import { useTranslations } from "next-intl";
-import type { ReactNode } from "react";
 
 import { PdfIcon } from "../illustrations/PdfIcon";
 
 const AnimatedButton = ({
   children,
   href,
-}: {
-  children: ReactNode;
+}: React.PropsWithChildren<{
   href: string;
-}) => (
+}>) => (
   <a
     href={href}
     className="w-48 h-16 animate-shine md:flex-initial rounded-md text-md p-0.5 bg-linear-to-br from-[#00000010] dark:from-[#ffffff70] group to-transparent font-semibold shadow-sm hover:bg-[#00000010] dark:hover:bg-[#ffffff30] transition-all"
@@ -24,10 +22,9 @@ const AnimatedButton = ({
 const DownloadPdfButton = ({
   children,
   href,
-}: {
-  children: ReactNode;
+}: React.PropsWithChildren<{
   href: string;
-}) => (
+}>) => (
   <a
     href={href}
     target="_blank"
