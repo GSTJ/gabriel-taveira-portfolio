@@ -9,9 +9,9 @@
     "start": "next start",
     "get:videos": "node ./scripts/getVideos.js",
     "get:pdf": "node ./scripts/getPdf.js",
-    "prebuild": "yarn get:videos",
-    "lint": "yarn eslint",
-    "lint:fix": "yarn eslint --fix"
+    "prebuild": "pnpm get:videos",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
