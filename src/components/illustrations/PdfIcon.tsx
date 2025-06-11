@@ -1,4 +1,6 @@
-export const PdfIcon = (props) => (
+import type { SVGProps } from "react";
+
+export const PdfIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     height="800px"
     width="800px"

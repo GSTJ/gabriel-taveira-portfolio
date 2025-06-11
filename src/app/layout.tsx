@@ -15,7 +15,7 @@ export const metadata = {
 
 const GTM_ID = "G-1S8PR4TDYM";
 
-export default ({ children }) => {
+export default ({ children }: React.PropsWithChildren) => {
   const locale = useLocale();
 
   return (

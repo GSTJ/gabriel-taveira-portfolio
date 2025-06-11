@@ -12,7 +12,7 @@ if (!_env.success) {
   // eslint-disable-next-line no-console
   console.error("❌ Invalid environment variables", _env.error.format());
   throw new Error(
-    `Invalid environment variables: ${JSON.stringify(_env.error.format())}`
+    `Invalid environment variables: ${JSON.stringify(_env.error.format())}`,
   );
 }
 

@@ -68,7 +68,7 @@ export const useWorkExperiences = () => {
       jobTitle: t("workExperience.softwareEngineer"),
       technologies: ["React Native", "Node.JS"],
       jobDescription: t(
-        "workExperience.jobDescriptions.alfredDeliveryDescription"
+        "workExperience.jobDescriptions.alfredDeliveryDescription",
       ),
     },
     {
@@ -78,7 +78,7 @@ export const useWorkExperiences = () => {
       jobTitle: t("workExperience.fullStackDeveloper"),
       technologies: ["React", "Node.JS", "PHP"],
       jobDescription: t(
-        "workExperience.jobDescriptions.microImportGroupDescription"
+        "workExperience.jobDescriptions.microImportGroupDescription",
       ),
     },
   ] as WorkExperienceData[];

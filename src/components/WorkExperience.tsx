@@ -41,7 +41,7 @@ export const WorkExperience = ({
             </div>
           ) : null}
           <div className="bg-black/10 dark:bg-zinc-900 font-medium h-9 pl-4 pr-4 flex items-center text-zinc-800 dark:text-zinc-300 whitespace-nowrap">
-            {technologies.join(" / ")}
+            {technologies?.join(" / ")}
           </div>
         </div>
       </div>
