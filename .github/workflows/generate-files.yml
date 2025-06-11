@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🤖 Website to file
-        uses: PabloLec/website-to-gif@2.1.1
+        uses: PabloLec/website-to-gif@2.1.5
         with:
           url: "https://www.gabrieltaveira.dev"
 
