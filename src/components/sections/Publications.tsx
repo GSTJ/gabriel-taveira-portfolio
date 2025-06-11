@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/utils/navigation";
 import { useTranslations } from "next-intl";
 
 export const Publications = () => {

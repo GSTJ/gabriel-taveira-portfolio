@@ -1,7 +1,7 @@
 import socials from "@/consts/socials";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/utils/navigation";
 
 export const Socials = () => {
   return (

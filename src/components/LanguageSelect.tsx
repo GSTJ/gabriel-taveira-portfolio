@@ -11,7 +11,7 @@ import {
 } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
-import Link from "next-intl/link";
+import { Link } from "@/utils/navigation";
 
 const languages = [
   { name: "🇺🇸 English", value: "en-US", pathname: "/en-US" },
@@ -20,7 +20,8 @@ const languages = [
 
 export default () => {
   const pathname = usePathname();
-  const selected = languages.find((l) => l.pathname === pathname);
+  const selected =
+    languages.find((l) => l.pathname === pathname) ?? languages[0];
 
   return (
     <Listbox value={selected}>

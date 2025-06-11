@@ -2,7 +2,7 @@ import type { AwardsData } from "@/consts/awards";
 import { useAwards } from "@/consts/awards";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/utils/navigation";
 import { useTranslations } from "next-intl";
 
 interface AwardLineProps {

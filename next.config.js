@@ -5,12 +5,16 @@ const withNextIntl = require("next-intl/plugin")(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  devIndicators: false,
   swcMinify: true,
   images: { domains: ["i.ytimg.com"] },
   experimental: {
-    appDir: true,
+    reactCompiler: true,
     optimizeCss: true,
   },
+  /** We already do linting and typechecking as separate tasks in CI */
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
 };
 
 module.exports = withNextIntl(nextConfig);

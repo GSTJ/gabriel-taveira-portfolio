@@ -10,7 +10,8 @@
     "get:videos": "node ./scripts/getVideos.js",
     "get:pdf": "node ./scripts/getPdf.js",
     "prebuild": "yarn get:videos",
-    "lint": "next lint"
+    "lint": "yarn eslint",
+    "lint:fix": "yarn eslint --fix"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
