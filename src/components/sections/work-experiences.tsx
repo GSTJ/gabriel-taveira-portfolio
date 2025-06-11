@@ -1,6 +1,6 @@
-import { WorkExperience } from "@/components/WorkExperience";
+import { WorkExperience } from "@/components/work-experience";
 
-import { useWorkExperiences } from "@/consts/workExperiences";
+import { useWorkExperiences } from "@/consts/work-experiences";
 
 export const WorkExperiences = () => {
   const workExperiences = useWorkExperiences();

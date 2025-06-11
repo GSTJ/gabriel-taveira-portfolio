@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import { PdfIcon } from "../illustrations/PdfIcon";
+import { PdfIcon } from "../illustrations/pdf-icon";
 
 const AnimatedButton = ({
   children,
