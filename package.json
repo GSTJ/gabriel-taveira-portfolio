@@ -7,8 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "get:videos": "node ./scripts/getVideos.js",
-    "get:pdf": "node ./scripts/getPdf.js",
+    "get:videos": "node ./scripts/get-videos.js",
+    "get:pdf": "node ./scripts/get-pdf.js",
     "prebuild": "pnpm get:videos",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
