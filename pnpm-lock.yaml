@@ -49,7 +49,7 @@ dependencies:
     version: 2.2.7(encoding@0.1.13)
   zod:
     specifier: ^3.25.62
-    version: 3.25.62
+    version: 3.25.63
 
 devDependencies:
   '@eslint/compat':
@@ -2913,7 +2913,7 @@ packages:
     dependencies:
       devtools-protocol: 0.0.1452169
       mitt: 3.0.1
-      zod: 3.25.62
+      zod: 3.25.63
     dev: true
 
   /ci-info@4.2.0:
@@ -2960,6 +2960,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
 
   /color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}
@@ -3715,8 +3716,8 @@ packages:
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.27.4)
       eslint: 9.28.0(jiti@2.4.2)
       hermes-parser: 0.25.1
-      zod: 3.25.62
-      zod-validation-error: 3.4.1(zod@3.25.62)
+      zod: 3.25.63
+      zod-validation-error: 3.4.1(zod@3.25.63)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7241,14 +7242,14 @@ packages:
       - encoding
     dev: false
 
-  /zod-validation-error@3.4.1(zod@3.25.62):
+  /zod-validation-error@3.4.1(zod@3.25.63):
     resolution: {integrity: sha512-1KP64yqDPQ3rupxNv7oXhf7KdhHHgaqbKuspVoiN93TT0xrBjql+Svjkdjq/Qh/7GSMmgQs3AfvBT0heE35thw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.24.4
     dependencies:
-      zod: 3.25.62
+      zod: 3.25.63
     dev: true
 
-  /zod@3.25.62:
-    resolution: {integrity: sha512-YCxsr4DmhPcrKPC9R1oBHQNlQzlJEyPAId//qTau/vBee9uO8K6prmRq4eMkOyxvBfH4wDPIPdLx9HVMWIY3xA==}
+  /zod@3.25.63:
+    resolution: {integrity: sha512-3ttCkqhtpncYXfP0f6dsyabbYV/nEUW+Xlu89jiXbTBifUfjaSqXOG6JnQPLtqt87n7KAmnMqcjay6c0Wq0Vbw==}
