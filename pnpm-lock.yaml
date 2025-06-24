@@ -27,8 +27,8 @@ dependencies:
     specifier: 15.3.3
     version: 15.3.3(@babel/core@7.27.4)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0)(react@19.1.0)
   next-intl:
-    specifier: 4.1.0
-    version: 4.1.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3)
+    specifier: 4.3.1
+    version: 4.3.1(next@15.3.3)(react@19.1.0)(typescript@5.8.3)
   postcss:
     specifier: 8.5.5
     version: 8.5.5
@@ -2960,6 +2960,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
 
   /color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}
@@ -5640,8 +5641,8 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: true
 
-  /next-intl@4.1.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3):
-    resolution: {integrity: sha512-JNJRjc7sdnfUxhZmGcvzDszZ60tQKrygV/VLsgzXhnJDxQPn1cN2rVpc53adA1SvBJwPK2O6Sc6b4gYSILjCzw==}
+  /next-intl@4.3.1(next@15.3.3)(react@19.1.0)(typescript@5.8.3):
+    resolution: {integrity: sha512-FylHpOoQw5MpOyJt4cw8pNEGba7r3jKDSqt112fmBqXVceGR5YncmqpxS5MvSHsWRwbjqpOV8OsZCIY/4f4HWg==}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
@@ -5655,7 +5656,7 @@ packages:
       next: 15.3.3(@babel/core@7.27.4)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       typescript: 5.8.3
-      use-intl: 4.1.0(react@19.1.0)
+      use-intl: 4.3.1(react@19.1.0)
     dev: false
 
   /next@15.3.3(@babel/core@7.27.4)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0)(react@19.1.0):
@@ -7024,8 +7025,8 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /use-intl@4.1.0(react@19.1.0):
-    resolution: {integrity: sha512-mQvDYFvoGn+bm/PWvlQOtluKCknsQ5a9F1Cj0hMfBjMBVTwnOqLPd6srhjvVdEQEQFVyHM1PfyifKqKYb11M9Q==}
+  /use-intl@4.3.1(react@19.1.0):
+    resolution: {integrity: sha512-8Xn5RXzeHZhWqqZimi1wi2pKFqm0NxRUOB41k1QdjbPX+ysoeLW3Ey+fi603D/e5EGb0fYw8WzjgtUagJdlIvg==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
     dependencies:
