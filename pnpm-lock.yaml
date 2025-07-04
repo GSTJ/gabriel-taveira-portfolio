@@ -13,7 +13,7 @@ dependencies:
     version: 2.2.0(react@19.1.0)
   '@next/third-parties':
     specifier: ^15.3.3
-    version: 15.3.3(next@15.3.3)(react@19.1.0)
+    version: 15.3.5(next@15.3.3)(react@19.1.0)
   '@vercel/analytics':
     specifier: ^1.5.0
     version: 1.5.0(next@15.3.3)(react@19.1.0)
@@ -90,7 +90,7 @@ devDependencies:
     version: 2.4.2
   magic-eslint-config:
     specifier: ^0.1.9
-    version: 0.1.9(@babel/eslint-parser@7.27.5)(jest@30.0.0)(jiti@2.4.2)(prettier@3.5.3)(tailwindcss@4.1.10)(typescript@5.8.3)
+    version: 0.1.9(@babel/eslint-parser@7.28.0)(jest@30.0.0)(jiti@2.4.2)(prettier@3.6.2)(tailwindcss@4.1.10)(typescript@5.8.3)
   puppeteer:
     specifier: ^24.10.0
     version: 24.10.0(typescript@5.8.3)
@@ -143,8 +143,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@babel/eslint-parser@7.27.5(@babel/core@7.27.4)(eslint@9.28.0):
-    resolution: {integrity: sha512-HLkYQfRICudzcOtjGwkPvGc5nF1b4ljLZh1IRDj50lRZ718NAKVgQpIAUX8bfg6u/yuSKY3L7E0YzIV+OxrB8Q==}
+  /@babel/eslint-parser@7.28.0(@babel/core@7.27.4)(eslint@9.28.0):
+    resolution: {integrity: sha512-N4ntErOlKvcbTt01rr5wj3y55xnIdx1ymrfIr8C2WnM1Y9glFgWaGDEULJIazOX3XM9NRzhfJ6zZnQ1sBNWU+w==}
     engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
     peerDependencies:
       '@babel/core': ^7.11.0
@@ -1350,8 +1350,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/third-parties@15.3.3(next@15.3.3)(react@19.1.0):
-    resolution: {integrity: sha512-kwhDkK/3klTvW6SuNkmIMSqzEk9Rnc7PkpGeAi3x0mcbPJhFTwdC/qTEd/HZt53J2yFv73YohOBk6dUG3TEIkQ==}
+  /@next/third-parties@15.3.5(next@15.3.3)(react@19.1.0):
+    resolution: {integrity: sha512-ef2tj6caWSoUy9yM7bGA0uDECJbru8XALIukOn1ZXBeSlOq8+5TTVEB0+xyJVpEDPXIB9w/CVIQw0e0cRIJHVQ==}
     peerDependencies:
       next: ^13.0.0 || ^14.0.0 || ^15.0.0
       react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
@@ -1547,7 +1547,7 @@ packages:
     resolution: {integrity: sha512-bXHSaW5jRTmke9Vd0h5P7BtWZG9Znqb8gSDxZnxaGSJnGwPLDPfS+3g0BKzeWqzgZPsIVZkM7m2tbo18cm5HBw==}
     dev: false
 
-  /@shopify/eslint-plugin@48.0.2(@typescript-eslint/eslint-plugin@8.34.0)(@typescript-eslint/parser@8.34.0)(eslint@9.28.0)(jest@30.0.0)(prettier@3.5.3)(typescript@5.8.3):
+  /@shopify/eslint-plugin@48.0.2(@typescript-eslint/eslint-plugin@8.34.0)(@typescript-eslint/parser@8.34.0)(eslint@9.28.0)(jest@30.0.0)(prettier@3.6.2)(typescript@5.8.3):
     resolution: {integrity: sha512-kf8bOpSDpa/S6manD6EtQiMD1+kS8MG/ZT+sOgbO0hriPiMd37p6BwC8aY3enW5qTxWuVmVNY/tzIhrXV0naIg==}
     peerDependencies:
       eslint: ^8.56.0
@@ -1564,7 +1564,7 @@ packages:
       eslint-plugin-jest-formatting: 3.1.0(eslint@9.28.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.28.0)
       eslint-plugin-n: 17.19.0(eslint@9.28.0)(typescript@5.8.3)
-      eslint-plugin-prettier: 5.4.1(eslint-config-prettier@9.1.0)(eslint@9.28.0)(prettier@3.5.3)
+      eslint-plugin-prettier: 5.4.1(eslint-config-prettier@9.1.0)(eslint@9.28.0)(prettier@3.6.2)
       eslint-plugin-promise: 7.2.1(eslint@9.28.0)
       eslint-plugin-react: 7.37.5(eslint@9.28.0)
       eslint-plugin-react-hooks: 5.2.0(eslint@9.28.0)
@@ -3532,14 +3532,14 @@ packages:
       ignore: 5.3.2
     dev: true
 
-  /eslint-plugin-ft-flow@2.0.3(@babel/eslint-parser@7.27.5)(eslint@9.28.0):
+  /eslint-plugin-ft-flow@2.0.3(@babel/eslint-parser@7.28.0)(eslint@9.28.0):
     resolution: {integrity: sha512-Vbsd/b+LYA99jUbsL6viEUWShFaYQt2YQs3QN3f+aeszOhh2sgdcU0mjzDyD4yyBvMc8qy2uwvBBWfMzEX06tg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       '@babel/eslint-parser': ^7.12.0
       eslint: ^8.1.0
     dependencies:
-      '@babel/eslint-parser': 7.27.5(@babel/core@7.27.4)(eslint@9.28.0)
+      '@babel/eslint-parser': 7.28.0(@babel/core@7.27.4)(eslint@9.28.0)
       eslint: 9.28.0(jiti@2.4.2)
       lodash: 4.17.21
       string-natural-compare: 3.0.1
@@ -3673,7 +3673,7 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-prettier@5.4.1(eslint-config-prettier@9.1.0)(eslint@9.28.0)(prettier@3.5.3):
+  /eslint-plugin-prettier@5.4.1(eslint-config-prettier@9.1.0)(eslint@9.28.0)(prettier@3.6.2):
     resolution: {integrity: sha512-9dF+KuU/Ilkq27A8idRP7N2DH8iUR6qXcjF3FR2wETY21PZdBrIjwCau8oboyGj9b7etWmTGEeM8e7oOed6ZWg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -3689,7 +3689,7 @@ packages:
     dependencies:
       eslint: 9.28.0(jiti@2.4.2)
       eslint-config-prettier: 9.1.0(eslint@9.28.0)
-      prettier: 3.5.3
+      prettier: 3.6.2
       prettier-linter-helpers: 1.0.0
       synckit: 0.11.8
     dev: true
@@ -3782,7 +3782,7 @@ packages:
       string.prototype.repeat: 1.0.0
     dev: true
 
-  /eslint-plugin-reanimated@2.0.1(@babel/eslint-parser@7.27.5)(eslint@9.28.0)(typescript@5.8.3):
+  /eslint-plugin-reanimated@2.0.1(@babel/eslint-parser@7.28.0)(eslint@9.28.0)(typescript@5.8.3):
     resolution: {integrity: sha512-lxoQdNRuMBeA5s83GzcjGzKEQTKkByfXaUAVNxYY8z/te3x3IdfOQrQKruNC68IcvSc1rL08+op0RjcSM25wHg==}
     peerDependencies:
       eslint: '>=8'
@@ -3790,7 +3790,7 @@ packages:
     dependencies:
       '@typescript-eslint/experimental-utils': 5.33.0(eslint@9.28.0)(typescript@5.8.3)
       eslint: 9.28.0(jiti@2.4.2)
-      eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.27.5)(eslint@9.28.0)
+      eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.28.0)(eslint@9.28.0)
       typescript: 5.8.3
     transitivePeerDependencies:
       - '@babel/eslint-parser'
@@ -5487,12 +5487,12 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /magic-eslint-config@0.1.9(@babel/eslint-parser@7.27.5)(jest@30.0.0)(jiti@2.4.2)(prettier@3.5.3)(tailwindcss@4.1.10)(typescript@5.8.3):
+  /magic-eslint-config@0.1.9(@babel/eslint-parser@7.28.0)(jest@30.0.0)(jiti@2.4.2)(prettier@3.6.2)(tailwindcss@4.1.10)(typescript@5.8.3):
     resolution: {integrity: sha512-qbqmEZFqzVbo0vwSCP8nNTqVS7tdd5I70RPf0Cfn+86Q4ju/zUGEEPGptc6xAl7UCl21XSgnmFVC+tMz2FHlQA==}
     dependencies:
       '@eslint/compat': 1.3.0(eslint@9.28.0)
       '@next/eslint-plugin-next': 15.3.3
-      '@shopify/eslint-plugin': 48.0.2(@typescript-eslint/eslint-plugin@8.34.0)(@typescript-eslint/parser@8.34.0)(eslint@9.28.0)(jest@30.0.0)(prettier@3.5.3)(typescript@5.8.3)
+      '@shopify/eslint-plugin': 48.0.2(@typescript-eslint/eslint-plugin@8.34.0)(@typescript-eslint/parser@8.34.0)(eslint@9.28.0)(jest@30.0.0)(prettier@3.6.2)(typescript@5.8.3)
       '@typescript-eslint/eslint-plugin': 8.34.0(@typescript-eslint/parser@8.34.0)(eslint@9.28.0)(typescript@5.8.3)
       '@typescript-eslint/parser': 8.34.0(eslint@9.28.0)(typescript@5.8.3)
       eslint: 9.28.0(jiti@2.4.2)
@@ -5500,13 +5500,13 @@ packages:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.0)(eslint@9.28.0)
       eslint-plugin-jest-formatting: 3.1.0(eslint@9.28.0)
       eslint-plugin-prefer-arrow-functions: 3.6.2(eslint@9.28.0)(typescript@5.8.3)
-      eslint-plugin-prettier: 5.4.1(eslint-config-prettier@9.1.0)(eslint@9.28.0)(prettier@3.5.3)
+      eslint-plugin-prettier: 5.4.1(eslint-config-prettier@9.1.0)(eslint@9.28.0)(prettier@3.6.2)
       eslint-plugin-react: 7.37.5(eslint@9.28.0)
       eslint-plugin-react-compiler: 19.0.0-beta-e993439-20250405(eslint@9.28.0)
       eslint-plugin-react-hooks: 5.2.0(eslint@9.28.0)
       eslint-plugin-react-native: 5.0.0(eslint@9.28.0)
       eslint-plugin-react-native-a11y: 3.5.1(eslint@9.28.0)
-      eslint-plugin-reanimated: 2.0.1(@babel/eslint-parser@7.27.5)(eslint@9.28.0)(typescript@5.8.3)
+      eslint-plugin-reanimated: 2.0.1(@babel/eslint-parser@7.28.0)(eslint@9.28.0)(typescript@5.8.3)
       eslint-plugin-tailwindcss: 3.18.0(tailwindcss@4.1.10)
       eslint-plugin-testing-library: 7.5.2(eslint@9.28.0)(typescript@5.8.3)
       eslint-plugin-unused-imports: 4.1.4(@typescript-eslint/eslint-plugin@8.34.0)(eslint@9.28.0)
@@ -6068,8 +6068,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  /prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
