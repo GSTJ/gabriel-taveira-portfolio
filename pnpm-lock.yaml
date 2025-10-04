@@ -19,7 +19,7 @@ dependencies:
     version: 1.5.0(next@15.3.3)(react@19.1.0)
   autoprefixer:
     specifier: 10.4.21
-    version: 10.4.21(postcss@8.5.5)
+    version: 10.4.21(postcss@8.5.6)
   encoding:
     specifier: ^0.1.13
     version: 0.1.13
@@ -30,8 +30,8 @@ dependencies:
     specifier: 4.1.0
     version: 4.1.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3)
   postcss:
-    specifier: 8.5.5
-    version: 8.5.5
+    specifier: 8.5.6
+    version: 8.5.6
   react:
     specifier: 19.1.0
     version: 19.1.0
@@ -1781,7 +1781,7 @@ packages:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.1.10
       '@tailwindcss/oxide': 4.1.10
-      postcss: 8.5.5
+      postcss: 8.5.6
       tailwindcss: 4.1.10
     dev: true
 
@@ -2578,7 +2578,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /autoprefixer@10.4.21(postcss@8.5.5):
+  /autoprefixer@10.4.21(postcss@8.5.6):
     resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -2590,7 +2590,7 @@ packages:
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.5
+      postcss: 8.5.6
       postcss-value-parser: 4.2.0
     dev: false
 
@@ -3032,7 +3032,7 @@ packages:
       dom-serializer: 2.0.0
       domhandler: 5.0.3
       htmlparser2: 8.0.2
-      postcss: 8.5.5
+      postcss: 8.5.6
       postcss-media-query-parser: 0.2.3
     dev: true
 
@@ -3840,7 +3840,7 @@ packages:
       tailwindcss: ^3.4.0
     dependencies:
       fast-glob: 3.3.3
-      postcss: 8.5.5
+      postcss: 8.5.6
       tailwindcss: 4.1.10
     dev: true
 
@@ -6069,8 +6069,8 @@ packages:
       source-map-js: 1.2.1
     dev: false
 
-  /postcss@8.5.5:
-    resolution: {integrity: sha512-d/jtm+rdNT8tpXuHY5MMtcbJFBkhXE6593XVR9UoGCH8jSFGci7jGvMGH5RYd5PBJW+00NZQt6gf7CbagJCrhg==}
+  /postcss@8.5.6:
+    resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.11
