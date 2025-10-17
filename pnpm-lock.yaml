@@ -13,7 +13,7 @@ dependencies:
     version: 2.2.0(react@19.1.0)
   '@next/third-parties':
     specifier: ^15.3.3
-    version: 15.3.3(next@15.3.3)(react@19.1.0)
+    version: 15.5.6(next@15.3.3)(react@19.1.0)
   '@vercel/analytics':
     specifier: ^1.5.0
     version: 1.5.0(next@15.3.3)(react@19.1.0)
@@ -1358,8 +1358,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/third-parties@15.3.3(next@15.3.3)(react@19.1.0):
-    resolution: {integrity: sha512-kwhDkK/3klTvW6SuNkmIMSqzEk9Rnc7PkpGeAi3x0mcbPJhFTwdC/qTEd/HZt53J2yFv73YohOBk6dUG3TEIkQ==}
+  /@next/third-parties@15.5.6(next@15.3.3)(react@19.1.0):
+    resolution: {integrity: sha512-B1BLvEi7edGERNN0njxpiqbqkp3zAZ69eJ5C0vwj/XINRzcC25b9MCqxbSHq094d306H65UnlhEkBv+a8c74iA==}
     peerDependencies:
       next: ^13.0.0 || ^14.0.0 || ^15.0.0
       react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
@@ -1464,6 +1464,7 @@ packages:
       tar-fs: 3.0.9
       yargs: 17.7.2
     transitivePeerDependencies:
+      - bare-abort-controller
       - bare-buffer
       - supports-color
     dev: true
@@ -2712,14 +2713,19 @@ packages:
     dev: true
     optional: true
 
-  /bare-events@2.7.0:
-    resolution: {integrity: sha512-b3N5eTW1g7vXkw+0CXh/HazGTcO5KYuu/RCNaJbDMPI6LHDi+7qe8EmxKUVe1sUbY2KZOVZFyj62x0OEz9qyAA==}
+  /bare-events@2.8.0:
+    resolution: {integrity: sha512-AOhh6Bg5QmFIXdViHbMc2tLDsBIRxdkIaIddPslJF9Z5De3APBScuqGP2uThXnIpqFrgoxMNC6km7uXNIMLHXA==}
     requiresBuild: true
+    peerDependencies:
+      bare-abort-controller: '*'
+    peerDependenciesMeta:
+      bare-abort-controller:
+        optional: true
     dev: true
     optional: true
 
-  /bare-fs@4.4.5:
-    resolution: {integrity: sha512-TCtu93KGLu6/aiGWzMr12TmSRS6nKdfhAnzTQRbXoSWxkbb9eRd53jQ51jG7g1gYjjtto3hbBrrhzg6djcgiKg==}
+  /bare-fs@4.4.11:
+    resolution: {integrity: sha512-Bejmm9zRMvMTRoHS+2adgmXw1ANZnCNx+B5dgZpGwlP1E3x6Yuxea8RToddHUbWtVV0iUMWqsgZr8+jcgUI2SA==}
     engines: {bare: '>=1.16.0'}
     requiresBuild: true
     peerDependencies:
@@ -2733,6 +2739,8 @@ packages:
       bare-stream: 2.6.5(bare-events@2.5.4)
       bare-url: 2.2.2
       fast-fifo: 1.3.2
+    transitivePeerDependencies:
+      - bare-abort-controller
     dev: true
     optional: true
 
@@ -2765,6 +2773,8 @@ packages:
     dependencies:
       bare-events: 2.5.4
       streamx: 2.22.1
+    transitivePeerDependencies:
+      - bare-abort-controller
     dev: true
     optional: true
 
@@ -6179,6 +6189,7 @@ packages:
       typed-query-selector: 2.12.0
       ws: 8.18.2
     transitivePeerDependencies:
+      - bare-abort-controller
       - bare-buffer
       - bufferutil
       - supports-color
@@ -6198,6 +6209,7 @@ packages:
       puppeteer-core: 24.10.0
       typed-query-selector: 2.12.0
     transitivePeerDependencies:
+      - bare-abort-controller
       - bare-buffer
       - bufferutil
       - supports-color
@@ -6583,7 +6595,9 @@ packages:
       fast-fifo: 1.3.2
       text-decoder: 1.2.3
     optionalDependencies:
-      bare-events: 2.7.0
+      bare-events: 2.8.0
+    transitivePeerDependencies:
+      - bare-abort-controller
     dev: true
 
   /string-length@4.0.2:
@@ -6779,9 +6793,10 @@ packages:
       pump: 3.0.2
       tar-stream: 3.1.7
     optionalDependencies:
-      bare-fs: 4.4.5
+      bare-fs: 4.4.11
       bare-path: 3.0.0
     transitivePeerDependencies:
+      - bare-abort-controller
       - bare-buffer
     dev: true
 
@@ -6791,6 +6806,8 @@ packages:
       b4a: 1.6.7
       fast-fifo: 1.3.2
       streamx: 2.22.1
+    transitivePeerDependencies:
+      - bare-abort-controller
     dev: true
 
   /tar@7.4.3:
