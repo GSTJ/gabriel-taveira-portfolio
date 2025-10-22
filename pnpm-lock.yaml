@@ -27,8 +27,8 @@ dependencies:
     specifier: 15.3.3
     version: 15.3.3(@babel/core@7.27.4)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0)(react@19.1.0)
   next-intl:
-    specifier: 4.1.0
-    version: 4.1.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3)
+    specifier: 4.4.0
+    version: 4.4.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3)
   postcss:
     specifier: 8.5.5
     version: 8.5.5
@@ -5661,10 +5661,10 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: true
 
-  /next-intl@4.1.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3):
-    resolution: {integrity: sha512-JNJRjc7sdnfUxhZmGcvzDszZ60tQKrygV/VLsgzXhnJDxQPn1cN2rVpc53adA1SvBJwPK2O6Sc6b4gYSILjCzw==}
+  /next-intl@4.4.0(next@15.3.3)(react@19.1.0)(typescript@5.8.3):
+    resolution: {integrity: sha512-QHqnP9V9Pe7Tn0PdVQ7u1Z8k9yCkW5SJKeRy2g5gxzhSt/C01y3B9qNxuj3Fsmup/yreIHe6osxU6sFa+9WIkQ==}
     peerDependencies:
-      next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+      next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
       typescript: ^5.0.0
     peerDependenciesMeta:
@@ -5676,7 +5676,7 @@ packages:
       next: 15.3.3(@babel/core@7.27.4)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       typescript: 5.8.3
-      use-intl: 4.1.0(react@19.1.0)
+      use-intl: 4.4.0(react@19.1.0)
     dev: false
 
   /next@15.3.3(@babel/core@7.27.4)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0)(react@19.1.0):
@@ -7038,8 +7038,8 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /use-intl@4.1.0(react@19.1.0):
-    resolution: {integrity: sha512-mQvDYFvoGn+bm/PWvlQOtluKCknsQ5a9F1Cj0hMfBjMBVTwnOqLPd6srhjvVdEQEQFVyHM1PfyifKqKYb11M9Q==}
+  /use-intl@4.4.0(react@19.1.0):
+    resolution: {integrity: sha512-smFekJWtokDRBLC5/ZumlBREzdXOkw06+56Ifj2uRe9266Mk+yWQm2PcJO+EwlOE5sHIXHixOTzN6V8E0RGUbw==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
     dependencies:
