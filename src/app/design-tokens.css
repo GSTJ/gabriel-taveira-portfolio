@@ -1,0 +1,243 @@
+/* =============================================================================
+   WORKSHOP · Portfolio Design System
+   Foundation tokens: color + type
+   ============================================================================= */
+
+/* ----- Webfonts ----- */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap');
+
+:root {
+  /* =========================================================================
+     COLOR · Workshop palette
+     Inspired by warm-backlit black shelves: ink-black ground, amber glow,
+     red Pixar-ball accent, brass/cream warmth, muted cool greys for UI.
+     ========================================================================= */
+
+  /* Ink · neutrals from black-shelf to softlight */
+  --ink-1000: #07070a;      /* deepest backdrop, like the back of the shelf */
+  --ink-900:  #0e0d0c;      /* base bg · warm-tinted near-black */
+  --ink-850:  #16140f;      /* surface lift */
+  --ink-800:  #1c1916;      /* card surface */
+  --ink-700:  #2a2622;      /* raised surface, divider on dark */
+  --ink-600:  #3a3530;      /* hairline / disabled */
+  --ink-500:  #5c554d;      /* muted text on dark */
+  --ink-400:  #8a827a;      /* secondary text on dark */
+  --ink-300:  #b8b0a7;      /* tertiary / placeholder */
+  --ink-200:  #d8d2c8;      /* light surface */
+  --ink-100:  #ece6da;      /* cream · paper, light bg */
+  --ink-50:   #f6f1e6;      /* highest light */
+
+  /* Ember · the warm backlight glow */
+  --ember-900: #3a1d05;
+  --ember-800: #5a2c08;
+  --ember-700: #8a440d;
+  --ember-600: #b85d12;
+  --ember-500: #e07a1f;      /* PRIMARY warm · the LED amber */
+  --ember-400: #f29842;
+  --ember-300: #f8b878;
+  --ember-200: #fbd5ad;
+  --ember-100: #fde9d6;
+
+  /* Coral · the Pixar ball red, red puffle */
+  --coral-700: #9a1f1a;
+  --coral-600: #c52a23;
+  --coral-500: #e63b30;      /* SECONDARY accent · alert/love/Pixar */
+  --coral-400: #f06257;
+  --coral-300: #f79189;
+
+  /* Brass · old-book gold, captain hat trim */
+  --brass-700: #6e5318;
+  --brass-600: #9a7423;
+  --brass-500: #c89a3a;
+  --brass-400: #e3b75c;
+  --brass-300: #f2d18a;
+
+  /* Cool ink · for code, technical accents (CRT phosphor wink) */
+  --teal-700: #0c3f3d;
+  --teal-500: #2aa39b;
+  --teal-300: #7fd9d2;
+
+  /* Semantic */
+  --color-bg:           var(--ink-900);
+  --color-bg-elevated:  var(--ink-800);
+  --color-bg-raised:    var(--ink-700);
+  --color-bg-inverse:   var(--ink-50);
+
+  --color-surface:      var(--ink-850);
+  --color-surface-2:    var(--ink-800);
+
+  --color-fg:           var(--ink-50);
+  --color-fg-strong:    #ffffff;
+  --color-fg-muted:     var(--ink-300);
+  --color-fg-subtle:    var(--ink-400);
+  --color-fg-faint:     var(--ink-500);
+  --color-fg-inverse:   var(--ink-900);
+
+  --color-border:       rgba(255, 240, 220, 0.08);
+  --color-border-strong:rgba(255, 240, 220, 0.16);
+  --color-divider:      rgba(255, 240, 220, 0.06);
+
+  --color-accent:       var(--ember-500);
+  --color-accent-hover: var(--ember-400);
+  --color-accent-press: var(--ember-600);
+  --color-accent-soft:  rgba(224, 122, 31, 0.14);
+
+  --color-danger:       var(--coral-500);
+  --color-danger-soft:  rgba(230, 59, 48, 0.14);
+  --color-success:      var(--teal-500);
+  --color-warning:      var(--brass-500);
+  --color-info:         var(--teal-300);
+
+  --color-link:         var(--ember-300);
+  --color-link-hover:   var(--ember-200);
+
+  /* Selection */
+  --color-selection-bg: var(--ember-500);
+  --color-selection-fg: var(--ink-900);
+
+  /* Shadows · warm, like backlit shelves */
+  --shadow-glow-sm:  0 0 0 1px rgba(255, 200, 130, 0.06), 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-glow-md:  0 0 0 1px rgba(255, 200, 130, 0.06), 0 8px 24px rgba(0,0,0,0.45);
+  --shadow-glow-lg:  0 0 0 1px rgba(255, 200, 130, 0.08), 0 24px 60px rgba(0,0,0,0.55);
+  --shadow-ember:    0 0 32px rgba(224, 122, 31, 0.22), 0 8px 24px rgba(0,0,0,0.45);
+  --shadow-inset:    inset 0 1px 0 rgba(255, 240, 220, 0.06);
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-pill: 999px;
+
+  /* Spacing scale (4px base) */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* =========================================================================
+     TYPE
+     ========================================================================= */
+  --font-display: 'Bricolage Grotesque', 'Inter Tight', 'Geist', system-ui, sans-serif;
+  --font-sans:    'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    'Geist Mono', ui-monospace, 'JetBrains Mono', 'Menlo', monospace;
+
+  /* Type scale · tight ratio, editorial */
+  --fs-display-2xl: clamp(64px, 9vw, 132px);
+  --fs-display-xl:  clamp(48px, 6vw, 96px);
+  --fs-display-lg:  clamp(40px, 5vw, 72px);
+  --fs-h1: clamp(32px, 4vw, 56px);
+  --fs-h2: clamp(26px, 3vw, 40px);
+  --fs-h3: clamp(20px, 2.2vw, 28px);
+  --fs-h4: 20px;
+  --fs-h5: 16px;
+  --fs-body-lg: 18px;
+  --fs-body:    16px;
+  --fs-body-sm: 14px;
+  --fs-caption: 12px;
+  --fs-micro:   11px;
+
+  --lh-tight: 1.32;
+  --lh-snug:  1.2;
+  --lh-normal:1.5;
+  --lh-loose: 1.7;
+
+  --tracking-tight: -0.02em;
+  --tracking-snug:  -0.01em;
+  --tracking-normal:0;
+  --tracking-wide:  0.04em;
+  --tracking-eyebrow: 0.18em;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.5, 1.6, 0.4, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+}
+
+/* =============================================================================
+   Semantic element styles
+   ============================================================================= */
+
+html, body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-fg);
+}
+
+h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 400; letter-spacing: var(--tracking-tight); line-height: 1.32; color: var(--color-fg-strong); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); letter-spacing: var(--tracking-snug); }
+h5 { font-size: var(--fs-h5); font-family: var(--font-sans); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-fg-muted); }
+
+p { color: var(--color-fg); text-wrap: pretty; }
+
+.display-2xl { font-family: var(--font-display); font-size: var(--fs-display-2xl); line-height: 1.35; letter-spacing: -0.03em; font-weight: 400; }
+.display-xl  { font-family: var(--font-display); font-size: var(--fs-display-xl); line-height: 1.32; letter-spacing: -0.025em; font-weight: 400; }
+.display-lg  { font-family: var(--font-display); font-size: var(--fs-display-lg); line-height: 1.30; letter-spacing: -0.02em; font-weight: 400; }
+
+.italic-accent { font-style: italic; color: var(--color-accent); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  font-weight: 500;
+}
+
+code, kbd, pre, samp { font-family: var(--font-mono); font-size: 0.92em; }
+code {
+  background: var(--ink-800);
+  border: 1px solid var(--color-border);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--ember-300);
+}
+
+a { color: var(--color-link); text-decoration: none; border-bottom: 1px solid rgba(248, 184, 120, 0.3); transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast); }
+a:hover { color: var(--color-link-hover); border-bottom-color: var(--color-link-hover); }
+
+hr { border: 0; border-top: 1px solid var(--color-divider); margin: var(--space-8) 0; }
+
+/* Light theme override · for occasional light surfaces */
+.theme-light {
+  --color-bg: var(--ink-50);
+  --color-bg-elevated: #ffffff;
+  --color-surface: var(--ink-100);
+  --color-surface-2: #ffffff;
+  --color-fg: var(--ink-900);
+  --color-fg-strong: var(--ink-1000);
+  --color-fg-muted: var(--ink-600);
+  --color-fg-subtle: var(--ink-500);
+  --color-border: rgba(28, 25, 22, 0.10);
+  --color-border-strong: rgba(28, 25, 22, 0.18);
+  --color-divider: rgba(28, 25, 22, 0.06);
+  --color-link: var(--ember-700);
+  --color-link-hover: var(--ember-600);
+}

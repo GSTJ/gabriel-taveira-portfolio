@@ -1,38 +1,11 @@
 @import "tailwindcss";
+@import "./design-tokens.css";
+@import "./design-portfolio.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 251, 232, 222;
-  --background-end-rgb: 251, 232, 222;
   scroll-behavior: smooth;
-}
-
-.dark {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
-}
-
-.word-space {
-  word-spacing: 0.35rem;
-}
-
-@media screen and (min-width: 1600px) {
-  :root {
-    font-size: 20px;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background-image:
-    url(/noise.png),
-    linear-gradient(
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
 }
 .animate-shine {
   animation: shine 4s ease-in-out infinite;

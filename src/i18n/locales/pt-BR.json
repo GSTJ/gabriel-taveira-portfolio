@@ -1,113 +1,233 @@
 {
-  "components": {
-    "awardsIllustration": "Ilustração de Prêmios",
-    "languageSelect": "Seleção de Idioma",
-    "themeToggle": "Alternância de Tema",
-    "workLocation": "Local de Trabalho",
-    "hero": "Hero",
-    "summary": "Resumo",
-    "workExperiences": "Experiências de Trabalho",
-    "publications": "Publicações",
+  "nav": {
+    "work": "Trabalho",
+    "media": "Mídia",
+    "talks": "Palestras",
     "awards": "Prêmios",
-    "socials": "Redes Sociais"
-  },
-  "sections": {
-    "step1": "Etapa 1",
-    "step2": "Etapa 2",
-    "step3": "Etapa 3",
-    "step4": "Etapa 4",
-    "finalStep": "Última Etapa",
-    "summaryOfQualifications": "Resumo das Qualificações",
-    "professionalExperience": "Experiência Profissional",
-    "professionalExperienceSubtitle": "Uma vitrine das empresas para as quais trabalhei e alguns dos projetos que surgiram disso",
-    "publicationsAndMedia": "Publicações e Mídia",
-    "awards": "Prêmios",
-    "awardsSubtitle": "Algumas das competições em que participei ao longo do tempo",
-    "socials": "Redes Sociais",
-    "socialsSubtitle": "Conheça mais sobre meu trabalho e entre em contato comigo"
-  },
-  "awards": {
-    "firstPlace": "Primeiro lugar",
-    "secondPlace": "Segundo lugar",
-    "finalist": "Finalista",
-    "awardTitles": {
-      "globalLegalHackathonSP": "Global Legal Hackathon SP",
-      "maoNaCevada": "Mão na Cevada",
-      "hackRibeirao": "HackRibeirão",
-      "jovemInovadorTrophy": "Prêmio Jovem Inovador",
-      "nasaSpaceAppsChallengeRP": "NASA Space Apps Challenge RP"
-    },
-    "seeMoreAwards": "Veja mais prêmios"
+    "now": "Agora",
+    "getInTouch": "Fala comigo"
   },
   "hero": {
-    "welcome": "Prazer, sou o",
+    "role": "Engineering Lead",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "Engenheiro de Software com mais de oito anos de experiência construindo experiências digitais. Vamos construir o futuro juntos!",
-    "getInTouch": "Entre em contato"
-  },
-  "publications": {
-    "spaceCastHost": "Host do podcast Space Cast:",
-    "spaceCastLink": "https://www.youtube.com/@spacesquad-rocketseat",
-    "mediumArticles": "Artigos no Medium sobre programação:",
-    "mediumLink": "https://medium.com/@gabrieltaveira",
-    "spaceSquadAmbassador": "Embaixador do Space Squad:",
-    "spaceSquadAmbassadorLink": "https://www.rocketseat.com.br/space-squad",
-    "eventsInfo": "Também dei palestras em grandes eventos sobre Tecnologia e Liderança, como no Assemble (uma imersão de 3 dias focada na formação de Tech Leads) e na The Developer Conference sobre Design Systems."
-  },
-  "summary": {
-    "point1": "Mais de 8 anos de experiência profissional, trabalhando em projetos de todos os tamanhos, desde startups até gigantes da tecnologia e de aplicativos de entrega a fintechs.",
-    "point2": "Experiência comprovada em React/React Native e JavaScript/TypeScript, com forte foco na experiência do usuário e em design systems.",
-    "point3": "Host do podcast Space Cast e palestrante em eventos de tecnologia e liderança.",
-    "point4": "Apaixonado por mentorear a próxima geração de talentos em tecnologia através da criação de conteúdo e conversas informais.",
-    "point5": "Dupla cidadania italiana e brasileira, com permissão de trabalho para oportunidades nacionais e internacionais na Europa e Américas."
-  },
-  "workLocation": {
-    "remote": "Remoto"
-  },
-  "socials": {
-    "alt": "{{name}} Thumbnail"
-  },
-  "workExperience": {
-    "now": "Agora",
-    "divider": "/",
-    "leadSoftwareEngineer": "Lead Software Engineer",
-    "seniorSoftwareEngineer": "Engenheiro de Software Sênior",
-    "frontendEngineerIII": "Engenheiro Frontend III",
-    "softwareEngineer": "Engenheiro de Software",
-    "fullStackDeveloper": "Desenvolvedor Full Stack",
-    "appInfrastructureEngineer": "App Infrastructure Engineer",
-    "jobTypes": {
-      "contractor": "Contractor"
-    },
-    "jobDescriptions": {
-      "coinbaseDescription": "Engenheiro Sênior na equipe de infraestrutura do app da Coinbase — **cuidando da arquitetura mobile, segurança e tooling** no app principal da empresa (NASDAQ: $COIN).\n\n• Contribuí diretamente para a migração para Expo Prebuild, migrando módulos nativos e configs de sistema no iOS e Android\n\n• Habilitei a nova arquitetura do React Native mapeando, corrigindo e adaptando pacotes nativos não suportados\n\n• Automatizei rastreamento de ownership e nudges via CI — **aumentamos a cobertura de testes de arquivos do nosso time de 25% para 45%**\n\n• Reescrevi mais de 300 testes e **levei a cobertura do core de 76% para 84%**\n\n• Criei um módulo nativo de detecção de gravação de tela — atualmente sendo upstreamado para o Expo\n\n• Integrei o TopHat (Shopify) para builds em simulador; contribuições upstream e automação via CI\n\n• Reforcei a segurança do app: protegi deep links com autenticação, refatorei o fluxo biométrico e tornei a lógica de PIN mais segura\n\n• **Trabalhando na adoção do React Compiler**, contribuindo com o WG",
-      "ateamDescription": "Faço parte da equipe da D-ID, uma plataforma de inteligência artificial que facilita a criação de vídeos.\n\n**🚀 Produto da Semana no Product Hunt**\n**🏆 Prêmio Golden Kitty de Marketing & Sales no Product Hunt**\n**🏆 Prêmio Best User Experience 2023 na A-Team**\n\nNossos clientes variam de grandes corporações a agências de marketing, produtoras, plataformas de redes sociais, serviços de e-learning e criadores de conteúdo independentes.\n\nEnquanto o aplicativo web tem mais de 1,5 milhão de contas criadas por semana, e 1,5 milhão de vídeos gerados por mês, o **aplicativo de celular que estou construindo é considerado o produto 'core' da empresa**.",
-      "metaDescription": "Na Meta, trabalhei na Kustomer, plataforma que permite às empresas gerenciar todos os canais de comunicação em um só lugar. Desenvolvi aplicativos, forneci feedback de UX e colaborei em iniciativas de DevX.\n\n• **Construi e mantive o Design System open-source**, padronizando componentes de UI para desenvolvedores externos\n\n• **Desenvolvi e dei suporte aos SDKs de desenvolvedor**, simplificando integrações com as APIs da Kustomer\n\n• Autorei e melhorei a documentação para aprimorar a experiência do desenvolvedor (DevX)\n\n• Forneci feedback de DevX e colaborei com equipes multifuncionais para refinar recursos da plataforma",
-      "xteamDescription": "Na X-Team, faço parte de uma fintech na Califórnia focada em criar uma plataforma de doação para empresas e seus funcionários. Minha principal responsabilidade é o desenvolvimento do aplicativo principal em React Native. Dada a natureza financeira da plataforma, aderimos a padrões rigorosos de segurança, incluindo conformidade com SOC2.\n\n• **Elevei a cobertura de código de 30% para mais de 80%**, corrigindo 100% dos testes quebrados e garantindo alta confiabilidade\n\n• Introduzi Mock Service Workers, **eliminando mais de 16.000 linhas de código de teste redundante**\n\n• Refatorei diversas telas, **aumentando o desempenho da página Discover em 200%**\n\n• Contribuí para projetos open-source (por ex., reanimated) e **desenvolvi um plugin ESLint que preveniu falhas por erros de renderização**\n\n• Entreguei dezenas de features e épicos do início ao fim, incluindo migração dessas funcionalidades para o projeto BEAST\n\n• Iniciei o Mobile Engineering Biweekly, fórum quinzenal que gerou insights acionáveis e melhorias contínuas",
-      "zeDeliveryDescription": "Zé Delivery é o maior app de entrega de bebidas do Brasil, impulsionado pela Anheuser-Busch InBev.\n\n• **Reduzi dívida técnica refatorando o módulo \"browse\"** (≈1/3 do app), **diminuindo significativamente o tempo de entrega**\n\n• **Implementei suporte a deeplinks, aumentando a eficácia das campanhas de marketing**\n\n• Contribuí na criação do Mozeic, nosso Design System em desenvolvimento\n\n• Entrevistei candidatos e contratei talentos, garantindo a entrada de desenvolvedores altamente proficientes\n\n• Criei a nova API para o Code Challenge usando Node.js\n\n• Contribuí para aprimorar a experiência do usuário e percepção de preço, impulsionando conversões\n\n• Especializado em desenvolvimento nativo, tratando peculiaridades de cada plataforma",
-      "alfredDeliveryDescription": "Alfred Delivery é um app de entregas presente em mais de 160 cidades no Brasil.\n\n• **Liderei a migração do app legado Ionic/Angular para React Native**, gerando melhoria significativa de desempenho e reformulação total de UI/UX\n\n• Implementei Redux e Redux-Saga para gerenciar estados complexos e tarefas em background de forma eficaz\n\n• Mantive e atualizei o app legado em Ionic 3, adicionando features e correções para garantir estabilidade\n\n• Desenvolvi novas funcionalidades e serviços para o aplicativo principal",
-      "microImportGroupDescription": "• Construí templates WordPress do zero em PHP para empresas dentro de um grupo de provedores de serviços da Apple.\n\n• **Desenvolvi sistemas para gerenciamento interno** para analisar a proficiência dos funcionários e a satisfação do cliente.\n\n• Desenvolvi sites estáticos modernos e intuitivos em Gatsby utilizando o WordPress somente como ferramenta de CMS.\n\n• **Montei um sistema para que os clientes rastreiem o status de reparo de seus produtos em tempo real**, com o objetivo de melhorar a satisfação do cliente e reduzir as chamadas de suporte."
-    },
-    "companyNames": {
-      "meta": "Meta",
-      "xteam": "X-Team",
-      "zeDelivery": "Zé Delivery",
-      "alfredDelivery": "Alfred Delivery",
-      "microImportGroup": "Micro Import Group",
-      "ateam": "A.Team",
-      "coinbase": "Coinbase"
-    },
-    "subCompanyNames": {
-      "kustomerNewYork": "Kustomer (Nova Iorque)",
-      "groundswellCalifornia": "Groundswell (Califórnia)",
-      "anheuserBuschInbev": "Anheuser-Busch InBev",
-      "d-id": "D-ID (Tel Aviv)",
-      "g2i": "G2i"
+    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times e sistemas que duram.",
+    "intro2": "Hoje consultor independente. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
+    "getInTouch": "Fala comigo",
+    "viewLinkedIn": "Ver LinkedIn",
+    "downloadPdf": "Baixar PDF",
+    "currently": "Hoje",
+    "consulting": "Consultoria",
+    "location": "Remoto · Ribeirão Preto, Brasil",
+    "stats": {
+      "years": "Anos de carreira",
+      "yearsMeta": "Desde {since}",
+      "reports": "Maior time liderado",
+      "reportsMeta": "Comecei com quatro",
+      "tinkering": "Anos mexendo em código",
+      "tinkeringMeta": "Comecei aos 8",
+      "awards": "Hackathons vencidos",
+      "awardsMeta": "2019 → 2020"
     }
   },
-  "footer": {
-    "madeWithLove": "Feito com ❤️ por Gabriel Taveira",
-    "checkOutOnGithub": "Ver projeto no meu Github"
+  "work": {
+    "eyebrow": "Experiência profissional · 2017 → hoje",
+    "title": "Times que liderei. Sistemas que <em>ficaram de pé</em>.",
+    "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech. Sempre o mesmo método: contratar com critério, entregar tech sem firula, registrar tudo.",
+    "items": {
+      "consulting": {
+        "title": "Consultoria independente",
+        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time. Detalhes dos contratos sob NDA. Chama se estiver contratando ou só de curioso.",
+        "cta": "Ver no LinkedIn"
+      },
+      "coinbase": {
+        "title": "Arquitetura mobile na Coinbase",
+        "blurb": "Time de Consumer App Infra. Puxei a adoção do React Compiler junto ao React WG, migrei a Coinbase pro Expo Prebuild e habilitei a nova arquitetura do React Native. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>.",
+        "cta": "Visitar Coinbase"
+      },
+      "ateam": {
+        "title": "Lead Engineer no app mobile da D-ID",
+        "blurb": "Construí o novo produto principal do zero. 1.5M cadastros por semana no web app da matriz. Best UX 2023 na A.Team. Product of the Week no Product Hunt.",
+        "cta": "Visitar D-ID"
+      },
+      "meta": {
+        "title": "Design system open-source na Kustomer",
+        "blurb": "Padronizei a UI para devs externos. Entreguei SDKs que simplificaram a integração com as APIs da Kustomer. Escrevi a doc que subiu o score de DevX entre times.",
+        "cta": "Visitar Kustomer"
+      },
+      "xteam": {
+        "title": "Mentoria de engenharia mobile numa fintech",
+        "blurb": "Fundei o fórum Mobile Engineering Biweekly. Subi a cobertura de <mark>30% pra 80%+</mark>. Apaguei 16k linhas de testes frágeis com MSW. Página Discover 200% mais rápida. SOC 2 desde o primeiro dia.",
+        "cta": "Visitar Groundswell"
+      },
+      "ze": {
+        "title": "Refatorei o maior app de cerveja do Brasil",
+        "blurb": "Entrevistei e fiz onboarding de engenheiros sêniores. Reconstruí o módulo Browse. Implementei deep-links que aumentaram a conversão das campanhas. Co-criei o <mark>Mozeic</mark>, o design system interno.",
+        "cta": "Visitar Zé Delivery"
+      },
+      "alfred": {
+        "title": "Liderei a migração de Ionic pra React Native",
+        "blurb": "Coordenei a reescrita pra 90+ franquias atendendo cidades menores do Brasil. Mantive o Ionic 3 legado rodando em paralelo até o cutover.",
+        "cta": "Ver no LinkedIn"
+      },
+      "micro": {
+        "title": "Primeiro emprego: sistemas pra assistência técnica",
+        "blurb": "Tracker em tempo real do status de reparos pra uma Apple Service Provider. Dashboards internos pra técnicos e atendimento. Sites em headless CMS pras marcas do grupo.",
+        "cta": "Ver no LinkedIn"
+      }
+    }
+  },
+  "publications": {
+    "eyebrow": "Publicações & mídia",
+    "title": "O que eu apresento, escrevo e <em>represento</em>.",
+    "onAir": "No ar · Space Cast",
+    "featureTitle": "Apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
+    "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
+    "watchShow": "Assistir o programa",
+    "playlist": "Playlist de episódios →",
+    "mediumEyebrow": "Medium",
+    "mediumHandle": "medium.com/@gabrieltaveira",
+    "mediumBody": "Textos sobre programação, design systems e cultura de time.",
+    "ambassadorEyebrow": "Embaixador",
+    "ambassadorTitle": "Space Squad · Rocketseat",
+    "ambassadorBody": "Mentorando a próxima geração de devs."
+  },
+  "talks": {
+    "eyebrow": "Palestras · selecionadas",
+    "title": "Palestro em eventos de <em>tech</em> e <em>liderança</em>.",
+    "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
+    "topicLeadership": "Liderança",
+    "topicTech": "Tech",
+    "items": {
+      "brooklyn": {
+        "title": "Eficiência com IA",
+        "description": "Como aumentar o throughput de um time usando IA no dia a dia da engenharia.",
+        "venue": "The Brooklyn Brothers",
+        "city": "São Paulo",
+        "hrefLabel": "Slides no Figma"
+      },
+      "tdc": {
+        "title": "Entregando o Mozeic no Zé Delivery",
+        "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
+        "venue": "TDC · Design Systems",
+        "city": "São Paulo",
+        "hrefLabel": "Site do evento"
+      },
+      "assemble": {
+        "title": "Formando um Tech Lead, três dias por vez",
+        "description": "Imersão de 3 dias pra formar líderes de engenharia.",
+        "venue": "Assemble · Rocketseat",
+        "city": "Remoto",
+        "hrefLabel": "Rocketseat"
+      },
+      "spaceSquad": {
+        "title": "Mentoria na comunidade Space Squad",
+        "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
+        "venue": "Space Squad · Rocketseat",
+        "city": "Remoto",
+        "hrefLabel": "Space Squad"
+      }
+    }
+  },
+  "awards": {
+    "eyebrow": "Prêmios · 2019 → 2020",
+    "title": "Alguns <em>troféus</em>.",
+    "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
+    "positions": {
+      "first": "1º lugar",
+      "second": "2º lugar",
+      "finalist": "Finalista"
+    },
+    "items": {
+      "globalLegal": "Global Legal Hackathon SP",
+      "maoNaCevada": "Mão na Cevada",
+      "hackRibeirao": "HackRibeirão",
+      "jovemInovador": "Prêmio Jovem Inovador",
+      "nasa": "NASA Space Apps Challenge"
+    }
+  },
+  "writing": {
+    "eyebrow": "Escritos",
+    "title": "Algumas <em>anotações</em>.",
+    "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
+    "handle": "medium.com/@gabrieltaveira",
+    "calloutTitle": "Escrevo no <em>Medium</em>.",
+    "calloutSub": "Posts novos quando uma ideia para de ser interessante só pra mim. Assina lá pro próximo.",
+    "topics": {
+      "leadership": "Liderança em Engenharia",
+      "mobile": "Arquitetura Mobile",
+      "design": "Design Systems",
+      "hiring": "Contratação & Mentoria",
+      "reverse": "Engenharia Reversa"
+    },
+    "readOnMedium": "Ler no Medium"
+  },
+  "now": {
+    "eyebrow": "Agora · {date}",
+    "title": "O que estou de fato <em>fazendo</em>.",
+    "items": {
+      "consulting": {
+        "chip": "Consultoria",
+        "title": "Arquitetura mobile e liderança de engenharia",
+        "body": "Consultoria independente. Detalhes dos contratos sob NDA. Mesmo trabalho, sem o trânsito."
+      },
+      "hosting": {
+        "chip": "Apresentando",
+        "title": "Space Cast na Rocketseat",
+        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugere um convidado mandando uma ⚡."
+      },
+      "mentoring": {
+        "chip": "Mentoria",
+        "title": "Space Squad · a próxima geração",
+        "body": "Embaixador desde o começo do programa. O juros compostos de 20 minutos de café com um júnior é absurdo."
+      },
+      "tinkering": {
+        "chip": "Mexendo",
+        "title": "Detector nativo de gravação de tela pra Expo",
+        "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Fala comigo",
+    "title": "Tem um <em>desafio</em> bom?",
+    "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
+    "channels": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "email": "Email",
+      "medium": "Medium",
+      "spaceCast": "Space Cast"
+    },
+    "form": {
+      "name": "Nome",
+      "namePh": "Seu nome",
+      "email": "Email",
+      "emailPh": "voce@empresa.com",
+      "subject": "O desafio",
+      "subjectPh": "O que precisa ser resolvido?",
+      "message": "Me conta mais",
+      "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
+      "send": "Enviar mensagem",
+      "shortcuts": "contato · ⚡ · auditoria"
+    },
+    "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
+    "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
+    "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brasil",
+    "footerTag": "Construindo e desmontando sistemas desde os 8 anos · ⚡"
+  },
+  "marginalia": {
+    "yesReally": "← é isso mesmo",
+    "spaceCastSeason": "temporada 3 ✨",
+    "madeWith": "feito com ☕ + ⚡ — gt"
+  },
+  "links": {
+    "eyebrow": "Me acha online",
+    "title": "Gabriel <em>Taveira</em>.",
+    "sub": "Escolhe uma porta."
+  },
+  "toast": {
+    "konami": "Engenharia reversa detectada.",
+    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. ⚡"
   }
 }

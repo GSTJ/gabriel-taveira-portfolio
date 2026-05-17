@@ -8,9 +8,8 @@ const createNextIntl = withNextIntl(
 
 const nextConfig = {
   devIndicators: false,
-  images: { remotePatterns: [{ hostname: "i.ytimg.com" }] },
+  reactCompiler: true,
   experimental: {
-    reactCompiler: true,
     optimizeCss: true,
   },
   /** We already do linting and typechecking as separate tasks in CI */
