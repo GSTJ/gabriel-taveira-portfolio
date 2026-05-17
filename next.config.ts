@@ -8,7 +8,6 @@ const createNextIntl = withNextIntl(
 
 const nextConfig = {
   devIndicators: false,
-  images: { remotePatterns: [{ hostname: "i.ytimg.com" }] },
   experimental: {
     reactCompiler: true,
     optimizeCss: true,

@@ -1,113 +1,228 @@
 {
-  "components": {
-    "awardsIllustration": "Awards Illustration",
-    "languageSelect": "Language Select",
-    "themeToggle": "Theme Toggle",
-    "workLocation": "Work Location",
-    "hero": "Hero",
-    "summary": "Summary",
-    "workExperiences": "Work Experiences",
-    "publications": "Publications",
+  "nav": {
+    "work": "Work",
+    "media": "Media",
+    "talks": "Talks",
     "awards": "Awards",
-    "socials": "Socials"
-  },
-  "sections": {
-    "step1": "Step 1",
-    "step2": "Step 2",
-    "step3": "Step 3",
-    "step4": "Step 4",
-    "finalStep": "Final Step",
-    "summaryOfQualifications": "Summary of Qualifications",
-    "professionalExperience": "Professional Experience",
-    "professionalExperienceSubtitle": "A showcase of the companies I've worked for and some of the projects that came from it",
-    "publicationsAndMedia": "Publications & Media",
-    "awards": "Awards",
-    "awardsSubtitle": "Some of the competitions I've participated in over the time",
-    "socials": "Socials",
-    "socialsSubtitle": "Get to know more about my work and shoot me a message"
-  },
-  "socials": {
-    "alt": "{{name}} Thumbnail"
-  },
-  "awards": {
-    "firstPlace": "First place",
-    "secondPlace": "Second place",
-    "finalist": "Finalist",
-    "awardTitles": {
-      "globalLegalHackathonSP": "Global Legal Hackathon SP",
-      "maoNaCevada": "Mão na Cevada",
-      "hackRibeirao": "HackRibeirão",
-      "jovemInovadorTrophy": "Prêmio Jovem Inovador",
-      "nasaSpaceAppsChallengeRP": "NASA Space Apps Challenge RP"
-    },
-    "seeMoreAwards": "See more awards"
-  },
-  "hero": {
-    "welcome": "Welcome, I am",
-    "name": "Gabriel",
-    "surname": "Taveira",
-    "intro": "A Software Engineer with over eight years of experience building great digital experiences. Let's build the future together!",
+    "now": "Now",
     "getInTouch": "Get in touch"
   },
-  "publications": {
-    "spaceCastHost": "Host at the Space Cast Podcast:",
-    "spaceCastLink": "https://www.youtube.com/@spacesquad-rocketseat",
-    "mediumArticles": "Medium articles on programming:",
-    "mediumLink": "https://medium.com/@gabrieltaveira",
-    "spaceSquadAmbassador": "Space Squad Ambassador:",
-    "spaceSquadAmbassadorLink": "https://www.rocketseat.com.br/space-squad",
-    "eventsInfo": "I've also given talks at large events about Technology and Leadership such as Assemble (3 day immersion focusing on forming Tech Leads) and The Developer Conference on Design Systems."
-  },
-  "summary": {
-    "point1": "Over 8 years of professional experience, working on projects of all sizes, from startups to tech giants and delivery apps to fintechs.",
-    "point2": "Proven expertise in React/React Native and JavaScript/TypeScript, with a strong focus on user experience and design systems.",
-    "point3": "Host of the Space Cast podcast and a regular speaker at technology and leadership events.",
-    "point4": "Passionate about mentoring the next generation of tech wizards through content creation and informal chats.",
-    "point5": "Dual Italian and Brazilian citizenship, with a work permit for national and international opportunities in Europe and the Americas."
-  },
-  "workLocation": {
-    "remote": "Remote"
-  },
-  "workExperience": {
-    "now": "Now",
-    "divider": "/",
-    "seniorSoftwareEngineer": "Senior Software Engineer",
-    "leadSoftwareEngineer": "Lead Software Engineer",
-    "frontendEngineerIII": "Frontend Engineer III",
-    "softwareEngineer": "Software Engineer",
-    "fullStackDeveloper": "Full Stack Developer",
-    "appInfrastructureEngineer": "App Infrastructure Engineer",
-    "jobTypes": {
-      "contractor": "Contractor"
-    },
-    "jobDescriptions": {
-      "coinbaseDescription": "Senior Engineer on Coinbase's Consumer App Infra team — **shaping mobile architecture, security, and developer tooling** for the company's flagship app (NASDAQ: $COIN).\n\n• Contributed heavily to Coinbase's Expo Prebuild migration by migrating native modules and system configs across iOS and Android\n\n• Enabled React Native's new architecture by mapping, patching, and upgrading unsupported native packages\n\n• Automated code ownership tracking and CI nudges — **increased test coverage of team-owned files from 25% to 45%**\n\n• Rewrote 300+ tests and **raised core coverage from 76% to 84%**\n\n• Built native screen recording detection module — currently upstreaming to Expo\n\n• Integrated TopHat (Shopify) for simulator builds; upstreamed bug fixes and built CI pipelines\n\n• Strengthened app security: gated deep links behind auth, refactored biometric flows, hardened PIN logic\n\n• **Driving adoption of React Compiler**, collaborating with React WG on issues",
-      "ateamDescription": "At A.Team, I'm part of the D-ID team, an artificial intelligence platform that simplifies video creation.\n\n**🚀 Product of the week December 4th on Product Hunt**\n**🏆 Marketing & Sales Golden Kitty Award on Product Hunt**\n**🏆 Best User Experience 2023 Award on A-Team**\n\nOur clientele ranges from Fortune 500 companies to marketing agencies, production companies, social media platforms, e-learning services, and independent content creators.\n\nWhile the web app has over 1.5M registrants per week, and 1.5M videos generated per month, the **brand new mobile app I'm building is considered the company's core product**.",
-      "metaDescription": "At Meta, I worked within Kustomer, a platform allowing businesses to manage all communication channels in one place.\n\n• **Built and maintained the soon-to-be open-source design system**, standardizing UI components for external developers\n\n• **Developed and supported developer SDKs**, simplifying integrations with Kustomer's APIs\n\n• Authored and improved documentation to enhance developer experience (DevX)\n\n• Provided DevX feedback and collaborated with cross-functional teams to refine platform features",
-      "xteamDescription": "At X-Team, I'm part of a fintech in California focused on creating a donation platform for companies and their employees. My primary responsibility is the development of the main app, built using React Native. Given the financial nature of our platform, we adhere to stringent security standards, including SOC 2 compliance.\n\n• **Elevated code coverage from 30% to over 80%**, rectifying 100% of previously broken tests for top-tier reliability\n\n• Introduced Mock Service Workers, **removing over 16,000 lines of redundant and unreliable test code**\n\n• Refactored numerous screens, notably **boosting Discover page performance by 200%**\n\n• Contributed to open-source (e.g., reanimated) and **developed an ESLint plugin to prevent rendering-error crashes**\n\n• Delivered dozens of features and epics from inception to completion, including migrations for the BEAST project\n\n• Initiated the Mobile Engineering Biweekly forums, driving actionable insights and continuous improvement",
-      "zeDeliveryDescription": "Zé Delivery is Brazil's biggest beverage delivery app, powered by Anheuser-Busch InBev.\n\n• **Reduced technical debt by refactoring the \"browse\" module** (≈1/3 of the app), **significantly cutting delivery time**\n\n• **Implemented deep-link handling, boosting marketing campaign effectiveness**\n\n• Contributed to Mozeic, our upcoming Design System\n\n• Interviewed and vetted potential hires, ensuring high-proficiency developers joined the team\n\n• Built a new API for code challenges using Node.js\n\n• Improved consumer UX and price perception, driving conversion increases\n\n• Specialized in native-side development, handling platform-specific quirks",
-      "alfredDeliveryDescription": "Alfred Delivery is a delivery app serving smaller cities and remote areas in Brazil (90+ franchises).\n\n• **Led migration from legacy Ionic/Angular to React Native**, revamping UI and boosting performance\n\n• Implemented Redux and Saga for complex state management and background tasks\n\n• Maintained and updated legacy Ionic 3 app to ensure operational stability\n\n• Developed new features and services for the core application",
-      "microImportGroupDescription": "Micro Import is a premium Apple Service Provider in São Paulo.\n\n• Built multiple WordPress templates in PHP for group companies\n\n• **Designed internal management systems** to track employee proficiency and customer satisfaction\n\n• Developed static Gatsby sites using WordPress as a headless CMS\n\n• **Created a real-time repair-status tracker**, improving customer satisfaction and reducing support calls"
-    },
-    "companyNames": {
-      "meta": "Meta",
-      "xteam": "X-Team",
-      "zeDelivery": "Zé Delivery",
-      "alfredDelivery": "Alfred Delivery",
-      "microImportGroup": "Micro Import Group",
-      "ateam": "A.Team",
-      "coinbase": "Coinbase"
-    },
-    "subCompanyNames": {
-      "kustomerNewYork": "Kustomer (New York)",
-      "groundswellCalifornia": "Groundswell (California)",
-      "anheuserBuschInbev": "Anheuser-Busch InBev",
-      "d-id": "D-ID (Tel Aviv)",
-      "g2i": "G2i"
+  "hero": {
+    "role": "Engineering Lead",
+    "name": "Gabriel",
+    "surname": "Taveira",
+    "intro": "I'm an Engineering Lead with over {years} years of professional experience. I've led teams from <strong>4 to 56 direct reports</strong>, working remotely with major US companies. I help them build great teams and systems that last.",
+    "intro2": "Currently consulting independently. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape.",
+    "getInTouch": "Get in touch",
+    "viewLinkedIn": "View LinkedIn",
+    "downloadPdf": "Download PDF",
+    "currently": "Currently",
+    "consulting": "Consulting",
+    "location": "Remote · Ribeirão Preto, Brazil",
+    "stats": {
+      "years": "Years in industry",
+      "yearsMeta": "Since {since}",
+      "reports": "Largest team led",
+      "reportsMeta": "Grew from four",
+      "tinkering": "Years tinkering",
+      "tinkeringMeta": "Started at age 8",
+      "awards": "Hackathons won",
+      "awardsMeta": "2019 → 2020"
     }
   },
-  "footer": {
-    "madeWithLove": "Made with ❤️ by Gabriel Taveira",
-    "checkOutOnGithub": "Check it out on my GitHub"
+  "work": {
+    "eyebrow": "Professional Experience · 2017 → now",
+    "title": "Teams I've led. Systems that <em>lasted</em>.",
+    "sub": "From four direct reports to fifty-six, across startups, delivery apps, fintechs, and tech giants. Same playbook every time: hire kindly, ship boring tech, write everything down.",
+    "items": {
+      "consulting": {
+        "title": "Independent consulting",
+        "blurb": "Mobile architecture, engineering leadership, and team craft. Engagement details under NDA. Reach out if you're hiring or just curious.",
+        "cta": "View on LinkedIn"
+      },
+      "coinbase": {
+        "title": "Mobile architecture at Coinbase",
+        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, migrated Coinbase to Expo Prebuild, and enabled React Native's new architecture. Test coverage on team-owned files: 25% → 45%.",
+        "cta": "Visit Coinbase"
+      },
+      "ateam": {
+        "title": "Lead Engineer on D-ID's mobile flagship",
+        "blurb": "Built the company's new core product from zero. 1.5M registrants/week on the parent web app. Best UX 2023 on A.Team. Product of the Week on Product Hunt.",
+        "cta": "Visit D-ID"
+      },
+      "meta": {
+        "title": "Open-source design system at Kustomer",
+        "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score.",
+        "cta": "Visit Kustomer"
+      },
+      "xteam": {
+        "title": "Mentored mobile engineering at a fintech",
+        "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage 30% → 80%+. Killed 16k lines of brittle tests with MSW. Discover page 200% faster. SOC 2 from day one.",
+        "cta": "Visit Groundswell"
+      },
+      "ze": {
+        "title": "Refactored Brazil's biggest beer app",
+        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built Mozeic, the in-house design system.",
+        "cta": "Visit Zé Delivery"
+      },
+      "alfred": {
+        "title": "Led migration from Ionic to React Native",
+        "blurb": "Coordinated the rewrite for 90+ franchises serving smaller Brazilian cities. Kept legacy Ionic 3 alive in parallel until cutover.",
+        "cta": "View on LinkedIn"
+      },
+      "micro": {
+        "title": "First job: systems for computer repairs",
+        "blurb": "Real-time repair-status tracker for an Apple Service Provider. Internal dashboards for technicians and customer service. Headless-CMS sites for the holding's brands.",
+        "cta": "View on LinkedIn"
+      }
+    }
+  },
+  "publications": {
+    "eyebrow": "Publications & media",
+    "title": "Things I host, write, and <em>ambassador</em>.",
+    "onAir": "On air · Space Cast",
+    "featureTitle": "I host the <em>Space Cast</em> podcast on Rocketseat's YouTube.",
+    "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
+    "watchShow": "Watch the show",
+    "playlist": "Episode playlist →",
+    "mediumEyebrow": "Medium",
+    "mediumHandle": "medium.com/@gabrieltaveira",
+    "mediumBody": "Articles on programming, design systems, and team craft.",
+    "ambassadorEyebrow": "Ambassador",
+    "ambassadorTitle": "Space Squad · Rocketseat",
+    "ambassadorBody": "Mentoring the next generation of tech wizards."
+  },
+  "talks": {
+    "eyebrow": "Talks · selected",
+    "title": "I speak at <em>tech</em> and <em>leadership</em> events.",
+    "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
+    "topicLeadership": "Leadership",
+    "topicTech": "Tech",
+    "items": {
+      "brooklyn": {
+        "title": "Eficiência com IA",
+        "description": "How to lift team throughput with AI in day-to-day engineering.",
+        "venue": "The Brooklyn Brothers",
+        "city": "São Paulo",
+        "hrefLabel": "Slides on Figma"
+      },
+      "tdc": {
+        "title": "Shipping Mozeic at Zé Delivery",
+        "description": "Lessons from co-building an in-house design system at a high-traffic delivery app.",
+        "venue": "TDC · Design Systems",
+        "city": "São Paulo",
+        "hrefLabel": "Event site"
+      },
+      "assemble": {
+        "title": "Forming a Tech Lead, three days at a time",
+        "description": "3-day immersion focused on forming engineering leads.",
+        "venue": "Assemble · Rocketseat",
+        "city": "Remote",
+        "hrefLabel": "Rocketseat"
+      },
+      "spaceSquad": {
+        "title": "Mentoring in the Space Squad community",
+        "description": "Ongoing mentorship through Rocketseat's ambassador program.",
+        "venue": "Space Squad · Rocketseat",
+        "city": "Remote",
+        "hrefLabel": "Space Squad"
+      }
+    }
+  },
+  "awards": {
+    "eyebrow": "Awards · 2019 → 2020",
+    "title": "A small <em>trophy shelf</em>.",
+    "sub": "A few hackathons I crashed before the day job got busy.",
+    "positions": {
+      "first": "1st place",
+      "second": "2nd place",
+      "finalist": "Finalist"
+    },
+    "items": {
+      "globalLegal": "Global Legal Hackathon SP",
+      "maoNaCevada": "Mão na Cevada",
+      "hackRibeirao": "HackRibeirão",
+      "jovemInovador": "Prêmio Jovem Inovador",
+      "nasa": "NASA Space Apps Challenge"
+    }
+  },
+  "writing": {
+    "eyebrow": "Writing",
+    "title": "Notes from the <em>shelf</em>.",
+    "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
+    "handle": "medium.com/@gabrieltaveira",
+    "calloutTitle": "I write on <em>Medium</em>.",
+    "calloutSub": "New posts whenever a thought stops being interesting only to me. Subscribe there for the next one.",
+    "topics": {
+      "leadership": "Engineering Leadership",
+      "mobile": "Mobile Architecture",
+      "design": "Design Systems",
+      "hiring": "Hiring & Mentorship",
+      "reverse": "Reverse Engineering"
+    },
+    "readOnMedium": "Read on Medium"
+  },
+  "now": {
+    "eyebrow": "Now · {date}",
+    "title": "What I'm actually <em>doing</em>.",
+    "items": {
+      "consulting": {
+        "chip": "Consulting",
+        "title": "Mobile architecture and engineering leadership",
+        "body": "Independent consulting. Engagement details under NDA. Same work, less commute."
+      },
+      "hosting": {
+        "chip": "Hosting",
+        "title": "Space Cast on Rocketseat",
+        "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Bring a guest idea over 🍻."
+      },
+      "mentoring": {
+        "chip": "Mentoring",
+        "title": "Space Squad · the next generation",
+        "body": "Ambassador since the program started. The compounding interest on a 20-minute coffee with a junior engineer is wild."
+      },
+      "tinkering": {
+        "chip": "Tinkering",
+        "title": "A native screen-recording detector for Expo",
+        "body": "Upstreaming work from a past engagement. Reverse-engineering for fun, then for prod. Both still scratch the same age-8 itch."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Got an <em>interesting</em> challenge?",
+    "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. 🍻",
+    "channels": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "email": "Email",
+      "medium": "Medium",
+      "spaceCast": "Space Cast"
+    },
+    "form": {
+      "name": "Name",
+      "namePh": "Your name",
+      "email": "Email",
+      "emailPh": "you@company.com",
+      "subject": "The challenge",
+      "subjectPh": "What needs solving?",
+      "message": "Tell me more",
+      "messagePh": "Team size, timeline, stack, what good looks like.",
+      "send": "Send message",
+      "shortcuts": "contact · 🍻 · audit"
+    },
+    "sentTitle": "Thanks. I'll reply within the week. 🍻",
+    "sentBody": "If you don't hear back by next Friday, ping again. Email sometimes loses the war with spam.",
+    "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brazil",
+    "footerTag": "Building & breaking systems since age 8 · 🍻"
+  },
+  "links": {
+    "eyebrow": "Find me online",
+    "title": "Gabriel <em>Taveira</em>.",
+    "sub": "Pick a doorway."
+  },
+  "toast": {
+    "konami": "Reverse engineering detected.",
+    "konamiSub": "Welcome. The tools are over by the captain's hat. 🍻"
   }
 }

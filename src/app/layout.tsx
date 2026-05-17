@@ -2,7 +2,6 @@ import "@total-typescript/ts-reset";
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
-import { useLocale } from "next-intl";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
@@ -17,11 +16,9 @@ export const metadata = {
 
 const GTM_ID = "G-1S8PR4TDYM";
 
-export default ({ children }: React.PropsWithChildren) => {
-  const locale = useLocale();
-
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang={locale}>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -39,4 +36,4 @@ export default ({ children }: React.PropsWithChildren) => {
       <body>{children}</body>
     </html>
   );
-};
+}

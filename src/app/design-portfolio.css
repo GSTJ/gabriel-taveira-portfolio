@@ -1579,3 +1579,52 @@ body.ws-crt::after {
   10%  { opacity: 1; }
   100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
 }
+
+/* =========================================================================
+   Links page — centered linktree layout
+   ========================================================================= */
+.ws-links {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: none;
+  padding: 80px 24px;
+}
+.ws-links-inner {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 36px;
+}
+.ws-links-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.ws-links-title {
+  font-size: clamp(44px, 7vw, 72px) !important;
+  line-height: 1.15 !important;
+  margin: 4px 0 0 !important;
+}
+.ws-links-sub {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-300);
+  margin: 0;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+.ws-links-list {
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .ws-links { padding: 56px 18px; }
+  .ws-links-list .ws-channel { grid-template-columns: auto 1fr auto !important; }
+  .ws-links-list .ws-channel-handle { display: none; }
+}
