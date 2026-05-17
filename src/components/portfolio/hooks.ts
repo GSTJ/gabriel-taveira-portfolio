@@ -13,29 +13,66 @@ export function useCountUp(
 ): number {
   const [value, setValue] = useState(0);
   useEffect(() => {
+    // Detect non-interactive contexts (Puppeteer, screenshot tools,
+    // print preview, reduced-motion users). Render the final value
+    // immediately so the PDF capture and accessibility consumers see
+    // the right number instead of the initial 0.
+    const isHeadless =
+      typeof navigator !== "undefined" &&
+      (/HeadlessChrome|Puppeteer/i.test(navigator.userAgent) ||
+        (navigator as unknown as { webdriver?: boolean }).webdriver === true);
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (isHeadless || reducedMotion) {
+      setValue(target);
+      return;
+    }
+
     if (!ref.current) return;
     let frame: number;
     let started = false;
+    let timeoutId: number | undefined;
+
+    const begin = () => {
+      if (started) return;
+      started = true;
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const k = Math.min(1, (now - t0) / duration);
+        const eased = 1 - Math.pow(1 - k, 3);
+        setValue(Math.round(eased * target));
+        if (k < 1) frame = requestAnimationFrame(step);
+      };
+      frame = requestAnimationFrame(step);
+    };
+
+    // Belt-and-suspenders: if the element is already above the fold
+    // at mount, start immediately rather than waiting for the observer
+    // (which might not fire in some print/render environments).
+    const rect = ref.current.getBoundingClientRect();
+    if (rect.top < (window.innerHeight || 0)) {
+      begin();
+    }
+
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          started = true;
-          const t0 = performance.now();
-          const step = (now: number) => {
-            const k = Math.min(1, (now - t0) / duration);
-            const eased = 1 - Math.pow(1 - k, 3);
-            setValue(Math.round(eased * target));
-            if (k < 1) frame = requestAnimationFrame(step);
-          };
-          frame = requestAnimationFrame(step);
-        }
+        if (entry.isIntersecting) begin();
       },
       { threshold: 0.3 },
     );
     obs.observe(ref.current);
+
+    // Final safety net: if the observer never fires within 2s, force
+    // the final value so the UI never gets stuck on 0.
+    timeoutId = window.setTimeout(() => {
+      if (!started) setValue(target);
+    }, 2000);
+
     return () => {
       cancelAnimationFrame(frame);
       obs.disconnect();
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
     };
   }, [target, ref, duration]);
   return value;

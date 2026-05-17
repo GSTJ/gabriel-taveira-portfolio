@@ -30,6 +30,9 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install
 
+      - name: 🏗 Install ghostscript
+        run: sudo apt-get update && sudo apt-get install -y ghostscript
+
       - name: 🖨️ Generate PDF
         run: pnpm run get:pdf
 
