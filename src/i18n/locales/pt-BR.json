@@ -5,124 +5,124 @@
     "talks": "Palestras",
     "awards": "Prêmios",
     "now": "Agora",
-    "getInTouch": "Entre em contato"
+    "getInTouch": "Fala comigo"
   },
   "hero": {
     "role": "Engineering Lead",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "Sou Engineering Lead com mais de {years} anos de experiência profissional. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remotamente com grandes empresas dos EUA. Ajudo a construir times e sistemas que duram.",
-    "intro2": "Atualmente consultor independente. Minha jornada na engenharia começou aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos construindo e quebrando sistemas depois, a coceira não mudou de forma.",
-    "getInTouch": "Entre em contato",
+    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times e sistemas que duram.",
+    "intro2": "Hoje consultor independente. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
+    "getInTouch": "Fala comigo",
     "viewLinkedIn": "Ver LinkedIn",
     "downloadPdf": "Baixar PDF",
-    "currently": "Atualmente",
+    "currently": "Hoje",
     "consulting": "Consultoria",
     "location": "Remoto · Ribeirão Preto, Brasil",
     "stats": {
-      "years": "Anos na indústria",
+      "years": "Anos de carreira",
       "yearsMeta": "Desde {since}",
       "reports": "Maior time liderado",
-      "reportsMeta": "Começou em quatro",
-      "tinkering": "Anos mexendo",
+      "reportsMeta": "Comecei com quatro",
+      "tinkering": "Anos mexendo em código",
       "tinkeringMeta": "Comecei aos 8",
       "awards": "Hackathons vencidos",
       "awardsMeta": "2019 → 2020"
     }
   },
   "work": {
-    "eyebrow": "Experiência Profissional · 2017 → agora",
-    "title": "Times que liderei. Sistemas que <em>duraram</em>.",
-    "sub": "De quatro reportes diretos a cinquenta e seis, em startups, apps de delivery, fintechs e gigantes da tecnologia. O mesmo playbook sempre: contratar com cuidado, entregar tech sem firula, documentar tudo.",
+    "eyebrow": "Experiência profissional · 2017 → hoje",
+    "title": "Times que liderei. Sistemas que <em>ficaram de pé</em>.",
+    "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech. Sempre o mesmo método: contratar com critério, entregar tech sem firula, registrar tudo.",
     "items": {
       "consulting": {
         "title": "Consultoria independente",
-        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time. Detalhes dos contratos sob NDA. Fala comigo se estiver contratando ou só curioso.",
+        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time. Detalhes dos contratos sob NDA. Chama se estiver contratando ou só de curioso.",
         "cta": "Ver no LinkedIn"
       },
       "coinbase": {
         "title": "Arquitetura mobile na Coinbase",
-        "blurb": "Time de Consumer App Infra. Liderei a adoção do React Compiler com o React WG, migrei a Coinbase para Expo Prebuild e habilitei a nova arquitetura do React Native. Coverage dos arquivos do time: 25% → 45%.",
+        "blurb": "Time de Consumer App Infra. Puxei a adoção do React Compiler junto ao React WG, migrei a Coinbase pro Expo Prebuild e habilitei a nova arquitetura do React Native. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>.",
         "cta": "Visitar Coinbase"
       },
       "ateam": {
         "title": "Lead Engineer no app mobile da D-ID",
-        "blurb": "Construí o novo produto principal do zero. 1.5M registros/semana no web app. Best UX 2023 na A.Team. Product of the Week no Product Hunt.",
+        "blurb": "Construí o novo produto principal do zero. 1.5M cadastros por semana no web app da matriz. Best UX 2023 na A.Team. Product of the Week no Product Hunt.",
         "cta": "Visitar D-ID"
       },
       "meta": {
         "title": "Design system open-source na Kustomer",
-        "blurb": "Padronizei UI para devs externos. Entreguei SDKs que simplificaram integrações com as APIs da Kustomer. Escrevi docs que subiram o score de DevX entre times.",
+        "blurb": "Padronizei a UI para devs externos. Entreguei SDKs que simplificaram a integração com as APIs da Kustomer. Escrevi a doc que subiu o score de DevX entre times.",
         "cta": "Visitar Kustomer"
       },
       "xteam": {
         "title": "Mentoria de engenharia mobile numa fintech",
-        "blurb": "Fundei o fórum Mobile Engineering Biweekly. Subi coverage de 30% para 80%+. Matei 16k linhas de testes frágeis com MSW. Página Discover 200% mais rápida. SOC 2 desde o dia um.",
+        "blurb": "Fundei o fórum Mobile Engineering Biweekly. Subi a cobertura de <mark>30% pra 80%+</mark>. Apaguei 16k linhas de testes frágeis com MSW. Página Discover 200% mais rápida. SOC 2 desde o primeiro dia.",
         "cta": "Visitar Groundswell"
       },
       "ze": {
         "title": "Refatorei o maior app de cerveja do Brasil",
-        "blurb": "Entrevistei e onboardei engenheiros sêniores. Reconstruí o módulo Browse. Implementei deep-links que subiram conversão de campanhas. Co-construí o Mozeic, o design system interno.",
+        "blurb": "Entrevistei e fiz onboarding de engenheiros sêniores. Reconstruí o módulo Browse. Implementei deep-links que aumentaram a conversão das campanhas. Co-criei o <mark>Mozeic</mark>, o design system interno.",
         "cta": "Visitar Zé Delivery"
       },
       "alfred": {
-        "title": "Liderei migração de Ionic pra React Native",
-        "blurb": "Coordenei a reescrita para 90+ franquias atendendo cidades menores do Brasil. Mantive o Ionic 3 legado vivo em paralelo até o cutover.",
+        "title": "Liderei a migração de Ionic pra React Native",
+        "blurb": "Coordenei a reescrita pra 90+ franquias atendendo cidades menores do Brasil. Mantive o Ionic 3 legado rodando em paralelo até o cutover.",
         "cta": "Ver no LinkedIn"
       },
       "micro": {
-        "title": "Primeiro emprego: sistemas para conserto de computadores",
-        "blurb": "Tracker em tempo real do status de reparos para uma Apple Service Provider. Dashboards internos para técnicos e atendimento. Sites headless-CMS para as marcas da holding.",
+        "title": "Primeiro emprego: sistemas pra assistência técnica",
+        "blurb": "Tracker em tempo real do status de reparos pra uma Apple Service Provider. Dashboards internos pra técnicos e atendimento. Sites em headless CMS pras marcas do grupo.",
         "cta": "Ver no LinkedIn"
       }
     }
   },
   "publications": {
     "eyebrow": "Publicações & mídia",
-    "title": "O que eu apresento, escrevo e <em>embaixo</em>.",
+    "title": "O que eu apresento, escrevo e <em>represento</em>.",
     "onAir": "No ar · Space Cast",
-    "featureTitle": "Eu apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
-    "featureSub": "Conversas longas sobre engenharia, liderança e as formas estranhas de uma carreira em tech. Agora na terceira temporada.",
-    "watchShow": "Assistir o show",
+    "featureTitle": "Apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
+    "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
+    "watchShow": "Assistir o programa",
     "playlist": "Playlist de episódios →",
     "mediumEyebrow": "Medium",
     "mediumHandle": "medium.com/@gabrieltaveira",
-    "mediumBody": "Artigos sobre programação, design systems e cultura de time.",
+    "mediumBody": "Textos sobre programação, design systems e cultura de time.",
     "ambassadorEyebrow": "Embaixador",
     "ambassadorTitle": "Space Squad · Rocketseat",
-    "ambassadorBody": "Mentorando a próxima geração de feiticeiros da tech."
+    "ambassadorBody": "Mentorando a próxima geração de devs."
   },
   "talks": {
     "eyebrow": "Palestras · selecionadas",
-    "title": "Falo em eventos de <em>tech</em> e <em>liderança</em>.",
-    "sub": "Atualmente em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos das palestras se adaptam ao público.",
+    "title": "Palestro em eventos de <em>tech</em> e <em>liderança</em>.",
+    "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
     "topicLeadership": "Liderança",
     "topicTech": "Tech",
     "items": {
       "brooklyn": {
         "title": "Eficiência com IA",
-        "description": "Como subir o throughput de um time usando IA no dia a dia da engenharia.",
+        "description": "Como aumentar o throughput de um time usando IA no dia a dia da engenharia.",
         "venue": "The Brooklyn Brothers",
         "city": "São Paulo",
         "hrefLabel": "Slides no Figma"
       },
       "tdc": {
         "title": "Entregando o Mozeic no Zé Delivery",
-        "description": "Lições de co-construir um design system interno em um app de delivery com tráfego alto.",
+        "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
         "venue": "TDC · Design Systems",
         "city": "São Paulo",
         "hrefLabel": "Site do evento"
       },
       "assemble": {
         "title": "Formando um Tech Lead, três dias por vez",
-        "description": "Imersão de 3 dias focada em formar líderes de engenharia.",
+        "description": "Imersão de 3 dias pra formar líderes de engenharia.",
         "venue": "Assemble · Rocketseat",
         "city": "Remoto",
         "hrefLabel": "Rocketseat"
       },
       "spaceSquad": {
         "title": "Mentoria na comunidade Space Squad",
-        "description": "Mentoria contínua através do programa de embaixadores da Rocketseat.",
+        "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
         "venue": "Space Squad · Rocketseat",
         "city": "Remoto",
         "hrefLabel": "Space Squad"
@@ -131,8 +131,8 @@
   },
   "awards": {
     "eyebrow": "Prêmios · 2019 → 2020",
-    "title": "Uma pequena <em>prateleira de troféus</em>.",
-    "sub": "Alguns hackathons em que entrei antes do trabalho do dia a dia engolir o tempo.",
+    "title": "Alguns <em>troféus</em>.",
+    "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
     "positions": {
       "first": "1º lugar",
       "second": "2º lugar",
@@ -148,11 +148,11 @@
   },
   "writing": {
     "eyebrow": "Escritos",
-    "title": "Anotações da <em>prateleira</em>.",
-    "sub": "Principalmente sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que ninguém coloca na descrição da vaga.",
+    "title": "Algumas <em>anotações</em>.",
+    "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
     "handle": "medium.com/@gabrieltaveira",
-    "calloutTitle": "Eu escrevo no <em>Medium</em>.",
-    "calloutSub": "Posts novos quando um pensamento para de ser interessante só pra mim. Assina lá para o próximo.",
+    "calloutTitle": "Escrevo no <em>Medium</em>.",
+    "calloutSub": "Posts novos quando uma ideia para de ser interessante só pra mim. Assina lá pro próximo.",
     "topics": {
       "leadership": "Liderança em Engenharia",
       "mobile": "Arquitetura Mobile",
@@ -164,34 +164,34 @@
   },
   "now": {
     "eyebrow": "Agora · {date}",
-    "title": "O que estou realmente <em>fazendo</em>.",
+    "title": "O que estou de fato <em>fazendo</em>.",
     "items": {
       "consulting": {
         "chip": "Consultoria",
         "title": "Arquitetura mobile e liderança de engenharia",
-        "body": "Consultoria independente. Detalhes dos contratos sob NDA. Mesmo trabalho, menos trânsito."
+        "body": "Consultoria independente. Detalhes dos contratos sob NDA. Mesmo trabalho, sem o trânsito."
       },
       "hosting": {
         "chip": "Apresentando",
         "title": "Space Cast na Rocketseat",
-        "body": "Bate-papos longos sobre engenharia, liderança e as formas estranhas de uma carreira em tech. Manda ideia de convidado com uma 🍻."
+        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugere um convidado mandando uma ⚡."
       },
       "mentoring": {
         "chip": "Mentoria",
         "title": "Space Squad · a próxima geração",
-        "body": "Embaixador desde o início do programa. O juros compostos de 20 minutos de café com um júnior é absurdo."
+        "body": "Embaixador desde o começo do programa. O juros compostos de 20 minutos de café com um júnior é absurdo."
       },
       "tinkering": {
         "chip": "Mexendo",
-        "title": "Detector nativo de gravação de tela para Expo",
-        "body": "Subindo upstream um trabalho de um contrato passado. Engenharia reversa por diversão, depois por produção. Os dois ainda coçam a mesma coceira dos 8 anos."
+        "title": "Detector nativo de gravação de tela pra Expo",
+        "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
       }
     }
   },
   "contact": {
-    "eyebrow": "Entre em contato",
-    "title": "Tem um <em>desafio</em> interessante?",
-    "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu olho antes do café. 🍻",
+    "eyebrow": "Fala comigo",
+    "title": "Tem um <em>desafio</em> bom?",
+    "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -207,22 +207,27 @@
       "subject": "O desafio",
       "subjectPh": "O que precisa ser resolvido?",
       "message": "Me conta mais",
-      "messagePh": "Tamanho do time, prazo, stack, como é o sucesso.",
+      "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
       "send": "Enviar mensagem",
-      "shortcuts": "contato · 🍻 · auditoria"
+      "shortcuts": "contato · ⚡ · auditoria"
     },
-    "sentTitle": "Valeu. Respondo dentro da semana. 🍻",
-    "sentBody": "Se eu não responder até sexta que vem, me cutuca de novo. Email às vezes perde a guerra contra spam.",
+    "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
+    "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
     "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brasil",
-    "footerTag": "Construindo & quebrando sistemas desde os 8 anos · 🍻"
+    "footerTag": "Construindo e desmontando sistemas desde os 8 anos · ⚡"
+  },
+  "marginalia": {
+    "yesReally": "← é isso mesmo",
+    "spaceCastSeason": "temporada 3 ✨",
+    "madeWith": "feito com ☕ + ⚡ — gt"
   },
   "links": {
-    "eyebrow": "Me encontre online",
+    "eyebrow": "Me acha online",
     "title": "Gabriel <em>Taveira</em>.",
     "sub": "Escolhe uma porta."
   },
   "toast": {
     "konami": "Engenharia reversa detectada.",
-    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. 🍻"
+    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. ⚡"
   }
 }

@@ -1,9 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST, SPACE_SQUAD } from "./data";
+import { Marginalia } from "./Marginalia";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
 
 export async function Publications() {
   const t = await getTranslations("publications");
+  const tMarg = await getTranslations("marginalia");
   return (
     <section className="ws-section" id="publications">
       <div className="ws-section-head">
@@ -33,6 +35,7 @@ export async function Publications() {
           </div>
           <h3 className="ws-pubs-feature-title">
             {t.rich("featureTitle", richTags)}
+            <Marginalia tilt={5}>{tMarg("spaceCastSeason")}</Marginalia>
           </h3>
           <p className="ws-pubs-feature-sub">{t("featureSub")}</p>
           <div className="ws-pubs-feature-cta">

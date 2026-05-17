@@ -42,7 +42,7 @@
       },
       "coinbase": {
         "title": "Mobile architecture at Coinbase",
-        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, migrated Coinbase to Expo Prebuild, and enabled React Native's new architecture. Test coverage on team-owned files: 25% → 45%.",
+        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, migrated Coinbase to Expo Prebuild, and enabled React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>.",
         "cta": "Visit Coinbase"
       },
       "ateam": {
@@ -57,12 +57,12 @@
       },
       "xteam": {
         "title": "Mentored mobile engineering at a fintech",
-        "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage 30% → 80%+. Killed 16k lines of brittle tests with MSW. Discover page 200% faster. SOC 2 from day one.",
+        "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage <mark>30% → 80%+</mark>. Killed 16k lines of brittle tests with MSW. Discover page 200% faster. SOC 2 from day one.",
         "cta": "Visit Groundswell"
       },
       "ze": {
         "title": "Refactored Brazil's biggest beer app",
-        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built Mozeic, the in-house design system.",
+        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built <mark>Mozeic</mark>, the in-house design system.",
         "cta": "Visit Zé Delivery"
       },
       "alfred": {
@@ -174,7 +174,7 @@
       "hosting": {
         "chip": "Hosting",
         "title": "Space Cast on Rocketseat",
-        "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Bring a guest idea over 🍻."
+        "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Bring a guest idea over ⚡."
       },
       "mentoring": {
         "chip": "Mentoring",
@@ -191,7 +191,7 @@
   "contact": {
     "eyebrow": "Get in touch",
     "title": "Got an <em>interesting</em> challenge?",
-    "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. 🍻",
+    "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. ⚡",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -209,12 +209,17 @@
       "message": "Tell me more",
       "messagePh": "Team size, timeline, stack, what good looks like.",
       "send": "Send message",
-      "shortcuts": "contact · 🍻 · audit"
+      "shortcuts": "contact · ⚡ · audit"
     },
-    "sentTitle": "Thanks. I'll reply within the week. 🍻",
+    "sentTitle": "Thanks. I'll reply within the week. ⚡",
     "sentBody": "If you don't hear back by next Friday, ping again. Email sometimes loses the war with spam.",
     "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brazil",
-    "footerTag": "Building & breaking systems since age 8 · 🍻"
+    "footerTag": "Building & breaking systems since age 8 · ⚡"
+  },
+  "marginalia": {
+    "yesReally": "← yes, really",
+    "spaceCastSeason": "season 3 ✨",
+    "madeWith": "made with ☕ + ⚡ — gt"
   },
   "links": {
     "eyebrow": "Find me online",
@@ -223,6 +228,6 @@
   },
   "toast": {
     "konami": "Reverse engineering detected.",
-    "konamiSub": "Welcome. The tools are over by the captain's hat. 🍻"
+    "konamiSub": "Welcome. The tools are over by the captain's hat. ⚡"
   }
 }

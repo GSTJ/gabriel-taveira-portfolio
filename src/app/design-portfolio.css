@@ -94,6 +94,58 @@ body::before {
 .ws-btn-ghost { background: transparent; color: var(--ink-100); text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .ws-btn-ghost:hover { color: var(--ink-100); text-decoration: underline; }
 
+/* Belt-and-suspenders: lock primary button text to deep ink across all states,
+   even when rendered as <a> (the global `a:hover { color: var(--color-link-hover) }`
+   rule in design-tokens.css would otherwise leak a cream/ember tint into the text). */
+.ws-btn-primary,
+.ws-btn-primary:hover,
+.ws-btn-primary:active,
+.ws-btn-primary:focus,
+a.ws-btn-primary,
+a.ws-btn-primary:hover,
+a.ws-btn-primary:active,
+a.ws-btn-primary:focus {
+  color: var(--ink-1000);
+}
+
+/* Same protection for ghost button — the global a:hover color rule would
+   override its intended `color: var(--ink-100)` when it's rendered as <a>. */
+a.ws-btn-ghost,
+a.ws-btn-ghost:hover,
+a.ws-btn-ghost:active,
+a.ws-btn-ghost:focus {
+  color: var(--ink-100);
+}
+
+/* Kill inherited global anchor underline (border-bottom) on .ws-btn variants
+   rendered as <a>. The global `a { border-bottom: ... }` in design-tokens.css
+   was leaking a thin orange curve under the ghost button on hover. */
+a.ws-btn,
+a.ws-btn:hover {
+  border-bottom: 0;
+  text-decoration: none;
+}
+.ws-btn-ghost,
+.ws-btn-ghost:hover {
+  border-bottom: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+/* Same fix for other anchor-based components that should not inherit the
+   global cream underline. */
+a.ws-channel, a.ws-channel:hover,
+a.ws-work-cell, a.ws-work-cell:hover,
+a.ws-pubs-card, a.ws-pubs-card:hover,
+a.ws-writing-callout, a.ws-writing-callout:hover,
+a.ws-talks-link, a.ws-talks-link:hover,
+a.ws-work-cell-cta, a.ws-work-cell-cta:hover,
+a.ws-nav-brand, a.ws-nav-brand:hover,
+a.ws-nav-link, a.ws-nav-link:hover {
+  border-bottom: 0;
+}
+
 /* Chips */
 .ws-chip {
   display: inline-flex; align-items: center; gap: 6px;
@@ -187,14 +239,24 @@ body::before {
 .ws-section-title {
   font-family: var(--font-display);
   font-size: clamp(36px, 4.5vw, 56px);
-  line-height: 1.38;
+  line-height: 1.15;
   letter-spacing: -0.025em;
   font-weight: 400;
   color: var(--ink-50);
   margin: 12px 0 0;
   text-wrap: pretty;
+  padding-bottom: 0.14em;
 }
-.ws-section-title em { font-style: italic; color: var(--ember-400); }
+.ws-section-title em {
+  display: inline-block;
+  line-height: 1.15;
+  vertical-align: baseline;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.15em;
+  font-style: italic;
+  font-variation-settings: 'ital' 1;
+  color: var(--ember-400);
+}
 .ws-section-sub {
   font-family: var(--font-sans); font-size: 15px; line-height: 1.55;
   color: var(--ink-300); margin: 36px 0 0; max-width: 64ch;
@@ -268,20 +330,26 @@ body::before {
 }
 
 .ws-hero-title {
-  font-family: var(--font-display); font-weight: 400;
+  font-family: var(--font-display); font-weight: 500;
   font-size: clamp(56px, 9vw, 132px);
-  line-height: 1.32;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
   color: var(--ink-50);
   margin: 0 0 36px;
+  padding-bottom: 0.16em;
 }
 .ws-hero-title em {
+  /* Bricolage Grotesque's tall italic terminals don't play with
+     background-clip: text — the mask shears the descenders no matter how
+     much padding we add. Use a solid ember tint and keep the warm halo
+     via drop-shadow so the surname still glows without losing geometry. */
   font-style: italic;
-  background: linear-gradient(135deg, #f29842 0%, #e07a1f 40%, #e63b30 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-variation-settings: 'ital' 1;
+  color: var(--ember-400);
   filter: drop-shadow(0 0 22px rgba(224, 122, 31, 0.40));
+  /* The italic 'a' terminal kerns into a following period — give it air. */
+  margin-right: 0.06em;
 }
 
 .ws-hero-sub {
@@ -325,7 +393,14 @@ body::before {
 .ws-hero-status-sep { color: var(--ink-600); }
 .ws-hero-status-co {
   font-family: var(--font-display); font-style: italic;
+  font-weight: 500;
+  font-variation-settings: 'ital' 1;
   font-size: 16px; color: var(--ink-50);
+  /* Bricolage italic sits low against the surrounding mono labels — nudge
+     up so the optical center matches the REMOTE · RIBEIRÃO PRETO row. */
+  line-height: 1;
+  position: relative;
+  top: -1px;
 }
 .ws-hero-status-meta {
   font-family: var(--font-mono); font-size: 11px;
@@ -379,6 +454,35 @@ body::before {
   text-transform: uppercase; letter-spacing: 0.10em;
   color: var(--ink-500);
   margin-top: 2px;
+}
+/* Handwritten tag that hovers next to a stat value without offsetting the
+   number's centered geometry. Anchored to the stat tile (parent already
+   has position: relative). On desktop it floats to the right of the digit
+   roughly at its midpoint; on the 2-col mobile grid it tucks under the
+   label so it never collides with the neighbor column. */
+.ws-hero-stat-tag {
+  position: absolute;
+  top: 18px;          /* roughly the digit's optical midline at this font size */
+  left: calc(50% + 36px);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+@media (max-width: 720px) {
+  /* On the 2-col mobile grid, sit just under the digit (above the label)
+     so it still reads as pointing at the 56 without colliding with the
+     neighbor column. */
+  .ws-hero-stat-tag {
+    position: absolute;
+    top: 0.85em;
+    left: 50%;
+    transform: translate(50%, 8px);
+  }
+  .ws-hero-stat-tag .ws-marginalia {
+    /* The default rule hides .ws-marginalia below 640px — override here
+       so the tag stays visible when it's the whole point of the stat. */
+    display: inline-block;
+  }
 }
 
 /* Stars + shelf edge */
@@ -468,20 +572,20 @@ body::before {
 }
 
 .ws-hero-title {
-  font-family: var(--font-display); font-weight: 400;
+  font-family: var(--font-display); font-weight: 500;
   font-size: clamp(56px, 8vw, 124px);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
   color: var(--ink-50);
   margin: 0;
   position: relative;
+  padding-bottom: 0.16em;
 }
 .ws-hero-title em {
   font-style: italic;
-  background: linear-gradient(135deg, #f29842 0%, #e07a1f 40%, #e63b30 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-variation-settings: 'ital' 1;
+  color: var(--ember-400);
   filter: drop-shadow(0 0 18px rgba(224, 122, 31, 0.35));
 }
 
@@ -987,10 +1091,20 @@ body::before {
 .ws-writing-callout-title {
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(28px, 3.2vw, 42px);
-  line-height: 1.28; letter-spacing: -0.02em;
+  line-height: 1.15; letter-spacing: -0.02em;
   color: var(--ink-50); margin: 0;
+  padding-bottom: 0.14em;
 }
-.ws-writing-callout-title em { font-style: italic; color: var(--ember-400); }
+.ws-writing-callout-title em {
+  display: inline-block;
+  line-height: 1.15;
+  vertical-align: baseline;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.15em;
+  font-style: italic;
+  font-variation-settings: 'ital' 1;
+  color: var(--ember-400);
+}
 .ws-writing-callout-sub {
   font-family: var(--font-sans); font-size: 15px;
   line-height: 1.55; color: var(--ink-300); margin: 0;
@@ -1113,10 +1227,20 @@ body::before {
   position: relative;
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(28px, 3.2vw, 42px);
-  line-height: 1.32; letter-spacing: -0.02em;
+  line-height: 1.15; letter-spacing: -0.02em;
   color: var(--ink-50); margin: 6px 0 0;
+  padding-bottom: 0.14em;
 }
-.ws-pubs-feature-title em { font-style: italic; color: var(--ember-400); }
+.ws-pubs-feature-title em {
+  display: inline-block;
+  line-height: 1.15;
+  vertical-align: baseline;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.15em;
+  font-style: italic;
+  font-variation-settings: 'ital' 1;
+  color: var(--ember-400);
+}
 .ws-pubs-feature-sub {
   position: relative;
   font-family: var(--font-sans); font-size: 15px; line-height: 1.55;
@@ -1328,11 +1452,21 @@ body::before {
 .ws-contact-title {
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(40px, 5vw, 64px);
-  line-height: 1.32; letter-spacing: -0.03em;
+  line-height: 1.15; letter-spacing: -0.03em;
   color: var(--ink-50);
   margin: 0 0 24px;
+  padding-bottom: 0.16em;
 }
-.ws-contact-title em { font-style: italic; color: var(--ember-400); }
+.ws-contact-title em {
+  display: inline-block;
+  line-height: 1.15;
+  vertical-align: baseline;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.16em;
+  font-style: italic;
+  font-variation-settings: 'ital' 1;
+  color: var(--ember-400);
+}
 .ws-contact-sub {
   font-family: var(--font-sans); font-size: 16px; line-height: 1.55;
   color: var(--ink-200); margin: 0 0 28px;
@@ -1407,6 +1541,23 @@ body::before {
 .ws-footer { margin-top: 96px; padding: 24px 0 8px; border-top: 1px solid var(--color-divider); }
 .ws-footer-row { display: flex; align-items: center; gap: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-400); text-transform: uppercase; letter-spacing: 0.10em; flex-wrap: wrap; }
 .ws-footer-spacer { flex: 1; }
+.ws-footer-marginalia {
+  display: inline-flex;
+  align-items: center;
+}
+@media (max-width: 720px) {
+  /* On narrow viewports the footer rows wrap to multiple lines; keep the
+     marginalia compact and aligned to the right rather than full-width. */
+  .ws-footer-marginalia {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 640px) {
+  /* The default .ws-marginalia rule hides marginalia below 640px; the
+     footer signature should still render on phones. */
+  .ws-footer-marginalia .ws-marginalia { display: inline-block; }
+}
 
 /* =========================================================================
    Toast (Konami easter egg)
@@ -1574,14 +1725,14 @@ body.ws-crt::after {
 }
 
 /* =========================================================================
-   Easter egg — beer rain
+   Easter egg — spark rain
    ========================================================================= */
-.ws-beer {
+.ws-spark-rain {
   position: fixed; bottom: -40px; font-size: 32px;
   pointer-events: none; z-index: 997;
-  animation: ws-beer-rise 2.6s var(--ease-out) forwards;
+  animation: ws-spark-rise 2.6s var(--ease-out) forwards;
 }
-@keyframes ws-beer-rise {
+@keyframes ws-spark-rise {
   0%   { transform: translateY(0)    rotate(0); opacity: 0.0; }
   10%  { opacity: 1; }
   100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
@@ -1635,3 +1786,94 @@ body.ws-crt::after {
   .ws-links-list .ws-channel { grid-template-columns: auto 1fr auto !important; }
   .ws-links-list .ws-channel-handle { display: none; }
 }
+
+/* === Marginalia ===
+   Handwritten one-liners sitting beside content like a notebook scribble.
+   Rotated a few degrees, hidden on small viewports to stay out of the way. */
+.ws-marginalia {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--ember-300);
+  display: inline-block;
+  transform: rotate(var(--tilt, -4deg));
+  margin: 0 8px;
+  white-space: nowrap;
+  line-height: 1;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.ws-marginalia-left { margin-right: 16px; }
+.ws-marginalia-right { float: right; margin-left: 16px; }
+@media (max-width: 640px) {
+  .ws-marginalia { display: none; }
+}
+
+/* === Mark sweep ===
+   Inline highlight that sweeps in once a phrase enters the viewport.
+   Uses the live --color-accent-soft token so palette swaps follow. */
+.ws-mark {
+  background: linear-gradient(transparent 60%, var(--color-accent-soft) 60%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 600ms var(--ease-out);
+  padding: 0 2px;
+}
+.ws-mark.is-on { background-size: 100% 100%; }
+@media (prefers-reduced-motion: reduce) {
+  .ws-mark { background-size: 100% 100%; transition: none; }
+}
+
+/* === Hand-drawn arrow ===
+   One-shot SVG pointer near the contact form keyboard hint.
+   Stroke draws once on mount via dasharray; no JS. */
+.ws-handarrow {
+  width: 64px;
+  height: 28px;
+  color: var(--ember-300);
+  vertical-align: middle;
+  opacity: 0;
+  animation: ws-handarrow-in 800ms var(--ease-out) 600ms forwards;
+}
+@keyframes ws-handarrow-in {
+  to { opacity: 1; }
+}
+.ws-handarrow path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: ws-handarrow-draw 1200ms var(--ease-out) 800ms forwards;
+}
+@keyframes ws-handarrow-draw {
+  to { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws-handarrow { opacity: 1; animation: none; }
+  .ws-handarrow path { stroke-dashoffset: 0; animation: none; }
+}
+
+/* === Language switcher ============================================== */
+.ws-lang-switch {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10.5px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.ws-lang-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 30px; padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  color: var(--ink-400);
+  text-decoration: none;
+  transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
+}
+.ws-lang-link:hover {
+  color: var(--ember-300);
+  border-color: rgba(224, 122, 31, 0.35);
+}
+.ws-lang-link-active {
+  color: var(--ember-300);
+  border-color: rgba(224, 122, 31, 0.45);
+  background: rgba(224, 122, 31, 0.08);
+}
+/* Cancel the global a { border-bottom } rule that would leak through. */
+a.ws-lang-link,
+a.ws-lang-link:hover { border-bottom: 0; }

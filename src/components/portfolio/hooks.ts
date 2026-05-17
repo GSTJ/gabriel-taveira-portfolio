@@ -145,10 +145,10 @@ export function useKeyboardEffects(
     const konamiRef: string[] = [];
     const gtRef: Array<{ k: string; t: number }> = [];
 
-    const spawnBeer = () => {
+    const spawnSpark = () => {
       const el = document.createElement("div");
-      el.className = "ws-beer";
-      el.textContent = "🍻";
+      el.className = "ws-spark-rain";
+      el.textContent = "⚡";
       el.style.left = 10 + Math.random() * 80 + "vw";
       el.style.animationDuration = 2.2 + Math.random() * 1.5 + "s";
       document.body.appendChild(el);
@@ -173,7 +173,7 @@ export function useKeyboardEffects(
           () => document.body.classList.remove("ws-crt"),
           4000,
         );
-        for (let i = 0; i < 18; i++) window.setTimeout(spawnBeer, i * 70);
+        for (let i = 0; i < 18; i++) window.setTimeout(spawnSpark, i * 70);
         konamiRef.length = 0;
         return;
       }

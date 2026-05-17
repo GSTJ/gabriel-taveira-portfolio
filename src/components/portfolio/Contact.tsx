@@ -3,8 +3,10 @@
 import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { CHANNELS } from "./data";
+import { Marginalia } from "./Marginalia";
 import { ArrowRight, ArrowUpRight, BrandMark, Chip, Eyebrow, richTags } from "./Shared";
 import { SOCIAL_ICONS } from "./SocialIcons";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const EMPTY = { name: "", email: "", subject: "", message: "" };
 
@@ -12,6 +14,7 @@ export function Contact() {
   const t = useTranslations("contact");
   const tForm = useTranslations("contact.form");
   const tChannels = useTranslations("contact.channels");
+  const tMarg = useTranslations("marginalia");
 
   const [form, setForm] = useState(EMPTY);
   const [sent, setSent] = useState(false);
@@ -124,6 +127,10 @@ export function Contact() {
           <span className="ws-footer-meta">{t("footerMeta")}</span>
           <span className="ws-footer-spacer" />
           <span className="ws-footer-meta">{t("footerTag")}</span>
+          <LanguageSwitcher />
+          <span className="ws-footer-marginalia">
+            <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
+          </span>
         </div>
       </footer>
     </section>

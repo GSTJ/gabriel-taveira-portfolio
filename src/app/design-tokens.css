@@ -4,7 +4,7 @@
    ============================================================================= */
 
 /* ----- Webfonts ----- */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap');
 
 :root {
   /* =========================================================================
@@ -129,7 +129,7 @@
   /* =========================================================================
      TYPE
      ========================================================================= */
-  --font-display: 'Instrument Serif', 'Cormorant Garamond', 'Georgia', serif;
+  --font-display: 'Bricolage Grotesque', 'Inter Tight', 'Geist', system-ui, sans-serif;
   --font-sans:    'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono:    'Geist Mono', ui-monospace, 'JetBrains Mono', 'Menlo', monospace;
 

@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState, type CSSProperties } from "react";
+import { useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { WORK, type WorkItem } from "./data";
 import { Flourish } from "./Flourishes";
+import { Mark } from "./Mark";
 import { ArrowUpRight, Eyebrow, richTags, Tag } from "./Shared";
 
 function WorkTile({ item }: { item: WorkItem }) {
@@ -48,7 +49,11 @@ function WorkTile({ item }: { item: WorkItem }) {
         <Eyebrow>{item.eyebrow}</Eyebrow>
       </div>
       <h3 className="ws-work-cell-title">{t("title")}</h3>
-      <p className="ws-work-cell-blurb">{t("blurb")}</p>
+      <p className="ws-work-cell-blurb">
+        {t.rich("blurb", {
+          mark: (chunks: ReactNode) => <Mark>{chunks}</Mark>,
+        })}
+      </p>
       <div className="ws-work-cell-foot">
         <div className="ws-work-cell-tags">
           {item.tags.map((tag) => (
