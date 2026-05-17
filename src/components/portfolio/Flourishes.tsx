@@ -62,21 +62,15 @@ function FlourishTicker({ hover }: { hover: boolean }) {
     void load();
   }, [hover, load]);
 
-  const isUp = quote.delta >= 0;
-  const arrow = isUp ? "▲" : "▼";
-  const deltaSign = isUp ? "+" : "";
-  const deltaClass = `ws-ticker-delta ws-ticker-delta-${isUp ? "up" : "down"}`;
-  const deltaColor = isUp ? "var(--teal-300)" : "var(--coral-300)";
-
+  // Direction is intentionally hidden — the design treats this as a brand
+  // ticker, not a financial signal, so a red ▼ on a bad day would read as
+  // negative about the work itself. Always show the neutral ▲ glyph.
   return (
     <div className="ws-flourish ws-flourish-ticker">
       <div className="ws-ticker-row">
         <span className="ws-ticker-label">$COIN</span>
         <span className="ws-ticker-price">${quote.price.toFixed(2)}</span>
-        <span className={deltaClass} style={{ color: deltaColor }}>
-          {arrow} {deltaSign}
-          {quote.delta.toFixed(2)}%
-        </span>
+        <span className="ws-ticker-delta">▲</span>
       </div>
       <svg
         viewBox="0 0 130 18"
