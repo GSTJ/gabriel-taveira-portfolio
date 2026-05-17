@@ -1,11 +1,25 @@
 "use client";
 
-import { useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { WORK, type WorkItem } from "./data";
 import { Flourish } from "./Flourishes";
 import { Mark } from "./Mark";
 import { ArrowUpRight, Eyebrow, richTags, Tag } from "./Shared";
+
+function HighlightedEyebrow({ text }: { text: string }) {
+  const parts = text.split(" · ");
+  return (
+    <span className="ws-eyebrow">
+      {parts.map((part, i) => (
+        <Fragment key={i}>
+          {i > 0 && <span className="ws-eyebrow-sep"> · </span>}
+          <span className="ws-eyebrow-token">{part}</span>
+        </Fragment>
+      ))}
+    </span>
+  );
+}
 
 function WorkTile({ item }: { item: WorkItem }) {
   const t = useTranslations(`work.items.${item.id}`);
@@ -46,7 +60,7 @@ function WorkTile({ item }: { item: WorkItem }) {
         <Flourish kind={item.flourish} hover={hover} />
       </div>
       <div className="ws-work-cell-top">
-        <Eyebrow>{item.eyebrow}</Eyebrow>
+        <HighlightedEyebrow text={item.eyebrow} />
       </div>
       <h3 className="ws-work-cell-title">{t("title")}</h3>
       <p className="ws-work-cell-blurb">

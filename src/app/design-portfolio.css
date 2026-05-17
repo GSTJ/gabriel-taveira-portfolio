@@ -392,15 +392,11 @@ a.ws-nav-link, a.ws-nav-link:hover {
 }
 .ws-hero-status-sep { color: var(--ink-600); }
 .ws-hero-status-co {
-  font-family: var(--font-display); font-style: italic;
+  font-family: var(--font-sans);
   font-weight: 500;
-  font-variation-settings: 'ital' 1;
-  font-size: 16px; color: var(--ink-50);
-  /* Bricolage italic sits low against the surrounding mono labels — nudge
-     up so the optical center matches the REMOTE · RIBEIRÃO PRETO row. */
-  line-height: 1;
-  position: relative;
-  top: -1px;
+  font-size: 13px;
+  color: var(--ink-50);
+  letter-spacing: 0.02em;
 }
 .ws-hero-status-meta {
   font-family: var(--font-mono); font-size: 11px;
@@ -819,6 +815,13 @@ a.ws-nav-link, a.ws-nav-link:hover {
   position: relative; z-index: 1;
   padding-right: 140px; /* clear flourish zone */
   min-height: 18px;
+}
+.ws-work-cell .ws-eyebrow-token {
+  color: var(--ember-300);
+  font-weight: 600;
+}
+.ws-work-cell .ws-eyebrow-sep {
+  color: var(--ink-500);
 }
 .ws-work-cell-title {
   font-family: var(--font-display); font-size: 24px; font-weight: 400;
@@ -1447,7 +1450,7 @@ a.ws-nav-link, a.ws-nav-link:hover {
    Contact
    ========================================================================= */
 .ws-contact { padding-top: 32px; }
-.ws-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.ws-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; }
 .ws-contact-left .ws-eyebrow { display: inline-block; margin-bottom: 16px; }
 .ws-contact-title {
   font-family: var(--font-display); font-weight: 400;
@@ -1541,6 +1544,12 @@ a.ws-nav-link, a.ws-nav-link:hover {
 .ws-footer { margin-top: 96px; padding: 24px 0 8px; border-top: 1px solid var(--color-divider); }
 .ws-footer-row { display: flex; align-items: center; gap: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-400); text-transform: uppercase; letter-spacing: 0.10em; flex-wrap: wrap; }
 .ws-footer-spacer { flex: 1; }
+@media (max-width: 720px) {
+  /* On narrow viewports the footer row wraps, leaving the brand mark
+     orphaned on its own line above the meta. Hide it on mobile — the
+     meta line already includes the name. */
+  .ws-footer-row > .ws-brand { display: none; }
+}
 .ws-footer-marginalia {
   display: inline-flex;
   align-items: center;
@@ -1695,7 +1704,7 @@ body.ws-crt::after {
 }
 
 @media (max-width: 980px) {
-  .ws-contact-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .ws-contact-grid { grid-template-columns: 1fr !important; gap: 36px !important; align-items: start !important; }
   .ws-channel { grid-template-columns: auto 1fr auto !important; }
   .ws-channel-handle { display: none; }
 }
@@ -1717,7 +1726,7 @@ body.ws-crt::after {
   .ws-awards { grid-template-columns: 1fr 1fr; }
   .ws-now-grid { grid-template-columns: 1fr; }
   .ws-now-card-lead { grid-row: auto; }
-  .ws-contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .ws-contact-grid { grid-template-columns: 1fr; gap: 36px; align-items: start; }
   .ws-talks-row, .ws-writing-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 4px; }
   .ws-nav-links { display: none; }
   .ws-form-foot { flex-direction: column; align-items: flex-start; }
