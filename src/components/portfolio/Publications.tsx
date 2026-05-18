@@ -1,3 +1,4 @@
+import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST, SPACE_SQUAD } from "./data";
 import { Marginalia } from "./Marginalia";
@@ -11,7 +12,7 @@ export async function Publications() {
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
         <h2 className="ws-section-title">
-          {t.rich("title", richTags)}
+          <Balancer>{t.rich("title", richTags)}</Balancer>
         </h2>
       </div>
 
@@ -53,8 +54,10 @@ export async function Publications() {
             </div>
           </div>
           <h3 className="ws-pubs-feature-title">
-            {t.rich("featureTitle", richTags)}
-            <Marginalia tilt={5}>{tMarg("spaceCastSeason")}</Marginalia>
+            <Balancer>
+              {t.rich("featureTitle", richTags)}
+              <Marginalia tilt={5}>{tMarg("spaceCastSeason")}</Marginalia>
+            </Balancer>
           </h3>
           <p className="ws-pubs-feature-sub">{t("featureSub")}</p>
           <div className="ws-pubs-feature-cta">

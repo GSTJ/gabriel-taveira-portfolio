@@ -1,3 +1,4 @@
+import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { MEDIUM, WRITING_TOPICS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
@@ -9,7 +10,7 @@ export async function WritingList() {
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
         <h2 className="ws-section-title">
-          {t.rich("title", richTags)}
+          <Balancer>{t.rich("title", richTags)}</Balancer>
         </h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
@@ -39,7 +40,7 @@ export async function WritingList() {
             <span>{t("handle")}</span>
           </div>
           <h3 className="ws-writing-callout-title">
-            {t.rich("calloutTitle", richTags)}
+            <Balancer>{t.rich("calloutTitle", richTags)}</Balancer>
           </h3>
           <p className="ws-writing-callout-sub">{t("calloutSub")}</p>
           <div className="ws-writing-topics">

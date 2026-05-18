@@ -6,6 +6,19 @@
 
 * { box-sizing: border-box; }
 
+/* Visually hide content but keep it discoverable for screen readers and
+   resume parsers. Used to expose semantic <address>, alt employer names,
+   etc. that the visual design doesn't show as plain text. */
+.ws-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html, body {
   overflow-x: clip;
 }
@@ -274,7 +287,6 @@ a.ws-nav-link, a.ws-nav-link:hover {
   margin: 0;
   padding-left: 24px; padding-right: 24px;
   position: relative;
-  overflow: clip;
 }
 .ws-hero-bg {
   position: absolute; inset: 0;

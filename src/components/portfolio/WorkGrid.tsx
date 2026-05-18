@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { WORK, type WorkItem } from "./data";
 import { Flourish } from "./Flourishes";
@@ -80,7 +81,7 @@ function WorkTile({ item }: { item: WorkItem }) {
       <div className="ws-work-cell-top">
         <HighlightedEyebrow text={item.eyebrow} />
       </div>
-      <h3 className="ws-work-cell-title">{t("title")}</h3>
+      <h3 className="ws-work-cell-title"><Balancer>{t("title")}</Balancer></h3>
       <p className="ws-work-cell-blurb">
         {t.rich("blurb", {
           mark: (chunks: ReactNode) => <Mark>{chunks}</Mark>,
@@ -107,7 +108,7 @@ export function WorkGrid() {
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
         <h2 className="ws-section-title">
-          {t.rich("title", richTags)}
+          <Balancer>{t.rich("title", richTags)}</Balancer>
         </h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
