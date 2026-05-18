@@ -453,6 +453,23 @@ a.ws-nav-link, a.ws-nav-link:hover {
   position: relative;
 }
 .ws-hero-stat-v em { font-style: italic; color: var(--ember-400); font-size: 0.7em; }
+/* "9+" stat: render the + as a hand-drawn annotation hovering off the
+   top-right of the digit, matching the trophy/marginalia pen feel so
+   the three stat embellishments read as one set. */
+.ws-hero-stat-plus em {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(60%) rotate(-10deg);
+  font-family: 'Caveat', cursive;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--ember-300);
+  opacity: 0.85;
+  pointer-events: none;
+}
 .ws-hero-stat-arrow {
   font-family: var(--font-mono); font-size: 18px;
   color: var(--ember-400); margin: 0 4px;

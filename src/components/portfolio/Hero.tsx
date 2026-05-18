@@ -122,9 +122,9 @@ export function Hero({ onContact }: { onContact: () => void }) {
         <div className="ws-hero-stats">
           <div ref={yearsRef} className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-ember" />
-            <div className="ws-hero-stat-v">
+            <div className="ws-hero-stat-v ws-hero-stat-plus">
               {years}
-              <em>+</em>
+              <em aria-hidden>+</em>
             </div>
             <div className="ws-hero-stat-l">{tStats("years")}</div>
             <div className="ws-hero-stat-meta">
