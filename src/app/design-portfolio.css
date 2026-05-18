@@ -469,7 +469,10 @@ a.ws-nav-link, a.ws-nav-link:hover {
   top: -22px;
   left: 50%;
   transform: translateX(8px) rotate(-10deg);
-  color: var(--brass-400);
+  /* Match the marginalia "yes, really" pen so the trophy reads as a
+     sibling doodle, not a separate icon. */
+  color: var(--ember-300);
+  opacity: 0.85;
   pointer-events: none;
 }
 .ws-hero-stat-trophy span { color: var(--ink-50); font-family: var(--font-display); }
