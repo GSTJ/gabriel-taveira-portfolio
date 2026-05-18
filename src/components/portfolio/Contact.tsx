@@ -5,7 +5,7 @@ import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { CHANNELS, EMAIL_ADDR } from "./data";
 import { Marginalia } from "./Marginalia";
-import { ArrowRight, ArrowUpRight, BrandMark, Chip, Eyebrow, richTags } from "./Shared";
+import { ArrowRight, ArrowUpRight, BrandMark, Eyebrow, richTags } from "./Shared";
 import { SOCIAL_ICONS } from "./SocialIcons";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -18,7 +18,6 @@ export function Contact() {
   const tMarg = useTranslations("marginalia");
 
   const [form, setForm] = useState(EMPTY);
-  const [sent, setSent] = useState(false);
 
   const update =
     (k: keyof typeof EMPTY) =>
@@ -46,7 +45,6 @@ export function Contact() {
       `?subject=${encodeURIComponent(subjectLine)}` +
       `&body=${encodeURIComponent(body)}`;
     window.location.href = href;
-    setSent(true);
   };
 
   return (
@@ -77,66 +75,56 @@ export function Contact() {
         </div>
 
         <form className="ws-contact-form ws-pdf-hide" onSubmit={submit}>
-          {sent ? (
-            <div className="ws-contact-sent">
-              <Chip tone="ember">Sent</Chip>
-              <h3>{t("sentTitle")}</h3>
-              <p>{t("sentBody")}</p>
+          <div className="ws-field-grid">
+            <div className="ws-field">
+              <label>{tForm("name")}</label>
+              <input
+                className="ws-input"
+                type="text"
+                value={form.name}
+                onChange={update("name")}
+                placeholder={tForm("namePh")}
+              />
             </div>
-          ) : (
-            <>
-              <div className="ws-field-grid">
-                <div className="ws-field">
-                  <label>{tForm("name")}</label>
-                  <input
-                    className="ws-input"
-                    type="text"
-                    value={form.name}
-                    onChange={update("name")}
-                    placeholder={tForm("namePh")}
-                  />
-                </div>
-                <div className="ws-field">
-                  <label>{tForm("email")}</label>
-                  <input
-                    className="ws-input"
-                    type="email"
-                    value={form.email}
-                    onChange={update("email")}
-                    placeholder={tForm("emailPh")}
-                  />
-                </div>
-              </div>
-              <div className="ws-field">
-                <label>{tForm("subject")}</label>
-                <input
-                  className="ws-input"
-                  type="text"
-                  value={form.subject}
-                  onChange={update("subject")}
-                  placeholder={tForm("subjectPh")}
-                />
-              </div>
-              <div className="ws-field">
-                <label>{tForm("message")}</label>
-                <textarea
-                  className="ws-input ws-textarea"
-                  value={form.message}
-                  onChange={update("message")}
-                  placeholder={tForm("messagePh")}
-                />
-              </div>
-              <div className="ws-form-foot">
-                <button type="submit" className="ws-btn ws-btn-primary">
-                  {tForm("send")}
-                  <ArrowRight />
-                </button>
-                <span className="ws-kbd-hint">
-                  <kbd>/</kbd> · <kbd>gt</kbd> · <kbd>↑↑↓↓←→←→BA</kbd>
-                </span>
-              </div>
-            </>
-          )}
+            <div className="ws-field">
+              <label>{tForm("email")}</label>
+              <input
+                className="ws-input"
+                type="email"
+                value={form.email}
+                onChange={update("email")}
+                placeholder={tForm("emailPh")}
+              />
+            </div>
+          </div>
+          <div className="ws-field">
+            <label>{tForm("subject")}</label>
+            <input
+              className="ws-input"
+              type="text"
+              value={form.subject}
+              onChange={update("subject")}
+              placeholder={tForm("subjectPh")}
+            />
+          </div>
+          <div className="ws-field">
+            <label>{tForm("message")}</label>
+            <textarea
+              className="ws-input ws-textarea"
+              value={form.message}
+              onChange={update("message")}
+              placeholder={tForm("messagePh")}
+            />
+          </div>
+          <div className="ws-form-foot">
+            <button type="submit" className="ws-btn ws-btn-primary">
+              {tForm("send")}
+              <ArrowRight />
+            </button>
+            <span className="ws-kbd-hint">
+              <kbd>/</kbd> · <kbd>gt</kbd> · <kbd>↑↑↓↓←→←→BA</kbd>
+            </span>
+          </div>
         </form>
       </div>
 
