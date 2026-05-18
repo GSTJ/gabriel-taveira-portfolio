@@ -42,7 +42,7 @@
       },
       "coinbase": {
         "title": "Arquitetura mobile na Coinbase",
-        "blurb": "Time de Consumer App Infra. Puxei a adoção do React Compiler junto ao React WG, migrei a Coinbase pro Expo Prebuild e habilitei a nova arquitetura do React Native. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>.",
+        "blurb": "Time de Consumer App Infra. Puxei a adoção do React Compiler junto ao React WG, ajudei a migrar a Coinbase pro Expo Prebuild e ajudei a habilitar a nova arquitetura do React Native. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>.",
         "cta": "Visitar Coinbase"
       },
       "ateam": {
