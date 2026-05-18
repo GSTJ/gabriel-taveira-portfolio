@@ -458,13 +458,13 @@ a.ws-nav-link, a.ws-nav-link:hover {
    the three stat embellishments read as one set. */
 .ws-hero-stat-plus em {
   position: absolute;
-  top: -8px;
+  top: 14px;
   left: 50%;
   transform: translateX(60%) rotate(-10deg);
   font-family: 'Caveat', cursive;
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 38px;
   line-height: 1;
   color: var(--ember-300);
   opacity: 0.85;
