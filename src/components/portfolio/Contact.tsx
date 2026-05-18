@@ -58,7 +58,7 @@ export function Contact() {
           </div>
         </div>
 
-        <form className="ws-contact-form" onSubmit={submit}>
+        <form className="ws-contact-form ws-pdf-hide" onSubmit={submit}>
           {sent ? (
             <div className="ws-contact-sent">
               <Chip tone="ember">Sent</Chip>
@@ -122,7 +122,7 @@ export function Contact() {
         </form>
       </div>
 
-      <footer className="ws-footer">
+      <footer className="ws-footer ws-pdf-hide">
         <address className="ws-sr-only">
           Gabriel Taveira, Engineering Lead. Ribeirão Preto, SP, Brazil.
           Reach out via{" "}

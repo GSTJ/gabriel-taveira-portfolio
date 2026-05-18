@@ -6,6 +6,12 @@
 
 * { box-sizing: border-box; }
 
+/* Marker class for elements that are interactive-only and have no place
+   in the static PDF export (live clock, interactive form, language
+   toggle, sticky nav, etc.). The puppeteer script in scripts/get-pdf.js
+   strips these from the rendered DOM before exporting. */
+.ws-pdf-hide {}
+
 /* Visually hide content but keep it discoverable for screen readers and
    resume parsers. Used to expose semantic <address>, alt employer names,
    etc. that the visual design doesn't show as plain text. */
@@ -1177,17 +1183,9 @@ a.ws-nav-link, a.ws-nav-link:hover {
 .ws-writing-topic-brass { background: rgba(200,154,58,0.10); border-color: rgba(200,154,58,0.35); color: var(--brass-300); }
 .ws-writing-topic-teal  { background: rgba(42,163,155,0.10); border-color: rgba(42,163,155,0.30); color: var(--teal-300); }
 .ws-writing-callout-cta { position: relative; z-index: 1; }
-.ws-writing-callout-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
-  background: var(--ember-500); color: var(--ink-1000);
-  padding: 14px 22px;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-ember), inset 0 1px 0 rgba(255,255,255,0.28);
-  transition: background var(--dur-fast);
-  white-space: nowrap;
-}
-.ws-writing-callout:hover .ws-writing-callout-link { background: var(--ember-400); }
+/* Hover state propagated from the callout link so the button reacts to
+   the parent <a>, not just direct cursor target. */
+.ws-writing-callout:hover .ws-btn-primary { background: var(--ember-400); }
 
 /* Legacy writing list (kept for reference if reactivated) */
 .ws-writing { display: flex; flex-direction: column; }

@@ -9,16 +9,79 @@ const getPdf = async () => {
       "--no-sandbox",
       "--disable-setuid-sandbox",
       "--disable-dev-shm-usage",
-      "--disable-accelerated-2d-canvas",
       "--no-first-run",
       "--no-zygote",
-      "--disable-gpu",
+      // Force the highest quality compositor settings — the warm radial
+      // gradients in the hero/aurora layers band hard when Chrome falls
+      // back to its software rasterizer at low DPI.
+      "--force-color-profile=srgb",
+      "--font-render-hinting=medium",
+      "--disable-lcd-text",
     ],
   });
 
   const page = await browser.newPage();
+  // 2× device scale doubles the underlying raster of every gradient/glow
+  // before Puppeteer rasterizes it into the PDF, which kills banding on
+  // the hero aurora and the pubs-feature glow.
+  await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 });
+  // Keep screen styles in the PDF — Chrome flips to `@media print` for
+  // page.pdf() by default, which can disable background gradients on any
+  // rule guarded by media queries.
+  await page.emulateMediaType("screen");
   await page.goto("https://www.gabrieltaveira.com.br/en-US", {
     waitUntil: "networkidle0",
+  });
+
+  // Decorative animated layers — the button shine sweep, the soundwave
+  // bars, the spark rain — leave artifacts when frozen mid-animation
+  // (the button shine, in particular, sits as a translucent rectangle
+  // off the button's left edge at the start of the keyframe). For PDF
+  // export we hide the moving decoration entirely and keep transitions
+  // disabled so hover-only states never leak through.
+  // Hide moving/transient decoration and disable transitions so hover-only
+  // styling doesn't leak through. The atmospheric gradients (hero bg,
+  // aurora, glows) stay — they're what give the design its warmth.
+  //
+  // Box-shadows with large blur radii rasterize as visible blocks in PDF
+  // at print DPI (the soft shadow becomes a hard-edged rectangle in the
+  // raster grid). Replacing them with `none` keeps the content but kills
+  // the artifact halos around the CTA buttons and other shadowed pills.
+  await page.addStyleTag({
+    content: `
+      /* Components marked .ws-pdf-hide are interactive-only (nav, form,
+         language switcher, live clock, CTA buttons that don't make sense
+         in a static export). Stripped before measuring height. */
+      .ws-pdf-hide { display: none !important; }
+
+      /* When the contact form is stripped the left column would sit in
+         half the grid width. Reflow the contact grid to a single column
+         so the heading and channel list fill the section properly. */
+      .ws-contact-grid { grid-template-columns: 1fr !important; }
+
+      .ws-btn-primary::after,
+      .ws-pubs-bars,
+      .ws-flourish-spark .ws-spark-glow,
+      .ws-toast,
+      #ws-toast-root,
+      .ws-stars,
+      .ws-shelf-edge { display: none !important; }
+
+      .ws-hero-aurora,
+      .ws-pubs-feature-glow,
+      .ws-writing-callout-glow,
+      .ws-nav-brand-burst::after { animation: none !important; transform: none !important; }
+
+      /* Strip every box-shadow site-wide for the export. Soft drop and
+         inner shadows are what rasterize as hard rectangular halos in
+         the PDF — the design still reads without them. */
+      *, *::before, *::after { box-shadow: none !important; }
+      .ws-chip-dot,
+      .ws-hero-eyebrow-dot,
+      .ws-hero-status-dot { filter: none !important; }
+
+      *, *::before, *::after { transition: none !important; }
+    `,
   });
 
   // Wait until every hero stat has rendered its final number — the count-up

@@ -35,7 +35,7 @@ export function Nav({
   };
 
   return (
-    <div className={`ws-nav-wrap${scrolled ? " ws-nav-scrolled" : ""}`}>
+    <div className={`ws-nav-wrap ws-pdf-hide${scrolled ? " ws-nav-scrolled" : ""}`}>
       <nav className="ws-nav">
         <a
           className={"ws-nav-brand" + (burst ? " ws-nav-brand-burst" : "")}

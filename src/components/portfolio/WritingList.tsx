@@ -55,7 +55,7 @@ export async function WritingList() {
           </div>
         </div>
         <div className="ws-writing-callout-cta">
-          <span className="ws-writing-callout-link">
+          <span className="ws-btn ws-btn-primary">
             {t("readOnMedium")} <ArrowUpRight size={18} />
           </span>
         </div>

@@ -39,8 +39,8 @@ export function Hero({ onContact }: { onContact: () => void }) {
       <div className="ws-hero-inner">
         <span className="ws-hero-eyebrow">
           <span className="ws-eyebrow ws-eyebrow-accent">{t("role")}</span>
-          <span className="ws-eyebrow-sep">·</span>
-          <span className="ws-eyebrow" id="ws-clock" />
+          <span className="ws-eyebrow-sep ws-pdf-hide">·</span>
+          <span className="ws-eyebrow ws-pdf-hide" id="ws-clock" />
         </span>
 
         <h1 className="ws-hero-title">
@@ -67,7 +67,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
         <div className="ws-hero-cta-row">
           <button
             type="button"
-            className="ws-btn ws-btn-primary"
+            className="ws-btn ws-btn-primary ws-pdf-hide"
             onClick={onContact}
           >
             {t("getInTouch")}
@@ -96,7 +96,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
             {t("viewLinkedIn")}
           </a>
           <a
-            className="ws-btn ws-btn-ghost"
+            className="ws-btn ws-btn-ghost ws-pdf-hide"
             href={CURRICULUM_PDF}
             target="_blank"
             rel="noreferrer"
