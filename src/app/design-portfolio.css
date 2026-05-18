@@ -458,8 +458,8 @@ a.ws-nav-link, a.ws-nav-link:hover {
   color: var(--ember-400); margin: 0 4px;
   position: relative; top: -7px;
 }
-.ws-hero-stat-trophy { display: inline-flex; flex-direction: row-reverse; align-items: center; gap: 8px; color: var(--brass-400); justify-content: center; }
-.ws-hero-stat-trophy svg { width: 44px; height: 44px; }
+.ws-hero-stat-trophy { display: inline-flex; flex-direction: row-reverse; align-items: center; gap: 2px; color: var(--brass-400); justify-content: center; }
+.ws-hero-stat-trophy svg { width: 36px; height: 36px; }
 .ws-hero-stat-trophy span { color: var(--ink-50); font-family: var(--font-display); }
 .ws-hero-stat-l {
   font-family: var(--font-sans); font-size: 13px;
