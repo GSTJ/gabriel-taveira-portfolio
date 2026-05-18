@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { CHANNELS } from "./data";
 import { Marginalia } from "./Marginalia";
@@ -36,7 +37,7 @@ export function Contact() {
         <div className="ws-contact-left">
           <Eyebrow accent>{t("eyebrow")}</Eyebrow>
           <h2 className="ws-contact-title">
-            {t.rich("title", richTags)}
+            <Balancer>{t.rich("title", richTags)}</Balancer>
           </h2>
           <p className="ws-contact-sub">{t("sub")}</p>
           <div className="ws-contact-channels">
@@ -57,7 +58,7 @@ export function Contact() {
           </div>
         </div>
 
-        <form className="ws-contact-form" onSubmit={submit}>
+        <form className="ws-contact-form ws-pdf-hide" onSubmit={submit}>
           {sent ? (
             <div className="ws-contact-sent">
               <Chip tone="ember">Sent</Chip>
@@ -121,16 +122,24 @@ export function Contact() {
         </form>
       </div>
 
-      <footer className="ws-footer">
+      <footer className="ws-footer ws-pdf-hide">
+        <address className="ws-sr-only">
+          Gabriel Taveira, Engineering Lead. Ribeirão Preto, SP, Brazil.
+          Reach out via{" "}
+          <a href="mailto:gabrielstaveira@gmail.com">gabrielstaveira@gmail.com</a>
+          .
+        </address>
         <div className="ws-footer-row">
           <BrandMark size={18} withText={false} />
           <span className="ws-footer-meta">{t("footerMeta")}</span>
           <span className="ws-footer-spacer" />
           <span className="ws-footer-meta">{t("footerTag")}</span>
-          <LanguageSwitcher />
-          <span className="ws-footer-marginalia">
-            <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
-          </span>
+          <div className="ws-footer-end">
+            <LanguageSwitcher />
+            <span className="ws-footer-marginalia">
+              <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
+            </span>
+          </div>
         </div>
       </footer>
     </section>

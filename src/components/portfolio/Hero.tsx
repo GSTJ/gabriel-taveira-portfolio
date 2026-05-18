@@ -39,8 +39,8 @@ export function Hero({ onContact }: { onContact: () => void }) {
       <div className="ws-hero-inner">
         <span className="ws-hero-eyebrow">
           <span className="ws-eyebrow ws-eyebrow-accent">{t("role")}</span>
-          <span className="ws-eyebrow-sep">·</span>
-          <span className="ws-eyebrow" id="ws-clock" />
+          <span className="ws-eyebrow-sep ws-pdf-hide">·</span>
+          <span className="ws-eyebrow ws-pdf-hide" id="ws-clock" />
         </span>
 
         <h1 className="ws-hero-title">
@@ -67,7 +67,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
         <div className="ws-hero-cta-row">
           <button
             type="button"
-            className="ws-btn ws-btn-primary"
+            className="ws-btn ws-btn-primary ws-pdf-hide"
             onClick={onContact}
           >
             {t("getInTouch")}
@@ -96,7 +96,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
             {t("viewLinkedIn")}
           </a>
           <a
-            className="ws-btn ws-btn-ghost"
+            className="ws-btn ws-btn-ghost ws-pdf-hide"
             href={CURRICULUM_PDF}
             target="_blank"
             rel="noreferrer"
@@ -119,14 +119,6 @@ export function Hero({ onContact }: { onContact: () => void }) {
           </a>
         </div>
 
-        <div className="ws-hero-status">
-          <span className="ws-eyebrow">{t("currently")}</span>
-          <span className="ws-hero-status-sep">·</span>
-          <span className="ws-hero-status-co">{t("consulting")}</span>
-          <span className="ws-hero-status-sep">·</span>
-          <span className="ws-hero-status-meta">{t("location")}</span>
-        </div>
-
         <div className="ws-hero-stats">
           <div ref={yearsRef} className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-ember" />
@@ -145,7 +137,11 @@ export function Hero({ onContact }: { onContact: () => void }) {
             <div className="ws-hero-stat-l">{tStats("reports")}</div>
             <div className="ws-hero-stat-meta">{tStats("reportsMeta")}</div>
             <span className="ws-hero-stat-tag">
-              <Marginalia tilt={-6}>{tMarg("yesReally")}</Marginalia>
+              <Marginalia tilt={-6}>
+                <span className="ws-hero-stat-tag-arrow-side" aria-hidden>← </span>
+                <span className="ws-hero-stat-tag-arrow-up" aria-hidden>↑ </span>
+                {tMarg("yesReally")}
+              </Marginalia>
             </span>
           </div>
           <div ref={tinkerRef} className="ws-hero-stat">

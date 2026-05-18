@@ -1,3 +1,4 @@
+import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { AWARDS } from "./data";
 import { Eyebrow, richTags } from "./Shared";
@@ -9,7 +10,7 @@ export async function Awards() {
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
         <h2 className="ws-section-title">
-          {t.rich("title", richTags)}
+          <Balancer>{t.rich("title", richTags)}</Balancer>
         </h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>

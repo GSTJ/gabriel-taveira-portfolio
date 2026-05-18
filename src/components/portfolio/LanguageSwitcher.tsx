@@ -9,7 +9,7 @@ export function LanguageSwitcher() {
   const pathname = usePathname(); // locale-stripped pathname
 
   return (
-    <nav className="ws-lang-switch" aria-label="Language">
+    <nav className="ws-lang-switch ws-pdf-hide" aria-label="Language">
       {routing.locales.map((locale) => {
         const label = locale === "en-US" ? "EN" : "PT";
         const isActive = locale === current;
