@@ -122,9 +122,9 @@ export function Hero({ onContact }: { onContact: () => void }) {
         <div className="ws-hero-stats">
           <div ref={yearsRef} className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-ember" />
-            <div className="ws-hero-stat-v">
+            <div className="ws-hero-stat-v ws-hero-stat-plus">
               {years}
-              <em>+</em>
+              <em aria-hidden>+</em>
             </div>
             <div className="ws-hero-stat-l">{tStats("years")}</div>
             <div className="ws-hero-stat-meta">
@@ -154,46 +154,57 @@ export function Hero({ onContact }: { onContact: () => void }) {
             <div className="ws-hero-stat-glow ws-hero-stat-glow-teal" />
             <div className="ws-hero-stat-v ws-hero-stat-trophy">
               <svg
-                viewBox="0 0 24 24"
+                viewBox="0 0 500 500"
                 fill="none"
                 stroke="currentColor"
+                strokeWidth="22"
                 strokeLinecap="round"
-                strokeLinejoin="miter"
-                strokeMiterlimit="2"
+                strokeLinejoin="round"
                 aria-hidden="false"
                 role="img"
               >
                 <title>Hackathon trophy</title>
-                {/* cup body — slight wobble, gap-free but bowed */}
-                <path
-                  d="M6.2 2.3 C 9 1.9, 15.2 1.9, 17.9 2.2 L 17.7 9.1 C 17.8 12.7, 14.9 15.4, 12.05 15.35 C 9.05 15.4, 6.25 12.6, 6.35 9.05 Z"
-                  strokeWidth="1.7"
-                />
-                {/* doubled-back faint ghost of the cup, offset 1px */}
-                <path
-                  d="M6.6 2.7 C 9.2 2.4, 15 2.4, 17.5 2.6 L 17.3 8.9 C 17.45 12.4, 14.7 14.95, 12.05 14.95 C 9.2 14.95, 6.55 12.3, 6.7 8.85"
-                  strokeWidth="0.8"
-                  opacity="0.4"
-                />
-                {/* left handle — wobbly loop */}
-                <path
-                  d="M6.25 4.1 C 4.7 3.95, 3.05 4.6, 3.15 6.4 C 3.25 8.25, 4.85 9.15, 6.55 9.05"
-                  strokeWidth="1.5"
-                />
-                {/* right handle — wobbly loop */}
-                <path
-                  d="M17.85 4.1 C 19.4 3.9, 21 4.65, 20.85 6.45 C 20.7 8.25, 19.15 9.2, 17.5 9.0"
-                  strokeWidth="1.5"
-                />
-                {/* stem — two slightly imperfect verticals (left a bit longer, leaving a tiny gap at top) */}
-                <path d="M10.1 15.2 C 10 16.1, 10.05 17, 10.15 17.6 C 9.4 18.4, 8.55 19.4, 8.4 21.7" strokeWidth="1.5" />
-                <path d="M14 15.25 C 14.1 16.15, 14 17.1, 13.9 17.7 C 14.7 18.5, 15.55 19.5, 15.65 21.65" strokeWidth="1.5" />
-                {/* base — bowed line, not perfectly straight */}
-                <path d="M5.4 21.85 C 9 22.2, 15 22.15, 18.65 21.8" strokeWidth="2" />
-                {/* tiny shine tick on the cup */}
-                <path d="M8.2 4.6 C 8.55 5.4, 8.6 6.3, 8.45 7.2" strokeWidth="1.1" opacity="0.7" />
-                {/* small base hatch — single dash */}
-                <path d="M11.4 22.6 L 13.0 22.55" strokeWidth="1.2" opacity="0.55" />
+                <defs>
+                  <filter
+                    id="trophy-sketchy"
+                    x="-25%"
+                    y="-25%"
+                    width="150%"
+                    height="150%"
+                  >
+                    <feTurbulence
+                      type="fractalNoise"
+                      baseFrequency="0.011"
+                      numOctaves="2"
+                      seed="7"
+                      result="noise"
+                    />
+                    <feDisplacementMap
+                      in="SourceGraphic"
+                      in2="noise"
+                      scale="20"
+                      xChannelSelector="R"
+                      yChannelSelector="G"
+                    />
+                  </filter>
+                </defs>
+                <g filter="url(#trophy-sketchy)">
+                  {/* cup body */}
+                  <path d="M 148,112 C 210,108 290,113 352,109 C 343,210 322,265 254,288 C 183,264 158,212 148,112 Z" />
+                  {/* left handle */}
+                  <path d="M 152,132 C 72,105 83,235 161,218 C 176,215 168,258 149,248" />
+                  {/* right handle */}
+                  <path d="M 348,136 C 424,112 418,242 342,221 C 328,217 332,254 353,244" />
+                  {/* stem */}
+                  <path d="M 246,286 C 244,315 235,335 206,352 L 294,349 C 268,333 256,312 254,286" />
+                  {/* base (outline only) */}
+                  <path d="M 178,356 C 220,352 270,355 323,353 C 328,375 321,395 326,413 C 331,414 336,417 333,426 C 270,429 210,424 167,427 C 164,418 171,413 174,413 C 178,392 173,372 178,356 Z" />
+                  {/* sparkle highlights */}
+                  <circle cx="188" cy="142" r="2.5" fill="currentColor" stroke="none" />
+                  <circle cx="312" cy="188" r="3" fill="currentColor" stroke="none" />
+                  <circle cx="292" cy="218" r="2.5" fill="currentColor" stroke="none" />
+                  <circle cx="296" cy="252" r="3" fill="currentColor" stroke="none" />
+                </g>
               </svg>
               <span>{awards}</span>
             </div>

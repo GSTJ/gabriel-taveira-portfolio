@@ -453,13 +453,45 @@ a.ws-nav-link, a.ws-nav-link:hover {
   position: relative;
 }
 .ws-hero-stat-v em { font-style: italic; color: var(--ember-400); font-size: 0.7em; }
+/* "9+" stat: render the + as a hand-drawn annotation hovering off the
+   top-right of the digit, matching the trophy/marginalia pen feel so
+   the three stat embellishments read as one set. */
+.ws-hero-stat-plus em {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(90%) rotate(-10deg);
+  font-family: 'Caveat', cursive;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--ember-300);
+  opacity: 0.85;
+  pointer-events: none;
+}
 .ws-hero-stat-arrow {
   font-family: var(--font-mono); font-size: 18px;
   color: var(--ember-400); margin: 0 4px;
   position: relative; top: -7px;
 }
-.ws-hero-stat-trophy { display: inline-flex; align-items: center; gap: 8px; color: var(--brass-400); justify-content: center; }
-.ws-hero-stat-trophy svg { width: 28px; height: 28px; }
+/* The hackathon stat reads as "5" centered like every other digit, with
+   the wobbly trophy doodled over the top-right corner of the number —
+   feels like a hand-drawn annotation rather than a flex-paired icon. */
+.ws-hero-stat-trophy { position: relative; color: var(--ink-50); }
+.ws-hero-stat-trophy svg {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(16px) rotate(10deg);
+  /* Match the marginalia "yes, really" pen so the trophy reads as a
+     sibling doodle, not a separate icon. */
+  color: var(--ember-300);
+  opacity: 0.85;
+  pointer-events: none;
+}
 .ws-hero-stat-trophy span { color: var(--ink-50); font-family: var(--font-display); }
 .ws-hero-stat-l {
   font-family: var(--font-sans); font-size: 13px;
