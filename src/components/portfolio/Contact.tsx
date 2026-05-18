@@ -34,7 +34,7 @@ export function Contact() {
     const body = [
       form.message,
       "",
-      "—",
+      "--",
       form.name ? `From: ${form.name}` : null,
       form.email ? `Reply: ${form.email}` : null,
     ]

@@ -268,7 +268,7 @@ export function useConsoleBanner(): void {
     ].join("\n");
     console.log("%c" + banner, css1);
     console.log(
-      "%cGabriel Taveira — Engineering Lead, currently consulting",
+      "%cGabriel Taveira · Engineering Lead, currently consulting",
       css2,
     );
     console.log("%cBuilding and breaking systems since age 8.", css3);
