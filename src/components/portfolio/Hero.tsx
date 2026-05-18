@@ -157,7 +157,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
                 viewBox="0 0 500 500"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="11"
+                strokeWidth="16"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="false"
@@ -196,11 +196,8 @@ export function Hero({ onContact }: { onContact: () => void }) {
                   <path d="M 348,136 C 424,112 418,242 342,221 C 328,217 332,254 353,244" />
                   {/* stem */}
                   <path d="M 246,286 C 244,315 235,335 206,352 L 294,349 C 268,333 256,312 254,286" />
-                  {/* base (filled) */}
-                  <path
-                    d="M 178,356 C 220,352 270,355 323,353 C 328,375 321,395 326,413 C 331,414 336,417 333,426 C 270,429 210,424 167,427 C 164,418 171,413 174,413 C 178,392 173,372 178,356 Z"
-                    fill="currentColor"
-                  />
+                  {/* base (outline only) */}
+                  <path d="M 178,356 C 220,352 270,355 323,353 C 328,375 321,395 326,413 C 331,414 336,417 333,426 C 270,429 210,424 167,427 C 164,418 171,413 174,413 C 178,392 173,372 178,356 Z" />
                   {/* sparkle highlights */}
                   <circle cx="188" cy="142" r="2.5" fill="currentColor" stroke="none" />
                   <circle cx="312" cy="188" r="3" fill="currentColor" stroke="none" />
