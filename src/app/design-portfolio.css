@@ -147,11 +147,15 @@ a.ws-btn:hover {
   text-decoration: none;
 }
 .ws-btn-ghost,
-.ws-btn-ghost:hover {
+a.ws-btn-ghost {
   border-bottom: 0;
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
+}
+.ws-btn-ghost:hover,
+a.ws-btn-ghost:hover {
+  text-decoration: underline;
 }
 
 /* Same fix for other anchor-based components that should not inherit the
