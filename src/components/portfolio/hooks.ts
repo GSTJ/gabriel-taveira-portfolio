@@ -254,11 +254,19 @@ export function useConsoleBanner(): void {
     const css2 = "color:#f6f1e6;font:400 13px ui-monospace,monospace;";
     const css3 = "color:#8a827a;font:400 11px ui-monospace,monospace;";
     /* eslint-disable no-console */
-    console.log("%c   ▄████  ████████   ▄▄▄▄▄▄ ", css1);
-    console.log("%c  ██     ██▄    ██▄   ██   ", css1);
-    console.log("%c   ████    ██     ██   ██   ", css1);
-    console.log("%c     ██    ██     ██   ██   ", css1);
-    console.log("%c  ████▀    ██     ██   ██   ", css1);
+    // Block-character "GT" rendered in a single console.log so the
+    // browser preserves the per-row alignment. Concatenating newlines
+    // into one string is the only reliable way to get a consistent
+    // monospace grid in DevTools — separate console.log calls add
+    // implicit padding/leading that breaks the letterforms.
+    const banner = [
+      "  ██████   ████████ ",
+      " ██           ██    ",
+      " ██   ███     ██    ",
+      " ██    ██     ██    ",
+      "  ██████      ██    ",
+    ].join("\n");
+    console.log("%c" + banner, css1);
     console.log(
       "%cGabriel Taveira — Engineering Lead, currently consulting",
       css2,
