@@ -42,7 +42,7 @@
       },
       "coinbase": {
         "title": "Mobile architecture at Coinbase",
-        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, migrated Coinbase to Expo Prebuild, and enabled React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>.",
+        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, helped migrate Coinbase to Expo Prebuild, and helped enable React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>.",
         "cta": "Visit Coinbase"
       },
       "ateam": {
