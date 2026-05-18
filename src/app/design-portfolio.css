@@ -1790,6 +1790,7 @@ body.ws-crt::after {
 .ws-links-list {
   width: 100%;
 }
+.ws-links-list .ws-channel-label { justify-self: start; }
 @media (max-width: 640px) {
   .ws-links { padding: 56px 18px; }
   .ws-links-list .ws-channel { grid-template-columns: auto 1fr auto !important; }
