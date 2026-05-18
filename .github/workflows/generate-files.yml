@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🏗 Setup PNPM
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       # We cannot cache the same fast way here, as it actually needs
       # to install puppeteer stuff on the machine each time.
