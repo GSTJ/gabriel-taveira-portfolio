@@ -458,8 +458,20 @@ a.ws-nav-link, a.ws-nav-link:hover {
   color: var(--ember-400); margin: 0 4px;
   position: relative; top: -7px;
 }
-.ws-hero-stat-trophy { display: inline-flex; flex-direction: row-reverse; align-items: flex-end; gap: 2px; color: var(--brass-400); justify-content: center; }
-.ws-hero-stat-trophy svg { width: 36px; height: 36px; }
+/* The hackathon stat reads as "5" centered like every other digit, with
+   the wobbly trophy doodled over the top-right corner of the number —
+   feels like a hand-drawn annotation rather than a flex-paired icon. */
+.ws-hero-stat-trophy { position: relative; color: var(--ink-50); }
+.ws-hero-stat-trophy svg {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -18px;
+  right: 50%;
+  transform: translateX(80%) rotate(-8deg);
+  color: var(--brass-400);
+  pointer-events: none;
+}
 .ws-hero-stat-trophy span { color: var(--ink-50); font-family: var(--font-display); }
 .ws-hero-stat-l {
   font-family: var(--font-sans); font-size: 13px;
