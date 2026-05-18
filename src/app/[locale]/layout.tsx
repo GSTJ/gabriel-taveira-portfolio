@@ -17,7 +17,7 @@ const GTM_ID = "G-1S8PR4TDYM";
  * one sentence while staying under 160 characters for SERP truncation.
  */
 const DESCRIPTION =
-  "Gabriel Taveira — Engineering Lead with 9+ years in React Native, Expo and mobile architecture. Brazil-based (Ribeirão Preto), remote with US teams.";
+  "Gabriel Taveira · Engineering Lead with 9+ years in React Native, Expo and mobile architecture. Brazil-based (Ribeirão Preto), remote with US teams.";
 
 const TITLE = "Gabriel Taveira · Engineering Lead";
 
