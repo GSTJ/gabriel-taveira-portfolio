@@ -9,14 +9,32 @@ import { ArrowUpRight, Eyebrow, richTags, Tag } from "./Shared";
 
 function HighlightedEyebrow({ text }: { text: string }) {
   const parts = text.split(" · ");
+  const lastIdx = parts.length - 1;
   return (
     <span className="ws-eyebrow">
-      {parts.map((part, i) => (
-        <Fragment key={i}>
-          {i > 0 && <span className="ws-eyebrow-sep"> · </span>}
-          <span className="ws-eyebrow-token">{part}</span>
-        </Fragment>
-      ))}
+      {parts.map((part, i) => {
+        const isDate = i === lastIdx;
+        return (
+          <Fragment key={i}>
+            {i > 0 && (
+              <span
+                className={
+                  "ws-eyebrow-sep" + (isDate ? " ws-eyebrow-sep-date" : "")
+                }
+              >
+                {" · "}
+              </span>
+            )}
+            <span
+              className={
+                "ws-eyebrow-token" + (isDate ? " ws-eyebrow-token-date" : "")
+              }
+            >
+              {part}
+            </span>
+          </Fragment>
+        );
+      })}
     </span>
   );
 }

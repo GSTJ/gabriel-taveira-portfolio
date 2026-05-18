@@ -6,12 +6,14 @@
 
 * { box-sizing: border-box; }
 
+html, body {
+  overflow-x: clip;
+}
 body {
   margin: 0;
   background: var(--ink-900);
   color: var(--color-fg);
   font-family: var(--font-sans);
-  overflow-x: hidden;
 }
 
 /* Site-wide ambient background · a faint warm radial from top-left */
@@ -272,6 +274,7 @@ a.ws-nav-link, a.ws-nav-link:hover {
   margin: 0;
   padding-left: 24px; padding-right: 24px;
   position: relative;
+  overflow: clip;
 }
 .ws-hero-bg {
   position: absolute; inset: 0;
@@ -464,21 +467,32 @@ a.ws-nav-link, a.ws-nav-link:hover {
   white-space: nowrap;
   z-index: 2;
 }
+/* Sideways arrow ("←") works when the marginalia floats to the right of the
+   digit on desktop; on mobile it sits below the stat so an upward arrow
+   ("↑") reads more naturally. */
+.ws-hero-stat-tag-arrow-up { display: none; }
 @media (max-width: 720px) {
-  /* On the 2-col mobile grid, sit just under the digit (above the label)
-     so it still reads as pointing at the 56 without colliding with the
-     neighbor column. */
+  /* On the 2-col mobile grid, tuck the marginalia under the label so it
+     reads as pointing at the 56 without spilling into the neighbor column
+     or past the viewport edge on small phones. */
   .ws-hero-stat-tag {
-    position: absolute;
-    top: 0.85em;
-    left: 50%;
-    transform: translate(50%, 8px);
+    position: static;
+    display: block;
+    text-align: center;
+    /* Nudge right so the upward arrow points at the digit's optical
+       center rather than landing under the leading edge of the label. */
+    padding-left: 4.5em;
+    margin-top: 4px;
+    transform: none;
+    white-space: normal;
   }
   .ws-hero-stat-tag .ws-marginalia {
     /* The default rule hides .ws-marginalia below 640px — override here
        so the tag stays visible when it's the whole point of the stat. */
     display: inline-block;
   }
+  .ws-hero-stat-tag-arrow-side { display: none; }
+  .ws-hero-stat-tag-arrow-up { display: inline; }
 }
 
 /* Stars + shelf edge */
@@ -820,8 +834,17 @@ a.ws-nav-link, a.ws-nav-link:hover {
   color: var(--ember-300);
   font-weight: 600;
 }
+.ws-work-cell .ws-eyebrow-token-date { color: var(--ink-400); font-weight: 500; }
 .ws-work-cell .ws-eyebrow-sep {
   color: var(--ink-500);
+}
+@media (max-width: 720px) {
+  /* On narrow viewports the meta line wraps unpredictably (e.g. "A.TEAM ·
+     D-ID · 2023 →" leaving "25" orphaned). Force the date token to a new
+     line so every card reads as "company(ies) on top, date below". */
+  .ws-work-cell .ws-eyebrow { display: block; }
+  .ws-work-cell .ws-eyebrow-sep-date { display: none; }
+  .ws-work-cell .ws-eyebrow-token-date { display: block; margin-top: 2px; }
 }
 .ws-work-cell-title {
   font-family: var(--font-display); font-size: 24px; font-weight: 400;
@@ -854,6 +877,17 @@ a.ws-nav-link, a.ws-nav-link:hover {
   transition: gap var(--dur-fast), color var(--dur-fast);
 }
 .ws-work-cell:hover .ws-work-cell-cta { gap: 10px; color: var(--ember-300); }
+@media (max-width: 720px) {
+  /* Cards wrap inconsistently on narrow viewports — sometimes the CTA fits
+     next to the tags, sometimes it drops. Force a single layout: tags on
+     top, CTA on its own row below, every card. */
+  .ws-work-cell-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .ws-work-cell-tags { width: 100%; }
+}
 
 /* Flourishes — sized to fit inside .ws-work-cell-flourish (130×44 zone) */
 .ws-flourish {
@@ -864,7 +898,8 @@ a.ws-nav-link, a.ws-nav-link:hover {
 
 /* Ticker */
 .ws-flourish-ticker {
-  flex-direction: column; align-items: flex-end; gap: 2px;
+  flex-direction: column; align-items: flex-end; justify-content: flex-start;
+  gap: 6px;
   color: var(--ember-400);
 }
 .ws-ticker-row {
@@ -879,7 +914,7 @@ a.ws-nav-link, a.ws-nav-link:hover {
 .ws-ticker-label { color: var(--ink-400); }
 .ws-ticker-price { color: var(--ember-300); }
 .ws-ticker-delta { color: var(--teal-300); }
-.ws-ticker-chart { width: 100%; height: 14px; opacity: 0.8; }
+.ws-ticker-chart { width: 80%; height: 10px; opacity: 0.75; }
 
 /* Frames */
 .ws-flourish-frames {
@@ -1223,9 +1258,28 @@ a.ws-nav-link, a.ws-nav-link:hover {
 }
 .ws-pubs-feature-meta { display: flex; align-items: center; gap: 16px; position: relative; flex-wrap: wrap; }
 .ws-pubs-feature-meta .ws-chip { white-space: nowrap; }
-.ws-pubs-bars { display: flex; align-items: flex-end; gap: 3px; height: 22px; }
-.ws-pubs-bar { width: 3px; background: var(--ember-400); border-radius: 1px; height: 6px; animation: ws-bars 1.2s ease-in-out infinite; box-shadow: 0 0 6px rgba(224,122,31,0.6); }
-@keyframes ws-bars { 0%, 100% { height: 4px; } 50% { height: 22px; } }
+.ws-pubs-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 24px;
+}
+.ws-pubs-bar {
+  width: 2.5px;
+  background: var(--ember-400);
+  border-radius: 999px;
+  /* Per-bar base/peak heights are injected via CSS custom props so each
+     bar gets its own envelope and timing — together they read as natural
+     voice energy rather than a synchronized equalizer demo. */
+  height: var(--bar-base, 4px);
+  animation: ws-bars 1s ease-in-out infinite alternate;
+  box-shadow: 0 0 6px rgba(224,122,31,0.55);
+  will-change: height;
+}
+@keyframes ws-bars {
+  from { height: var(--bar-base, 4px); }
+  to   { height: var(--bar-peak, 22px); }
+}
 .ws-pubs-feature-title {
   position: relative;
   font-family: var(--font-display); font-weight: 400;
@@ -1272,9 +1326,11 @@ a.ws-nav-link, a.ws-nav-link:hover {
 .ws-pubs-card h4 {
   grid-column: 1 / 2;
   font-family: var(--font-display); font-weight: 400;
-  font-size: 20px; letter-spacing: -0.012em;
+  font-size: clamp(16px, 4.6vw, 20px); letter-spacing: -0.012em;
   color: var(--ink-50); margin: 4px 0 4px;
   line-height: 1.32;
+  /* Long URL-style handles must wrap rather than push the card wider. */
+  overflow-wrap: anywhere;
 }
 .ws-pubs-card p {
   grid-column: 1 / 2;
@@ -1544,22 +1600,61 @@ a.ws-nav-link, a.ws-nav-link:hover {
 .ws-footer { margin-top: 96px; padding: 24px 0 8px; border-top: 1px solid var(--color-divider); }
 .ws-footer-row { display: flex; align-items: center; gap: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-400); text-transform: uppercase; letter-spacing: 0.10em; flex-wrap: wrap; }
 .ws-footer-spacer { flex: 1; }
+.ws-footer-end {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  /* Claim a full row so the language switcher and the signature can sit on
+     opposite edges of the footer, rather than huddling together once the
+     row wraps below the meta line. */
+  flex: 1 1 100%;
+  justify-content: space-between;
+}
 @media (max-width: 720px) {
-  /* On narrow viewports the footer row wraps, leaving the brand mark
-     orphaned on its own line above the meta. Hide it on mobile — the
-     meta line already includes the name. */
-  .ws-footer-row > .ws-brand { display: none; }
+  /* On mobile the footer becomes a tight two-row signature, not a six-row
+     poster: drop the brand mark and the "building & breaking..." tagline
+     (both already echoed elsewhere on the page), keep one meta line for
+     identity, and pair the language switcher with the marginalia on the
+     same row so the whole footer reads as one balanced unit. */
+  .ws-footer { margin-top: 48px; padding: 18px 0 20px; }
+  .ws-footer-row > .ws-brand,
+  .ws-footer-row > .ws-footer-meta + .ws-footer-spacer + .ws-footer-meta { display: none; }
+  .ws-footer-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+  }
+  .ws-footer-spacer { display: none; }
+  .ws-footer-row > .ws-footer-meta {
+    color: var(--ink-500);
+    line-height: 1.55;
+  }
+  /* Marginalia on the left, language switcher on the right — feels lighter
+     than a chunky pill anchoring the bottom of the column. */
+  .ws-footer-end {
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  .ws-footer-marginalia .ws-marginalia {
+    font-size: 13px;
+    opacity: 0.7;
+  }
 }
 .ws-footer-marginalia {
   display: inline-flex;
   align-items: center;
+  margin-left: auto;
 }
 @media (max-width: 720px) {
-  /* On narrow viewports the footer rows wrap to multiple lines; keep the
-     marginalia compact and aligned to the right rather than full-width. */
+  /* In the centered mobile stack, let the marginalia sit on its own row
+     centered like the rest — the desktop "anchored right" position only
+     makes sense when the row is one line. */
   .ws-footer-marginalia {
-    width: 100%;
-    justify-content: flex-end;
+    margin-left: 0;
   }
 }
 @media (max-width: 640px) {
@@ -1723,6 +1818,7 @@ body.ws-crt::after {
   .ws-hero-status-meta { display: none; }
   .ws-work-grid { grid-template-columns: 1fr; }
   .ws-pubs-grid { grid-template-columns: 1fr; }
+  .ws-pubs-card { padding: 18px; gap: 4px 10px; }
   .ws-awards { grid-template-columns: 1fr 1fr; }
   .ws-now-grid { grid-template-columns: 1fr; }
   .ws-now-card-lead { grid-row: auto; }
@@ -1730,7 +1826,6 @@ body.ws-crt::after {
   .ws-talks-row, .ws-writing-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 4px; }
   .ws-nav-links { display: none; }
   .ws-form-foot { flex-direction: column; align-items: flex-start; }
-  .ws-flourish-ticker, .ws-flourish-frames, .ws-flourish-scoot { display: none; }
 }
 
 /* =========================================================================

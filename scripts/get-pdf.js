@@ -47,21 +47,37 @@ const getPdf = async () => {
     );
   }
 
-  // Evaluate the actual height of the page body
-  const bodyHandle = await page.$("body");
-  const { height } = await bodyHandle.boundingBox();
-  await bodyHandle.dispose();
-
-  // For some reason, the pdf has extra padding at the bottom.
-  // This is a hacky way to remove it.
-  const EXTRA_BOTTOM_PADDING = 500;
+  // Measure the bottom of the last meaningful element on the page. Using
+  // body.scrollHeight pulls in trailing margin/padding plus any decorative
+  // overflow, which is what produces the long blank page at the end of the
+  // PDF. The footer is the last semantic block, so we cap the export to its
+  // bottom edge plus a small breathing margin.
   const WEB_WIDTH = 1200;
+  const BOTTOM_MARGIN = 32;
+  const height = await page.evaluate((margin) => {
+    const candidates = [
+      ".ws-footer",
+      "#contact",
+      "footer",
+      "main",
+    ];
+    let bottom = 0;
+    for (const sel of candidates) {
+      const el = document.querySelector(sel);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      const elBottom = rect.bottom + window.scrollY;
+      if (elBottom > bottom) bottom = elBottom;
+    }
+    if (!bottom) bottom = document.body.scrollHeight;
+    return Math.ceil(bottom + margin);
+  }, BOTTOM_MARGIN);
 
   const pdf = await page.pdf({
     printBackground: true,
     waitForFonts: true,
     width: WEB_WIDTH,
-    height: Math.ceil(height - EXTRA_BOTTOM_PADDING),
+    height,
     pageRanges: "1", // Ensures that only the first page is printed.
   });
 
@@ -75,8 +91,19 @@ const getPdf = async () => {
   fs.writeFileSync(tmpOut, pdf);
 
   try {
+    // /ebook keeps the warm gradients legible while halving the raster cost.
+    // We override the image resolutions explicitly (~150dpi color) so the
+    // hero glow doesn't band, plus turn on duplicate-image detection and
+    // font subsetting for additional savings.
     execSync(
-      `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${finalOut} ${tmpOut}`,
+      `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/ebook \
+        -dDetectDuplicateImages=true -dCompressFonts=true -dSubsetFonts=true \
+        -dColorImageDownsampleType=/Bicubic -dColorImageResolution=150 \
+        -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=150 \
+        -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=300 \
+        -dAutoFilterColorImages=false -dColorImageFilter=/DCTEncode \
+        -dAutoFilterGrayImages=false -dGrayImageFilter=/DCTEncode \
+        -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${finalOut} ${tmpOut}`,
       { stdio: "inherit" },
     );
     fs.unlinkSync(tmpOut);

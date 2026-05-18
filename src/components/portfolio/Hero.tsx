@@ -119,14 +119,6 @@ export function Hero({ onContact }: { onContact: () => void }) {
           </a>
         </div>
 
-        <div className="ws-hero-status">
-          <span className="ws-eyebrow">{t("currently")}</span>
-          <span className="ws-hero-status-sep">·</span>
-          <span className="ws-hero-status-co">{t("consulting")}</span>
-          <span className="ws-hero-status-sep">·</span>
-          <span className="ws-hero-status-meta">{t("location")}</span>
-        </div>
-
         <div className="ws-hero-stats">
           <div ref={yearsRef} className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-ember" />
@@ -145,7 +137,11 @@ export function Hero({ onContact }: { onContact: () => void }) {
             <div className="ws-hero-stat-l">{tStats("reports")}</div>
             <div className="ws-hero-stat-meta">{tStats("reportsMeta")}</div>
             <span className="ws-hero-stat-tag">
-              <Marginalia tilt={-6}>{tMarg("yesReally")}</Marginalia>
+              <Marginalia tilt={-6}>
+                <span className="ws-hero-stat-tag-arrow-side" aria-hidden>← </span>
+                <span className="ws-hero-stat-tag-arrow-up" aria-hidden>↑ </span>
+                {tMarg("yesReally")}
+              </Marginalia>
             </span>
           </div>
           <div ref={tinkerRef} className="ws-hero-stat">

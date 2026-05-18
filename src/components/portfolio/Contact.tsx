@@ -127,10 +127,12 @@ export function Contact() {
           <span className="ws-footer-meta">{t("footerMeta")}</span>
           <span className="ws-footer-spacer" />
           <span className="ws-footer-meta">{t("footerTag")}</span>
-          <LanguageSwitcher />
-          <span className="ws-footer-marginalia">
-            <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
-          </span>
+          <div className="ws-footer-end">
+            <LanguageSwitcher />
+            <span className="ws-footer-marginalia">
+              <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
+            </span>
+          </div>
         </div>
       </footer>
     </section>
