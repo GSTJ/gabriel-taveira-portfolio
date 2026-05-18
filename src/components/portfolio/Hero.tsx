@@ -167,22 +167,22 @@ export function Hero({ onContact }: { onContact: () => void }) {
                 <defs>
                   <filter
                     id="trophy-sketchy"
-                    x="-15%"
-                    y="-15%"
-                    width="130%"
-                    height="130%"
+                    x="-25%"
+                    y="-25%"
+                    width="150%"
+                    height="150%"
                   >
                     <feTurbulence
                       type="fractalNoise"
-                      baseFrequency="0.018"
-                      numOctaves="3"
+                      baseFrequency="0.011"
+                      numOctaves="2"
                       seed="7"
                       result="noise"
                     />
                     <feDisplacementMap
                       in="SourceGraphic"
                       in2="noise"
-                      scale="9"
+                      scale="20"
                       xChannelSelector="R"
                       yChannelSelector="G"
                     />

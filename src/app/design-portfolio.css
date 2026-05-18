@@ -483,9 +483,9 @@ a.ws-nav-link, a.ws-nav-link:hover {
   position: absolute;
   width: 32px;
   height: 32px;
-  top: -10px;
+  top: 10px;
   left: 50%;
-  transform: translateX(8px) rotate(-10deg);
+  transform: translateX(16px) rotate(10deg);
   /* Match the marginalia "yes, really" pen so the trophy reads as a
      sibling doodle, not a separate icon. */
   color: var(--ember-300);
