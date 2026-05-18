@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
-import { CHANNELS } from "./data";
+import { CHANNELS, EMAIL_ADDR } from "./data";
 import { Marginalia } from "./Marginalia";
 import { ArrowRight, ArrowUpRight, BrandMark, Chip, Eyebrow, richTags } from "./Shared";
 import { SOCIAL_ICONS } from "./SocialIcons";
@@ -28,6 +28,24 @@ export function Contact() {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     if (!form.email || !form.message) return;
+    // Hand off to the user's mail client. Cheaper than running a backend
+    // for the handful of inbound messages this form actually gets, and
+    // the submitter's own SMTP handles delivery + spam reputation.
+    const subjectLine = form.subject?.trim() || "Hi from your portfolio";
+    const body = [
+      form.message,
+      "",
+      "—",
+      form.name ? `From: ${form.name}` : null,
+      form.email ? `Reply: ${form.email}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const href =
+      `mailto:${EMAIL_ADDR}` +
+      `?subject=${encodeURIComponent(subjectLine)}` +
+      `&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
     setSent(true);
   };
 
