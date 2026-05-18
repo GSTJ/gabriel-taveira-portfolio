@@ -36,6 +36,6 @@
     "jest": "^30.4.2",
     "jiti": "^2.7.0",
     "magic-eslint-config": "^0.1.9",
-    "puppeteer": "^24.43.0"
+    "puppeteer": "^25.0.0"
   }
 }
