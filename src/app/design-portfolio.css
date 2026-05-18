@@ -1795,6 +1795,7 @@ body.ws-crt::after {
   .ws-links { padding: 56px 18px; }
   .ws-links-list .ws-channel { grid-template-columns: auto 1fr auto !important; }
   .ws-links-list .ws-channel-handle { display: none; }
+  .ws-links-list .ws-channel-label { justify-self: center; }
 }
 
 /* === Marginalia ===
