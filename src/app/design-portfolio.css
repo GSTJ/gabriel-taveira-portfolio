@@ -460,7 +460,7 @@ a.ws-nav-link, a.ws-nav-link:hover {
   position: absolute;
   top: 4px;
   left: 50%;
-  transform: translateX(60%) rotate(-10deg);
+  transform: translateX(90%) rotate(-10deg);
   font-family: 'Caveat', cursive;
   font-style: normal;
   font-weight: 600;
