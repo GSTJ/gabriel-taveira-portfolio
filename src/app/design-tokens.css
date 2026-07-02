@@ -1,11 +1,11 @@
 /* =============================================================================
-   CONCRETO · Portfolio Design System
+   JACARANDÁ · Portfolio Design System
    Foundation tokens: color + type
 
-   Brazilian modernism: concrete poetry, Bienal catalogs, SESC posters.
-   One plaster ground, warm ink, two colors used like silkscreen passes.
-   Rules are 1px solid ink at full opacity. No shadows, no radii, no
-   gradients, no translucency, no italics.
+   Brazilian modernism, Sergio Rodrigues register: rosewood, cognac
+   leather, linen, foliage. Bauhaus geometry carries the structure —
+   ruled grids, circles, flat planes — but the materials are warm and
+   the voice is executive, not poster-loud.
    ============================================================================= */
 
 /* Webfonts are imported in globals.css so the @import sits before all
@@ -13,43 +13,49 @@
 
 :root {
   /* =========================================================================
-     COLOR · CONCRETO primitives
+     COLOR · material primitives
      ========================================================================= */
-  --gesso:    #eae7dd;  /* cool plaster ground */
-  --ink:      #171410;  /* warm near-black */
-  --bardi:    #d8291a;  /* SESC red: blocks, fills, display-size type ONLY.
-                           Never small text, never adjacent to cobalt. */
-  --cobalt:   #1d3fbf;  /* Bienal cobalt: ALL small colored text and links */
-  --concrete: #6e6759;  /* muted mono meta, 11px+ mono caps only */
+  --linho:     #efe9dc;  /* linen ground */
+  --linho-2:   #e6decd;  /* pressed linen, subtle hover tint */
+  --jacaranda: #2a1f16;  /* deep rosewood: text + dark planes */
+  --jaca-2:    #3b2d20;  /* lifted rosewood, hover on dark */
+  --couro:     #a4581d;  /* cognac leather: the accent */
+  --couro-2:   #8a4917;  /* worn cognac, hover/pressed */
+  --mata:      #3c5240;  /* foliage green: secondary planes */
+  --areia:     #877b69;  /* driftwood meta text, mono caps 11px+ */
+  --areia-2:   #c9bfab;  /* pale sand, quiet spines/rules on linen */
 
   /* Semantic */
-  --color-bg:           var(--gesso);
-  --color-bg-inverse:   var(--ink);
-  --color-surface:      var(--gesso);   /* exactly one paper tone */
-  --color-fg:           var(--ink);
-  --color-fg-strong:    var(--ink);
-  --color-fg-muted:     var(--concrete);
-  --color-fg-subtle:    var(--concrete);
-  --color-fg-inverse:   var(--gesso);
-  --color-accent:       var(--cobalt);  /* working accent */
-  --color-accent-loud:  var(--bardi);   /* display accent */
-  --color-link:         var(--cobalt);
-  --color-link-hover:   var(--cobalt);  /* links invert, they don't shift hue */
+  --color-bg:           var(--linho);
+  --color-bg-inverse:   var(--jacaranda);
+  --color-surface:      var(--linho);
+  --color-fg:           var(--jacaranda);
+  --color-fg-strong:    var(--jacaranda);
+  --color-fg-muted:     var(--areia);
+  --color-fg-subtle:    var(--areia);
+  --color-fg-inverse:   var(--linho);
+  --color-accent:       var(--couro);
+  --color-link:         var(--couro);
+  --color-link-hover:   var(--couro-2);
 
-  /* HAIRLINE DISCIPLINE: always 1px solid ink at full opacity. */
-  --color-border:        var(--ink);
-  --color-border-strong: var(--ink);
-  --color-divider:       var(--ink);
-  --rule:         1px solid var(--ink);
-  --rule-inverse: 1px solid var(--gesso);
+  /* Rules: 1px solid rosewood, full opacity. */
+  --color-border:        var(--jacaranda);
+  --color-border-strong: var(--jacaranda);
+  --color-divider:       var(--jacaranda);
+  --rule:         1px solid var(--jacaranda);
+  --rule-inverse: 1px solid var(--linho);
+  --rule-soft:    1px solid var(--areia-2);
 
-  --color-selection-bg: var(--cobalt);
-  --color-selection-fg: var(--gesso);
+  --color-selection-bg: var(--couro);
+  --color-selection-fg: var(--linho);
 
-  /* Neutralized systems — names kept so stray usage collapses safely. */
-  --shadow-sm: none; --shadow-md: none; --shadow-lg: none;
+  /* Soft-furniture edges: blocks get a gentle radius, rules stay square. */
+  --radius-block: 8px;
+  --radius-ui: 5px;
+  /* Legacy token names, kept harmless. */
   --radius-xs: 0; --radius-sm: 0; --radius-md: 0; --radius-lg: 0;
-  --radius-xl: 0; --radius-2xl: 0; --radius-pill: 0;
+  --radius-xl: 0; --radius-2xl: 0; --radius-pill: 999px;
+  --shadow-sm: none; --shadow-md: none; --shadow-lg: none;
   --color-highlight: transparent;
 
   /* Spacing scale (4px base) */
@@ -59,41 +65,35 @@
 
   /* =========================================================================
      TYPE
-     Archivo carries display (wdth 125 / wght 800, uppercase) and body (400).
-     Jost lowercase is the "poem" voice. IBM Plex Mono is the ledger voice.
-     Weights: 400 / 600 / 700 / 800 only. Italics are banned sitewide.
+     Archivo carries everything visible; IBM Plex Mono is the ledger
+     voice for metadata. Weights 400/500/600/700. Titles are sentence
+     case — the design speaks at conversation volume.
      ========================================================================= */
   --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
   --font-body:    'Archivo', ui-sans-serif, system-ui, sans-serif;
   --font-sans:    'Archivo', ui-sans-serif, system-ui, sans-serif;
-  --font-poem:    'Jost', 'Futura', sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Every display use sets both axes:
-     font-variation-settings: var(--display-settings); font-weight: 800; */
-  --display-settings: 'wdth' 125;
-
   /* Type scale */
-  --fs-name:        clamp(64px, 13vw, 196px);
-  --fs-display-xl:  clamp(32px, 6vw, 88px);
-  --fs-display-md:  clamp(28px, 3.6vw, 56px);
-  --fs-display-sm:  clamp(22px, 2.4vw, 32px);
-  --fs-stat:        clamp(40px, 6vw, 80px);
-  --fs-poem:        clamp(24px, 3.2vw, 44px);
-  --fs-poem-xl:     clamp(40px, 7vw, 104px);
-  --fs-body:        17px;
+  --fs-name:        clamp(56px, 11vw, 168px);
+  --fs-display-xl:  clamp(30px, 4.5vw, 58px);
+  --fs-display-md:  clamp(26px, 3.2vw, 44px);
+  --fs-display-sm:  clamp(20px, 2.2vw, 28px);
+  --fs-stat:        clamp(36px, 5vw, 64px);
+  --fs-body:        16.5px;
   --fs-body-sm:     15px;
   --fs-meta:        12px;
   --fs-meta-sm:     11px;
 
-  --lh-display: 0.9;
-  --lh-body:    1.6;
-  --tracking-display: -0.01em;
-  --tracking-mono:    0.12em;
+  --lh-display: 1.04;
+  --lh-body:    1.62;
+  --tracking-display: -0.015em;
+  --tracking-mono:    0.1em;
 
-  /* Motion — two speeds only */
-  --cut:  120ms;   /* the hard swap; pair with steps(1, end) or none */
-  --once: 500ms;   /* one-shot entrances */
+  /* Motion — quiet and physical */
+  --dur-fast: 160ms;
+  --dur-base: 320ms;
+  --dur-slow: 520ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -119,12 +119,10 @@ html, body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-variation-settings: var(--display-settings);
-  text-transform: uppercase;
+  font-weight: 700;
   letter-spacing: var(--tracking-display);
   line-height: var(--lh-display);
-  color: var(--ink);
+  color: var(--jacaranda);
 }
 h5 {
   font-family: var(--font-mono);
@@ -132,18 +130,18 @@ h5 {
   font-size: var(--fs-meta);
   text-transform: uppercase;
   letter-spacing: var(--tracking-mono);
-  color: var(--concrete);
+  color: var(--areia);
 }
 
 p { color: var(--color-fg); text-wrap: pretty; }
 
-/* Upright accent — replaces the italic <em> convention sitewide. */
+/* Upright accent — the <em> convention renders cognac, never italic. */
 em, .ws-accent {
   font-style: normal;
-  color: var(--cobalt);
+  color: var(--couro);
   font-weight: inherit;
 }
-strong { font-weight: 700; color: var(--ink); }
+strong { font-weight: 700; color: var(--jacaranda); }
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -151,23 +149,24 @@ strong { font-weight: 700; color: var(--ink); }
   font-size: var(--fs-meta);
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: var(--concrete);
+  color: var(--areia);
 }
 
 code, kbd, pre, samp { font-family: var(--font-mono); font-size: 0.92em; }
 code {
-  border: var(--rule);
+  border: var(--rule-soft);
+  border-radius: var(--radius-ui);
   padding: 1px 6px;
-  color: var(--cobalt);
+  color: var(--couro);
 }
 
 a {
-  color: var(--cobalt);
+  color: var(--couro);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   border-bottom: 0;
 }
-a:hover { color: var(--cobalt); }
+a:hover { color: var(--couro-2); }
 
-hr { border: 0; border-top: var(--rule); margin: var(--space-8) 0; }
+hr { border: 0; border-top: var(--rule-soft); margin: var(--space-8) 0; }

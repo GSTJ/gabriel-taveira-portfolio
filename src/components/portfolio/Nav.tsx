@@ -56,29 +56,23 @@ export function Nav({
             onNav("top");
           }}
         >
-          <BrandMark size={14} withText={false} />
+          <BrandMark size={30} />
         </a>
         <div className="ws-nav-links">
-          {NAV_LINKS.map((l, i) => (
-            <span key={l.id}>
-              {i > 0 && (
-                <span className="ws-nav-sep" aria-hidden>
-                  /
-                </span>
-              )}
-              <a
-                className={
-                  "ws-nav-link" + (active === l.id ? " ws-nav-link-active" : "")
-                }
-                href={`#${l.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNav(l.id);
-                }}
-              >
-                {t(l.key)}
-              </a>
-            </span>
+          {NAV_LINKS.map((l) => (
+            <a
+              key={l.id}
+              className={
+                "ws-nav-link" + (active === l.id ? " ws-nav-link-active" : "")
+              }
+              href={`#${l.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNav(l.id);
+              }}
+            >
+              {t(l.key)}
+            </a>
           ))}
         </div>
         <div className="ws-nav-spacer" />

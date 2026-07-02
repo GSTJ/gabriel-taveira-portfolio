@@ -84,66 +84,6 @@ export function useRevealOnScroll(): void {
 }
 
 /**
- * CONCRETO ambient motion — the page's entire moving-graphics budget:
- *   1. The Duarte sunburst (#ws-sunburst-rays) rotates with scroll delta.
- *   2. On coarse pointers the hero name grid gets one jitter pass when it
- *      first enters view (fine pointers jitter on hover via CSS).
- * Both skip entirely in headless/reduced-motion contexts.
- */
-export function useConcretoMotion(): void {
-  useEffect(() => {
-    const headless =
-      /HeadlessChrome|Puppeteer/i.test(navigator.userAgent) ||
-      (navigator as unknown as { webdriver?: boolean }).webdriver === true;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (headless || reduced) return;
-
-    // 1 · Sunburst: write the rotation straight to the SVG node.
-    const rays = document.getElementById("ws-sunburst-rays");
-    let deg = 0;
-    let lastY = window.scrollY;
-    let raf = 0;
-    const onScroll = () => {
-      if (!rays || raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const y = window.scrollY;
-        deg += Math.max(-1, Math.min(1, (y - lastY) * 0.02));
-        lastY = y;
-        rays.style.transform = `rotate(${deg}deg)`;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    // 2 · Name-grid jitter, once, on touch devices.
-    const grid = document.querySelector<HTMLElement>(".ws-name-grid");
-    let obs: IntersectionObserver | undefined;
-    if (grid && matchMedia("(pointer: coarse)").matches) {
-      obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            grid.classList.add("ws-jitter-once");
-            window.setTimeout(
-              () => grid.classList.remove("ws-jitter-once"),
-              1200,
-            );
-            obs?.disconnect();
-          }
-        },
-        { threshold: 0.5 },
-      );
-      obs.observe(grid);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-      obs?.disconnect();
-    };
-  }, []);
-}
-
-/**
  * Tracks which section is currently in view, used to highlight the nav.
  * Returns the section id (mapped: `contact`→`about`, `writing`→`publications`).
  */
@@ -247,7 +187,7 @@ export function useKeyboardEffects(
     const konamiRef: string[] = [];
     const gtRef: Array<{ k: string; t: number }> = [];
 
-    const PENNANT_COLORS = ["#d8291a", "#1d3fbf", "#171410"];
+    const PENNANT_COLORS = ["#a4581d", "#2a1f16", "#3c5240"];
     const spawnSpark = (i: number) => {
       const el = document.createElement("div");
       el.className = "ws-spark-rain";

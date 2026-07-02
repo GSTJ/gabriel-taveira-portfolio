@@ -66,25 +66,24 @@ const getPdf = async () => {
       }
       body.ws-motion .ws-anim { opacity: 1 !important; transform: none !important; }
 
-      /* Don't drink toner: collapse the saturated silkscreen blocks to
-         ruled boxes on gesso; keep cobalt accents only. */
+      /* Don't drink toner: collapse the saturated material blocks to
+         ruled boxes on linen; keep cognac accents only. */
       .ws-hero-spine, .ws-pubs-sunburst { display: none !important; }
       .ws-hero-inner { padding-left: 24px !important; }
       .ws-hero-stat, .ws-pubs-feature, .ws-pubs-card,
       .ws-now-section, .ws-contact, .ws-writing-callout-cta {
-        background: #eae7dd !important; color: #171410 !important;
-        border: 1px solid #171410 !important;
+        background: #efe9dc !important; color: #2a1f16 !important;
+        border: 1px solid #2a1f16 !important;
       }
       .ws-pubs-feature *, .ws-now-section *, .ws-contact *,
-      .ws-hero-stat * { color: #171410 !important; border-color: #171410 !important; }
-      .ws-pubs-feature-title { transform: none !important; }
+      .ws-hero-stat * { color: #2a1f16 !important; border-color: #2a1f16 !important; }
       .ws-now-list, .ws-now-row, .ws-contact-channels, .ws-channel,
-      .ws-contact-grid, .ws-footer { border-color: #171410 !important; }
-      .ws-work-row-spine { background: #171410 !important; }
-      .ws-awards-pennant path { fill: #171410 !important; }
-      .ws-name-cell-shared { color: #1d3fbf !important; }
-      .ws-register-sq { background: #1d3fbf !important; outline: none !important; }
-      .ws-register-sq-ink { background: #171410 !important; }
+      .ws-contact-grid, .ws-footer { border-color: #2a1f16 !important; }
+      .ws-work-row-spine { background: #2a1f16 !important; }
+      .ws-awards-pennant path { fill: #2a1f16 !important; }
+      .ws-name-cell-shared { color: #a4581d !important; }
+      .ws-register-sq { background: #a4581d !important; }
+      .ws-register-sq-ink { background: #2a1f16 !important; }
       body { border-top-width: 4px !important; }
     `,
   });

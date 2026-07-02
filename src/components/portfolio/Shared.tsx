@@ -2,8 +2,14 @@ import type { ReactNode } from "react";
 
 export type ChipTone = "neutral" | "ember" | "coral" | "brass" | "teal";
 
+/**
+ * The GT monogram: a Bauhaus construction — the G is an open ring, its
+ * crossbar doubles as the arm of a T whose stem drops through it. Ring
+ * in rosewood, GT strokes in cognac. Paired with the full wordmark for
+ * the masthead; alone for tight spots.
+ */
 export function BrandMark({
-  size = 16,
+  size = 30,
   withText = true,
 }: {
   size?: number;
@@ -11,11 +17,38 @@ export function BrandMark({
 }) {
   return (
     <div className="ws-brand">
-      <span className="ws-brand-mark" style={{ fontSize: size }} aria-hidden>
-        <span className="ws-brand-bracket">[</span>GT
-        <span className="ws-brand-bracket">]</span>
-      </span>
-      {withText && <span className="ws-brand-text">Gabriel Taveira</span>}
+      <svg
+        className="ws-monogram"
+        viewBox="0 0 44 44"
+        width={size}
+        height={size}
+        fill="none"
+        aria-hidden
+      >
+        <path
+          className="ws-monogram-ring"
+          d="M35.8 12 A17 17 0 1 0 39 22"
+          strokeWidth="3.4"
+          strokeLinecap="round"
+        />
+        <path
+          className="ws-monogram-bar"
+          d="M39 22 H24"
+          strokeWidth="3.4"
+          strokeLinecap="round"
+        />
+        <path
+          className="ws-monogram-bar"
+          d="M31.5 22 V35.5"
+          strokeWidth="3.4"
+          strokeLinecap="round"
+        />
+      </svg>
+      {withText && (
+        <span className="ws-brand-text">
+          Gabriel <strong>Taveira</strong>
+        </span>
+      )}
     </div>
   );
 }

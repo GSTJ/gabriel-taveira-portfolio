@@ -2,19 +2,18 @@ import { getTranslations } from "next-intl/server";
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST, SPACE_SQUAD } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
 
-/* Duarte sunburst — 48 red rays behind the Space Cast poster. Rendered
-   server-side; a scroll hook in ClientChrome rotates #ws-sunburst-rays
-   directly (no React state) when motion is allowed. */
+/* Sunburst — 48 cognac rays behind the Space Cast poster. Static; the
+   warmth does the work. */
 function Sunburst() {
   return (
     <svg className="ws-pubs-sunburst" viewBox="-100 -100 200 200" aria-hidden>
-      <g id="ws-sunburst-rays">
+      <g>
         {Array.from({ length: 48 }, (_, i) => (
           <polygon
             key={i}
             points="0,0 -2.6,-100 2.6,-100"
             transform={`rotate(${i * 7.5})`}
-            fill="#d8291a"
+            fill="#a4581d"
           />
         ))}
       </g>
