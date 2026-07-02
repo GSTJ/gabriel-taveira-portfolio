@@ -1,4 +1,3 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { TALKS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
@@ -10,9 +9,7 @@ export async function TalksList() {
     <section className="ws-section" id="talks">
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2 className="ws-section-title">
-          <Balancer>{t.rich("title", richTags)}</Balancer>
-        </h2>
+        <h2 className="ws-section-title">{t.rich("title", richTags)}</h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
       <ul className="ws-talks">

@@ -11,25 +11,10 @@ export function BrandMark({
 }) {
   return (
     <div className="ws-brand">
-      <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
-        <defs>
-          <radialGradient id="bm-g" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#fde9d6" />
-            <stop offset="32%" stopColor="#f29842" />
-            <stop offset="70%" stopColor="#b85d12" />
-            <stop offset="100%" stopColor="#3a1d05" />
-          </radialGradient>
-          <radialGradient id="bm-h" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#e07a1f" stopOpacity="0.5" />
-            <stop offset="60%" stopColor="#e07a1f" stopOpacity="0.08" />
-            <stop offset="100%" stopColor="#e07a1f" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <circle cx="32" cy="32" r="30" fill="url(#bm-h)" />
-        <circle cx="32" cy="32" r="13" fill="url(#bm-g)" />
-        <circle cx="28" cy="28" r="3.5" fill="#fde9d6" opacity="0.85" />
-      </svg>
-      {withText && <span className="ws-brand-text">Workshop</span>}
+      <span className="ws-brand-mark" style={{ fontSize: size }} aria-hidden>
+        gt<span style={{ color: "var(--rust-600)" }}>.</span>
+      </span>
+      {withText && <span className="ws-brand-text">Gabriel Taveira</span>}
     </div>
   );
 }

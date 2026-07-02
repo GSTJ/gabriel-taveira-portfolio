@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowRight, BrandMark } from "./Shared";
+import { BrandMark } from "./Shared";
 
 const NAV_LINKS = [
   { id: "work", key: "work" },
@@ -66,12 +66,8 @@ export function Nav({
           ))}
         </div>
         <div className="ws-nav-spacer" />
-        <button
-          className="ws-btn ws-btn-primary"
-          onClick={() => onNav("contact")}
-        >
+        <button className="ws-nav-cta" onClick={() => onNav("contact")}>
           {t("getInTouch")}
-          <ArrowRight />
         </button>
       </nav>
     </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { CHANNELS, EMAIL_ADDR } from "./data";
 import { Marginalia } from "./Marginalia";
@@ -52,9 +51,7 @@ export function Contact() {
       <div className="ws-contact-grid">
         <div className="ws-contact-left">
           <Eyebrow accent>{t("eyebrow")}</Eyebrow>
-          <h2 className="ws-contact-title">
-            <Balancer>{t.rich("title", richTags)}</Balancer>
-          </h2>
+          <h2 className="ws-contact-title">{t.rich("title", richTags)}</h2>
           <p className="ws-contact-sub">{t("sub")}</p>
           <div className="ws-contact-channels">
             {CHANNELS.map((c) => (
