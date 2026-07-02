@@ -24,6 +24,7 @@
   --mata:      #3c5240;  /* foliage green: secondary planes */
   --areia:     #877b69;  /* driftwood meta text, mono caps 11px+ */
   --areia-2:   #c9bfab;  /* pale sand, quiet spines/rules on linen */
+  --texto-2:   #5d4e3e;  /* secondary body text on linen */
 
   /* Semantic */
   --color-bg:           var(--linho);

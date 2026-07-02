@@ -13,11 +13,10 @@ export async function TalksList() {
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
       <ul className="ws-talks">
-        {TALKS.map((talk, i) => (
+        {TALKS.map((talk) => (
           <li
             key={talk.id}
             className={"ws-talks-row ws-talks-topic-" + talk.topic}
-            style={{ "--step": Math.min(i, 3) } as React.CSSProperties}
           >
             <span className="ws-talks-date">{talk.date}</span>
             <div className="ws-talks-main">

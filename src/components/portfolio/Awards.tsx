@@ -17,15 +17,15 @@ export async function Awards() {
             key={a.id}
             className={"ws-awards-row ws-awards-trophy-" + a.trophy}
           >
+            <span className="ws-awards-year">{a.year}</span>
             <span className="ws-awards-pennants" aria-hidden>
-              <Pennant />
-              {a.position === "first" && <Pennant width={40} />}
+              <Pennant width={16} />
+              {a.position === "first" && <Pennant width={12} />}
             </span>
             <span className="ws-awards-title">{t(`items.${a.id}`)}</span>
             <span className="ws-awards-position">
               {t(`positions.${a.position}`)}
             </span>
-            <span className="ws-awards-year">{a.year}</span>
           </li>
         ))}
       </ul>
