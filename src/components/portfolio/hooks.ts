@@ -84,6 +84,66 @@ export function useRevealOnScroll(): void {
 }
 
 /**
+ * CONCRETO ambient motion — the page's entire moving-graphics budget:
+ *   1. The Duarte sunburst (#ws-sunburst-rays) rotates with scroll delta.
+ *   2. On coarse pointers the hero name grid gets one jitter pass when it
+ *      first enters view (fine pointers jitter on hover via CSS).
+ * Both skip entirely in headless/reduced-motion contexts.
+ */
+export function useConcretoMotion(): void {
+  useEffect(() => {
+    const headless =
+      /HeadlessChrome|Puppeteer/i.test(navigator.userAgent) ||
+      (navigator as unknown as { webdriver?: boolean }).webdriver === true;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (headless || reduced) return;
+
+    // 1 · Sunburst: write the rotation straight to the SVG node.
+    const rays = document.getElementById("ws-sunburst-rays");
+    let deg = 0;
+    let lastY = window.scrollY;
+    let raf = 0;
+    const onScroll = () => {
+      if (!rays || raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        deg += Math.max(-1, Math.min(1, (y - lastY) * 0.02));
+        lastY = y;
+        rays.style.transform = `rotate(${deg}deg)`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // 2 · Name-grid jitter, once, on touch devices.
+    const grid = document.querySelector<HTMLElement>(".ws-name-grid");
+    let obs: IntersectionObserver | undefined;
+    if (grid && matchMedia("(pointer: coarse)").matches) {
+      obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            grid.classList.add("ws-jitter-once");
+            window.setTimeout(
+              () => grid.classList.remove("ws-jitter-once"),
+              1200,
+            );
+            obs?.disconnect();
+          }
+        },
+        { threshold: 0.5 },
+      );
+      obs.observe(grid);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+      obs?.disconnect();
+    };
+  }, []);
+}
+
+/**
  * Tracks which section is currently in view, used to highlight the nav.
  * Returns the section id (mapped: `contact`→`about`, `writing`→`publications`).
  */
@@ -187,10 +247,11 @@ export function useKeyboardEffects(
     const konamiRef: string[] = [];
     const gtRef: Array<{ k: string; t: number }> = [];
 
-    const spawnSpark = () => {
+    const PENNANT_COLORS = ["#d8291a", "#1d3fbf", "#171410"];
+    const spawnSpark = (i: number) => {
       const el = document.createElement("div");
       el.className = "ws-spark-rain";
-      el.textContent = "⚡";
+      el.innerHTML = `<svg viewBox="0 0 56 76" aria-hidden="true"><path d="M0 0 H56 L28 76 Z" fill="${PENNANT_COLORS[i % 3]}"/></svg>`;
       el.style.left = 10 + Math.random() * 80 + "vw";
       el.style.animationDuration = 2.2 + Math.random() * 1.5 + "s";
       document.body.appendChild(el);
@@ -210,12 +271,8 @@ export function useKeyboardEffects(
         );
       if (konamiMatched) {
         setToast(config.onKonami());
-        document.body.classList.add("ws-crt");
-        window.setTimeout(
-          () => document.body.classList.remove("ws-crt"),
-          4000,
-        );
-        for (let i = 0; i < 18; i++) window.setTimeout(spawnSpark, i * 70);
+        for (let i = 0; i < 18; i++)
+          window.setTimeout(() => spawnSpark(i), i * 70);
         konamiRef.length = 0;
         return;
       }

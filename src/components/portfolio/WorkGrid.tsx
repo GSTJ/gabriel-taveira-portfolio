@@ -2,17 +2,18 @@ import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { WORK, type WorkItem } from "./data";
 import { Mark } from "./Mark";
+import { Register } from "./Register";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
 
 /* The eyebrow strings in `data.ts` read "COMPANY · VIA · 2024 → 25" —
    the last token is always the date range, everything before it is the
-   employer chain. Split them so the ledger can put dates in their own
+   employer chain. Split them so the catalog can put dates in their own
    column. */
 function splitEyebrow(eyebrow: string) {
   const parts = eyebrow.split(" · ");
   return {
     date: parts[parts.length - 1] ?? "",
-    company: parts.slice(0, -1).join(" · "),
+    company: parts.slice(0, -1).join(" / "),
   };
 }
 
@@ -27,7 +28,9 @@ async function WorkRow({ item, index }: { item: WorkItem; index: number }) {
         target="_blank"
         rel="noreferrer"
         className="ws-work-row"
+        data-spine={item.spine}
       >
+        <span className="ws-work-row-spine" aria-hidden />
         <span className="ws-work-row-idx" aria-hidden>
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -59,6 +62,7 @@ export async function WorkGrid() {
         <h2 className="ws-section-title">{t.rich("title", richTags)}</h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
+      <Register />
       <ol className="ws-work-list">
         {WORK.map((w, i) => (
           <WorkRow key={w.id} item={w} index={i} />

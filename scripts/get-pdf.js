@@ -56,20 +56,36 @@ const getPdf = async () => {
       .ws-toast,
       #ws-toast-root { display: none !important; }
 
-      /* The paper-grain overlay rasterizes the whole page into one giant
-         bitmap in the PDF. The paper color alone reads fine in print. */
-      body::before { display: none !important; }
-
-      /* Kill every animation and transition: removing an animation with
-         fill-mode 'both' snaps the element to its natural (visible)
-         styles, so the hero choreography and scroll reveals can't be
-         caught mid-flight. */
+      /* Kill every animation and transition: removing an animation snaps
+         the element to its natural (visible) styles, so reveals and the
+         register fill can't be caught mid-flight. */
       *, *::before, *::after {
         animation: none !important;
         transition: none !important;
         box-shadow: none !important;
       }
       body.ws-motion .ws-anim { opacity: 1 !important; transform: none !important; }
+
+      /* Don't drink toner: collapse the saturated silkscreen blocks to
+         ruled boxes on gesso; keep cobalt accents only. */
+      .ws-hero-spine, .ws-pubs-sunburst { display: none !important; }
+      .ws-hero-inner { padding-left: 24px !important; }
+      .ws-hero-stat, .ws-pubs-feature, .ws-pubs-card,
+      .ws-now-section, .ws-contact, .ws-writing-callout-cta {
+        background: #eae7dd !important; color: #171410 !important;
+        border: 1px solid #171410 !important;
+      }
+      .ws-pubs-feature *, .ws-now-section *, .ws-contact *,
+      .ws-hero-stat * { color: #171410 !important; border-color: #171410 !important; }
+      .ws-pubs-feature-title { transform: none !important; }
+      .ws-now-list, .ws-now-row, .ws-contact-channels, .ws-channel,
+      .ws-contact-grid, .ws-footer { border-color: #171410 !important; }
+      .ws-work-row-spine { background: #171410 !important; }
+      .ws-awards-pennant path { fill: #171410 !important; }
+      .ws-name-cell-shared { color: #1d3fbf !important; }
+      .ws-register-sq { background: #1d3fbf !important; outline: none !important; }
+      .ws-register-sq-ink { background: #171410 !important; }
+      body { border-top-width: 4px !important; }
     `,
   });
 

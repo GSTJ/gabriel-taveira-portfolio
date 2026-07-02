@@ -31,7 +31,7 @@
     }
   },
   "work": {
-    "eyebrow": "Experiência profissional · 2017 → hoje",
+    "eyebrow": "Trabalho / Work · 2017 → hoje",
     "title": "Times que liderei. Sistemas que <em>ficaram de pé</em>.",
     "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech.",
     "items": {
@@ -75,10 +75,15 @@
         "blurb": "Tracker em tempo real do status de reparos pra uma Apple Service Provider. Dashboards internos pra técnicos e atendimento. Sites em headless CMS pras marcas do grupo.",
         "cta": "Ver no LinkedIn"
       }
+    },
+    "register": {
+      "label": "Crescimento de time: de 4 liderados em 2017 a 56 no pico",
+      "start": "4 (2017)",
+      "end": "56 (pico)"
     }
   },
   "publications": {
-    "eyebrow": "Publicações & mídia",
+    "eyebrow": "Mídia / Media",
     "title": "O que eu apresento, escrevo e <em>represento</em>.",
     "onAir": "No ar · Space Cast",
     "featureTitle": "Apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
@@ -93,7 +98,7 @@
     "ambassadorBody": "Mentorando a próxima geração de devs."
   },
   "talks": {
-    "eyebrow": "Palestras · selecionadas",
+    "eyebrow": "Palestras / Talks",
     "title": "Palestro em eventos de <em>tech</em> e <em>liderança</em>.",
     "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
     "topicLeadership": "Liderança",
@@ -130,7 +135,7 @@
     }
   },
   "awards": {
-    "eyebrow": "Prêmios · 2019 → 2020",
+    "eyebrow": "Prêmios / Awards · 2019 → 2020",
     "title": "Alguns <em>troféus</em>.",
     "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
     "positions": {
@@ -147,7 +152,7 @@
     }
   },
   "writing": {
-    "eyebrow": "Escritos",
+    "eyebrow": "Escrita / Writing",
     "title": "Algumas <em>anotações</em>.",
     "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
     "handle": "medium.com/@gabrieltaveira",
@@ -163,7 +168,7 @@
     "readOnMedium": "Ler no Medium"
   },
   "now": {
-    "eyebrow": "Agora · {date}",
+    "eyebrow": "Agora / Now · {date}",
     "title": "O que estou de fato <em>fazendo</em>.",
     "items": {
       "consulting": {
@@ -174,7 +179,7 @@
       "hosting": {
         "chip": "Apresentando",
         "title": "Space Cast na Rocketseat",
-        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugere um convidado mandando uma ⚡."
+        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugere um convidado mandando uma."
       },
       "mentoring": {
         "chip": "Mentoria",
@@ -189,9 +194,9 @@
     }
   },
   "contact": {
-    "eyebrow": "Fala comigo",
+    "eyebrow": "Contato / Contact",
     "title": "Tem um <em>desafio</em> bom?",
-    "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
+    "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -209,17 +214,12 @@
       "message": "Me conta mais",
       "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
       "send": "Enviar mensagem",
-      "shortcuts": "contato · ⚡ · auditoria"
+      "shortcuts": "contato · gt · auditoria"
     },
-    "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
+    "sentTitle": "Valeu. Respondo dentro da semana.",
     "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
     "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brasil",
-    "footerTag": "Construindo e desmontando sistemas desde os 8 anos · ⚡"
-  },
-  "marginalia": {
-    "yesReally": "é isso mesmo",
-    "spaceCastSeason": "temporada 3 ✨",
-    "madeWith": "feito com ☕ + ⚡ · gt"
+    "footerTag": "Construindo e desmontando sistemas desde os 8 anos ·"
   },
   "links": {
     "eyebrow": "Me acha online",
@@ -228,6 +228,6 @@
   },
   "toast": {
     "konami": "Engenharia reversa detectada.",
-    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. ⚡"
+    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão."
   }
 }

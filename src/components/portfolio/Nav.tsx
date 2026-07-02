@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { BrandMark } from "./Shared";
 
 const NAV_LINKS = [
@@ -20,15 +21,7 @@ export function Nav({
   onNav: (id: string) => void;
 }) {
   const t = useTranslations("nav");
-  const [scrolled, setScrolled] = useState(false);
-  const [burst, setBurst] = useState(false);
   const progressRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Reading-progress hairline under the masthead. Written straight to the
   // DOM (no state) so scrolling never re-renders the nav.
@@ -52,43 +45,44 @@ export function Nav({
     };
   }, []);
 
-  const triggerBurst = () => {
-    setBurst(true);
-    window.setTimeout(() => setBurst(false), 700);
-  };
-
   return (
-    <div className={`ws-nav-wrap ws-pdf-hide${scrolled ? " ws-nav-scrolled" : ""}`}>
+    <div className="ws-nav-wrap ws-pdf-hide">
       <nav className="ws-nav">
         <a
-          className={"ws-nav-brand" + (burst ? " ws-nav-brand-burst" : "")}
+          className="ws-nav-brand"
           href="#top"
           onClick={(e) => {
             e.preventDefault();
-            triggerBurst();
             onNav("top");
           }}
         >
-          <BrandMark size={22} withText={false} />
+          <BrandMark size={14} withText={false} />
         </a>
         <div className="ws-nav-links">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.id}
-              className={
-                "ws-nav-link" + (active === l.id ? " ws-nav-link-active" : "")
-              }
-              href={`#${l.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                onNav(l.id);
-              }}
-            >
-              {t(l.key)}
-            </a>
+          {NAV_LINKS.map((l, i) => (
+            <span key={l.id}>
+              {i > 0 && (
+                <span className="ws-nav-sep" aria-hidden>
+                  /
+                </span>
+              )}
+              <a
+                className={
+                  "ws-nav-link" + (active === l.id ? " ws-nav-link-active" : "")
+                }
+                href={`#${l.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNav(l.id);
+                }}
+              >
+                {t(l.key)}
+              </a>
+            </span>
           ))}
         </div>
         <div className="ws-nav-spacer" />
+        <LanguageSwitcher />
         <button className="ws-nav-cta" onClick={() => onNav("contact")}>
           {t("getInTouch")}
         </button>

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export type ChipTone = "neutral" | "ember" | "coral" | "brass" | "teal";
 
 export function BrandMark({
-  size = 28,
+  size = 16,
   withText = true,
 }: {
   size?: number;
@@ -12,10 +12,25 @@ export function BrandMark({
   return (
     <div className="ws-brand">
       <span className="ws-brand-mark" style={{ fontSize: size }} aria-hidden>
-        gt<span style={{ color: "var(--rust-600)" }}>.</span>
+        <span className="ws-brand-bracket">[</span>GT
+        <span className="ws-brand-bracket">]</span>
       </span>
       {withText && <span className="ws-brand-text">Gabriel Taveira</span>}
     </div>
+  );
+}
+
+/* Bandeirinha — festival pennant hanging point-down from a rule. */
+export function Pennant({ width = 52 }: { width?: number }) {
+  return (
+    <svg
+      className="ws-awards-pennant"
+      viewBox="0 0 56 76"
+      style={{ width }}
+      aria-hidden
+    >
+      <path d="M0 0 H56 L28 76 Z" />
+    </svg>
   );
 }
 

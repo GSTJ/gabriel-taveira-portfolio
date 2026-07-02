@@ -1,11 +1,29 @@
 import { getTranslations } from "next-intl/server";
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST, SPACE_SQUAD } from "./data";
-import { Marginalia } from "./Marginalia";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
+
+/* Duarte sunburst — 48 red rays behind the Space Cast poster. Rendered
+   server-side; a scroll hook in ClientChrome rotates #ws-sunburst-rays
+   directly (no React state) when motion is allowed. */
+function Sunburst() {
+  return (
+    <svg className="ws-pubs-sunburst" viewBox="-100 -100 200 200" aria-hidden>
+      <g id="ws-sunburst-rays">
+        {Array.from({ length: 48 }, (_, i) => (
+          <polygon
+            key={i}
+            points="0,0 -2.6,-100 2.6,-100"
+            transform={`rotate(${i * 7.5})`}
+            fill="#d8291a"
+          />
+        ))}
+      </g>
+    </svg>
+  );
+}
 
 export async function Publications() {
   const t = await getTranslations("publications");
-  const tMarg = await getTranslations("marginalia");
   return (
     <section className="ws-section" id="publications">
       <div className="ws-section-head">
@@ -15,13 +33,13 @@ export async function Publications() {
 
       <div className="ws-pubs-grid">
         <article className="ws-pubs-feature">
+          <Sunburst />
           <span className="ws-pubs-onair">
             <span className="ws-pubs-onair-dot" />
             {t("onAir")}
           </span>
           <h3 className="ws-pubs-feature-title">
             {t.rich("featureTitle", richTags)}
-            <Marginalia tilt={5}>{tMarg("spaceCastSeason")}</Marginalia>
           </h3>
           <p className="ws-pubs-feature-sub">{t("featureSub")}</p>
           <div className="ws-pubs-feature-cta">

@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
+  useConcretoMotion,
   useConsoleBanner,
   useKeyboardEffects,
   useLiveClock,
@@ -35,6 +36,7 @@ export function ClientChrome() {
   useLiveClock();
   useConsoleBanner();
   useRevealOnScroll();
+  useConcretoMotion();
 
   const keyboardConfig = useMemo(
     () => ({
