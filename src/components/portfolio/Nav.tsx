@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { BrandMark } from "./Shared";
 
@@ -22,11 +22,34 @@ export function Nav({
   const t = useTranslations("nav");
   const [scrolled, setScrolled] = useState(false);
   const [burst, setBurst] = useState(false);
+  const progressRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Reading-progress hairline under the masthead. Written straight to the
+  // DOM (no state) so scrolling never re-renders the nav.
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        progressRef.current?.style.setProperty("transform", `scaleX(${p})`);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   const triggerBurst = () => {
@@ -70,6 +93,7 @@ export function Nav({
           {t("getInTouch")}
         </button>
       </nav>
+      <div className="ws-nav-progress" ref={progressRef} aria-hidden />
     </div>
   );
 }

@@ -33,20 +33,14 @@ const getPdf = async () => {
     waitUntil: "networkidle0",
   });
 
-  // Decorative animated layers — the button shine sweep, the soundwave
-  // bars, the spark rain — leave artifacts when frozen mid-animation
-  // (the button shine, in particular, sits as a translucent rectangle
-  // off the button's left edge at the start of the keyframe). For PDF
-  // export we hide the moving decoration entirely and keep transitions
-  // disabled so hover-only states never leak through.
-  // Hide moving/transient decoration and disable transitions so hover-only
-  // styling doesn't leak through. The atmospheric gradients (hero bg,
-  // aurora, glows) stay — they're what give the design its warmth.
+  // Neutralize motion and screen-only texture for the static export:
+  // one-shot entrance animations and scroll reveals must land at their
+  // final visible state, and hover transitions must never leak through.
   //
   // Box-shadows with large blur radii rasterize as visible blocks in PDF
   // at print DPI (the soft shadow becomes a hard-edged rectangle in the
   // raster grid). Replacing them with `none` keeps the content but kills
-  // the artifact halos around the CTA buttons and other shadowed pills.
+  // the artifact halos.
   await page.addStyleTag({
     content: `
       /* Components marked .ws-pdf-hide are interactive-only (nav, form,
@@ -59,56 +53,25 @@ const getPdf = async () => {
          so the heading and channel list fill the section properly. */
       .ws-contact-grid { grid-template-columns: 1fr !important; }
 
-      .ws-btn-primary::after,
-      .ws-pubs-bars,
-      .ws-flourish-spark .ws-spark-glow,
       .ws-toast,
-      #ws-toast-root,
-      .ws-stars,
-      .ws-shelf-edge { display: none !important; }
+      #ws-toast-root { display: none !important; }
 
-      .ws-hero-aurora,
-      .ws-pubs-feature-glow,
-      .ws-writing-callout-glow,
-      .ws-nav-brand-burst::after { animation: none !important; transform: none !important; }
+      /* The paper-grain overlay rasterizes the whole page into one giant
+         bitmap in the PDF. The paper color alone reads fine in print. */
+      body::before { display: none !important; }
 
-      /* Strip every box-shadow site-wide for the export. Soft drop and
-         inner shadows are what rasterize as hard rectangular halos in
-         the PDF — the design still reads without them. */
-      *, *::before, *::after { box-shadow: none !important; }
-      .ws-chip-dot,
-      .ws-hero-eyebrow-dot,
-      .ws-hero-status-dot { filter: none !important; }
-
-      *, *::before, *::after { transition: none !important; }
+      /* Kill every animation and transition: removing an animation with
+         fill-mode 'both' snaps the element to its natural (visible)
+         styles, so the hero choreography and scroll reveals can't be
+         caught mid-flight. */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+      }
+      body.ws-motion .ws-anim { opacity: 1 !important; transform: none !important; }
     `,
   });
-
-  // Wait until every hero stat has rendered its final number — the count-up
-  // hook only animates after mount, so without this we'd capture the
-  // initial "0" frame.
-  try {
-    await page.waitForFunction(
-      () => {
-        const stats = Array.from(
-          document.querySelectorAll(".ws-hero-stat-v"),
-        );
-        return (
-          stats.length > 0 &&
-          stats.every((el) => {
-            const t = el.textContent?.trim() ?? "";
-            return t !== "0" && t !== "0+";
-          })
-        );
-      },
-      { timeout: 5000 },
-    );
-  } catch (err) {
-    console.warn(
-      "Hero stats wait timed out, continuing with whatever is on screen:",
-      err.message,
-    );
-  }
 
   // Measure the bottom of the last meaningful element on the page. Using
   // body.scrollHeight pulls in trailing margin/padding plus any decorative

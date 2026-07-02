@@ -40,6 +40,34 @@ body {
   counter-reset: ws-section;
 }
 
+/* Paper grain — a fixed noise pass over everything, like stock with
+   tooth. The texture is near-white, so multiply only darkens a hair. */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: url("/noise.png");
+  background-size: 320px;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+/* =========================================================================
+   Motion · scroll reveals (classes applied by useRevealOnScroll)
+   The SSR HTML ships fully visible; `ws-motion`/`ws-anim` only exist
+   after mount in motion-friendly, non-headless browsers.
+   ========================================================================= */
+body.ws-motion .ws-anim {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+}
+body.ws-motion .ws-anim.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* =========================================================================
    Atoms
    ========================================================================= */
@@ -153,6 +181,8 @@ a.ws-nav-link, a.ws-nav-link:hover {
 .ws-nav-wrap {
   position: sticky; top: 0; left: 0; right: 0;
   z-index: 50;
+  /* anchor for .ws-nav-progress */
+  isolation: isolate;
   background: color-mix(in srgb, var(--paper-500) 92%, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -205,6 +235,14 @@ a.ws-nav-link, a.ws-nav-link:hover {
   transition: color var(--dur-fast), border-color var(--dur-fast);
 }
 .ws-nav-cta:hover { color: var(--rust-700); border-bottom-color: var(--rust-700); }
+.ws-nav-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--rust-500);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
 
 /* =========================================================================
    Section scaffolding · numbered, double-ruled heads
@@ -220,6 +258,24 @@ a.ws-nav-link, a.ws-nav-link:hover {
   border-top: 2px solid var(--ink-900);
   padding-top: 14px;
   counter-increment: ws-section;
+  position: relative;
+}
+/* Ghost folio numeral — an oversized printer's mark in the head's right
+   margin, like a magazine section opener. */
+.ws-section-head::after {
+  content: counter(ws-section, decimal-leading-zero);
+  position: absolute;
+  right: 0; top: 10px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(72px, 9vw, 128px);
+  line-height: 0.8;
+  color: rgba(25, 22, 17, 0.07);
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 860px) {
+  .ws-section-head::after { display: none; }
 }
 .ws-section-head > .ws-eyebrow {
   display: block;
@@ -262,6 +318,29 @@ a.ws-nav-link, a.ws-nav-link:hover {
 }
 .ws-hero-inner {
   position: relative;
+}
+
+/* Opening choreography — one-shot rise on load, ends at natural styles.
+   Guarded by prefers-reduced-motion; neutralized in the PDF export. */
+@media (prefers-reduced-motion: no-preference) {
+  .ws-hero-eyebrow,
+  .ws-hero-title,
+  .ws-hero-sub,
+  .ws-hero-sub-2,
+  .ws-hero-cta-row,
+  .ws-hero-stats {
+    animation: ws-rise 0.9s var(--ease-out) both;
+  }
+  .ws-hero-eyebrow { animation-delay: 0.05s; }
+  .ws-hero-title   { animation-delay: 0.14s; animation-duration: 1.05s; }
+  .ws-hero-sub     { animation-delay: 0.32s; }
+  .ws-hero-sub-2   { animation-delay: 0.42s; }
+  .ws-hero-cta-row { animation-delay: 0.52s; }
+  .ws-hero-stats   { animation-delay: 0.66s; }
+}
+@keyframes ws-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .ws-hero-eyebrow {
@@ -401,9 +480,11 @@ a.ws-nav-link, a.ws-nav-link:hover {
   border-bottom: 1px solid var(--color-border);
   text-decoration: none; color: inherit;
   position: relative;
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast), padding-left 0.28s var(--ease-out);
 }
-.ws-work-row:hover { background: var(--paper-400); }
+.ws-work-row:hover { background: var(--paper-400); padding-left: 16px; }
+.ws-work-row:hover .ws-work-row-idx { color: var(--rust-600); }
+.ws-work-row:active { padding-left: 20px; }
 .ws-work-row-idx {
   font-family: var(--font-mono); font-size: 11px;
   color: var(--ink-400); letter-spacing: 0.06em;
@@ -476,9 +557,10 @@ a.ws-nav-link, a.ws-nav-link:hover {
   align-items: baseline; gap: 24px;
   padding: 24px 4px;
   border-bottom: 1px solid var(--color-border);
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast), padding-left 0.28s var(--ease-out);
 }
-.ws-talks-row:hover { background: var(--paper-400); }
+.ws-talks-row:hover { background: var(--paper-400); padding-left: 16px; }
+.ws-talks-row:hover .ws-talks-date { color: var(--rust-600); }
 .ws-talks-date {
   font-family: var(--font-mono); font-size: 11px;
   letter-spacing: 0.10em;
@@ -575,9 +657,9 @@ a.ws-nav-link, a.ws-nav-link:hover {
   padding: 20px 4px 22px;
   border-bottom: 1px solid var(--color-border);
   text-decoration: none; color: inherit;
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast), padding-left 0.28s var(--ease-out);
 }
-.ws-pubs-card:hover { background: var(--paper-400); }
+.ws-pubs-card:hover { background: var(--paper-400); padding-left: 12px; }
 .ws-pubs-card .ws-eyebrow { grid-column: 1 / 2; color: var(--rust-600); }
 .ws-pubs-card svg {
   grid-column: 2 / 3; grid-row: 1 / 3;
@@ -613,9 +695,10 @@ a.ws-nav-link, a.ws-nav-link:hover {
   gap: 24px; align-items: baseline;
   padding: 18px 4px;
   border-bottom: 1px solid var(--color-border);
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast), padding-left 0.28s var(--ease-out);
 }
-.ws-awards-row:hover { background: var(--paper-400); }
+.ws-awards-row:hover { background: var(--paper-400); padding-left: 16px; }
+.ws-awards-row:hover .ws-awards-year { color: var(--rust-600); }
 @media (max-width: 720px) {
   .ws-awards-row { grid-template-columns: auto auto 1fr auto; gap: 12px; padding: 16px 2px; }
   .ws-awards-title { font-size: 17px; }
@@ -726,9 +809,9 @@ a.ws-nav-link, a.ws-nav-link:hover {
   gap: 28px; align-items: baseline;
   padding: 24px 4px;
   border-bottom: 1px solid var(--color-border);
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast), padding-left 0.28s var(--ease-out);
 }
-.ws-now-row:hover { background: var(--paper-400); }
+.ws-now-row:hover { background: var(--paper-400); padding-left: 16px; }
 .ws-now-label {
   font-family: var(--font-mono); font-size: 10.5px;
   text-transform: uppercase; letter-spacing: 0.14em;
@@ -790,9 +873,9 @@ a.ws-nav-link, a.ws-nav-link:hover {
   padding: 13px 4px;
   border-bottom: 1px solid var(--color-border);
   text-decoration: none; color: var(--ink-800);
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast), padding-left 0.28s var(--ease-out);
 }
-.ws-channel:hover { background: var(--paper-400); }
+.ws-channel:hover { background: var(--paper-400); padding-left: 12px; }
 .ws-channel svg { color: var(--ink-500); transition: color var(--dur-fast); }
 .ws-channel:hover svg { color: var(--rust-600); }
 .ws-channel-label {
