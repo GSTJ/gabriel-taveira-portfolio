@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { CHANNELS, EMAIL_ADDR } from "./data";
-import { Marginalia } from "./Marginalia";
 import { ArrowRight, ArrowUpRight, BrandMark, Eyebrow, richTags } from "./Shared";
 import { SOCIAL_ICONS } from "./SocialIcons";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -15,7 +13,6 @@ export function Contact() {
   const t = useTranslations("contact");
   const tForm = useTranslations("contact.form");
   const tChannels = useTranslations("contact.channels");
-  const tMarg = useTranslations("marginalia");
 
   const [form, setForm] = useState(EMPTY);
 
@@ -52,9 +49,7 @@ export function Contact() {
       <div className="ws-contact-grid">
         <div className="ws-contact-left">
           <Eyebrow accent>{t("eyebrow")}</Eyebrow>
-          <h2 className="ws-contact-title">
-            <Balancer>{t.rich("title", richTags)}</Balancer>
-          </h2>
+          <h2 className="ws-contact-title">{t.rich("title", richTags)}</h2>
           <p className="ws-contact-sub">{t("sub")}</p>
           <div className="ws-contact-channels">
             {CHANNELS.map((c) => (
@@ -142,9 +137,6 @@ export function Contact() {
           <span className="ws-footer-meta">{t("footerTag")}</span>
           <div className="ws-footer-end">
             <LanguageSwitcher />
-            <span className="ws-footer-marginalia">
-              <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
-            </span>
           </div>
         </div>
       </footer>

@@ -1,81 +1,86 @@
 "use client";
 
-import { useEffect, useState, type RefObject } from "react";
+import { useEffect, useState } from "react";
+
+/* Everything that animates into view. Rows are staggered per observer
+   batch so a screenful of ledger rows cascades instead of popping in
+   at once. */
+const REVEAL_SELECTOR = [
+  ".ws-section-head",
+  ".ws-work-row",
+  ".ws-talks-row",
+  ".ws-awards-row",
+  ".ws-now-row",
+  ".ws-pubs-feature",
+  ".ws-pubs-card",
+  ".ws-writing-callout",
+  ".ws-contact-grid",
+].join(", ");
 
 /**
- * Counts up to `target` once the ref enters the viewport.
- * Used in the hero stats strip.
+ * Scroll-driven reveal for the ledger rows and section heads.
+ *
+ * Fail-open by design: the SSR HTML ships fully visible; elements are
+ * hidden only after mount, only below the fold, only when motion is
+ * allowed, and never in headless/PDF contexts. Once revealed, the
+ * animation classes are removed so each row's own hover transitions
+ * take back over.
  */
-export function useCountUp(
-  target: number,
-  ref: RefObject<Element | null>,
-  duration = 1400,
-): number {
-  const [value, setValue] = useState(0);
+export function useRevealOnScroll(): void {
   useEffect(() => {
-    // Detect non-interactive contexts (Puppeteer, screenshot tools,
-    // print preview, reduced-motion users). Render the final value
-    // immediately so the PDF capture and accessibility consumers see
-    // the right number instead of the initial 0.
     const isHeadless =
-      typeof navigator !== "undefined" &&
-      (/HeadlessChrome|Puppeteer/i.test(navigator.userAgent) ||
-        (navigator as unknown as { webdriver?: boolean }).webdriver === true);
-    const reducedMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (isHeadless || reducedMotion) {
-      setValue(target);
-      return;
-    }
+      /HeadlessChrome|Puppeteer/i.test(navigator.userAgent) ||
+      (navigator as unknown as { webdriver?: boolean }).webdriver === true;
+    const reducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (isHeadless || reducedMotion) return;
 
-    if (!ref.current) return;
-    let frame: number;
-    let started = false;
-    let timeoutId: number | undefined;
+    // Only elements below the fold at mount get hidden — anything already
+    // on screen would flash out and back in.
+    const els = Array.from(
+      document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR),
+    ).filter((el) => el.getBoundingClientRect().top > window.innerHeight);
+    if (!els.length) return;
 
-    const begin = () => {
-      if (started) return;
-      started = true;
-      const t0 = performance.now();
-      const step = (now: number) => {
-        const k = Math.min(1, (now - t0) / duration);
-        const eased = 1 - Math.pow(1 - k, 3);
-        setValue(Math.round(eased * target));
-        if (k < 1) frame = requestAnimationFrame(step);
-      };
-      frame = requestAnimationFrame(step);
+    document.body.classList.add("ws-motion");
+    els.forEach((el) => el.classList.add("ws-anim"));
+
+    const cleanupTimers: number[] = [];
+    const reveal = (el: HTMLElement, order: number) => {
+      el.style.transitionDelay = `${order * 70}ms`;
+      el.classList.add("is-in");
+      cleanupTimers.push(
+        window.setTimeout(() => {
+          el.classList.remove("ws-anim", "is-in");
+          el.style.removeProperty("transition-delay");
+        }, 900 + order * 70),
+      );
     };
-
-    // Belt-and-suspenders: if the element is already above the fold
-    // at mount, start immediately rather than waiting for the observer
-    // (which might not fire in some print/render environments).
-    const rect = ref.current.getBoundingClientRect();
-    if (rect.top < (window.innerHeight || 0)) {
-      begin();
-    }
 
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) begin();
+      (entries) => {
+        entries
+          .filter((e) => e.isIntersecting)
+          .forEach((e, i) => {
+            reveal(e.target as HTMLElement, i);
+            obs.unobserve(e.target);
+          });
       },
-      { threshold: 0.3 },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.05 },
     );
-    obs.observe(ref.current);
-
-    // Final safety net: if the observer never fires within 2s, force
-    // the final value so the UI never gets stuck on 0.
-    timeoutId = window.setTimeout(() => {
-      if (!started) setValue(target);
-    }, 2000);
+    els.forEach((el) => obs.observe(el));
 
     return () => {
-      cancelAnimationFrame(frame);
       obs.disconnect();
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      cleanupTimers.forEach((id) => window.clearTimeout(id));
+      document.body.classList.remove("ws-motion");
+      els.forEach((el) => {
+        el.classList.remove("ws-anim", "is-in");
+        el.style.removeProperty("transition-delay");
+      });
     };
-  }, [target, ref, duration]);
-  return value;
+  }, []);
 }
 
 /**
@@ -182,10 +187,11 @@ export function useKeyboardEffects(
     const konamiRef: string[] = [];
     const gtRef: Array<{ k: string; t: number }> = [];
 
-    const spawnSpark = () => {
+    const PENNANT_COLORS = ["#a4581d", "#2a1f16", "#3c5240"];
+    const spawnSpark = (i: number) => {
       const el = document.createElement("div");
       el.className = "ws-spark-rain";
-      el.textContent = "⚡";
+      el.innerHTML = `<svg viewBox="0 0 56 76" aria-hidden="true"><path d="M0 0 H56 L28 76 Z" fill="${PENNANT_COLORS[i % 3]}"/></svg>`;
       el.style.left = 10 + Math.random() * 80 + "vw";
       el.style.animationDuration = 2.2 + Math.random() * 1.5 + "s";
       document.body.appendChild(el);
@@ -205,12 +211,8 @@ export function useKeyboardEffects(
         );
       if (konamiMatched) {
         setToast(config.onKonami());
-        document.body.classList.add("ws-crt");
-        window.setTimeout(
-          () => document.body.classList.remove("ws-crt"),
-          4000,
-        );
-        for (let i = 0; i < 18; i++) window.setTimeout(spawnSpark, i * 70);
+        for (let i = 0; i < 18; i++)
+          window.setTimeout(() => spawnSpark(i), i * 70);
         konamiRef.length = 0;
         return;
       }
@@ -249,10 +251,9 @@ export function useKeyboardEffects(
  */
 export function useConsoleBanner(): void {
   useEffect(() => {
-    const css1 =
-      "color:#e07a1f;font:600 14px ui-monospace,monospace;text-shadow:0 0 8px rgba(224,122,31,.5);";
-    const css2 = "color:#f6f1e6;font:400 13px ui-monospace,monospace;";
-    const css3 = "color:#8a827a;font:400 11px ui-monospace,monospace;";
+    const css1 = "color:#c65524;font:600 14px ui-monospace,monospace;";
+    const css2 = "color:#8d8471;font:400 13px ui-monospace,monospace;";
+    const css3 = "color:#8d8471;font:400 11px ui-monospace,monospace;";
     /* eslint-disable no-console */
     // Block-character "GT" rendered in a single console.log so the
     // browser preserves the per-row alignment. Concatenating newlines

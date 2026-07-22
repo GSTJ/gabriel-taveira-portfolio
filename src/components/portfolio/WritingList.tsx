@@ -1,4 +1,3 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { MEDIUM, WRITING_TOPICS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
@@ -9,9 +8,7 @@ export async function WritingList() {
     <section className="ws-section" id="writing">
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2 className="ws-section-title">
-          <Balancer>{t.rich("title", richTags)}</Balancer>
-        </h2>
+        <h2 className="ws-section-title">{t.rich("title", richTags)}</h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
 
@@ -21,12 +18,11 @@ export async function WritingList() {
         target="_blank"
         rel="noreferrer"
       >
-        <div className="ws-writing-callout-glow" />
         <div className="ws-writing-callout-left">
           <div className="ws-writing-callout-handle">
             <svg
-              width="32"
-              height="32"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -40,25 +36,20 @@ export async function WritingList() {
             <span>{t("handle")}</span>
           </div>
           <h3 className="ws-writing-callout-title">
-            <Balancer>{t.rich("calloutTitle", richTags)}</Balancer>
+            {t.rich("calloutTitle", richTags)}
           </h3>
           <p className="ws-writing-callout-sub">{t("calloutSub")}</p>
-          <div className="ws-writing-topics">
+          <p className="ws-writing-topics">
             {WRITING_TOPICS.map((topic) => (
-              <span
-                key={topic.id}
-                className={"ws-writing-topic ws-writing-topic-" + topic.tone}
-              >
+              <span key={topic.id} className="ws-writing-topic">
                 {t(`topics.${topic.id}`)}
               </span>
             ))}
-          </div>
+          </p>
         </div>
-        <div className="ws-writing-callout-cta">
-          <span className="ws-btn ws-btn-primary">
-            {t("readOnMedium")} <ArrowUpRight size={18} />
-          </span>
-        </div>
+        <span className="ws-writing-callout-cta">
+          {t("readOnMedium")} <ArrowUpRight size={13} />
+        </span>
       </a>
     </section>
   );

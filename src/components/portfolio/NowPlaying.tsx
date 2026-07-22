@@ -1,4 +1,3 @@
-import Balancer from "react-wrap-balancer";
 import { getLocale, getTranslations } from "next-intl/server";
 import { NOW } from "./data";
 import { currentMonthLabel } from "./lifeline";
@@ -14,17 +13,12 @@ export async function NowPlaying() {
     <section className="ws-section ws-now-section" id="about">
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow", { date: monthLabel })}</Eyebrow>
-        <h2 className="ws-section-title">
-          <Balancer>{t.rich("title", richTags)}</Balancer>
-        </h2>
+        <h2 className="ws-section-title">{t.rich("title", richTags)}</h2>
       </div>
       <ul className="ws-now-list">
         {NOW.map((n) => (
           <li key={n.id} className="ws-now-row">
-            <span className={`ws-chip ws-chip-${n.tone}`}>
-              <span className="ws-chip-dot" />
-              {tItems(`${n.id}.chip`)}
-            </span>
+            <span className="ws-now-label">{tItems(`${n.id}.chip`)}</span>
             <div className="ws-now-row-main">
               <h3 className="ws-now-row-title">{tItems(`${n.id}.title`)}</h3>
               <p className="ws-now-row-body">{tItems(`${n.id}.body`)}</p>

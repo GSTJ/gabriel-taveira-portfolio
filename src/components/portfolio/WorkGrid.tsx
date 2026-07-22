@@ -1,122 +1,73 @@
-"use client";
-
-import { Fragment, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import Balancer from "react-wrap-balancer";
-import { useTranslations } from "next-intl";
+import type { ReactNode } from "react";
+import { getTranslations } from "next-intl/server";
 import { WORK, type WorkItem } from "./data";
-import { Flourish } from "./Flourishes";
 import { Mark } from "./Mark";
-import { ArrowUpRight, Eyebrow, richTags, Tag } from "./Shared";
+import { Register } from "./Register";
+import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
 
-function HighlightedEyebrow({ text }: { text: string }) {
-  const parts = text.split(" · ");
-  const lastIdx = parts.length - 1;
-  return (
-    <span className="ws-eyebrow">
-      {parts.map((part, i) => {
-        const isDate = i === lastIdx;
-        return (
-          <Fragment key={i}>
-            {i > 0 && (
-              <span
-                className={
-                  "ws-eyebrow-sep" + (isDate ? " ws-eyebrow-sep-date" : "")
-                }
-              >
-                {" · "}
-              </span>
-            )}
-            <span
-              className={
-                "ws-eyebrow-token" + (isDate ? " ws-eyebrow-token-date" : "")
-              }
-            >
-              {part}
-            </span>
-          </Fragment>
-        );
-      })}
-    </span>
-  );
-}
-
-function WorkTile({ item }: { item: WorkItem }) {
-  const t = useTranslations(`work.items.${item.id}`);
-  const ref = useRef<HTMLAnchorElement | null>(null);
-  const [hover, setHover] = useState(false);
-  const [coords, setCoords] = useState({ x: 50, y: 50 });
-
-  const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    setCoords({
-      x: ((e.clientX - r.left) / r.width) * 100,
-      y: ((e.clientY - r.top) / r.height) * 100,
-    });
+/* The eyebrow strings in `data.ts` read "COMPANY · VIA · 2024 → 25" —
+   the last token is always the date range, everything before it is the
+   employer chain. Split them so the catalog can put dates in their own
+   column. */
+function splitEyebrow(eyebrow: string) {
+  const parts = eyebrow.split(" · ");
+  return {
+    date: parts[parts.length - 1] ?? "",
+    company: parts.slice(0, -1).join(" / "),
   };
+}
+
+async function WorkRow({ item, index }: { item: WorkItem; index: number }) {
+  const t = await getTranslations(`work.items.${item.id}`);
+  const { date, company } = splitEyebrow(item.eyebrow);
 
   return (
-    <a
-      ref={ref}
-      href={item.href}
-      target="_blank"
-      rel="noreferrer"
-      className={`ws-work-cell ws-work-tone-${item.tone}${
-        hover ? " is-hover" : ""
-      }`}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onMouseMove={onMouseMove}
-      style={
-        {
-          "--mx": `${coords.x}%`,
-          "--my": `${coords.y}%`,
-        } as CSSProperties
-      }
-    >
-      <div className="ws-work-cell-glow" />
-      <div className="ws-work-cell-flourish">
-        <Flourish kind={item.flourish} hover={hover} />
-      </div>
-      <div className="ws-work-cell-top">
-        <HighlightedEyebrow text={item.eyebrow} />
-      </div>
-      <h3 className="ws-work-cell-title"><Balancer>{t("title")}</Balancer></h3>
-      <p className="ws-work-cell-blurb">
-        {t.rich("blurb", {
-          mark: (chunks: ReactNode) => <Mark>{chunks}</Mark>,
-        })}
-      </p>
-      <div className="ws-work-cell-foot">
-        <div className="ws-work-cell-tags">
-          {item.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </div>
-        <span className="ws-work-cell-cta">
-          {t("cta")} <ArrowUpRight size={14} />
+    <li>
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noreferrer"
+        className="ws-work-row"
+        data-spine={item.spine}
+      >
+        <span className="ws-work-row-spine" aria-hidden />
+        <span className="ws-work-row-idx" aria-hidden>
+          {String(index + 1).padStart(2, "0")}
         </span>
-      </div>
-    </a>
+        <span className="ws-work-row-date">{date}</span>
+        <div className="ws-work-row-main">
+          <span className="ws-work-row-co">{company}</span>
+          <h3 className="ws-work-row-title">{t("title")}</h3>
+          <p className="ws-work-row-blurb">
+            {t.rich("blurb", {
+              mark: (chunks: ReactNode) => <Mark>{chunks}</Mark>,
+            })}
+          </p>
+          <p className="ws-work-row-tags">{item.tags.join(" · ")}</p>
+        </div>
+        <span className="ws-work-row-cta">
+          {t("cta")} <ArrowUpRight size={13} />
+        </span>
+      </a>
+    </li>
   );
 }
 
-export function WorkGrid() {
-  const t = useTranslations("work");
+export async function WorkGrid() {
+  const t = await getTranslations("work");
   return (
     <section className="ws-section" id="work">
       <div className="ws-section-head">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2 className="ws-section-title">
-          <Balancer>{t.rich("title", richTags)}</Balancer>
-        </h2>
+        <h2 className="ws-section-title">{t.rich("title", richTags)}</h2>
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
-      <div className="ws-work-grid">
-        {WORK.map((w) => (
-          <WorkTile key={w.id} item={w} />
+      <Register />
+      <ol className="ws-work-list">
+        {WORK.map((w, i) => (
+          <WorkRow key={w.id} item={w} index={i} />
         ))}
-      </div>
+      </ol>
     </section>
   );
 }
