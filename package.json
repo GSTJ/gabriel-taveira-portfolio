@@ -26,7 +26,7 @@
     "@eslint/compat": "^2.1.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@total-typescript/ts-reset": "^0.6.1",
-    "@types/node": "24.12.3",
+    "@types/node": "24.13.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
