@@ -23,8 +23,8 @@ overrides:
 
 dependencies:
   '@next/third-parties':
-    specifier: 16.2.11
-    version: 16.2.11(next@16.2.12)(react@19.2.8)
+    specifier: 16.2.12
+    version: 16.2.12(next@16.2.12)(react@19.2.8)
   '@vercel/analytics':
     specifier: 2.0.1
     version: 2.0.1(next@16.2.12)(react@19.2.8)
@@ -1433,8 +1433,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/third-parties@16.2.11(next@16.2.12)(react@19.2.8):
-    resolution: {integrity: sha512-w/e7lmAj7UzolcGH8Hn8TlX1/a9xZUJLUhvvIO6PNZhYLymPT4xeu5LsMn+RocD+0uRNhHl4GoRAhCgZrt3hjw==}
+  /@next/third-parties@16.2.12(next@16.2.12)(react@19.2.8):
+    resolution: {integrity: sha512-1fHKgERSVcgC0QfPJq2v96l6pLUdbVdkT0bjJYK8MguKTVjPd734kWBxfd77nPUG4N5F9s+qVdVjpEBm1tlwNQ==}
     peerDependencies:
       next: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0-beta.0
       react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
