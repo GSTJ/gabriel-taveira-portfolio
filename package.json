@@ -14,7 +14,7 @@
   "dependencies": {
     "@next/third-parties": "16.2.6",
     "@vercel/analytics": "2.0.1",
-    "next": "16.2.6",
+    "next": "16.2.11",
     "next-intl": "4.12.0",
     "postcss": "8.5.14",
     "react": "19.2.6",
