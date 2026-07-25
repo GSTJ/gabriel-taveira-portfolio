@@ -31,7 +31,7 @@
     }
   },
   "work": {
-    "eyebrow": "Work / Trabalho · 2017 → now",
+    "eyebrow": "Professional Experience · 2017 → now",
     "title": "Teams I've led. Systems that <em>lasted</em>.",
     "sub": "From four direct reports to fifty-six, across startups, delivery apps, fintechs, and tech giants.",
     "items": {
@@ -75,15 +75,10 @@
         "blurb": "Real-time repair-status tracker for an Apple Service Provider. Internal dashboards for technicians and customer service. Headless-CMS sites for the holding's brands.",
         "cta": "View on LinkedIn"
       }
-    },
-    "register": {
-      "label": "Team growth: 4 direct reports in 2017 to 56 at peak",
-      "start": "4 (2017)",
-      "end": "56 (peak)"
     }
   },
   "publications": {
-    "eyebrow": "Media / Mídia",
+    "eyebrow": "Publications & media",
     "title": "Things I host, write, and <em>ambassador</em>.",
     "onAir": "On air · Space Cast",
     "featureTitle": "I host the <em>Space Cast</em> podcast on Rocketseat's YouTube.",
@@ -98,7 +93,7 @@
     "ambassadorBody": "Mentoring the next generation of tech wizards."
   },
   "talks": {
-    "eyebrow": "Talks / Palestras",
+    "eyebrow": "Talks · selected",
     "title": "I speak at <em>tech</em> and <em>leadership</em> events.",
     "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
     "topicLeadership": "Leadership",
@@ -135,7 +130,7 @@
     }
   },
   "awards": {
-    "eyebrow": "Awards / Prêmios · 2019 → 2020",
+    "eyebrow": "Awards · 2019 → 2020",
     "title": "A small <em>trophy shelf</em>.",
     "sub": "A few hackathons I crashed before the day job got busy.",
     "positions": {
@@ -152,7 +147,7 @@
     }
   },
   "writing": {
-    "eyebrow": "Writing / Escrita",
+    "eyebrow": "Writing",
     "title": "Notes from the <em>shelf</em>.",
     "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
     "handle": "medium.com/@gabrieltaveira",
@@ -168,7 +163,7 @@
     "readOnMedium": "Read on Medium"
   },
   "now": {
-    "eyebrow": "Now / Agora · {date}",
+    "eyebrow": "Now · {date}",
     "title": "What I'm actually <em>doing</em>.",
     "items": {
       "consulting": {
@@ -179,7 +174,7 @@
       "hosting": {
         "chip": "Hosting",
         "title": "Space Cast on Rocketseat",
-        "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Bring a guest idea over."
+        "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Bring a guest idea over ⚡."
       },
       "mentoring": {
         "chip": "Mentoring",
@@ -194,9 +189,9 @@
     }
   },
   "contact": {
-    "eyebrow": "Contact / Contato",
+    "eyebrow": "Get in touch",
     "title": "Got an <em>interesting</em> challenge?",
-    "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee.",
+    "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. ⚡",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -214,12 +209,17 @@
       "message": "Tell me more",
       "messagePh": "Team size, timeline, stack, what good looks like.",
       "send": "Send message",
-      "shortcuts": "contact · gt · audit"
+      "shortcuts": "contact · ⚡ · audit"
     },
-    "sentTitle": "Thanks. I'll reply within the week.",
+    "sentTitle": "Thanks. I'll reply within the week. ⚡",
     "sentBody": "If you don't hear back by next Friday, ping again. Email sometimes loses the war with spam.",
     "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brazil",
-    "footerTag": "Building & breaking systems since age 8 ·"
+    "footerTag": "Building & breaking systems since age 8 · ⚡"
+  },
+  "marginalia": {
+    "yesReally": "yes, really",
+    "spaceCastSeason": "season 3 ✨",
+    "madeWith": "made with ☕ + ⚡ · gt"
   },
   "links": {
     "eyebrow": "Find me online",
@@ -228,6 +228,6 @@
   },
   "toast": {
     "konami": "Reverse engineering detected.",
-    "konamiSub": "Welcome. The tools are over by the captain's hat."
+    "konamiSub": "Welcome. The tools are over by the captain's hat. ⚡"
   }
 }
