@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { LanguageSwitcher } from "./LanguageSwitcher";
-import { BrandMark } from "./Shared";
+import { ArrowRight, BrandMark } from "./Shared";
 
 const NAV_LINKS = [
   { id: "work", key: "work" },
@@ -21,42 +20,33 @@ export function Nav({
   onNav: (id: string) => void;
 }) {
   const t = useTranslations("nav");
-  const progressRef = useRef<HTMLDivElement | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [burst, setBurst] = useState(false);
 
-  // Reading-progress hairline under the masthead. Written straight to the
-  // DOM (no state) so scrolling never re-renders the nav.
   useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - doc.clientHeight;
-        const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-        progressRef.current?.style.setProperty("transform", `scaleX(${p})`);
-      });
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const triggerBurst = () => {
+    setBurst(true);
+    window.setTimeout(() => setBurst(false), 700);
+  };
+
   return (
-    <div className="ws-nav-wrap ws-pdf-hide">
+    <div className={`ws-nav-wrap ws-pdf-hide${scrolled ? " ws-nav-scrolled" : ""}`}>
       <nav className="ws-nav">
         <a
-          className="ws-nav-brand"
+          className={"ws-nav-brand" + (burst ? " ws-nav-brand-burst" : "")}
           href="#top"
           onClick={(e) => {
             e.preventDefault();
+            triggerBurst();
             onNav("top");
           }}
         >
-          <BrandMark size={30} />
+          <BrandMark size={22} withText={false} />
         </a>
         <div className="ws-nav-links">
           {NAV_LINKS.map((l) => (
@@ -76,12 +66,14 @@ export function Nav({
           ))}
         </div>
         <div className="ws-nav-spacer" />
-        <LanguageSwitcher />
-        <button className="ws-nav-cta" onClick={() => onNav("contact")}>
+        <button
+          className="ws-btn ws-btn-primary"
+          onClick={() => onNav("contact")}
+        >
           {t("getInTouch")}
+          <ArrowRight />
         </button>
       </nav>
-      <div className="ws-nav-progress" ref={progressRef} aria-hidden />
     </div>
   );
 }

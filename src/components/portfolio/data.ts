@@ -16,10 +16,15 @@ export const SPACE_CAST_PLAYLIST =
 export const CURRICULUM_PDF = "/curriculum.pdf";
 
 export type Tone = "ember" | "coral" | "brass" | "teal";
-
-/** Color of the thin ledger spine on a work row. Red is rationed to the
- *  loudest entries; cobalt marks the current engagement. */
-export type Spine = "cobalt" | "red" | "ink";
+export type FlourishKind =
+  | "ticker"
+  | "frames"
+  | "swatches"
+  | "spark"
+  | "scoot"
+  | "migration"
+  | "tools"
+  | null;
 
 export type WorkItem = {
   id:
@@ -33,7 +38,8 @@ export type WorkItem = {
     | "micro";
   eyebrow: string;
   tags: readonly string[];
-  spine: Spine;
+  tone: Tone;
+  flourish: FlourishKind;
   href: string;
 };
 
@@ -42,56 +48,64 @@ export const WORK: readonly WorkItem[] = [
     id: "consulting",
     eyebrow: "INDEPENDENT · 2025 → NOW",
     tags: ["Consulting", "Mobile", "Leadership"],
-    spine: "cobalt",
+    tone: "ember",
+    flourish: null,
     href: LINKEDIN,
   },
   {
     id: "coinbase",
     eyebrow: "COINBASE · G2I · 2024 → 25",
     tags: ["React Native", "Expo", "Architecture"],
-    spine: "red",
+    tone: "coral",
+    flourish: "ticker",
     href: "https://www.coinbase.com/",
   },
   {
     id: "ateam",
     eyebrow: "A.TEAM · D-ID · 2023 → 25",
     tags: ["Lead", "React Native", "AI"],
-    spine: "ink",
+    tone: "coral",
+    flourish: "frames",
     href: "https://www.d-id.com/",
   },
   {
     id: "meta",
     eyebrow: "META · KUSTOMER · 2022 → 23",
     tags: ["Design Systems", "DevX", "SDKs"],
-    spine: "ink",
+    tone: "brass",
+    flourish: "swatches",
     href: "https://www.kustomer.com/",
   },
   {
     id: "xteam",
     eyebrow: "X-TEAM · GROUNDSWELL · 2022 → 23",
     tags: ["Mentorship", "Fintech", "Testing"],
-    spine: "ink",
+    tone: "teal",
+    flourish: "spark",
     href: "https://groundswell.io/",
   },
   {
     id: "ze",
     eyebrow: "ZÉ DELIVERY · AB INBEV · 2020 → 22",
     tags: ["Hiring", "Native", "Design Systems"],
-    spine: "red",
+    tone: "ember",
+    flourish: "scoot",
     href: "https://www.ze.delivery/",
   },
   {
     id: "alfred",
     eyebrow: "ALFRED DELIVERY · 2019 → 20",
     tags: ["Migration", "React Native"],
-    spine: "ink",
+    tone: "coral",
+    flourish: "migration",
     href: LINKEDIN,
   },
   {
     id: "micro",
     eyebrow: "MICRO IMPORT GROUP · 2017 → 19",
     tags: ["Full-stack", "PHP", "Gatsby"],
-    spine: "ink",
+    tone: "brass",
+    flourish: "tools",
     href: LINKEDIN,
   },
 ] as const;

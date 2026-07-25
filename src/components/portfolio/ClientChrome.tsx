@@ -6,7 +6,6 @@ import {
   useConsoleBanner,
   useKeyboardEffects,
   useLiveClock,
-  useRevealOnScroll,
   useScrollSpy,
   type ToastPayload,
 } from "./hooks";
@@ -34,7 +33,6 @@ export function ClientChrome() {
 
   useLiveClock();
   useConsoleBanner();
-  useRevealOnScroll();
 
   const keyboardConfig = useMemo(
     () => ({

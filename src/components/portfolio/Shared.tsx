@@ -2,14 +2,8 @@ import type { ReactNode } from "react";
 
 export type ChipTone = "neutral" | "ember" | "coral" | "brass" | "teal";
 
-/**
- * The GT monogram: a Bauhaus construction — the G is an open ring, its
- * crossbar doubles as the arm of a T whose stem drops through it. Ring
- * in rosewood, GT strokes in cognac. Paired with the full wordmark for
- * the masthead; alone for tight spots.
- */
 export function BrandMark({
-  size = 30,
+  size = 28,
   withText = true,
 }: {
   size?: number;
@@ -17,53 +11,26 @@ export function BrandMark({
 }) {
   return (
     <div className="ws-brand">
-      <svg
-        className="ws-monogram"
-        viewBox="0 0 44 44"
-        width={size}
-        height={size}
-        fill="none"
-        aria-hidden
-      >
-        <path
-          className="ws-monogram-ring"
-          d="M35.8 12 A17 17 0 1 0 39 22"
-          strokeWidth="3.4"
-          strokeLinecap="round"
-        />
-        <path
-          className="ws-monogram-bar"
-          d="M39 22 H24"
-          strokeWidth="3.4"
-          strokeLinecap="round"
-        />
-        <path
-          className="ws-monogram-bar"
-          d="M31.5 22 V35.5"
-          strokeWidth="3.4"
-          strokeLinecap="round"
-        />
+      <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
+        <defs>
+          <radialGradient id="bm-g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#fde9d6" />
+            <stop offset="32%" stopColor="#f29842" />
+            <stop offset="70%" stopColor="#b85d12" />
+            <stop offset="100%" stopColor="#3a1d05" />
+          </radialGradient>
+          <radialGradient id="bm-h" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#e07a1f" stopOpacity="0.5" />
+            <stop offset="60%" stopColor="#e07a1f" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#e07a1f" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="32" cy="32" r="30" fill="url(#bm-h)" />
+        <circle cx="32" cy="32" r="13" fill="url(#bm-g)" />
+        <circle cx="28" cy="28" r="3.5" fill="#fde9d6" opacity="0.85" />
       </svg>
-      {withText && (
-        <span className="ws-brand-text">
-          Gabriel <strong>Taveira</strong>
-        </span>
-      )}
+      {withText && <span className="ws-brand-text">Workshop</span>}
     </div>
-  );
-}
-
-/* Bandeirinha — festival pennant hanging point-down from a rule. */
-export function Pennant({ width = 52 }: { width?: number }) {
-  return (
-    <svg
-      className="ws-awards-pennant"
-      viewBox="0 0 56 76"
-      style={{ width }}
-      aria-hidden
-    >
-      <path d="M0 0 H56 L28 76 Z" />
-    </svg>
   );
 }
 
