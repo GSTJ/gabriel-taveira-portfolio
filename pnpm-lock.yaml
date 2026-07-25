@@ -24,28 +24,28 @@ overrides:
 dependencies:
   '@next/third-parties':
     specifier: 16.2.11
-    version: 16.2.11(next@16.2.11)(react@19.2.6)
+    version: 16.2.11(next@16.2.11)(react@19.2.8)
   '@vercel/analytics':
     specifier: 2.0.1
-    version: 2.0.1(next@16.2.11)(react@19.2.6)
+    version: 2.0.1(next@16.2.11)(react@19.2.8)
   next:
     specifier: 16.2.11
-    version: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.6)
+    version: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.8)
   next-intl:
     specifier: 4.12.0
-    version: 4.12.0(next@16.2.11)(react@19.2.6)(typescript@6.0.3)
+    version: 4.12.0(next@16.2.11)(react@19.2.8)(typescript@6.0.3)
   postcss:
     specifier: ^8.5.18
     version: 8.5.18
   react:
-    specifier: 19.2.6
-    version: 19.2.6
+    specifier: 19.2.8
+    version: 19.2.8
   react-dom:
     specifier: 19.2.6
-    version: 19.2.6(react@19.2.6)
+    version: 19.2.6(react@19.2.8)
   react-wrap-balancer:
     specifier: ^1.1.1
-    version: 1.1.1(react@19.2.6)
+    version: 1.1.1(react@19.2.8)
   tailwindcss:
     specifier: 4.3.0
     version: 4.3.0
@@ -1451,14 +1451,14 @@ packages:
     dev: false
     optional: true
 
-  /@next/third-parties@16.2.11(next@16.2.11)(react@19.2.6):
+  /@next/third-parties@16.2.11(next@16.2.11)(react@19.2.8):
     resolution: {integrity: sha512-w/e7lmAj7UzolcGH8Hn8TlX1/a9xZUJLUhvvIO6PNZhYLymPT4xeu5LsMn+RocD+0uRNhHl4GoRAhCgZrt3hjw==}
     peerDependencies:
       next: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0-beta.0
       react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
     dependencies:
-      next: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.6)
-      react: 19.2.6
+      next: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.8)
+      react: 19.2.8
       third-party-capital: 1.0.20
     dev: false
 
@@ -2588,7 +2588,7 @@ packages:
     dev: true
     optional: true
 
-  /@vercel/analytics@2.0.1(next@16.2.11)(react@19.2.6):
+  /@vercel/analytics@2.0.1(next@16.2.11)(react@19.2.8):
     resolution: {integrity: sha512-MTQG6V9qQrt1tsDeF+2Uoo5aPjqbVPys1xvnIftXSJYG2SrwXRHnqEvVoYID7BTruDz4lCd2Z7rM1BdkUehk2g==}
     peerDependencies:
       '@remix-run/react': ^2
@@ -2617,8 +2617,8 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      next: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.6)
-      react: 19.2.6
+      next: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.8)
+      react: 19.2.8
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.15.0):
@@ -5825,7 +5825,7 @@ packages:
     resolution: {integrity: sha512-jUxVEu1Nryjt4YgaDktSys7ioOgQfcNPF/SF2dbPNxbVb6U+P1INRgHeCVN+EC59H2rnTFIQwbddmOCrUWFr3g==}
     dev: false
 
-  /next-intl@4.12.0(next@16.2.11)(react@19.2.6)(typescript@6.0.3):
+  /next-intl@4.12.0(next@16.2.11)(react@19.2.8)(typescript@6.0.3):
     resolution: {integrity: sha512-v8KpppWG0yLLlChJ3Of6uoPew9LeRDBAtY6vpJmF7YJmBZlHEzzoEL4w1g1dAU+VleEPNoXNm9hg1eEsKWV5hw==}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -5840,17 +5840,17 @@ packages:
       '@swc/core': 1.15.33
       icu-minify: 4.12.0
       negotiator: 1.0.0
-      next: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.6)
+      next: 16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.8)
       next-intl-swc-plugin-extractor: 4.12.0
       po-parser: 2.1.1
-      react: 19.2.6
+      react: 19.2.8
       typescript: 6.0.3
-      use-intl: 4.12.0(react@19.2.6)
+      use-intl: 4.12.0(react@19.2.8)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: false
 
-  /next@16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.6):
+  /next@16.2.11(@babel/core@7.29.7)(@types/node@24.12.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6)(react@19.2.8):
     resolution: {integrity: sha512-B339zaqbyK8cmxhoAvLrcwoabwCP1wz21zSzfqxqXAemTu2BXnH7tQnfcglKv1vnMUIDBc+Hth7XODQriTZiRQ==}
     engines: {node: '>=20.9.0'}
     hasBin: true
@@ -5877,9 +5877,9 @@ packages:
       baseline-browser-mapping: 2.10.30
       caniuse-lite: 1.0.30001722
       postcss: 8.5.18
-      react: 19.2.6
-      react-dom: 19.2.6(react@19.2.6)
-      styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.2.6)
+      react: 19.2.8
+      react-dom: 19.2.6(react@19.2.8)
+      styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.2.8)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.2.11
       '@next/swc-darwin-x64': 16.2.11
@@ -6301,12 +6301,12 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /react-dom@19.2.6(react@19.2.6):
+  /react-dom@19.2.6(react@19.2.8):
     resolution: {integrity: sha512-0prMI+hvBbPjsWnxDLxlCGyM8PN6UuWjEUCYmZhO67xIV9Xasa/r/vDnq+Xyq4Lo27g8QSbO5YzARu0D1Sps3g==}
     peerDependencies:
       react: ^19.2.6
     dependencies:
-      react: 19.2.6
+      react: 19.2.8
       scheduler: 0.27.0
     dev: false
 
@@ -6322,16 +6322,16 @@ packages:
     resolution: {integrity: sha512-XjBR15BhXuylgWGuslhDKqlSayuqvqBX91BP8pauG8kd1zY8kotkNWbXksTCNRarse4kuGbe2kIY05ARtwNIvw==}
     dev: true
 
-  /react-wrap-balancer@1.1.1(react@19.2.6):
+  /react-wrap-balancer@1.1.1(react@19.2.8):
     resolution: {integrity: sha512-AB+l7FPRWl6uZ28VcJ8skkwLn2+UC62bjiw8tQUrZPlEWDVnR9MG0lghyn7EyxuJSsFEpht4G+yh2WikEqQ/5Q==}
     peerDependencies:
       react: '>=16.8.0 || ^17.0.0 || ^18'
     dependencies:
-      react: 19.2.6
+      react: 19.2.8
     dev: false
 
-  /react@19.2.6:
-    resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
+  /react@19.2.8:
+    resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
     engines: {node: '>=0.10.0'}
     dev: false
 
@@ -6801,7 +6801,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /styled-jsx@5.1.6(@babel/core@7.29.7)(react@19.2.6):
+  /styled-jsx@5.1.6(@babel/core@7.29.7)(react@19.2.8):
     resolution: {integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
@@ -6816,7 +6816,7 @@ packages:
     dependencies:
       '@babel/core': 7.29.7
       client-only: 0.0.1
-      react: 19.2.6
+      react: 19.2.8
     dev: false
 
   /supports-color@7.2.0:
@@ -7126,7 +7126,7 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /use-intl@4.12.0(react@19.2.6):
+  /use-intl@4.12.0(react@19.2.8):
     resolution: {integrity: sha512-r+qVb7UI1+kiOhjYsmsNUCY+jrnjVopwGeFlmMyQj4YInlwZzgMeMSv9n8MqnWWy77HL5BVM8K2WgX50SbtcpA==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
@@ -7135,7 +7135,7 @@ packages:
       '@schummar/icu-type-parser': 1.21.5
       icu-minify: 4.12.0
       intl-messageformat: 11.2.6
-      react: 19.2.6
+      react: 19.2.8
     dev: false
 
   /v8-to-istanbul@9.3.0:
