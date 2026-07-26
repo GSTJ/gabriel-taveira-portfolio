@@ -36,7 +36,7 @@ dependencies:
     version: 4.13.4(next@16.2.12)(react@19.2.8)(typescript@6.0.3)
   postcss:
     specifier: ^8.5.18
-    version: 8.5.18
+    version: 8.5.23
   react:
     specifier: 19.2.8
     version: 19.2.8
@@ -2007,7 +2007,7 @@ packages:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
-      postcss: 8.5.18
+      postcss: 8.5.23
       tailwindcss: 4.3.3
     dev: true
 
@@ -3132,7 +3132,7 @@ packages:
       dom-serializer: 2.0.0
       domhandler: 5.0.3
       htmlparser2: 8.0.2
-      postcss: 8.5.18
+      postcss: 8.5.23
       postcss-media-query-parser: 0.2.3
     dev: true
 
@@ -3873,7 +3873,7 @@ packages:
       tailwindcss: ^3.4.0
     dependencies:
       fast-glob: 3.3.3
-      postcss: 8.5.18
+      postcss: 8.5.23
       tailwindcss: 4.3.3
     dev: true
 
@@ -5731,7 +5731,7 @@ packages:
       babel-plugin-react-compiler: 1.0.0
       baseline-browser-mapping: 2.10.30
       caniuse-lite: 1.0.30001722
-      postcss: 8.5.18
+      postcss: 8.5.23
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
       styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.2.8)
@@ -6043,8 +6043,8 @@ packages:
     resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
     dev: true
 
-  /postcss@8.5.18:
-    resolution: {integrity: sha512-xdB1oSLHbz1vRWgCDalrCqEFTWzFlhqFC5tIHLMOSUIjhm3XXQ1qrFy8S/ESr1JYRRXqM3c1QFiMZUJdUTqyMQ==}
+  /postcss@8.5.23:
+    resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.16
