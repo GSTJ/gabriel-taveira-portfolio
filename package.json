@@ -8,6 +8,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "get:pdf": "node ./scripts/get-pdf.js",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
