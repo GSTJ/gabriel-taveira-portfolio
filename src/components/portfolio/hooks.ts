@@ -78,6 +78,24 @@ export function useCountUp(
   return value;
 }
 
+/** Height of the sticky nav, so a scrolled-to heading isn't hidden under it. */
+const NAV_OFFSET = 80;
+
+/**
+ * Smooth-scrolls to a section by id. `top` goes to the very top of the page
+ * rather than to `#top`'s offset, so the hero's full bleed stays visible.
+ */
+export function scrollToSection(id: string): void {
+  if (id === "top") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  const el = document.getElementById(id);
+  if (el) {
+    window.scrollTo({ top: el.offsetTop - NAV_OFFSET, behavior: "smooth" });
+  }
+}
+
 /**
  * Tracks which section is currently in view, used to highlight the nav.
  * Returns the section id (mapped: `contact`→`about`, `writing`→`publications`).
@@ -217,12 +235,10 @@ export function useKeyboardEffects(
 
       if (e.key === "/" && !inForm) {
         e.preventDefault();
-        const el = document.getElementById("contact");
         const input = document.querySelector<HTMLInputElement>(
           ".ws-contact-form .ws-input",
         );
-        if (el)
-          window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
+        scrollToSection("contact");
         window.setTimeout(() => input?.focus(), 450);
         return;
       }

@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
+  scrollToSection,
   useConsoleBanner,
   useKeyboardEffects,
   useLiveClock,
@@ -46,18 +47,9 @@ export function ClientChrome() {
   );
   useKeyboardEffects(keyboardConfig, setToast);
 
-  const handleNav = useCallback((id: string) => {
-    if (id === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    const el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
-  }, []);
-
   return (
     <>
-      <Nav active={active} onNav={handleNav} />
+      <Nav active={active} onNav={scrollToSection} />
       {toast && <Toast {...toast} onClose={() => setToast(null)} />}
       {audit && <SystemAudit onClose={() => setAudit(false)} />}
     </>
