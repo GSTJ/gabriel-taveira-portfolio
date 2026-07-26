@@ -12,8 +12,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
-  /** We already do linting and typechecking as separate tasks in CI */
-  eslint: { ignoreDuringBuilds: true },
+  /** Typecheck via `tsc`, not as part of the build */
   typescript: { ignoreBuildErrors: true },
 } satisfies NextConfig;
 
