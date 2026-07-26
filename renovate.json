@@ -7,6 +7,11 @@
       "matchDepTypes": ["pnpm.overrides"],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "description": "typescript-eslint reads the JS compiler API for every type-aware rule, and its latest release (8.65.0) still peers on typescript <6.1.0. TypeScript 7 ships only the native compiler and drops that API. Lift this once the peer range allows 7.",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
     }
   ]
 }
