@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,7 +17,7 @@ jobs:
       # Keeps a release PR open with the pending CHANGELOG.md and version bump,
       # derived from conventional commits since the last tag. Merging it cuts
       # the tag and the GitHub release. `!` or a BREAKING CHANGE: footer bumps
-      # the major and lands under "⚠ BREAKING CHANGES" in both.
+      # the major and lands under a breaking-changes heading in both.
       - name: 🚀 Release Please
         uses: googleapis/release-please-action@v5
         with:
