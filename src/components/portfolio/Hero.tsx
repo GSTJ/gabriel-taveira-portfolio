@@ -3,7 +3,7 @@
 import { useRef, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { CURRICULUM_PDF, LINKEDIN } from "./data";
-import { useCountUp } from "./hooks";
+import { scrollToSection, useCountUp } from "./hooks";
 import {
   CAREER_START_YEAR,
   yearsInIndustry,
@@ -13,7 +13,7 @@ import { Marginalia } from "./Marginalia";
 import { Mark } from "./Mark";
 import { ArrowRight, richTags } from "./Shared";
 
-export function Hero({ onContact }: { onContact: () => void }) {
+export function Hero() {
   const t = useTranslations("hero");
   const tStats = useTranslations("hero.stats");
   const tMarg = useTranslations("marginalia");
@@ -68,7 +68,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
           <button
             type="button"
             className="ws-btn ws-btn-primary ws-pdf-hide"
-            onClick={onContact}
+            onClick={() => scrollToSection("contact")}
           >
             {t("getInTouch")}
             <ArrowRight />
