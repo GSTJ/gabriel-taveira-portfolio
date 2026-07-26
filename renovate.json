@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "The pnpm.overrides block pins patched releases within a major line. Patch and minor bumps keep those pins current; a major rewrites what the override means and breaks the consumers it was pinning.",
+      "matchDepTypes": ["pnpm.overrides"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
