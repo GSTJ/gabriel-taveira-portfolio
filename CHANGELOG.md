@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v0.2.0...v0.2.1) (2026-07-26)
+
+
+### Bug Fixes
+
+* **ci:** unbreak the static file generation push ([#128](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/128)) ([1735309](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1735309312719d4e65367a30256f6669df0aaf25))
+
 ## [0.2.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v0.1.0...v0.2.0) (2026-07-26)
 
 
