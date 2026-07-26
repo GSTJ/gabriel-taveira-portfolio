@@ -41,9 +41,11 @@ jobs:
           git config --global user.name "Gabriel Taveira"
           git config --global user.email "action@github.com"
           git add .
-          git commit -m 'chore: update website pdf 💾 [skip ci]'
+          # Nothing to do when the render is byte-identical to what's committed.
+          git diff --cached --quiet && echo "pdf unchanged" && exit 0
 
-          git pull
+          git commit -m 'chore: update website pdf 💾 [skip ci]'
+          git pull --rebase --autostash
           git push
 
   generate-gif:
@@ -63,7 +65,9 @@ jobs:
           git config --global user.name "Gabriel Taveira"
           git config --global user.email "action@github.com"
           git add .
-          git commit -m 'chore: update website gif 💾 [skip ci]'
+          # Nothing to do when the capture is byte-identical to what's committed.
+          git diff --cached --quiet && echo "gif unchanged" && exit 0
 
-          git pull
+          git commit -m 'chore: update website gif 💾 [skip ci]'
+          git pull --rebase --autostash
           git push
