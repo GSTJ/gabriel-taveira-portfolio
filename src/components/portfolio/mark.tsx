@@ -6,9 +6,9 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 // the live --color-accent-soft token so it follows palette
 // swaps). Animates from 0 → 100% width when first in view,
 // using IntersectionObserver. Respects prefers-reduced-motion.
-interface MarkProps {
+type MarkProps = {
   children: ReactNode;
-}
+};
 
 export const Mark = ({ children }: MarkProps) => {
   const ref = useRef<HTMLSpanElement | null>(null);

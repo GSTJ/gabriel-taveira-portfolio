@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
-interface CoinPayload {
+type CoinPayload = {
   price: number;
   delta: number;
   currency: "USD";
   stale: boolean;
-}
+};
 
 const FALLBACK: CoinPayload = {
   price: 248.92,

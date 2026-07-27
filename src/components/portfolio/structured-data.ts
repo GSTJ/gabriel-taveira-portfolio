@@ -33,11 +33,11 @@ const companyNameFromEyebrow = (eyebrow: string): string => {
 const knowsAboutFromWork = (): string[] =>
   [...new Set(WORK.flatMap((item) => item.tags))].slice(0, KNOWS_ABOUT_CAP);
 
-interface WorksForEntry {
+type WorksForEntry = {
   "@type": "Organization";
   name: string;
   url: string;
-}
+};
 
 /**
  * Each work item becomes an Organization. We dedupe by name + url so that
@@ -61,10 +61,10 @@ const worksForFromWork = (): WorksForEntry[] => {
 const emailFromChannels = (): string | undefined =>
   CHANNELS.some((c) => c.id === "email") ? EMAIL_ADDR : undefined;
 
-export interface PortfolioJsonLd {
+export type PortfolioJsonLd = {
   person: Record<string, unknown>;
   profilePage: Record<string, unknown>;
-}
+};
 
 export function buildPortfolioJsonLd(locale: string): PortfolioJsonLd {
   const years = yearsInIndustry();

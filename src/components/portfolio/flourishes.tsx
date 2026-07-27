@@ -4,12 +4,12 @@ import type { FlourishKind } from "./data";
 
 import { useCallback, useEffect, useState } from "react";
 
-interface CoinQuote {
+type CoinQuote = {
   price: number;
   delta: number;
   currency: "USD";
   stale: boolean;
-}
+};
 
 const DEFAULT_QUOTE: CoinQuote = {
   price: 248.92,

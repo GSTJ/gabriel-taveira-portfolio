@@ -167,15 +167,15 @@ export function useLiveClock(targetId = "ws-clock"): void {
   }, [targetId]);
 }
 
-export interface ToastPayload {
+export type ToastPayload = {
   message: string;
   sub?: string;
-}
+};
 
-export interface KeyboardEffectsConfig {
+export type KeyboardEffectsConfig = {
   onKonami: () => ToastPayload;
   onAudit: () => void;
-}
+};
 
 /**
  * Wires up the three keyboard easter eggs:

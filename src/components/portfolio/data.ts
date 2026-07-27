@@ -26,7 +26,7 @@ export type FlourishKind =
   | "tools"
   | null;
 
-export interface WorkItem {
+export type WorkItem = {
   id:
     | "consulting"
     | "coinbase"
@@ -41,7 +41,7 @@ export interface WorkItem {
   tone: Tone;
   flourish: FlourishKind;
   href: string;
-}
+};
 
 export const WORK: readonly WorkItem[] = [
   {
@@ -112,13 +112,13 @@ export const WORK: readonly WorkItem[] = [
 
 export type Topic = "leadership" | "tech";
 
-export interface TalkItem {
+export type TalkItem = {
   id: "brooklyn" | "tdc" | "assemble" | "spaceSquad";
   date: string;
   topic: Topic;
   lang: "PT" | "EN";
   href: string;
-}
+};
 
 export const TALKS: readonly TalkItem[] = [
   {
@@ -154,12 +154,12 @@ export const TALKS: readonly TalkItem[] = [
 export type Trophy = "gold" | "silver" | "bronze";
 export type Position = "first" | "second" | "finalist";
 
-export interface AwardItem {
+export type AwardItem = {
   id: "globalLegal" | "maoNaCevada" | "hackRibeirao" | "jovemInovador" | "nasa";
   year: number;
   position: Position;
   trophy: Trophy;
-}
+};
 
 export const AWARDS: readonly AwardItem[] = [
   { id: "globalLegal", year: 2020, position: "first", trophy: "gold" },
@@ -169,10 +169,10 @@ export const AWARDS: readonly AwardItem[] = [
   { id: "nasa", year: 2019, position: "finalist", trophy: "bronze" },
 ] as const;
 
-export interface TopicChip {
+export type TopicChip = {
   id: "leadership" | "mobile" | "design" | "hiring" | "reverse";
   tone: Tone;
-}
+};
 
 export const WRITING_TOPICS: readonly TopicChip[] = [
   { id: "leadership", tone: "ember" },
@@ -182,10 +182,10 @@ export const WRITING_TOPICS: readonly TopicChip[] = [
   { id: "reverse", tone: "ember" },
 ] as const;
 
-export interface NowItem {
+export type NowItem = {
   id: "consulting" | "hosting" | "mentoring" | "tinkering";
   tone: Tone;
-}
+};
 
 export const NOW: readonly NowItem[] = [
   { id: "consulting", tone: "ember" },
@@ -196,12 +196,12 @@ export const NOW: readonly NowItem[] = [
 
 export type ChannelIcon = "linkedin" | "github" | "mail" | "book" | "youtube";
 
-export interface Channel {
+export type Channel = {
   id: "linkedin" | "github" | "email" | "medium" | "spaceCast";
   handle: string;
   url: string;
   icon: ChannelIcon;
-}
+};
 
 export const CHANNELS: readonly Channel[] = [
   {
