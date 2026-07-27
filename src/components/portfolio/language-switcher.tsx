@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl";
 
+import { cn } from "@/utils/cn";
 import { Link, usePathname } from "@/utils/navigation";
 import { routing } from "@/utils/routing";
 
@@ -19,7 +20,7 @@ export const LanguageSwitcher = () => {
             key={locale}
             href={pathname}
             locale={locale}
-            className={`ws-lang-link${isActive ? " ws-lang-link-active" : ""}`}
+            className={cn("ws-lang-link", isActive && "ws-lang-link-active")}
             aria-current={isActive ? "true" : undefined}
           >
             {label}

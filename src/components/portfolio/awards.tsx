@@ -1,8 +1,20 @@
+import { cva } from "class-variance-authority";
 import { getTranslations } from "next-intl/server";
 import { Balancer } from "react-wrap-balancer";
 
 import { AWARDS } from "./data";
 import { Eyebrow, richTags } from "./shared";
+
+// Each row is tinted by the metal of the trophy it won.
+const awardsRow = cva("ws-awards-row", {
+  variants: {
+    trophy: {
+      gold: "ws-awards-trophy-gold",
+      silver: "ws-awards-trophy-silver",
+      bronze: "ws-awards-trophy-bronze",
+    },
+  },
+});
 
 export const Awards = async () => {
   const t = await getTranslations("awards");
@@ -17,10 +29,7 @@ export const Awards = async () => {
       </div>
       <ul className="ws-awards-list">
         {AWARDS.map((a) => (
-          <li
-            key={a.id}
-            className={`ws-awards-row ws-awards-trophy-${a.trophy}`}
-          >
+          <li key={a.id} className={awardsRow({ trophy: a.trophy })}>
             <span className="ws-awards-year">{a.year}</span>
             <span className="ws-awards-position">
               {t(`positions.${a.position}`)}

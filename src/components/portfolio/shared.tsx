@@ -1,6 +1,27 @@
 import type { ReactNode } from "react";
 
+import { cva } from "class-variance-authority";
+
+import { cn } from "@/utils/cn";
+
 export type ChipTone = "neutral" | "ember" | "coral" | "brass" | "teal";
+
+/**
+ * The tone axis of `ws-chip`. Exported because the "now" list builds its own
+ * chip markup around the same classes.
+ */
+export const chip = cva("ws-chip", {
+  variants: {
+    tone: {
+      neutral: "ws-chip-neutral",
+      ember: "ws-chip-ember",
+      coral: "ws-chip-coral",
+      brass: "ws-chip-brass",
+      teal: "ws-chip-teal",
+    },
+  },
+  defaultVariants: { tone: "neutral" },
+});
 
 export const BrandMark = ({
   size = 28,
@@ -42,7 +63,7 @@ export const Eyebrow = ({
   accent?: boolean;
 }) => {
   return (
-    <span className={`ws-eyebrow${accent ? " ws-eyebrow-accent" : ""}`}>
+    <span className={cn("ws-eyebrow", accent && "ws-eyebrow-accent")}>
       {children}
     </span>
   );
@@ -58,7 +79,7 @@ export const Chip = ({
   dot?: boolean;
 }) => {
   return (
-    <span className={`ws-chip ws-chip-${tone}`}>
+    <span className={chip({ tone })}>
       {Boolean(dot) && <span className="ws-chip-dot" />}
       {children}
     </span>

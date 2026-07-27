@@ -4,6 +4,8 @@ import type { FlourishKind } from "./data";
 
 import { useCallback, useEffect, useState } from "react";
 
+import { cn } from "@/utils/cn";
+
 type CoinQuote = {
   price: number;
   delta: number;
@@ -103,9 +105,7 @@ const FlourishTicker = ({ hover }: { hover: boolean }) => {
 
 const FlourishFrames = ({ hover }: { hover: boolean }) => {
   return (
-    <div
-      className={`ws-flourish ws-flourish-frames${hover ? " is-hover" : ""}`}
-    >
+    <div className={cn("ws-flourish ws-flourish-frames", hover && "is-hover")}>
       <div className="ws-frame" />
       <div className="ws-frame ws-frame-active">
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -120,7 +120,7 @@ const FlourishFrames = ({ hover }: { hover: boolean }) => {
 const FlourishSwatches = ({ hover }: { hover: boolean }) => {
   return (
     <div
-      className={`ws-flourish ws-flourish-swatches${hover ? " is-hover" : ""}`}
+      className={cn("ws-flourish ws-flourish-swatches", hover && "is-hover")}
     >
       {SWATCHES.map((swatch) => (
         <div key={swatch.background} className="ws-sw" style={swatch} />
@@ -131,7 +131,7 @@ const FlourishSwatches = ({ hover }: { hover: boolean }) => {
 
 const FlourishSpark = ({ hover }: { hover: boolean }) => {
   return (
-    <div className={`ws-flourish ws-flourish-spark${hover ? " is-hover" : ""}`}>
+    <div className={cn("ws-flourish ws-flourish-spark", hover && "is-hover")}>
       <span className="ws-soc">SOC 2</span>
       <svg viewBox="0 0 90 22" className="ws-spark" preserveAspectRatio="none">
         <polyline
@@ -157,7 +157,7 @@ const FlourishSpark = ({ hover }: { hover: boolean }) => {
 
 const FlourishScoot = ({ hover }: { hover: boolean }) => {
   return (
-    <div className={`ws-flourish ws-flourish-scoot${hover ? " is-hover" : ""}`}>
+    <div className={cn("ws-flourish ws-flourish-scoot", hover && "is-hover")}>
       <span className="ws-scoot-pkg" aria-hidden>
         📦
       </span>
@@ -174,7 +174,7 @@ const FlourishScoot = ({ hover }: { hover: boolean }) => {
 const FlourishMigration = ({ hover }: { hover: boolean }) => {
   return (
     <div
-      className={`ws-flourish ws-flourish-migration${hover ? " is-hover" : ""}`}
+      className={cn("ws-flourish ws-flourish-migration", hover && "is-hover")}
     >
       <span className="ws-mig-tag">Ionic</span>
       <svg
@@ -195,7 +195,7 @@ const FlourishMigration = ({ hover }: { hover: boolean }) => {
 
 const FlourishTools = ({ hover }: { hover: boolean }) => {
   return (
-    <div className={`ws-flourish ws-flourish-tools${hover ? " is-hover" : ""}`}>
+    <div className={cn("ws-flourish ws-flourish-tools", hover && "is-hover")}>
       <svg
         viewBox="0 0 24 24"
         fill="none"

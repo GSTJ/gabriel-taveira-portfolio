@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+import { cn } from "@/utils/cn";
+
 // Highlights inline phrases with a sweep of accent-soft (uses
 // the live --color-accent-soft token so it follows palette
 // swaps). Animates from 0 → 100% width when first in view,
@@ -43,7 +45,7 @@ export const Mark = ({ children }: MarkProps) => {
   }, []);
 
   return (
-    <span ref={ref} className={`ws-mark${on ? " is-on" : ""}`}>
+    <span ref={ref} className={cn("ws-mark", on && "is-on")}>
       {children}
     </span>
   );
