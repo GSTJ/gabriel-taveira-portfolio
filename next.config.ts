@@ -33,6 +33,15 @@ const nextConfig = {
       },
     ]),
   experimental: {
+    /**
+     * Next inlines critical CSS with a literal `require("critters")` in
+     * `postProcessHTML`, so that specifier has to keep resolving. critters is
+     * deprecated, so package.json aliases the name to `beasties`, the fork the
+     * Nuxt team took over. Both builds produce byte-identical inlined CSS.
+     *
+     * When Next starts requiring `beasties` by name, drop the alias and depend
+     * on it directly.
+     */
     optimizeCss: true,
     /**
      * TypeScript 7 ships the native compiler and no `lib/typescript.js`, so

@@ -32,7 +32,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
-    "critters": "^0.0.25",
+    "critters": "npm:beasties@^0.4.3",
     "magic-codemods": "^1.1.0",
     "magic-oxfmt-config": "^1.2.0",
     "magic-oxlint-config": "^1.2.0",
