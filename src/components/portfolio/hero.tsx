@@ -9,9 +9,9 @@ import {
   yearsInIndustry,
   yearsTinkering,
 } from "./lifeline";
-import { Marginalia } from "./Marginalia";
-import { Mark } from "./Mark";
-import { ArrowRight, richTags } from "./Shared";
+import { Marginalia } from "./marginalia";
+import { Mark } from "./mark";
+import { ArrowRight, richTags } from "./shared";
 
 export function Hero() {
   const t = useTranslations("hero");

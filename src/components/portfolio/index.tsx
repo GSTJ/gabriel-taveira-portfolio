@@ -1,13 +1,13 @@
 import { Provider as BalancerProvider } from "react-wrap-balancer";
-import { Awards } from "./Awards";
-import { ClientChrome } from "./ClientChrome";
-import { Contact } from "./Contact";
-import { Hero } from "./Hero";
-import { NowPlaying } from "./NowPlaying";
-import { Publications } from "./Publications";
-import { TalksList } from "./TalksList";
-import { WorkGrid } from "./WorkGrid";
-import { WritingList } from "./WritingList";
+import { Awards } from "./awards";
+import { ClientChrome } from "./client-chrome";
+import { Contact } from "./contact";
+import { Hero } from "./hero";
+import { NowPlaying } from "./now-playing";
+import { Publications } from "./publications";
+import { TalksList } from "./talks-list";
+import { WorkGrid } from "./work-grid";
+import { WritingList } from "./writing-list";
 
 /**
  * Server component that composes the page. Each section that doesn't need

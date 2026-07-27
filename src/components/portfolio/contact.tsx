@@ -4,10 +4,10 @@ import { useState, type FormEvent } from "react";
 import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { CHANNELS, EMAIL_ADDR } from "./data";
-import { Marginalia } from "./Marginalia";
-import { ArrowRight, ArrowUpRight, BrandMark, Eyebrow, richTags } from "./Shared";
-import { SOCIAL_ICONS } from "./SocialIcons";
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { Marginalia } from "./marginalia";
+import { ArrowRight, ArrowUpRight, BrandMark, Eyebrow, richTags } from "./shared";
+import { SOCIAL_ICONS } from "./social-icons";
+import { LanguageSwitcher } from "./language-switcher";
 
 const EMPTY = { name: "", email: "", subject: "", message: "" };
 

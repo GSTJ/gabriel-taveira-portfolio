@@ -2,7 +2,7 @@ import Balancer from "react-wrap-balancer";
 import { getLocale, getTranslations } from "next-intl/server";
 import { NOW } from "./data";
 import { currentMonthLabel } from "./lifeline";
-import { Eyebrow, richTags } from "./Shared";
+import { Eyebrow, richTags } from "./shared";
 
 export async function NowPlaying() {
   const t = await getTranslations("now");

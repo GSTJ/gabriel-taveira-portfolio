@@ -4,9 +4,9 @@ import { Fragment, useRef, useState, type CSSProperties, type ReactNode } from "
 import Balancer from "react-wrap-balancer";
 import { useTranslations } from "next-intl";
 import { WORK, type WorkItem } from "./data";
-import { Flourish } from "./Flourishes";
-import { Mark } from "./Mark";
-import { ArrowUpRight, Eyebrow, richTags, Tag } from "./Shared";
+import { Flourish } from "./flourishes";
+import { Mark } from "./mark";
+import { ArrowUpRight, Eyebrow, richTags, Tag } from "./shared";
 
 function HighlightedEyebrow({ text }: { text: string }) {
   const parts = text.split(" · ");

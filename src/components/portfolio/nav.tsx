@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowRight, BrandMark } from "./Shared";
+import { ArrowRight, BrandMark } from "./shared";
 
 const NAV_LINKS = [
   { id: "work", key: "work" },

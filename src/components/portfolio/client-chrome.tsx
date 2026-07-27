@@ -10,9 +10,9 @@ import {
   useScrollSpy,
   type ToastPayload,
 } from "./hooks";
-import { Nav } from "./Nav";
-import { SystemAudit } from "./SystemAudit";
-import { Toast } from "./Toast";
+import { Nav } from "./nav";
+import { SystemAudit } from "./system-audit";
+import { Toast } from "./toast";
 
 /**
  * Hosts every piece of interactivity that wraps the page:
