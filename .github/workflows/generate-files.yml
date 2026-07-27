@@ -7,34 +7,34 @@ on:
     paths:
       - "src/**"
       - "scripts/**"
-      - "public/**"
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-  # Needed to start ci.yml on the asset branch, see the step that does it.
-  actions: write
-
-# Two overlapping runs would fight over the same asset branch.
+# Two overlapping runs would fight over the same force-pushed branch.
 concurrency:
   group: generate-files
   cancel-in-progress: false
 
+env:
+  ASSETS_BRANCH: assets
+
 jobs:
   generate:
     runs-on: ubuntu-latest
+    # Pushing the assets branch is the only write this job makes. It shares the
+    # runner with third-party actions, so it gets nothing else.
+    permissions:
+      contents: write
     steps:
       - name: 🏗 Setup Repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 🏗 Setup PNPM
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
 
       # We cannot cache the same fast way here, as it actually needs
       # to install puppeteer stuff on the machine each time.
       - name: 🏗 Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24.x
 
@@ -47,42 +47,52 @@ jobs:
       - name: 🖨️ Generate PDF
         run: pnpm run get:pdf
 
+      # Pinned by digest, not by tag. This is the smallest and least audited
+      # action in the repo and it runs on a job that can push, so a retagged
+      # 2.1.5 must not silently become a different container.
       - name: 🤖 Capture the site GIF
-        uses: PabloLec/website-to-gif@2.1.5
+        uses: PabloLec/website-to-gif@44056271a60cc6748fdfc990633a51bcb124a2cb # 2.1.5
         with:
           url: "https://www.gabrieltaveira.dev"
 
-      # main requires the `verify` check, so these assets land through a PR
-      # instead of a direct push. add-paths keeps everything else the render
-      # touches out of the commit.
-      - name: 📤 Open the asset PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v8
-        with:
-          base: main
-          branch: chore/regenerate-static-files
-          add-paths: |
-            demo.gif
-            public/curriculum.pdf
-          commit-message: "chore: update the website pdf and gif 💾"
-          title: "chore: update the website pdf and gif 💾"
-          body: |
-            Regenerated `public/curriculum.pdf` from the live site and
-            recaptured `demo.gif`. Opened by the `Generate static files`
-            workflow and set to auto-merge once `verify` passes.
-          author: Gabriel Taveira <action@github.com>
-          committer: Gabriel Taveira <action@github.com>
-          delete-branch: true
-
-      - name: 🔍 Release the PR's CI run
-        if: steps.cpr.outputs.pull-request-number
-        uses: ./.github/actions/approve-parked-ci
-        with:
-          pull-request: ${{ steps.cpr.outputs.pull-request-number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🚀 Queue auto-merge
-        if: steps.cpr.outputs.pull-request-number
+      # Neither asset is committed to main. The GIF is a few megabytes, the PDF
+      # is regenerated on every content change, and committing them buries
+      # main's history under binary churn while making every regeneration
+      # negotiate the `verify` requirement on main.
+      #
+      # So they go to a single-commit orphan branch, force-pushed, which drops
+      # the previous blobs out of reach instead of stacking them up. README
+      # points at the GIF's raw URL and the site proxies the PDF through
+      # `src/app/curriculum.pdf/route.ts`.
+      #
+      # This step is the publishing half of that pair. Moving the assets to R2
+      # or any other host means replacing the git push below and pointing
+      # `ASSETS_ORIGIN` (read in the route handler) at the new host. README's
+      # `<img src>` is the third and last reference.
+      #
+      # Nothing watches this branch. Every workflow here triggers on `main`
+      # only, so the push cannot loop back into another generation run. A
+      # `deletion` ruleset guards the branch, and it deliberately has no
+      # `non_fast_forward` rule because this step force-pushes.
+      - name: 📤 Publish to the assets branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
+        run: |
+          set -euo pipefail
+
+          out="$RUNNER_TEMP/$ASSETS_BRANCH"
+          mkdir -p "$out"
+          cp demo.gif "$out/demo.gif"
+          cp public/curriculum.pdf "$out/curriculum.pdf"
+
+          cd "$out"
+          git init --quiet --initial-branch "$ASSETS_BRANCH"
+          git config user.name "Gabriel Taveira"
+          git config user.email "action@github.com"
+          git add demo.gif curriculum.pdf
+          git commit --quiet \
+            --message "chore: publish the generated pdf and gif 💾" \
+            --message "Captured from $GITHUB_SHA by the Generate static files workflow."
+          git push --quiet --force \
+            "https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" \
+            "$ASSETS_BRANCH"
