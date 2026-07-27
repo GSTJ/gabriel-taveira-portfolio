@@ -10,8 +10,19 @@ on:
       - "public/**"
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+  # Needed to start ci.yml on the asset branch, see the step that does it.
+  actions: write
+
+# Two overlapping runs would fight over the same asset branch.
+concurrency:
+  group: generate-files
+  cancel-in-progress: false
+
 jobs:
-  generate-pdf:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup Repo
@@ -28,7 +39,7 @@ jobs:
           node-version: 24.x
 
       - name: 📦 Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: 🏗 Install ghostscript
         run: sudo apt-get update && sudo apt-get install -y ghostscript
@@ -36,38 +47,44 @@ jobs:
       - name: 🖨️ Generate PDF
         run: pnpm run get:pdf
 
-      - name: 📤 Commit PDF
-        run: |
-          git config --global user.name "Gabriel Taveira"
-          git config --global user.email "action@github.com"
-          git add .
-          # Nothing to do when the render is byte-identical to what's committed.
-          git diff --cached --quiet && echo "pdf unchanged" && exit 0
-
-          git commit -m 'chore: update website pdf 💾 [skip ci]'
-          git pull --rebase --autostash
-          git push
-
-  generate-gif:
-    needs: generate-pdf
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏗 Setup Repo
-        uses: actions/checkout@v7
-
-      - name: 🤖 Website to file
+      - name: 🤖 Capture the site GIF
         uses: PabloLec/website-to-gif@2.1.5
         with:
           url: "https://www.gabrieltaveira.dev"
 
-      - name: 📤 Commit GIF
-        run: |
-          git config --global user.name "Gabriel Taveira"
-          git config --global user.email "action@github.com"
-          git add .
-          # Nothing to do when the capture is byte-identical to what's committed.
-          git diff --cached --quiet && echo "gif unchanged" && exit 0
+      # main requires the `verify` check, so these assets land through a PR
+      # instead of a direct push. add-paths keeps everything else the render
+      # touches out of the commit.
+      - name: 📤 Open the asset PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: main
+          branch: chore/regenerate-static-files
+          add-paths: |
+            demo.gif
+            public/curriculum.pdf
+          commit-message: "chore: update the website pdf and gif 💾"
+          title: "chore: update the website pdf and gif 💾"
+          body: |
+            Regenerated `public/curriculum.pdf` from the live site and
+            recaptured `demo.gif`. Opened by the `Generate static files`
+            workflow and set to auto-merge once `verify` passes.
+          author: Gabriel Taveira <action@github.com>
+          committer: Gabriel Taveira <action@github.com>
+          delete-branch: true
 
-          git commit -m 'chore: update website gif 💾 [skip ci]'
-          git pull --rebase --autostash
-          git push
+      # A PR opened with GITHUB_TOKEN does not start `pull_request` workflows,
+      # so `verify` would never report and auto-merge would wait forever.
+      # workflow_dispatch is the documented exception to that rule.
+      - name: 🔍 Start CI on the asset branch
+        if: steps.cpr.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run ci.yml --ref chore/regenerate-static-files
+
+      - name: 🚀 Queue auto-merge
+        if: steps.cpr.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash

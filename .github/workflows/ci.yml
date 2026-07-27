@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+  # `Generate static files` dispatches this on its asset branch, because a PR
+  # opened with GITHUB_TOKEN does not start `pull_request` workflows.
+  workflow_dispatch:
 
 # A new push to the same branch makes the previous run irrelevant.
 concurrency:
