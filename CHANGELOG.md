@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v0.2.1...v1.0.0) (2026-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* type-aware lint rules cannot run on 7. typescript-eslint reads the JS compiler API, and its latest release peers on typescript <6.1.0. pnpm lint stays broken and out of CI, tracked in #121.
+
+### Features
+
+* move to typescript 7 ([#130](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/130)) ([50eb1b2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/50eb1b294eab843f490eeb8001a44c5f9337cf61))
+
 ## [0.2.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v0.2.0...v0.2.1) (2026-07-26)
 
 
