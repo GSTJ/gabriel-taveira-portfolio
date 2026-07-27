@@ -2,7 +2,7 @@
 
 Welcome to my open-source portfolio! This project is built using Next.js, Tailwind, and Server Components.
 
-<img width="1498" alt="preview" src="./demo.gif">
+<img width="1498" alt="preview" src="https://raw.githubusercontent.com/GSTJ/gabriel-taveira-portfolio/assets/demo.gif">
 
 ## Features
 

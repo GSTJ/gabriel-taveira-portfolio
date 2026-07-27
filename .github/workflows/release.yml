@@ -6,18 +6,18 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-  # Needed to release the release PR's parked CI run, see the step that does it.
-  actions: write
-
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      # Needed to release the release PR's parked CI run, see the step that
+      # does it.
+      actions: write
     steps:
       - name: 🏗 Setup Repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # Keeps a release PR open with the pending CHANGELOG.md and version bump,
       # derived from conventional commits since the last tag. Merging it cuts
@@ -25,7 +25,7 @@ jobs:
       # the major and lands under a breaking-changes heading in both.
       - name: 🚀 Release Please
         id: release
-        uses: googleapis/release-please-action@v5
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
