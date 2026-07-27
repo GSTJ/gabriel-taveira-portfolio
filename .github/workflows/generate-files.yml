@@ -74,14 +74,28 @@ jobs:
           committer: Gabriel Taveira <action@github.com>
           delete-branch: true
 
-      # A PR opened with GITHUB_TOKEN does not start `pull_request` workflows,
-      # so `verify` would never report and auto-merge would wait forever.
-      # workflow_dispatch is the documented exception to that rule.
-      - name: 🔍 Start CI on the asset branch
+      # A PR opened with GITHUB_TOKEN parks its `pull_request` run at
+      # action_required, so `verify` never reports and auto-merge waits
+      # forever. Approving the parked run is what releases it. Dispatching
+      # ci.yml on the branch does not work here: the check it produces isn't
+      # attached to the PR, so the required check stays unsatisfied.
+      - name: 🔍 Release the PR's CI run
         if: steps.cpr.outputs.pull-request-number
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run ci.yml --ref chore/regenerate-static-files
+          SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
+        run: |
+          for _ in $(seq 1 20); do
+            id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?event=pull_request&head_sha=$SHA" \
+              --jq '[.workflow_runs[] | select(.conclusion == "action_required")][0].id')
+            if [ -n "$id" ] && [ "$id" != "null" ]; then
+              gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$id/approve"
+              echo "approved run $id"
+              exit 0
+            fi
+            sleep 6
+          done
+          echo "::warning::no parked pull_request run for $SHA, check whether $SHA got a verify run"
 
       - name: 🚀 Queue auto-merge
         if: steps.cpr.outputs.pull-request-number
