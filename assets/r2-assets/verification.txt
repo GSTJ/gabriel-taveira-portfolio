@@ -1,0 +1,97 @@
+Verification for PR #143 - generated assets move from the assets branch to R2
+Captured 2026-07-27T04:18:28Z
+
+NOT VERIFIED: the workflow's own run. CLOUDFLARE_API_TOKEN and
+CLOUDFLARE_ACCOUNT_ID are not set on the repo, so the upload step cannot
+execute in CI. Everything below is verified. The PR is left unmerged.
+  $ gh secret list --repo GSTJ/gabriel-taveira-portfolio
+  (no output above == no secrets set)
+
+==============================================================
+1. the upload commands reach R2, run with my own session
+==============================================================
+The workflow's exact invocation, including --remote and
+--content-disposition, run by hand against the live bucket.
+
+before (objects as they were uploaded earlier, no content-disposition):
+  content-type: application/pdf
+  cache-control: public, max-age=86400
+  last-modified: Mon, 27 Jul 2026 04:02:13 GMT
+
+after running the workflow's upload step by hand:
+  content-type: application/pdf
+  content-length: 715759
+  content-disposition: inline; filename="gabriel-taveira.pdf"
+  etag: "9bb2d1c6225bc6ba2eda079d8501b492"
+  cache-control: public, max-age=14400
+  -> content-disposition is now present, which it was not before,
+     so the flags land on the object rather than being ignored.
+
+==============================================================
+2. the verify step's own logic, executed both ways
+==============================================================
+happy path against the live bucket:
+  demo.gif: content-type=image/gif sha256=44f54714a19baf505374f9c51ca84e394ff62c5a05d24376fa4b93e3e2674e09
+  curriculum.pdf: content-type=application/pdf sha256=6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+  both objects match the ones this run built
+  exit 0
+
+with one byte appended to the local copy, so the guard must trip:
+  ::error::demo.gif served 44f54714a19baf50... but this run built 0bccb207b54dce80...
+  exit 1
+
+credentials guard, all three cases:
+  both unset      -> ::error::Missing repository secret(s): CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID   exit 1
+  only account id -> ::error::Missing repository secret(s): CLOUDFLARE_API_TOKEN                          exit 1
+  both set        -> both secrets are present                                                            exit 0
+
+==============================================================
+3. the zone raises any max-age below 4 hours
+==============================================================
+Uploaded the same object four times with different cache-control and read
+the served header back each time:
+  asked public, max-age=3600    -> served public, max-age=14400
+  asked public, max-age=7200    -> served public, max-age=14400
+  asked public, max-age=21600   -> served public, max-age=21600
+  asked public, max-age=60      -> served public, max-age=14400
+So the zone's Browser Cache TTL is 4 hours and clamps upward. The workflow
+still asks for 3600, and the comment in it says why that is not what
+browsers see. Left the zone setting alone, it is zone-wide.
+
+==============================================================
+4. the rewrite serves the PDF on a real Vercel deployment
+==============================================================
+$ curl -sSI https://personal-curriculum-pywvnzqi6-gabrieltaveira.vercel.app/curriculum.pdf
+  HTTP/2 200 
+  cache-control: public, max-age=14400
+  content-disposition: inline; filename="gabriel-taveira.pdf"
+  content-type: application/pdf
+  etag: "9bb2d1c6225bc6ba2eda079d8501b492"
+  server: Vercel
+  content-length: 715759
+  GET http=200 bytes=715759 content_type=application/pdf
+  magic bytes: %PDF-
+  trailer:     %%EOF
+  file(1):     PDF document, version 1.5, 1 pages
+  sha256 via Vercel: 6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+  sha256 from R2:    6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+
+The route handler is deleted. This is a plain next.config rewrite, and it
+works now because R2 answers application/pdf where raw.githubusercontent
+answered application/octet-stream with nosniff and a sandbox CSP.
+
+==============================================================
+5. no git writes left in the workflow
+==============================================================
+job permissions and every git-touching step, from the workflow itself:
+  35:    permissions:
+  36:      contents: read
+
+==============================================================
+6. wrangler devDependency cost, measured
+==============================================================
+verify job durations, successful runs:
+  before wrangler: 38s 42s 42s 46s 49s
+  after wrangler:  50s 52s 62s
+So roughly 8 to 14 seconds. Pinned at 4.114.0 so the lockfile fixes it and
+renovate bumps it with everything else.
