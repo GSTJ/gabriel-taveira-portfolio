@@ -14,9 +14,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # `verify` is the required status check on main (ruleset 2437718). Renaming the
+  # job, or moving these steps into GSTJ/magic's reusable ci.yml, changes the
+  # reported context name and blocks every PR on a check that no longer exists.
+  #
+  # The reusable workflow is the other reason this stays local: every action here
+  # is pinned by commit digest and renovate keeps them that way, which it can
+  # only do for workflow files in this repo. GSTJ/magic's ci.yml pins by tag.
   verify:
     runs-on: ubuntu-latest
-    # The repo hands workflows a write token by default and this one only reads.
+    # Workflow permissions default to read for the repo; this states the grant
+    # rather than relying on that default staying put.
     permissions:
       contents: read
     steps:
@@ -34,6 +42,12 @@ jobs:
 
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: 🧹 Lint
+        run: pnpm run lint
+
+      - name: 💅 Format
+        run: pnpm run format
 
       - name: 🔍 Typecheck
         run: pnpm run typecheck

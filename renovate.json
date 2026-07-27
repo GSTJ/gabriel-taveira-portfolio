@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Actions are pinned by commit digest with the version in a trailing comment, so a retagged release cannot change what runs. helpers:pinGitHubActionDigests keeps that true for actions added later, and renovate bumps the digest and the comment together.",
+  "description": "Actions are pinned by commit digest with the version in a trailing comment, so a retagged release cannot change what runs. helpers:pinGitHubActionDigests keeps that true for actions added later, and renovate bumps the digest and the comment together. This does not extend github>GSTJ/magic: that preset automerges non-majors and pins actions by tag, both of which this repo deliberately does the other way.",
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
   "packageRules": [
     {
@@ -8,6 +8,17 @@
       "matchDepTypes": ["pnpm.overrides"],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "description": "oxlint and oxfmt are pinned exactly because an unknown rule name is a fatal config error, not a warning. Grouping them means one PR to read rather than two, and the pin means renovate proposes the exact version rather than widening a range.",
+      "matchPackageNames": ["oxlint", "oxfmt"],
+      "groupName": "oxc toolchain",
+      "rangeStrategy": "pin"
+    },
+    {
+      "description": "The magic-* configs are one release train published from GSTJ/magic, so they land together and a config bump cannot outrun the preset it reads.",
+      "matchPackageNames": ["magic-{/,}**"],
+      "groupName": "magic tooling"
     }
   ]
 }
