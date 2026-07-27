@@ -17,7 +17,7 @@ jobs:
   checkup:
     # Install, build, lint, format and typecheck all come from the shared
     # workflow, so this repo stops carrying its own copy of the steps.
-    uses: GSTJ/magic/.github/workflows/ci.yml@v1
+    uses: GSTJ/magic/.github/workflows/ci.yml@32c29fe042d2bff2d4ed1df5eda8ea7619c9a911 # v1
     # A called workflow cannot exceed the caller's grant, and this one only
     # reads the tree.
     permissions:
