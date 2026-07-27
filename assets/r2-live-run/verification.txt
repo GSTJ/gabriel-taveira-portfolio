@@ -1,0 +1,154 @@
+Verification: R2 asset publishing, live run attempt (PRs #143 and #145)
+Captured 2026-07-27T04:37:06Z  released v1.0.3
+
+HEADLINE: the live workflow run FAILED, at the credentials gate, because
+the CLOUDFLARE_API_TOKEN secret exists with an EMPTY VALUE. Everything the
+workflow does after that gate is unverified in CI. The site itself is
+correct and serving from R2, because the objects were uploaded by hand
+earlier using the workflow's exact commands.
+
+==============================================================
+1. the failing run, and why
+==============================================================
+run Generate static files event=push branch=main conclusion=failure
+  success  Set up job
+  success  Build PabloLec/website-to-gif@44056271a60cc6748fdfc990633a51bcb124a2cb
+  success  🏗 Setup Repo
+  success  🏗 Setup PNPM
+  success  🏗 Setup Node.js
+  success  📦 Install dependencies
+  failure  🔑 Check Cloudflare credentials
+  skipped  🏗 Install ghostscript
+  skipped  🖨️ Generate PDF
+  skipped  🤖 Capture the site GIF
+  skipped  ☁️ Upload to R2
+  skipped  ✅ Verify what the custom domain serves
+  skipped  Post 🏗 Setup Node.js
+  success  Post 🏗 Setup PNPM
+  success  Post 🏗 Setup Repo
+  success  Complete job
+
+The runner's env for that step, verbatim from the log. This is the whole
+story: one is masked because it has a value, the other is blank.
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1260450Z env:
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1260717Z   R2_BUCKET: portfolio-assets
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1261047Z   ASSETS_BASE_URL: https://assets.gabrieltaveira.dev
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1261392Z   ASSET_CACHE_CONTROL: public, max-age=3600
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1261727Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1262054Z   CLOUDFLARE_API_TOKEN: 
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1262439Z   CLOUDFLARE_ACCOUNT_ID: ***
+  generate	🔑 Check Cloudflare credentials	2026-07-27T04:26:09.1262678Z ##[endgroup]
+
+The API lists it as present, which is exactly the trap:
+  CLOUDFLARE_ACCOUNT_ID created=2026-07-27T04:23:56Z updated=2026-07-27T04:24:19Z
+  CLOUDFLARE_API_TOKEN created=2026-07-27T04:23:49Z updated=2026-07-27T04:23:49Z
+
+FIX NEEDED FROM GABRIEL: re-save the CLOUDFLARE_API_TOKEN value. The name
+is already there, the value is empty. Token needs Account > R2 > Edit.
+
+==============================================================
+2. what the workflow gets right, proven by that same run
+==============================================================
+  - it failed in 82 seconds, at the gate, naming the secret, rather than
+    four minutes later inside a wrangler stack trace
+  - it made no git writes at all, see section 5
+  - the repo-wide default_workflow_permissions is now read, and the job
+    declares contents: read, so the read-only default was inert:
+    default_workflow_permissions=read
+
+After the run I reworked that gate (#145). Both failure paths executed:
+  empty token          -> ::error::Repository secret(s) unset or set to an empty value:
+                          CLOUDFLARE_API_TOKEN. Listing the name proves nothing, re-save
+                          the value. ...   exit 1
+  bogus token, real id -> ::error::Both secrets have values but they cannot read
+                          portfolio-assets. ...   exit 1
+  working credentials  -> wrangler r2 bucket info portfolio-assets, 7.2s, exit 0
+
+==============================================================
+3. the upload path itself, run by hand with a working session
+==============================================================
+The workflow's exact commands, --remote and all, against the live bucket.
+Observable delta: content-disposition appeared where it had not been, and
+last-modified moved 04:02 -> 04:14.
+
+Objects read straight out of the bucket with wrangler, not through the CDN:
+  curriculum.pdf  715759 bytes  sha256 6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+  demo.gif       3690920 bytes  sha256 44f54714a19baf505374f9c51ca84e394ff62c5a05d24376fa4b93e3e2674e09
+  (bucket info reports object_count: 0, which is R2 metrics lag, not truth)
+
+What the custom domain serves right now:
+  --- demo.gif ---
+    HTTP/2 200 
+    content-type: image/gif
+    content-length: 3690920
+    cache-control: public, max-age=14400
+    etag: "fc9a3558177002c90f5e6a4e1d80c890"
+    last-modified: Mon, 27 Jul 2026 04:14:15 GMT
+  --- curriculum.pdf ---
+    HTTP/2 200 
+    content-type: application/pdf
+    content-length: 715759
+    content-disposition: inline; filename="gabriel-taveira.pdf"
+    etag: "9bb2d1c6225bc6ba2eda079d8501b492"
+    last-modified: Mon, 27 Jul 2026 04:15:40 GMT
+    cache-control: public, max-age=14400
+
+==============================================================
+4. the live site, after the production deploy
+==============================================================
+  $ curl -sSIL https://www.gabrieltaveira.dev/curriculum.pdf
+    HTTP/2 200 
+    content-type: application/pdf
+    content-length: 715759
+    cache-control: public, max-age=14400
+    content-disposition: inline; filename="gabriel-taveira.pdf"
+    etag: "9bb2d1c6225bc6ba2eda079d8501b492"
+    server: cloudflare
+    GET http=200 bytes=715759 content_type=application/pdf
+    magic bytes: %PDF-     trailer: %%EOF
+    file(1):     PDF document, version 1.5, 1 pages
+    sha256 live: 6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+    server: cloudflare, so this is the rewrite proxying R2, not a local file.
+    The route handler is deleted; a plain next.config rewrite does it now.
+
+  .com.br:
+    HTTP/2 200 
+    content-disposition: inline; filename="gabriel-taveira.pdf"
+    content-type: application/pdf
+
+  README GIF on github.com, through camo:
+    camo url decodes to https://assets.gabrieltaveira.dev/demo.gif
+    loaded in a browser: complete=true, 640x360
+
+==============================================================
+5. zero git writes from the workflow
+==============================================================
+  commits on main from the generate run: 0 (only the merges and the release)
+    f322979 chore(main): release 1.0.3 (#144)
+    b8d254e ci: probe the R2 credentials instead of only checking they exist (#145)
+    08a816d ci: upload the generated pdf and gif to R2 instead of a branch (#143)
+    ffabf0c chore(main): release 1.0.2 (#142)
+  branches now:
+    fix/links-alignment
+    gstj/pr-assets-dump
+    main
+  PRs opened by the generate run: none. #144 was release-please.
+  every git-shaped line in the workflow:
+    4:  push:
+    34:    # assets and pushes them to R2.
+    35:    permissions:
+    36:      contents: read
+
+==============================================================
+6. torn down
+==============================================================
+  branch assets: deleted. old raw URL now HTTP/2 404 
+  ruleset 19787918 (assets): deleted
+  src/app/curriculum.pdf/route.ts: deleted
+  remaining rulesets:
+    2437718 main
+
+  Nothing referenced the branch before it went. Checked all three:
+    .github/workflows/generate-files.yml:19:  ASSETS_BASE_URL: https://assets.gabrieltaveira.dev
+    next.config.ts:16:  process.env.ASSETS_ORIGIN ?? "https://assets.gabrieltaveira.dev";
+    README.md:5:<img width="1498" alt="preview" src="https://assets.gabrieltaveira.dev/demo.gif">
