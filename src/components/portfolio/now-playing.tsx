@@ -3,7 +3,7 @@ import { Balancer } from "react-wrap-balancer";
 
 import { NOW } from "./data";
 import { currentMonthLabel } from "./lifeline";
-import { Eyebrow, richTags } from "./shared";
+import { chip, Eyebrow, richTags } from "./shared";
 
 export const NowPlaying = async () => {
   const t = await getTranslations("now");
@@ -22,7 +22,7 @@ export const NowPlaying = async () => {
       <ul className="ws-now-list">
         {NOW.map((n) => (
           <li key={n.id} className="ws-now-row">
-            <span className={`ws-chip ws-chip-${n.tone}`}>
+            <span className={chip({ tone: n.tone })}>
               <span className="ws-chip-dot" />
               {tItems(`${n.id}.chip`)}
             </span>

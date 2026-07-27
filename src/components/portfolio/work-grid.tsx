@@ -8,13 +8,32 @@ import {
   type ReactNode,
 } from "react";
 
+import { cva } from "class-variance-authority";
 import { useTranslations } from "next-intl";
 import { Balancer } from "react-wrap-balancer";
+
+import { cn } from "@/utils/cn";
 
 import { WORK, type WorkItem } from "./data";
 import { Flourish } from "./flourishes";
 import { Mark } from "./mark";
 import { ArrowUpRight, Eyebrow, richTags, Tag } from "./shared";
+
+/**
+ * A work tile carries the accent of its item's tone, and lifts while the
+ * pointer is inside it.
+ */
+const workCell = cva("ws-work-cell", {
+  variants: {
+    tone: {
+      ember: "ws-work-tone-ember",
+      coral: "ws-work-tone-coral",
+      brass: "ws-work-tone-brass",
+      teal: "ws-work-tone-teal",
+    },
+    hover: { true: "is-hover", false: "" },
+  },
+});
 
 /**
  * The render callback for the `<mark>` tag used inside work blurbs. Defined at
@@ -45,13 +64,19 @@ const HighlightedEyebrow = ({ text }: { text: string }) => (
       <Fragment key={token.key}>
         {!token.first && (
           <span
-            className={`ws-eyebrow-sep${token.isDate ? " ws-eyebrow-sep-date" : ""}`}
+            className={cn(
+              "ws-eyebrow-sep",
+              token.isDate && "ws-eyebrow-sep-date",
+            )}
           >
             {" · "}
           </span>
         )}
         <span
-          className={`ws-eyebrow-token${token.isDate ? " ws-eyebrow-token-date" : ""}`}
+          className={cn(
+            "ws-eyebrow-token",
+            token.isDate && "ws-eyebrow-token-date",
+          )}
         >
           {token.part}
         </span>
@@ -81,9 +106,7 @@ const WorkTile = ({ item }: { item: WorkItem }) => {
       href={item.href}
       target="_blank"
       rel="noreferrer"
-      className={`ws-work-cell ws-work-tone-${item.tone}${
-        hover ? " is-hover" : ""
-      }`}
+      className={workCell({ tone: item.tone, hover })}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onMouseMove={onMouseMove}

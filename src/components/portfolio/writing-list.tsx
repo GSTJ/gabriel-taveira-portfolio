@@ -1,8 +1,21 @@
+import { cva } from "class-variance-authority";
 import { getTranslations } from "next-intl/server";
 import { Balancer } from "react-wrap-balancer";
 
 import { MEDIUM, WRITING_TOPICS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./shared";
+
+// Topic pills in the Medium callout, one colour per tone.
+const writingTopic = cva("ws-writing-topic", {
+  variants: {
+    tone: {
+      ember: "ws-writing-topic-ember",
+      coral: "ws-writing-topic-coral",
+      brass: "ws-writing-topic-brass",
+      teal: "ws-writing-topic-teal",
+    },
+  },
+});
 
 export const WritingList = async () => {
   const t = await getTranslations("writing");
@@ -52,7 +65,7 @@ export const WritingList = async () => {
             {WRITING_TOPICS.map((topic) => (
               <span
                 key={topic.id}
-                className={`ws-writing-topic ws-writing-topic-${topic.tone}`}
+                className={writingTopic({ tone: topic.tone })}
               >
                 {t(`topics.${topic.id}`)}
               </span>

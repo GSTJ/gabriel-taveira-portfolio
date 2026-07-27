@@ -1,8 +1,28 @@
+import { cva } from "class-variance-authority";
 import { getTranslations } from "next-intl/server";
 import { Balancer } from "react-wrap-balancer";
 
 import { TALKS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./shared";
+
+// A talk's topic tints both the row and the chip that names it.
+const talksRow = cva("ws-talks-row", {
+  variants: {
+    topic: {
+      leadership: "ws-talks-topic-leadership",
+      tech: "ws-talks-topic-tech",
+    },
+  },
+});
+
+const talksTopicChip = cva("ws-talks-topic-chip", {
+  variants: {
+    topic: {
+      leadership: "ws-talks-topic-chip-leadership",
+      tech: "ws-talks-topic-chip-tech",
+    },
+  },
+});
 
 export const TalksList = async () => {
   const t = await getTranslations("talks");
@@ -18,10 +38,7 @@ export const TalksList = async () => {
       </div>
       <ul className="ws-talks">
         {TALKS.map((talk) => (
-          <li
-            key={talk.id}
-            className={`ws-talks-row ws-talks-topic-${talk.topic}`}
-          >
+          <li key={talk.id} className={talksRow({ topic: talk.topic })}>
             <span className="ws-talks-date">{talk.date}</span>
             <div className="ws-talks-main">
               <div className="ws-talks-title">{tItems(`${talk.id}.title`)}</div>
@@ -29,9 +46,7 @@ export const TalksList = async () => {
                 {tItems(`${talk.id}.description`)}
               </div>
               <div className="ws-talks-venue">
-                <span
-                  className={`ws-talks-topic-chip ws-talks-topic-chip-${talk.topic}`}
-                >
+                <span className={talksTopicChip({ topic: talk.topic })}>
                   {talk.topic === "leadership"
                     ? t("topicLeadership")
                     : t("topicTech")}

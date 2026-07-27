@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 import { useTranslations } from "next-intl";
 
+import { cn } from "@/utils/cn";
+
 import { ArrowRight, BrandMark } from "./shared";
 
 const NAV_LINKS = [
@@ -38,11 +40,11 @@ export const Nav = ({
 
   return (
     <div
-      className={`ws-nav-wrap ws-pdf-hide${scrolled ? " ws-nav-scrolled" : ""}`}
+      className={cn("ws-nav-wrap ws-pdf-hide", scrolled && "ws-nav-scrolled")}
     >
       <nav className="ws-nav">
         <a
-          className={`ws-nav-brand${burst ? " ws-nav-brand-burst" : ""}`}
+          className={cn("ws-nav-brand", burst && "ws-nav-brand-burst")}
           href="#top"
           onClick={(e) => {
             e.preventDefault();
@@ -56,7 +58,10 @@ export const Nav = ({
           {NAV_LINKS.map((l) => (
             <a
               key={l.id}
-              className={`ws-nav-link${active === l.id ? " ws-nav-link-active" : ""}`}
+              className={cn(
+                "ws-nav-link",
+                active === l.id && "ws-nav-link-active",
+              )}
               href={`#${l.id}`}
               onClick={(e) => {
                 e.preventDefault();

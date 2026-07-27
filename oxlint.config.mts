@@ -7,7 +7,13 @@ import next from "magic-oxlint-config/next";
 // ignore, so 1.2.0 cannot defend them either and leaves `extends` undocumented.
 // That is why this is not `defineConfig`.
 export default extendConfig(next, {
+  jsPlugins: [{ name: "magic", specifier: "magic-oxlint-plugin" }],
   rules: {
+    // Every class in this repo comes from design-portfolio.css (`ws-*`), and
+    // the components used to splice them together with template literals —
+    // which is exactly the drift this rule exists to stop. Conditionals go
+    // through `cn`, one-of-N tone/side/topic tables through `cva`.
+    "magic/no-manual-classname": "error",
     // next.config.ts sets `reactCompiler: true`, so every component in this
     // repo is compiled with the React Compiler and its props are memoized
     // automatically. These two rules ask for the hand-written useCallback /
