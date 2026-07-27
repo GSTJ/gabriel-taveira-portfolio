@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.0...v1.0.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* **ci:** approve the asset PR's parked CI run ([#137](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/137)) ([95bb706](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/95bb7061813e1b73eda7cb18cd8e9aea6132bae0))
+* **ci:** approve the release PR's parked CI run too ([#139](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/139)) ([b343425](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b343425061e2aa5d236e9f245344914ed1b5cac2))
+
+
+### CI
+
+* land the generated PDF and GIF through a pull request ([#132](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/132)) ([76eda97](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/76eda97196a1389c8cccdcadffe66b57e51a1eec))
+
+
+### Chores
+
+* **deps:** update peter-evans/create-pull-request action to v8 ([#134](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/134)) ([b0e248b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b0e248b7088c693b95954052a7581c9e5837467f))
+* update the website pdf and gif 💾 ([#135](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/135)) ([335a8b2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/335a8b29b3db0007316372c3073eb4ede7bdc71d))
+* update the website pdf and gif 💾 ([#136](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/136)) ([09eadda](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/09eaddafc04ccc7caee9309c7aab150793ab16e4))
+* update the website pdf and gif 💾 ([#138](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/138)) ([5e04b88](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5e04b8852d290efe1378102bf56c363d878aa77d))
+
 ## [1.0.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v0.2.1...v1.0.0) (2026-07-27)
 
 
