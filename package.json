@@ -9,8 +9,10 @@
     "start": "next start",
     "get:pdf": "node ./scripts/get-pdf.js",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "oxlint --report-unused-disable-directives",
+    "lint:fix": "oxlint --report-unused-disable-directives --fix",
+    "format": "oxfmt --check .",
+    "format:fix": "oxfmt ."
   },
   "dependencies": {
     "@next/third-parties": "16.2.12",

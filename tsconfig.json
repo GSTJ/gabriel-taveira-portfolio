@@ -1,49 +1,20 @@
 {
+  "extends": "magic-tsconfig/nextjs.json",
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+      "@/*": ["./src/*"]
+    },
+    // TypeScript 7 (tsgo) does not auto-include @types packages with this
+    // config shape, so `process.env` and `node:*` fail to resolve without it
+    // even though @types/node is installed.
+    "types": ["node"]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "scripts/get-videos.js",
-    "scripts/get-pdf.js",
-    "postcss.config.js",
-    "tailwind.config.ts",
-    "src/app/utils/getChannelVideos.js",
-    "eslint.config.js",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
