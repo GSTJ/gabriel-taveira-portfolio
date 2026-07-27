@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.4](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.3...v1.0.4) (2026-07-27)
+
+
+### Build
+
+* adopt the magic oxlint/oxfmt/tsconfig stack ([#146](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/146)) ([fec265f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fec265f8a3efd58ae9fed601240ed03c7b189887))
+
+
+### Chores
+
+* **deps:** delete the unconfigured dependabot file ([#151](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/151)) ([ff4ffbc](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ff4ffbc0bf9b1216831ebcc6f1abe31297d68143))
+* **deps:** pin gstj/magic action to 2e46545 ([#150](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/150)) ([9726b97](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/9726b97593ad6e7d1ea407784294a015f6c53832))
+* **deps:** update dependency @types/node to v26.1.2 ([#148](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/148)) ([6bcbfe3](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6bcbfe3ca67eb1834107fd638359623cb94dd0dc))
+* **deps:** update dependency puppeteer to v25.4.0 ([#147](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/147)) ([806f747](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/806f747e6077a0a65bddca464532dc8b0d6d2ddc))
+* **deps:** update gstj/magic digest to 32c29fe ([#152](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/152)) ([3b750a2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/3b750a27d19848a50446f9fd4c6b7d05d9430e9f))
+
 ## [1.0.3](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.2...v1.0.3) (2026-07-27)
 
 
