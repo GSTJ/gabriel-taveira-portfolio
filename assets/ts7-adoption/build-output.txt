@@ -1,0 +1,58 @@
+$ node_modules/.bin/tsc --version
+Version 7.0.2
+
+$ node -e "console.log(require('./node_modules/typescript/package.json').version)"
+7.0.2
+
+$ ls node_modules/typescript/lib
+getExePath.d.ts  68B
+getExePath.js  3.0K
+tsc.js  609B
+version.cjs  113B
+version.d.cts  88B
+
+$ pnpm run typecheck
+
+> personal-curriculum@0.2.1 typecheck /private/tmp/claude-501/-Users-jarvis-jarvis-lab/53f769e9-39ae-4cf6-9d1e-67157f66798d/scratchpad/portfolio
+> tsc --noEmit
+
+-> exit 0
+
+$ pnpm run build
+
+> personal-curriculum@0.2.1 build /private/tmp/claude-501/-Users-jarvis-jarvis-lab/53f769e9-39ae-4cf6-9d1e-67157f66798d/scratchpad/portfolio
+> next build --webpack
+
+▲ Next.js 16.2.12 (webpack)
+- Experiments (use with caution):
+  ✓ optimizeCss
+  ✓ useTypeScriptCli
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.6s
+  Skipping validation of types
+  Finished TypeScript config validation in 2ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/10) ...
+  Generating static pages using 9 workers (2/10) 
+  Generating static pages using 9 workers (4/10) 
+  Generating static pages using 9 workers (7/10) 
+✓ Generating static pages using 9 workers (10/10) in 244ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/links
+├ ƒ /api/coin
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
