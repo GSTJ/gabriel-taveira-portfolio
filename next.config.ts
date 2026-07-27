@@ -6,9 +6,32 @@ const createNextIntl = withNextIntl(
   "./src/i18n/index.ts"
 );
 
+/**
+ * Where the generated assets live. `demo.gif` and `curriculum.pdf` are built by
+ * the `Generate static files` workflow and uploaded to the `portfolio-assets`
+ * R2 bucket, so neither binary is committed here. The only other references are
+ * that workflow's upload step and README's `<img src>`.
+ */
+const ASSETS_ORIGIN =
+  process.env.ASSETS_ORIGIN ?? "https://assets.gabrieltaveira.dev";
+
 const nextConfig = {
   devIndicators: false,
   reactCompiler: true,
+  /**
+   * The resume keeps its own URL. Metadata and the download link both point at
+   * `/curriculum.pdf`, so this proxies rather than redirects. R2 already
+   * answers with `application/pdf`, an ETag and a cache-control the workflow
+   * sets, and Next hands those through untouched.
+   */
+  async rewrites() {
+    return [
+      {
+        source: "/curriculum.pdf",
+        destination: `${ASSETS_ORIGIN}/curriculum.pdf`,
+      },
+    ];
+  },
   experimental: {
     optimizeCss: true,
     /**
