@@ -1,13 +1,11 @@
+import { extendConfig } from "magic-oxlint-config";
 import next from "magic-oxlint-config/next";
-import { defineConfig } from "oxlint";
 
-export default defineConfig({
-  extends: [next],
-  // `extends` does not carry ignorePatterns across — only the patterns written
-  // at the top level of the config oxlint loads are applied — so the preset's
-  // list has to be re-declared here. Without it the generated `.next` output
-  // gets linted.
-  ignorePatterns: next.ignorePatterns,
+// `extendConfig` flattens the preset and the overrides below into one config,
+// so `ignorePatterns`, `plugins` and `jsPlugins` all land at the top level.
+// oxlint's own `extends` drops `ignorePatterns` (still true on 1.75.0 with
+// magic-oxlint-config 1.1.0 — verified), which is why this is not `defineConfig`.
+export default extendConfig(next, {
   rules: {
     // next.config.ts sets `reactCompiler: true`, so every component in this
     // repo is compiled with the React Compiler and its props are memoized

@@ -1,13 +1,5 @@
-import { next } from "magic-oxfmt-config";
-
-export default {
-  ...next,
-  ignorePatterns: [
-    ...next.ignorePatterns,
-    // release-please owns CHANGELOG.md and rewrites it on every release in its
-    // own markdown style (`*` bullets, a blank line under each heading).
-    // Formatting it here would make `oxfmt --check` fail on the release PR,
-    // every release, forever.
-    "CHANGELOG.md",
-  ],
-};
+// release-please owns CHANGELOG.md and rewrites it on every release in its own
+// markdown style, so formatting it here would fail `oxfmt --check` on the
+// release PR forever. magic-oxfmt-config 1.1.0 ignores `**/CHANGELOG.md`
+// itself, so the local re-declaration this file used to carry is gone.
+export { next as default } from "magic-oxfmt-config";
