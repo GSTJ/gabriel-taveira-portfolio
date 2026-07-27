@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.2](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.1...v1.0.2) (2026-07-27)
+
+
+### CI
+
+* publish the generated pdf and gif to an assets branch ([#141](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/141)) ([5c5e248](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5c5e24888e6b6cee177cd53c5ffd7597180c286f))
+
+
+### Chores
+
+* update the website pdf and gif 💾 ([#140](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/140)) ([1043de4](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1043de43c9206f1fea3b331370adcfb318fd6b41))
+
 ## [1.0.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.0...v1.0.1) (2026-07-27)
 
 
