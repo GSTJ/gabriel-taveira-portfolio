@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.2...v1.0.3) (2026-07-27)
+
+
+### CI
+
+* probe the R2 credentials instead of only checking they exist ([#145](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/145)) ([b8d254e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b8d254e3437e952d5d0b6fc34980df99a39bbfe4))
+* upload the generated pdf and gif to R2 instead of a branch ([#143](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/143)) ([08a816d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/08a816d519ecfb40ece1f2306679af4c5eaab15c))
+
 ## [1.0.2](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.1...v1.0.2) (2026-07-27)
 
 
