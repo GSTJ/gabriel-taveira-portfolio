@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.4...v1.0.5) (2026-07-27)
+
+
+### Build
+
+* **deps:** replace deprecated critters with beasties ([#153](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/153)) ([076ffeb](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/076ffeb926c1aacdb53ef4dd3432ccfc337e2203))
+
 ## [1.0.4](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.3...v1.0.4) (2026-07-27)
 
 
