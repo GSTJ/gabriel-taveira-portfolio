@@ -1,7 +1,7 @@
 import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { AWARDS } from "./data";
-import { Eyebrow, richTags } from "./Shared";
+import { Eyebrow, richTags } from "./shared";
 
 export async function Awards() {
   const t = await getTranslations("awards");

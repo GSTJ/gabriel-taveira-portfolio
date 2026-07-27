@@ -1,7 +1,7 @@
 import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { TALKS } from "./data";
-import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
+import { ArrowUpRight, Eyebrow, richTags } from "./shared";
 
 export async function TalksList() {
   const t = await getTranslations("talks");

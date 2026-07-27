@@ -6,8 +6,8 @@ import {
   BrandMark,
   Eyebrow,
   richTags,
-} from "@/components/portfolio/Shared";
-import { SOCIAL_ICONS } from "@/components/portfolio/SocialIcons";
+} from "@/components/portfolio/shared";
+import { SOCIAL_ICONS } from "@/components/portfolio/social-icons";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("links");

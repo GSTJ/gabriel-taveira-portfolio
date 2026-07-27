@@ -1,8 +1,8 @@
 import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST, SPACE_SQUAD } from "./data";
-import { Marginalia } from "./Marginalia";
-import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
+import { Marginalia } from "./marginalia";
+import { ArrowUpRight, Eyebrow, richTags } from "./shared";
 
 export async function Publications() {
   const t = await getTranslations("publications");
