@@ -9,17 +9,32 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # Needed to release the release PR's parked CI run, see the step that does it.
+  actions: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      - name: 🏗 Setup Repo
+        uses: actions/checkout@v7
+
       # Keeps a release PR open with the pending CHANGELOG.md and version bump,
       # derived from conventional commits since the last tag. Merging it cuts
       # the tag and the GitHub release. `!` or a BREAKING CHANGE: footer bumps
       # the major and lands under a breaking-changes heading in both.
       - name: 🚀 Release Please
+        id: release
         uses: googleapis/release-please-action@v5
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      # The release PR is opened with GITHUB_TOKEN too, so it needs the same
+      # nudge as the asset PR or it can never satisfy `verify`.
+      - name: 🔍 Release the release PR's CI run
+        if: steps.release.outputs.prs_created == 'true'
+        uses: ./.github/actions/approve-parked-ci
+        with:
+          pull-request: ${{ fromJson(steps.release.outputs.pr).number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
