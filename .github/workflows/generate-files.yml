@@ -52,6 +52,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # Fail here rather than four minutes later inside a wrangler stack trace.
+      #
+      # "Missing" would be the wrong word. A secret saved with an empty value
+      # lists in the API exactly like a real one and arrives on the runner as an
+      # empty string, which is how the first live run failed while
+      # `gh secret list` showed both names present.
       - name: 🔑 Check Cloudflare credentials
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -59,16 +64,24 @@ jobs:
         run: |
           set -euo pipefail
 
-          missing=""
-          [ -n "${CLOUDFLARE_API_TOKEN:-}" ] || missing="$missing CLOUDFLARE_API_TOKEN"
-          [ -n "${CLOUDFLARE_ACCOUNT_ID:-}" ] || missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          empty=""
+          [ -n "${CLOUDFLARE_API_TOKEN:-}" ] || empty="$empty CLOUDFLARE_API_TOKEN"
+          [ -n "${CLOUDFLARE_ACCOUNT_ID:-}" ] || empty="$empty CLOUDFLARE_ACCOUNT_ID"
 
-          if [ -n "$missing" ]; then
-            echo "::error::Missing repository secret(s):$missing. The token needs Account > R2 > Edit on the account that owns the $R2_BUCKET bucket."
+          if [ -n "$empty" ]; then
+            echo "::error::Repository secret(s) unset or set to an empty value:$empty. Listing the name proves nothing, re-save the value. The token needs Account > R2 > Edit on the account that owns $R2_BUCKET."
             exit 1
           fi
 
-          echo "both secrets are present"
+          # Cheapest call that proves all three things at once: the token
+          # authenticates, the account id belongs to it, and it carries R2
+          # permissions. Takes about seven seconds.
+          if ! pnpm exec wrangler r2 bucket info "$R2_BUCKET"; then
+            echo "::error::Both secrets have values but they cannot read $R2_BUCKET. Check the token has Account > R2 > Edit and that CLOUDFLARE_ACCOUNT_ID owns the bucket."
+            exit 1
+          fi
+
+          echo "credentials reach $R2_BUCKET"
 
       - name: 🏗 Install ghostscript
         run: sudo apt-get update && sudo apt-get install -y ghostscript
