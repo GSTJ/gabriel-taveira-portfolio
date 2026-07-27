@@ -6,14 +6,7 @@
  * into the initial HTML via a `<script type="application/ld+json">` tag.
  */
 
-import {
-  CHANNELS,
-  EMAIL_ADDR,
-  GITHUB,
-  LINKEDIN,
-  MEDIUM,
-  WORK,
-} from "./data";
+import { CHANNELS, EMAIL_ADDR, GITHUB, LINKEDIN, MEDIUM, WORK } from "./data";
 import { yearsInIndustry } from "./lifeline";
 
 const SITE_URL = "https://gabrieltaveira.dev";
@@ -23,60 +16,53 @@ const KNOWS_ABOUT_CAP = 15;
  * Extracts the primary company name from an eyebrow string like
  * "COINBASE · G2I · 2024 → 25" — first dot-separated token, normalised.
  */
-function companyNameFromEyebrow(eyebrow: string): string {
+const companyNameFromEyebrow = (eyebrow: string): string => {
   const first = eyebrow.split("·")[0]?.trim() ?? "";
   if (!first) return "";
   // Title-case the all-caps eyebrow (preserves accents like É via locale-lower).
   return first
     .toLocaleLowerCase("en-US")
-    .replace(/\b\p{L}/gu, (c) => c.toLocaleUpperCase("en-US"));
-}
+    .replaceAll(/\b\p{L}/gu, (c) => c.toLocaleUpperCase("en-US"));
+};
 
 /**
  * Aggregates unique tag tokens across all work items, capped to keep the
  * structured payload lean for crawlers.
  */
-function knowsAboutFromWork(): string[] {
-  const seen = new Set<string>();
-  const ordered: string[] = [];
-  for (const item of WORK) {
-    for (const tag of item.tags) {
-      if (seen.has(tag)) continue;
-      seen.add(tag);
-      ordered.push(tag);
-      if (ordered.length >= KNOWS_ABOUT_CAP) return ordered;
-    }
-  }
-  return ordered;
-}
+const knowsAboutFromWork = (): string[] => {
+  const unique = [...new Set(WORK.flatMap((item) => item.tags))];
+  return unique.slice(0, KNOWS_ABOUT_CAP);
+};
 
 /**
  * Each work item becomes an Organization. We dedupe by name + url so that
  * multiple stints at the same company (or via the same agency) don't repeat.
  */
-function worksForFromWork(): Array<{
+const worksForFromWork = (): {
   "@type": "Organization";
   name: string;
   url: string;
-}> {
-  const out: Array<{ "@type": "Organization"; name: string; url: string }> = [];
+}[] => {
   const seen = new Set<string>();
-  for (const item of WORK) {
-    const name = companyNameFromEyebrow(item.eyebrow);
-    if (!name) continue;
-    const key = `${name}|${item.href}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push({ "@type": "Organization", name, url: item.href });
-  }
-  return out;
-}
 
-function emailFromChannels(): string | undefined {
+  return WORK.map((item) => ({
+    name: companyNameFromEyebrow(item.eyebrow),
+    url: item.href,
+  }))
+    .filter(({ name, url }) => {
+      const key = `${name}|${url}`;
+      if (!name || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map(({ name, url }) => ({ "@type": "Organization" as const, name, url }));
+};
+
+const emailFromChannels = (): string | undefined => {
   const email = CHANNELS.find((c) => c.id === "email");
   if (!email) return undefined;
   return EMAIL_ADDR;
-}
+};
 
 export type PortfolioJsonLd = {
   person: Record<string, unknown>;

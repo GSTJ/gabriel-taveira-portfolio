@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
+
 import withNextIntl from "next-intl/plugin";
 
 const createNextIntl = withNextIntl(
   // This is the default (also the `src` folder is supported out of the box)
-  "./src/i18n/index.ts"
+  "./src/i18n/index.ts",
 );
 
 /**
@@ -24,14 +25,13 @@ const nextConfig = {
    * answers with `application/pdf`, an ETag and a cache-control the workflow
    * sets, and Next hands those through untouched.
    */
-  async rewrites() {
-    return [
+  rewrites: () =>
+    Promise.resolve([
       {
         source: "/curriculum.pdf",
         destination: `${ASSETS_ORIGIN}/curriculum.pdf`,
       },
-    ];
-  },
+    ]),
   experimental: {
     optimizeCss: true,
     /**

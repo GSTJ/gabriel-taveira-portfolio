@@ -1,10 +1,39 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
+import { Balancer } from "react-wrap-balancer";
+
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST, SPACE_SQUAD } from "./data";
 import { Marginalia } from "./marginalia";
 import { ArrowUpRight, Eyebrow, richTags } from "./shared";
 
-export async function Publications() {
+/**
+ * The on-air waveform. Tapered envelope — middle bars peak taller than the
+ * edges, mimicking the energy curve of a spoken phrase. Each bar also gets a
+ * deterministic phase and duration jitter so they don't sweep in a single wave.
+ *
+ * Nothing here depends on props or state, so it is computed once at module load
+ * instead of on every render.
+ */
+const BAR_COUNT = 22;
+
+const BARS = Array.from({ length: BAR_COUNT }, (_, i) => {
+  const position = i / (BAR_COUNT - 1);
+  const envelope = Math.sin(position * Math.PI);
+  const jitter = ((i * 9301 + 49_297) % 233) / 233;
+  const peak = 6 + envelope * 14 + jitter * 6;
+  const base = 2 + jitter * 2;
+
+  return {
+    id: `bar-${i}`,
+    style: {
+      ["--bar-base" as string]: `${base.toFixed(1)}px`,
+      ["--bar-peak" as string]: `${peak.toFixed(1)}px`,
+      animationDelay: `${((i * 53) % 900) - 200}ms`,
+      animationDuration: `${800 + ((i * 137) % 600)}ms`,
+    },
+  };
+});
+
+export const Publications = async () => {
   const t = await getTranslations("publications");
   const tMarg = await getTranslations("marginalia");
   return (
@@ -25,32 +54,9 @@ export async function Publications() {
               {t("onAir")}
             </span>
             <div className="ws-pubs-bars" aria-hidden="true">
-              {Array.from({ length: 22 }).map((_, i) => {
-                // Tapered envelope — middle bars peak taller than the edges,
-                // mimicking the energy curve of a spoken phrase. Each bar
-                // also gets a deterministic phase + duration jitter so they
-                // don't sweep in a single wave.
-                const n = 22;
-                const t = i / (n - 1);
-                const envelope = Math.sin(t * Math.PI);
-                const jitter = ((i * 9301 + 49297) % 233) / 233;
-                const peak = 6 + envelope * 14 + jitter * 6;
-                const base = 2 + jitter * 2;
-                const delay = ((i * 53) % 900) - 200;
-                const duration = 800 + ((i * 137) % 600);
-                return (
-                  <span
-                    key={i}
-                    className="ws-pubs-bar"
-                    style={{
-                      ["--bar-base" as string]: `${base.toFixed(1)}px`,
-                      ["--bar-peak" as string]: `${peak.toFixed(1)}px`,
-                      animationDelay: `${delay}ms`,
-                      animationDuration: `${duration}ms`,
-                    }}
-                  />
-                );
-              })}
+              {BARS.map((bar) => (
+                <span key={bar.id} className="ws-pubs-bar" style={bar.style} />
+              ))}
             </div>
           </div>
           <h3 className="ws-pubs-feature-title">
@@ -107,4 +113,4 @@ export async function Publications() {
       </div>
     </section>
   );
-}
+};

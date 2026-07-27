@@ -204,7 +204,12 @@ export type Channel = {
 };
 
 export const CHANNELS: readonly Channel[] = [
-  { id: "linkedin", handle: "/in/gabrieltaveira", url: LINKEDIN, icon: "linkedin" },
+  {
+    id: "linkedin",
+    handle: "/in/gabrieltaveira",
+    url: LINKEDIN,
+    icon: "linkedin",
+  },
   { id: "github", handle: "@GSTJ", url: GITHUB, icon: "github" },
   { id: "email", handle: EMAIL_ADDR, url: EMAIL, icon: "mail" },
   { id: "medium", handle: "@gabrieltaveira", url: MEDIUM, icon: "book" },

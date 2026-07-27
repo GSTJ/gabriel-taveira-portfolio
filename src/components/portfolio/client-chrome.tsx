@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import { useTranslations } from "next-intl";
+
 import {
   scrollToSection,
   useConsoleBanner,
@@ -26,7 +28,7 @@ import { Toast } from "./toast";
  * the long-form copy ships as static HTML for SEO. This component only
  * adds chrome and behavior.
  */
-export function ClientChrome() {
+export const ClientChrome = () => {
   const tToast = useTranslations("toast");
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [audit, setAudit] = useState(false);
@@ -50,8 +52,13 @@ export function ClientChrome() {
   return (
     <>
       <Nav active={active} onNav={scrollToSection} />
-      {toast && <Toast {...toast} onClose={() => setToast(null)} />}
-      {audit && <SystemAudit onClose={() => setAudit(false)} />}
+      {/*
+        `toast !== null` rather than `Boolean(toast)`: safe-jsx is happy with
+        either, but `Boolean()` doesn't narrow, so the spread would stay
+        `ToastPayload | null` and `message` would fail to typecheck.
+      */}
+      {toast !== null && <Toast {...toast} onClose={() => setToast(null)} />}
+      {Boolean(audit) && <SystemAudit onClose={() => setAudit(false)} />}
     </>
   );
-}
+};

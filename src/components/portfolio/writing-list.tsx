@@ -1,9 +1,10 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
+import { Balancer } from "react-wrap-balancer";
+
 import { MEDIUM, WRITING_TOPICS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./shared";
 
-export async function WritingList() {
+export const WritingList = async () => {
   const t = await getTranslations("writing");
   return (
     <section className="ws-section" id="writing">
@@ -20,6 +21,9 @@ export async function WritingList() {
         href={MEDIUM}
         target="_blank"
         rel="noreferrer"
+        // The whole card is one link, so its accessible name would otherwise be
+        // every heading, paragraph and topic chip inside it read end to end.
+        aria-label={t("readOnMedium")}
       >
         <div className="ws-writing-callout-glow" />
         <div className="ws-writing-callout-left">
@@ -47,7 +51,7 @@ export async function WritingList() {
             {WRITING_TOPICS.map((topic) => (
               <span
                 key={topic.id}
-                className={"ws-writing-topic ws-writing-topic-" + topic.tone}
+                className={`ws-writing-topic ws-writing-topic-${topic.tone}`}
               >
                 {t(`topics.${topic.id}`)}
               </span>
@@ -62,4 +66,4 @@ export async function WritingList() {
       </a>
     </section>
   );
-}
+};

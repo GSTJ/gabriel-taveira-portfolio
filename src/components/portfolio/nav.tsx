@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { useTranslations } from "next-intl";
+
 import { ArrowRight, BrandMark } from "./shared";
 
 const NAV_LINKS = [
@@ -12,13 +14,13 @@ const NAV_LINKS = [
   { id: "about", key: "now" },
 ] as const;
 
-export function Nav({
+export const Nav = ({
   active,
   onNav,
 }: {
   active: string;
   onNav: (id: string) => void;
-}) {
+}) => {
   const t = useTranslations("nav");
   const [scrolled, setScrolled] = useState(false);
   const [burst, setBurst] = useState(false);
@@ -35,10 +37,12 @@ export function Nav({
   };
 
   return (
-    <div className={`ws-nav-wrap ws-pdf-hide${scrolled ? " ws-nav-scrolled" : ""}`}>
+    <div
+      className={`ws-nav-wrap ws-pdf-hide${scrolled ? " ws-nav-scrolled" : ""}`}
+    >
       <nav className="ws-nav">
         <a
-          className={"ws-nav-brand" + (burst ? " ws-nav-brand-burst" : "")}
+          className={`ws-nav-brand${burst ? " ws-nav-brand-burst" : ""}`}
           href="#top"
           onClick={(e) => {
             e.preventDefault();
@@ -52,9 +56,7 @@ export function Nav({
           {NAV_LINKS.map((l) => (
             <a
               key={l.id}
-              className={
-                "ws-nav-link" + (active === l.id ? " ws-nav-link-active" : "")
-              }
+              className={`ws-nav-link${active === l.id ? " ws-nav-link-active" : ""}`}
               href={`#${l.id}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -67,6 +69,7 @@ export function Nav({
         </div>
         <div className="ws-nav-spacer" />
         <button
+          type="button"
           className="ws-btn ws-btn-primary"
           onClick={() => onNav("contact")}
         >
@@ -76,4 +79,4 @@ export function Nav({
       </nav>
     </div>
   );
-}
+};

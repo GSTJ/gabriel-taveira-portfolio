@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+
 import { getTranslations } from "next-intl/server";
+
 import { CHANNELS } from "@/components/portfolio/data";
 import {
   ArrowUpRight,

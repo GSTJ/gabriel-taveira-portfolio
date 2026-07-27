@@ -2,7 +2,6 @@
   "name": "personal-curriculum",
   "version": "1.0.3",
   "private": true,
-  "packageManager": "pnpm@8.15.9",
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
@@ -44,6 +43,7 @@
     "puppeteer": "^25.0.0",
     "wrangler": "4.114.0"
   },
+  "packageManager": "pnpm@8.15.9",
   "pnpm": {
     "overrides": {
       "@babel/core": "^7.29.6",

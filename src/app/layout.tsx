@@ -1,6 +1,5 @@
 import "@total-typescript/ts-reset";
 import "./globals.css";
-
 import type { Metadata } from "next";
 
 /**

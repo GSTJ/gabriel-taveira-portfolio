@@ -1,10 +1,11 @@
-import Balancer from "react-wrap-balancer";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Balancer } from "react-wrap-balancer";
+
 import { NOW } from "./data";
 import { currentMonthLabel } from "./lifeline";
 import { Eyebrow, richTags } from "./shared";
 
-export async function NowPlaying() {
+export const NowPlaying = async () => {
   const t = await getTranslations("now");
   const tItems = await getTranslations("now.items");
   const locale = await getLocale();
@@ -34,4 +35,4 @@ export async function NowPlaying() {
       </ul>
     </section>
   );
-}
+};

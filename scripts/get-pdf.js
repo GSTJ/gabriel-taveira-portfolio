@@ -2,9 +2,16 @@ const fs = require("fs");
 const { execSync } = require("child_process");
 const puppeteer = require("puppeteer");
 
+/**
+ * `catch` binds `unknown`, and only `Error` is guaranteed to carry a message.
+ *
+ * @param {unknown} error
+ */
+const messageOf = (error) => (error instanceof Error ? error.message : error);
+
 const getPdf = async () => {
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: true,
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
@@ -90,9 +97,7 @@ const getPdf = async () => {
   try {
     await page.waitForFunction(
       () => {
-        const stats = Array.from(
-          document.querySelectorAll(".ws-hero-stat-v"),
-        );
+        const stats = [...document.querySelectorAll(".ws-hero-stat-v")];
         return (
           stats.length > 0 &&
           stats.every((el) => {
@@ -103,10 +108,10 @@ const getPdf = async () => {
       },
       { timeout: 5000 },
     );
-  } catch (err) {
+  } catch (error) {
     console.warn(
       "Hero stats wait timed out, continuing with whatever is on screen:",
-      err.message,
+      messageOf(error),
     );
   }
 
@@ -118,21 +123,12 @@ const getPdf = async () => {
   const WEB_WIDTH = 1200;
   const BOTTOM_MARGIN = 32;
   const height = await page.evaluate((margin) => {
-    const candidates = [
-      ".ws-footer",
-      "#contact",
-      "footer",
-      "main",
-    ];
-    let bottom = 0;
-    for (const sel of candidates) {
-      const el = document.querySelector(sel);
-      if (!el) continue;
-      const rect = el.getBoundingClientRect();
-      const elBottom = rect.bottom + window.scrollY;
-      if (elBottom > bottom) bottom = elBottom;
-    }
-    if (!bottom) bottom = document.body.scrollHeight;
+    const candidates = [".ws-footer", "#contact", "footer", "main"];
+    const bottoms = candidates
+      .map((sel) => document.querySelector(sel))
+      .filter((el) => el !== null)
+      .map((el) => el.getBoundingClientRect().bottom + window.scrollY);
+    const bottom = Math.max(0, ...bottoms) || document.body.scrollHeight;
     return Math.ceil(bottom + margin);
   }, BOTTOM_MARGIN);
 
@@ -170,10 +166,10 @@ const getPdf = async () => {
       { stdio: "inherit" },
     );
     fs.unlinkSync(tmpOut);
-  } catch (err) {
+  } catch (error) {
     console.warn(
       "Ghostscript compression failed, using uncompressed PDF:",
-      err.message,
+      messageOf(error),
     );
     fs.renameSync(tmpOut, finalOut);
   }

@@ -8,7 +8,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 // using IntersectionObserver. Respects prefers-reduced-motion.
 type MarkProps = { children: ReactNode };
 
-export function Mark({ children }: MarkProps) {
+export const Mark = ({ children }: MarkProps) => {
   const ref = useRef<HTMLSpanElement | null>(null);
   const [on, setOn] = useState(false);
 
@@ -16,6 +16,12 @@ export function Mark({ children }: MarkProps) {
     const node = ref.current;
     if (!node) return;
     if (typeof IntersectionObserver === "undefined") {
+      // Fallback for environments without the observer (older Safari, the
+      // Puppeteer PDF capture): show the highlight rather than never animating
+      // it in. Whether the API exists can't be known at render time on the
+      // server, so this is state read from outside React, which is the case
+      // `react/react-compiler` can't distinguish.
+      // oxlint-disable-next-line react/react-compiler
       setOn(true);
       return;
     }
@@ -40,4 +46,4 @@ export function Mark({ children }: MarkProps) {
       {children}
     </span>
   );
-}
+};

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+
 import { notFound } from "next/navigation";
 
-import { Analytics } from "@vercel/analytics/react";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
 import { buildPortfolioJsonLd } from "@/components/portfolio/structured-data";
 import { routing } from "@/utils/routing";
@@ -49,9 +50,7 @@ export async function generateMetadata({
       canonical: `${SITE_URL}/${locale}`,
       languages,
       types: {
-        "application/pdf": [
-          { url: "/curriculum.pdf", title: "Resume PDF" },
-        ],
+        "application/pdf": [{ url: "/curriculum.pdf", title: "Resume PDF" }],
       },
     },
     openGraph: {
@@ -99,16 +98,30 @@ export default async function LocaleLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/*
+          `no-page-custom-font` is a Pages Router rule: it wants the font link in
+          `pages/_document.js` so it isn't scoped to one page. There is no
+          `_document` in the App Router, and the root layout's `<head>` is the
+          equivalent — this link is on every route already.
+        */}
+        {/* oxlint-disable-next-line nextjs/no-page-custom-font */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Caveat:wght@500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
         />
+        {/*
+          JSON-LD has no non-`dangerouslySetInnerHTML` form. Both payloads are
+          built by `buildPortfolioJsonLd` from module constants and never touch
+          user input, and `JSON.stringify` escapes what does go in.
+        */}
         <script
           type="application/ld+json"
+          // oxlint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
         />
         <script
           type="application/ld+json"
+          // oxlint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }}
         />
       </head>

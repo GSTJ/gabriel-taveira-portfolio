@@ -1,23 +1,20 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  CAREER_START_YEAR,
-  yearsInIndustry,
-  yearsTinkering,
-} from "./lifeline";
+
+import { CAREER_START_YEAR, yearsInIndustry, yearsTinkering } from "./lifeline";
 
 /**
  * Pads `prefix` with `.` characters to a consistent column width
  * for the system-audit readout.
  */
-function row(label: string, value: string): string {
+const row = (label: string, value: string): string => {
   const total = 36;
   const dots = ".".repeat(Math.max(2, total - label.length));
   return `> ${label} ${dots} ${value}`;
-}
+};
 
-export function SystemAudit({ onClose }: { onClose: () => void }) {
+export const SystemAudit = ({ onClose }: { onClose: () => void }) => {
   const [lines, setLines] = useState<string[]>([]);
 
   const script = useMemo(
@@ -48,7 +45,8 @@ export function SystemAudit({ onClose }: { onClose: () => void }) {
         clearInterval(id);
         return;
       }
-      setLines((prev) => [...prev, script[i]]);
+      const line = script[i] ?? "";
+      setLines((prev) => [...prev, line]);
       i++;
     }, 90);
     return () => clearInterval(id);
@@ -63,14 +61,35 @@ export function SystemAudit({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   return (
-    <div className="ws-audit-backdrop" onClick={onClose}>
-      <div className="ws-audit" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="ws-audit-backdrop"
+      role="presentation"
+      onClick={(e) => {
+        // Click-away only. Comparing target to currentTarget replaces the
+        // stopPropagation handler the panel used to carry, which the a11y rules
+        // were right to flag: a div with a click handler and no role is a
+        // control screen readers can't see.
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div
+        className="ws-audit"
+        // `prefer-tag-over-role` wants a native `<dialog>`. That only renders in
+        // the top layer via `showModal()`, and it brings the UA stylesheet with
+        // it — this overlay is positioned entirely by `.ws-audit`.
+        // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ws-audit-title"
+      >
         <div className="ws-audit-head">
           <span className="ws-audit-light" />
           <span className="ws-audit-light" />
           <span className="ws-audit-light" />
-          <span className="ws-audit-title">workshop.audit</span>
-          <button className="ws-audit-close" onClick={onClose}>
+          <span className="ws-audit-title" id="ws-audit-title">
+            workshop.audit
+          </span>
+          <button type="button" className="ws-audit-close" onClick={onClose}>
             esc
           </button>
         </div>
@@ -81,4 +100,4 @@ export function SystemAudit({ onClose }: { onClose: () => void }) {
       </div>
     </div>
   );
-}
+};
