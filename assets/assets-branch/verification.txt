@@ -1,0 +1,97 @@
+Verification for PR #141 - generated assets published to the assets branch
+Captured 2026-07-27T03:21:55Z
+
+==============================================================
+1. assets branch: one orphan commit, both files, no history
+==============================================================
+commit 1d0f5893f4a46a730b966502c41bc3a8fba18811  2026-07-27T03:18:29Z  chore: publish the generated pdf and gif 💾
+parents: 0 (0 == orphan)
+  curriculum.pdf  715759 bytes
+  demo.gif  3690920 bytes
+
+==============================================================
+2. main no longer carries either asset
+==============================================================
+main is at 5c5e248
+  demo.gif: absent
+  public/curriculum.pdf: absent
+  public/ now holds: public/noise.png public/og-image.png public/trophies 
+
+==============================================================
+3. the workflow published it, with no PR and no verify run
+==============================================================
+run Generate static files event=push branch=main conclusion=success
+  success  Set up job
+  success  Build PabloLec/website-to-gif@44056271a60cc6748fdfc990633a51bcb124a2cb
+  success  🏗 Setup Repo
+  success  🏗 Setup PNPM
+  success  🏗 Setup Node.js
+  success  📦 Install dependencies
+  success  🏗 Install ghostscript
+  success  🖨️ Generate PDF
+  success  🤖 Capture the site GIF
+  success  📤 Publish to the assets branch
+  success  Post 🏗 Setup Node.js
+  success  Post 🏗 Setup PNPM
+  success  Post 🏗 Setup Repo
+  success  Complete job
+
+workflow runs ever triggered on the assets branch: 0  (0 == no trigger cycle)
+pull requests opened by github-actions since the merge:
+  #142 by app/github-actions: chore(main): release 1.0.2
+  (only release-please's release PR, no asset PR)
+
+==============================================================
+4. live domain serves a real PDF, edge cached
+==============================================================
+$ curl -sSI https://www.gabrieltaveira.dev/curriculum.pdf
+  HTTP/2 200 
+  content-type: application/pdf
+  age: 152
+  cache-control: public, max-age=14400
+  content-disposition: inline; filename="gabriel-taveira.pdf"
+  x-vercel-cache: HIT
+
+  GET http=200 bytes=715759 content_type=application/pdf
+  magic bytes: 255044462d312e35 -> %PDF-
+  trailer:     %%EOF
+  file(1):     PDF document, version 1.5, 1 pages
+  sha256 live:   6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+  sha256 branch: 6442e929b6ec44287aa786cd5a112f0c9f1e64c8846ba178de4ab01398646e03
+
+second request shows the Vercel edge cache absorbing it:
+  age: 152
+  x-vercel-cache: HIT
+
+the .com.br domain too:
+  HTTP/2 200 
+  content-type: application/pdf
+
+==============================================================
+5. why it is a route handler and not a next.config rewrite
+==============================================================
+raw.githubusercontent's own headers for the same file:
+  HTTP/2 200 
+  content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+  content-type: application/octet-stream
+  x-content-type-options: nosniff
+
+  An external rewrite passes those through verbatim (measured locally against
+  next start), and a headers() entry on /curriculum.pdf does not override them.
+  application/octet-stream + nosniff + sandbox CSP makes a browser download the
+  resume as an unnamed blob instead of opening it.
+
+==============================================================
+6. README renders the GIF from the assets branch
+==============================================================
+img element as github.com serves it:
+  <img width="1498" alt="preview" src="https://raw.githubusercontent.com/GSTJ/gabriel-taveira-portfolio/assets/demo.gif" data-animated-image="" style="max-width: 100%;">
+  Loaded in a real browser: complete=true naturalWidth=640 naturalHeight=360
+  Not camo-proxied: GitHub only proxies third-party hosts, raw.githubusercontent
+  is first-party so the img points straight at it.
+
+==============================================================
+7. assets branch ruleset: deletion only, force-push still allowed
+==============================================================
+{"bypass":[{"actor_id":5,"actor_type":"RepositoryRole","bypass_mode":"always"}],"enforcement":"active","include":["refs/heads/assets"],"name":"assets","rules":["deletion"]}
+  The workflow force-pushed successfully under it, see section 3.
