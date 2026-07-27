@@ -1,4 +1,5 @@
 import { Provider as BalancerProvider } from "react-wrap-balancer";
+
 import { Awards } from "./awards";
 import { ClientChrome } from "./client-chrome";
 import { Contact } from "./contact";
@@ -19,7 +20,7 @@ import { WritingList } from "./writing-list";
  * `<Balancer>` used inside a heading shares a single inline script for
  * line-balancing measurements.
  */
-export function Portfolio() {
+export const Portfolio = () => {
   return (
     <BalancerProvider>
       <ClientChrome />
@@ -33,4 +34,4 @@ export function Portfolio() {
       <Contact />
     </BalancerProvider>
   );
-}
+};

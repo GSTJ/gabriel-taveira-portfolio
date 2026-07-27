@@ -1,17 +1,25 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Balancer from "react-wrap-balancer";
+
 import { useTranslations } from "next-intl";
+import { Balancer } from "react-wrap-balancer";
+
 import { CHANNELS, EMAIL_ADDR } from "./data";
-import { Marginalia } from "./marginalia";
-import { ArrowRight, ArrowUpRight, BrandMark, Eyebrow, richTags } from "./shared";
-import { SOCIAL_ICONS } from "./social-icons";
 import { LanguageSwitcher } from "./language-switcher";
+import { Marginalia } from "./marginalia";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BrandMark,
+  Eyebrow,
+  richTags,
+} from "./shared";
+import { SOCIAL_ICONS } from "./social-icons";
 
 const EMPTY = { name: "", email: "", subject: "", message: "" };
 
-export function Contact() {
+export const Contact = () => {
   const t = useTranslations("contact");
   const tForm = useTranslations("contact.form");
   const tChannels = useTranslations("contact.channels");
@@ -130,9 +138,11 @@ export function Contact() {
 
       <footer className="ws-footer ws-pdf-hide">
         <address className="ws-sr-only">
-          Gabriel Taveira, Engineering Lead. Ribeirão Preto, SP, Brazil.
-          Reach out via{" "}
-          <a href="mailto:gabrielstaveira@gmail.com">gabrielstaveira@gmail.com</a>
+          Gabriel Taveira, Engineering Lead. Ribeirão Preto, SP, Brazil. Reach
+          out via{" "}
+          <a href="mailto:gabrielstaveira@gmail.com">
+            gabrielstaveira@gmail.com
+          </a>
           .
         </address>
         <div className="ws-footer-row">
@@ -150,4 +160,4 @@ export function Contact() {
       </footer>
     </section>
   );
-}
+};

@@ -1,14 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
 import type { FlourishKind } from "./data";
 
-type CoinQuote = {
+import { useCallback, useEffect, useState } from "react";
+
+interface CoinQuote {
   price: number;
   delta: number;
   currency: "USD";
   stale: boolean;
-};
+}
 
 const DEFAULT_QUOTE: CoinQuote = {
   price: 248.92,
@@ -17,12 +18,21 @@ const DEFAULT_QUOTE: CoinQuote = {
   stale: true,
 };
 
+/** The palette strip. Constant, so the style objects live outside render. */
+const SWATCHES = [
+  { background: "#e07a1f" },
+  { background: "#e63b30" },
+  { background: "#c89a3a" },
+  { background: "#2aa39b" },
+  { background: "#f6f1e6" },
+];
+
 // Module-level memo so repeat hovers within a session don't re-fetch.
 let coinCache: CoinQuote | null = null;
 let coinInflight: Promise<CoinQuote | null> | null = null;
 
-async function fetchCoin(): Promise<CoinQuote | null> {
-  if (coinCache) return coinCache;
+const fetchCoin = (): Promise<CoinQuote | null> => {
+  if (coinCache) return Promise.resolve(coinCache);
   if (coinInflight) return coinInflight;
   coinInflight = (async () => {
     try {
@@ -38,9 +48,9 @@ async function fetchCoin(): Promise<CoinQuote | null> {
     }
   })();
   return coinInflight;
-}
+};
 
-function FlourishTicker({ hover }: { hover: boolean }) {
+const FlourishTicker = ({ hover }: { hover: boolean }) => {
   const [quote, setQuote] = useState<CoinQuote>(
     () => coinCache ?? DEFAULT_QUOTE,
   );
@@ -50,15 +60,17 @@ function FlourishTicker({ hover }: { hover: boolean }) {
     if (data) setQuote(data);
   }, []);
 
-  // Fetch once on mount; cache makes this cheap.
+  // Fetch once on mount. A warm cache is already in the initial state above,
+  // so there is nothing to set here when it hits.
   useEffect(() => {
+    // eslint-disable-next-line react/react-compiler -- `load` only reaches setQuote after awaiting the fetch, so this is not the synchronous cascade the rule is looking for; it cannot see through the await.
     if (!coinCache) void load();
-    else setQuote(coinCache);
   }, [load]);
 
   // Refresh on hover (still hits module cache after first call).
   useEffect(() => {
     if (!hover) return;
+    // eslint-disable-next-line react/react-compiler -- as above, setQuote only happens after the await.
     void load();
   }, [hover, load]);
 
@@ -87,12 +99,12 @@ function FlourishTicker({ hover }: { hover: boolean }) {
       </svg>
     </div>
   );
-}
+};
 
-function FlourishFrames({ hover }: { hover: boolean }) {
+const FlourishFrames = ({ hover }: { hover: boolean }) => {
   return (
     <div
-      className={"ws-flourish ws-flourish-frames" + (hover ? " is-hover" : "")}
+      className={`ws-flourish ws-flourish-frames${hover ? " is-hover" : ""}`}
     >
       <div className="ws-frame" />
       <div className="ws-frame ws-frame-active">
@@ -103,29 +115,23 @@ function FlourishFrames({ hover }: { hover: boolean }) {
       <div className="ws-frame" />
     </div>
   );
-}
+};
 
-function FlourishSwatches({ hover }: { hover: boolean }) {
+const FlourishSwatches = ({ hover }: { hover: boolean }) => {
   return (
     <div
-      className={
-        "ws-flourish ws-flourish-swatches" + (hover ? " is-hover" : "")
-      }
+      className={`ws-flourish ws-flourish-swatches${hover ? " is-hover" : ""}`}
     >
-      <div className="ws-sw" style={{ background: "#e07a1f" }} />
-      <div className="ws-sw" style={{ background: "#e63b30" }} />
-      <div className="ws-sw" style={{ background: "#c89a3a" }} />
-      <div className="ws-sw" style={{ background: "#2aa39b" }} />
-      <div className="ws-sw" style={{ background: "#f6f1e6" }} />
+      {SWATCHES.map((swatch) => (
+        <div key={swatch.background} className="ws-sw" style={swatch} />
+      ))}
     </div>
   );
-}
+};
 
-function FlourishSpark({ hover }: { hover: boolean }) {
+const FlourishSpark = ({ hover }: { hover: boolean }) => {
   return (
-    <div
-      className={"ws-flourish ws-flourish-spark" + (hover ? " is-hover" : "")}
-    >
+    <div className={`ws-flourish ws-flourish-spark${hover ? " is-hover" : ""}`}>
       <span className="ws-soc">SOC 2</span>
       <svg viewBox="0 0 90 22" className="ws-spark" preserveAspectRatio="none">
         <polyline
@@ -147,13 +153,11 @@ function FlourishSpark({ hover }: { hover: boolean }) {
       </svg>
     </div>
   );
-}
+};
 
-function FlourishScoot({ hover }: { hover: boolean }) {
+const FlourishScoot = ({ hover }: { hover: boolean }) => {
   return (
-    <div
-      className={"ws-flourish ws-flourish-scoot" + (hover ? " is-hover" : "")}
-    >
+    <div className={`ws-flourish ws-flourish-scoot${hover ? " is-hover" : ""}`}>
       <span className="ws-scoot-pkg" aria-hidden>
         📦
       </span>
@@ -165,14 +169,12 @@ function FlourishScoot({ hover }: { hover: boolean }) {
       </span>
     </div>
   );
-}
+};
 
-function FlourishMigration({ hover }: { hover: boolean }) {
+const FlourishMigration = ({ hover }: { hover: boolean }) => {
   return (
     <div
-      className={
-        "ws-flourish ws-flourish-migration" + (hover ? " is-hover" : "")
-      }
+      className={`ws-flourish ws-flourish-migration${hover ? " is-hover" : ""}`}
     >
       <span className="ws-mig-tag">Ionic</span>
       <svg
@@ -189,13 +191,11 @@ function FlourishMigration({ hover }: { hover: boolean }) {
       <span className="ws-mig-tag ws-mig-tag-active">RN</span>
     </div>
   );
-}
+};
 
-function FlourishTools({ hover }: { hover: boolean }) {
+const FlourishTools = ({ hover }: { hover: boolean }) => {
   return (
-    <div
-      className={"ws-flourish ws-flourish-tools" + (hover ? " is-hover" : "")}
-    >
+    <div className={`ws-flourish ws-flourish-tools${hover ? " is-hover" : ""}`}>
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -208,15 +208,15 @@ function FlourishTools({ hover }: { hover: boolean }) {
       </svg>
     </div>
   );
-}
+};
 
-export function Flourish({
+export const Flourish = ({
   kind,
   hover,
 }: {
   kind: FlourishKind;
   hover: boolean;
-}) {
+}) => {
   switch (kind) {
     case "ticker":
       return <FlourishTicker hover={hover} />;
@@ -235,4 +235,4 @@ export function Flourish({
     default:
       return null;
   }
-}
+};

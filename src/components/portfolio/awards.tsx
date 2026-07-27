@@ -1,9 +1,10 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
+import { Balancer } from "react-wrap-balancer";
+
 import { AWARDS } from "./data";
 import { Eyebrow, richTags } from "./shared";
 
-export async function Awards() {
+export const Awards = async () => {
   const t = await getTranslations("awards");
   return (
     <section className="ws-section" id="awards">
@@ -18,7 +19,7 @@ export async function Awards() {
         {AWARDS.map((a) => (
           <li
             key={a.id}
-            className={"ws-awards-row ws-awards-trophy-" + a.trophy}
+            className={`ws-awards-row ws-awards-trophy-${a.trophy}`}
           >
             <span className="ws-awards-year">{a.year}</span>
             <span className="ws-awards-position">
@@ -34,6 +35,7 @@ export async function Awards() {
               strokeLinejoin="miter"
               strokeMiterlimit="2"
               aria-hidden="false"
+              // eslint-disable-next-line jsx-a11y/prefer-tag-over-role -- the rule wants an <img>, but this is inline SVG: swapping the tag would mean moving the artwork into a separate file and losing currentColor. role="img" plus a <title> child is the documented accessible-inline-SVG pattern.
               role="img"
             >
               <title>Hackathon trophy</title>
@@ -50,13 +52,22 @@ export async function Awards() {
                 d="M17.85 4.1 C 19.4 3.9, 21 4.65, 20.85 6.45 C 20.7 8.25, 19.15 9.2, 17.5 9.0"
                 strokeWidth="1.7"
               />
-              <path d="M10.1 15.2 C 10 16.4, 10.05 17.2, 10.15 17.6 C 9.4 18.4, 8.55 19.4, 8.4 21.7" strokeWidth="1.7" />
-              <path d="M14 15.25 C 14.1 16.4, 14 17.2, 13.9 17.7 C 14.7 18.5, 15.55 19.5, 15.65 21.65" strokeWidth="1.7" />
-              <path d="M5.4 21.85 C 9 22.2, 15 22.15, 18.65 21.8" strokeWidth="2.2" />
+              <path
+                d="M10.1 15.2 C 10 16.4, 10.05 17.2, 10.15 17.6 C 9.4 18.4, 8.55 19.4, 8.4 21.7"
+                strokeWidth="1.7"
+              />
+              <path
+                d="M14 15.25 C 14.1 16.4, 14 17.2, 13.9 17.7 C 14.7 18.5, 15.55 19.5, 15.65 21.65"
+                strokeWidth="1.7"
+              />
+              <path
+                d="M5.4 21.85 C 9 22.2, 15 22.15, 18.65 21.8"
+                strokeWidth="2.2"
+              />
             </svg>
           </li>
         ))}
       </ul>
     </section>
   );
-}
+};

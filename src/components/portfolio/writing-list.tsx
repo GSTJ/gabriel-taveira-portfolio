@@ -1,9 +1,10 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
+import { Balancer } from "react-wrap-balancer";
+
 import { MEDIUM, WRITING_TOPICS } from "./data";
 import { ArrowUpRight, Eyebrow, richTags } from "./shared";
 
-export async function WritingList() {
+export const WritingList = async () => {
   const t = await getTranslations("writing");
   return (
     <section className="ws-section" id="writing">
@@ -15,11 +16,15 @@ export async function WritingList() {
         <p className="ws-section-sub">{t("sub")}</p>
       </div>
 
+      {/* Every string inside this card comes out of `t(...)`, so nothing here
+          gives the link an accessible name a screen reader can announce up
+          front. The CTA text is the name a user would say out loud. */}
       <a
         className="ws-writing-callout"
         href={MEDIUM}
         target="_blank"
         rel="noreferrer"
+        aria-label={t("readOnMedium")}
       >
         <div className="ws-writing-callout-glow" />
         <div className="ws-writing-callout-left">
@@ -47,7 +52,7 @@ export async function WritingList() {
             {WRITING_TOPICS.map((topic) => (
               <span
                 key={topic.id}
-                className={"ws-writing-topic ws-writing-topic-" + topic.tone}
+                className={`ws-writing-topic ws-writing-topic-${topic.tone}`}
               >
                 {t(`topics.${topic.id}`)}
               </span>
@@ -62,4 +67,4 @@ export async function WritingList() {
       </a>
     </section>
   );
-}
+};

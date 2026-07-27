@@ -1,19 +1,30 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
+
 import { useTranslations } from "next-intl";
+
 import { CURRICULUM_PDF, LINKEDIN } from "./data";
 import { scrollToSection, useCountUp } from "./hooks";
-import {
-  CAREER_START_YEAR,
-  yearsInIndustry,
-  yearsTinkering,
-} from "./lifeline";
+import { CAREER_START_YEAR, yearsInIndustry, yearsTinkering } from "./lifeline";
 import { Marginalia } from "./marginalia";
 import { Mark } from "./mark";
 import { ArrowRight, richTags } from "./shared";
 
-export function Hero() {
+/**
+ * The intro copy renders `<strong>` inside a `<Mark>` sweep. Module scope so
+ * it stays one component identity instead of a fresh one every render.
+ */
+const introTags = {
+  ...richTags,
+  strong: (chunks: ReactNode) => (
+    <Mark>
+      <strong>{chunks}</strong>
+    </Mark>
+  ),
+};
+
+export const Hero = () => {
   const t = useTranslations("hero");
   const tStats = useTranslations("hero.stats");
   const tMarg = useTranslations("marginalia");
@@ -49,15 +60,7 @@ export function Hero() {
         </h1>
 
         <p className="ws-hero-sub">
-          {t.rich("intro", {
-            ...richTags,
-            strong: (chunks: ReactNode) => (
-              <Mark>
-                <strong>{chunks}</strong>
-              </Mark>
-            ),
-            years: yearsTarget,
-          })}
+          {t.rich("intro", { ...introTags, years: yearsTarget })}
         </p>
 
         <p className="ws-hero-sub-2">
@@ -138,8 +141,12 @@ export function Hero() {
             <div className="ws-hero-stat-meta">{tStats("reportsMeta")}</div>
             <span className="ws-hero-stat-tag">
               <Marginalia tilt={-6}>
-                <span className="ws-hero-stat-tag-arrow-side" aria-hidden>← </span>
-                <span className="ws-hero-stat-tag-arrow-up" aria-hidden>↑ </span>
+                <span className="ws-hero-stat-tag-arrow-side" aria-hidden>
+                  ←{" "}
+                </span>
+                <span className="ws-hero-stat-tag-arrow-up" aria-hidden>
+                  ↑{" "}
+                </span>
                 {tMarg("yesReally")}
               </Marginalia>
             </span>
@@ -161,6 +168,7 @@ export function Hero() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="false"
+                // eslint-disable-next-line jsx-a11y/prefer-tag-over-role -- the rule wants an <img>, but this is inline SVG: swapping the tag would mean moving the artwork into a separate file and losing currentColor. role="img" plus a <title> child is the documented accessible-inline-SVG pattern.
                 role="img"
               >
                 <title>Hackathon trophy</title>
@@ -200,10 +208,34 @@ export function Hero() {
                   {/* base (outline only) */}
                   <path d="M 178,356 C 220,352 270,355 323,353 C 328,375 321,395 326,413 C 331,414 336,417 333,426 C 270,429 210,424 167,427 C 164,418 171,413 174,413 C 178,392 173,372 178,356 Z" />
                   {/* sparkle highlights */}
-                  <circle cx="188" cy="142" r="2.5" fill="currentColor" stroke="none" />
-                  <circle cx="312" cy="188" r="3" fill="currentColor" stroke="none" />
-                  <circle cx="292" cy="218" r="2.5" fill="currentColor" stroke="none" />
-                  <circle cx="296" cy="252" r="3" fill="currentColor" stroke="none" />
+                  <circle
+                    cx="188"
+                    cy="142"
+                    r="2.5"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="312"
+                    cy="188"
+                    r="3"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="292"
+                    cy="218"
+                    r="2.5"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="296"
+                    cy="252"
+                    r="3"
+                    fill="currentColor"
+                    stroke="none"
+                  />
                 </g>
               </svg>
               <span>{awards}</span>
@@ -217,4 +249,4 @@ export function Hero() {
       <div className="ws-shelf-edge" />
     </section>
   );
-}
+};

@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
 import type { ChannelIcon } from "./data";
+
+import type { ReactNode } from "react";
 
 export const SOCIAL_ICONS: Record<ChannelIcon, ReactNode> = {
   linkedin: (

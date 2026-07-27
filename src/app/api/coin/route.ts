@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 
-type CoinPayload = {
+interface CoinPayload {
   price: number;
   delta: number;
   currency: "USD";
   stale: boolean;
-};
+}
 
 const FALLBACK: CoinPayload = {
   price: 248.92,
-  delta: 0.0,
+  delta: 0,
   currency: "USD",
   stale: true,
 };
@@ -34,18 +34,21 @@ export async function GET() {
     );
 
     if (!res.ok) {
-      return NextResponse.json(FALLBACK, { status: 200, headers: CACHE_HEADERS });
+      return NextResponse.json(FALLBACK, {
+        status: 200,
+        headers: CACHE_HEADERS,
+      });
     }
 
     const json = (await res.json()) as {
       chart?: {
-        result?: Array<{
+        result?: {
           meta?: {
             regularMarketPrice?: number;
             previousClose?: number;
             chartPreviousClose?: number;
           };
-        }>;
+        }[];
         error?: unknown;
       };
     };
@@ -55,7 +58,10 @@ export async function GET() {
     const prev = meta?.previousClose ?? meta?.chartPreviousClose;
 
     if (typeof price !== "number" || typeof prev !== "number" || prev === 0) {
-      return NextResponse.json(FALLBACK, { status: 200, headers: CACHE_HEADERS });
+      return NextResponse.json(FALLBACK, {
+        status: 200,
+        headers: CACHE_HEADERS,
+      });
     }
 
     const delta = ((price - prev) / prev) * 100;

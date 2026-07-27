@@ -14,20 +14,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     );
 
   for (const locale of routing.locales) {
-    routes.push({
-      url: `${SITE_URL}/${locale}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: locale === routing.defaultLocale ? 1 : 0.8,
-      alternates: { languages: languages("") },
-    });
-    routes.push({
-      url: `${SITE_URL}/${locale}/links`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.6,
-      alternates: { languages: languages("/links") },
-    });
+    routes.push(
+      {
+        url: `${SITE_URL}/${locale}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: locale === routing.defaultLocale ? 1 : 0.8,
+        alternates: { languages: languages("") },
+      },
+      {
+        url: `${SITE_URL}/${locale}/links`,
+        lastModified: now,
+        changeFrequency: "yearly",
+        priority: 0.6,
+        alternates: { languages: languages("/links") },
+      },
+    );
   }
 
   return routes;

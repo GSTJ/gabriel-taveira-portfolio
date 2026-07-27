@@ -1,10 +1,11 @@
 "use client";
 
 import { useLocale } from "next-intl";
+
 import { Link, usePathname } from "@/utils/navigation";
 import { routing } from "@/utils/routing";
 
-export function LanguageSwitcher() {
+export const LanguageSwitcher = () => {
   const current = useLocale();
   const pathname = usePathname(); // locale-stripped pathname
 
@@ -18,9 +19,7 @@ export function LanguageSwitcher() {
             key={locale}
             href={pathname}
             locale={locale}
-            className={
-              "ws-lang-link" + (isActive ? " ws-lang-link-active" : "")
-            }
+            className={`ws-lang-link${isActive ? " ws-lang-link-active" : ""}`}
             aria-current={isActive ? "true" : undefined}
           >
             {label}
@@ -29,4 +28,4 @@ export function LanguageSwitcher() {
       })}
     </nav>
   );
-}
+};

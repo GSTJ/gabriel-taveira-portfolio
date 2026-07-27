@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+
 import { getTranslations } from "next-intl/server";
+
 import { CHANNELS } from "@/components/portfolio/data";
 import {
   ArrowUpRight,
@@ -17,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function LinksPage() {
+const LinksPage = async () => {
   const t = await getTranslations("links");
   const tChannels = await getTranslations("contact.channels");
 
@@ -52,4 +54,6 @@ export default async function LinksPage() {
       </div>
     </main>
   );
-}
+};
+
+export default LinksPage;

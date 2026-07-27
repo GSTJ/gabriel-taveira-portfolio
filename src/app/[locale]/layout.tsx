@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+
 import { notFound } from "next/navigation";
 
-import { Analytics } from "@vercel/analytics/react";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
 import { buildPortfolioJsonLd } from "@/components/portfolio/structured-data";
 import { routing } from "@/utils/routing";
@@ -49,9 +50,7 @@ export async function generateMetadata({
       canonical: `${SITE_URL}/${locale}`,
       languages,
       types: {
-        "application/pdf": [
-          { url: "/curriculum.pdf", title: "Resume PDF" },
-        ],
+        "application/pdf": [{ url: "/curriculum.pdf", title: "Resume PDF" }],
       },
     },
     openGraph: {
@@ -76,13 +75,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function LocaleLayout({
+const LocaleLayout = async ({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}) {
+}) => {
   const { locale } = await params;
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
@@ -99,16 +98,22 @@ export default async function LocaleLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* eslint-disable-next-line nextjs/no-page-custom-font -- the rule is
+            about a font link living in a single Pages Router page; this is the
+            App Router root layout for every route under /[locale], so the
+            stylesheet is shared exactly as the rule wants it to be. */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Caveat:wght@500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
         />
         <script
           type="application/ld+json"
+          // eslint-disable-next-line react/no-danger -- JSON-LD has no React representation, so a raw script body is the only way to emit it, and the payload is JSON.stringify of an object this file builds.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
         />
         <script
           type="application/ld+json"
+          // eslint-disable-next-line react/no-danger -- same as above.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }}
         />
       </head>
@@ -121,4 +126,6 @@ export default async function LocaleLayout({
       </body>
     </html>
   );
-}
+};
+
+export default LocaleLayout;
