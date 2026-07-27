@@ -25,6 +25,11 @@ export function useCountUp(
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     if (isHeadless || reducedMotion) {
+      // Landing on the final value right after hydration is the whole point.
+      // It cannot be the initial state: `navigator` and `matchMedia` do not
+      // exist during the server render, and reading them lazily would make the
+      // client's first render disagree with the HTML it is hydrating.
+      // eslint-disable-next-line react/react-compiler -- see above
       setValue(target);
       return;
     }
@@ -32,7 +37,6 @@ export function useCountUp(
     if (!ref.current) return;
     let frame: number;
     let started = false;
-    let timeoutId: number | undefined;
 
     const begin = () => {
       if (started) return;
@@ -40,7 +44,7 @@ export function useCountUp(
       const t0 = performance.now();
       const step = (now: number) => {
         const k = Math.min(1, (now - t0) / duration);
-        const eased = 1 - Math.pow(1 - k, 3);
+        const eased = 1 - (1 - k) ** 3;
         setValue(Math.round(eased * target));
         if (k < 1) frame = requestAnimationFrame(step);
       };
@@ -57,7 +61,7 @@ export function useCountUp(
 
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) begin();
+        if (entry?.isIntersecting) begin();
       },
       { threshold: 0.3 },
     );
@@ -65,14 +69,14 @@ export function useCountUp(
 
     // Final safety net: if the observer never fires within 2s, force
     // the final value so the UI never gets stuck on 0.
-    timeoutId = window.setTimeout(() => {
+    const timeoutId = window.setTimeout(() => {
       if (!started) setValue(target);
     }, 2000);
 
     return () => {
       cancelAnimationFrame(frame);
       obs.disconnect();
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      window.clearTimeout(timeoutId);
     };
   }, [target, ref, duration]);
   return value;
@@ -90,11 +94,17 @@ export function scrollToSection(id: string): void {
     window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
-  const el = document.getElementById(id);
+  const el = document.querySelector<HTMLElement>(`#${id}`);
   if (el) {
     window.scrollTo({ top: el.offsetTop - NAV_OFFSET, behavior: "smooth" });
   }
 }
+
+/** Sections that highlight a differently-named nav entry. */
+const NAV_ALIASES: Record<string, string> = {
+  contact: "about",
+  writing: "publications",
+};
 
 /**
  * Tracks which section is currently in view, used to highlight the nav.
@@ -113,24 +123,17 @@ export function useScrollSpy(): string {
       "contact",
     ];
     const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
+      .map((id) => document.querySelector(`#${id}`))
+      .filter((el): el is HTMLElement => Boolean(el));
     const onScroll = () => {
       const y = window.scrollY + 200;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (y >= sections[i].offsetTop) {
-          const id = sections[i].id;
-          setActive(
-            id === "contact"
-              ? "about"
-              : id === "writing"
-                ? "publications"
-                : id,
-          );
-          return;
-        }
+      // `sections` is in document order, so the last one whose top has been
+      // passed is the one on screen.
+      let current = "work";
+      for (const section of sections) {
+        if (y >= section.offsetTop) current = section.id;
       }
-      setActive("work");
+      setActive(NAV_ALIASES[current] ?? current);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -147,7 +150,7 @@ export function useScrollSpy(): string {
 export function useLiveClock(targetId = "ws-clock"): void {
   useEffect(() => {
     const tick = () => {
-      const el = document.getElementById(targetId);
+      const el = document.querySelector(`#${targetId}`);
       if (!el) return;
       const now = new Date();
       const t = now.toLocaleTimeString("en-GB", {
@@ -164,7 +167,10 @@ export function useLiveClock(targetId = "ws-clock"): void {
   }, [targetId]);
 }
 
-export type ToastPayload = { message: string; sub?: string };
+export type ToastPayload = {
+  message: string;
+  sub?: string;
+};
 
 export type KeyboardEffectsConfig = {
   onKonami: () => ToastPayload;
@@ -198,15 +204,15 @@ export function useKeyboardEffects(
       "a",
     ];
     const konamiRef: string[] = [];
-    const gtRef: Array<{ k: string; t: number }> = [];
+    const gtRef: { k: string; t: number }[] = [];
 
     const spawnSpark = () => {
       const el = document.createElement("div");
       el.className = "ws-spark-rain";
       el.textContent = "⚡";
-      el.style.left = 10 + Math.random() * 80 + "vw";
-      el.style.animationDuration = 2.2 + Math.random() * 1.5 + "s";
-      document.body.appendChild(el);
+      el.style.left = `${10 + Math.random() * 80}vw`;
+      el.style.animationDuration = `${2.2 + Math.random() * 1.5}s`;
+      document.body.append(el);
       window.setTimeout(() => el.remove(), 4500);
     };
 
@@ -218,16 +224,11 @@ export function useKeyboardEffects(
       if (konamiRef.length > KONAMI.length) konamiRef.shift();
       const konamiMatched =
         konamiRef.length === KONAMI.length &&
-        konamiRef.every(
-          (x, i) => x.toLowerCase() === KONAMI[i].toLowerCase(),
-        );
+        konamiRef.every((x, i) => x.toLowerCase() === KONAMI[i]?.toLowerCase());
       if (konamiMatched) {
         setToast(config.onKonami());
         document.body.classList.add("ws-crt");
-        window.setTimeout(
-          () => document.body.classList.remove("ws-crt"),
-          4000,
-        );
+        window.setTimeout(() => document.body.classList.remove("ws-crt"), 4000);
         for (let i = 0; i < 18; i++) window.setTimeout(spawnSpark, i * 70);
         konamiRef.length = 0;
         return;
@@ -245,7 +246,10 @@ export function useKeyboardEffects(
 
       if (!inForm) {
         gtRef.push({ k: e.key.toLowerCase(), t: Date.now() });
-        while (gtRef.length && Date.now() - gtRef[0].t > 1000) gtRef.shift();
+        // Drop keystrokes older than a second, so "g" then "t" only counts as
+        // the `gt` shortcut when they were typed together.
+        const cutoff = Date.now() - 1000;
+        while ((gtRef.at(0)?.t ?? Infinity) < cutoff) gtRef.shift();
         const seq = gtRef.map((x) => x.k).join("");
         if (seq.endsWith("gt")) {
           config.onAudit();
@@ -282,7 +286,7 @@ export function useConsoleBanner(): void {
       " ██    ██     ██    ",
       "  ██████      ██    ",
     ].join("\n");
-    console.log("%c" + banner, css1);
+    console.log(`%c${banner}`, css1);
     console.log(
       "%cGabriel Taveira · Engineering Lead, currently consulting",
       css2,

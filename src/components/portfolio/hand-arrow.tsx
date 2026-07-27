@@ -1,7 +1,7 @@
 // Short, hand-drawn curved arrow used as a one-off pointer near
 // the contact form's keyboard hint. Stroke draws once on mount via
 // CSS keyframes — no JS, no observers.
-export function HandArrow() {
+export const HandArrow = () => {
   return (
     <svg
       className="ws-handarrow"
@@ -19,4 +19,4 @@ export function HandArrow() {
       <path d="M50 10 L 57 14 L 51 19" />
     </svg>
   );
-}
+};

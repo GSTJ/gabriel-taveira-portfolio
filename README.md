@@ -17,8 +17,8 @@ To run this project locally, follow these steps:
 
 ### Prerequisites
 
-- Node.js v16.8 or later
-- Yarn package manager
+- Node.js 24 or later
+- pnpm (the version in `packageManager`; `corepack enable` picks it up)
 
 ### Installation
 
@@ -32,13 +32,13 @@ git clone https://github.com/gstj/gabriel-taveira-portfolio.git
 
 ```sh
 cd gabriel-taveira-portfolio
-yarn install
+pnpm install
 ```
 
 3. Run the development server:
 
 ```sh
-yarn dev
+pnpm dev
 ```
 
 Open your browser and navigate to http://localhost:3000 to see the portfolio in action.
@@ -50,13 +50,13 @@ To deploy this project to production, follow these steps:
 1. Build the project for production:
 
 ```sh
-yarn build
+pnpm build
 ```
 
 2. Start the production server:
 
 ```sh
-yarn start
+pnpm start
 ```
 
 Deploy the out folder to your preferred hosting provider.

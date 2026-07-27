@@ -2,15 +2,16 @@
   "name": "personal-curriculum",
   "version": "1.0.3",
   "private": true,
-  "packageManager": "pnpm@8.15.9",
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
     "get:pdf": "node ./scripts/get-pdf.js",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "oxlint --report-unused-disable-directives",
+    "lint:fix": "oxlint --report-unused-disable-directives --fix",
+    "format": "oxfmt --check .",
+    "format:fix": "oxfmt ."
   },
   "dependencies": {
     "@next/third-parties": "16.2.12",
@@ -25,7 +26,6 @@
     "typescript": "7.0.2"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.1.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@total-typescript/ts-reset": "^0.6.1",
     "@types/node": "26.1.1",
@@ -33,13 +33,16 @@
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
     "critters": "^0.0.25",
-    "eslint": "^10.3.0",
-    "jest": "^30.4.2",
-    "jiti": "^2.7.0",
-    "magic-eslint-config": "^0.1.9",
+    "magic-codemods": "^1.1.0",
+    "magic-oxfmt-config": "^1.2.0",
+    "magic-oxlint-config": "^1.2.0",
+    "magic-tsconfig": "^1.2.0",
+    "oxfmt": "0.60.0",
+    "oxlint": "1.75.0",
     "puppeteer": "^25.0.0",
     "wrangler": "4.114.0"
   },
+  "packageManager": "pnpm@10.34.5",
   "pnpm": {
     "overrides": {
       "@babel/core": "^7.29.6",
@@ -57,6 +60,13 @@
       "picomatch@2": "^2.3.2",
       "sharp": "^0.35.0",
       "ws": "^8.21.0"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "esbuild",
+      "puppeteer",
+      "workerd"
+    ]
   }
 }

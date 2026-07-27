@@ -1,10 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Actions are pinned by commit digest with the version in a trailing comment, so a retagged release cannot change what runs. helpers:pinGitHubActionDigests keeps that true for actions added later, and renovate bumps the digest and the comment together.",
-  "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+  "extends": ["github>GSTJ/magic", "helpers:pinGitHubActionDigests"],
   "packageRules": [
     {
-      "description": "The pnpm.overrides block pins patched releases within a major line. Patch and minor bumps keep those pins current; a major rewrites what the override means and breaks the consumers it was pinning.",
+      "description": "The overrides block, now in pnpm-workspace.yaml, pins patched releases within a major line. Patch and minor bumps keep those pins current; a major rewrites what the override means and breaks the consumers it was pinning.",
       "matchDepTypes": ["pnpm.overrides"],
       "matchUpdateTypes": ["major"],
       "enabled": false

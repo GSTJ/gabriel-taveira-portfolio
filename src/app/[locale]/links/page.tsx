@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+
 import { getTranslations } from "next-intl/server";
+
 import { CHANNELS } from "@/components/portfolio/data";
 import {
   ArrowUpRight,
   BrandMark,
   Eyebrow,
   richTags,
-} from "@/components/portfolio/Shared";
-import { SOCIAL_ICONS } from "@/components/portfolio/SocialIcons";
+} from "@/components/portfolio/shared";
+import { SOCIAL_ICONS } from "@/components/portfolio/social-icons";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("links");
@@ -17,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function LinksPage() {
+const LinksPage = async () => {
   const t = await getTranslations("links");
   const tChannels = await getTranslations("contact.channels");
 
@@ -52,4 +54,6 @@ export default async function LinksPage() {
       </div>
     </main>
   );
-}
+};
+
+export default LinksPage;

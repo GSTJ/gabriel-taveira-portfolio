@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import { useTranslations } from "next-intl";
+
 import {
   scrollToSection,
   useConsoleBanner,
@@ -10,9 +12,9 @@ import {
   useScrollSpy,
   type ToastPayload,
 } from "./hooks";
-import { Nav } from "./Nav";
-import { SystemAudit } from "./SystemAudit";
-import { Toast } from "./Toast";
+import { Nav } from "./nav";
+import { SystemAudit } from "./system-audit";
+import { Toast } from "./toast";
 
 /**
  * Hosts every piece of interactivity that wraps the page:
@@ -26,7 +28,7 @@ import { Toast } from "./Toast";
  * the long-form copy ships as static HTML for SEO. This component only
  * adds chrome and behavior.
  */
-export function ClientChrome() {
+export const ClientChrome = () => {
   const tToast = useTranslations("toast");
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [audit, setAudit] = useState(false);
@@ -50,8 +52,8 @@ export function ClientChrome() {
   return (
     <>
       <Nav active={active} onNav={scrollToSection} />
-      {toast && <Toast {...toast} onClose={() => setToast(null)} />}
-      {audit && <SystemAudit onClose={() => setAudit(false)} />}
+      {toast !== null && <Toast {...toast} onClose={() => setToast(null)} />}
+      {Boolean(audit) && <SystemAudit onClose={() => setAudit(false)} />}
     </>
   );
-}
+};

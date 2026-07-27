@@ -2,13 +2,13 @@ import type { ReactNode } from "react";
 
 export type ChipTone = "neutral" | "ember" | "coral" | "brass" | "teal";
 
-export function BrandMark({
+export const BrandMark = ({
   size = 28,
   withText = true,
 }: {
   size?: number;
   withText?: boolean;
-}) {
+}) => {
   return (
     <div className="ws-brand">
       <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
@@ -29,26 +29,26 @@ export function BrandMark({
         <circle cx="32" cy="32" r="13" fill="url(#bm-g)" />
         <circle cx="28" cy="28" r="3.5" fill="#fde9d6" opacity="0.85" />
       </svg>
-      {withText && <span className="ws-brand-text">Workshop</span>}
+      {Boolean(withText) && <span className="ws-brand-text">Workshop</span>}
     </div>
   );
-}
+};
 
-export function Eyebrow({
+export const Eyebrow = ({
   children,
   accent = false,
 }: {
   children: ReactNode;
   accent?: boolean;
-}) {
+}) => {
   return (
-    <span className={"ws-eyebrow" + (accent ? " ws-eyebrow-accent" : "")}>
+    <span className={`ws-eyebrow${accent ? " ws-eyebrow-accent" : ""}`}>
       {children}
     </span>
   );
-}
+};
 
-export function Chip({
+export const Chip = ({
   children,
   tone = "neutral",
   dot = true,
@@ -56,20 +56,20 @@ export function Chip({
   children: ReactNode;
   tone?: ChipTone;
   dot?: boolean;
-}) {
+}) => {
   return (
     <span className={`ws-chip ws-chip-${tone}`}>
-      {dot && <span className="ws-chip-dot" />}
+      {Boolean(dot) && <span className="ws-chip-dot" />}
       {children}
     </span>
   );
-}
+};
 
-export function Tag({ children }: { children: ReactNode }) {
+export const Tag = ({ children }: { children: ReactNode }) => {
   return <span className="ws-tag">{children}</span>;
-}
+};
 
-export function ArrowRight({ size = 16 }: { size?: number }) {
+export const ArrowRight = ({ size = 16 }: { size?: number }) => {
   return (
     <svg
       width={size}
@@ -85,9 +85,9 @@ export function ArrowRight({ size = 16 }: { size?: number }) {
       <polyline points="12 5 19 12 12 19" />
     </svg>
   );
-}
+};
 
-export function ArrowUpRight({ size = 16 }: { size?: number }) {
+export const ArrowUpRight = ({ size = 16 }: { size?: number }) => {
   return (
     <svg
       width={size}
@@ -103,7 +103,7 @@ export function ArrowUpRight({ size = 16 }: { size?: number }) {
       <polyline points="7 7 17 7 17 17" />
     </svg>
   );
-}
+};
 
 /**
  * Standard `em` / `strong` render callbacks for `t.rich(...)`. Translation

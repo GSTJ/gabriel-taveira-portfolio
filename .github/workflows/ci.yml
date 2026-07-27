@@ -14,29 +14,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  checkup:
+    # Install, build, lint, format and typecheck all come from the shared
+    # workflow, so this repo stops carrying its own copy of the steps.
+    uses: GSTJ/magic/.github/workflows/ci.yml@main
+    # A called workflow cannot exceed the caller's grant, and this one only
+    # reads the tree.
+    permissions:
+      contents: read
+    with:
+      node-version: "24"
+      build-command: pnpm run build
+      # No turbo here, so the cache proxy would just be a step that does
+      # nothing. There is no test suite yet either; the reusable workflow skips
+      # the step when the command is empty, which is the default.
+      turbo-cache: false
+
+  # main's ruleset requires a status check named exactly `verify`, and a called
+  # workflow reports as `<caller job> / <called job>` — the reusable workflow
+  # can never produce that name on its own. This job carries it.
+  #
+  # `if: always()` plus the explicit result check is load-bearing: without it a
+  # failing `checkup` leaves this skipped, and GitHub counts a skipped required
+  # check as satisfied.
   verify:
+    needs: checkup
+    if: always()
     runs-on: ubuntu-latest
     # The repo hands workflows a write token by default and this one only reads.
     permissions:
       contents: read
     steps:
-      - name: 🏗 Setup Repo
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: 🏗 Setup PNPM
-        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
-
-      - name: 🏗 Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: 24.x
-          cache: pnpm
-
-      - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🔍 Typecheck
-        run: pnpm run typecheck
-
-      - name: 🏗 Build
-        run: pnpm run build
+      - name: ✅ Checkup result
+        run: |
+          echo "checkup concluded: ${{ needs.checkup.result }}"
+          [ "${{ needs.checkup.result }}" = "success" ]

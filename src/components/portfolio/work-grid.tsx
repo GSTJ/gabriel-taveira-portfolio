@@ -1,46 +1,66 @@
 "use client";
 
-import { Fragment, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import Balancer from "react-wrap-balancer";
+import {
+  Fragment,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
+
 import { useTranslations } from "next-intl";
+import { Balancer } from "react-wrap-balancer";
+
 import { WORK, type WorkItem } from "./data";
-import { Flourish } from "./Flourishes";
-import { Mark } from "./Mark";
-import { ArrowUpRight, Eyebrow, richTags, Tag } from "./Shared";
+import { Flourish } from "./flourishes";
+import { Mark } from "./mark";
+import { ArrowUpRight, Eyebrow, richTags, Tag } from "./shared";
 
-function HighlightedEyebrow({ text }: { text: string }) {
+/**
+ * The render callback for the `<mark>` tag used inside work blurbs. Defined at
+ * module scope so it is one stable component, not a new one per render.
+ */
+const blurbTags = {
+  mark: (chunks: ReactNode) => <Mark>{chunks}</Mark>,
+};
+
+/**
+ * Eyebrows are dot-separated ("COINBASE · G2I · 2024 → 25") and the last token
+ * is always the date, which gets its own styling. Tokens repeat across items,
+ * so the key pairs the position with the text rather than using either alone.
+ */
+const eyebrowTokens = (text: string) => {
   const parts = text.split(" · ");
-  const lastIdx = parts.length - 1;
-  return (
-    <span className="ws-eyebrow">
-      {parts.map((part, i) => {
-        const isDate = i === lastIdx;
-        return (
-          <Fragment key={i}>
-            {i > 0 && (
-              <span
-                className={
-                  "ws-eyebrow-sep" + (isDate ? " ws-eyebrow-sep-date" : "")
-                }
-              >
-                {" · "}
-              </span>
-            )}
-            <span
-              className={
-                "ws-eyebrow-token" + (isDate ? " ws-eyebrow-token-date" : "")
-              }
-            >
-              {part}
-            </span>
-          </Fragment>
-        );
-      })}
-    </span>
-  );
-}
+  return parts.map((part, index) => ({
+    key: `${index}-${part}`,
+    part,
+    first: index === 0,
+    isDate: index === parts.length - 1,
+  }));
+};
 
-function WorkTile({ item }: { item: WorkItem }) {
+const HighlightedEyebrow = ({ text }: { text: string }) => (
+  <span className="ws-eyebrow">
+    {eyebrowTokens(text).map((token) => (
+      <Fragment key={token.key}>
+        {!token.first && (
+          <span
+            className={`ws-eyebrow-sep${token.isDate ? " ws-eyebrow-sep-date" : ""}`}
+          >
+            {" · "}
+          </span>
+        )}
+        <span
+          className={`ws-eyebrow-token${token.isDate ? " ws-eyebrow-token-date" : ""}`}
+        >
+          {token.part}
+        </span>
+      </Fragment>
+    ))}
+  </span>
+);
+
+const WorkTile = ({ item }: { item: WorkItem }) => {
   const t = useTranslations(`work.items.${item.id}`);
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [hover, setHover] = useState(false);
@@ -81,12 +101,10 @@ function WorkTile({ item }: { item: WorkItem }) {
       <div className="ws-work-cell-top">
         <HighlightedEyebrow text={item.eyebrow} />
       </div>
-      <h3 className="ws-work-cell-title"><Balancer>{t("title")}</Balancer></h3>
-      <p className="ws-work-cell-blurb">
-        {t.rich("blurb", {
-          mark: (chunks: ReactNode) => <Mark>{chunks}</Mark>,
-        })}
-      </p>
+      <h3 className="ws-work-cell-title">
+        <Balancer>{t("title")}</Balancer>
+      </h3>
+      <p className="ws-work-cell-blurb">{t.rich("blurb", blurbTags)}</p>
       <div className="ws-work-cell-foot">
         <div className="ws-work-cell-tags">
           {item.tags.map((tag) => (
@@ -99,9 +117,9 @@ function WorkTile({ item }: { item: WorkItem }) {
       </div>
     </a>
   );
-}
+};
 
-export function WorkGrid() {
+export const WorkGrid = () => {
   const t = useTranslations("work");
   return (
     <section className="ws-section" id="work">
@@ -119,4 +137,4 @@ export function WorkGrid() {
       </div>
     </section>
   );
-}
+};

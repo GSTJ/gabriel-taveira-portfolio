@@ -8,22 +8,22 @@ type MarginaliaProps = {
   side?: "left" | "right" | "inline"; // default "inline"
 };
 
-export function Marginalia({
+const SIDE_CLASS: Record<NonNullable<MarginaliaProps["side"]>, string> = {
+  left: " ws-marginalia-left",
+  right: " ws-marginalia-right",
+  inline: "",
+};
+
+export const Marginalia = ({
   children,
   tilt = -4,
   side = "inline",
-}: MarginaliaProps) {
-  const className =
-    "ws-marginalia" +
-    (side === "left"
-      ? " ws-marginalia-left"
-      : side === "right"
-        ? " ws-marginalia-right"
-        : "");
+}: MarginaliaProps) => {
+  const className = `ws-marginalia${SIDE_CLASS[side]}`;
   const style = { "--tilt": `${tilt}deg` } as CSSProperties;
   return (
     <span className={className} style={style}>
       {children}
     </span>
   );
-}
+};

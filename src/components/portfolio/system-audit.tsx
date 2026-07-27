@@ -1,23 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import {
-  CAREER_START_YEAR,
-  yearsInIndustry,
-  yearsTinkering,
-} from "./lifeline";
+import { useEffect, useMemo, useState, type MouseEvent } from "react";
+
+import { CAREER_START_YEAR, yearsInIndustry, yearsTinkering } from "./lifeline";
 
 /**
  * Pads `prefix` with `.` characters to a consistent column width
  * for the system-audit readout.
  */
-function row(label: string, value: string): string {
+const row = (label: string, value: string): string => {
   const total = 36;
   const dots = ".".repeat(Math.max(2, total - label.length));
   return `> ${label} ${dots} ${value}`;
-}
+};
 
-export function SystemAudit({ onClose }: { onClose: () => void }) {
+export const SystemAudit = ({ onClose }: { onClose: () => void }) => {
   const [lines, setLines] = useState<string[]>([]);
 
   const script = useMemo(
@@ -44,12 +41,13 @@ export function SystemAudit({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     let i = 0;
     const id = setInterval(() => {
-      if (i >= script.length) {
+      const line = script[i];
+      i++;
+      if (line === undefined) {
         clearInterval(id);
         return;
       }
-      setLines((prev) => [...prev, script[i]]);
-      i++;
+      setLines((prev) => [...prev, line]);
     }, 90);
     return () => clearInterval(id);
   }, [script]);
@@ -62,15 +60,28 @@ export function SystemAudit({ onClose }: { onClose: () => void }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  // Closing only when the backdrop itself is the click target is what the
+  // inner `stopPropagation` handler used to buy, minus a second click handler
+  // on a div that has no business being interactive.
+  const onBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
   return (
-    <div className="ws-audit-backdrop" onClick={onClose}>
-      <div className="ws-audit" onClick={(e) => e.stopPropagation()}>
+    // The backdrop is decoration: it carries no content and duplicates the
+    // Escape handler above, which is the keyboard path to the same action.
+    <div
+      className="ws-audit-backdrop"
+      role="presentation"
+      onClick={onBackdropClick}
+    >
+      <div className="ws-audit">
         <div className="ws-audit-head">
           <span className="ws-audit-light" />
           <span className="ws-audit-light" />
           <span className="ws-audit-light" />
           <span className="ws-audit-title">workshop.audit</span>
-          <button className="ws-audit-close" onClick={onClose}>
+          <button type="button" className="ws-audit-close" onClick={onClose}>
             esc
           </button>
         </div>
@@ -81,4 +92,4 @@ export function SystemAudit({ onClose }: { onClose: () => void }) {
       </div>
     </div>
   );
-}
+};

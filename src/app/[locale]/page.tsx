@@ -1,5 +1,5 @@
 import { Portfolio } from "@/components/portfolio";
 
-export default function Page() {
-  return <Portfolio />;
-}
+const Page = () => <Portfolio />;
+
+export default Page;

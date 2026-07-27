@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export function Toast({
+export const Toast = ({
   message,
   sub,
   onClose,
@@ -10,7 +10,7 @@ export function Toast({
   message: string;
   sub?: string;
   onClose: () => void;
-}) {
+}) => {
   useEffect(() => {
     const t = setTimeout(onClose, 4200);
     return () => clearTimeout(t);
@@ -35,9 +35,10 @@ export function Toast({
       </div>
       <div className="ws-toast-body">
         <div className="ws-toast-title">{message}</div>
-        {sub && <div className="ws-toast-sub">{sub}</div>}
+        {Boolean(sub) && <div className="ws-toast-sub">{sub}</div>}
       </div>
       <button
+        type="button"
         className="ws-toast-close"
         onClick={onClose}
         aria-label="Dismiss"
@@ -46,4 +47,4 @@ export function Toast({
       </button>
     </div>
   );
-}
+};

@@ -1,9 +1,10 @@
-import Balancer from "react-wrap-balancer";
 import { getTranslations } from "next-intl/server";
-import { TALKS } from "./data";
-import { ArrowUpRight, Eyebrow, richTags } from "./Shared";
+import { Balancer } from "react-wrap-balancer";
 
-export async function TalksList() {
+import { TALKS } from "./data";
+import { ArrowUpRight, Eyebrow, richTags } from "./shared";
+
+export const TalksList = async () => {
   const t = await getTranslations("talks");
   const tItems = await getTranslations("talks.items");
   return (
@@ -19,7 +20,7 @@ export async function TalksList() {
         {TALKS.map((talk) => (
           <li
             key={talk.id}
-            className={"ws-talks-row ws-talks-topic-" + talk.topic}
+            className={`ws-talks-row ws-talks-topic-${talk.topic}`}
           >
             <span className="ws-talks-date">{talk.date}</span>
             <div className="ws-talks-main">
@@ -29,17 +30,15 @@ export async function TalksList() {
               </div>
               <div className="ws-talks-venue">
                 <span
-                  className={
-                    "ws-talks-topic-chip ws-talks-topic-chip-" + talk.topic
-                  }
+                  className={`ws-talks-topic-chip ws-talks-topic-chip-${talk.topic}`}
                 >
                   {talk.topic === "leadership"
                     ? t("topicLeadership")
                     : t("topicTech")}
                 </span>
                 <span>
-                  {tItems(`${talk.id}.venue`)} ·{" "}
-                  {tItems(`${talk.id}.city`)} · {talk.lang}
+                  {tItems(`${talk.id}.venue`)} · {tItems(`${talk.id}.city`)} ·{" "}
+                  {talk.lang}
                 </span>
               </div>
             </div>
@@ -59,4 +58,4 @@ export async function TalksList() {
       </ul>
     </section>
   );
-}
+};
