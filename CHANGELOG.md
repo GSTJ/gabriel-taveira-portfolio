@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.0...v1.1.1) (2026-07-28)
+
+
+### Chores
+
+* **deps:** update gstj/magic digest to ea3541f ([#161](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/161)) ([5867a8c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5867a8c447e5ff55216bf415a71fa20072b69ae9))
+
 ## [1.1.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.5...v1.1.0) (2026-07-28)
 
 
