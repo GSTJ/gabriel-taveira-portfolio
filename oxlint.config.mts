@@ -24,4 +24,17 @@ export default extendConfig(next, {
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
   },
+  overrides: [
+    {
+      // The preset exempts `instrumentation.ts` from `no-restricted-properties`
+      // ("server components and route handlers read env by definition") but not
+      // its client twin, which Next added later and which reads env for exactly
+      // the same reason. `NEXT_PUBLIC_*` has to be written literally here too —
+      // that is the only form Next's bundler substitutes — so a validated env
+      // module cannot stand in for it. Drop this when the preset covers the
+      // file.
+      files: ["**/instrumentation-client.{js,ts}"],
+      rules: { "no-restricted-properties": "off" },
+    },
+  ],
 });
