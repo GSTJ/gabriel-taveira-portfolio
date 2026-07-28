@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.1...v1.1.2) (2026-07-28)
+
+
+### Bug Fixes
+
+* drop the dead youtube cron and harden three input paths ([#165](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/165)) ([a93046a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a93046a948864eafe51f6f3f799285830b4e1b94))
+* **security:** pin the curriculum.pdf content type and set response headers ([#163](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/163)) ([d100f99](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d100f99a59d836f86c46b7a87cd1ad1143024553))
+
 ## [1.1.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.0...v1.1.1) (2026-07-28)
 
 
