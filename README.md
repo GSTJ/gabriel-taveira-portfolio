@@ -35,7 +35,17 @@ cd gabriel-taveira-portfolio
 pnpm install
 ```
 
-3. Run the development server:
+3. Optionally copy the environment template:
+
+```sh
+cp .env.example .env.local
+```
+
+Every variable in it is optional. Without `NEXT_PUBLIC_POSTHOG_KEY` the
+PostHog client is a no-op — analytics and error reports go nowhere and nothing
+is logged — so the site runs unchanged with no `.env.local` at all.
+
+4. Run the development server:
 
 ```sh
 pnpm dev

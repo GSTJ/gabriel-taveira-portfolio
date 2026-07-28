@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
+import { ObservabilityProviders } from "@/components/observability/providers";
 import { buildPortfolioJsonLd } from "@/components/portfolio/structured-data";
 import { routing } from "@/utils/routing";
 
@@ -120,9 +121,11 @@ const LocaleLayout = async ({
       <GoogleTagManager gtmId={GTM_ID} />
       <Analytics />
       <body>
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
-        </NextIntlClientProvider>
+        <ObservabilityProviders>
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            {children}
+          </NextIntlClientProvider>
+        </ObservabilityProviders>
       </body>
     </html>
   );

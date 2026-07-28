@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { captureServerError, getServerClient } from "magic-observability/next";
+
 type CoinPayload = {
   price: number;
   delta: number;
@@ -34,6 +36,13 @@ export async function GET() {
     );
 
     if (!res.ok) {
+      // Every branch below answers 200 with a stale price, so a broken
+      // upstream is invisible in the response. The event is the only signal
+      // that the ticker has been serving a frozen number for a week.
+      getServerClient().capture("coin_ticker_degraded", {
+        reason: "upstream-status",
+        status: res.status,
+      });
       return NextResponse.json(FALLBACK, {
         status: 200,
         headers: CACHE_HEADERS,
@@ -58,6 +67,9 @@ export async function GET() {
     const prev = meta?.previousClose ?? meta?.chartPreviousClose;
 
     if (typeof price !== "number" || typeof prev !== "number" || prev === 0) {
+      getServerClient().capture("coin_ticker_degraded", {
+        reason: "unparseable-payload",
+      });
       return NextResponse.json(FALLBACK, {
         status: 200,
         headers: CACHE_HEADERS,
@@ -74,7 +86,12 @@ export async function GET() {
     };
 
     return NextResponse.json(payload, { status: 200, headers: CACHE_HEADERS });
-  } catch {
+  } catch (error) {
+    // `onRequestError` never sees this one — the handler catches it, so as far
+    // as Next is concerned the request succeeded.
+    captureServerError(error, {
+      request: { path: "/api/coin", method: "GET" },
+    });
     return NextResponse.json(FALLBACK, { status: 200, headers: CACHE_HEADERS });
   }
 }
