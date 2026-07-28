@@ -8,7 +8,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { ObservabilityProviders } from "@/components/observability/providers";
-import { buildPortfolioJsonLd } from "@/components/portfolio/structured-data";
+import {
+  buildPortfolioJsonLd,
+  serializeJsonLd,
+} from "@/components/portfolio/structured-data";
 import { routing } from "@/utils/routing";
 
 const SITE_URL = "https://gabrieltaveira.dev";
@@ -109,13 +112,13 @@ const LocaleLayout = async ({
         />
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger -- JSON-LD has no React representation, so a raw script body is the only way to emit it, and the payload is JSON.stringify of an object this file builds.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+          // eslint-disable-next-line react/no-danger -- JSON-LD has no React representation, so a raw script body is the only way to emit it. serializeJsonLd escapes `<` so the payload cannot close this tag.
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(person) }}
         />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger -- same as above.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(profilePage) }}
         />
       </head>
       <GoogleTagManager gtmId={GTM_ID} />

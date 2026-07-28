@@ -9,7 +9,7 @@ Welcome to my open-source portfolio! This project is built using Next.js, Tailwi
 - Responsive design with Tailwind CSS
 - Dark mode support
 - Server Components for improved performance
-- Integration with Youtube's API for up-to-date information on the latest Space Cast episode.
+- A live COIN quote on the hero, served from `/api/coin` with a cached fallback
 
 ## Getting Started
 
