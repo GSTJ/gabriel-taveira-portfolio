@@ -106,3 +106,19 @@ export function buildPortfolioJsonLd(locale: string): PortfolioJsonLd {
 
   return { person, profilePage };
 }
+
+/**
+ * `JSON.stringify` escapes quotes and backslashes but leaves `<` alone, so a
+ * value containing a closing script tag ends the tag it is sitting inside and
+ * everything after it gets parsed as HTML.
+ *
+ * Nothing hostile can reach that today: every input is a module constant, and
+ * `locale` is checked against `routing.locales` in `[locale]/layout.tsx`
+ * before this runs. That guard lives in another file though, and nothing
+ * enforces the ordering. The escape is valid JSON and parses straight back to
+ * `<`, so it costs nothing and stops the sink depending on a check it cannot
+ * see.
+ */
+export function serializeJsonLd(value: unknown) {
+  return JSON.stringify(value).replaceAll("<", String.raw`\u003c`);
+}

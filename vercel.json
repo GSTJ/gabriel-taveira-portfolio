@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/cron?key=plsRefetchYoutubeData",
-      "schedule": "30 11 * * 3"
-    }
-  ]
-}

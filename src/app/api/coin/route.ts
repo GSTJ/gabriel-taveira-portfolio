@@ -26,6 +26,9 @@ export async function GET() {
       "https://query1.finance.yahoo.com/v8/finance/chart/COIN?interval=1d&range=1d",
       {
         next: { revalidate: 300 },
+        // Without this a hung Yahoo holds the function open until Vercel's own
+        // timeout. The catch below already answers 200 with the stale price.
+        signal: AbortSignal.timeout(3000),
         headers: {
           // Yahoo sometimes 401s requests without a UA.
           "User-Agent":
