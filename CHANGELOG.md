@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.5...v1.1.0) (2026-07-28)
+
+
+### Features
+
+* **observability:** wire magic-observability into the portfolio ([#159](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/159)) ([f03714f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/f03714f4f2e175a7363724532d47fbd53639d7db))
+
+
+### Refactors
+
+* cn/cva classNames, magic@v1, no-manual-classname ([#155](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/155)) ([872770b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/872770b8e7d6bdf053156bd0b5844be4531d9f2c))
+
+
+### Chores
+
+* **deps:** pin gstj/magic action to 32c29fe ([#157](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/157)) ([ed90c9c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ed90c9c21fb8b226e226dd559810f282b7168b4d))
+* **deps:** update gstj/magic digest to 07714e7 ([#158](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/158)) ([2e26788](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/2e267883c879632678f8e111758853e717cabfc8))
+* **deps:** update gstj/magic digest to 668fbf2 ([#160](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/160)) ([c13248b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/c13248bce49bccb9875dd32228d95816ba7d025f))
+
 ## [1.0.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.0.4...v1.0.5) (2026-07-27)
 
 
