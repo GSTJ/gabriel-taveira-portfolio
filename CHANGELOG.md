@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.4...v1.1.5) (2026-07-29)
+
+
+### Bug Fixes
+
+* **seo:** point every public URL at the host that serves ([#170](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/170)) ([fce1acb](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fce1acbb1c43c4d3110edcb3da1b4e6626ff55df))
+
+
+### Documentation
+
+* correct two claims the repo no longer matches ([#173](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/173)) ([6433572](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6433572b0fc0195bc6e21d01709bb919c7668c44))
+
+
+### Chores
+
+* **routing:** adopt the proxy file convention ([#172](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/172)) ([a27f820](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a27f820f30841d8b39078731e556af5130087fef))
+
 ## [1.1.4](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.3...v1.1.4) (2026-07-29)
 
 
