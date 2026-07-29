@@ -13,8 +13,8 @@ import {
   serializeJsonLd,
 } from "@/components/portfolio/structured-data";
 import { routing } from "@/utils/routing";
+import { SITE_URL } from "@/utils/site";
 
-const SITE_URL = "https://gabrieltaveira.dev";
 const GTM_ID = "G-1S8PR4TDYM";
 
 /**
