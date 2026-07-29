@@ -32,7 +32,7 @@ export async function GET() {
         headers: {
           // Yahoo sometimes 401s requests without a UA.
           "User-Agent":
-            "Mozilla/5.0 (compatible; portfolio-ticker/1.0; +https://gabrieltaveira.com)",
+            "Mozilla/5.0 (compatible; portfolio-ticker/1.0; +https://www.gabrieltaveira.dev)",
           Accept: "application/json",
         },
       },

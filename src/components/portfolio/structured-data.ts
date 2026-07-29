@@ -6,10 +6,11 @@
  * into the initial HTML via a `<script type="application/ld+json">` tag.
  */
 
+import { SITE_URL } from "@/utils/site";
+
 import { CHANNELS, EMAIL_ADDR, GITHUB, LINKEDIN, MEDIUM, WORK } from "./data";
 import { yearsInIndustry } from "./lifeline";
 
-const SITE_URL = "https://gabrieltaveira.dev";
 const KNOWS_ABOUT_CAP = 15;
 
 /**
