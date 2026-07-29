@@ -95,8 +95,13 @@ jobs:
           url: "https://www.gabrieltaveira.dev"
 
       # Straight to R2, no commit and no branch. Both objects are overwritten in
-      # place and served from the custom domain, which README links to directly
-      # and which next.config.ts proxies /curriculum.pdf onto.
+      # place and served from the custom domain, which README links to directly.
+      # `curriculum.pdf` also reaches the site's own origin through
+      # `src/app/curriculum.pdf/route.ts`, which refetches it from here and
+      # re-emits the bytes under a Content-Type pinned in code. It used to be a
+      # `next.config.ts` rewrite, and a rewrite forwards the upstream
+      # Content-Type, which handed whoever can write this object the power to
+      # decide what gabrieltaveira.dev serves.
       #
       # --remote is not optional. Without it wrangler v4 writes to a local
       # simulation on the runner, reports success, and uploads nothing.

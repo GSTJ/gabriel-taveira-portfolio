@@ -55,21 +55,14 @@ Open your browser and navigate to http://localhost:3000 to see the portfolio in 
 
 ### Deployment
 
-To deploy this project to production, follow these steps:
+Production runs on Vercel, deployed from `main` on every push. `www.gabrieltaveira.dev` is the primary domain and the apex redirects onto it, which is where `src/utils/site.ts` gets its host.
 
-1. Build the project for production:
+There is no static export. The locale routing runs in `src/proxy.ts`, `/api/coin` and `/curriculum.pdf` are route handlers, and both locale pages render on demand, so the build needs a Node server rather than a folder of files:
 
 ```sh
 pnpm build
-```
-
-2. Start the production server:
-
-```sh
 pnpm start
 ```
-
-Deploy the out folder to your preferred hosting provider.
 
 ### Contributing
 
