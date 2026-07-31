@@ -30,7 +30,7 @@ importers:
         version: 16.2.12(next@16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@posthog/react':
         specifier: ^1.10.3
-        version: 1.10.3(@types/react@19.2.17)(posthog-js@1.407.4)(react@19.2.8)
+        version: 1.10.3(@types/react@19.2.17)(posthog-js@1.407.5)(react@19.2.8)
       '@vercel/analytics':
         specifier: 2.0.1
         version: 2.0.1(next@16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
@@ -42,7 +42,7 @@ importers:
         version: 2.1.1
       magic-observability:
         specifier: 1.0.0
-        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.407.4)(react@19.2.8))(posthog-js@1.407.4)(posthog-node@5.46.1)(react@19.2.8)
+        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.407.5)(react@19.2.8))(posthog-js@1.407.5)(posthog-node@5.46.1)(react@19.2.8)
       next:
         specifier: 16.2.12
         version: 16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -54,7 +54,7 @@ importers:
         version: 8.5.24
       posthog-js:
         specifier: ^1.407.3
-        version: 1.407.4
+        version: 1.407.5
       posthog-node:
         specifier: ^5.46.1
         version: 5.46.1
@@ -1749,8 +1749,8 @@ packages:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
 
-  js-yaml@4.3.0:
-    resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
+  js-yaml@4.3.1:
+    resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
     hasBin: true
 
   json-buffer@3.0.1:
@@ -2074,8 +2074,8 @@ packages:
     resolution: {integrity: sha512-8RyVklq0owXUTa4xlpzu4l9AaVKIdQvAcOHZWaMh98HgySsUtxRVf/chRe3dsSLqb6i40BzGRzEUddRaI+9TSw==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.407.4:
-    resolution: {integrity: sha512-GYSxE8+ihVdpRT2Rw8hZOzE5JJI9TX2jNSUo5RsqoHaTvthgPqe0qt1TvJiGATXao2/haTjA23vxReEe9S1k1g==}
+  posthog-js@1.407.5:
+    resolution: {integrity: sha512-7YV0aSO8D9NPSawrIjgcOl81SKiPg6op8uFFc7e0qtu3ojYGE5+8MKfR3jEM67duvdkRAeWB9ZwBZQsg9pXu1g==}
 
   posthog-node@5.46.1:
     resolution: {integrity: sha512-WjCqExq44pBdyg9MSsH6UAE0tNZ88p4aIuVFicgqhjf2Fbws6IhS4ioYUa4aBrbUPS9EDRXtBTtF5DpP1ml8Pw==}
@@ -2480,7 +2480,7 @@ snapshots:
       globals: 14.0.0
       ignore: 5.3.2
       import-fresh: 3.3.1
-      js-yaml: 4.3.0
+      js-yaml: 4.3.1
       minimatch: 3.1.5
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -2876,9 +2876,9 @@ snapshots:
     dependencies:
       '@posthog/types': 1.399.0
 
-  '@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.407.4)(react@19.2.8)':
+  '@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.407.5)(react@19.2.8)':
     dependencies:
-      posthog-js: 1.407.4
+      posthog-js: 1.407.5
       react: 19.2.8
     optionalDependencies:
       '@types/react': 19.2.17
@@ -3477,7 +3477,7 @@ snapshots:
 
   jiti@2.7.0: {}
 
-  js-yaml@4.3.0:
+  js-yaml@4.3.1:
     dependencies:
       argparse: 2.0.1
 
@@ -3559,10 +3559,10 @@ snapshots:
     dependencies:
       ts-morph: 28.0.0
 
-  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.407.4)(react@19.2.8))(posthog-js@1.407.4)(posthog-node@5.46.1)(react@19.2.8):
+  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.407.5)(react@19.2.8))(posthog-js@1.407.5)(posthog-node@5.46.1)(react@19.2.8):
     optionalDependencies:
-      '@posthog/react': 1.10.3(@types/react@19.2.17)(posthog-js@1.407.4)(react@19.2.8)
-      posthog-js: 1.407.4
+      '@posthog/react': 1.10.3(@types/react@19.2.17)(posthog-js@1.407.5)(react@19.2.8)
+      posthog-js: 1.407.5
       posthog-node: 5.46.1
       react: 19.2.8
 
@@ -3768,7 +3768,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.407.4:
+  posthog-js@1.407.5:
     dependencies:
       '@posthog/browser-common': 0.2.5
       '@posthog/core': 1.46.1
