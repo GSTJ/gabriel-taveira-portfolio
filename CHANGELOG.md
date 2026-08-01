@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.6](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.5...v1.1.6) (2026-08-01)
+
+
+### Chores
+
+* **deps:** update dependency magic-oxlint-config to v2 ([#182](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/182)) ([ed398dd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ed398ddd3991e7698b788470853010c11c7ad6fb))
+* **deps:** update dependency magic-oxlint-plugin to v1.2.0 ([#180](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/180)) ([fc0a6cc](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fc0a6cc550f8cb33c0bf1c1a7b7ab582884cb4f8))
+* **deps:** update dependency postcss to v8.5.24 ([#175](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/175)) ([f945bf2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/f945bf2a0c29da7540109c3aa3bad53e2c624c31))
+* **deps:** update dependency postcss to v8.5.24 ([#177](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/177)) ([8031c64](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/8031c64df43388f24425ad8cd59ab1a1340f1151))
+* **deps:** update dependency postcss to v8.5.25 ([#184](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/184)) ([6a1e98d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6a1e98d8c8866ccaaaa82ecbfef1d6ab31fab892))
+* **deps:** update dependency postcss to v8.5.25 ([#186](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/186)) ([28f5a9e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/28f5a9efe33fdb82c1fc9e47ef1a04576d944da1))
+* **deps:** update dependency posthog-js to v1.407.4 ([#178](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/178)) ([aa55668](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/aa556683ead3abf6ff4ed8628cb4b3c7e22fcd3b))
+* **deps:** update dependency posthog-js to v1.407.5 ([#179](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/179)) ([48402a3](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/48402a3062e036651bcc8501419cfdd7564c7fed))
+* **deps:** update dependency posthog-js to v1.407.6 ([#183](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/183)) ([8a3fe64](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/8a3fe64d759553697f9a7de13b9dfe06adb6b09b))
+* **deps:** update dependency posthog-js to v1.407.8 ([#185](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/185)) ([75855f2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/75855f21d0206d3f4aa02ebd6464ce5eb08a38e9))
+* **deps:** update dependency posthog-js to v1.408.0 ([#187](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/187)) ([4d121a1](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4d121a1bca1c19a05c83a62b3fc341253db180b9))
+* **deps:** update dependency wrangler to v4.115.0 ([#181](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/181)) ([62d0138](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/62d0138d31a3a6eed8c5d44280b0f137b13089dc))
+* **deps:** update oxc toolchain ([#174](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/174)) ([95e39e4](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/95e39e4bcc7be72aea62e52a1f23c34d781a3fac))
+
 ## [1.1.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.4...v1.1.5) (2026-07-29)
 
 
