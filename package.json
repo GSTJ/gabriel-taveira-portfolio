@@ -22,7 +22,7 @@
     "magic-observability": "1.0.0",
     "next": "16.2.12",
     "next-intl": "4.13.4",
-    "postcss": "8.5.24",
+    "postcss": "8.5.25",
     "posthog-js": "^1.407.3",
     "posthog-node": "^5.46.1",
     "react": "19.2.8",
