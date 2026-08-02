@@ -4,7 +4,7 @@
   "extends": ["github>GSTJ/magic", "helpers:pinGitHubActionDigests"],
   "packageRules": [
     {
-      "description": "The overrides block in package.json pins patched releases within a major line. Patch and minor bumps keep those pins current; a major rewrites what the override means and breaks the consumers it was pinning.",
+      "description": "The overrides in pnpm-workspace.yaml pin patched releases within a major line. Patch and minor bumps keep those pins current; a major rewrites what the override means and breaks the consumers it was pinning.",
       "matchDepTypes": ["pnpm.overrides"],
       "matchUpdateTypes": ["major"],
       "enabled": false
