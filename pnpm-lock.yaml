@@ -30,7 +30,7 @@ importers:
         version: 16.2.12(next@16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@posthog/react':
         specifier: ^1.10.3
-        version: 1.10.3(@types/react@19.2.17)(posthog-js@1.409.0)(react@19.2.8)
+        version: 1.10.3(@types/react@19.2.18)(posthog-js@1.409.0)(react@19.2.8)
       '@vercel/analytics':
         specifier: 2.0.1
         version: 2.0.1(next@16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
@@ -42,7 +42,7 @@ importers:
         version: 2.1.1
       magic-observability:
         specifier: 1.0.0
-        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.409.0)(react@19.2.8))(posthog-js@1.409.0)(posthog-node@5.47.0)(react@19.2.8)
+        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.0)(react@19.2.8))(posthog-js@1.409.0)(posthog-node@5.47.0)(react@19.2.8)
       next:
         specifier: 16.2.12
         version: 16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -88,10 +88,10 @@ importers:
         version: 26.1.2
       '@types/react':
         specifier: ^19.2.14
-        version: 19.2.17
+        version: 19.2.18
       '@types/react-dom':
         specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
+        version: 19.2.4(@types/react@19.2.18)
       babel-plugin-react-compiler:
         specifier: 1.0.0
         version: 1.0.0
@@ -1242,13 +1242,13 @@ packages:
   '@types/node@26.1.2':
     resolution: {integrity: sha512-Vu4a5UFA9rIIFJ7rB/Vaafh9lrCQszopTCx6KjFboXTGQbPNasehVR5TEiithSDGyd1DEiUByggTZsg8jukeIg==}
 
-  '@types/react-dom@19.2.3':
-    resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
+  '@types/react-dom@19.2.4':
+    resolution: {integrity: sha512-Bsc+QHgp+P/F02XDzNCY9jnZNCUuLki36KT7VKrTXXLdHf+vHMNZnW1rVu5DNW/rCK+fya3DATySbLM4yhtKUw==}
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.17':
-    resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
+  '@types/react@19.2.18':
+    resolution: {integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -2868,12 +2868,12 @@ snapshots:
     dependencies:
       '@posthog/types': 1.399.0
 
-  '@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.409.0)(react@19.2.8)':
+  '@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.0)(react@19.2.8)':
     dependencies:
       posthog-js: 1.409.0
       react: 19.2.8
     optionalDependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
   '@posthog/types@1.399.0': {}
 
@@ -3037,11 +3037,11 @@ snapshots:
     dependencies:
       undici-types: 8.3.0
 
-  '@types/react-dom@19.2.3(@types/react@19.2.17)':
+  '@types/react-dom@19.2.4(@types/react@19.2.18)':
     dependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
-  '@types/react@19.2.17':
+  '@types/react@19.2.18':
     dependencies:
       csstype: 3.2.3
 
@@ -3544,9 +3544,9 @@ snapshots:
     dependencies:
       ts-morph: 28.0.0
 
-  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.409.0)(react@19.2.8))(posthog-js@1.409.0)(posthog-node@5.47.0)(react@19.2.8):
+  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.0)(react@19.2.8))(posthog-js@1.409.0)(posthog-node@5.47.0)(react@19.2.8):
     optionalDependencies:
-      '@posthog/react': 1.10.3(@types/react@19.2.17)(posthog-js@1.409.0)(react@19.2.8)
+      '@posthog/react': 1.10.3(@types/react@19.2.18)(posthog-js@1.409.0)(react@19.2.8)
       posthog-js: 1.409.0
       posthog-node: 5.47.0
       react: 19.2.8
