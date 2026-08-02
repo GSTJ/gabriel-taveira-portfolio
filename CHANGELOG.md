@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.7](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.6...v1.1.7) (2026-08-02)
+
+
+### Bug Fixes
+
+* **deps:** restore pnpm security overrides ([#195](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/195)) ([edc1de0](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/edc1de07d8b8c73601cbad5dc82e75a3c315d3f4))
+
+
+### Chores
+
+* **deps:** update dependency posthog-js to v1.408.1 ([#188](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/188)) ([39b5847](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/39b58475e09bb2995f206effafd189c9765cdd54))
+* **deps:** update dependency posthog-js to v1.408.2 ([#190](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/190)) ([20c921d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/20c921d8a13496d2010d48d95b3da9d64bf4dada))
+* **deps:** update dependency posthog-js to v1.408.3 ([#191](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/191)) ([7803521](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/780352113dd2a736fa50f5a7f89d16c0b8fba12e))
+* **deps:** update dependency wrangler to v4.116.0 ([#192](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/192)) ([fd6e66b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fd6e66b6b31c19c90bbba035a4f25112e765ed09))
+* **deps:** update posthog sdks ([#193](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/193)) ([31fa3c4](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/31fa3c4b3ad8a80ed6926f34f57371d7d9d94ab5))
+* **deps:** update react monorepo ([#194](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/194)) ([85ecc31](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/85ecc3196c2c16d7f764fa1c058a3676b76e023c))
+
 ## [1.1.6](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.5...v1.1.6) (2026-08-01)
 
 
