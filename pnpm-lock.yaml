@@ -30,7 +30,7 @@ importers:
         version: 16.2.12(next@16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@posthog/react':
         specifier: ^1.10.3
-        version: 1.10.3(@types/react@19.2.17)(posthog-js@1.408.1)(react@19.2.8)
+        version: 1.10.3(@types/react@19.2.17)(posthog-js@1.408.2)(react@19.2.8)
       '@vercel/analytics':
         specifier: 2.0.1
         version: 2.0.1(next@16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
@@ -42,7 +42,7 @@ importers:
         version: 2.1.1
       magic-observability:
         specifier: 1.0.0
-        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.408.1)(react@19.2.8))(posthog-js@1.408.1)(posthog-node@5.46.1)(react@19.2.8)
+        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.408.2)(react@19.2.8))(posthog-js@1.408.2)(posthog-node@5.46.1)(react@19.2.8)
       next:
         specifier: 16.2.12
         version: 16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -54,7 +54,7 @@ importers:
         version: 8.5.25
       posthog-js:
         specifier: ^1.407.3
-        version: 1.408.1
+        version: 1.408.2
       posthog-node:
         specifier: ^5.46.1
         version: 5.46.1
@@ -2066,8 +2066,8 @@ packages:
     resolution: {integrity: sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.408.1:
-    resolution: {integrity: sha512-WsZ2mL38jbKZz1YiobAWGNru5YVJkmOzdBGXrqbcwhByA0TapQeqXXQgdulaMRPjEg797PY64R2y28fSUHsaIg==}
+  posthog-js@1.408.2:
+    resolution: {integrity: sha512-5aIjBy98bbob+6StDa3ZwW7IkB7MAT+61uA2In2yRmP5O2vU6ytX3caZJZGXCphJvW2b2u+AQsBuWNBM5cxzyg==}
 
   posthog-node@5.46.1:
     resolution: {integrity: sha512-WjCqExq44pBdyg9MSsH6UAE0tNZ88p4aIuVFicgqhjf2Fbws6IhS4ioYUa4aBrbUPS9EDRXtBTtF5DpP1ml8Pw==}
@@ -2868,9 +2868,9 @@ snapshots:
     dependencies:
       '@posthog/types': 1.399.0
 
-  '@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.408.1)(react@19.2.8)':
+  '@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.408.2)(react@19.2.8)':
     dependencies:
-      posthog-js: 1.408.1
+      posthog-js: 1.408.2
       react: 19.2.8
     optionalDependencies:
       '@types/react': 19.2.17
@@ -3544,10 +3544,10 @@ snapshots:
     dependencies:
       ts-morph: 28.0.0
 
-  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.408.1)(react@19.2.8))(posthog-js@1.408.1)(posthog-node@5.46.1)(react@19.2.8):
+  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.17)(posthog-js@1.408.2)(react@19.2.8))(posthog-js@1.408.2)(posthog-node@5.46.1)(react@19.2.8):
     optionalDependencies:
-      '@posthog/react': 1.10.3(@types/react@19.2.17)(posthog-js@1.408.1)(react@19.2.8)
-      posthog-js: 1.408.1
+      '@posthog/react': 1.10.3(@types/react@19.2.17)(posthog-js@1.408.2)(react@19.2.8)
+      posthog-js: 1.408.2
       posthog-node: 5.46.1
       react: 19.2.8
 
@@ -3753,7 +3753,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.408.1:
+  posthog-js@1.408.2:
     dependencies:
       '@posthog/browser-common': 0.2.5
       '@posthog/core': 1.46.1
