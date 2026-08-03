@@ -1,0 +1,28 @@
+Commit: b7175aecaf43b1a6f3c239516e63648bba458971
+
+pnpm install --frozen-lockfile
+Result: passed
+
+pnpm audit --prod
+Result: No known vulnerabilities found
+
+pnpm audit
+Result: No known vulnerabilities found
+
+pnpm run lint
+Result: passed
+
+pnpm run format
+Result: All matched files use the correct format (69 files)
+
+pnpm run typecheck
+Result: passed
+
+pnpm run build
+Result: compiled successfully; all 10 static pages generated
+
+Production server route checks:
+/en-US: 200 text/html
+/pt-BR: 200 text/html
+/api/coin: 200 application/json with a live, non-stale quote
+/curriculum.pdf: 200 application/pdf
