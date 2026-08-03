@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.9](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.8...v1.1.9) (2026-08-03)
+
+
+### Bug Fixes
+
+* **renovate:** match pnpm workspace overrides ([#209](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/209)) ([99e49a5](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/99e49a5d9ed37369b427b67759251c4fd07198a4))
+
 ## [1.1.8](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.7...v1.1.8) (2026-08-03)
 
 
