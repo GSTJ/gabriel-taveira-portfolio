@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.8](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.7...v1.1.8) (2026-08-03)
+
+
+### Bug Fixes
+
+* **security:** clear development audit findings ([#207](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/207)) ([e9a59f7](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e9a59f730e2e730fcf5b2a28d05fe8b0ca01566d))
+
+
+### Chores
+
+* **deps:** update dependency posthog-node to v5.47.3 ([#206](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/206)) ([5703ebe](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5703ebee679ba383b67f6ff9f284d2e87144e640))
+* **deps:** update dependency wrangler to v4.118.0 ([#203](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/203)) ([854637d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/854637d122dd3452a232d0464b559ae4a3de2fc6))
+* **deps:** update gstj/magic digest to aa331e8 ([#197](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/197)) ([607cccb](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/607cccb5101869aad0b51be7e8e03ad5c26372b8))
+* **deps:** update posthog sdks ([#202](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/202)) ([006399f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/006399f2ed3ff7363df12a61b638f3b851b395b6))
+
 ## [1.1.7](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.6...v1.1.7) (2026-08-02)
 
 
