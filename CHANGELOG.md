@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.10](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.9...v1.1.10) (2026-08-04)
+
+
+### Chores
+
+* **deps:** update gstj/magic digest to 4c640f0 ([#211](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/211)) ([fff356a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fff356ae76c2f14c995e61bad74c1c573129f79a))
+
 ## [1.1.9](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.8...v1.1.9) (2026-08-03)
 
 
