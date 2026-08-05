@@ -19,6 +19,100 @@ overrides:
   "undici@7": "^7.29.0"
   ws: "^8.21.0"
 
+# Keep new third-party releases out of installs until they have had two weeks
+# of registry exposure. magic-* is our first-party tooling and moves at once;
+# every other exception is pinned to a version already in this lockfile.
+minimumReleaseAge: 20160
+minimumReleaseAgeExclude:
+  - magic-*
+  - "@cloudflare/workerd-darwin-64@1.20260730.1"
+  - "@cloudflare/workerd-darwin-arm64@1.20260730.1"
+  - "@cloudflare/workerd-linux-64@1.20260730.1"
+  - "@cloudflare/workerd-linux-arm64@1.20260730.1"
+  - "@cloudflare/workerd-windows-64@1.20260730.1"
+  - "@emnapi/runtime@1.11.3"
+  - "@eslint-community/eslint-utils@4.10.1"
+  - "@next/env@16.2.12"
+  - "@next/swc-darwin-arm64@16.2.12"
+  - "@next/swc-darwin-x64@16.2.12"
+  - "@next/swc-linux-arm64-gnu@16.2.12"
+  - "@next/swc-linux-arm64-musl@16.2.12"
+  - "@next/swc-linux-x64-gnu@16.2.12"
+  - "@next/swc-linux-x64-musl@16.2.12"
+  - "@next/swc-win32-arm64-msvc@16.2.12"
+  - "@next/swc-win32-x64-msvc@16.2.12"
+  - "@next/third-parties@16.2.12"
+  - "@oxfmt/binding-android-arm-eabi@0.61.0"
+  - "@oxfmt/binding-android-arm64@0.61.0"
+  - "@oxfmt/binding-darwin-arm64@0.61.0"
+  - "@oxfmt/binding-darwin-x64@0.61.0"
+  - "@oxfmt/binding-freebsd-x64@0.61.0"
+  - "@oxfmt/binding-linux-arm-gnueabihf@0.61.0"
+  - "@oxfmt/binding-linux-arm-musleabihf@0.61.0"
+  - "@oxfmt/binding-linux-arm64-gnu@0.61.0"
+  - "@oxfmt/binding-linux-arm64-musl@0.61.0"
+  - "@oxfmt/binding-linux-ppc64-gnu@0.61.0"
+  - "@oxfmt/binding-linux-riscv64-gnu@0.61.0"
+  - "@oxfmt/binding-linux-riscv64-musl@0.61.0"
+  - "@oxfmt/binding-linux-s390x-gnu@0.61.0"
+  - "@oxfmt/binding-linux-x64-gnu@0.61.0"
+  - "@oxfmt/binding-linux-x64-musl@0.61.0"
+  - "@oxfmt/binding-openharmony-arm64@0.61.0"
+  - "@oxfmt/binding-win32-arm64-msvc@0.61.0"
+  - "@oxfmt/binding-win32-ia32-msvc@0.61.0"
+  - "@oxfmt/binding-win32-x64-msvc@0.61.0"
+  - "@oxlint/binding-android-arm-eabi@1.76.0"
+  - "@oxlint/binding-android-arm64@1.76.0"
+  - "@oxlint/binding-darwin-arm64@1.76.0"
+  - "@oxlint/binding-darwin-x64@1.76.0"
+  - "@oxlint/binding-freebsd-x64@1.76.0"
+  - "@oxlint/binding-linux-arm-gnueabihf@1.76.0"
+  - "@oxlint/binding-linux-arm-musleabihf@1.76.0"
+  - "@oxlint/binding-linux-arm64-gnu@1.76.0"
+  - "@oxlint/binding-linux-arm64-musl@1.76.0"
+  - "@oxlint/binding-linux-ppc64-gnu@1.76.0"
+  - "@oxlint/binding-linux-riscv64-gnu@1.76.0"
+  - "@oxlint/binding-linux-riscv64-musl@1.76.0"
+  - "@oxlint/binding-linux-s390x-gnu@1.76.0"
+  - "@oxlint/binding-linux-x64-gnu@1.76.0"
+  - "@oxlint/binding-linux-x64-musl@1.76.0"
+  - "@oxlint/binding-openharmony-arm64@1.76.0"
+  - "@oxlint/binding-win32-arm64-msvc@1.76.0"
+  - "@oxlint/binding-win32-ia32-msvc@1.76.0"
+  - "@oxlint/binding-win32-x64-msvc@1.76.0"
+  - "@posthog/browser-common@0.3.1"
+  - "@posthog/core@1.46.5"
+  - "@posthog/types@1.400.0"
+  - "@types/node@26.1.2"
+  - "@types/react@19.2.18"
+  - "@types/react-dom@19.2.4"
+  - acorn@8.18.0
+  - baseline-browser-mapping@2.11.3
+  - brace-expansion@1.1.18
+  - brace-expansion@5.0.9
+  - dompurify@3.4.13
+  - eslint-plugin-safe-jsx@1.3.0
+  - flatted@3.4.4
+  - icu-minify@4.13.4
+  - js-yaml@4.3.1
+  - miniflare@5.20260730.0-alpha
+  - next@16.2.12
+  - next-intl@4.13.4
+  - next-intl-swc-plugin-extractor@4.13.4
+  - oxfmt@0.61.0
+  - oxlint@1.76.0
+  - postcss@8.5.25
+  - posthog-js@1.409.5
+  - posthog-node@5.47.3
+  - preact@10.29.8
+  - puppeteer@25.4.0
+  - puppeteer-core@25.4.0
+  - undici@7.29.0
+  - use-intl@4.13.4
+  - workerd@1.20260730.1
+  - wrangler@4.118.0
+  - yargs@18.1.0
+
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - "@swc/core"
