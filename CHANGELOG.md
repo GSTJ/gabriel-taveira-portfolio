@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.14](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.13...v1.1.14) (2026-08-05)
+
+
+### Chores
+
+* **deps:** update magic tooling ([#224](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/224)) ([3b8553e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/3b8553e57a4787b94d17bc3fa3a56707bca404c6))
+
 ## [1.1.13](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.12...v1.1.13) (2026-08-05)
 
 
