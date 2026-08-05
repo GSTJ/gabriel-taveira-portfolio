@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.11](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.10...v1.1.11) (2026-08-05)
+
+
+### Chores
+
+* **deps:** quarantine new releases for 14 days ([#213](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/213)) ([5e31ad0](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5e31ad03610ee932e965ce028df19ca0ed5d4f5d))
+
 ## [1.1.10](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.9...v1.1.10) (2026-08-04)
 
 
