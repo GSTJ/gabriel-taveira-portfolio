@@ -112,6 +112,8 @@ minimumReleaseAgeExclude:
   - workerd@1.20260730.1
   - wrangler@4.118.0
   - yargs@18.1.0
+  # Renovate security update: pnpm@11.5.3
+  - pnpm@11.5.3
 
 onlyBuiltDependencies:
   - "@parcel/watcher"
