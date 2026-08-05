@@ -111,6 +111,8 @@ minimumReleaseAgeExclude:
   - workerd@1.20260730.1
   - wrangler@4.118.0
   - yargs@18.1.0
+  # Renovate security update: pnpm@11.8.0
+  - pnpm@11.8.0
 allowBuilds:
   "@parcel/watcher": true
   "@swc/core": true
