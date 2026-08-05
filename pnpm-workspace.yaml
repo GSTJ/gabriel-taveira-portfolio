@@ -88,8 +88,7 @@ minimumReleaseAgeExclude:
   - "@types/react-dom@19.2.4"
   - acorn@8.18.0
   - baseline-browser-mapping@2.11.3
-  - brace-expansion@1.1.18
-  - brace-expansion@5.0.9
+  - brace-expansion@1.1.18 || 5.0.9
   - dompurify@3.4.13
   - eslint-plugin-safe-jsx@1.3.0
   - flatted@3.4.4
@@ -112,10 +111,10 @@ minimumReleaseAgeExclude:
   - workerd@1.20260730.1
   - wrangler@4.118.0
   - yargs@18.1.0
-
-onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - "@swc/core"
-  - esbuild
-  - puppeteer
-  - workerd
+allowBuilds:
+  "@parcel/watcher": true
+  "@swc/core": true
+  core-js: false
+  esbuild: true
+  puppeteer: true
+  workerd: true
