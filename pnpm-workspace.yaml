@@ -111,9 +111,10 @@ minimumReleaseAgeExclude:
   - workerd@1.20260730.1
   - wrangler@4.118.0
   - yargs@18.1.0
-onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - "@swc/core"
-  - esbuild
-  - puppeteer
-  - workerd
+allowBuilds:
+  "@parcel/watcher": true
+  "@swc/core": true
+  core-js: false
+  esbuild: true
+  puppeteer: true
+  workerd: true
