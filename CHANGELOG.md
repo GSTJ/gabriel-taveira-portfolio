@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.12](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.11...v1.1.12) (2026-08-05)
+
+
+### Reverts
+
+* **deps:** keep pnpm on patched v10 ([#219](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/219)) ([cbc9db4](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/cbc9db4a82b5ffa617de4e63d3cc6c7eab86d8dd))
+
+
+### Chores
+
+* **deps:** update magic tooling ([#216](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/216)) ([63079bd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/63079bdd648d664791e8e725700d925f0b6e5a27))
+* **deps:** update pnpm to v11 [security] ([#215](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/215)) ([72adfa8](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/72adfa8ffa58e5f34f25b2288814bbb4f0b8633a))
+* **deps:** update pnpm to v11.8.0 [security] ([#218](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/218)) ([29e8a28](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/29e8a2830081173fb0f595d0479e3c5e3614cfa0))
+
 ## [1.1.11](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.10...v1.1.11) (2026-08-05)
 
 
