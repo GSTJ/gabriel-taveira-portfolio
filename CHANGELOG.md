@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.12](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.11...v1.1.12) (2026-08-05)
+
+
+### Fixed
+
+* **deps:** update magic tooling, including the hardened observability cookie parser ([#216](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/216)) ([63079bd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/63079bdd648d664791e8e725700d925f0b6e5a27))
+
 ## [1.1.11](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.10...v1.1.11) (2026-08-05)
 
 
