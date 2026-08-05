@@ -42,8 +42,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       magic-observability:
-        specifier: 1.0.0
-        version: 1.0.0(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8)
+        specifier: 1.0.1
+        version: 1.0.1(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8)
       next:
         specifier: 16.2.12
         version: 16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -101,10 +101,10 @@ importers:
         version: beasties@0.4.3
       magic-codemods:
         specifier: ^1.1.0
-        version: 1.1.0
+        version: 1.1.1
       magic-oxfmt-config:
         specifier: ^1.2.0
-        version: 1.2.0(oxfmt@0.61.0)
+        version: 1.2.1(oxfmt@0.61.0)
       magic-oxlint-config:
         specifier: ^2.0.0
         version: 2.0.0(eslint@9.39.5(jiti@2.7.0))(oxlint@1.76.0)
@@ -1851,13 +1851,13 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  magic-codemods@1.1.0:
-    resolution: {integrity: sha512-u+L9X1yLfZwxwY8lVOpCNgFkzRnFY7TEGahUizkiLgEJyx22jcxRiVKhSj1xz4R469xsRMz4iO5I7VTkY0oP7Q==}
+  magic-codemods@1.1.1:
+    resolution: {integrity: sha512-rFqykNef3SHlr8anVAYiDiIXqw9WNbJ+lsXoLyXGeWOiyUILQNm6csnB1SL92DQiuuyRU7YRHDHOW1+gW0M6ZA==}
     engines: {node: '>=22'}
     hasBin: true
 
-  magic-observability@1.0.0:
-    resolution: {integrity: sha512-DTZvIMdIAuGLckNn5Hx5uI+VCmHffrDNO4dB/IAlktMCqJM/o2Xx8ccmhYu83OHq9JUlJvxRL+HbKjnraUfnOQ==}
+  magic-observability@1.0.1:
+    resolution: {integrity: sha512-cNSS2vvw+viSK/hN4UiZ6VcchfJxq4TA76PapgYCJ+XN+XvwCrmFOvwHsvgdjO2H16LC4blefYq8xe35oxmyWg==}
     engines: {node: '>=22'}
     peerDependencies:
       '@posthog/react': '>=1.10.0'
@@ -1877,8 +1877,8 @@ packages:
       react:
         optional: true
 
-  magic-oxfmt-config@1.2.0:
-    resolution: {integrity: sha512-Wq46MqLnrZTJx1V2nJumdyW8OgA4URnhrfkYx6NYeewQRJAN+wiS1lxu1+5gU6BvlDetmbz7Ol/Xb8sxVXgW3A==}
+  magic-oxfmt-config@1.2.1:
+    resolution: {integrity: sha512-LzvHZAjvEkQwO7iWR0aYDPGveuG5YSou4Vc3zi+eZvLY66IBMI+OtM7pPBY+ODF8zlzZBYLajTgfNB4FGZqZ6Q==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
@@ -3540,18 +3540,18 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  magic-codemods@1.1.0:
+  magic-codemods@1.1.1:
     dependencies:
       ts-morph: 28.0.0
 
-  magic-observability@1.0.0(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8):
+  magic-observability@1.0.1(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8):
     optionalDependencies:
       '@posthog/react': 1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8)
       posthog-js: 1.409.5
       posthog-node: 5.47.3
       react: 19.2.8
 
-  magic-oxfmt-config@1.2.0(oxfmt@0.61.0):
+  magic-oxfmt-config@1.2.1(oxfmt@0.61.0):
     optionalDependencies:
       oxfmt: 0.61.0
 
