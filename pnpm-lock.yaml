@@ -42,8 +42,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       magic-observability:
-        specifier: 1.0.1
-        version: 1.0.1(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8)
+        specifier: 1.0.5
+        version: 1.0.5(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8)
       next:
         specifier: 16.2.12
         version: 16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -1856,8 +1856,8 @@ packages:
     engines: {node: '>=22'}
     hasBin: true
 
-  magic-observability@1.0.1:
-    resolution: {integrity: sha512-cNSS2vvw+viSK/hN4UiZ6VcchfJxq4TA76PapgYCJ+XN+XvwCrmFOvwHsvgdjO2H16LC4blefYq8xe35oxmyWg==}
+  magic-observability@1.0.5:
+    resolution: {integrity: sha512-pvgSsmvLssmNR4B21QSPVIB2ALsM3KCROcEieiv624QaI3xlYaZ2dUgOiMhtRcsHT8ZsBGHs+Wc4GiiH285AoA==}
     engines: {node: '>=22'}
     peerDependencies:
       '@posthog/react': '>=1.10.0'
@@ -3544,7 +3544,7 @@ snapshots:
     dependencies:
       ts-morph: 28.0.0
 
-  magic-observability@1.0.1(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8):
+  magic-observability@1.0.5(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8))(posthog-js@1.409.5)(posthog-node@5.47.3)(react@19.2.8):
     optionalDependencies:
       '@posthog/react': 1.10.3(@types/react@19.2.18)(posthog-js@1.409.5)(react@19.2.8)
       posthog-js: 1.409.5
