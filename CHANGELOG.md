@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.15](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.14...v1.1.15) (2026-08-06)
+
+
+### Bug Fixes
+
+* **ci:** validate hidden Renovate branches ([#227](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/227)) ([7ebd661](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/7ebd66192478db5fef58aacac184541edc80feda))
+
+
+### Chores
+
+* **deps:** update gstj/magic digest to 918db02 ([#226](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/226)) ([705e9ed](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/705e9ed5c9147fa7778f38d8d1fe058ccf5f4b8b))
+
 ## [1.1.14](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.13...v1.1.14) (2026-08-05)
 
 
