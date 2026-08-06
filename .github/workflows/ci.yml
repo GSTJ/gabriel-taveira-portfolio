@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+      # Renovate waits for this workflow before it opens a PR, so its hidden
+      # branches need the same validation path as normal pull requests.
+      - "renovate/**"
   # For re-running verify by hand without pushing anything.
   workflow_dispatch:
 
