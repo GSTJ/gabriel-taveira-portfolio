@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.16](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.15...v1.1.16) (2026-08-12)
+
+
+### Bug Fixes
+
+* **security:** pin patched nanoid ([#229](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/229)) ([0278751](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/0278751fd19de5298e801c347696f0902fd1f8c1))
+
 ## [1.1.15](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.14...v1.1.15) (2026-08-06)
 
 
