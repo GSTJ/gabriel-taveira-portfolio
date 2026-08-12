@@ -1,0 +1,18 @@
+Shipping commit: f9258ed31bddc372ae2f179501708efcb88caaa5
+Production build: Next.js 16.2.12, compiled successfully, 10/10 static pages generated
+Resolved dependency: postcss@8.5.25 -> nanoid@3.3.17
+Audit: No known vulnerabilities found
+Local production server: http://127.0.0.1:3017
+
+Routes exercised:
+- GET /en-US -> 200
+- GET /en-US/links -> 200
+- GET /api/coin -> 200 with a live, non-stale USD quote
+
+Checks:
+- pnpm install --frozen-lockfile
+- pnpm run format
+- pnpm run lint
+- pnpm run typecheck
+- pnpm run build
+- pnpm audit --audit-level low
