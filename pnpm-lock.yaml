@@ -44,7 +44,7 @@ importers:
         version: 2.1.1
       magic-observability:
         specifier: 1.0.5
-        version: 1.0.5(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.410.2)(react@19.2.8))(posthog-js@1.410.2)(posthog-node@5.47.6)(react@19.2.8)
+        version: 1.0.5(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.410.2)(react@19.2.8))(posthog-js@1.410.2)(posthog-node@5.47.7)(react@19.2.8)
       next:
         specifier: 16.2.12
         version: 16.2.12(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -59,7 +59,7 @@ importers:
         version: 1.410.2
       posthog-node:
         specifier: ^5.46.1
-        version: 5.47.6
+        version: 5.47.7
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -2070,8 +2070,8 @@ packages:
   posthog-js@1.410.2:
     resolution: {integrity: sha512-iwqd0CjdAbIKkA5PwQZTek8P3yKON3mVZs0zEXooxkqL1bHems7s5XBZ2kVue6IkK/kiZULYACjgqQRq+mOt1g==}
 
-  posthog-node@5.47.6:
-    resolution: {integrity: sha512-lfiIm4n46RFQ6K2KkXD99D1gwve5FeS8b6xrsY0rNL+rKNFkEj1RNKFfcU1lL9+lLu+SgNyiXIdvxrziC0OPdw==}
+  posthog-node@5.47.7:
+    resolution: {integrity: sha512-ZfvGL2DQB9mQmM+9hFRtX8h4WeXRANA6ASK/6eLJuAg2BPxvLpihRyB8pmgFm6Ye+t2drZJkDklEARPj/3OWAA==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -3545,11 +3545,11 @@ snapshots:
     dependencies:
       ts-morph: 28.0.0
 
-  magic-observability@1.0.5(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.410.2)(react@19.2.8))(posthog-js@1.410.2)(posthog-node@5.47.6)(react@19.2.8):
+  magic-observability@1.0.5(@posthog/react@1.10.3(@types/react@19.2.18)(posthog-js@1.410.2)(react@19.2.8))(posthog-js@1.410.2)(posthog-node@5.47.7)(react@19.2.8):
     optionalDependencies:
       '@posthog/react': 1.10.3(@types/react@19.2.18)(posthog-js@1.410.2)(react@19.2.8)
       posthog-js: 1.410.2
-      posthog-node: 5.47.6
+      posthog-node: 5.47.7
       react: 19.2.8
 
   magic-oxfmt-config@1.2.5(oxfmt@0.61.0):
@@ -3768,7 +3768,7 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@5.47.6:
+  posthog-node@5.47.7:
     dependencies:
       '@posthog/core': 1.46.5
 
