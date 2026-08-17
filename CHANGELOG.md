@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.17](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.16...v1.1.17) (2026-08-17)
+
+
+### Bug Fixes
+
+* **security:** pin nanoid 3.3.18 ([#235](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/235)) ([92d4b63](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/92d4b630bb0832c7c8618fcd8c618fa5b67d0913))
+
+
+### Chores
+
+* **deps:** update dependency posthog-node to v5.47.7 ([#236](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/236)) ([014e6df](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/014e6dffc68f98f4ca03a58ee9d8d6f4c784e394))
+* **deps:** update oxc toolchain ([#231](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/231)) ([e0ff009](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e0ff009196d46d73d76495128c7f047a2b69bfcc))
+* **deps:** update pnpm/action-setup action to v6.0.10 ([#232](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/232)) ([c37cff1](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/c37cff1fe5ae69bfa924b9901eea99e5d9fdf562))
+* **deps:** update posthog sdks ([#234](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/234)) ([561c774](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/561c7744aa5ab69edbd740c675fab84e6c86dfcd))
+
 ## [1.1.16](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.15...v1.1.16) (2026-08-12)
 
 
