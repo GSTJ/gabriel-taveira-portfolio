@@ -1,0 +1,81 @@
+{
+  "commit": "561c7744aa5ab69edbd740c675fab84e6c86dfcd",
+  "posthogJs": "1.410.2",
+  "posthogNode": "5.47.6",
+  "node": "v24.19.0",
+  "appUrl": "http://127.0.0.1:43124/en-US",
+  "pageState": {
+    "heading": "Gabriel Taveira.",
+    "title": "Gabriel Taveira · Engineering Lead",
+    "url": "http://127.0.0.1:43124/en-US",
+    "hasPostHogGlobal": false,
+    "observabilityClientEnabled": true,
+    "observabilityModuleId": "1752"
+  },
+  "browserConsoleErrors": [
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+  ],
+  "browserRequestFailures": [],
+  "blockedExternalRequestCount": 3,
+  "blockedExternalHosts": [
+    "fonts.googleapis.com",
+    "www.googletagmanager.com"
+  ],
+  "browserPostHogRequests": [
+    {
+      "method": "GET",
+      "path": "/static/exception-autocapture.js?v=1.410.2",
+      "contentType": null,
+      "contentEncoding": null,
+      "bodyBytes": 0
+    },
+    {
+      "method": "GET",
+      "path": "/array/phc_local_pr234_561c774/config.js",
+      "contentType": null,
+      "contentEncoding": null,
+      "bodyBytes": 0
+    },
+    {
+      "method": "POST",
+      "path": "/flags/?v=2&compression=base64",
+      "contentType": "application/x-www-form-urlencoded",
+      "contentEncoding": null,
+      "bodyBytes": 1429
+    },
+    {
+      "method": "GET",
+      "path": "/array/phc_local_pr234_561c774/config",
+      "contentType": null,
+      "contentEncoding": null,
+      "bodyBytes": 0
+    },
+    {
+      "method": "POST",
+      "path": "/e/",
+      "contentType": "text/plain",
+      "contentEncoding": null,
+      "bodyBytes": 928
+    },
+    {
+      "method": "POST",
+      "path": "/e/?compression=base64",
+      "contentType": "application/x-www-form-urlencoded",
+      "contentEncoding": null,
+      "bodyBytes": 9485
+    }
+  ],
+  "serverPostHogRequests": [
+    {
+      "method": "POST",
+      "path": "/batch/",
+      "contentType": "application/json",
+      "contentEncoding": "gzip",
+      "bodyBytes": 660
+    }
+  ],
+  "serverProbeOutput": "server observability flush and shutdown completed",
+  "screenshotPath": "/tmp/gstj-portfolio-pr234-posthog.ktVE2e/proof/pr-234-posthog-1.410.2-5.47.6-561c774.png"
+}
