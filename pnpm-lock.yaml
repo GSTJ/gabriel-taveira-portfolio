@@ -102,7 +102,7 @@ importers:
         version: beasties@0.4.3
       magic-codemods:
         specifier: ^1.1.0
-        version: 1.1.5
+        version: 1.1.6
       magic-oxfmt-config:
         specifier: ^1.2.0
         version: 1.2.5(oxfmt@0.62.0)
@@ -1616,6 +1616,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1852,8 +1853,8 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  magic-codemods@1.1.5:
-    resolution: {integrity: sha512-KszxXtjc4x0iuzlL84kSTlLMncJpQ5blRs8+H8iBO1vulYRegIdtAmwVxLUc195sO+i8o94Kbqszo6tpMDgsxQ==}
+  magic-codemods@1.1.6:
+    resolution: {integrity: sha512-VKxehr24I8YGabylpdvDztWrURkhMZKupdh2Ojfi9ARbq72OxSxw3ed58PT2ihCBA1hxl+2M1F8TDfs0TzZBsw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -1916,8 +1917,8 @@ packages:
     resolution: {integrity: sha512-8/dspSXDshP6nSkCpjKO7BYc2qZoYSXm7iM+QxY7qJyJpAB3onnQSaiu0cvKJlfuMGwULl55hG69FJCcCMXU1Q==}
     engines: {node: '>=22.0.0'}
 
-  minimatch@10.2.5:
-    resolution: {integrity: sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==}
+  minimatch@10.2.6:
+    resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
     engines: {node: 18 || 20 || >=22}
 
   minimatch@3.1.5:
@@ -3026,7 +3027,7 @@ snapshots:
 
   '@ts-morph/common@0.29.0':
     dependencies:
-      minimatch: 10.2.5
+      minimatch: 10.2.6
       path-browserify: 1.0.1
       tinyglobby: 0.2.17
 
@@ -3541,7 +3542,7 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  magic-codemods@1.1.5:
+  magic-codemods@1.1.6:
     dependencies:
       ts-morph: 28.0.0
 
@@ -3588,7 +3589,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  minimatch@10.2.5:
+  minimatch@10.2.6:
     dependencies:
       brace-expansion: 5.0.9
 
