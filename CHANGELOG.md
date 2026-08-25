@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.18](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.17...v1.1.18) (2026-08-23)
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v26.2.0 ([#243](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/243)) ([a0323c0](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a0323c09d25bc788ecebf861bee1d40fff2e405a))
+* **deps:** update dependency next-intl to v4.13.5 ([#239](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/239)) ([ce30098](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ce30098d9d3281801763f4d520a4611966a1865b))
+* **deps:** update dependency postcss to v8.5.26 ([#240](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/240)) ([63f924f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/63f924f0354349499a3030291d18ef2095f72b73))
+* **deps:** update dependency postcss to v8.5.26 ([#241](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/241)) ([f3c3058](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/f3c30586dbbb85622950bd324f1c8f028e950ab5))
+* **deps:** update dependency puppeteer to v25.5.0 ([#242](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/242)) ([da8071f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/da8071f95d8243fd9526fe04d48a2ad9e2653d09))
+* **deps:** update dependency wrangler to v4.120.0 ([#244](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/244)) ([19e6791](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/19e679124d84c37009a8532861de7b063790dd60))
+* **deps:** update magic tooling ([#237](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/237)) ([051c0b9](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/051c0b971585221b6716c99add3e7094f3eaf5f6))
+* **deps:** update nextjs monorepo to v16.3.0 ([#245](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/245)) ([5ae19dc](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5ae19dcf37d4d2ef54cb187686f73075c510f88e))
+* **deps:** update posthog sdks ([#246](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/246)) ([05929b3](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/05929b310d2de6ce20ab385fccde826fb8d4037e))
+
 ## [1.1.17](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.16...v1.1.17) (2026-08-17)
 
 
