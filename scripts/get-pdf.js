@@ -2,15 +2,18 @@ const fs = require("fs");
 const { execSync } = require("child_process");
 const puppeteer = require("puppeteer");
 
+const sourceUrl =
+  process.env.PDF_SOURCE_URL ?? "https://www.gabrieltaveira.com.br/en-US";
+const executablePath =
+  process.env.PUPPETEER_EXECUTABLE_PATH ?? process.env.CHROME_BIN;
+
 const getPdf = async () => {
   const browser = await puppeteer.launch({
     headless: "new",
+    ...(executablePath ? { executablePath } : {}),
     args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
       "--disable-dev-shm-usage",
       "--no-first-run",
-      "--no-zygote",
       // Force the highest quality compositor settings — the warm radial
       // gradients in the hero/aurora layers band hard when Chrome falls
       // back to its software rasterizer at low DPI.
@@ -29,7 +32,7 @@ const getPdf = async () => {
   // page.pdf() by default, which can disable background gradients on any
   // rule guarded by media queries.
   await page.emulateMediaType("screen");
-  await page.goto("https://www.gabrieltaveira.com.br/en-US", {
+  await page.goto(sourceUrl, {
     waitUntil: "networkidle0",
   });
 
