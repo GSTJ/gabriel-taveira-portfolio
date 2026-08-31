@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.20](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.19...v1.1.20) (2026-08-31)
+
+
+### Chores
+
+* **deps:** update dependency puppeteer to v25.7.0 ([#258](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/258)) ([d236b29](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d236b2954ed07dafff99fb7851cb1995b1d43e82))
+* **deps:** update dependency wrangler to v4.122.0 ([#255](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/255)) ([a4c5835](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a4c58355d1191ba302347676380521541328c580))
+* **deps:** update dependency wrangler to v4.123.0 ([#259](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/259)) ([37ac9b4](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/37ac9b4f6f6aee71fd589c80108bd4529173048f))
+* **deps:** update nextjs monorepo to v16.3.1 ([#261](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/261)) ([abd9e9d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/abd9e9d5ec04001712277e510e4039d403199a40))
+* **deps:** update posthog sdks ([#257](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/257)) ([109ad69](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/109ad69b1d55e49ca37601b495db472275d89686))
+* **deps:** update posthog sdks ([#260](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/260)) ([bf54513](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/bf54513c8e5ba915488ab138c80c605244e358dc))
+* **deps:** update posthog sdks ([#262](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/262)) ([81b7051](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/81b7051dcd8aa53a5afe6f82c5653d62aa5ba923))
+
 ## [1.1.19](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.18...v1.1.19) (2026-08-26)
 
 
