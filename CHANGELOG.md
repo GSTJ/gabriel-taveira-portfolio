@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.22](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.21...v1.1.22) (2026-08-31)
+
+
+### Bug Fixes
+
+* **ci:** cover every static asset input ([#269](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/269)) ([9d025cd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/9d025cd3dc291d92485e7062bdc039e975f30e10))
+
+
+### Chores
+
+* **deps:** update dependency puppeteer to v25.8.0 ([#267](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/267)) ([adf1810](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/adf18100bb4c2f86f6ccbed1a65b8857bf2a41bc))
+
 ## [1.1.21](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.20...v1.1.21) (2026-08-31)
 
 
