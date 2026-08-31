@@ -5,8 +5,17 @@ on:
     branches:
       - main
     paths:
-      - "src/**"
+      - ".github/workflows/generate-files.yml"
+      - "next.config.ts"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "postcss.config.js"
+      - "public/**"
       - "scripts/**"
+      - "src/**"
+      - "tsconfig.json"
+      - "vercel.json"
   workflow_dispatch:
 
 # Two overlapping runs would race each other writing the same two objects.
@@ -42,6 +51,16 @@ jobs:
       PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
       PUPPETEER_SKIP_DOWNLOAD: "true"
     steps:
+      - name: ✅ Require main for manual runs
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          set -euo pipefail
+
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "::error::Choose main when running this workflow manually. Production deployments only exist for main commits."
+            exit 1
+          fi
+
       - name: 🏗 Setup Repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
