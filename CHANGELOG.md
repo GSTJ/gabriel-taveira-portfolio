@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.21](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.20...v1.1.21) (2026-08-31)
+
+
+### Bug Fixes
+
+* **ci:** isolate static asset publishing ([#265](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/265)) ([7e5b9ab](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/7e5b9abf071b60447439b64250ce1706acb75121))
+
+
+### Chores
+
+* **deps:** update dependency next-intl to v4.13.7 ([#263](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/263)) ([31b4ee6](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/31b4ee6f68b8e7a1c895c0dbd4c3cc4dea7da536))
+* **deps:** update dependency posthog-js to v1.417.2 ([#266](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/266)) ([85f68a7](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/85f68a7a647c7b142fb5232ee715fc440bb41bb5))
+
 ## [1.1.20](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.19...v1.1.20) (2026-08-31)
 
 
