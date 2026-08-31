@@ -14,6 +14,8 @@ on:
       - "public/**"
       - "scripts/**"
       - "src/**"
+      - "tsconfig.json"
+      - "vercel.json"
   workflow_dispatch:
 
 # Two overlapping runs would race each other writing the same two objects.
