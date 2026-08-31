@@ -30,10 +30,17 @@ env:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    # This job writes nothing back to the repo. It reads the source to build the
-    # assets and pushes them to R2.
+    # Browser automation and the third-party capture action stay in this job.
+    # R2 credentials only exist in the separate upload job below.
     permissions:
       contents: read
+      deployments: read
+    env:
+      # Ubuntu's AppArmor policy allows its packaged Chrome to create the user
+      # namespace used by the browser sandbox. Puppeteer's downloaded Chrome
+      # for Testing is outside that profile on Ubuntu 23.10 and newer.
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+      PUPPETEER_SKIP_DOWNLOAD: "true"
     steps:
       - name: 🏗 Setup Repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -51,12 +58,128 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Fail here rather than four minutes later inside a wrangler stack trace.
-      #
-      # "Missing" would be the wrong word. A secret saved with an empty value
-      # lists in the API exactly like a real one and arrives on the runner as an
-      # empty string, which is how the first live run failed while
-      # `gh secret list` showed both names present.
+      # Capture the deployment for this exact commit. The workflow used to read
+      # the public site immediately and could publish assets from the previous
+      # deployment when Actions won the race against Vercel.
+      - name: 🚀 Wait for this commit's production deployment
+        id: production
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          found=false
+          for attempt in $(seq 1 60); do
+            deployment_id=$(gh api \
+              "repos/$GITHUB_REPOSITORY/deployments?sha=$GITHUB_SHA&environment=Production&per_page=10" \
+              --jq '.[0].id // empty')
+
+            if [ -z "$deployment_id" ]; then
+              echo "attempt $attempt: production deployment has not started"
+              sleep 10
+              continue
+            fi
+
+            deployment_status=$(gh api \
+              "repos/$GITHUB_REPOSITORY/deployments/$deployment_id/statuses" \
+              --jq '.[0].state // empty')
+
+            if [ "$deployment_status" = "success" ]; then
+              deployment_url=$(gh api \
+                "repos/$GITHUB_REPOSITORY/deployments/$deployment_id/statuses" \
+                --jq '.[0].environment_url // empty')
+
+              if [ -z "$deployment_url" ]; then
+                echo "::error::Production deployment $deployment_id has no URL"
+                exit 1
+              fi
+
+              echo "url=$deployment_url" >> "$GITHUB_OUTPUT"
+              echo "deployment=$deployment_id" >> "$GITHUB_OUTPUT"
+              echo "using production deployment $deployment_id at $deployment_url"
+              found=true
+              break
+            fi
+
+            case "$deployment_status" in
+              failure|error|inactive)
+                echo "::error::Production deployment $deployment_id concluded with $deployment_status"
+                exit 1
+                ;;
+            esac
+
+            echo "attempt $attempt: production deployment $deployment_id is $deployment_status"
+            sleep 10
+          done
+
+          if [ "$found" != "true" ]; then
+            echo "::error::Timed out waiting for a successful production deployment of $GITHUB_SHA"
+            exit 1
+          fi
+
+      - name: 🏗 Install ghostscript
+        run: sudo apt-get update && sudo apt-get install -y ghostscript
+
+      - name: 🖨️ Generate PDF
+        env:
+          PDF_SOURCE_URL: ${{ steps.production.outputs.url }}/en-US
+        run: pnpm run get:pdf
+
+      - name: 🤖 Capture the site GIF
+        uses: PabloLec/website-to-gif@44056271a60cc6748fdfc990633a51bcb124a2cb # 2.1.5
+        with:
+          url: ${{ steps.production.outputs.url }}/en-US
+
+      - name: ✅ Validate generated assets
+        run: |
+          set -euo pipefail
+
+          [ "$(file --brief --mime-type demo.gif)" = "image/gif" ]
+          [ "$(file --brief --mime-type public/curriculum.pdf)" = "application/pdf" ]
+          [ -s demo.gif ]
+          [ -s public/curriculum.pdf ]
+
+          sha256sum demo.gif public/curriculum.pdf
+
+      - name: 📦 Store generated assets
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: portfolio-static-assets-${{ github.sha }}
+          path: |
+            demo.gif
+            public/curriculum.pdf
+          if-no-files-found: error
+          retention-days: 1
+
+  upload:
+    needs: generate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: 🏗 Setup Repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: 🏗 Setup PNPM
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+      - name: 🏗 Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+
+      # The upload job only needs Wrangler. Skipping lifecycle scripts keeps
+      # the clean credentialed runner from executing unrelated package hooks.
+      - name: 📦 Install publishing dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: 📦 Restore generated assets
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: portfolio-static-assets-${{ github.sha }}
+
+      # Fail before the upload instead of hiding the cause in a Wrangler stack
+      # trace. A listed secret can still contain an empty value.
       - name: 🔑 Check Cloudflare credentials
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -69,30 +192,16 @@ jobs:
           [ -n "${CLOUDFLARE_ACCOUNT_ID:-}" ] || empty="$empty CLOUDFLARE_ACCOUNT_ID"
 
           if [ -n "$empty" ]; then
-            echo "::error::Repository secret(s) unset or set to an empty value:$empty. Listing the name proves nothing, re-save the value. The token needs Account > R2 > Edit on the account that owns $R2_BUCKET."
+            echo "::error::Repository secret(s) unset or set to an empty value:$empty. Re-save each value and give the token Account > R2 > Edit on the account that owns $R2_BUCKET."
             exit 1
           fi
 
-          # Cheapest call that proves all three things at once: the token
-          # authenticates, the account id belongs to it, and it carries R2
-          # permissions. Takes about seven seconds.
           if ! pnpm exec wrangler r2 bucket info "$R2_BUCKET"; then
-            echo "::error::Both secrets have values but they cannot read $R2_BUCKET. Check the token has Account > R2 > Edit and that CLOUDFLARE_ACCOUNT_ID owns the bucket."
+            echo "::error::The Cloudflare credentials cannot read $R2_BUCKET. Check the account id and the token's R2 permissions."
             exit 1
           fi
 
           echo "credentials reach $R2_BUCKET"
-
-      - name: 🏗 Install ghostscript
-        run: sudo apt-get update && sudo apt-get install -y ghostscript
-
-      - name: 🖨️ Generate PDF
-        run: pnpm run get:pdf
-
-      - name: 🤖 Capture the site GIF
-        uses: PabloLec/website-to-gif@44056271a60cc6748fdfc990633a51bcb124a2cb # 2.1.5
-        with:
-          url: "https://www.gabrieltaveira.dev"
 
       # Straight to R2, no commit and no branch. Both objects are overwritten in
       # place and served from the custom domain, which README links to directly.
