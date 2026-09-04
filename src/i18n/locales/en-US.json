@@ -50,7 +50,18 @@
       "assetBoundary": {
         "title": "Prevented untrusted assets from executing on the application origin",
         "body": "Reproduced a stored-XSS risk where a compromised R2 object could be served as HTML on this portfolio's origin. Replaced the proxy rewrite with a typed streaming route and restrictive response headers.",
-        "metric": "reproduced locally"
+        "metric": "reproduced locally",
+        "caseStudy": {
+          "label": "Read the case study",
+          "causeTitle": "Root cause",
+          "cause": "The same-origin PDF rewrite forwarded the asset host's Content-Type. Control of that upstream response could make the browser interpret HTML inside the portfolio origin.",
+          "fixTitle": "Fix",
+          "fix": "I replaced the rewrite with a route that streams the body under a fixed PDF content type, nosniff, a fixed disposition, and explicit cache headers. Upstream response headers are discarded.",
+          "validationTitle": "Validation",
+          "validation": "A controlled local upstream reproduced script execution before the change. After it, the route returned the same bytes as application/pdf with nosniff. Production still serves a valid PDF through that contract.",
+          "limitsTitle": "Limits",
+          "limits": "The route does not inspect PDF structure or prove that production storage was compromised. The malicious-upstream regression remained a manual check because this repository had no automated test suite."
+        }
       },
       "identity": {
         "title": "Made OTPs single-use under concurrency",

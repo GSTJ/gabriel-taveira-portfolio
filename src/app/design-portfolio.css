@@ -1538,6 +1538,46 @@ a.ws-nav-link:hover {
   color: var(--ink-300);
   text-wrap: pretty;
 }
+.ws-security-case-study {
+  margin: 0 0 24px;
+  border-block: 1px solid rgba(42, 163, 155, 0.16);
+}
+.ws-security-case-study summary {
+  padding: 12px 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal-300);
+}
+.ws-security-case-study summary:focus-visible {
+  outline: 2px solid var(--teal-300);
+  outline-offset: 4px;
+}
+.ws-security-case-study-content {
+  display: grid;
+  gap: 14px;
+  padding: 2px 0 16px;
+}
+.ws-security-case-study-content h4,
+.ws-security-case-study-content p {
+  margin: 0;
+}
+.ws-security-case-study-content h4 {
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-100);
+}
+.ws-security-case-study-content p {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-300);
+}
 .ws-security-foot {
   display: flex;
   align-items: flex-end;
