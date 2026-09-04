@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.2.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.22...v1.2.0) (2026-09-04)
+
+
+### Features
+
+* add a public security engineering profile ([#282](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/282)) ([bc680a6](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/bc680a6d3f1570247c59f60b5b66b4611becf3b9))
+* add XSS case study to security profile ([#286](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/286)) ([de08efa](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/de08efaf009eb1b5918511534117cfb7a240fa7f))
+* move security work to a dedicated profile ([#283](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/283)) ([4256d6b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4256d6beffeb5b9483a2e56c7aea06bd0745a916))
+
+
+### Bug Fixes
+
+* keep the security profile private and defensive ([#284](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/284)) ([e3e8d11](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e3e8d11772cd0c435ea4aa395eec2c2400446b11))
+
+
+### Chores
+
+* **deps:** update dependency posthog-js to v1.417.4 ([#271](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/271)) ([1fc5c18](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1fc5c1822225aa393bf821ecaa53b6c90c9d8af9))
+* **deps:** update dependency posthog-js to v1.418.1 ([#275](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/275)) ([4793d65](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4793d6584f624e7a66ca50b919287ea5e4445815))
+* **deps:** update dependency posthog-js to v1.418.5 ([#277](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/277)) ([ddddf2d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ddddf2d013ad86bb193e828775e57a4621ed7931))
+* **deps:** update dependency wrangler to v4.124.0 ([#276](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/276)) ([07f5179](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/07f51796182d2ea3fbe9c2819d6e775330c01d44))
+* **deps:** update dependency wrangler to v4.125.0 ([#279](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/279)) ([1d4f96c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1d4f96c4da5cecd907cdc5aec8d2c3ca45493d16))
+* **deps:** update gstj/magic digest to f30b623 ([#270](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/270)) ([a77b731](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a77b73192a529d2f3513730afff2ee609e1439b2))
+* **deps:** update nextjs monorepo to v16.3.2 ([#280](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/280)) ([cb04d58](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/cb04d58847125a2b8d65a44a4f0d8b976fc39fb3))
+* **deps:** update posthog sdks ([#278](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/278)) ([8ab9b4d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/8ab9b4deff40d131a5ef6f23943e2faae2c909c4))
+* **deps:** update posthog sdks ([#281](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/281)) ([4b9a05f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4b9a05fe95b0f259875530232e1ce86d1ca13f4b))
+* **deps:** update posthog sdks ([#285](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/285)) ([adf3806](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/adf38060ae078d1aadf9d390d736e90107797012))
+
 ## [1.1.22](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.21...v1.1.22) (2026-08-31)
 
 
