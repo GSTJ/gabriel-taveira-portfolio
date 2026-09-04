@@ -115,6 +115,7 @@ export function useScrollSpy(): string {
   useEffect(() => {
     const ids = [
       "work",
+      "security",
       "publications",
       "talks",
       "awards",
