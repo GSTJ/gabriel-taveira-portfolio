@@ -10,7 +10,6 @@ import { ArrowRight, BrandMark } from "./shared";
 
 const NAV_LINKS = [
   { id: "work", key: "work" },
-  { id: "security", key: "security" },
   { id: "publications", key: "media" },
   { id: "talks", key: "talks" },
   { id: "awards", key: "awards" },
