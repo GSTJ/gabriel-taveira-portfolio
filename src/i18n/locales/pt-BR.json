@@ -1,6 +1,7 @@
 {
   "nav": {
     "work": "Trabalho",
+    "security": "Segurança",
     "media": "Mídia",
     "talks": "Palestras",
     "awards": "Prêmios",
@@ -8,10 +9,10 @@
     "getInTouch": "Fala comigo"
   },
   "hero": {
-    "role": "Engineering Lead",
+    "role": "Engineering Lead · Sistemas Seguros",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times e sistemas que duram.",
+    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times bons e sistemas seguros que duram.",
     "intro2": "Hoje consultor independente. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
     "getInTouch": "Fala comigo",
     "viewLinkedIn": "Ver LinkedIn",
@@ -28,6 +29,35 @@
       "tinkeringMeta": "Comecei aos 8",
       "awards": "Hackathons vencidos",
       "awardsMeta": "2019 → 2020"
+    }
+  },
+  "security": {
+    "eyebrow": "Engenharia de segurança · trabalho público",
+    "title": "Segurança faz parte da <em>arquitetura</em>.",
+    "sub": "AppSec na prática em identidade, autorização, uploads, fronteiras de cloud, CI/CD e supply chain. Todos os casos abaixo são públicos, mergeados e têm repro ou teste de regressão.",
+    "topicsLabel": "Áreas de atuação em segurança",
+    "readProof": "Ver PR mergeado",
+    "items": {
+      "assetBoundary": {
+        "title": "Fechei um caminho de stored XSS na fronteira de assets",
+        "body": "Reproduzi como um objeto comprometido no R2 poderia fazer este portfólio servir HTML controlado por um atacante na própria origem. Troquei o proxy por uma rota tipada, com streaming e headers restritivos.",
+        "metric": "reproduzido localmente"
+      },
+      "identity": {
+        "title": "Fiz OTPs serem de uso único mesmo sob concorrência",
+        "body": "Levei o consumo do OTP para um único update atômico no PostgreSQL e corri 25 códigos para provar um sucesso e uma rejeição em cada disputa. A mesma mudança protegeu refs de release e fixou ferramentas externas.",
+        "metric": "corridas de OTP cobertas"
+      },
+      "authorization": {
+        "title": "Vinculei cada grant de upload a quem pediu",
+        "body": "Adicionei grants curtos com ownership, assinatura do tamanho exato, limite por hora e limpeza. Só quem pediu o grant consegue usá-lo ao criar ou editar um perfil.",
+        "metric": "validade do upload grant"
+      },
+      "supplyChain": {
+        "title": "Endureci ferramentas compartilhadas e a cadeia de release",
+        "body": "Fechei trocas de symlink e corridas entre verificação e escrita. Actions externas usam commits imutáveis e ferramentas baixadas passam por checksum antes de executar.",
+        "metric": "entradas imutáveis no CI"
+      }
     }
   },
   "work": {

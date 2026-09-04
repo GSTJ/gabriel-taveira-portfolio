@@ -6,6 +6,7 @@ import { Contact } from "./contact";
 import { Hero } from "./hero";
 import { NowPlaying } from "./now-playing";
 import { Publications } from "./publications";
+import { SecurityPractice } from "./security-practice";
 import { TalksList } from "./talks-list";
 import { WorkGrid } from "./work-grid";
 import { WritingList } from "./writing-list";
@@ -26,6 +27,7 @@ export const Portfolio = () => {
       <ClientChrome />
       <Hero />
       <WorkGrid />
+      <SecurityPractice />
       <Publications />
       <TalksList />
       <Awards />

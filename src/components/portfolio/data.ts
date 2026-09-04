@@ -15,6 +15,54 @@ export const SPACE_CAST_PLAYLIST =
   "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V";
 export const CURRICULUM_PDF = "/curriculum.pdf";
 
+export const SECURITY_TOPICS = [
+  "Application Security",
+  "Authentication",
+  "Authorization",
+  "Secure SDLC",
+  "Software Supply Chain",
+  "Threat Modeling",
+] as const;
+
+export type SecurityCase = {
+  id: "assetBoundary" | "identity" | "authorization" | "supplyChain";
+  eyebrow: string;
+  metric: string;
+  tags: readonly string[];
+  href: string;
+};
+
+export const SECURITY_CASES: readonly SecurityCase[] = [
+  {
+    id: "assetBoundary",
+    eyebrow: "GABRIELTAVEIRA.DEV · 2026",
+    metric: "XSS",
+    tags: ["Threat modeling", "Cloud boundary", "HTTP headers"],
+    href: "https://github.com/GSTJ/gabriel-taveira-portfolio/pull/163",
+  },
+  {
+    id: "identity",
+    eyebrow: "PEGADA · 2026",
+    metric: "25×",
+    tags: ["Authentication", "Concurrency", "Release integrity"],
+    href: "https://github.com/GSTJ/pegada/pull/181",
+  },
+  {
+    id: "authorization",
+    eyebrow: "PEGADA · 2026",
+    metric: "10m",
+    tags: ["Authorization", "Signed uploads", "Abuse controls"],
+    href: "https://github.com/GSTJ/pegada/pull/180",
+  },
+  {
+    id: "supplyChain",
+    eyebrow: "MAGIC · 2026",
+    metric: "SHA",
+    tags: ["CodeQL", "Filesystem safety", "Supply chain"],
+    href: "https://github.com/GSTJ/magic/pull/10",
+  },
+] as const;
+
 export type Tone = "ember" | "coral" | "brass" | "teal";
 export type FlourishKind =
   | "ticker"

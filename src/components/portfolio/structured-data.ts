@@ -8,10 +8,18 @@
 
 import { SITE_URL } from "@/utils/site";
 
-import { CHANNELS, EMAIL_ADDR, GITHUB, LINKEDIN, MEDIUM, WORK } from "./data";
+import {
+  CHANNELS,
+  EMAIL_ADDR,
+  GITHUB,
+  LINKEDIN,
+  MEDIUM,
+  SECURITY_TOPICS,
+  WORK,
+} from "./data";
 import { yearsInIndustry } from "./lifeline";
 
-const KNOWS_ABOUT_CAP = 15;
+const KNOWS_ABOUT_CAP = 24;
 
 /**
  * Extracts the primary company name from an eyebrow string like
@@ -32,7 +40,9 @@ const companyNameFromEyebrow = (eyebrow: string): string => {
  * this is the same first-seen-wins ordering the nested loop produced.
  */
 const knowsAboutFromWork = (): string[] =>
-  [...new Set(WORK.flatMap((item) => item.tags))].slice(0, KNOWS_ABOUT_CAP);
+  [
+    ...new Set([...WORK.flatMap((item) => item.tags), ...SECURITY_TOPICS]),
+  ].slice(0, KNOWS_ABOUT_CAP);
 
 type WorksForEntry = {
   "@type": "Organization";
@@ -78,7 +88,7 @@ export function buildPortfolioJsonLd(locale: string): PortfolioJsonLd {
     givenName: "Gabriel",
     familyName: "Taveira",
     jobTitle: "Engineering Lead",
-    description: `Engineering Lead with ${years}+ years building React Native, Expo, and design-system-driven mobile platforms; leads remote teams shipping for Coinbase, Meta/Kustomer, D-ID and AB InBev.`,
+    description: `Engineering Lead with ${years}+ years building secure mobile and web platforms, React Native systems, developer tooling, and remote engineering teams.`,
     url: SITE_URL,
     image: `${SITE_URL}/og-image.png`,
     sameAs: [LINKEDIN, GITHUB, MEDIUM],
