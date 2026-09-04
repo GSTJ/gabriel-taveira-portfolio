@@ -20,12 +20,12 @@ export const SECURITY_TOPICS = [
   "Authentication",
   "Authorization",
   "Secure SDLC",
-  "Software Supply Chain",
   "Threat Modeling",
+  "Vulnerability Remediation",
 ] as const;
 
 export type SecurityCase = {
-  id: "assetBoundary" | "identity" | "authorization" | "supplyChain";
+  id: "assetBoundary" | "identity" | "authorization";
   eyebrow: string;
   metric: string;
   tags: readonly string[];
@@ -53,13 +53,6 @@ export const SECURITY_CASES: readonly SecurityCase[] = [
     metric: "10m",
     tags: ["Authorization", "Signed uploads", "Abuse controls"],
     href: "https://github.com/GSTJ/pegada/pull/180",
-  },
-  {
-    id: "supplyChain",
-    eyebrow: "MAGIC · 2026",
-    metric: "SHA",
-    tags: ["CodeQL", "Filesystem safety", "Supply chain"],
-    href: "https://github.com/GSTJ/magic/pull/10",
   },
 ] as const;
 

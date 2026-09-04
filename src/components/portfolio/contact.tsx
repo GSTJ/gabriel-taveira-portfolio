@@ -19,7 +19,11 @@ import { SOCIAL_ICONS } from "./social-icons";
 
 const EMPTY = { name: "", email: "", subject: "", message: "" };
 
-export const Contact = () => {
+export const Contact = ({
+  showFooterTag = true,
+}: {
+  showFooterTag?: boolean;
+}) => {
   const t = useTranslations("contact");
   const tForm = useTranslations("contact.form");
   const tChannels = useTranslations("contact.channels");
@@ -149,7 +153,9 @@ export const Contact = () => {
           <BrandMark size={18} withText={false} />
           <span className="ws-footer-meta">{t("footerMeta")}</span>
           <span className="ws-footer-spacer" />
-          <span className="ws-footer-meta">{t("footerTag")}</span>
+          {showFooterTag ? (
+            <span className="ws-footer-meta">{t("footerTag")}</span>
+          ) : null}
           <div className="ws-footer-end">
             <LanguageSwitcher />
             <span className="ws-footer-marginalia">

@@ -36,7 +36,27 @@ const nextConfig = {
   /** `X-Powered-By: Next.js` tells an attacker which CVEs to try. */
   poweredByHeader: false,
   headers: () =>
-    Promise.resolve([{ source: "/(.*)", headers: SECURITY_HEADERS }]),
+    Promise.resolve([
+      { source: "/(.*)", headers: SECURITY_HEADERS },
+      {
+        source: "/security",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+        ],
+      },
+      {
+        source: "/:locale/security",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+        ],
+      },
+    ]),
   experimental: {
     /**
      * Next inlines critical CSS with a literal `require("critters")` in

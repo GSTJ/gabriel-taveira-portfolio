@@ -34,7 +34,7 @@
     "navLabel": "Security profile navigation",
     "eyebrow": "Gabriel Taveira · Application Security",
     "title": "I find the boundary, reproduce the failure, and <em>fix it</em>.",
-    "intro": "I'm an Engineering Lead with over {years} years building mobile, web, and developer platforms. My security work covers identity, authorization, untrusted uploads, cloud boundaries, CI/CD, and software supply chains.",
+    "intro": "I started at eight by reverse-engineering games to understand how software worked. More than {years} years into my professional engineering career, I bring that same curiosity to defensive application security across identity, authorization, untrusted uploads, and cloud boundaries.",
     "proof": "The work below is public, merged, and linked to a reproduction or regression test.",
     "fullProfile": "Full engineering profile",
     "viewGitHub": "View GitHub",
@@ -42,30 +42,25 @@
   },
   "security": {
     "eyebrow": "Selected security work",
-    "title": "Four fixes, with the <em>proof</em> attached.",
-    "sub": "Each case starts with a concrete attack path and ends with a bounded fix plus a regression check.",
+    "title": "Three defensive fixes, with the <em>proof</em> attached.",
+    "sub": "Each case starts with an observed security risk and ends with a scoped fix plus a regression check.",
     "topicsLabel": "Security practice areas",
     "readProof": "Read merged PR",
     "items": {
       "assetBoundary": {
-        "title": "Closed a stored-XSS path at an asset boundary",
-        "body": "Reproduced how a compromised R2 object could make this portfolio serve attacker-controlled HTML on its own origin. Replaced the proxy rewrite with a typed streaming route and restrictive response headers.",
+        "title": "Prevented untrusted assets from executing on the application origin",
+        "body": "Reproduced a stored-XSS risk where a compromised R2 object could be served as HTML on this portfolio's origin. Replaced the proxy rewrite with a typed streaming route and restrictive response headers.",
         "metric": "reproduced locally"
       },
       "identity": {
         "title": "Made OTPs single-use under concurrency",
-        "body": "Moved OTP consumption into one atomic PostgreSQL update, then raced 25 codes to prove each produced one success and one rejection. The same change hardened release refs and pinned external tooling.",
+        "body": "Moved OTP consumption into one atomic PostgreSQL update and added concurrency coverage across 25 code pairs. Every pair produced one success and one rejection.",
         "metric": "OTP races covered"
       },
       "authorization": {
         "title": "Bound image upload grants to the caller",
         "body": "Added short-lived upload grants with ownership, exact-byte signatures, hourly caps, and cleanup. Only the user who requested a grant can claim it when creating or editing a profile.",
         "metric": "upload grant TTL"
-      },
-      "supplyChain": {
-        "title": "Hardened shared tooling and its release chain",
-        "body": "Closed symlink swaps and check/write races in filesystem tools. External Actions are commit-pinned and downloaded release tools are checksum-verified before execution.",
-        "metric": "immutable CI inputs"
       }
     }
   },

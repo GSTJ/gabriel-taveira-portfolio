@@ -29,13 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
         alternates: { languages: languages("/links") },
       },
-      {
-        url: `${SITE_URL}/${locale}/security`,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates: { languages: languages("/security") },
-      },
     );
   }
 

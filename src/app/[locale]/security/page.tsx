@@ -8,12 +8,12 @@ const COPY = {
   "en-US": {
     title: "Gabriel Taveira · Application Security",
     description:
-      "Public application security work across identity, authorization, uploads, cloud boundaries, CI/CD, and software supply chains.",
+      "Defensive application security work across identity, authorization, untrusted uploads, and cloud boundaries.",
   },
   "pt-BR": {
     title: "Gabriel Taveira · Application Security",
     description:
-      "Trabalho público em segurança de aplicações, cobrindo identidade, autorização, uploads, cloud, CI/CD e supply chain.",
+      "Trabalho defensivo em segurança de aplicações, cobrindo identidade, autorização, uploads não confiáveis e fronteiras de cloud.",
   },
 } as const;
 
@@ -30,6 +30,10 @@ export async function generateMetadata({
 
   return {
     ...selected,
+    robots: {
+      index: false,
+      follow: false,
+    },
     alternates: {
       canonical: `${SITE_URL}/${locale}/security`,
       languages: {
