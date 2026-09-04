@@ -45,7 +45,7 @@
     "magic-oxlint-config": "^2.0.5",
     "magic-oxlint-plugin": "^1.1.0",
     "magic-tsconfig": "^1.2.0",
-    "oxfmt": "0.63.0",
+    "oxfmt": "0.64.0",
     "oxlint": "1.78.0",
     "puppeteer": "^25.0.0",
     "wrangler": "4.125.0"
