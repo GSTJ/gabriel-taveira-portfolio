@@ -37,6 +37,31 @@ export const SecurityPractice = () => {
               <Balancer>{t(`items.${item.id}.title`)}</Balancer>
             </h3>
             <p className="ws-security-body">{t(`items.${item.id}.body`)}</p>
+            {item.id === "assetBoundary" && (
+              <details className="ws-security-case-study">
+                <summary>{t("items.assetBoundary.caseStudy.label")}</summary>
+                <div className="ws-security-case-study-content">
+                  <div>
+                    <h4>{t("items.assetBoundary.caseStudy.causeTitle")}</h4>
+                    <p>{t("items.assetBoundary.caseStudy.cause")}</p>
+                  </div>
+                  <div>
+                    <h4>{t("items.assetBoundary.caseStudy.fixTitle")}</h4>
+                    <p>{t("items.assetBoundary.caseStudy.fix")}</p>
+                  </div>
+                  <div>
+                    <h4>
+                      {t("items.assetBoundary.caseStudy.validationTitle")}
+                    </h4>
+                    <p>{t("items.assetBoundary.caseStudy.validation")}</p>
+                  </div>
+                  <div>
+                    <h4>{t("items.assetBoundary.caseStudy.limitsTitle")}</h4>
+                    <p>{t("items.assetBoundary.caseStudy.limits")}</p>
+                  </div>
+                </div>
+              </details>
+            )}
             <div className="ws-security-foot">
               <div className="ws-security-tags">
                 {item.tags.map((tag) => (

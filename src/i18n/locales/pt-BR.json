@@ -50,7 +50,18 @@
       "assetBoundary": {
         "title": "Impedi assets não confiáveis de executar na origem da aplicação",
         "body": "Reproduzi um risco de stored XSS em que um objeto comprometido no R2 poderia ser servido como HTML na origem deste portfólio. Troquei o proxy por uma rota tipada, com streaming e headers restritivos.",
-        "metric": "reproduzido localmente"
+        "metric": "reproduzido localmente",
+        "caseStudy": {
+          "label": "Ler o estudo de caso",
+          "causeTitle": "Causa",
+          "cause": "O rewrite do PDF na mesma origem repassava o Content-Type do host de assets. Quem controlasse essa resposta upstream poderia fazer o navegador interpretar HTML dentro da origem do portfólio.",
+          "fixTitle": "Correção",
+          "fix": "Troquei o rewrite por uma rota que transmite o body com tipo PDF fixo, nosniff, disposition fixa e cache explícito. Os headers da resposta upstream são descartados.",
+          "validationTitle": "Validação",
+          "validation": "Um upstream local controlado reproduziu a execução de script antes da mudança. Depois, a rota devolveu os mesmos bytes como application/pdf e nosniff. A produção continua servindo um PDF válido por esse contrato.",
+          "limitsTitle": "Limites",
+          "limits": "A rota não inspeciona a estrutura do PDF nem prova comprometimento do storage em produção. A regressão com upstream malicioso ficou como verificação manual porque o repositório não tinha uma suíte de testes automatizados."
+        }
       },
       "identity": {
         "title": "Fiz OTPs serem de uso único mesmo sob concorrência",
