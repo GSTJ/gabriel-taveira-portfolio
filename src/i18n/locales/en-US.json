@@ -1,7 +1,6 @@
 {
   "nav": {
     "work": "Work",
-    "security": "Security",
     "media": "Media",
     "talks": "Talks",
     "awards": "Awards",
@@ -9,10 +8,10 @@
     "getInTouch": "Get in touch"
   },
   "hero": {
-    "role": "Engineering Lead · Secure Systems",
+    "role": "Engineering Lead",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "I'm an Engineering Lead with over {years} years of professional experience. I've led teams from <strong>4 to 56 direct reports</strong>, working remotely with major US companies. I help them build great teams and secure systems that last.",
+    "intro": "I'm an Engineering Lead with over {years} years of professional experience. I've led teams from <strong>4 to 56 direct reports</strong>, working remotely with major US companies. I help them build great teams and systems that last.",
     "intro2": "Currently consulting independently. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape.",
     "getInTouch": "Get in touch",
     "viewLinkedIn": "View LinkedIn",
@@ -31,10 +30,20 @@
       "awardsMeta": "2019 → 2020"
     }
   },
+  "securityPage": {
+    "navLabel": "Security profile navigation",
+    "eyebrow": "Gabriel Taveira · Application Security",
+    "title": "I find the boundary, reproduce the failure, and <em>fix it</em>.",
+    "intro": "I'm an Engineering Lead with over {years} years building mobile, web, and developer platforms. My security work covers identity, authorization, untrusted uploads, cloud boundaries, CI/CD, and software supply chains.",
+    "proof": "The work below is public, merged, and linked to a reproduction or regression test.",
+    "fullProfile": "Full engineering profile",
+    "viewGitHub": "View GitHub",
+    "getInTouch": "Get in touch"
+  },
   "security": {
-    "eyebrow": "Security engineering · public work",
-    "title": "Security is part of the <em>architecture</em>.",
-    "sub": "Hands-on AppSec across identity, authorization, file uploads, cloud boundaries, CI/CD, and software supply chains. Every case below is public, merged, and backed by a reproduction or regression test.",
+    "eyebrow": "Selected security work",
+    "title": "Four fixes, with the <em>proof</em> attached.",
+    "sub": "Each case starts with a concrete attack path and ends with a bounded fix plus a regression check.",
     "topicsLabel": "Security practice areas",
     "readProof": "Read merged PR",
     "items": {

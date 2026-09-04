@@ -1,7 +1,6 @@
 {
   "nav": {
     "work": "Trabalho",
-    "security": "Segurança",
     "media": "Mídia",
     "talks": "Palestras",
     "awards": "Prêmios",
@@ -9,10 +8,10 @@
     "getInTouch": "Fala comigo"
   },
   "hero": {
-    "role": "Engineering Lead · Sistemas Seguros",
+    "role": "Engineering Lead",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times bons e sistemas seguros que duram.",
+    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times e sistemas que duram.",
     "intro2": "Hoje consultor independente. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
     "getInTouch": "Fala comigo",
     "viewLinkedIn": "Ver LinkedIn",
@@ -31,10 +30,20 @@
       "awardsMeta": "2019 → 2020"
     }
   },
+  "securityPage": {
+    "navLabel": "Navegação do perfil de segurança",
+    "eyebrow": "Gabriel Taveira · Application Security",
+    "title": "Encontro a fronteira, reproduzo a falha e <em>resolvo</em>.",
+    "intro": "Sou Engineering Lead com mais de {years} anos construindo plataformas mobile, web e ferramentas para desenvolvedores. Meu trabalho em segurança cobre identidade, autorização, uploads não confiáveis, fronteiras de cloud, CI/CD e supply chain.",
+    "proof": "O trabalho abaixo é público, está mergeado e tem link para o repro ou teste de regressão.",
+    "fullProfile": "Perfil completo de engenharia",
+    "viewGitHub": "Ver GitHub",
+    "getInTouch": "Fala comigo"
+  },
   "security": {
-    "eyebrow": "Engenharia de segurança · trabalho público",
-    "title": "Segurança faz parte da <em>arquitetura</em>.",
-    "sub": "AppSec na prática em identidade, autorização, uploads, fronteiras de cloud, CI/CD e supply chain. Todos os casos abaixo são públicos, mergeados e têm repro ou teste de regressão.",
+    "eyebrow": "Trabalho selecionado em segurança",
+    "title": "Quatro correções, com a <em>prova</em> junto.",
+    "sub": "Cada caso começa com um caminho de ataque concreto e termina com uma correção pontual e um teste de regressão.",
     "topicsLabel": "Áreas de atuação em segurança",
     "readProof": "Ver PR mergeado",
     "items": {
