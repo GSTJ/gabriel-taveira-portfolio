@@ -34,7 +34,7 @@
     "navLabel": "Navegação do perfil de segurança",
     "eyebrow": "Gabriel Taveira · Application Security",
     "title": "Encontro a fronteira, reproduzo a falha e <em>resolvo</em>.",
-    "intro": "Sou Engineering Lead com mais de {years} anos construindo plataformas mobile, web e ferramentas para desenvolvedores. Meu trabalho em segurança cobre identidade, autorização, uploads não confiáveis, fronteiras de cloud, CI/CD e supply chain.",
+    "intro": "Comecei aos oito anos fazendo engenharia reversa em jogos para entender como o software funcionava. Mais de {years} anos depois de começar minha carreira profissional, uso a mesma curiosidade em segurança defensiva de aplicações, cobrindo identidade, autorização, uploads não confiáveis e fronteiras de cloud.",
     "proof": "O trabalho abaixo é público, está mergeado e tem link para o repro ou teste de regressão.",
     "fullProfile": "Perfil completo de engenharia",
     "viewGitHub": "Ver GitHub",
@@ -42,30 +42,25 @@
   },
   "security": {
     "eyebrow": "Trabalho selecionado em segurança",
-    "title": "Quatro correções, com a <em>prova</em> junto.",
-    "sub": "Cada caso começa com um caminho de ataque concreto e termina com uma correção pontual e um teste de regressão.",
+    "title": "Três correções defensivas, com a <em>prova</em> junto.",
+    "sub": "Cada caso começa com um risco de segurança observado e termina com uma correção pontual e um teste de regressão.",
     "topicsLabel": "Áreas de atuação em segurança",
     "readProof": "Ver PR mergeado",
     "items": {
       "assetBoundary": {
-        "title": "Fechei um caminho de stored XSS na fronteira de assets",
-        "body": "Reproduzi como um objeto comprometido no R2 poderia fazer este portfólio servir HTML controlado por um atacante na própria origem. Troquei o proxy por uma rota tipada, com streaming e headers restritivos.",
+        "title": "Impedi assets não confiáveis de executar na origem da aplicação",
+        "body": "Reproduzi um risco de stored XSS em que um objeto comprometido no R2 poderia ser servido como HTML na origem deste portfólio. Troquei o proxy por uma rota tipada, com streaming e headers restritivos.",
         "metric": "reproduzido localmente"
       },
       "identity": {
         "title": "Fiz OTPs serem de uso único mesmo sob concorrência",
-        "body": "Levei o consumo do OTP para um único update atômico no PostgreSQL e corri 25 códigos para provar um sucesso e uma rejeição em cada disputa. A mesma mudança protegeu refs de release e fixou ferramentas externas.",
+        "body": "Levei o consumo do OTP para um único update atômico no PostgreSQL e adicionei cobertura de concorrência em 25 pares de códigos. Cada par produziu um sucesso e uma rejeição.",
         "metric": "corridas de OTP cobertas"
       },
       "authorization": {
         "title": "Vinculei cada grant de upload a quem pediu",
         "body": "Adicionei grants curtos com ownership, assinatura do tamanho exato, limite por hora e limpeza. Só quem pediu o grant consegue usá-lo ao criar ou editar um perfil.",
         "metric": "validade do upload grant"
-      },
-      "supplyChain": {
-        "title": "Endureci ferramentas compartilhadas e a cadeia de release",
-        "body": "Fechei trocas de symlink e corridas entre verificação e escrita. Actions externas usam commits imutáveis e ferramentas baixadas passam por checksum antes de executar.",
-        "metric": "entradas imutáveis no CI"
       }
     }
   },

@@ -76,7 +76,7 @@ export const SecurityPortfolio = ({ locale }: { locale: string }) => {
         </section>
 
         <SecurityPractice />
-        <Contact />
+        <Contact showFooterTag={false} />
       </main>
     </BalancerProvider>
   );
