@@ -850,3 +850,8 @@
 .folio .ws-awards-row .ws-awards-icon {
   color: var(--muted);
 }
+
+.folio .ws-input:focus {
+  border-color: var(--forest);
+  box-shadow: none;
+}

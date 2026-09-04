@@ -9,6 +9,12 @@
 :root {
   scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
+
 .animate-shine {
   animation: shine 4s ease-in-out infinite;
 }

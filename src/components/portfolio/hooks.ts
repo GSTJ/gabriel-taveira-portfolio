@@ -90,13 +90,16 @@ const NAV_OFFSET = 80;
  * rather than to `#top`'s offset, so the hero's full bleed stays visible.
  */
 export function scrollToSection(id: string): void {
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "instant"
+    : "smooth";
   if (id === "top") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior });
     return;
   }
   const el = document.querySelector<HTMLElement>(`#${id}`);
   if (el) {
-    window.scrollTo({ top: el.offsetTop - NAV_OFFSET, behavior: "smooth" });
+    window.scrollTo({ top: el.offsetTop - NAV_OFFSET, behavior });
   }
 }
 
