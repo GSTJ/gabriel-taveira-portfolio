@@ -28,7 +28,12 @@
       "tinkeringMeta": "Comecei aos 8",
       "awards": "Hackathons vencidos",
       "awardsMeta": "2019 → 2020"
-    }
+    },
+    "exploreWork": "Explorar trabalhos",
+    "sculptureCaption": "Sempre em movimento.",
+    "pauseMotion": "Pausar animação",
+    "playMotion": "Reproduzir animação",
+    "disciplines": "React Native / Sistemas / Liderança"
   },
   "securityPage": {
     "navLabel": "Navegação do perfil de segurança",

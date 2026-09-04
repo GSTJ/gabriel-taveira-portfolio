@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { cn } from "@/utils/cn";
 
-import { ArrowRight, BrandMark } from "./shared";
+import { ArrowRight } from "./shared";
 
 const NAV_LINKS = [
   { id: "work", key: "work" },
@@ -52,7 +52,9 @@ export const Nav = ({
             onNav("top");
           }}
         >
-          <BrandMark size={22} withText={false} />
+          <span className="folio-monogram" aria-label="Gabriel Taveira">
+            gt<span>.</span>
+          </span>
         </a>
         <div className="ws-nav-links">
           {NAV_LINKS.map((l) => (

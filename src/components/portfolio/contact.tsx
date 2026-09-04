@@ -89,20 +89,23 @@ export const Contact = ({
         <form className="ws-contact-form ws-pdf-hide" onSubmit={submit}>
           <div className="ws-field-grid">
             <div className="ws-field">
-              <label>{tForm("name")}</label>
+              <label htmlFor="contact-name">{tForm("name")}</label>
               <input
                 className="ws-input"
                 type="text"
+                id="contact-name"
                 value={form.name}
                 onChange={update("name")}
                 placeholder={tForm("namePh")}
               />
             </div>
             <div className="ws-field">
-              <label>{tForm("email")}</label>
+              <label htmlFor="contact-email">{tForm("email")}</label>
               <input
                 className="ws-input"
                 type="email"
+                id="contact-email"
+                required
                 value={form.email}
                 onChange={update("email")}
                 placeholder={tForm("emailPh")}
@@ -110,19 +113,22 @@ export const Contact = ({
             </div>
           </div>
           <div className="ws-field">
-            <label>{tForm("subject")}</label>
+            <label htmlFor="contact-subject">{tForm("subject")}</label>
             <input
               className="ws-input"
               type="text"
+              id="contact-subject"
               value={form.subject}
               onChange={update("subject")}
               placeholder={tForm("subjectPh")}
             />
           </div>
           <div className="ws-field">
-            <label>{tForm("message")}</label>
+            <label htmlFor="contact-message">{tForm("message")}</label>
             <textarea
               className="ws-input ws-textarea"
+              id="contact-message"
+              required
               value={form.message}
               onChange={update("message")}
               placeholder={tForm("messagePh")}

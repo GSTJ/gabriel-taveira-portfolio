@@ -23,15 +23,19 @@ import { WritingList } from "./writing-list";
 export const Portfolio = () => {
   return (
     <BalancerProvider>
-      <ClientChrome />
-      <Hero />
-      <WorkGrid />
-      <Publications />
-      <TalksList />
-      <Awards />
-      <WritingList />
-      <NowPlaying />
-      <Contact />
+      <div className="folio">
+        <ClientChrome />
+        <main>
+          <Hero />
+          <WorkGrid />
+          <Publications />
+          <TalksList />
+          <Awards />
+          <WritingList />
+          <NowPlaying />
+          <Contact />
+        </main>
+      </div>
     </BalancerProvider>
   );
 };

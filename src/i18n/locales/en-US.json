@@ -28,7 +28,12 @@
       "tinkeringMeta": "Started at age 8",
       "awards": "Hackathons won",
       "awardsMeta": "2019 → 2020"
-    }
+    },
+    "exploreWork": "Explore my work",
+    "sculptureCaption": "Always a work in motion.",
+    "pauseMotion": "Pause motion",
+    "playMotion": "Play motion",
+    "disciplines": "React Native / Systems / Leadership"
   },
   "securityPage": {
     "navLabel": "Security profile navigation",
