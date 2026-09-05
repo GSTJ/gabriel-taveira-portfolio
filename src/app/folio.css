@@ -265,7 +265,7 @@
   transform: rotate(45deg);
 }
 .folio .ws-pubs-grid {
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 48px;
 }
 .folio .ws-pubs-feature {
@@ -436,8 +436,6 @@
 }
 .folio .ws-footer-meta {
   max-width: 100%;
-}
-@media (min-width: 1800px) {
 }
 @media (max-width: 1000px) {
   .folio .ws-nav-wrap {
@@ -634,15 +632,15 @@
 }
 .folio-identity {
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   align-items: center;
-  gap: 64px;
-  padding: 56px 0 64px;
+  gap: 80px;
+  padding: 48px 0 56px;
 }
 .folio-identity h1 {
   font-family: var(--font-display);
   font-stretch: 72%;
-  font-size: clamp(80px, 11.8vw, 170px);
+  font-size: clamp(80px, 10.2vw, 146px);
   font-weight: 750;
   line-height: 0.86;
   letter-spacing: -0.035em;
@@ -659,7 +657,7 @@
 .folio-bio h2 {
   font-size: 19px;
   font-weight: 500;
-  margin: 0 0 22px;
+  margin: 30px 0 16px;
 }
 .folio-bio p {
   font-size: 15px;
@@ -704,7 +702,7 @@
 }
 .folio-project {
   min-width: 0;
-  min-height: 335px;
+  min-height: 285px;
   padding: 26px 30px;
   display: flex;
   flex-direction: column;
@@ -774,8 +772,8 @@
   justify-content: space-between;
   align-items: start;
   gap: 40px;
-  padding: 28px 0 32px;
-  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
 }
 .folio-personal p {
   max-width: 75ch;
@@ -801,21 +799,13 @@
 .folio .ws-pubs-card .ws-eyebrow {
   display: none;
 }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .folio-project:hover {
-    transform: rotateX(3deg) translateY(-5px);
-  }
-  .folio-project:hover .folio-project-cursor {
-    transform: scaleY(1);
-  }
-}
 @media (max-width: 1000px) {
   .folio-identity {
     gap: 40px;
     grid-template-columns: 1.1fr 1fr;
   }
   .folio-identity h1 {
-    font-size: 12vw;
+    font-size: 11vw;
   }
   .folio-bio p {
     font-size: 13px;
@@ -863,5 +853,176 @@
   }
   .folio .ws-section-title {
     font-size: 34px;
+  }
+}
+
+/* A real portrait with the story on its reverse. Native details keeps it
+   usable with touch, keyboard, and without client-side JavaScript. */
+.folio-portrait {
+  width: min(100%, 410px);
+  justify-self: end;
+  padding-top: 14px;
+}
+.folio-photo {
+  position: relative;
+  perspective: 1400px;
+  --photo-turn: -3deg;
+}
+.folio-photo summary {
+  list-style: none;
+  cursor: pointer;
+}
+.folio-photo summary::-webkit-details-marker {
+  display: none;
+}
+.folio-photo-front,
+.folio-photo-back {
+  width: 100%;
+  aspect-ratio: 1 / 1.14;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  box-shadow: 0 18px 36px #0005;
+  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.folio-photo-front {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 0;
+  background: #dedbd3;
+  color: #252322;
+  transform: rotate(var(--photo-turn));
+}
+.folio-photo-front img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.folio-photo-caption {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 8px 7px;
+  font-size: 13px;
+}
+.folio-photo-toggle {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  align-items: center;
+  min-height: 52px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--text);
+}
+.folio-photo-toggle svg {
+  color: #ff795f;
+}
+.folio-photo-close {
+  display: none;
+}
+.folio-photo-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background: #ff795f;
+  color: #211b19;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  overflow: hidden;
+  transform: rotateY(-180deg) rotate(var(--photo-turn));
+}
+.folio-photo-back h2 {
+  color: inherit;
+  font-size: clamp(25px, 2.5vw, 34px);
+  line-height: 1.1;
+  margin: 0 0 16px;
+  max-width: 10ch;
+  position: relative;
+}
+.folio-photo-back p {
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  position: relative;
+  max-width: 36ch;
+}
+.folio-photo-age {
+  position: absolute;
+  top: -65px;
+  right: -8px;
+  font-weight: 800;
+  font-stretch: 72%;
+  font-size: 300px;
+  line-height: 1;
+  color: #ec6048;
+}
+.folio-photo-sign {
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: 18px;
+}
+.folio-photo[open] .folio-photo-front {
+  transform: rotateY(180deg) rotate(var(--photo-turn));
+}
+.folio-photo[open] .folio-photo-back {
+  transform: rotateY(0) rotate(2deg);
+}
+.folio-photo[open] .folio-photo-open {
+  display: none;
+}
+.folio-photo[open] .folio-photo-close {
+  display: inline;
+}
+.folio-photo:not([open]) .folio-photo-back {
+  visibility: hidden;
+}
+.folio-portrait .folio-location {
+  flex-direction: row;
+  margin-top: 8px;
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  .folio-photo-back {
+    padding: 22px;
+  }
+  .folio-photo-back p {
+    font-size: 12px;
+  }
+  .folio-photo-age {
+    font-size: 240px;
+  }
+}
+@media (max-width: 700px) {
+  .folio-identity {
+    gap: 24px;
+  }
+  .folio-portrait {
+    width: min(88%, 360px);
+    justify-self: center;
+  }
+  .folio-photo-back h2 {
+    font-size: 29px;
+  }
+  .folio-photo-back p {
+    font-size: 13px;
+  }
+  .folio-personal {
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+  .folio-personal p {
+    font-size: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .folio-photo-front,
+  .folio-photo-back {
+    transition: none;
   }
 }

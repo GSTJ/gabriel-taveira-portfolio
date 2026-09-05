@@ -31,7 +31,15 @@
     },
     "coinbaseFocus": "Infraestrutura do app mobile",
     "didFocus": "O app mobile, construído do zero.",
-    "didRole": "Lead Engineer"
+    "didRole": "Lead Engineer",
+    "humanRole": "Engineering Lead. Ainda no código.",
+    "humanIntro": "São {years} anos construindo software e liderando times, de <strong>4 a 56 pessoas se reportando a mim</strong>. Hoje trabalho de forma independente com empresas dos EUA.",
+    "portraitAlt": "Gabriel Taveira em frente à sua estante",
+    "flipPhoto": "Tem história no verso",
+    "restorePhoto": "Voltar pra foto",
+    "originTitle": "Comecei aos oito.",
+    "originStory": "Eu fazia engenharia reversa de jogos pra entender como funcionavam. Foi assim que entrei na programação. Ainda gosto de ir pro código, mesmo quando estou liderando o time.",
+    "selectedIntro": "Algumas coisas que ajudei a construir."
   },
   "securityPage": {
     "navLabel": "Navegação do perfil de segurança",

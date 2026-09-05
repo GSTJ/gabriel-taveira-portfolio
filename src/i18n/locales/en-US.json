@@ -31,7 +31,15 @@
     },
     "coinbaseFocus": "Mobile app infrastructure",
     "didFocus": "The mobile app, built from zero.",
-    "didRole": "Lead Engineer"
+    "didRole": "Lead Engineer",
+    "humanRole": "Engineering Lead. Still hands-on.",
+    "humanIntro": "I've spent {years} years building software and leading teams, from <strong>4 to 56 direct reports</strong>. These days, I work independently with US companies.",
+    "portraitAlt": "Gabriel Taveira in front of his bookshelf",
+    "flipPhoto": "There’s a story on the back",
+    "restorePhoto": "Back to the photo",
+    "originTitle": "I started at eight.",
+    "originStory": "I used to reverse-engineer games to figure out how they worked. That’s how I got into programming. I still like getting into the code, even when I’m leading the team.",
+    "selectedIntro": "A few things I’ve helped build."
   },
   "securityPage": {
     "navLabel": "Security profile navigation",
