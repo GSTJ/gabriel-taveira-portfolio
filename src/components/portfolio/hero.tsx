@@ -3,69 +3,75 @@
 import { useTranslations } from "next-intl";
 
 import { CURRICULUM_PDF, LINKEDIN } from "./data";
-import { KineticSculpture } from "./kinetic-sculpture";
-import { CAREER_START_YEAR, yearsInIndustry, yearsTinkering } from "./lifeline";
-import { ArrowRight, ArrowUpRight, richTags } from "./shared";
+import { yearsInIndustry, yearsTinkering } from "./lifeline";
+import { ArrowUpRight, richTags } from "./shared";
 
 export const Hero = () => {
   const t = useTranslations("hero");
-  const stats = useTranslations("hero.stats");
   return (
     <section className="folio-hero" id="top">
-      <div className="folio-name-row">
-        <h1>
-          {t("name")} <span>{t("surname")}</span>
+      <div className="folio-identity">
+        <h1 aria-label={`${t("name")} ${t("surname")}`}>
+          <span>{t("name")}</span>
+          <span>
+            {t("surname")}
+            <b aria-hidden="true">.</b>
+          </span>
         </h1>
-        <span className="folio-location">
-          Ribeirão Preto, BR
-          <span id="ws-clock" />
-        </span>
-      </div>
-      <div className="folio-hero-body">
-        <div className="folio-intro">
-          <h2>
-            {t("role")}
-            <span className="folio-asterisk" aria-hidden="true">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.3"
-              >
-                <path d="M15 1v28M1 15h28M5 5l20 20M5 25 25 5" />
-              </svg>
-            </span>
-          </h2>
+        <div className="folio-bio">
+          <h2>{t("role")}</h2>
           <p>{t.rich("intro", { ...richTags, years: yearsInIndustry() })}</p>
           <div className="folio-actions">
-            <a className="ws-btn ws-btn-primary" href="#work">
-              {t("exploreWork")}
-              <ArrowRight />
+            <a href="#contact">
+              {t("getInTouch")}
+              <ArrowUpRight size={18} />
             </a>
-            <a
-              className="folio-text-link"
-              href={LINKEDIN}
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
+            <a href={CURRICULUM_PDF} target="_blank" rel="noreferrer">
+              {t("downloadPdf")}
               <ArrowUpRight size={16} />
             </a>
           </div>
-          <p className="folio-note">
-            {t("intro2", { tinkering: yearsTinkering() })}
-          </p>
+          <div className="folio-location">
+            <span>Ribeirão Preto, BR</span>
+            <span id="ws-clock" />
+          </div>
         </div>
-        <KineticSculpture />
       </div>
-      <div className="folio-hero-foot">
-        <span>{stats("yearsMeta", { since: CAREER_START_YEAR })}</span>
-        <span>{t("disciplines")}</span>
-        <a href={CURRICULUM_PDF} target="_blank" rel="noreferrer">
-          {t("downloadPdf")}
-          <ArrowUpRight size={15} />
+      <div className="folio-projects">
+        <a
+          href="#work-coinbase"
+          className="folio-project folio-project-coinbase"
+        >
+          <div className="folio-project-meta">
+            <span>G2i / 2024 / 25</span>
+            <ArrowUpRight size={24} />
+          </div>
+          <span className="folio-project-name">coinbase</span>
+          <div className="folio-project-bottom">
+            <h2>{t("coinbaseFocus")}</h2>
+            <span>React Native / Expo</span>
+          </div>
+        </a>
+        <a href="#work-ateam" className="folio-project folio-project-did">
+          <div className="folio-project-meta">
+            <span>A.Team / 2023 / 25</span>
+            <ArrowUpRight size={24} />
+          </div>
+          <span className="folio-project-name">
+            D-ID
+            <span className="folio-project-cursor" aria-hidden="true" />
+          </span>
+          <div className="folio-project-bottom">
+            <h2>{t("didFocus")}</h2>
+            <span>{t("didRole")}</span>
+          </div>
+        </a>
+      </div>
+      <div className="folio-personal">
+        <p>{t("intro2", { tinkering: yearsTinkering() })}</p>
+        <a href={LINKEDIN} target="_blank" rel="noreferrer">
+          LinkedIn
+          <ArrowUpRight size={16} />
         </a>
       </div>
     </section>

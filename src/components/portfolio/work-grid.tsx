@@ -19,6 +19,7 @@ export const WorkGrid = async () => {
         {WORK.map((item) => (
           <a
             className="folio-work-row"
+            id={`work-${item.id}`}
             key={item.id}
             href={item.href}
             target="_blank"

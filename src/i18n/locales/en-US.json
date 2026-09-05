@@ -29,11 +29,9 @@
       "awards": "Hackathons won",
       "awardsMeta": "2019 → 2020"
     },
-    "exploreWork": "Explore my work",
-    "sculptureCaption": "Always a work in motion.",
-    "pauseMotion": "Pause motion",
-    "playMotion": "Play motion",
-    "disciplines": "React Native / Systems / Leadership"
+    "coinbaseFocus": "Mobile app infrastructure",
+    "didFocus": "The mobile app, built from zero.",
+    "didRole": "Lead Engineer"
   },
   "securityPage": {
     "navLabel": "Security profile navigation",
@@ -82,7 +80,7 @@
   },
   "work": {
     "eyebrow": "Professional Experience · 2017 → now",
-    "title": "Teams I've led. Systems that <em>lasted</em>.",
+    "title": "Selected work",
     "sub": "From four direct reports to fifty-six, across startups, delivery apps, fintechs, and tech giants.",
     "items": {
       "consulting": {
@@ -129,7 +127,7 @@
   },
   "publications": {
     "eyebrow": "Publications & media",
-    "title": "Things I host, write, and <em>ambassador</em>.",
+    "title": "Outside the day job",
     "onAir": "On air · Space Cast",
     "featureTitle": "I host the <em>Space Cast</em> podcast on Rocketseat's YouTube.",
     "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
@@ -144,7 +142,7 @@
   },
   "talks": {
     "eyebrow": "Talks · selected",
-    "title": "I speak at <em>tech</em> and <em>leadership</em> events.",
+    "title": "On stage",
     "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
     "topicLeadership": "Leadership",
     "topicTech": "Tech",
@@ -181,7 +179,7 @@
   },
   "awards": {
     "eyebrow": "Awards · 2019 → 2020",
-    "title": "A small <em>trophy shelf</em>.",
+    "title": "Hackathons",
     "sub": "A few hackathons I crashed before the day job got busy.",
     "positions": {
       "first": "1st place",
@@ -198,7 +196,7 @@
   },
   "writing": {
     "eyebrow": "Writing",
-    "title": "Notes from the <em>shelf</em>.",
+    "title": "Writing",
     "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
     "handle": "medium.com/@gabrieltaveira",
     "calloutTitle": "I write on <em>Medium</em>.",
@@ -214,7 +212,7 @@
   },
   "now": {
     "eyebrow": "Now · {date}",
-    "title": "What I'm actually <em>doing</em>.",
+    "title": "Currently",
     "items": {
       "consulting": {
         "chip": "Consulting",
@@ -240,7 +238,7 @@
   },
   "contact": {
     "eyebrow": "Get in touch",
-    "title": "Got an <em>interesting</em> challenge?",
+    "title": "What are you working on?",
     "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. ⚡",
     "channels": {
       "linkedin": "LinkedIn",

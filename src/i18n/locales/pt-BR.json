@@ -29,11 +29,9 @@
       "awards": "Hackathons vencidos",
       "awardsMeta": "2019 → 2020"
     },
-    "exploreWork": "Explorar trabalhos",
-    "sculptureCaption": "Sempre em movimento.",
-    "pauseMotion": "Pausar animação",
-    "playMotion": "Reproduzir animação",
-    "disciplines": "React Native / Sistemas / Liderança"
+    "coinbaseFocus": "Infraestrutura do app mobile",
+    "didFocus": "O app mobile, construído do zero.",
+    "didRole": "Lead Engineer"
   },
   "securityPage": {
     "navLabel": "Navegação do perfil de segurança",
@@ -82,7 +80,7 @@
   },
   "work": {
     "eyebrow": "Experiência profissional · 2017 → hoje",
-    "title": "Times que liderei. Sistemas que <em>ficaram de pé</em>.",
+    "title": "Trabalhos",
     "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech.",
     "items": {
       "consulting": {
@@ -129,7 +127,7 @@
   },
   "publications": {
     "eyebrow": "Publicações & mídia",
-    "title": "O que eu apresento, escrevo e <em>represento</em>.",
+    "title": "Além dos projetos",
     "onAir": "No ar · Space Cast",
     "featureTitle": "Apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
     "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
@@ -144,7 +142,7 @@
   },
   "talks": {
     "eyebrow": "Palestras · selecionadas",
-    "title": "Palestro em eventos de <em>tech</em> e <em>liderança</em>.",
+    "title": "No palco",
     "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
     "topicLeadership": "Liderança",
     "topicTech": "Tech",
@@ -181,7 +179,7 @@
   },
   "awards": {
     "eyebrow": "Prêmios · 2019 → 2020",
-    "title": "Alguns <em>troféus</em>.",
+    "title": "Hackathons",
     "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
     "positions": {
       "first": "1º lugar",
@@ -198,7 +196,7 @@
   },
   "writing": {
     "eyebrow": "Escritos",
-    "title": "Algumas <em>anotações</em>.",
+    "title": "Artigos",
     "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
     "handle": "medium.com/@gabrieltaveira",
     "calloutTitle": "Escrevo no <em>Medium</em>.",
@@ -214,7 +212,7 @@
   },
   "now": {
     "eyebrow": "Agora · {date}",
-    "title": "O que estou de fato <em>fazendo</em>.",
+    "title": "Atualmente",
     "items": {
       "consulting": {
         "chip": "Consultoria",
@@ -240,7 +238,7 @@
   },
   "contact": {
     "eyebrow": "Fala comigo",
-    "title": "Tem um <em>desafio</em> bom?",
+    "title": "O que você está construindo?",
     "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
     "channels": {
       "linkedin": "LinkedIn",
