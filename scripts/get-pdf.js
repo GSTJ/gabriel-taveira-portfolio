@@ -32,9 +32,16 @@ const getPdf = async () => {
   // page.pdf() by default, which can disable background gradients on any
   // rule guarded by media queries.
   await page.emulateMediaType("screen");
-  await page.goto(sourceUrl, {
+  const response = await page.goto(sourceUrl, {
     waitUntil: "networkidle0",
   });
+
+  if (!response?.ok()) {
+    await browser.close();
+    throw new Error(
+      `PDF source returned HTTP ${response?.status() ?? "no response"}`,
+    );
+  }
 
   // Decorative animated layers — the button shine sweep, the soundwave
   // bars, the spark rain — leave artifacts when frozen mid-animation

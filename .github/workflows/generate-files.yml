@@ -45,6 +45,10 @@ jobs:
       contents: read
       deployments: read
     env:
+      # GitHub's numeric actor id for https://github.com/apps/vercel. A caller
+      # with deployments:write can create a Production record too, so the
+      # deployment name and commit alone are not a trust boundary.
+      VERCEL_BOT_ID: "35613825"
       # Ubuntu's AppArmor policy allows its packaged Chrome to create the user
       # namespace used by the browser sandbox. Puppeteer's downloaded Chrome
       # for Testing is outside that profile on Ubuntu 23.10 and newer.
@@ -91,25 +95,30 @@ jobs:
           for attempt in $(seq 1 60); do
             deployment_id=$(gh api \
               "repos/$GITHUB_REPOSITORY/deployments?sha=$GITHUB_SHA&environment=Production&per_page=10" \
-              --jq '.[0].id // empty')
+              --jq "[.[] | select(.creator.id == $VERCEL_BOT_ID)][0].id // empty")
 
             if [ -z "$deployment_id" ]; then
-              echo "attempt $attempt: production deployment has not started"
+              echo "attempt $attempt: trusted production deployment has not started"
               sleep 10
               continue
             fi
 
             deployment_status=$(gh api \
               "repos/$GITHUB_REPOSITORY/deployments/$deployment_id/statuses" \
-              --jq '.[0].state // empty')
+              --jq "[.[] | select(.creator.id == $VERCEL_BOT_ID)][0].state // empty")
 
             if [ "$deployment_status" = "success" ]; then
               deployment_url=$(gh api \
                 "repos/$GITHUB_REPOSITORY/deployments/$deployment_id/statuses" \
-                --jq '.[0].environment_url // empty')
+                --jq "[.[] | select(.creator.id == $VERCEL_BOT_ID)][0].environment_url // empty")
 
               if [ -z "$deployment_url" ]; then
                 echo "::error::Production deployment $deployment_id has no URL"
+                exit 1
+              fi
+
+              if [[ ! "$deployment_url" =~ ^https://personal-curriculum-[a-z0-9]+-gabrieltaveira\.vercel\.app/?$ ]]; then
+                echo "::error::Production deployment $deployment_id returned an untrusted URL"
                 exit 1
               fi
 
@@ -135,6 +144,24 @@ jobs:
             echo "::error::Timed out waiting for a successful production deployment of $GITHUB_SHA"
             exit 1
           fi
+
+      - name: ✅ Check deployed page
+        env:
+          PAGE_URL: ${{ steps.production.outputs.url }}/en-US
+        run: |
+          set -euo pipefail
+
+          status=$(curl --silent --show-error --location \
+            --output /dev/null \
+            --write-out '%{http_code}' \
+            "$PAGE_URL")
+
+          if [ "$status" != "200" ]; then
+            echo "::error::Production page returned HTTP $status"
+            exit 1
+          fi
+
+          echo "production page returned HTTP 200"
 
       - name: 🏗 Install ghostscript
         run: sudo apt-get update && sudo apt-get install -y ghostscript
