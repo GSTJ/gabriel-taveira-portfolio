@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.0...v1.2.1) (2026-09-07)
+
+
+### Chores
+
+* **deps:** update posthog sdks ([#290](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/290)) ([0377dc0](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/0377dc0afae0ad5b7da2002bcac5e546c541d5ac))
+
 ## [1.2.0](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.1.22...v1.2.0) (2026-09-07)
 
 
