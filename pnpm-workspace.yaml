@@ -114,9 +114,13 @@ minimumReleaseAgeExclude:
   - workerd@1.20260730.1
   - wrangler@4.118.0
   - yargs@18.1.0
-onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - "@swc/core"
-  - esbuild
-  - puppeteer
-  - workerd
+# pnpm 12 merged onlyBuiltDependencies/neverBuiltDependencies into this one
+# map. core-js is a transitive dep with an install script nothing here needs,
+# so it stays denied like it was before (silently skipped, not built).
+allowBuilds:
+  "@parcel/watcher": true
+  "@swc/core": true
+  core-js: false
+  esbuild: true
+  puppeteer: true
+  workerd: true
