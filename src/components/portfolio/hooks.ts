@@ -29,7 +29,7 @@ export function useCountUp(
       // It cannot be the initial state: `navigator` and `matchMedia` do not
       // exist during the server render, and reading them lazily would make the
       // client's first render disagree with the HTML it is hydrating.
-      // eslint-disable-next-line react/react-compiler -- see above
+      // eslint-disable-next-line react/set-state-in-effect -- see above
       setValue(target);
       return;
     }

@@ -24,7 +24,7 @@ export const Mark = ({ children }: MarkProps) => {
       // run after mount: the check is meaningless on the server, and answering
       // it during render would make the client's first pass disagree with the
       // HTML it is hydrating.
-      // eslint-disable-next-line react/react-compiler -- see above
+      // eslint-disable-next-line react/set-state-in-effect -- see above
       setOn(true);
       return;
     }

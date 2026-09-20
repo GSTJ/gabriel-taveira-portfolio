@@ -65,14 +65,14 @@ const FlourishTicker = ({ hover }: { hover: boolean }) => {
   // Fetch once on mount. A warm cache is already in the initial state above,
   // so there is nothing to set here when it hits.
   useEffect(() => {
-    // eslint-disable-next-line react/react-compiler -- `load` only reaches setQuote after awaiting the fetch, so this is not the synchronous cascade the rule is looking for; it cannot see through the await.
+    // eslint-disable-next-line react/set-state-in-effect -- `load` only reaches setQuote after awaiting the fetch, so this is not the synchronous cascade the rule is looking for; it cannot see through the await.
     if (!coinCache) void load();
   }, [load]);
 
   // Refresh on hover (still hits module cache after first call).
   useEffect(() => {
     if (!hover) return;
-    // eslint-disable-next-line react/react-compiler -- as above, setQuote only happens after the await.
+    // eslint-disable-next-line react/set-state-in-effect -- as above, setQuote only happens after the await.
     void load();
   }, [hover, load]);
 

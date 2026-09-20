@@ -1,12 +1,12 @@
 import { extendConfig } from "magic-oxlint-config";
-import next from "magic-oxlint-config/next";
+import { next } from "magic-oxlint-config/next";
 
 // `extendConfig` flattens the preset and the overrides below into one config,
 // so `ignorePatterns`, `plugins` and `jsPlugins` all land at the top level.
 // oxlint's own `extends` drops `ignorePatterns` — oxlint has no per-override
 // ignore, so 1.2.0 cannot defend them either and leaves `extends` undocumented.
 // That is why this is not `defineConfig`.
-export default extendConfig(next, {
+const config = extendConfig(next, {
   jsPlugins: [{ name: "magic", specifier: "magic-oxlint-plugin" }],
   rules: {
     // Every class in this repo comes from design-portfolio.css (`ws-*`), and
@@ -19,8 +19,7 @@ export default extendConfig(next, {
     // automatically. These two rules ask for the hand-written useCallback /
     // useMemo the compiler exists to remove — following them here would mean
     // writing worse code (event-delegation plumbing, per-prop useMemo) to
-    // restate a guarantee the build already provides. `react/react-compiler`
-    // stays on precisely so that guarantee keeps holding.
+    // restate a guarantee the build already provides.
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
   },
@@ -38,3 +37,15 @@ export default extendConfig(next, {
     },
   ],
 });
+
+// oxlint 1.79 dropped the nursery `react/react-compiler` rule in favor of 22
+// category-specific rules (`react/set-state-in-effect` etc.) — see
+// https://oxc.rs/blog/2026-08-18-react-compiler-support. magic-oxlint-config's
+// `next` preset (still on 2.0.6) hasn't migrated and still sets the removed
+// rule name, which oxlint now refuses to parse at all. Strip it here so lint
+// keeps running; drop this once the preset picks up the replacement rules.
+// `correctness: "error"` in the same preset already turns the replacements
+// on, so nothing goes unchecked in the meantime.
+delete config.rules["react/react-compiler"];
+
+export default config;
