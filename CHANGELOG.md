@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.3](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.2...v1.2.3) (2026-09-20)
+
+
+### Chores
+
+* **deps:** update gstj/magic action to v2 ([#330](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/330)) ([b0404af](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b0404afd15c33eccd334232c76da72c7b2ca7511))
+* **deps:** update gstj/magic digest to 02450c9 ([#329](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/329)) ([91cdd35](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/91cdd3563019f30d58aaad787f98bf68e25d95c4))
+
 ## [1.2.2](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.1...v1.2.2) (2026-09-20)
 
 
