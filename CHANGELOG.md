@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.4...v1.2.5) (2026-09-23)
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v26.5.0 ([#334](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/334)) ([e8cffc0](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e8cffc05e8d3d587a9fb8be2c3d017160307166b))
+* **deps:** update dependency oxfmt to v0.67.0 ([#336](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/336)) ([85e1d0a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/85e1d0abaeb42ba9352d0d1d63298beb072ef095))
+* **deps:** update dependency oxlint to v1.82.0 ([#337](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/337)) ([9e4edbe](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/9e4edbe48f1a51519afee1362a1868692314cccf))
+* **deps:** update dependency wrangler to v4.129.1 ([#333](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/333)) ([476d7a6](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/476d7a60a184d378b6299d33dc2509f8f823466a))
+* **deps:** update dependency wrangler to v4.130.0 ([#338](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/338)) ([dff1811](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/dff18110ed0f0dfe8e8c61565741703b0ad22414))
+* **deps:** update pnpm to v12.4.0 ([#339](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/339)) ([591e51b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/591e51b8a24e3b2ce06a71a05e9da1d8bef381c8))
+
 ## [1.2.4](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.3...v1.2.4) (2026-09-21)
 
 
