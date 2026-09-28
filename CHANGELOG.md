@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.6](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.5...v1.2.6) (2026-09-26)
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v26.5.1 ([#340](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/340)) ([cb57014](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/cb5701472aa58202c22af0980a56ce0126527dfc))
+* **deps:** update dependency next-intl to v4.14.3 ([#342](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/342)) ([1f62085](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1f62085ba4d63c75323e2f26a946f33320a8425d))
+* **deps:** update dependency next-intl to v4.14.4 ([#346](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/346)) ([0165c79](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/0165c79a7e9cdae984d151c7edd9f5b3d18d5d52))
+* **deps:** update dependency wrangler to v4.131.1 ([#345](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/345)) ([b0cff5d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b0cff5d39cc4ee13246cc7abe1d526eb43fdd794))
+* **deps:** update nextjs monorepo to v16.3.5 ([#347](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/347)) ([097ffac](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/097fface652ef7c938db27305c28b21d895554a3))
+* **deps:** update pnpm to v12.4.1 ([#344](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/344)) ([f20500d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/f20500d303be21a5ea2f42a37a3a2209dc41762c))
+
 ## [1.2.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.4...v1.2.5) (2026-09-23)
 
 
