@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.7](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.6...v1.2.7) (2026-09-30)
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v26.6.0 ([#355](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/355)) ([7f4b295](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/7f4b295056c131141767fce0d8770688be3999c1))
+* **deps:** update dependency @types/node to v26.6.1 ([#357](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/357)) ([b87c929](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b87c9292cf7839c6b8f99edd9d3dc95280d7faef))
+* **deps:** update dependency next-intl to v4.14.5 ([#350](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/350)) ([123aaa9](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/123aaa9111607a6173a945ab9f97f63563eef7c0))
+* **deps:** update dependency oxfmt to v0.68.0 ([#352](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/352)) ([d00095e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d00095ed55c85296c3a388547948ce2d817e42c4))
+* **deps:** update dependency oxlint to v1.83.0 ([#353](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/353)) ([99b44cc](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/99b44cc2b8201c7cb480c025a5d24a9df1d00796))
+* **deps:** update dependency puppeteer to v25.11.0 ([#356](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/356)) ([a063183](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a0631839762e9c23fccd3551a79b8bd4dd05a141))
+* **deps:** update dependency wrangler to v4.131.2 ([#351](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/351)) ([2b3e548](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/2b3e548936f3df34448633be3c6ed722fa45f219))
+* **deps:** update dependency wrangler to v4.132.0 ([#358](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/358)) ([864b04c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/864b04c1ac564ae6034c356ba575f1a1883d458b))
+* **deps:** update pnpm to v12.4.2 ([#354](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/354)) ([a350a67](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a350a6701eac46b2f1c0ced2b934f4e5ba6311a4))
+* **deps:** update posthog sdks ([#359](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/359)) ([1f18aef](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1f18aef8199fcca17b89ee07250092654836028b))
+* **deps:** update react monorepo to v19.3.0 ([#341](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/341)) ([7912fbe](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/7912fbe1f1a2386ad091e59d5816f5d7497d81ec))
+
 ## [1.2.6](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.5...v1.2.6) (2026-09-26)
 
 
