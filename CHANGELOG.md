@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.8](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.7...v1.2.8) (2026-10-03)
+
+
+### Chores
+
+* **deps:** update dependency @posthog/react to v1.11.1 ([#364](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/364)) ([479084a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/479084a73cc11cd69c3af985aef2828176d86c2e))
+* **deps:** update dependency @types/node to v26.6.2 ([#368](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/368)) ([07ce4dd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/07ce4dd18413146fe0095fe4f29cfd3eab0d4b4c))
+* **deps:** update dependency posthog-js to v1.433.10 ([#360](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/360)) ([4fd8b51](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4fd8b5139d1b23e7c44e4705efc4df1fa77a0ba6))
+* **deps:** update dependency posthog-js to v1.434.0 ([#363](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/363)) ([9897d06](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/9897d06ed9102ed661f35f5f658b06ac0563f725))
+* **deps:** update dependency posthog-js to v1.434.2 ([#366](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/366)) ([dd36a9d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/dd36a9dc72f8bceb6981f9af771bbeaf9486bd98))
+* **deps:** update dependency wrangler to v4.134.0 ([#361](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/361)) ([d25fd69](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d25fd69a615eb36190510489feedb7f6128bb1e1))
+* **deps:** update dependency wrangler to v4.135.0 ([#365](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/365)) ([cb54ab8](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/cb54ab896804d8679a29f2577abe807138f6958b))
+* **deps:** update pnpm to v12.5.1 ([#367](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/367)) ([e160d1e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e160d1e9edc3c810046ba43624f5b2ce8ee1d762))
+
 ## [1.2.7](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.6...v1.2.7) (2026-09-30)
 
 
