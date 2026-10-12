@@ -98,6 +98,18 @@ minimumReleaseAgeExclude:
   - js-yaml@4.3.1
   - miniflare@5.20260730.0-alpha
   - nanoid@3.3.18
+  # Security update: next@16.3.8 (advisories 213-218); drop once past the 2 week age
+  - next@16.3.8
+  - "@next/env@16.3.8"
+  - "@next/third-parties@16.3.8"
+  - "@next/swc-darwin-arm64@16.3.8"
+  - "@next/swc-darwin-x64@16.3.8"
+  - "@next/swc-linux-arm64-gnu@16.3.8"
+  - "@next/swc-linux-arm64-musl@16.3.8"
+  - "@next/swc-linux-x64-gnu@16.3.8"
+  - "@next/swc-linux-x64-musl@16.3.8"
+  - "@next/swc-win32-arm64-msvc@16.3.8"
+  - "@next/swc-win32-x64-msvc@16.3.8"
   # Renovate security update: next@16.3.6
   - next@16.2.12 || 16.3.6
   - next-intl@4.13.4
