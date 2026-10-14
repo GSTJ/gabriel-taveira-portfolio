@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.10](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.9...v1.2.10) (2026-10-14)
+
+
+### Chores
+
+* **deps:** update dependency next-intl to v4.14.8 ([#414](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/414)) ([ed05b8e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ed05b8ecbdbf27a9694427f0f8f8d69fd7c75dc9))
+* **deps:** update dependency posthog-js to v1.434.17 ([#410](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/410)) ([83e8501](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/83e85018e03ecb23d02e5323ed6d73a4f29932fd))
+* **deps:** update dependency posthog-js to v1.435.2 ([#417](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/417)) ([6e6b07d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6e6b07daaa9f3de648b8a264f3887f233d0a01f0))
+* **deps:** update dependency wrangler to v4.144.0 ([#413](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/413)) ([12aec88](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/12aec880ee159634669f7db41a4e471ea4194aeb))
+* **deps:** update pnpm to v12.8.1 ([#411](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/411)) ([01edae2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/01edae27315d5ed9032c4a17fed5b22803c71eaf))
+* **deps:** update pnpm to v12.8.2 ([#416](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/416)) ([04dbbcc](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/04dbbcca6847522b32c1e259e3c6eea639930cd1))
+* **deps:** update posthog sdks ([#415](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/415)) ([b3bdf0c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b3bdf0cc85917a5ffc8202235de710de374c6557))
+
 ## [1.2.9](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.8...v1.2.9) (2026-10-12)
 
 
