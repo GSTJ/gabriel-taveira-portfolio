@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import {
   AWARDS,
   CHANNELS,
@@ -19,17 +21,27 @@ import { SITE_URL } from "@/utils/site";
  * and 404s as an HTML page.
  */
 
-/** Drops the inline `<em>`, `<strong>` and `<mark>` tags the copy uses. */
-const plain = (s: string) => s.replaceAll(/<\/?[a-z]+>/g, "");
+/**
+ * Rich-text copy rendered to plain text by next-intl's own message parser,
+ * with each inline tag reduced to its children. A regex that strips `<...>`
+ * would be the fragile version of this, and CodeQL rightly flags it.
+ */
+const plainTags = {
+  em: (chunks: string) => chunks,
+  strong: (chunks: string) => chunks,
+  mark: (chunks: string) => chunks,
+};
 
-export function GET() {
+export async function GET() {
+  const t = await getTranslations({ locale: "en-US" });
   const years = yearsInIndustry();
-  const fill = (s: string) => plain(s).replaceAll("{years}", String(years));
+  const plain = (key: Parameters<typeof t.markup>[0]) =>
+    t.markup(key, { ...plainTags, years });
 
   const body = [
     "# Gabriel Taveira",
     "",
-    `> ${fill(en.resume.summary)}`,
+    `> ${plain("resume.summary")}`,
     "",
     `- Role: ${en.resume.role}`,
     `- Location: ${en.resume.location}`,
@@ -51,7 +63,7 @@ export function GET() {
     "",
     ...WORK.map((w) => {
       const item = en.work.items[w.id];
-      return `- **${item.title}** (${w.eyebrow}): ${plain(item.blurb)}`;
+      return `- **${item.title}** (${w.eyebrow}): ${plain(`work.items.${w.id}.blurb`)}`;
     }),
     "",
     "## Talks",
