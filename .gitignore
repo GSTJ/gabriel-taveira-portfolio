@@ -39,5 +39,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Impeccable design-run scratch (screenshots, decision payloads)
-.impeccable/
+# Impeccable design-run scratch (screenshots, decision payloads). The
+# design.json sidecar is the recorded system and stays tracked.
+.impeccable/*
+!.impeccable/design.json
