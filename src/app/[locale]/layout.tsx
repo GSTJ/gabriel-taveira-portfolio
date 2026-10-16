@@ -5,9 +5,10 @@ import { notFound } from "next/navigation";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 
 import { ObservabilityProviders } from "@/components/observability/providers";
+import { yearsInIndustry } from "@/components/portfolio/lifeline";
 import {
   buildPortfolioJsonLd,
   serializeJsonLd,
@@ -16,15 +17,6 @@ import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
 
 const GTM_ID = "G-1S8PR4TDYM";
-
-/**
- * Dense, ATS-friendly description. Packs role, tenure, stack and location into
- * one sentence while staying under 160 characters for SERP truncation.
- */
-const DESCRIPTION =
-  "Gabriel Taveira · Engineering Lead with 9+ years in React Native, Expo and mobile architecture. Brazil-based (Ribeirão Preto), remote with US teams.";
-
-const TITLE = "Gabriel Taveira · Engineering Lead";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -36,6 +28,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+  /** Per locale, and kept under 160 characters for SERP truncation. */
+  const title = t("title");
+  const description = t("description", { years: yearsInIndustry() });
 
   const languages: Record<string, string> = {
     "x-default": `${SITE_URL}/${routing.defaultLocale}`,
@@ -45,8 +41,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: TITLE,
-    description: DESCRIPTION,
+    title,
+    description,
     authors: [{ name: "Gabriel Taveira", url: SITE_URL }],
     creator: "Gabriel Taveira",
     publisher: "Gabriel Taveira",
@@ -61,8 +57,8 @@ export async function generateMetadata({
       type: "profile",
       url: `${SITE_URL}/${locale}`,
       siteName: "Gabriel Taveira",
-      title: TITLE,
-      description: DESCRIPTION,
+      title,
+      description,
       locale: locale.replace("-", "_"),
       images: ["/og-image.png"],
       firstName: "Gabriel",
@@ -71,8 +67,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: TITLE,
-      description: DESCRIPTION,
+      title,
+      description,
       images: ["/og-image.png"],
       creator: "@gabrieltaveira",
     },
@@ -91,7 +87,7 @@ const LocaleLayout = async ({
     notFound();
   }
   const messages = await getMessages();
-  const { person, profilePage } = buildPortfolioJsonLd(locale);
+  const jsonLd = buildPortfolioJsonLd(locale);
 
   return (
     <html lang={locale}>
@@ -113,12 +109,7 @@ const LocaleLayout = async ({
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger -- JSON-LD has no React representation, so a raw script body is the only way to emit it. serializeJsonLd escapes `<` so the payload cannot close this tag.
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(person) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger -- same as above.
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(profilePage) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </head>
       <GoogleTagManager gtmId={GTM_ID} />

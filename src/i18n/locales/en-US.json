@@ -1,5 +1,10 @@
 {
+  "meta": {
+    "title": "Gabriel Taveira · React Native & Expo Consultant",
+    "description": "Fractional mobile lead for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil."
+  },
   "nav": {
+    "services": "Services",
     "work": "Work",
     "media": "Media",
     "talks": "Talks",
@@ -8,11 +13,11 @@
     "getInTouch": "Get in touch"
   },
   "hero": {
-    "role": "Engineering Lead",
+    "role": "Fractional Mobile Lead",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "I'm an Engineering Lead with over {years} years of professional experience. I've led teams from <strong>4 to 56 direct reports</strong>, working remotely with major US companies. I help them build great teams and systems that last.",
-    "intro2": "Currently consulting independently. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape.",
+    "intro": "I help product teams ship <strong>React Native and Expo apps that scale</strong>: the architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to 56 direct reports and worked on Coinbase's mobile app infrastructure.",
+    "intro2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape.",
     "getInTouch": "Get in touch",
     "viewLinkedIn": "View LinkedIn",
     "downloadPdf": "Download PDF",
@@ -28,6 +33,34 @@
       "tinkeringMeta": "Started at age 8",
       "awards": "Hackathons won",
       "awardsMeta": "2019 → 2020"
+    },
+    "availability": "Open to new clients"
+  },
+  "services": {
+    "eyebrow": "Services · how I can help",
+    "title": "Hire me to <em>unblock</em> your mobile team.",
+    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
+    "items": {
+      "audit": {
+        "chip": "Audit",
+        "title": "React Native architecture review",
+        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
+      },
+      "migrations": {
+        "chip": "Migrations",
+        "title": "Expo, new architecture, and React Compiler upgrades",
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
+      },
+      "leadership": {
+        "chip": "Leadership",
+        "title": "Fractional mobile engineering lead",
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
+      },
+      "systems": {
+        "chip": "Design",
+        "title": "Design systems and developer experience",
+        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
+      }
     }
   },
   "securityPage": {
@@ -82,7 +115,7 @@
     "items": {
       "consulting": {
         "title": "Independent consulting",
-        "blurb": "Mobile architecture, engineering leadership, and team craft. Engagement details under NDA. Reach out if you're hiring or just curious.",
+        "blurb": "Mobile architecture, engineering leadership, and team craft for product companies. Client details under NDA. Taking on new engagements, so reach out.",
         "cta": "View on LinkedIn"
       },
       "coinbase": {
@@ -214,7 +247,7 @@
       "consulting": {
         "chip": "Consulting",
         "title": "Mobile architecture and engineering leadership",
-        "body": "Independent consulting. Engagement details under NDA."
+        "body": "Taking on new engagements. Client details under NDA."
       },
       "hosting": {
         "chip": "Hosting",
@@ -236,7 +269,7 @@
   "contact": {
     "eyebrow": "Get in touch",
     "title": "Got an <em>interesting</em> challenge?",
-    "sub": "Let's solve it together. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. ⚡",
+    "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. ⚡",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -258,7 +291,7 @@
     },
     "sentTitle": "Thanks. I'll reply within the week. ⚡",
     "sentBody": "If you don't hear back by next Friday, ping again. Email sometimes loses the war with spam.",
-    "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brazil",
+    "footerMeta": "Gabriel Taveira · React Native & Expo Consultant · Ribeirão Preto, Brazil",
     "footerTag": "Building & breaking systems since age 8 · ⚡"
   },
   "marginalia": {
@@ -274,5 +307,20 @@
   "toast": {
     "konami": "Reverse engineering detected.",
     "konamiSub": "Welcome. The tools are over by the captain's hat. ⚡"
+  },
+  "resume": {
+    "title": "Gabriel Taveira · Resume",
+    "role": "Fractional Mobile Engineering Lead · React Native & Expo Consultant",
+    "location": "Ribeirão Preto, Brazil · Remote (US hours)",
+    "summaryTitle": "Summary",
+    "summary": "Mobile engineering lead and React Native / Expo consultant with {years}+ years of professional experience. Led teams of up to 56 direct reports across six teams. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-built Zé Delivery's design system. Open to consulting engagements.",
+    "skillsTitle": "Skills",
+    "experienceTitle": "Experience",
+    "talksTitle": "Talks",
+    "awardsTitle": "Awards",
+    "linksTitle": "Links",
+    "backToSite": "Full portfolio",
+    "download": "Download PDF",
+    "present": "Present"
   }
 }
