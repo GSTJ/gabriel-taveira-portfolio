@@ -1,6 +1,6 @@
 /**
  * Static, locale-neutral data for the portfolio.
- * URLs, identifiers, tone/flourish wiring — anything that isn't user-facing
+ * URLs, identifiers, ordering and billing rank, anything that isn't user-facing
  * copy lives here. Translatable strings live in `/src/i18n/locales`.
  */
 
@@ -56,17 +56,6 @@ export const SECURITY_CASES: readonly SecurityCase[] = [
   },
 ] as const;
 
-export type Tone = "ember" | "coral" | "brass" | "teal";
-export type FlourishKind =
-  | "ticker"
-  | "frames"
-  | "swatches"
-  | "spark"
-  | "scoot"
-  | "migration"
-  | "tools"
-  | null;
-
 export type WorkItem = {
   id:
     | "consulting"
@@ -77,76 +66,90 @@ export type WorkItem = {
     | "ze"
     | "alfred"
     | "micro";
-  eyebrow: string;
+  /** Primary organization first, then the agency or parent company. */
+  orgs: readonly string[];
+  start: number;
+  end: number | "now";
   tags: readonly string[];
-  tone: Tone;
-  flourish: FlourishKind;
+  /**
+   * Billing rank, like a poster's credits: "top" gets the largest row, "main"
+   * a standard row, "agate" the small print at the foot of the list.
+   */
+  billing: "current" | "top" | "main" | "agate";
   href: string;
 };
 
 export const WORK: readonly WorkItem[] = [
   {
     id: "consulting",
-    eyebrow: "INDEPENDENT · 2025 → NOW",
+    orgs: ["Independent"],
+    start: 2025,
+    end: "now",
     tags: ["Consulting", "Mobile", "Leadership"],
-    tone: "ember",
-    flourish: null,
+    billing: "current",
     href: LINKEDIN,
   },
   {
     id: "coinbase",
-    eyebrow: "COINBASE · G2I · 2024 → 25",
+    orgs: ["Coinbase", "G2i"],
+    start: 2024,
+    end: 2025,
     tags: ["React Native", "Expo", "Architecture"],
-    tone: "coral",
-    flourish: "ticker",
+    billing: "top",
     href: "https://www.coinbase.com/",
   },
   {
     id: "ateam",
-    eyebrow: "A.TEAM · D-ID · 2023 → 25",
+    orgs: ["D-ID", "A.Team"],
+    start: 2023,
+    end: 2025,
     tags: ["Lead", "React Native", "AI"],
-    tone: "coral",
-    flourish: "frames",
+    billing: "main",
     href: "https://www.d-id.com/",
   },
   {
     id: "meta",
-    eyebrow: "META · KUSTOMER · 2022 → 23",
+    orgs: ["Kustomer", "Meta"],
+    start: 2022,
+    end: 2023,
     tags: ["Design Systems", "DevX", "SDKs"],
-    tone: "brass",
-    flourish: "swatches",
+    billing: "main",
     href: "https://www.kustomer.com/",
   },
   {
     id: "xteam",
-    eyebrow: "X-TEAM · GROUNDSWELL · 2022 → 23",
+    orgs: ["Groundswell", "X-Team"],
+    start: 2022,
+    end: 2023,
     tags: ["Mentorship", "Fintech", "Testing"],
-    tone: "teal",
-    flourish: "spark",
+    billing: "main",
     href: "https://groundswell.io/",
   },
   {
     id: "ze",
-    eyebrow: "ZÉ DELIVERY · AB INBEV · 2020 → 22",
+    orgs: ["Zé Delivery", "AB InBev"],
+    start: 2020,
+    end: 2022,
     tags: ["Hiring", "Native", "Design Systems"],
-    tone: "ember",
-    flourish: "scoot",
+    billing: "main",
     href: "https://www.ze.delivery/",
   },
   {
     id: "alfred",
-    eyebrow: "ALFRED DELIVERY · 2019 → 20",
+    orgs: ["Alfred Delivery"],
+    start: 2019,
+    end: 2020,
     tags: ["Migration", "React Native"],
-    tone: "coral",
-    flourish: "migration",
+    billing: "agate",
     href: LINKEDIN,
   },
   {
     id: "micro",
-    eyebrow: "MICRO IMPORT GROUP · 2017 → 19",
+    orgs: ["Micro Import Group"],
+    start: 2017,
+    end: 2019,
     tags: ["Full-stack", "PHP", "Gatsby"],
-    tone: "brass",
-    flourish: "tools",
+    billing: "agate",
     href: LINKEDIN,
   },
 ] as const;
@@ -192,60 +195,41 @@ export const TALKS: readonly TalkItem[] = [
   },
 ] as const;
 
-export type Trophy = "gold" | "silver" | "bronze";
 export type Position = "first" | "second" | "finalist";
 
 export type AwardItem = {
   id: "globalLegal" | "maoNaCevada" | "hackRibeirao" | "jovemInovador" | "nasa";
   year: number;
   position: Position;
-  trophy: Trophy;
 };
 
 export const AWARDS: readonly AwardItem[] = [
-  { id: "globalLegal", year: 2020, position: "first", trophy: "gold" },
-  { id: "maoNaCevada", year: 2019, position: "first", trophy: "gold" },
-  { id: "hackRibeirao", year: 2019, position: "second", trophy: "silver" },
-  { id: "jovemInovador", year: 2019, position: "second", trophy: "silver" },
-  { id: "nasa", year: 2019, position: "finalist", trophy: "bronze" },
+  { id: "globalLegal", year: 2020, position: "first" },
+  { id: "maoNaCevada", year: 2019, position: "first" },
+  { id: "hackRibeirao", year: 2019, position: "second" },
+  { id: "jovemInovador", year: 2019, position: "second" },
+  { id: "nasa", year: 2019, position: "finalist" },
 ] as const;
 
-export type TopicChip = {
-  id: "leadership" | "mobile" | "design" | "hiring" | "reverse";
-  tone: Tone;
-};
-
-export const WRITING_TOPICS: readonly TopicChip[] = [
-  { id: "leadership", tone: "ember" },
-  { id: "mobile", tone: "coral" },
-  { id: "design", tone: "brass" },
-  { id: "hiring", tone: "teal" },
-  { id: "reverse", tone: "ember" },
+export const WRITING_TOPICS = [
+  "leadership",
+  "mobile",
+  "design",
+  "hiring",
+  "reverse",
 ] as const;
 
-export type NowItem = {
-  id: "consulting" | "hosting" | "mentoring" | "tinkering";
-  tone: Tone;
-};
+export const NOW = ["consulting", "hosting", "mentoring", "tinkering"] as const;
 
-export const NOW: readonly NowItem[] = [
-  { id: "consulting", tone: "ember" },
-  { id: "hosting", tone: "brass" },
-  { id: "mentoring", tone: "teal" },
-  { id: "tinkering", tone: "coral" },
+export const SERVICES = [
+  "audit",
+  "migrations",
+  "leadership",
+  "systems",
 ] as const;
 
-export type ServiceItem = {
-  id: "audit" | "migrations" | "leadership" | "systems";
-  tone: Tone;
-};
-
-export const SERVICES: readonly ServiceItem[] = [
-  { id: "audit", tone: "ember" },
-  { id: "migrations", tone: "coral" },
-  { id: "leadership", tone: "teal" },
-  { id: "systems", tone: "brass" },
-] as const;
+/** The order an engagement runs in, like a manual's operating sequence. */
+export const ENGAGEMENT_STEPS = ["review", "plan", "ship", "handoff"] as const;
 
 /**
  * Plain skill keywords, listed on the resume and emitted as `knowsAbout` in

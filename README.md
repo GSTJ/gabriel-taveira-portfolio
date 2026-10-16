@@ -7,9 +7,9 @@ Welcome to my open-source portfolio! This project is built using Next.js, Tailwi
 ## Features
 
 - Responsive design with Tailwind CSS
-- Dark mode support
 - Server Components for improved performance
-- A live COIN quote on the hero, served from `/api/coin` with a cached fallback
+- A print-first `/resume` page that the resume PDF is generated from
+- `/llms.txt` and JSON-LD built from the same copy as the page
 
 ## Getting Started
 
@@ -57,7 +57,7 @@ Open your browser and navigate to http://localhost:3000 to see the portfolio in 
 
 Production runs on Vercel, deployed from `main` on every push. `www.gabrieltaveira.dev` is the primary domain and the apex redirects onto it, which is where `src/utils/site.ts` gets its host.
 
-There is no static export. The locale routing runs in `src/proxy.ts`, `/api/coin` and `/curriculum.pdf` are route handlers, and both locale pages render on demand, so the build needs a Node server rather than a folder of files:
+There is no static export. The locale routing runs in `src/proxy.ts`, `/llms.txt` and `/curriculum.pdf` are route handlers, and both locale pages render on demand, so the build needs a Node server rather than a folder of files:
 
 ```sh
 pnpm build

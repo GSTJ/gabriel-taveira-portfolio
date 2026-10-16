@@ -24,23 +24,6 @@ import { yearsInIndustry } from "./lifeline";
 const PERSON_ID = `${SITE_URL}/#person`;
 
 /**
- * Extracts the primary company name from an eyebrow string like
- * "COINBASE · G2I · 2024 → 25" — first dot-separated token, normalised.
- */
-const companyNameFromEyebrow = (eyebrow: string): string => {
-  const first = eyebrow.split("·")[0]?.trim() ?? "";
-  if (!first) return "";
-  // Title-case the all-caps eyebrow. Not `\b`: it is ASCII-only even with the
-  // `u` flag, so it saw a boundary inside "ZÉ" and kept the É uppercase.
-  return first
-    .toLocaleLowerCase("en-US")
-    .replaceAll(
-      /(^|[\s.-])(\p{L})/gu,
-      (_, sep: string, c: string) => sep + c.toLocaleUpperCase("en-US"),
-    );
-};
-
-/**
  * Past employers. `worksFor` means a current employer, and the only current
  * item is independent consulting, so the rest go under `alumniOf`, which
  * schema.org allows for any Organization.
@@ -48,18 +31,18 @@ const companyNameFromEyebrow = (eyebrow: string): string => {
 const pastEmployers = () =>
   WORK.filter((item) => item.id !== "consulting").map((item) => ({
     "@type": "Organization",
-    name: companyNameFromEyebrow(item.eyebrow),
+    name: item.orgs[0],
     url: item.href,
   }));
 
 /** The consulting offers, so a parser can answer "what can I hire him for". */
 const offers = () =>
-  SERVICES.map((s) => ({
+  SERVICES.map((id) => ({
     "@type": "Offer",
     itemOffered: {
       "@type": "Service",
-      name: en.services.items[s.id].title,
-      description: en.services.items[s.id].body,
+      name: en.services.items[id].title,
+      description: en.services.items[id].body,
       provider: { "@id": PERSON_ID },
       areaServed: "Worldwide",
     },

@@ -1,88 +1,51 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/utils/cn";
 
-import { ArrowRight, BrandMark } from "./shared";
+import { useScrollSpy } from "./hooks";
+import { LanguageSwitcher } from "./language-switcher";
+import { Led } from "./shared";
 
 const NAV_LINKS = [
   { id: "services", key: "services" },
   { id: "work", key: "work" },
   { id: "publications", key: "media" },
   { id: "talks", key: "talks" },
-  { id: "awards", key: "awards" },
-  { id: "about", key: "now" },
 ] as const;
 
-export const Nav = ({
-  active,
-  onNav,
-}: {
-  active: string;
-  onNav: (id: string) => void;
-}) => {
+export const Nav = () => {
   const t = useTranslations("nav");
-  const [scrolled, setScrolled] = useState(false);
-  const [burst, setBurst] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const triggerBurst = () => {
-    setBurst(true);
-    window.setTimeout(() => setBurst(false), 700);
-  };
+  const active = useScrollSpy();
 
   return (
-    <div
-      className={cn("ws-nav-wrap ws-pdf-hide", scrolled && "ws-nav-scrolled")}
-    >
-      <nav className="ws-nav">
-        <a
-          className={cn("ws-nav-brand", burst && "ws-nav-brand-burst")}
-          href="#top"
-          onClick={(e) => {
-            e.preventDefault();
-            triggerBurst();
-            onNav("top");
-          }}
-        >
-          <BrandMark size={22} withText={false} />
+    <header className="gt-nav">
+      <nav className="gt-nav-inner" aria-label={t("label")}>
+        <a className="gt-nav-brand" href="#top">
+          Gabriel Taveira
         </a>
-        <div className="ws-nav-links">
+        <div className="gt-nav-links">
           {NAV_LINKS.map((l) => (
             <a
               key={l.id}
               className={cn(
-                "ws-nav-link",
-                active === l.id && "ws-nav-link-active",
+                "gt-nav-link",
+                active === l.id && "gt-nav-link-active",
               )}
               href={`#${l.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                onNav(l.id);
-              }}
+              aria-current={active === l.id ? "true" : undefined}
             >
               {t(l.key)}
             </a>
           ))}
         </div>
-        <div className="ws-nav-spacer" />
-        <button
-          type="button"
-          className="ws-btn ws-btn-primary"
-          onClick={() => onNav("contact")}
-        >
+        <LanguageSwitcher />
+        <a className="gt-key gt-key-sm" href="#contact">
+          <Led on />
           {t("getInTouch")}
-          <ArrowRight />
-        </button>
+        </a>
       </nav>
-    </div>
+    </header>
   );
 };

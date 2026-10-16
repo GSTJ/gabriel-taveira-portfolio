@@ -5,79 +5,72 @@ import { Contact } from "./contact";
 import { GITHUB, SECURITY_TOPICS } from "./data";
 import { yearsInIndustry } from "./lifeline";
 import { SecurityPractice } from "./security-practice";
-import { ArrowRight, ArrowUpRight, BrandMark, richTags, Tag } from "./shared";
+import { ArrowRight, ArrowUpRight, Led, richTags, Tag } from "./shared";
 
 export const SecurityPortfolio = ({ locale }: { locale: string }) => {
   const t = useTranslations("securityPage");
 
   return (
     <BalancerProvider>
-      <div className="ws-nav-wrap ws-nav-scrolled ws-pdf-hide">
-        <nav className="ws-nav" aria-label={t("navLabel")}>
-          <a
-            className="ws-nav-brand"
-            href={`/${locale}`}
-            aria-label={t("fullProfile")}
-          >
-            <BrandMark size={22} withText={false} />
+      <header className="gt-nav">
+        <nav className="gt-nav-inner" aria-label={t("navLabel")}>
+          <a className="gt-nav-brand" href={`/${locale}`}>
+            Gabriel Taveira
           </a>
-          <div className="ws-nav-spacer" />
-          <a
-            className="ws-nav-link ws-security-nav-profile"
-            href={`/${locale}`}
-          >
-            {t("fullProfile")}
-          </a>
-          <a className="ws-btn ws-btn-primary" href="#contact">
+          <div className="gt-nav-links">
+            <a className="gt-nav-link" href={`/${locale}`}>
+              {t("fullProfile")}
+            </a>
+          </div>
+          <a className="gt-key gt-key-sm" href="#contact">
+            <Led on />
             {t("getInTouch")}
-            <ArrowRight />
           </a>
         </nav>
-      </div>
+      </header>
 
-      <main>
-        <section className="ws-security-hero" id="top">
-          <div className="ws-hero-bg" />
-          <div className="ws-security-hero-grid">
-            <div className="ws-security-hero-copy">
-              <span className="ws-eyebrow ws-eyebrow-accent">
-                {t("eyebrow")}
-              </span>
-              <h1 className="ws-security-hero-title">
-                <Balancer>{t.rich("title", richTags)}</Balancer>
-              </h1>
-              <p className="ws-security-hero-intro">
-                {t("intro", { years: yearsInIndustry() })}
-              </p>
-              <p className="ws-security-hero-proof">{t("proof")}</p>
-              <div className="ws-security-hero-actions">
-                <a className="ws-btn ws-btn-secondary" href={`/${locale}`}>
-                  {t("fullProfile")}
-                  <ArrowRight />
-                </a>
-                <a
-                  className="ws-btn ws-btn-ghost"
-                  href={GITHUB}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t("viewGitHub")}
-                  <ArrowUpRight />
-                </a>
-              </div>
+      <main className="gt-page">
+        <section className="gt-hero gt-hero-security" id="top">
+          <div className="gt-hero-copy">
+            <h1 className="gt-hero-name gt-hero-name-sm">
+              <Balancer>{t.rich("title", richTags)}</Balancer>
+            </h1>
+            <p className="gt-hero-role">{t("eyebrow")}</p>
+            <p className="gt-hero-intro">
+              {t("intro", { years: yearsInIndustry() })}
+            </p>
+            <p className="gt-hero-aside">{t("proof")}</p>
+            <div className="gt-keys">
+              <a className="gt-key" href={`/${locale}`}>
+                {t("fullProfile")}
+                <ArrowRight />
+              </a>
+              <a
+                className="gt-key gt-key-flat"
+                href={GITHUB}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t("viewGitHub")}
+                <ArrowUpRight size={14} />
+              </a>
             </div>
-
-            <aside className="ws-security-scope" aria-label={t("eyebrow")}>
+          </div>
+          <aside className="gt-plate" aria-label={t("eyebrow")}>
+            <div className="gt-plate-top">
+              <div className="gt-grille" aria-hidden />
+            </div>
+            <div className="gt-tags gt-plate-tags">
               {SECURITY_TOPICS.map((topic) => (
                 <Tag key={topic}>{topic}</Tag>
               ))}
-            </aside>
-          </div>
+            </div>
+          </aside>
         </section>
 
         <SecurityPractice />
-        <Contact showFooterTag={false} />
       </main>
+      <Contact showFooterTag={false} />
     </BalancerProvider>
   );
 };

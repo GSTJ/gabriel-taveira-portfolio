@@ -1,37 +1,78 @@
 import { getTranslations } from "next-intl/server";
 import { Balancer } from "react-wrap-balancer";
 
-import { SERVICES } from "./data";
-import { chip, Eyebrow, richTags } from "./shared";
+import { ENGAGEMENT_STEPS, SERVICES } from "./data";
+import { Callout, Led, richTags } from "./shared";
 
-/** Same row layout as the "Now" list, so it needs no CSS of its own. */
+/**
+ * The offers as a manual's control diagram: a panel of numbered keys and the
+ * legend that explains them. Pointing at a legend entry presses its key and
+ * lights its LED, done in CSS with `:has()`, so it needs no client JS.
+ */
 export const Services = async () => {
   const t = await getTranslations("services");
   const tItems = await getTranslations("services.items");
 
   return (
-    <section className="ws-section ws-now-section" id="services">
-      <div className="ws-section-head">
-        <Eyebrow accent>{t("eyebrow")}</Eyebrow>
-        <h2 className="ws-section-title">
+    <section className="gt-section" id="services">
+      <header className="gt-section-head">
+        <h2 className="gt-section-title">
           <Balancer>{t.rich("title", richTags)}</Balancer>
         </h2>
-        <p className="ws-section-sub">{t("sub")}</p>
+        <p className="gt-section-sub">{t("sub")}</p>
+      </header>
+
+      <div className="gt-functions">
+        <div className="gt-panel" aria-hidden>
+          <div className="gt-panel-keys">
+            {SERVICES.map((id, i) => (
+              <div key={id} className="gt-panel-key" data-fn={i + 1}>
+                <Led />
+                <span className="gt-panel-cap">{i + 1}</span>
+                <span className="gt-panel-label">{tItems(`${id}.chip`)}</span>
+              </div>
+            ))}
+          </div>
+          <div className="gt-grille gt-grille-strip" />
+        </div>
+
+        <ol className="gt-legend">
+          {SERVICES.map((id, i) => (
+            <li key={id} className="gt-legend-item" data-fn={i + 1}>
+              <Callout n={i + 1} />
+              <div>
+                <h3 className="gt-legend-title">{tItems(`${id}.title`)}</h3>
+                <p className="gt-legend-body">{tItems(`${id}.body`)}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-      <ul className="ws-now-list">
-        {SERVICES.map((s) => (
-          <li key={s.id} className="ws-now-row">
-            <span className={chip({ tone: s.tone })}>
-              <span className="ws-chip-dot" />
-              {tItems(`${s.id}.chip`)}
-            </span>
-            <div className="ws-now-row-main">
-              <h3 className="ws-now-row-title">{tItems(`${s.id}.title`)}</h3>
-              <p className="ws-now-row-body">{tItems(`${s.id}.body`)}</p>
-            </div>
+    </section>
+  );
+};
+
+/** The operating sequence. Numbered because the order is the information. */
+export const Engagement = async () => {
+  const t = await getTranslations("engagement");
+
+  return (
+    <section className="gt-section gt-section-tight" id="engagement">
+      <header className="gt-section-head">
+        <h2 className="gt-section-title gt-section-title-sm">
+          <Balancer>{t("title")}</Balancer>
+        </h2>
+        <p className="gt-section-sub">{t("sub")}</p>
+      </header>
+      <ol className="gt-steps">
+        {ENGAGEMENT_STEPS.map((id, i) => (
+          <li key={id} className="gt-step">
+            <Callout n={i + 1} />
+            <h3 className="gt-step-title">{t(`steps.${id}.title`)}</h3>
+            <p className="gt-step-body">{t(`steps.${id}.body`)}</p>
           </li>
         ))}
-      </ul>
+      </ol>
     </section>
   );
 };
