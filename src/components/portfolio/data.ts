@@ -241,6 +241,39 @@ export const NOW: readonly NowItem[] = [
   { id: "tinkering", tone: "coral" },
 ] as const;
 
+export type ServiceItem = {
+  id: "audit" | "migrations" | "leadership" | "systems";
+  tone: Tone;
+};
+
+export const SERVICES: readonly ServiceItem[] = [
+  { id: "audit", tone: "ember" },
+  { id: "migrations", tone: "coral" },
+  { id: "leadership", tone: "teal" },
+  { id: "systems", tone: "brass" },
+] as const;
+
+/**
+ * Plain skill keywords, listed on the resume and emitted as `knowsAbout` in
+ * the JSON-LD. Written the way recruiters and ATS filters search for them.
+ */
+export const SKILLS = [
+  "React Native",
+  "Expo",
+  "React",
+  "TypeScript",
+  "React Compiler",
+  "React Native New Architecture",
+  "iOS & Android",
+  "Mobile Architecture",
+  "Design Systems",
+  "Testing (Jest, MSW)",
+  "CI/CD & App Releases",
+  "Engineering Leadership",
+  "Technical Hiring",
+  "Mentoring",
+] as const;
+
 export type ChannelIcon = "linkedin" | "github" | "mail" | "book" | "youtube";
 
 export type Channel = {

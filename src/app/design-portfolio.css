@@ -545,6 +545,12 @@ a.ws-nav-link:hover {
 .ws-eyebrow-sep {
   color: var(--ink-600);
 }
+/* Dot and label wrap as one unit so the dot never ends a line alone. */
+.ws-hero-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 #ws-clock {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -2712,6 +2718,13 @@ a.ws-nav-link:hover {
   color: var(--ink-50);
   margin: 0;
   line-height: 1.32;
+}
+@media (max-width: 640px) {
+  /* The 140px chip column leaves the copy a ~200px column on a phone. */
+  .ws-now-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
 .ws-now-row-body {
   font-family: var(--font-sans);

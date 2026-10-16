@@ -50,6 +50,11 @@ export const Hero = () => {
       <div className="ws-hero-inner">
         <span className="ws-hero-eyebrow">
           <span className="ws-eyebrow ws-eyebrow-accent">{t("role")}</span>
+          <span className="ws-eyebrow-sep">·</span>
+          <span className="ws-hero-availability">
+            <span className="ws-hero-eyebrow-dot" aria-hidden />
+            <span className="ws-eyebrow">{t("availability")}</span>
+          </span>
           <span className="ws-eyebrow-sep ws-pdf-hide">·</span>
           <span className="ws-eyebrow ws-pdf-hide" id="ws-clock" />
         </span>

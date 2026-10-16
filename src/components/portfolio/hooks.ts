@@ -111,9 +111,10 @@ const NAV_ALIASES: Record<string, string> = {
  * Returns the section id (mapped: `contact`→`about`, `writing`→`publications`).
  */
 export function useScrollSpy(): string {
-  const [active, setActive] = useState("work");
+  const [active, setActive] = useState("services");
   useEffect(() => {
     const ids = [
+      "services",
       "work",
       "publications",
       "talks",
@@ -129,7 +130,7 @@ export function useScrollSpy(): string {
       const y = window.scrollY + 200;
       // `sections` is in document order, so the last one whose top has been
       // passed is the one on screen.
-      let current = "work";
+      let current = "services";
       for (const section of sections) {
         if (y >= section.offsetTop) current = section.id;
       }
@@ -288,7 +289,7 @@ export function useConsoleBanner(): void {
     ].join("\n");
     console.log(`%c${banner}`, css1);
     console.log(
-      "%cGabriel Taveira · Engineering Lead, currently consulting",
+      "%cGabriel Taveira · React Native & Expo consultant, open to new clients",
       css2,
     );
     console.log("%cBuilding and breaking systems since age 8.", css3);
@@ -296,7 +297,7 @@ export function useConsoleBanner(): void {
       "%c   ↳ shortcuts: '/' to contact · 'gt' for system audit · ↑↑↓↓←→←→BA for science",
       css3,
     );
-    console.log("%c   ↳ hiring? gabrielstaveira@gmail.com", css3);
+    console.log("%c   ↳ got a project? gabrielstaveira@gmail.com", css3);
     /* eslint-enable no-console */
   }, []);
 }

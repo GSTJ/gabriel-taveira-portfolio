@@ -10,12 +10,28 @@ import {
   richTags,
 } from "@/components/portfolio/shared";
 import { SOCIAL_ICONS } from "@/components/portfolio/social-icons";
+import { routing } from "@/utils/routing";
+import { SITE_URL } from "@/utils/site";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("links");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "links" });
+  const url = `${SITE_URL}/${locale}/links`;
   return {
     title: "Gabriel Taveira \u00B7 Links",
     description: t("sub"),
+    /** Without its own canonical it inherits the home page's from the layout. */
+    alternates: {
+      canonical: url,
+      languages: Object.fromEntries(
+        routing.locales.map((l) => [l, `${SITE_URL}/${l}/links`]),
+      ),
+    },
+    openGraph: { url },
   };
 }
 

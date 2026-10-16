@@ -23,6 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: { languages: languages("") },
       },
       {
+        url: `${SITE_URL}/${locale}/resume`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.8,
+        alternates: { languages: languages("/resume") },
+      },
+      {
         url: `${SITE_URL}/${locale}/links`,
         lastModified: now,
         changeFrequency: "yearly",
