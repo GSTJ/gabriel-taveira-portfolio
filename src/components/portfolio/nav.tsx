@@ -9,6 +9,7 @@ import { cn } from "@/utils/cn";
 import { ArrowRight, BrandMark } from "./shared";
 
 const NAV_LINKS = [
+  { id: "services", key: "services" },
   { id: "work", key: "work" },
   { id: "publications", key: "media" },
   { id: "talks", key: "talks" },

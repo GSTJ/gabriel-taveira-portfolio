@@ -6,12 +6,22 @@
  * into the initial HTML via a `<script type="application/ld+json">` tag.
  */
 
+import en from "@/i18n/locales/en-US.json";
 import { SITE_URL } from "@/utils/site";
 
-import { CHANNELS, EMAIL_ADDR, GITHUB, LINKEDIN, MEDIUM, WORK } from "./data";
+import {
+  AWARDS,
+  EMAIL_ADDR,
+  GITHUB,
+  LINKEDIN,
+  MEDIUM,
+  SERVICES,
+  SKILLS,
+  WORK,
+} from "./data";
 import { yearsInIndustry } from "./lifeline";
 
-const KNOWS_ABOUT_CAP = 15;
+const PERSON_ID = `${SITE_URL}/#person`;
 
 /**
  * Extracts the primary company name from an eyebrow string like
@@ -20,70 +30,70 @@ const KNOWS_ABOUT_CAP = 15;
 const companyNameFromEyebrow = (eyebrow: string): string => {
   const first = eyebrow.split("·")[0]?.trim() ?? "";
   if (!first) return "";
-  // Title-case the all-caps eyebrow (preserves accents like É via locale-lower).
+  // Title-case the all-caps eyebrow. Not `\b`: it is ASCII-only even with the
+  // `u` flag, so it saw a boundary inside "ZÉ" and kept the É uppercase.
   return first
     .toLocaleLowerCase("en-US")
-    .replaceAll(/\b\p{L}/gu, (c) => c.toLocaleUpperCase("en-US"));
+    .replaceAll(
+      /(^|[\s.-])(\p{L})/gu,
+      (_, sep: string, c: string) => sep + c.toLocaleUpperCase("en-US"),
+    );
 };
 
 /**
- * Aggregates unique tag tokens across all work items, capped to keep the
- * structured payload lean for crawlers. A Set preserves insertion order, so
- * this is the same first-seen-wins ordering the nested loop produced.
+ * Past employers. `worksFor` means a current employer, and the only current
+ * item is independent consulting, so the rest go under `alumniOf`, which
+ * schema.org allows for any Organization.
  */
-const knowsAboutFromWork = (): string[] =>
-  [...new Set(WORK.flatMap((item) => item.tags))].slice(0, KNOWS_ABOUT_CAP);
+const pastEmployers = () =>
+  WORK.filter((item) => item.id !== "consulting").map((item) => ({
+    "@type": "Organization",
+    name: companyNameFromEyebrow(item.eyebrow),
+    url: item.href,
+  }));
 
-type WorksForEntry = {
-  "@type": "Organization";
-  name: string;
-  url: string;
-};
+/** The consulting offers, so a parser can answer "what can I hire him for". */
+const offers = () =>
+  SERVICES.map((s) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: en.services.items[s.id].title,
+      description: en.services.items[s.id].body,
+      provider: { "@id": PERSON_ID },
+      areaServed: "Worldwide",
+    },
+  }));
 
 /**
- * Each work item becomes an Organization. We dedupe by name + url so that
- * multiple stints at the same company (or via the same agency) don't repeat.
+ * One `@graph` so the ProfilePage points at the Person by `@id` instead of
+ * embedding a second copy of it.
  */
-const worksForFromWork = (): WorksForEntry[] => {
-  const seen = new Set<string>();
-
-  return WORK.flatMap((item): WorksForEntry[] => {
-    const name = companyNameFromEyebrow(item.eyebrow);
-    if (!name) return [];
-
-    const key = `${name}|${item.href}`;
-    if (seen.has(key)) return [];
-
-    seen.add(key);
-    return [{ "@type": "Organization", name, url: item.href }];
-  });
-};
-
-const emailFromChannels = (): string | undefined =>
-  CHANNELS.some((c) => c.id === "email") ? EMAIL_ADDR : undefined;
-
-export type PortfolioJsonLd = {
-  person: Record<string, unknown>;
-  profilePage: Record<string, unknown>;
-};
-
-export function buildPortfolioJsonLd(locale: string): PortfolioJsonLd {
+export function buildPortfolioJsonLd(locale: string) {
   const years = yearsInIndustry();
-  const localeUrl = `${SITE_URL}/${locale}`;
 
-  const person: Record<string, unknown> = {
-    "@context": "https://schema.org",
+  const person = {
     "@type": "Person",
+    "@id": PERSON_ID,
     name: "Gabriel Taveira",
     givenName: "Gabriel",
     familyName: "Taveira",
-    jobTitle: "Engineering Lead",
-    description: `Engineering Lead with ${years}+ years building React Native, Expo, and design-system-driven mobile platforms; leads remote teams shipping for Coinbase, Meta/Kustomer, D-ID and AB InBev.`,
+    jobTitle: "Fractional Mobile Engineering Lead",
+    description: `Fractional mobile engineering lead and React Native / Expo consultant with ${years}+ years of experience. Led teams of up to 56 direct reports and shipped for Coinbase, D-ID, Meta/Kustomer and AB InBev. Open to consulting engagements.`,
     url: SITE_URL,
     image: `${SITE_URL}/og-image.png`,
+    email: `mailto:${EMAIL_ADDR}`,
     sameAs: [LINKEDIN, GITHUB, MEDIUM],
-    worksFor: worksForFromWork(),
-    knowsAbout: knowsAboutFromWork(),
+    worksFor: {
+      "@type": "Organization",
+      name: "Independent consulting",
+      url: SITE_URL,
+    },
+    alumniOf: pastEmployers(),
+    knowsAbout: SKILLS,
+    knowsLanguage: ["en", "pt-BR"],
+    award: AWARDS.map((a) => `${en.awards.items[a.id]} (${a.year})`),
+    makesOffer: offers(),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Ribeirão Preto",
@@ -93,19 +103,19 @@ export function buildPortfolioJsonLd(locale: string): PortfolioJsonLd {
     nationality: "BR",
   };
 
-  const email = emailFromChannels();
-  if (email) person.email = `mailto:${email}`;
-
-  const profilePage: Record<string, unknown> = {
-    "@context": "https://schema.org",
+  const profilePage = {
     "@type": "ProfilePage",
-    url: localeUrl,
+    "@id": `${SITE_URL}/${locale}#profile`,
+    url: `${SITE_URL}/${locale}`,
     inLanguage: locale,
-    name: "Gabriel Taveira · Engineering Lead",
-    mainEntity: person,
+    name: en.meta.title,
+    mainEntity: { "@id": PERSON_ID },
   };
 
-  return { person, profilePage };
+  return {
+    "@context": "https://schema.org",
+    "@graph": [person, profilePage],
+  };
 }
 
 /**

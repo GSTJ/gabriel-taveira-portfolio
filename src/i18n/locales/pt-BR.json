@@ -1,5 +1,10 @@
 {
+  "meta": {
+    "title": "Gabriel Taveira · Consultor React Native & Expo",
+    "description": "Liderança mobile sob demanda para times React Native e Expo: arquitetura, migrações e contratação. {years}+ anos, infra do app da Coinbase. Remoto."
+  },
   "nav": {
+    "services": "Serviços",
     "work": "Trabalho",
     "media": "Mídia",
     "talks": "Palestras",
@@ -8,11 +13,11 @@
     "getInTouch": "Fala comigo"
   },
   "hero": {
-    "role": "Engineering Lead",
+    "role": "Liderança Mobile sob Demanda",
     "name": "Gabriel",
     "surname": "Taveira",
-    "intro": "Sou Engineering Lead com mais de {years} anos de carreira. Já liderei times de <strong>4 a 56 reportes diretos</strong>, trabalhando remoto com empresas grandes dos EUA. Ajudo a montar times e sistemas que duram.",
-    "intro2": "Hoje consultor independente. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
+    "intro": "Ajudo times de produto a lançar <strong>apps React Native e Expo que escalam</strong>: a arquitetura, as migrações e o time que mantém tudo de pé. Com mais de {years} anos de carreira, já liderei times de até 56 reportes diretos e trabalhei na infraestrutura do app da Coinbase.",
+    "intro2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
     "getInTouch": "Fala comigo",
     "viewLinkedIn": "Ver LinkedIn",
     "downloadPdf": "Baixar PDF",
@@ -28,6 +33,34 @@
       "tinkeringMeta": "Comecei aos 8",
       "awards": "Hackathons vencidos",
       "awardsMeta": "2019 → 2020"
+    },
+    "availability": "Aberto a novos clientes"
+  },
+  "services": {
+    "eyebrow": "Serviços · como posso ajudar",
+    "title": "Me contrata pra <em>destravar</em> seu time mobile.",
+    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
+    "items": {
+      "audit": {
+        "chip": "Auditoria",
+        "title": "Revisão de arquitetura React Native",
+        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
+      },
+      "migrations": {
+        "chip": "Migrações",
+        "title": "Migrações para Expo, nova arquitetura e React Compiler",
+        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
+      },
+      "leadership": {
+        "chip": "Liderança",
+        "title": "Líder de engenharia mobile sob demanda",
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
+      },
+      "systems": {
+        "chip": "Design",
+        "title": "Design systems e experiência de desenvolvimento",
+        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
+      }
     }
   },
   "securityPage": {
@@ -82,7 +115,7 @@
     "items": {
       "consulting": {
         "title": "Consultoria independente",
-        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time. Detalhes dos contratos sob NDA. Chama se estiver contratando ou só de curioso.",
+        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time para empresas de produto. Detalhes dos clientes sob NDA. Aceitando novos projetos, então chama.",
         "cta": "Ver no LinkedIn"
       },
       "coinbase": {
@@ -214,7 +247,7 @@
       "consulting": {
         "chip": "Consultoria",
         "title": "Arquitetura mobile e liderança de engenharia",
-        "body": "Consultoria independente. Detalhes dos contratos sob NDA."
+        "body": "Aceitando novos projetos. Detalhes dos clientes sob NDA."
       },
       "hosting": {
         "chip": "Apresentando",
@@ -236,7 +269,7 @@
   "contact": {
     "eyebrow": "Fala comigo",
     "title": "Tem um <em>desafio</em> bom?",
-    "sub": "Vamos resolver juntos. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
+    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -258,7 +291,7 @@
     },
     "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
     "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
-    "footerMeta": "Gabriel Taveira · Engineering Lead · Ribeirão Preto, Brasil",
+    "footerMeta": "Gabriel Taveira · Consultor React Native & Expo · Ribeirão Preto, Brasil",
     "footerTag": "Construindo e desmontando sistemas desde os 8 anos · ⚡"
   },
   "marginalia": {
@@ -274,5 +307,20 @@
   "toast": {
     "konami": "Engenharia reversa detectada.",
     "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. ⚡"
+  },
+  "resume": {
+    "title": "Gabriel Taveira · Currículo",
+    "role": "Líder de Engenharia Mobile sob Demanda · Consultor React Native & Expo",
+    "location": "Ribeirão Preto, Brasil · Remoto (horário dos EUA)",
+    "summaryTitle": "Resumo",
+    "summary": "Líder de engenharia mobile e consultor React Native / Expo com mais de {years} anos de experiência profissional. Liderei times de até 56 reportes diretos em seis times. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-criei o design system do Zé Delivery. Aberto a projetos de consultoria.",
+    "skillsTitle": "Competências",
+    "experienceTitle": "Experiência",
+    "talksTitle": "Palestras",
+    "awardsTitle": "Prêmios",
+    "linksTitle": "Links",
+    "backToSite": "Portfólio completo",
+    "download": "Baixar PDF",
+    "present": "Atual"
   }
 }

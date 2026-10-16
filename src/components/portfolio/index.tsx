@@ -6,6 +6,7 @@ import { Contact } from "./contact";
 import { Hero } from "./hero";
 import { NowPlaying } from "./now-playing";
 import { Publications } from "./publications";
+import { Services } from "./services";
 import { TalksList } from "./talks-list";
 import { WorkGrid } from "./work-grid";
 import { WritingList } from "./writing-list";
@@ -25,6 +26,7 @@ export const Portfolio = () => {
     <BalancerProvider>
       <ClientChrome />
       <Hero />
+      <Services />
       <WorkGrid />
       <Publications />
       <TalksList />

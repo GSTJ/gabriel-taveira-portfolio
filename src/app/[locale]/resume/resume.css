@@ -1,0 +1,111 @@
+/*
+ * Light, print-first resume. Covers the site's dark body and its fixed
+ * ambient gradient on screen; in print, backgrounds are off anyway.
+ */
+.resume {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  box-sizing: border-box;
+  max-width: none;
+  margin: 0;
+  padding: 56px max(24px, calc((100vw - 760px) / 2));
+  background: #fff;
+  color: #1a1a1a;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.resume a {
+  color: inherit;
+}
+/* The site's element rules give headings its variable display font (prints
+   as Type 3 glyphs some ATS parsers can't read) and light-on-dark colors.
+   `:where` keeps this at class specificity so the rules below still win. */
+.resume :where(h1, h2, h3, p, li) {
+  font-family: inherit;
+  color: inherit;
+}
+.resume h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.resume-role {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #b85d12;
+}
+.resume-contact {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: #444;
+}
+.resume-screen-only {
+  margin: 16px 0 0;
+  font-size: 13px;
+}
+.resume h2 {
+  margin: 24px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #555;
+}
+.resume p {
+  margin: 0;
+}
+.resume ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.resume li + li {
+  margin-top: 2px;
+}
+.resume-job {
+  break-inside: avoid;
+}
+.resume-job + .resume-job {
+  margin-top: 12px;
+}
+.resume h3 {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+.resume-date {
+  flex-shrink: 0;
+  font-weight: 400;
+  color: #555;
+}
+.resume-company {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: #666;
+}
+
+@page {
+  size: Letter;
+  margin: 0.5in 0.6in;
+}
+@media print {
+  .resume {
+    padding: 0;
+    min-height: 0;
+    font-size: 11pt;
+  }
+  .resume a {
+    text-decoration: none;
+  }
+  .resume-screen-only {
+    display: none;
+  }
+}
