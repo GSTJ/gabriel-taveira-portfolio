@@ -1,83 +1,31 @@
-import { cva } from "class-variance-authority";
 import { getTranslations } from "next-intl/server";
 import { Balancer } from "react-wrap-balancer";
 
 import { MEDIUM, WRITING_TOPICS } from "./data";
-import { ArrowUpRight, Eyebrow, richTags } from "./shared";
-
-// Topic pills in the Medium callout, one colour per tone.
-const writingTopic = cva("ws-writing-topic", {
-  variants: {
-    tone: {
-      ember: "ws-writing-topic-ember",
-      coral: "ws-writing-topic-coral",
-      brass: "ws-writing-topic-brass",
-      teal: "ws-writing-topic-teal",
-    },
-  },
-});
+import { ArrowUpRight, richTags, Tag } from "./shared";
 
 export const WritingList = async () => {
   const t = await getTranslations("writing");
+
   return (
-    <section className="ws-section" id="writing">
-      <div className="ws-section-head">
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2 className="ws-section-title">
+    <section className="gt-section gt-section-tight" id="writing">
+      <header className="gt-section-head">
+        <h2 className="gt-section-title gt-section-title-sm">
           <Balancer>{t.rich("title", richTags)}</Balancer>
         </h2>
-        <p className="ws-section-sub">{t("sub")}</p>
+        <p className="gt-section-sub">{t("sub")}</p>
+      </header>
+      <div className="gt-writing">
+        <div className="gt-tags">
+          {WRITING_TOPICS.map((id) => (
+            <Tag key={id}>{t(`topics.${id}`)}</Tag>
+          ))}
+        </div>
+        <a className="gt-key" href={MEDIUM} target="_blank" rel="noreferrer">
+          {t("readOnMedium")}
+          <ArrowUpRight size={14} />
+        </a>
       </div>
-
-      {/* Every string inside this card comes out of `t(...)`, so nothing here
-          gives the link an accessible name a screen reader can announce up
-          front. The CTA text is the name a user would say out loud. */}
-      <a
-        className="ws-writing-callout"
-        href={MEDIUM}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={t("readOnMedium")}
-      >
-        <div className="ws-writing-callout-glow" />
-        <div className="ws-writing-callout-left">
-          <div className="ws-writing-callout-handle">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-            </svg>
-            <span>{t("handle")}</span>
-          </div>
-          <h3 className="ws-writing-callout-title">
-            <Balancer>{t.rich("calloutTitle", richTags)}</Balancer>
-          </h3>
-          <p className="ws-writing-callout-sub">{t("calloutSub")}</p>
-          <div className="ws-writing-topics">
-            {WRITING_TOPICS.map((topic) => (
-              <span
-                key={topic.id}
-                className={writingTopic({ tone: topic.tone })}
-              >
-                {t(`topics.${topic.id}`)}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="ws-writing-callout-cta">
-          <span className="ws-btn ws-btn-primary">
-            {t("readOnMedium")} <ArrowUpRight size={18} />
-          </span>
-        </div>
-      </a>
     </section>
   );
 };

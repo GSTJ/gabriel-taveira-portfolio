@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 
 import { useTranslations } from "next-intl";
 import { Balancer } from "react-wrap-balancer";
@@ -8,17 +8,13 @@ import { Balancer } from "react-wrap-balancer";
 import { CHANNELS, EMAIL_ADDR } from "./data";
 import { LanguageSwitcher } from "./language-switcher";
 import { Marginalia } from "./marginalia";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  BrandMark,
-  Eyebrow,
-  richTags,
-} from "./shared";
+import { ArrowRight, ArrowUpRight, richTags } from "./shared";
 import { SOCIAL_ICONS } from "./social-icons";
 
 const EMPTY = { name: "", email: "", subject: "", message: "" };
+type Field = keyof typeof EMPTY;
 
+/** The graphite face at the bottom of the device: contact, then the footer. */
 export const Contact = ({
   showFooterTag = true,
 }: {
@@ -28,11 +24,12 @@ export const Contact = ({
   const tForm = useTranslations("contact.form");
   const tChannels = useTranslations("contact.channels");
   const tMarg = useTranslations("marginalia");
+  const id = useId();
 
   const [form, setForm] = useState(EMPTY);
 
   const update =
-    (k: keyof typeof EMPTY) =>
+    (k: Field) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((prev) => ({ ...prev, [k]: e.target.value }));
 
@@ -59,110 +56,79 @@ export const Contact = ({
     window.location.href = href;
   };
 
+  const input = (k: Field, type = "text", required = false) => (
+    <div className="gt-field">
+      <label htmlFor={`${id}-${k}`}>{tForm(k)}</label>
+      {k === "message" ? (
+        <textarea
+          id={`${id}-${k}`}
+          className="gt-input gt-textarea"
+          value={form[k]}
+          onChange={update(k)}
+          placeholder={tForm(`${k}Ph`)}
+          required={required}
+        />
+      ) : (
+        <input
+          id={`${id}-${k}`}
+          className="gt-input"
+          type={type}
+          value={form[k]}
+          onChange={update(k)}
+          placeholder={tForm(`${k}Ph`)}
+          required={required}
+        />
+      )}
+    </div>
+  );
+
   return (
-    <section className="ws-section ws-contact" id="contact">
-      <div className="ws-contact-grid">
-        <div className="ws-contact-left">
-          <Eyebrow accent>{t("eyebrow")}</Eyebrow>
-          <h2 className="ws-contact-title">
+    <section className="gt-face gt-contact" id="contact">
+      <div className="gt-contact-grid">
+        <div className="gt-contact-copy">
+          <h2 className="gt-contact-title">
             <Balancer>{t.rich("title", richTags)}</Balancer>
           </h2>
-          <p className="ws-contact-sub">{t("sub")}</p>
-          <div className="ws-contact-channels">
+          <p className="gt-contact-sub">{t("sub")}</p>
+          <ul className="gt-channels">
             {CHANNELS.map((c) => (
-              <a
-                key={c.id}
-                className="ws-channel"
-                href={c.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {SOCIAL_ICONS[c.icon]}
-                <span className="ws-channel-label">{tChannels(c.id)}</span>
-                <span className="ws-channel-handle">{c.handle}</span>
-                <ArrowUpRight size={14} />
-              </a>
+              <li key={c.id}>
+                <a href={c.url} target="_blank" rel="noreferrer">
+                  {SOCIAL_ICONS[c.icon]}
+                  <span className="gt-channel-label">{tChannels(c.id)}</span>
+                  <span className="gt-channel-handle">{c.handle}</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
-        <form className="ws-contact-form ws-pdf-hide" onSubmit={submit}>
-          <div className="ws-field-grid">
-            <div className="ws-field">
-              <label>{tForm("name")}</label>
-              <input
-                className="ws-input"
-                type="text"
-                value={form.name}
-                onChange={update("name")}
-                placeholder={tForm("namePh")}
-              />
-            </div>
-            <div className="ws-field">
-              <label>{tForm("email")}</label>
-              <input
-                className="ws-input"
-                type="email"
-                value={form.email}
-                onChange={update("email")}
-                placeholder={tForm("emailPh")}
-              />
-            </div>
+        <form className="gt-form" onSubmit={submit}>
+          <div className="gt-field-pair">
+            {input("name")}
+            {input("email", "email", true)}
           </div>
-          <div className="ws-field">
-            <label>{tForm("subject")}</label>
-            <input
-              className="ws-input"
-              type="text"
-              value={form.subject}
-              onChange={update("subject")}
-              placeholder={tForm("subjectPh")}
-            />
-          </div>
-          <div className="ws-field">
-            <label>{tForm("message")}</label>
-            <textarea
-              className="ws-input ws-textarea"
-              value={form.message}
-              onChange={update("message")}
-              placeholder={tForm("messagePh")}
-            />
-          </div>
-          <div className="ws-form-foot">
-            <button type="submit" className="ws-btn ws-btn-primary">
-              {tForm("send")}
-              <ArrowRight />
-            </button>
-            <span className="ws-kbd-hint">
-              <kbd>/</kbd> · <kbd>gt</kbd> · <kbd>↑↑↓↓←→←→BA</kbd>
-            </span>
-          </div>
+          {input("subject")}
+          {input("message", "text", true)}
+          <button type="submit" className="gt-key gt-key-go">
+            {tForm("send")}
+            <ArrowRight />
+          </button>
         </form>
       </div>
 
-      <footer className="ws-footer ws-pdf-hide">
-        <address className="ws-sr-only">
-          Gabriel Taveira, Engineering Lead. Ribeirão Preto, SP, Brazil. Reach
-          out via{" "}
-          <a href="mailto:gabrielstaveira@gmail.com">
-            gabrielstaveira@gmail.com
-          </a>
-          .
+      <footer className="gt-footer">
+        <address className="gt-sr-only">
+          Gabriel Taveira. Ribeirão Preto, SP, Brazil.{" "}
+          <a href={`mailto:${EMAIL_ADDR}`}>{EMAIL_ADDR}</a>
         </address>
-        <div className="ws-footer-row">
-          <BrandMark size={18} withText={false} />
-          <span className="ws-footer-meta">{t("footerMeta")}</span>
-          <span className="ws-footer-spacer" />
-          {showFooterTag ? (
-            <span className="ws-footer-meta">{t("footerTag")}</span>
-          ) : null}
-          <div className="ws-footer-end">
-            <LanguageSwitcher />
-            <span className="ws-footer-marginalia">
-              <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
-            </span>
-          </div>
-        </div>
+        <span>{t("footerMeta")}</span>
+        {showFooterTag ? <span>{t("footerTag")}</span> : null}
+        <span className="gt-footer-end">
+          <LanguageSwitcher />
+          <Marginalia tilt={-3}>{tMarg("madeWith")}</Marginalia>
+        </span>
       </footer>
     </section>
   );

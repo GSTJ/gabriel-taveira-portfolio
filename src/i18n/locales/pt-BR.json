@@ -10,7 +10,8 @@
     "talks": "Palestras",
     "awards": "Prêmios",
     "now": "Agora",
-    "getInTouch": "Fala comigo"
+    "getInTouch": "Fala comigo",
+    "label": "Principal"
   },
   "hero": {
     "role": "Liderança Mobile sob Demanda",
@@ -18,26 +19,24 @@
     "surname": "Taveira",
     "intro": "Ajudo times de produto a lançar <strong>apps React Native e Expo que escalam</strong>: a arquitetura, as migrações e o time que mantém tudo de pé. Com mais de {years} anos de carreira, já liderei times de até 56 reportes diretos e trabalhei na infraestrutura do app da Coinbase.",
     "intro2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
-    "getInTouch": "Fala comigo",
     "viewLinkedIn": "Ver LinkedIn",
     "downloadPdf": "Baixar PDF",
-    "currently": "Hoje",
-    "consulting": "Consultoria",
-    "location": "Remoto · Ribeirão Preto, Brasil",
-    "stats": {
+    "availability": "Aberto a novos clientes",
+    "startProject": "Começar um projeto",
+    "plateLabel": "Especificações",
+    "plateType": "tipo GT-{years} · feito no Brasil",
+    "spec": {
       "years": "Anos de carreira",
-      "yearsMeta": "Desde {since}",
-      "reports": "Reportes diretos",
-      "reportsMeta": "Em 6 times",
-      "tinkering": "Anos mexendo em código",
-      "tinkeringMeta": "Comecei aos 8",
-      "awards": "Hackathons vencidos",
-      "awardsMeta": "2019 → 2020"
-    },
-    "availability": "Aberto a novos clientes"
+      "reports": "Reportes diretos, máx.",
+      "platforms": "Plataformas",
+      "stack": "Stack",
+      "since": "Construindo desde",
+      "sinceValue": "os 8 anos",
+      "base": "Base",
+      "baseValue": "Ribeirão Preto, BR · horário dos EUA"
+    }
   },
   "services": {
-    "eyebrow": "Serviços · como posso ajudar",
     "title": "Me contrata pra <em>destravar</em> seu time mobile.",
     "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
     "items": {
@@ -63,6 +62,28 @@
       }
     }
   },
+  "engagement": {
+    "title": "Como funciona um projeto.",
+    "sub": "Sempre a mesma sequência, dimensionada pro seu app e pro seu time.",
+    "steps": {
+      "review": {
+        "title": "Diagnóstico",
+        "body": "Leio o código, o pipeline de release e o backlog, e converso com quem é dono de cada um."
+      },
+      "plan": {
+        "title": "Plano",
+        "body": "Um plano priorizado com os tradeoffs explícitos, curto o bastante pra ser lido de verdade."
+      },
+      "ship": {
+        "title": "Execução",
+        "body": "Trabalho dentro do seu time nas partes mais arriscadas: a migração, a performance, o trem de release."
+      },
+      "handoff": {
+        "title": "Passagem",
+        "body": "Documentação, padrões e pessoas donas do resultado, pra nada depender de mim depois."
+      }
+    }
+  },
   "securityPage": {
     "navLabel": "Navegação do perfil de segurança",
     "eyebrow": "Gabriel Taveira · Application Security",
@@ -74,10 +95,8 @@
     "getInTouch": "Fala comigo"
   },
   "security": {
-    "eyebrow": "Trabalho selecionado em segurança",
     "title": "Três correções defensivas, com a <em>prova</em> junto.",
     "sub": "Cada caso começa com um risco de segurança observado e termina com uma correção pontual e um teste de regressão.",
-    "topicsLabel": "Áreas de atuação em segurança",
     "readProof": "Ver PR mergeado",
     "items": {
       "assetBoundary": {
@@ -109,7 +128,6 @@
     }
   },
   "work": {
-    "eyebrow": "Experiência profissional · 2017 → hoje",
     "title": "Times que liderei. Sistemas que <em>ficaram de pé</em>.",
     "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech.",
     "items": {
@@ -153,25 +171,23 @@
         "blurb": "Tracker em tempo real do status de reparos pra uma Apple Service Provider. Dashboards internos pra técnicos e atendimento. Sites em headless CMS pras marcas do grupo.",
         "cta": "Ver no LinkedIn"
       }
-    }
+    },
+    "now": "hoje",
+    "earlier": "Antes disso"
   },
   "publications": {
-    "eyebrow": "Publicações & mídia",
-    "title": "O que eu apresento, escrevo e <em>represento</em>.",
-    "onAir": "No ar · Space Cast",
+    "title": "O que eu apresento, escrevo e mentoro.",
+    "onAir": "No ar",
     "featureTitle": "Apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
     "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
     "watchShow": "Assistir o programa",
     "playlist": "Playlist de episódios →",
-    "mediumEyebrow": "Medium",
-    "mediumHandle": "medium.com/@gabrieltaveira",
+    "mediumHandle": "Textos no Medium",
     "mediumBody": "Textos sobre programação, design systems e cultura de time.",
-    "ambassadorEyebrow": "Embaixador",
     "ambassadorTitle": "Space Squad · Rocketseat",
     "ambassadorBody": "Mentorando a próxima geração de devs."
   },
   "talks": {
-    "eyebrow": "Palestras · selecionadas",
     "title": "Palestro em eventos de <em>tech</em> e <em>liderança</em>.",
     "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
     "topicLeadership": "Liderança",
@@ -208,7 +224,6 @@
     }
   },
   "awards": {
-    "eyebrow": "Prêmios · 2019 → 2020",
     "title": "Alguns <em>troféus</em>.",
     "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
     "positions": {
@@ -225,12 +240,8 @@
     }
   },
   "writing": {
-    "eyebrow": "Escritos",
     "title": "Algumas <em>anotações</em>.",
     "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
-    "handle": "medium.com/@gabrieltaveira",
-    "calloutTitle": "Escrevo no <em>Medium</em>.",
-    "calloutSub": "Posts novos quando uma ideia para de ser interessante só pra mim. Assina lá pro próximo.",
     "topics": {
       "leadership": "Liderança em Engenharia",
       "mobile": "Arquitetura Mobile",
@@ -241,7 +252,6 @@
     "readOnMedium": "Ler no Medium"
   },
   "now": {
-    "eyebrow": "Agora · {date}",
     "title": "O que estou de fato <em>fazendo</em>.",
     "items": {
       "consulting": {
@@ -252,7 +262,7 @@
       "hosting": {
         "chip": "Apresentando",
         "title": "Space Cast na Rocketseat",
-        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugere um convidado mandando uma ⚡."
+        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugestões de convidado são bem-vindas."
       },
       "mentoring": {
         "chip": "Mentoria",
@@ -264,12 +274,12 @@
         "title": "Detector nativo de gravação de tela pra Expo",
         "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
       }
-    }
+    },
+    "updated": "Atualizado em {date}."
   },
   "contact": {
-    "eyebrow": "Fala comigo",
     "title": "Tem um <em>desafio</em> bom?",
-    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
+    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -286,27 +296,19 @@
       "subjectPh": "O que precisa ser resolvido?",
       "message": "Me conta mais",
       "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
-      "send": "Enviar mensagem",
-      "shortcuts": "contato · ⚡ · auditoria"
+      "send": "Enviar mensagem"
     },
-    "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
-    "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
     "footerMeta": "Gabriel Taveira · Consultor React Native & Expo · Ribeirão Preto, Brasil",
-    "footerTag": "Construindo e desmontando sistemas desde os 8 anos · ⚡"
+    "footerTag": "Construindo e desmontando sistemas desde os 8 anos"
   },
   "marginalia": {
     "yesReally": "é isso mesmo",
-    "spaceCastSeason": "temporada 3 ✨",
-    "madeWith": "feito com ☕ + ⚡ · gt"
+    "spaceCastSeason": "temporada 3",
+    "madeWith": "feito com café · gt"
   },
   "links": {
-    "eyebrow": "Me acha online",
     "title": "Gabriel <em>Taveira</em>.",
     "sub": "Escolhe uma porta."
-  },
-  "toast": {
-    "konami": "Engenharia reversa detectada.",
-    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. ⚡"
   },
   "resume": {
     "title": "Gabriel Taveira · Currículo",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Archivo, Caveat } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { GoogleTagManager } from "@next/third-parties/google";
@@ -13,10 +14,31 @@ import {
   buildPortfolioJsonLd,
   serializeJsonLd,
 } from "@/components/portfolio/structured-data";
+import { cn } from "@/utils/cn";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
 
 const GTM_ID = "G-1S8PR4TDYM";
+
+/**
+ * Self-hosted at build time. Archivo is a grotesque in the Akzidenz line the
+ * Braun manuals were set in; it carries every word on the page. Caveat is only
+ * for the handwritten margin notes.
+ */
+// eslint-disable-next-line new-cap -- next/font loaders are plain functions named after the font, not constructors.
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+// eslint-disable-next-line new-cap -- same as above.
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-hand",
+  display: "swap",
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -90,22 +112,8 @@ const LocaleLayout = async ({
   const jsonLd = buildPortfolioJsonLd(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={cn(archivo.variable, caveat.variable)}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* eslint-disable-next-line nextjs/no-page-custom-font -- the rule is
-            about a font link living in a single Pages Router page; this is the
-            App Router root layout for every route under /[locale], so the
-            stylesheet is shared exactly as the rule wants it to be. */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Caveat:wght@500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
-        />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger -- JSON-LD has no React representation, so a raw script body is the only way to emit it. serializeJsonLd escapes `<` so the payload cannot close this tag.

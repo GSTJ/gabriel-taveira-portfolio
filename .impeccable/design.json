@@ -1,0 +1,592 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T13:18:47+00:00",
+  "title": "Design System: Gabriel Taveira",
+  "extensions": {
+    "colorMeta": {
+      "key": {
+        "role": "primary",
+        "displayName": "Go-Key Green",
+        "canonical": "#79b843",
+        "tonalRamp": [
+          "oklch(15% 0.163 133.1)",
+          "oklch(26% 0.163 133.1)",
+          "oklch(38% 0.163 133.1)",
+          "oklch(50% 0.163 133.1)",
+          "oklch(62% 0.163 133.1)",
+          "oklch(74% 0.163 133.1)",
+          "oklch(85% 0.163 133.1)",
+          "oklch(95% 0.163 133.1)"
+        ]
+      },
+      "key-hover": {
+        "role": "primary",
+        "displayName": "Go-Key Green, hover",
+        "canonical": "#84c24e",
+        "tonalRamp": [
+          "oklch(15% 0.162 132.7)",
+          "oklch(26% 0.162 132.7)",
+          "oklch(38% 0.162 132.7)",
+          "oklch(50% 0.162 132.7)",
+          "oklch(62% 0.162 132.7)",
+          "oklch(74% 0.162 132.7)",
+          "oklch(85% 0.162 132.7)",
+          "oklch(95% 0.162 132.7)"
+        ]
+      },
+      "key-press": {
+        "role": "primary",
+        "displayName": "Go-Key Green, pressed",
+        "canonical": "#6da93a",
+        "tonalRamp": [
+          "oklch(15% 0.156 133.3)",
+          "oklch(26% 0.156 133.3)",
+          "oklch(38% 0.156 133.3)",
+          "oklch(50% 0.156 133.3)",
+          "oklch(62% 0.156 133.3)",
+          "oklch(74% 0.156 133.3)",
+          "oklch(85% 0.156 133.3)",
+          "oklch(95% 0.156 133.3)"
+        ]
+      },
+      "led-on": {
+        "role": "primary",
+        "displayName": "Lit LED Green",
+        "canonical": "#6fd13f",
+        "tonalRamp": [
+          "oklch(15% 0.202 137.3)",
+          "oklch(26% 0.202 137.3)",
+          "oklch(38% 0.202 137.3)",
+          "oklch(50% 0.202 137.3)",
+          "oklch(62% 0.202 137.3)",
+          "oklch(74% 0.202 137.3)",
+          "oklch(85% 0.202 137.3)",
+          "oklch(95% 0.202 137.3)"
+        ]
+      },
+      "pen": {
+        "role": "secondary",
+        "displayName": "Ballpoint Blue",
+        "canonical": "#2f4ea2",
+        "tonalRamp": [
+          "oklch(15% 0.141 265.7)",
+          "oklch(26% 0.141 265.7)",
+          "oklch(38% 0.141 265.7)",
+          "oklch(50% 0.141 265.7)",
+          "oklch(62% 0.141 265.7)",
+          "oklch(74% 0.141 265.7)",
+          "oklch(85% 0.141 265.7)",
+          "oklch(95% 0.141 265.7)"
+        ]
+      },
+      "pen-light": {
+        "role": "secondary",
+        "displayName": "Ballpoint Blue, light",
+        "canonical": "#9db4ff",
+        "tonalRamp": [
+          "oklch(15% 0.111 270.6)",
+          "oklch(26% 0.111 270.6)",
+          "oklch(38% 0.111 270.6)",
+          "oklch(50% 0.111 270.6)",
+          "oklch(62% 0.111 270.6)",
+          "oklch(74% 0.111 270.6)",
+          "oklch(85% 0.111 270.6)",
+          "oklch(95% 0.111 270.6)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Aluminum",
+        "canonical": "#e4e4e0",
+        "tonalRamp": [
+          "oklch(15% 0.005 106.5)",
+          "oklch(26% 0.005 106.5)",
+          "oklch(38% 0.005 106.5)",
+          "oklch(50% 0.005 106.5)",
+          "oklch(62% 0.005 106.5)",
+          "oklch(74% 0.005 106.5)",
+          "oklch(85% 0.005 106.5)",
+          "oklch(95% 0.005 106.5)"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Printed Plate",
+        "canonical": "#f4f4f1",
+        "tonalRamp": [
+          "oklch(15% 0.004 106.5)",
+          "oklch(26% 0.004 106.5)",
+          "oklch(38% 0.004 106.5)",
+          "oklch(50% 0.004 106.5)",
+          "oklch(62% 0.004 106.5)",
+          "oklch(74% 0.004 106.5)",
+          "oklch(85% 0.004 106.5)",
+          "oklch(95% 0.004 106.5)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Printed Hairline",
+        "canonical": "#c8c8c2",
+        "tonalRamp": [
+          "oklch(15% 0.008 106.6)",
+          "oklch(26% 0.008 106.6)",
+          "oklch(38% 0.008 106.6)",
+          "oklch(50% 0.008 106.6)",
+          "oklch(62% 0.008 106.6)",
+          "oklch(74% 0.008 106.6)",
+          "oklch(85% 0.008 106.6)",
+          "oklch(95% 0.008 106.6)"
+        ]
+      },
+      "rule-soft": {
+        "role": "neutral",
+        "displayName": "Soft Hairline",
+        "canonical": "#d6d6d1",
+        "tonalRamp": [
+          "oklch(15% 0.007 106.5)",
+          "oklch(26% 0.007 106.5)",
+          "oklch(38% 0.007 106.5)",
+          "oklch(50% 0.007 106.5)",
+          "oklch(62% 0.007 106.5)",
+          "oklch(74% 0.007 106.5)",
+          "oklch(85% 0.007 106.5)",
+          "oklch(95% 0.007 106.5)"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#1d1d1b",
+        "tonalRamp": [
+          "oklch(15% 0.004 106.7)",
+          "oklch(26% 0.004 106.7)",
+          "oklch(38% 0.004 106.7)",
+          "oklch(50% 0.004 106.7)",
+          "oklch(62% 0.004 106.7)",
+          "oklch(74% 0.004 106.7)",
+          "oklch(85% 0.004 106.7)",
+          "oklch(95% 0.004 106.7)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Graphite 2",
+        "canonical": "#55554f",
+        "tonalRamp": [
+          "oklch(15% 0.010 106.8)",
+          "oklch(26% 0.010 106.8)",
+          "oklch(38% 0.010 106.8)",
+          "oklch(50% 0.010 106.8)",
+          "oklch(62% 0.010 106.8)",
+          "oklch(74% 0.010 106.8)",
+          "oklch(85% 0.010 106.8)",
+          "oklch(95% 0.010 106.8)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Graphite 3",
+        "canonical": "#5e5e58",
+        "tonalRamp": [
+          "oklch(15% 0.009 106.7)",
+          "oklch(26% 0.009 106.7)",
+          "oklch(38% 0.009 106.7)",
+          "oklch(50% 0.009 106.7)",
+          "oklch(62% 0.009 106.7)",
+          "oklch(74% 0.009 106.7)",
+          "oklch(85% 0.009 106.7)",
+          "oklch(95% 0.009 106.7)"
+        ]
+      },
+      "face": {
+        "role": "neutral",
+        "displayName": "Graphite Face",
+        "canonical": "#1d1d1b",
+        "tonalRamp": [
+          "oklch(15% 0.004 106.7)",
+          "oklch(26% 0.004 106.7)",
+          "oklch(38% 0.004 106.7)",
+          "oklch(50% 0.004 106.7)",
+          "oklch(62% 0.004 106.7)",
+          "oklch(74% 0.004 106.7)",
+          "oklch(85% 0.004 106.7)",
+          "oklch(95% 0.004 106.7)"
+        ]
+      },
+      "face-raised": {
+        "role": "neutral",
+        "displayName": "Face Raised",
+        "canonical": "#2a2a28",
+        "tonalRamp": [
+          "oklch(15% 0.004 106.6)",
+          "oklch(26% 0.004 106.6)",
+          "oklch(38% 0.004 106.6)",
+          "oklch(50% 0.004 106.6)",
+          "oklch(62% 0.004 106.6)",
+          "oklch(74% 0.004 106.6)",
+          "oklch(85% 0.004 106.6)",
+          "oklch(95% 0.004 106.6)"
+        ]
+      },
+      "face-input": {
+        "role": "neutral",
+        "displayName": "Face Input",
+        "canonical": "#2f2f2c",
+        "tonalRamp": [
+          "oklch(15% 0.005 106.7)",
+          "oklch(26% 0.005 106.7)",
+          "oklch(38% 0.005 106.7)",
+          "oklch(50% 0.005 106.7)",
+          "oklch(62% 0.005 106.7)",
+          "oklch(74% 0.005 106.7)",
+          "oklch(85% 0.005 106.7)",
+          "oklch(95% 0.005 106.7)"
+        ]
+      },
+      "face-rule": {
+        "role": "neutral",
+        "displayName": "Face Rule",
+        "canonical": "#3a3a37",
+        "tonalRamp": [
+          "oklch(15% 0.005 106.7)",
+          "oklch(26% 0.005 106.7)",
+          "oklch(38% 0.005 106.7)",
+          "oklch(50% 0.005 106.7)",
+          "oklch(62% 0.005 106.7)",
+          "oklch(74% 0.005 106.7)",
+          "oklch(85% 0.005 106.7)",
+          "oklch(95% 0.005 106.7)"
+        ]
+      },
+      "face-ink": {
+        "role": "neutral",
+        "displayName": "Face Print",
+        "canonical": "#e4e4e0",
+        "tonalRamp": [
+          "oklch(15% 0.005 106.5)",
+          "oklch(26% 0.005 106.5)",
+          "oklch(38% 0.005 106.5)",
+          "oklch(50% 0.005 106.5)",
+          "oklch(62% 0.005 106.5)",
+          "oklch(74% 0.005 106.5)",
+          "oklch(85% 0.005 106.5)",
+          "oklch(95% 0.005 106.5)"
+        ]
+      },
+      "face-ink-2": {
+        "role": "neutral",
+        "displayName": "Face Print 2",
+        "canonical": "#a3a39c",
+        "tonalRamp": [
+          "oklch(15% 0.010 106.6)",
+          "oklch(26% 0.010 106.6)",
+          "oklch(38% 0.010 106.6)",
+          "oklch(50% 0.010 106.6)",
+          "oklch(62% 0.010 106.6)",
+          "oklch(74% 0.010 106.6)",
+          "oklch(85% 0.010 106.6)",
+          "oklch(95% 0.010 106.6)"
+        ]
+      },
+      "face-ink-3": {
+        "role": "neutral",
+        "displayName": "Face Print 3",
+        "canonical": "#8f8f88",
+        "tonalRamp": [
+          "oklch(15% 0.010 106.7)",
+          "oklch(26% 0.010 106.7)",
+          "oklch(38% 0.010 106.7)",
+          "oklch(50% 0.010 106.7)",
+          "oklch(62% 0.010 106.7)",
+          "oklch(74% 0.010 106.7)",
+          "oklch(85% 0.010 106.7)",
+          "oklch(95% 0.010 106.7)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero, surname on its own line."
+      },
+      "display-sm": {
+        "displayName": "Display, small",
+        "purpose": "Sub-page hero names (Security)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles in the sticky left column."
+      },
+      "headline-face": {
+        "displayName": "Headline on face",
+        "purpose": "Contact and links page title on the graphite face."
+      },
+      "title-lg": {
+        "displayName": "Title, top billing",
+        "purpose": "Org name on the top-billed work row."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Row, talk and media titles."
+      },
+      "body-lg": {
+        "displayName": "Body, large",
+        "purpose": "Hero intro."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Blurbs and subs in Graphite 2, 60-62ch."
+      },
+      "key": {
+        "displayName": "Key legend",
+        "purpose": "Printed legend on keys."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Lowercase printed legends, years, meta, agate small print."
+      },
+      "type-plate": {
+        "displayName": "Type plate",
+        "purpose": "Device type line at the foot of the hero plate; the only tracked text."
+      },
+      "hand": {
+        "displayName": "Ballpoint",
+        "purpose": "Handwritten margin notes only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lift-plate",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.85), 0 1px 2px rgba(29,29,27,0.08), 0 20px 40px -18px rgba(29,29,27,0.3)",
+        "purpose": "Raised plates: hero spec plate, top-billed work row."
+      },
+      {
+        "name": "lift-key",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 2px rgba(29,29,27,0.18), 0 4px 10px -4px rgba(29,29,27,0.24)",
+        "purpose": "Neutral keys and the switch thumb."
+      },
+      {
+        "name": "lift-key-pressed",
+        "value": "inset 0 1px 3px rgba(29,29,27,0.2), 0 0 0 rgba(29,29,27,0)",
+        "purpose": "Any key on :active, with translateY(1px)."
+      },
+      {
+        "name": "lift-key-go",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(29,29,27,0.22), 0 4px 10px -4px rgba(29,29,27,0.3)",
+        "purpose": "The green go key."
+      },
+      {
+        "name": "face-cast",
+        "value": "0 24px 44px -20px rgba(29,29,27,0.45)",
+        "purpose": "Graphite face cards on aluminum: control panel, podcast card."
+      },
+      {
+        "name": "face-key",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 6px rgba(0,0,0,0.35)",
+        "purpose": "Keys on the graphite face (0.4 alpha on panel keys)."
+      },
+      {
+        "name": "face-form",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 36px -18px rgba(0,0,0,0.6)",
+        "purpose": "The contact form plate on the face."
+      },
+      {
+        "name": "recess",
+        "value": "inset 0 1px 3px rgba(0,0,0,0.45)",
+        "purpose": "Inputs on the face."
+      },
+      {
+        "name": "led-glow",
+        "value": "inset 0 -1px 1px rgba(0,0,0,0.2), 0 0 6px rgba(111,209,63,0.55)",
+        "purpose": "A lit LED lens; the only glow in the system."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The single easing for every state change."
+      },
+      {
+        "name": "press",
+        "value": "120ms",
+        "purpose": "Key press, key hover, link underline, nav hover."
+      },
+      {
+        "name": "panel-press",
+        "value": "140ms",
+        "purpose": "Control panel key press from legend hover."
+      },
+      {
+        "name": "led",
+        "value": "160ms",
+        "purpose": "LED and callout state change."
+      },
+      {
+        "name": "switch",
+        "value": "200ms",
+        "purpose": "Language switch thumb slide."
+      },
+      {
+        "name": "power-on",
+        "value": "900ms, 350ms delay",
+        "purpose": "The one authored load moment: the hero availability LED powers on."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack-panels",
+        "value": "1080px"
+      },
+      {
+        "name": "single-column",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Neutral Key",
+      "kind": "button",
+      "refersTo": "key",
+      "description": "The default molded key for every action except hiring.",
+      "html": "<a class=\"ds-key\" href=\"#\">View LinkedIn <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"7 17 17 7\"/><polyline points=\"7 7 17 7 17 17\"/></svg></a>",
+      "css": ".ds-key { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border: 0; border-radius: var(--radius-key); background: var(--plate); box-shadow: var(--lift-key); color: var(--graphite); font: 600 15px/1 var(--font-sans); letter-spacing: -0.005em; text-decoration: none; cursor: pointer; transition: transform 120ms var(--ease), box-shadow 120ms var(--ease), background-color 120ms var(--ease); } .ds-key:hover { background: #fafaf8; } .ds-key:active { transform: translateY(1px); box-shadow: var(--lift-key-pressed); } .ds-key:focus-visible { outline: 2px solid var(--graphite); outline-offset: 3px; }"
+    },
+    {
+      "name": "Go Key",
+      "kind": "button",
+      "refersTo": "key-go",
+      "description": "The one green key. Hire action only: hero Start a project, contact Send message.",
+      "html": "<a class=\"ds-key-go\" href=\"#contact\">Start a project <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg></a>",
+      "css": ".ds-key-go { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border: 0; border-radius: var(--radius-key); background: var(--key); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(29,29,27,0.22), 0 4px 10px -4px rgba(29,29,27,0.3); color: var(--graphite); font: 600 15px/1 var(--font-sans); letter-spacing: -0.005em; text-decoration: none; cursor: pointer; transition: transform 120ms var(--ease), box-shadow 120ms var(--ease), background-color 120ms var(--ease); } .ds-key-go:hover { background: var(--key-hover); } .ds-key-go:active { background: var(--key-press); transform: translateY(1px); box-shadow: var(--lift-key-pressed); } .ds-key-go:focus-visible { outline: 2px solid var(--graphite); outline-offset: 3px; }"
+    },
+    {
+      "name": "Flat Key",
+      "kind": "button",
+      "refersTo": "key-flat",
+      "description": "Capless key for a low-priority action (PDF download); legend aligns with the gutter.",
+      "html": "<a class=\"ds-key-flat\" href=\"#\">Download PDF</a>",
+      "css": ".ds-key-flat { display: inline-flex; align-items: center; height: 48px; padding: 0 12px; margin-left: -12px; border-radius: var(--radius-key); background: transparent; color: var(--graphite); font: 600 15px/1 var(--font-sans); text-decoration: none; transition: background-color 120ms var(--ease); } .ds-key-flat:hover { background: rgba(29,29,27,0.06); } .ds-key-flat:focus-visible { outline: 2px solid var(--graphite); outline-offset: 3px; }"
+    },
+    {
+      "name": "Dark Key on Face",
+      "kind": "button",
+      "refersTo": "key-dark",
+      "description": "Secondary key on the graphite face (podcast playlist).",
+      "html": "<div class=\"ds-face-demo\"><a class=\"ds-key-dark\" href=\"#\">Playlist</a></div>",
+      "css": ".ds-face-demo { padding: 20px; border-radius: var(--radius-plate); background: var(--face); } .ds-key-dark { display: inline-flex; align-items: center; height: 48px; padding: 0 20px; border-radius: var(--radius-key); background: var(--face-raised); box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 6px rgba(0,0,0,0.35); color: var(--face-ink); font: 600 15px/1 var(--font-sans); text-decoration: none; transition: transform 120ms var(--ease), background-color 120ms var(--ease); } .ds-key-dark:hover { background: #333331; } .ds-key-dark:active { transform: translateY(1px); } .ds-key-dark:focus-visible { outline: 2px solid var(--key); outline-offset: 3px; }"
+    },
+    {
+      "name": "Face Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Recessed field on the graphite face; green caret and focus ring.",
+      "html": "<div class=\"ds-face-field\"><label for=\"ds-email\">Email</label><input id=\"ds-email\" class=\"ds-input\" type=\"email\" placeholder=\"you@company.com\"></div>",
+      "css": ".ds-face-field { display: grid; gap: 8px; padding: 24px; border-radius: var(--radius-plate); background: var(--face-raised); } .ds-face-field label { color: var(--face-ink-2); font: 600 13px/1.2 var(--font-sans); } .ds-input { width: 100%; height: 46px; padding: 0 14px; border: 0; border-radius: var(--radius-key); background: var(--face-input); box-shadow: inset 0 1px 3px rgba(0,0,0,0.45); color: var(--face-ink); font: 400 15px/1.4 var(--font-sans); caret-color: var(--key); } .ds-input::placeholder { color: var(--face-ink-3); } .ds-input:focus-visible { outline: 2px solid var(--key); outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky aluminum bar: brand, quiet text links, language switch, small neutral contact key.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\">Gabriel Taveira</a><span class=\"ds-nav-links\"><a class=\"ds-nav-link ds-nav-link-active\" href=\"#\">Services</a><a class=\"ds-nav-link\" href=\"#\">Work</a><a class=\"ds-nav-link\" href=\"#\">Talks</a></span><span class=\"ds-switch\"><a class=\"ds-switch-pos ds-switch-pos-active\" href=\"#\">EN</a><a class=\"ds-switch-pos\" href=\"#\">PT</a></span><a class=\"ds-key-sm\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 28px; height: 64px; padding: 0 24px; background: var(--panel); border-bottom: 1px solid var(--rule); font-family: var(--font-sans); } .ds-nav-brand { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--graphite); text-decoration: none; } .ds-nav-links { display: flex; gap: 4px; margin-right: auto; } .ds-nav-link { padding: 8px 10px; border-radius: 8px; color: var(--ink-2); font-size: 14px; font-weight: 500; text-decoration: none; transition: color 120ms var(--ease), background 120ms var(--ease); } .ds-nav-link:hover { color: var(--graphite); background: rgba(29,29,27,0.05); } .ds-nav-link-active { color: var(--graphite); background: rgba(29,29,27,0.07); } .ds-nav-link:focus-visible, .ds-key-sm:focus-visible { outline: 2px solid var(--graphite); outline-offset: 3px; } .ds-switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 999px; background: #d2d2cd; box-shadow: inset 0 1px 2px rgba(29,29,27,0.22); } .ds-switch::before { content: ''; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 999px; background: var(--plate); box-shadow: var(--lift-key); transition: transform 200ms var(--ease); } .ds-switch-pos { position: relative; z-index: 1; padding: 5px 10px; color: var(--ink-3); font-size: 12px; font-weight: 650; letter-spacing: 0.02em; text-align: center; text-decoration: none; } .ds-switch-pos-active { color: var(--graphite); } .ds-key-sm { display: inline-flex; align-items: center; height: 38px; padding: 0 14px; border-radius: var(--radius-key); background: var(--plate); box-shadow: var(--lift-key); color: var(--graphite); font: 600 14px/1 var(--font-sans); text-decoration: none; } .ds-key-sm:active { transform: translateY(1px); box-shadow: var(--lift-key-pressed); }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Static outlined label for stack keywords on work rows and plates.",
+      "html": "<span class=\"ds-tags\"><span class=\"ds-tag\">React Native</span><span class=\"ds-tag\">Expo</span><span class=\"ds-tag\">React Compiler</span></span>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 6px; } .ds-tag { padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px; color: var(--ink-2); font: 500 12px/1.2 var(--font-sans); }"
+    },
+    {
+      "name": "Spec Plate",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "Signature hero plate: grille, lit availability LED, lowercase spec table, type plate line, a ballpoint note.",
+      "html": "<aside class=\"ds-plate\"><div class=\"ds-grille\"></div><p class=\"ds-status\"><span class=\"ds-led ds-led-on\"></span>Open to new clients</p><dl class=\"ds-spec\"><div class=\"ds-spec-row\"><dt>years</dt><dd>10+</dd></div><div class=\"ds-spec-row\"><dt>direct reports</dt><dd><span class=\"ds-note\">yes, really</span>56</dd></div><div class=\"ds-spec-row\"><dt>stack</dt><dd>React Native · Expo</dd></div></dl><p class=\"ds-type\">type GT-10 · made in Brazil</p></aside>",
+      "css": ".ds-plate { max-width: 420px; padding: 22px 24px 18px; border-radius: var(--radius-plate); background: var(--plate); box-shadow: var(--lift-plate); color: var(--graphite); font-family: var(--font-sans); } .ds-grille { height: 104px; border-radius: 8px; background-image: radial-gradient(circle, var(--graphite) 0 1.5px, transparent 2px); background-size: 9px 9px; background-repeat: space; opacity: 0.82; } .ds-status { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; font-size: 14px; font-weight: 600; } .ds-led { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #b9b9b2, #8a8a84); box-shadow: inset 0 1px 1px rgba(0,0,0,0.35); } .ds-led-on { background: radial-gradient(circle at 35% 35%, #e2ffd0, var(--led-on) 55%, #3f9a1f); box-shadow: inset 0 -1px 1px rgba(0,0,0,0.2), 0 0 6px rgba(111,209,63,0.55); } .ds-spec { margin: 18px 0 0; } .ds-spec-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 1px solid var(--rule-soft); } .ds-spec dt { color: var(--ink-3); font-size: 13px; text-transform: lowercase; } .ds-spec dd { margin: 0; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; } .ds-note { display: inline-block; margin-right: 12px; color: var(--pen); font: 500 20px/1 var(--font-hand); transform: rotate(-5deg); } .ds-type { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--rule-soft); color: var(--ink-3); font-size: 11px; letter-spacing: 0.06em; }"
+    },
+    {
+      "name": "Control Panel",
+      "kind": "custom",
+      "refersTo": "face-panel",
+      "description": "Signature services panel on the graphite face: numbered keys with LEDs; hovering a key presses it and lights its LED.",
+      "html": "<div class=\"ds-panel\"><div class=\"ds-panel-keys\"><div class=\"ds-panel-key\"><span class=\"ds-pled\"></span><span class=\"ds-cap\">1</span><span class=\"ds-plabel\">review</span></div><div class=\"ds-panel-key\"><span class=\"ds-pled\"></span><span class=\"ds-cap\">2</span><span class=\"ds-plabel\">upgrades</span></div><div class=\"ds-panel-key\"><span class=\"ds-pled\"></span><span class=\"ds-cap\">3</span><span class=\"ds-plabel\">fractional lead</span></div><div class=\"ds-panel-key\"><span class=\"ds-pled\"></span><span class=\"ds-cap\">4</span><span class=\"ds-plabel\">design systems</span></div></div><div class=\"ds-pgrille\"></div></div>",
+      "css": ".ds-panel { max-width: 360px; padding: 20px; border-radius: var(--radius-plate); background: var(--face); box-shadow: 0 24px 44px -20px rgba(29,29,27,0.45); font-family: var(--font-sans); } .ds-panel-keys { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } .ds-panel-key { display: grid; grid-template-rows: auto 1fr auto; aspect-ratio: 1; padding: 12px; border-radius: 12px; background: var(--face-raised); box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 6px rgba(0,0,0,0.4); color: var(--face-ink); transition: transform 140ms var(--ease), box-shadow 140ms var(--ease), background 140ms var(--ease); } .ds-panel-key:hover { transform: translateY(2px); background: #242422; box-shadow: inset 0 1px 3px rgba(0,0,0,0.6); } .ds-pled { width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #b9b9b2, #8a8a84); box-shadow: inset 0 1px 1px rgba(0,0,0,0.35); transition: background 160ms var(--ease), box-shadow 160ms var(--ease); } .ds-panel-key:hover .ds-pled { background: radial-gradient(circle at 35% 35%, #e2ffd0, var(--led-on) 55%, #3f9a1f); box-shadow: inset 0 -1px 1px rgba(0,0,0,0.2), 0 0 6px rgba(111,209,63,0.55); } .ds-cap { align-self: center; justify-self: center; font-size: 30px; font-weight: 650; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; } .ds-plabel { color: var(--face-ink-3); font-size: 12px; font-weight: 500; text-transform: lowercase; } .ds-pgrille { height: 36px; margin-top: 16px; border-radius: 8px; background-image: radial-gradient(circle, var(--face-ink-3) 0 1.5px, transparent 2px); background-size: 9px 9px; background-repeat: space; opacity: 0.6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Operating Manual",
+    "overview": "Gabriel is presented as a well-engineered device, the way a Braun manual presents one: a spec plate, numbered functions, an operating sequence. The page ground is an aluminum-gray body, every word is printed in one graphite grotesque, raised parts are molded and lit from above, and a speaker-grille dot field is punched into the plates. The parts you operate sit on a dark graphite face. One green key, LEDs for state, and blue ballpoint for the handwritten notes are the only color on the device.\n\nThe system refuses the dark dev portfolio with a neon accent. Density is a printed manual's: a two-column page with the heading in a narrow left column and ruled rows on the right, generous section spacing, hairline rules instead of boxes. Proof is sized by importance (billing rank), never by decoration. Personality lives in the copy and the ballpoint notes, which are the only hand-made marks on the page.\n\nMotion is mechanical and short: keys press down 1px, LEDs light, the language switch slides. The one authored load moment is the availability LED powering on in the hero.",
+    "keyCharacteristics": [
+      "Aluminum body, graphite print, graphite face for the controls.",
+      "One green key, reserved for the hire action.",
+      "LEDs carry state; their text label carries the meaning.",
+      "Molded keys and plates lit from above (inset top highlight plus soft offset shadow).",
+      "Circled numbers where order is the information.",
+      "Lowercase printed legends, tabular figures.",
+      "Blue ballpoint notes in Caveat, tilted a few degrees."
+    ],
+    "rules": [
+      {
+        "name": "The One Green Key Rule",
+        "body": "Green fills exactly one kind of key: the hire action. The hero's \"Start a project\" and the contact form's \"Send message\" are green; every other key (LinkedIn, PDF, podcast, nav \"contact\") is neutral.",
+        "section": "colors"
+      },
+      {
+        "name": "The Color Is Function Rule",
+        "body": "No hue appears for decoration. Green means go or on, blue means a hand wrote this. Anything else is graphite or aluminum.",
+        "section": "colors"
+      },
+      {
+        "name": "The Printed Heading Rule",
+        "body": "A heading is one weight and one color. `<em>` in copy renders upright and unaccented (no italic, no color, no weight change). Nothing sits above a heading: no eyebrow or kicker label.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lowercase Legend Rule",
+        "body": "Printed labels on the device (spec terms, panel key labels, \"now\" labels) are lowercase, Graphite 3, 12 to 13px. No tracked uppercase labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figure Rule",
+        "body": "Numbers that compare (spec values, years, callout numbers, outcome figures in blurbs) use tabular figures; outcome figures are set in 650 graphite inside the blurb.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lit-From-Above Rule",
+        "body": "A raised part always gets both halves: the inset top highlight and the soft offset shadow. Never a hard offset shadow, never a glow, except the LED's own light.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep green on the hire action only: the hero \"Start a project\" and the contact \"Send message\".",
+      "**Do** put controls on the graphite face (control panel, podcast card, contact, links page) and switch notes to `pen-light` and focus to green there.",
+      "**Do** light raised parts from above: inset top highlight plus soft offset shadow, and press them 1px on `:active`.",
+      "**Do** pair every LED with a text label and keep the LED `aria-hidden`.",
+      "**Do** size proof by billing rank: current, top (raised plate), main, agate (small print).",
+      "**Do** use circled callout numbers wherever the order is the information.",
+      "**Do** set printed labels lowercase in Graphite 3 and numbers in tabular figures.",
+      "**Do** keep the one load moment to the availability LED powering on (900ms, 350ms delay); everything else is a 120 to 200ms state change on `cubic-bezier(0.16, 1, 0.3, 1)`, and reduced motion removes it all."
+    ],
+    "donts": [
+      "**Don't** build the dark dev portfolio with a neon accent; the body is aluminum and dark is reserved for the face.",
+      "**Don't** color any key green except the hire action; every other key is neutral, flat or dark.",
+      "**Don't** put an eyebrow or kicker label above a heading.",
+      "**Don't** mix weights or colors inside a heading, or render `<em>` italic, colored or bolder.",
+      "**Don't** use emoji in copy.",
+      "**Don't** add a hue for decoration; green means go or on, blue means handwriting.",
+      "**Don't** use Caveat for anything but the ballpoint notes, or add other hand-made marks (scribbles, drawn arrows, flourishes).",
+      "**Don't** set tracked uppercase labels in the device world.",
+      "**Don't** bring Archivo, device tokens or shadows into the resume page or PDF."
+    ]
+  }
+}

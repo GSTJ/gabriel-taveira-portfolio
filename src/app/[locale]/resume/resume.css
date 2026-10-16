@@ -1,6 +1,6 @@
 /*
- * Light, print-first resume. Covers the site's dark body and its fixed
- * ambient gradient on screen; in print, backgrounds are off anyway.
+ * Light, print-first resume, deliberately outside the device styling so ATS
+ * parsers get plain single-column text. Backgrounds are off in print.
  */
 .resume {
   position: relative;
@@ -36,7 +36,7 @@
   margin: 4px 0 0;
   font-size: 15px;
   font-weight: 600;
-  color: #b85d12;
+  color: #1d1d1b;
 }
 .resume-contact {
   margin: 8px 0 0;

@@ -50,8 +50,8 @@ export async function GET() {
     "",
     "## Services",
     "",
-    ...SERVICES.map((s) => {
-      const item = en.services.items[s.id];
+    ...SERVICES.map((id) => {
+      const item = en.services.items[id];
       return `- **${item.title}**: ${item.body}`;
     }),
     "",
@@ -63,7 +63,8 @@ export async function GET() {
     "",
     ...WORK.map((w) => {
       const item = en.work.items[w.id];
-      return `- **${item.title}** (${w.eyebrow}): ${plain(`work.items.${w.id}.blurb`)}`;
+      const end = w.end === "now" ? "present" : w.end;
+      return `- **${item.title}** (${w.orgs.join(", ")}, ${w.start} to ${end}): ${plain(`work.items.${w.id}.blurb`)}`;
     }),
     "",
     "## Talks",

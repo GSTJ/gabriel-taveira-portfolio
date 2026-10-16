@@ -6,24 +6,30 @@ import { cn } from "@/utils/cn";
 import { Link, usePathname } from "@/utils/navigation";
 import { routing } from "@/utils/routing";
 
+/**
+ * A two-position slide switch. Each position is a real link, so it works
+ * without JS and each locale stays a crawlable URL.
+ */
 export const LanguageSwitcher = () => {
   const current = useLocale();
   const pathname = usePathname(); // locale-stripped pathname
 
   return (
-    <nav className="ws-lang-switch ws-pdf-hide" aria-label="Language">
+    <nav
+      className={cn("gt-switch", current === "pt-BR" && "gt-switch-right")}
+      aria-label="Language"
+    >
       {routing.locales.map((locale) => {
-        const label = locale === "en-US" ? "EN" : "PT";
         const isActive = locale === current;
         return (
           <Link
             key={locale}
             href={pathname}
             locale={locale}
-            className={cn("ws-lang-link", isActive && "ws-lang-link-active")}
+            className={cn("gt-switch-pos", isActive && "gt-switch-pos-active")}
             aria-current={isActive ? "true" : undefined}
           >
-            {label}
+            {locale === "en-US" ? "EN" : "PT"}
           </Link>
         );
       })}
