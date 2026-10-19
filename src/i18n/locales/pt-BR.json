@@ -179,7 +179,7 @@
   "notes": {
     "title": "Palestras, textos e o que estou fazendo agora.",
     "now": {
-      "title": "O que estou de fato fazendo.",
+      "title": "Agora",
       "items": {
         "consulting": {
           "chip": "Consultoria",
@@ -210,58 +210,47 @@
       "updated": "Atualizado em {date}."
     },
     "publications": {
-      "title": "O que eu apresento, escrevo e represento.",
-      "onAir": "No ar · Space Cast",
+      "title": "No ar",
       "featureTitle": "Apresento o podcast Space Cast no YouTube da Rocketseat.",
       "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
       "watchShow": "Assistir o programa",
       "playlist": "Playlist de episódios",
-      "mediumEyebrow": "Medium",
-      "mediumHandle": "medium.com/@gabrieltaveira",
-      "mediumBody": "Textos sobre programação, design systems e cultura de time.",
-      "ambassadorEyebrow": "Embaixador",
       "ambassadorTitle": "Space Squad · Rocketseat",
       "ambassadorBody": "Mentorando a próxima geração de devs.",
       "season": "temporada 3"
     },
     "talks": {
-      "title": "Palestro em eventos de tech e liderança.",
+      "title": "Palestras",
       "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
-      "topicLeadership": "Liderança",
-      "topicTech": "Tech",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
           "description": "Como aumentar o throughput de um time usando IA no dia a dia da engenharia.",
           "venue": "The Brooklyn Brothers",
-          "city": "São Paulo",
-          "hrefLabel": "Slides no Figma"
+          "city": "São Paulo"
         },
         "tdc": {
           "title": "Entregando o Mozeic no Zé Delivery",
           "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
           "venue": "TDC · Design Systems",
-          "city": "São Paulo",
-          "hrefLabel": "Site do evento"
+          "city": "São Paulo"
         },
         "assemble": {
           "title": "Formando um Tech Lead, três dias por vez",
           "description": "Imersão de 3 dias pra formar líderes de engenharia.",
           "venue": "Assemble · Rocketseat",
-          "city": "Remoto",
-          "hrefLabel": "Rocketseat"
+          "city": "Remoto"
         },
         "spaceSquad": {
           "title": "Mentoria na comunidade Space Squad",
           "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
           "venue": "Space Squad · Rocketseat",
-          "city": "Remoto",
-          "hrefLabel": "Space Squad"
+          "city": "Remoto"
         }
       }
     },
     "awards": {
-      "title": "Alguns troféus.",
+      "title": "Hackathons",
       "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
       "positions": {
         "first": "1º lugar",
@@ -277,11 +266,8 @@
       }
     },
     "writing": {
-      "title": "Algumas anotações.",
+      "title": "Textos",
       "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
-      "handle": "medium.com/@gabrieltaveira",
-      "calloutTitle": "Escrevo no Medium.",
-      "calloutSub": "Posts novos quando uma ideia para de ser interessante só pra mim. Assina lá pro próximo.",
       "topics": {
         "leadership": "Liderança em Engenharia",
         "mobile": "Arquitetura Mobile",
@@ -290,6 +276,16 @@
         "reverse": "Engenharia Reversa"
       },
       "readOnMedium": "Ler no Medium"
+    },
+    "shipped": {
+      "title": "Lançado há pouco",
+      "source": "Das minhas releases no GitHub, lidas em {date}.",
+      "items": {
+        "pegada": "Limite diário de likes configurável e plano semanal",
+        "safeJsx": "A regra agora pega brechas com booleanos mutáveis",
+        "codePush": "As duas URLs do servidor CodePush viraram obrigatórias, então config errada falha cedo",
+        "magicModal": "Peers de React Native viraram opcionais, a instalação web é um pacote só"
+      }
     }
   },
   "contact": {

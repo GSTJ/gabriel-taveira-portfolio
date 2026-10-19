@@ -1,30 +1,198 @@
-.grid {
+/* Shared pieces */
+
+.col,
+.block,
+.stack {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
-  gap: var(--space-8) var(--space-8);
+  align-content: start;
+}
+
+.col {
+  gap: var(--space-8);
 }
 
 .block {
-  display: grid;
-  align-content: start;
+  gap: var(--space-5);
+}
+
+.stack {
   gap: var(--space-3);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
 }
 
 .rows {
   display: grid;
+  border-bottom: 1px solid var(--rule);
 }
 
-.rows > * {
-  padding-block: var(--space-2);
+.rows > li {
   border-top: 1px solid var(--rule);
 }
 
-.rows dd {
-  margin: 0;
+/* Now: the one block that changes month to month, so it leads. */
+
+.now {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.nowRows {
+  display: grid;
+  border-bottom: 1px solid var(--rule);
+}
+
+.nowRow {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.nowRow dt {
+  padding-top: 0.2em;
+}
+
+/* Inline so a wrapped title keeps its arrow on the last word. */
+.nowTitle a {
+  display: inline;
+}
+
+.nowTitle a svg {
+  display: inline;
+  margin-left: 0.3em;
+  vertical-align: -0.05em;
+}
+
+.nowTitle {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+  letter-spacing: var(--tr-body);
+}
+
+/* Talks */
+
+.talk {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+
+.talk > span {
+  padding-top: 0.2em;
+}
+
+.talk > div {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.rowTitle {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+.talk abbr {
+  text-decoration: none;
+}
+
+/* On air and writing */
+
+.feature {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: -0.013em;
+  color: var(--ink);
+  text-wrap: pretty;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-5);
+}
+
+/* Shipped lately: a dated changelog strip, each row a link to the release. */
+
+.ship {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+  text-decoration: none;
+}
+
+.pkg {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule-strong);
+  transition: text-decoration-color var(--dur-hover) ease;
+}
+
+.version {
+  color: var(--ink-3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ship:hover .pkg {
+    text-decoration-color: var(--pen);
+  }
+}
+
+/* Hackathons: small print, all five, quieter than everything above. */
+
+.awards {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 60rem;
+}
+
+.awards h3 {
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+}
+
+.awardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  margin-top: var(--space-1);
+}
+
+/* Now runs full width, three columns under it, hackathons as a footnote. */
+
+.layout {
+  display: grid;
+  gap: var(--space-9);
+}
+
+.trio {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (width >= 1000px) {
+  .nowRow {
+    grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1.2fr);
+    column-gap: var(--space-6);
+  }
+
+  .trio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-7);
+  }
+
+  .awards {
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--rule);
+    max-width: none;
+  }
 }

@@ -29,7 +29,6 @@ export const PUBLICATIONS = {
 export type TalkItem = {
   id: "brooklyn" | "tdc" | "assemble" | "spaceSquad";
   date: string;
-  topic: "leadership" | "tech";
   lang: "PT" | "EN";
   href: string;
 };
@@ -38,28 +37,24 @@ export const TALKS: readonly TalkItem[] = [
   {
     id: "brooklyn",
     date: "2024",
-    topic: "leadership",
     lang: "PT",
     href: "https://www.figma.com/file/nBdwnIQxwLseSXicLhzRoB/Efici%C3%AAncia-Com-AI---The-Brooklyn-Brothers",
   },
   {
     id: "tdc",
     date: "2024",
-    topic: "tech",
     lang: "PT",
     href: "https://thedevconf.com/",
   },
   {
     id: "assemble",
     date: "2023",
-    topic: "leadership",
     lang: "PT",
     href: "https://www.rocketseat.com.br/",
   },
   {
     id: "spaceSquad",
     date: "2023",
-    topic: "tech",
     lang: "PT",
     href: SPACE_SQUAD,
   },
@@ -85,4 +80,48 @@ export const WRITING_TOPICS = [
   "design",
   "hiring",
   "reverse",
+] as const;
+
+export type ShippedItem = {
+  id: "pegada" | "safeJsx" | "codePush" | "magicModal";
+  name: string;
+  version: string;
+  /** Release date, ISO. */
+  date: string;
+  href: string;
+};
+
+/** When SHIPPED was read from GitHub releases (`gh release list`, read only). */
+export const SHIPPED_READ = "2026-10-19";
+
+/** Real releases with a user-facing change, newest first. A snapshot, dated. */
+export const SHIPPED: readonly ShippedItem[] = [
+  {
+    id: "pegada",
+    name: "pegada",
+    version: "1.7.3",
+    date: "2026-09-21",
+    href: "https://github.com/GSTJ/pegada/releases/tag/v1.7.3",
+  },
+  {
+    id: "safeJsx",
+    name: "eslint-plugin-safe-jsx",
+    version: "1.3.9",
+    date: "2026-08-31",
+    href: "https://github.com/GSTJ/safe-jsx/releases/tag/v1.3.9",
+  },
+  {
+    id: "codePush",
+    name: "react-native-code-push-plugin",
+    version: "2.0.0",
+    date: "2026-08-05",
+    href: "https://github.com/GSTJ/react-native-code-push-plugin/releases/tag/v2.0.0",
+  },
+  {
+    id: "magicModal",
+    name: "magic-modal",
+    version: "10.2.0",
+    date: "2026-07-31",
+    href: "https://github.com/GSTJ/magic-modal/releases/tag/magic-modal-10.2.0",
+  },
 ] as const;

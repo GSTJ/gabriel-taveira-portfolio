@@ -179,7 +179,7 @@
   "notes": {
     "title": "Talks, writing, and what I'm doing now.",
     "now": {
-      "title": "What I'm actually doing.",
+      "title": "Now",
       "items": {
         "consulting": {
           "chip": "Consulting",
@@ -210,58 +210,47 @@
       "updated": "Updated {date}."
     },
     "publications": {
-      "title": "Things I host, write, and ambassador.",
-      "onAir": "On air · Space Cast",
+      "title": "On air",
       "featureTitle": "I host the Space Cast podcast on Rocketseat's YouTube.",
       "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
       "watchShow": "Watch the show",
       "playlist": "Episode playlist",
-      "mediumEyebrow": "Medium",
-      "mediumHandle": "medium.com/@gabrieltaveira",
-      "mediumBody": "Articles on programming, design systems, and team craft.",
-      "ambassadorEyebrow": "Ambassador",
       "ambassadorTitle": "Space Squad · Rocketseat",
       "ambassadorBody": "Mentoring the next generation of tech wizards.",
       "season": "season 3"
     },
     "talks": {
-      "title": "I speak at tech and leadership events.",
+      "title": "Talks",
       "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
-      "topicLeadership": "Leadership",
-      "topicTech": "Tech",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
           "description": "How to lift team throughput with AI in day-to-day engineering.",
           "venue": "The Brooklyn Brothers",
-          "city": "São Paulo",
-          "hrefLabel": "Slides on Figma"
+          "city": "São Paulo"
         },
         "tdc": {
           "title": "Shipping Mozeic at Zé Delivery",
           "description": "Lessons from co-building an in-house design system at a high-traffic delivery app.",
           "venue": "TDC · Design Systems",
-          "city": "São Paulo",
-          "hrefLabel": "Event site"
+          "city": "São Paulo"
         },
         "assemble": {
           "title": "Forming a Tech Lead, three days at a time",
           "description": "3-day immersion focused on forming engineering leads.",
           "venue": "Assemble · Rocketseat",
-          "city": "Remote",
-          "hrefLabel": "Rocketseat"
+          "city": "Remote"
         },
         "spaceSquad": {
           "title": "Mentoring in the Space Squad community",
           "description": "Ongoing mentorship through Rocketseat's ambassador program.",
           "venue": "Space Squad · Rocketseat",
-          "city": "Remote",
-          "hrefLabel": "Space Squad"
+          "city": "Remote"
         }
       }
     },
     "awards": {
-      "title": "A small trophy shelf.",
+      "title": "Hackathons",
       "sub": "A few hackathons I crashed before the day job got busy.",
       "positions": {
         "first": "1st place",
@@ -277,11 +266,8 @@
       }
     },
     "writing": {
-      "title": "Notes from the shelf.",
+      "title": "Writing",
       "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
-      "handle": "medium.com/@gabrieltaveira",
-      "calloutTitle": "I write on Medium.",
-      "calloutSub": "New posts whenever a thought stops being interesting only to me. Subscribe there for the next one.",
       "topics": {
         "leadership": "Engineering Leadership",
         "mobile": "Mobile Architecture",
@@ -290,6 +276,16 @@
         "reverse": "Reverse Engineering"
       },
       "readOnMedium": "Read on Medium"
+    },
+    "shipped": {
+      "title": "Shipped lately",
+      "source": "From my GitHub releases, read {date}.",
+      "items": {
+        "pegada": "Configurable daily like limit and a weekly plan",
+        "safeJsx": "The rule now catches mutable boolean bypasses",
+        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
+        "magicModal": "React Native peers are optional, so the web install is one package"
+      }
     }
   },
   "contact": {
