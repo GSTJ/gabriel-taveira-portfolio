@@ -27,7 +27,15 @@ export const NowPlaying = async () => {
               {tItems(`${n.id}.chip`)}
             </span>
             <div className="ws-now-row-main">
-              <h3 className="ws-now-row-title">{tItems(`${n.id}.title`)}</h3>
+              <h3 className="ws-now-row-title">
+                {n.href ? (
+                  <a href={n.href} target="_blank" rel="noreferrer">
+                    {tItems(`${n.id}.title`)}
+                  </a>
+                ) : (
+                  tItems(`${n.id}.title`)
+                )}
+              </h3>
               <p className="ws-now-row-body">{tItems(`${n.id}.body`)}</p>
             </div>
           </li>
