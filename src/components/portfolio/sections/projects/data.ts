@@ -1,15 +1,24 @@
+export type ProjectId =
+  | "curvinha"
+  | "pegada"
+  | "magicModal"
+  | "safeJsx"
+  | "codePush"
+  | "magicToast"
+  | "observability";
+
 export type ProjectItem = {
-  id: "curvinha" | "magicModal" | "safeJsx" | "magicToast" | "pegada";
+  id: ProjectId;
   kind: "app" | "library";
   href: string;
-  repo?: string;
-  /** Every npm name the package shipped under, oldest last, for download totals. */
+  /** Every npm name the package shipped under, for install totals. */
   npm?: readonly string[];
 };
 
 /**
- * Curvinha keeps `?ct=gabriel-site`; the Now line in Notes uses
- * `?ct=gabrieltaveira-dev`, so the two placements are measured apart.
+ * Order is the page's order. Curvinha keeps `?ct=gabriel-site`; the Now line
+ * in Notes uses `?ct=gabrieltaveira-dev`, so the two placements are measured
+ * apart. llms.txt lists these with `projects.items.<id>.title/body`.
  */
 export const PROJECTS: readonly ProjectItem[] = [
   {
@@ -17,78 +26,87 @@ export const PROJECTS: readonly ProjectItem[] = [
     kind: "app",
     href: "https://curvinha.app/?ct=gabriel-site",
   },
+  { id: "pegada", kind: "app", href: "https://github.com/GSTJ/pegada" },
   {
     id: "magicModal",
     kind: "library",
     href: "https://github.com/GSTJ/magic-modal",
-    repo: "GSTJ/magic-modal",
-    npm: ["magic-modal", "react-native-magic-modal"],
+    npm: ["react-native-magic-modal", "magic-modal"],
   },
   {
     id: "safeJsx",
     kind: "library",
     href: "https://github.com/GSTJ/safe-jsx",
-    repo: "GSTJ/safe-jsx",
     npm: ["eslint-plugin-safe-jsx"],
+  },
+  {
+    id: "codePush",
+    kind: "library",
+    href: "https://github.com/GSTJ/react-native-code-push-plugin",
+    npm: ["react-native-code-push-plugin"],
   },
   {
     id: "magicToast",
     kind: "library",
     href: "https://github.com/GSTJ/react-native-magic-toast",
-    repo: "GSTJ/react-native-magic-toast",
     npm: ["react-native-magic-toast"],
   },
   {
-    id: "pegada",
-    kind: "app",
-    href: "https://github.com/GSTJ/pegada",
-    repo: "GSTJ/pegada",
+    id: "observability",
+    kind: "library",
+    href: "https://github.com/GSTJ/magic/tree/main/packages/observability",
+    npm: ["magic-observability"],
   },
 ] as const;
 
-/** Curvinha's three steps, each a real app capture cropped above the price sheet. */
-export const CURVINHA_STEPS = ["measure", "plan", "room"] as const;
-export type CurvinhaStep = (typeof CURVINHA_STEPS)[number];
+export const href = (id: ProjectId) =>
+  PROJECTS.find((p) => p.id === id)?.href ?? "";
+
+/** Read on the App Store's lookup API. */
+export const CURVINHA = {
+  appStore: "https://apps.apple.com/br/app/id6816957870",
+  liveSince: "2026-10-16",
+} as const;
+
+/** The three things a scan turns into, each a real capture without prices. */
+export const CURVINHA_OUTPUTS = ["plan", "room", "fit"] as const;
+export type CurvinhaOutput = (typeof CURVINHA_OUTPUTS)[number];
+
+export const PEGADA = {
+  appStore: "https://apps.apple.com/br/app/pegada/id6450865592",
+  play: "https://play.google.com/store/apps/details?id=app.pegada",
+  pegava: "https://github.com/GSTJ/pegava-dating-app",
+  liveSince: "2023-07-05",
+  rating: 3.8,
+  ratings: 25,
+  pegavaStars: 433,
+  pegavaForks: 144,
+} as const;
+
+/** Real App Store screens, in the order a match happens. */
+export const PEGADA_SCREENS = ["deck", "match", "chat"] as const;
+export type PegadaScreen = (typeof PEGADA_SCREENS)[number];
 
 /** GitHub stars, read by hand. Shown with this date, never as a live number. */
 export const STARS_READ_ON = "2026-10-19";
-export const STARS = {
-  magicModal: 651,
-  safeJsx: 29,
-  pegada: 28,
-  pegava: 433,
+export const STARS = { magicModal: 651, safeJsx: 29 } as const;
+
+export const MAGIC_MODAL = {
+  first: "2022-02-22",
+  releases: 55,
+  changelog:
+    "https://github.com/GSTJ/magic-modal/blob/main/packages/modal/CHANGELOG.md",
+  /** Web bundle, gzip, from the changelog (#334, #336). */
+  bundle: [
+    { version: "9.x", kb: 176.6 },
+    { version: "10.0", kb: 32.2 },
+    { version: "10.1", kb: 5.3 },
+  ],
 } as const;
 
-export const PEGAVA_HREF = "https://github.com/GSTJ/pegava-dating-app";
-export const PEGADA_LAUNCH_HREF =
-  "https://pt.linkedin.com/posts/gabrieltaveira_pegada-find-a-match-for-your-dog-product-activity-7228105550360657921-BukN";
-
-/**
- * The npm ledger, biggest first. `names` sums every name a package shipped
- * under (magic-modal was react-native-magic-modal until v10).
- */
-export const NPM_ROWS = [
-  { id: "magicModal", names: ["magic-modal", "react-native-magic-modal"] },
-  { id: "safeJsx", names: ["eslint-plugin-safe-jsx"] },
-  { id: "magicToast", names: ["react-native-magic-toast"] },
-  { id: "observability", names: ["magic-observability"] },
-  { id: "codePush", names: ["react-native-code-push-plugin"] },
-] as const;
-export type NpmRowId = (typeof NPM_ROWS)[number]["id"];
-
-/** Last good read (npm, last 30 days), used when the API doesn't answer. */
-export const NPM_FALLBACK = {
-  start: "2026-09-19",
-  end: "2026-10-18",
-  downloads: {
-    "magic-modal": 466,
-    "react-native-magic-modal": 12440,
-    "eslint-plugin-safe-jsx": 7228,
-    "react-native-magic-toast": 1350,
-    "magic-observability": 1077,
-    "react-native-code-push-plugin": 378,
-  } as Record<string, number>,
-};
+export const SAFE_JSX_FIRST = "2023-05-12";
+export const CODE_PUSH_RETIRED = "2025-03-31";
+export const OBSERVABILITY_FIRST = "2026-07-28";
 
 /** The merged fixes behind /security, with their real diff size from GitHub. */
 export const SECURITY_PRS = [

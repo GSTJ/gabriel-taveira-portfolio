@@ -54,42 +54,77 @@
     "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
   },
   "projects": {
-    "title": "Things I made.",
-    "sub": "The app I'm building now, and the open-source work other teams ship with.",
+    "title": "Things I built, with the receipts.",
+    "sub": "An iPhone app that went live in October 2026, a React Native app on both stores since 2023, and libraries other teams install every week. Each number links to where it came from.",
+    "labels": {
+      "problem": "The problem",
+      "built": "What I built",
+      "status": "Where it stands"
+    },
     "codeLabel": "Example code",
     "stars": "{count} stars on GitHub",
-    "starsSource": "Stars read on GitHub on {date}.",
+    "installsSince": "{count} npm installs since {date}",
+    "installsSource": "npm, through {date}",
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Founder · I built it",
+        "role": "Founder. I designed and built it, from the iPhone app to the API.",
         "body": "An iPhone app: you scan a room with LiDAR, then get a proposal with real products you can buy, plus the shopping list. Curated with architects from Curva Interiores.",
+        "problem": "Buying furniture online means guessing whether it fits. Curvinha measures the room first and only suggests pieces that fit, from stores you can actually buy at, like Tok&Stok, Westwing and MadeiraMadeira.",
+        "built": "A native SwiftUI app that scans with RoomPlan and draws the plan and the room in 3D with RealityKit. Behind it, a TypeScript API on Cloudflare Workers where an AI designer picks the pieces. Every measurement and fit check is computed in code, never by the model.",
+        "status": "Live on the App Store since {date}, for iPhone and iPad, in English and Portuguese.",
+        "appStore": "See it on the App Store",
+        "note": "building this one now",
         "cta": "Open curvinha.app",
-        "caption": "Screens from the app's sample room.",
-        "stepsLabel": "Curvinha, step by step",
-        "steps": {
-          "measure": {
-            "title": "Measure the room",
-            "body": "Walk the walls once with your iPhone. About 2 to 5 minutes.",
-            "alt": "Curvinha's measure screen: Let's measure your room. It takes about 2 to 5 minutes."
-          },
+        "video": "Curvinha measuring the walls of its sample room with LiDAR, with a live mini map of the walls it has measured.",
+        "videoCaption": "A demo scan of the app's sample room. The app talks in Portuguese here.",
+        "play": "Play the scan",
+        "pause": "Pause the scan",
+        "outputsLabel": "What one scan turns into",
+        "outputs": {
           "plan": {
-            "title": "Get the floor plan",
-            "body": "The room from above, with every piece laid out.",
+            "title": "The floor plan",
+            "body": "Drawn from the scan, with every piece laid out.",
             "alt": "Curvinha's floor plan of the furnished sample room, seen from above."
           },
           "room": {
-            "title": "See the proposal in 3D",
-            "body": "Real pieces from real stores, placed in your room.",
+            "title": "The room in 3D",
+            "body": "The proposal placed in the real measurements.",
             "alt": "Curvinha's 3D view of the sample room with the suggested pieces in place."
+          },
+          "fit": {
+            "title": "The fit check",
+            "body": "In centimeters, for every piece.",
+            "alt": "Curvinha's fit check for a sofa: 121 cm spare on the left, 279 cm on the right and 194 cm in front. It fits on the window wall with 121 cm to spare."
           }
+        }
+      },
+      "pegada": {
+        "title": "Pegada",
+        "role": "Solo project: the app, the API and the site.",
+        "body": "A dog dating app for iOS and Android, built with Expo and React Native, now open source.",
+        "problem": "Dog owners want friends for their dog. So every profile here is the dog's: match dogs nearby, then plan the walk in the chat.",
+        "built": "Expo SDK 55 and React Native 0.83 with expo-router, Reanimated and tRPC, subscriptions through RevenueCat, Prisma on Postgres and a Next.js site. Open source since April 2025.",
+        "status": "On the App Store since {date}, rated {rating} from {ratings} ratings in Brazil, and 500+ downloads on Google Play. It started as Pegava, a pandemic-era app that never shipped and still has {stars} stars and {forks} forks.",
+        "appStore": "App Store",
+        "play": "Google Play",
+        "code": "Source on GitHub",
+        "screensLabel": "Pegada's App Store screens",
+        "screens": {
+          "deck": "Pegada's deck: Nina, a border collie 0.5 km away, with three reactions to pick from.",
+          "match": "Pegada's match screen: You got a match, with buttons to send a message or keep swiping.",
+          "chat": "Pegada's chat: two owners setting up a walk at the park on Saturday."
         },
-        "pause": "Pause tour",
-        "replay": "Replay tour"
+        "readOn": "Ratings read on {date}."
+      },
+      "libraries": {
+        "title": "Libraries other teams ship with",
+        "body": "Small, typed, and boring to adopt. Two you can run right here."
       },
       "magicModal": {
         "title": "magic-modal",
         "body": "A magic modal you can await from anywhere: React Native, Expo, and the web.",
+        "why": "A confirm step shouldn't need a state flag and two callbacks. Call show, await the answer, keep going.",
         "comment": "// resumes when the modal closes",
         "run": "Run it",
         "idle": "Press Run to open the real thing.",
@@ -104,12 +139,16 @@
           "body": "This modal is the real package. Whatever you pick goes back to the await.",
           "yes": "Publish",
           "no": "Cancel"
-        }
+        },
+        "facts": "{releases} releases since {date}, published as react-native-magic-modal until 10.0.",
+        "bundleTitle": "Web bundle, gzip",
+        "bundleLabel": "Version {version}: {kb} KB",
+        "bundleSource": "From the changelog"
       },
       "safeJsx": {
         "title": "safe-jsx",
         "body": "An ESLint plugin that makes you convert to a boolean before using && with JSX, so a stray 0 never renders in React or React Native.",
-        "short": "An ESLint rule for the stray 0 that && leaks into JSX.",
+        "why": "The stray 0 ships to production because nothing flags it. This rule does, and autofixes it.",
         "countLabel": "Set count to",
         "fix": "Apply the fix",
         "inbox": "Inbox",
@@ -120,39 +159,35 @@
         "explain": "With count at 0, React prints the 0.",
         "resolved": "Fixed. The lint error is gone."
       },
+      "codePush": {
+        "title": "react-native-code-push-plugin",
+        "body": "An Expo config plugin that sets up CodePush on prebuild.",
+        "note": "Installs fell after Microsoft retired CodePush on {date}."
+      },
       "magicToast": {
         "title": "react-native-magic-toast",
-        "body": "An imperative toast for React Native you can call from anywhere."
+        "body": "A toast you call from anywhere in a React Native app, then await the reason it left. Built on magic-modal."
       },
-      "pegada": {
-        "title": "Pegada",
-        "body": "A dog dating app for iOS and Android, built with Expo and Next.js, now open source.",
-        "pegava": "First version, archived",
-        "now": "The maintained successor, open source",
-        "launch": "Launched on Product Hunt in 2024"
+      "observability": {
+        "title": "magic-observability",
+        "body": "Errors and analytics to PostHog in the same shape on every platform. This site runs on it."
       }
     },
-    "npm": {
-      "title": "npm downloads",
-      "rows": {
-        "magicModal": "both names, react-native-magic-modal included",
-        "safeJsx": "the stray 0 rule",
-        "magicToast": "a toast you call from anywhere",
-        "observability": "analytics and errors, this site runs on it",
-        "codePush": "CodePush for Expo"
-      },
-      "source": "Last 30 days, {start} to {end}, from <npm>npm</npm>."
-    },
-    "security": {
-      "title": "Security fixes, merged",
-      "body": "Three fixes, each with a regression check, sized by their diff.",
-      "diffLabel": "{added} lines added, {removed} removed",
-      "items": {
-        "authorization": "Upload grants bound to the caller",
-        "identity": "OTPs single-use under concurrency",
-        "assetBoundary": "Untrusted files kept off this site's origin"
+    "also": {
+      "title": "Also shipped",
+      "installs": "{count} installs",
+      "security": {
+        "title": "Security fixes, merged",
+        "body": "Three fixes, each with a regression check.",
+        "diffLabel": "{added} lines added, {removed} removed",
+        "items": {
+          "authorization": "Upload grants bound to the caller",
+          "identity": "OTPs single-use under concurrency",
+          "assetBoundary": "Untrusted files kept off this site's origin"
+        }
       }
-    }
+    },
+    "starsRead": "Stars read on GitHub on {date}"
   },
   "work": {
     "title": "Teams I've led. Systems that lasted.",

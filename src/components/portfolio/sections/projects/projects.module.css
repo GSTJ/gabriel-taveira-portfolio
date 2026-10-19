@@ -1,89 +1,394 @@
 /*
- * Projects: a bento where each card proves its claim its own way. One grid,
- * one card surface (paper-2, 14px), and inside each card its own grammar.
- * Cards are size containers, so their insides adapt to the width they get in
- * either composition, not to the viewport.
+ * Projects as case files. Text sits on the paper; only the proof gets a
+ * stage (paper-2): Curvinha's phone and outputs, Pegada's screens, the two
+ * live demos. Each case reads problem, what he built, where it stands.
  */
 
-/* ── Grid ───────────────────────────────────────────────────────────── */
+/* ── A case: stage on one side, the case file on the other ──────────── */
 
-.bento {
+.case {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "cv" "mm" "sj" "npm" "sec" "pg";
-  gap: var(--space-3);
+  gap: var(--space-6);
+  align-items: start;
 }
 
-.areaCv {
-  grid-area: cv;
-  display: grid;
-}
-.areaMm {
-  grid-area: mm;
-}
-.areaSj {
-  grid-area: sj;
-}
-.areaNpm {
-  grid-area: npm;
-}
-.areaSec {
-  grid-area: sec;
-}
-.areaPg {
-  grid-area: pg;
+.case + .case,
+.libs {
+  margin-top: var(--sec-head-gap);
+  padding-top: var(--sec-head-gap);
+  border-top: 1px solid var(--rule);
 }
 
-@media (width >= 760px) {
-  .bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "cv cv"
-      "mm sj"
-      "npm npm"
-      "sec pg";
-    gap: var(--space-4);
+@media (width >= 1000px) {
+  .case {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: var(--space-9);
+  }
+
+  .caseFlip {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
+
+  .caseFlip .stage {
+    order: 2;
+  }
+
+  /* The proof stays in view while the case file is read beside it. */
+  .stage:not(.fanStage) {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-5));
+  }
+
+  .fanStage {
+    align-self: stretch;
   }
 }
 
-@media (width >= 1100px) {
-  /* Curvinha holds two rows on the left, the two running demos beside it. */
-  .bento {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-areas:
-      "cv cv cv cv cv cv cv cv mm mm mm mm"
-      "cv cv cv cv cv cv cv cv sj sj sj sj"
-      "npm npm npm npm npm npm npm pg pg pg pg pg"
-      "sec sec sec sec sec sec sec sec sec sec sec sec";
-  }
-}
-
-/* ── Card surface ───────────────────────────────────────────────────── */
-
-.card {
+.stage {
   position: relative;
-  container-type: inline-size;
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+}
+
+.caseText {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
   min-width: 0;
-  padding: var(--space-6);
-  border-radius: var(--r-lg);
-  background: var(--paper-2);
-  overflow: hidden;
 }
 
-@media (width < 760px) {
-  .card {
-    padding: var(--space-5);
+.caseTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+}
+
+.caseText h3,
+.libsHead h3 {
+  font-family: var(--font-narrow);
+  font-stretch: var(--wd-heading);
+}
+
+.role {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.lede {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: var(--tr-body);
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* Problem, built, status: a label column and the answer, hairlines between. */
+.facts {
+  display: grid;
+  margin: var(--space-2) 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+.facts > div {
+  display: grid;
+  gap: var(--space-1) var(--space-5);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@container (inline-size >= 30rem) {
+  .facts > div {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
   }
 }
 
-.cardTop {
+.caseText {
+  container-type: inline-size;
+}
+
+.facts dt {
+  padding-top: 0.15em;
+  color: var(--ink-3);
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+}
+
+.cta {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+/* ── Curvinha's stage: the scan running, then what it turns into ───── */
+
+.stage:not(.fanStage) {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-5);
+}
+
+@media (width >= 760px) {
+  .stage:not(.fanStage) {
+    gap: var(--space-6);
+    padding: var(--space-7);
+  }
+}
+
+.scanFigure {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.scanFigure figcaption {
+  color: var(--ink-3);
+}
+
+.phone {
+  position: relative;
+  aspect-ratio: 480 / 980;
+  padding: 0.4375rem;
+  border-radius: 2.25rem;
+  background: var(--bezel);
+  box-shadow: var(--shadow);
+}
+
+@media (width < 760px) {
+  .phone {
+    padding: 0.3125rem;
+    border-radius: 1.5rem;
+  }
+}
+
+.scan {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(2.25rem - 0.4375rem);
+  background: var(--paper-3);
+}
+
+@media (width < 760px) {
+  .scan {
+    border-radius: calc(1.5rem - 0.3125rem);
+  }
+}
+
+.scanToggle {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.scanToggle svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.outputs {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outputs figure {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.screen {
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.screen img,
+.fit img,
+.fanPhone img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.outputs figcaption {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: var(--space-1);
+  font-size: var(--fs-meta);
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.outputs strong {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+.step {
+  color: var(--ink-3);
+}
+
+@media (width < 760px) {
+  .stepBody {
+    display: none;
+  }
+}
+
+/* The fit check sits inside "What I built", right beside the claim. */
+.fit {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 22.5rem;
+  margin: var(--space-4) 0 0;
+}
+
+.fit img {
+  border-radius: var(--r-md);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.fit figcaption {
+  color: var(--ink-3);
+}
+
+/* ── Pegada's stage: three real screens, fanned ─────────────────────── */
+
+.fanStage {
+  display: grid;
+  place-items: center;
+  padding: var(--space-7) var(--space-4);
+  overflow: hidden;
+}
+
+.fan {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(100%, 34rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fanPhone {
+  overflow: hidden;
+  padding: 0.25rem;
+  border-radius: 1.25rem;
+  background: var(--bezel);
+  box-shadow: var(--shadow);
+  transform: translate(var(--x), var(--y)) rotate(var(--r));
+}
+
+.fanPhone img {
+  border-radius: 1rem;
+}
+
+/* Deck in front, match and chat tucked behind it on either side. */
+.fanPhone:nth-child(1) {
+  --x: 0%;
+  --y: -3%;
+  --r: 0deg;
+  grid-area: 1 / 2;
+  z-index: 1;
+}
+
+.fanPhone:nth-child(2) {
+  --x: 14%;
+  --y: 5%;
+  --r: -6deg;
+  grid-area: 1 / 1;
+}
+
+.fanPhone:nth-child(3) {
+  --x: -14%;
+  --y: 5%;
+  --r: 6deg;
+  grid-area: 1 / 3;
+}
+
+/* ── Libraries ──────────────────────────────────────────────────────── */
+
+.libs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.libsHead {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 36em;
+  margin-bottom: var(--space-4);
+}
+
+@media (width >= 1000px) {
+  .libs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-9);
+  }
+
+  .libsHead {
+    grid-column: 1 / -1;
+  }
+}
+
+.lib {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.lib + .lib {
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--rule);
+}
+
+@media (width >= 1000px) {
+  .lib + .lib {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.libTop {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-3);
+}
+
+.libTop a {
+  color: var(--ink);
+  text-decoration: none;
 }
 
 .stars {
@@ -92,7 +397,6 @@
   gap: 0.3em;
   font-size: var(--fs-meta);
   color: var(--ink-2);
-  text-decoration: none;
 }
 
 .stars svg {
@@ -100,219 +404,227 @@
   height: 0.95em;
 }
 
-.end {
-  margin-top: auto;
-  align-self: flex-start;
+.installs {
+  font-family: var(--font-narrow);
+  font-size: var(--fs-title);
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tr-title);
+  line-height: var(--lh-title);
+  color: var(--ink);
+  text-decoration: none;
+  text-wrap: balance;
 }
 
-/* ── Curvinha: copy and steps on one side, the phone on the other ───── */
-
-.curvinha {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-5);
-  padding-bottom: 0;
+.libBody {
+  color: var(--ink-2);
 }
 
-/* The card itself is the container's child, so query its wrapper instead. */
-.areaCv {
-  container-type: inline-size;
+.why {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
 }
 
-@container (inline-size >= 40rem) {
-  .curvinha {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-7);
-    padding: var(--space-7) var(--space-7) 0;
-  }
-
-  .cvCopy {
-    padding-bottom: var(--space-7);
-  }
-}
-
-.cvCopy {
+.demo {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  max-width: 28em;
+  margin-top: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
 }
 
-.cvTitle {
-  font-family: var(--font-narrow);
-  font-stretch: var(--wd-heading);
-}
-
-.cvRole {
-  color: var(--ink-2);
-}
-
-.cvBody {
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--ink-2);
-}
-
-.cvSteps {
+/* magic-modal's web bundle, version by version. */
+.bundle {
   display: grid;
-  margin-top: var(--space-3);
-  border-top: 1px solid var(--rule);
+  gap: var(--space-3);
+  margin: var(--space-3) 0 0;
 }
 
-.cvStep {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.75rem minmax(0, 1fr);
+.bundleHead {
+  display: flex;
   align-items: baseline;
-  gap: var(--space-1) 0;
-  width: 100%;
-  padding: var(--space-3) 0 0.875rem;
-  border: 0;
-  border-bottom: 1px solid var(--rule);
-  background: none;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.bundleHead a {
   color: var(--ink-3);
-  font: inherit;
-  text-align: start;
-  cursor: pointer;
-  transition: color var(--dur-hover) ease;
 }
 
-.cvStep[aria-selected="true"] {
-  color: var(--ink);
+.bundle ol {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.cvStepN {
+.bundle li {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) 4.5rem;
+  align-items: center;
+  gap: var(--space-3);
   font-size: var(--fs-meta);
-}
-
-.cvStepTitle {
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--tr-title);
-}
-
-.cvStepBody {
-  grid-column: 2;
-  display: none;
-  font-size: var(--fs-small);
   color: var(--ink-2);
 }
 
-.cvStep[aria-selected="true"] .cvStepBody {
-  display: block;
+.bundle li > :last-child {
+  text-align: end;
 }
 
-/* The selected step's hairline. While the card plays itself it fills over the
-   step's time, so the visitor can see the next swap coming. */
-.cvTimer {
-  position: absolute;
-  inset-inline: 0;
-  bottom: -1px;
-  height: 1px;
-  background: var(--ink);
-  transform: scaleX(0);
+.bar {
+  height: 0.5rem;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+
+.bar i,
+.add,
+.del {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
   transform-origin: left;
 }
 
-.cvStep[aria-selected="true"] .cvTimer {
-  transform: scaleX(1);
+.bar i {
+  width: calc(var(--w) * 100%);
+  min-width: 0.5rem;
+  background: var(--ink);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  [data-playing] .cvStep[aria-selected="true"] .cvTimer {
-    animation: cv-fill 3600ms linear both;
+/* ── Also shipped: one dated ledger ─────────────────────────────────── */
+
+.also {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--sec-head-gap);
+  padding-top: var(--sec-head-gap);
+  border-top: 1px solid var(--rule);
+}
+
+.ledger {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.ledger > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-1) var(--space-5);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledgerName {
+  grid-column: 1;
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+  overflow-wrap: anywhere;
+}
+
+.ledgerBody {
+  grid-column: 1 / -1;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  max-width: 44em;
+}
+
+.ledgerNum {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (width >= 1000px) {
+  .ledger > li {
+    grid-template-columns: 19rem minmax(0, 1fr) 9rem;
+    align-items: baseline;
+  }
+
+  .ledgerBody {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ledgerNum {
+    grid-column: 3;
+    text-align: end;
   }
 }
 
-@keyframes cv-fill {
-  from {
-    transform: scaleX(0);
-  }
+.prs {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.cvTour {
-  align-self: flex-start;
-}
-
-.cvFoot {
-  display: flex;
-  flex-wrap: wrap;
+.prs li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6rem 6.5rem;
   align-items: center;
-  gap: var(--space-3) var(--space-4);
-  margin-top: auto;
-  padding-top: var(--space-3);
+  gap: var(--space-3);
+  font-size: var(--fs-small);
 }
 
-/* The phone sits on the card's bottom edge and runs off it, so the crop line
-   above the app's price sheet is never on screen. */
-.phone {
-  justify-self: center;
-  width: min(70vw, 17rem);
-  aspect-ratio: 600 / 960;
-  padding: 0.5625rem 0.5625rem 0;
-  border-radius: 2.75rem 2.75rem 0 0;
-  background: var(--bezel);
-  box-shadow: var(--shadow);
+.prs a {
+  color: var(--ink);
+  text-decoration: none;
 }
 
-/* After the base rule, so the wider phone wins at desktop widths. */
-@container (inline-size >= 40rem) {
-  .phone {
-    width: clamp(17rem, 44cqi, 23rem);
-    align-self: end;
-    margin-top: var(--space-4);
+.prs a .t-mono,
+.prs li > span:last-child {
+  color: var(--ink-3);
+}
+
+.prs li > span:last-child {
+  text-align: end;
+  white-space: nowrap;
+}
+
+@media (width < 760px) {
+  .prs li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .prs a {
+    grid-column: 1 / -1;
   }
 }
 
-.screen {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 2.25rem 2.25rem 0 0;
-  background: var(--paper-3);
-}
-
-.shot {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-}
-
-.shot[data-on] {
-  opacity: 1;
-}
-
-.shot img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  /* Out fast, in slower with a little blur and scale, so two screens never
-     read as two objects overlapping. */
-  .shot {
-    filter: blur(3px);
-    transform: scale(1.015);
-    transition:
-      opacity 260ms ease,
-      filter 260ms ease,
-      transform 420ms var(--ease-out);
-  }
-
-  .shot[data-on] {
-    filter: none;
-    transform: none;
-    transition:
-      opacity 380ms var(--ease-out),
-      filter 380ms var(--ease-out),
-      transform 520ms var(--ease-out);
+@media (width >= 1000px) {
+  .prs {
+    grid-column: 2 / -1;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .shot {
-    transition: opacity 200ms ease;
-  }
+.diff {
+  display: flex;
+  gap: 2px;
+  height: 0.375rem;
+}
+
+.add {
+  width: calc(var(--add) * 100%);
+  background: var(--ink);
+}
+
+.del {
+  width: calc(var(--del) * 100%);
+  min-width: 3px;
+  background: var(--rule-strong);
 }
 
 /* ── Library cards: claim, code, the real thing ─────────────────────── */
@@ -636,189 +948,15 @@
   color: var(--ink);
 }
 
-/* ── npm ledger: names, numbers, one bar each ───────────────────────── */
-
-.dl {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.dlRow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-4);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.dlRow:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.dlName {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--space-3);
-  min-width: 0;
-}
-
-.dlName a {
-  color: var(--ink);
-  overflow-wrap: anywhere;
-}
-
-.dlValue {
-  font-weight: var(--fw-medium);
-}
-
-.bar {
-  grid-column: 1 / -1;
-  height: 3px;
-  border-radius: var(--r-pill);
-  background: var(--paper-3);
-  overflow: hidden;
-}
-
-.bar i,
-.add,
-.del {
-  display: block;
-  height: 100%;
-  transform-origin: left;
-}
-
-.bar i {
-  width: calc(var(--w) * 100%);
-  min-width: 3px;
-  background: var(--ink);
-}
-
-/* ── Security: three merged fixes, sized by their diff ──────────────── */
-
-.prs {
-  display: grid;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pr {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-2) var(--space-4);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.prLink {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--space-3);
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.prLink > span:first-child {
-  color: var(--ink-3);
-}
-
-.prTitle {
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--tr-body);
-}
-
-.prLink svg {
-  width: 0.85em;
-  height: 0.85em;
-  align-self: center;
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
-.diff {
-  display: flex;
-  gap: 2px;
-  height: 0.5rem;
-}
-
-.add {
-  width: calc(var(--add) * 100%);
-  border-radius: var(--r-pill);
-  background: var(--ink);
-}
-
-.del {
-  width: calc(var(--del) * 100%);
-  min-width: 3px;
-  border-radius: var(--r-pill);
-  background: var(--rule-strong);
-}
-
-.diffNums {
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-/* Wide card: the three fixes side by side, each a column. */
-@container (inline-size >= 52rem) {
-  .prs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-6);
-  }
-
-  .pr {
-    align-content: start;
-  }
-}
-
-/* ── Pegada: where it came from ─────────────────────────────────────── */
-
-.lineage {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.lineage li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.lineage li:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.lineage a {
-  display: grid;
-  gap: 2px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.lineageName {
-  font-weight: var(--fw-medium);
-}
-
-/* ── Motion: bars grow once their card is in view ───────────────────── */
+/* ── Motion ─────────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: no-preference) {
+  /* Bars grow once their block is in view: size is the point of the chart. */
   :global(.js) [data-reveal] .bar i,
   :global(.js) [data-reveal] .add,
   :global(.js) [data-reveal] .del {
     transition: transform 900ms var(--ease-out)
-      calc(var(--dur-enter) * 0.4 + var(--i, 0) * 70ms);
+      calc(var(--dur-enter) * 0.4 + var(--i, 0) * 90ms);
   }
 
   :global(.js) [data-reveal]:not([data-in]) .bar i,
@@ -826,28 +964,43 @@
   :global(.js) [data-reveal]:not([data-in]) .del {
     transform: scaleX(0);
   }
+
+  /* Pegada's screens start stacked and fan out once, like a hand of cards. */
+  :global(.js) [data-reveal] .fanPhone {
+    transition: transform var(--dur-rise) var(--ease-out)
+      calc(var(--dur-enter) * 0.5);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .fanPhone {
+    transform: translate(0, 4%) rotate(0deg);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .fanPhone:nth-child(2) {
+    transform: translate(70%, 4%) rotate(0deg);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .fanPhone:nth-child(3) {
+    transform: translate(-70%, 4%) rotate(0deg);
+  }
 }
 
 /* ── Hover, only where there is a real pointer ──────────────────────── */
 
 @media (hover: hover) and (pointer: fine) {
-  .cvStep:hover {
-    color: var(--ink);
-  }
-
   .seg button:hover:not([aria-pressed="true"]) {
     background: var(--paper-3);
   }
 
-  .stars:hover,
-  .dlName a:hover,
-  .lineage a:hover .lineageName,
-  .prLink:hover .prTitle {
+  .libTop a:hover,
+  .installs:hover,
+  .ledgerName:hover,
+  .ledgerNum:hover,
+  .prs a:hover {
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
 
-  .prLink:hover svg {
-    transform: translate(2px, -2px);
+  .scanToggle:hover {
+    background: var(--paper-2);
   }
 }

@@ -54,105 +54,140 @@
     "body2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma."
   },
   "projects": {
-    "title": "Coisas que eu fiz.",
-    "sub": "O app que estou construindo agora e o open source que outros times usam em produção.",
+    "title": "Coisas que construí, com as provas.",
+    "sub": "Um app de iPhone que entrou no ar em outubro de 2026, um app React Native nas duas lojas desde 2023 e bibliotecas que outros times instalam toda semana. Cada número leva até a fonte.",
+    "labels": {
+      "problem": "O problema",
+      "built": "O que eu construí",
+      "status": "Onde está hoje"
+    },
     "codeLabel": "Código de exemplo",
     "stars": "{count} estrelas no GitHub",
-    "starsSource": "Estrelas lidas no GitHub em {date}.",
+    "installsSince": "{count} instalações no npm desde {date}",
+    "installsSource": "npm, até {date}",
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Fundador · eu que construí",
-        "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "role": "Fundador. Desenhei e construí, do app de iPhone à API.",
+        "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "problem": "Comprar móvel pela internet é chutar se cabe. O Curvinha mede o cômodo antes e só sugere peças que cabem, de lojas onde dá pra comprar de verdade, como Tok&Stok, Westwing e MadeiraMadeira.",
+        "built": "Um app nativo em SwiftUI que escaneia com RoomPlan e desenha a planta e o cômodo em 3D com RealityKit. Por trás, uma API em TypeScript no Cloudflare Workers, onde um designer de IA escolhe as peças. Toda medida e checagem de encaixe é calculada em código, nunca pelo modelo.",
+        "status": "Na App Store desde {date}, pra iPhone e iPad, em português e inglês.",
+        "appStore": "Ver na App Store",
+        "note": "construindo esse agora",
         "cta": "Abrir curvinha.app",
-        "caption": "Telas do ambiente de exemplo do app.",
-        "stepsLabel": "Curvinha, passo a passo",
-        "steps": {
-          "measure": {
-            "title": "Meça o ambiente",
-            "body": "Dê uma volta pelas paredes com o iPhone. Leva uns 2 a 5 minutos.",
-            "alt": "Tela de medição da Curvinha: Vamos medir o seu ambiente. Leva uns 2 a 5 minutos."
-          },
+        "video": "O Curvinha medindo as paredes do cômodo de exemplo com LiDAR, com um minimapa ao vivo das paredes já medidas.",
+        "videoCaption": "Um escaneamento de demonstração no cômodo de exemplo do app.",
+        "play": "Tocar o escaneamento",
+        "pause": "Pausar o escaneamento",
+        "outputsLabel": "O que um escaneamento vira",
+        "outputs": {
           "plan": {
-            "title": "Receba a planta",
-            "body": "O ambiente visto de cima, com cada peça no lugar.",
-            "alt": "Planta do ambiente de exemplo mobiliado na Curvinha, vista de cima."
+            "title": "A planta",
+            "body": "Desenhada a partir do escaneamento, com cada peça no lugar.",
+            "alt": "A planta do cômodo de exemplo mobiliado no Curvinha, vista de cima."
           },
           "room": {
-            "title": "Veja a proposta em 3D",
-            "body": "Peças reais de lojas reais, no seu ambiente.",
-            "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar."
+            "title": "O cômodo em 3D",
+            "body": "A proposta montada nas medidas reais.",
+            "alt": "A vista 3D do cômodo de exemplo no Curvinha, com as peças sugeridas no lugar."
+          },
+          "fit": {
+            "title": "A checagem de encaixe",
+            "body": "Em centímetros, pra cada peça.",
+            "alt": "A checagem de encaixe de um sofá no Curvinha: sobram 121 cm à esquerda, 279 cm à direita e 194 cm na frente. Cabe na parede da janela com 121 cm de folga."
           }
-        },
-        "pause": "Pausar tour",
-        "replay": "Rever tour"
-      },
-      "magicModal": {
-        "title": "magic-modal",
-        "body": "Um modal mágico que você pode dar await de qualquer lugar: React Native, Expo e web.",
-        "comment": "// continua quando o modal fecha",
-        "run": "Rodar",
-        "idle": "Aperte Rodar pra abrir o modal de verdade.",
-        "loading": "Carregando o pacote",
-        "pending": "await magicModal.show(Confirm)",
-        "resolved": "resolveu com",
-        "failed": "Não deu pra carregar o pacote. Tenta de novo.",
-        "hint": "Testa o Esc ou um clique fora também.",
-        "modal": {
-          "label": "Confirmar publicação",
-          "title": "Publicar esta versão?",
-          "body": "Esse modal é o pacote de verdade. O que você escolher volta pro await.",
-          "yes": "Publicar",
-          "no": "Cancelar"
         }
-      },
-      "safeJsx": {
-        "title": "safe-jsx",
-        "body": "Um plugin de ESLint que exige converter pra boolean antes de usar && com JSX, pra nunca aparecer um 0 solto na tela em React ou React Native.",
-        "short": "Uma regra de ESLint pro 0 solto que o && deixa vazar no JSX.",
-        "countLabel": "Mudar count para",
-        "fix": "Aplicar a correção",
-        "inbox": "Inbox",
-        "stray": "o zero solto",
-        "strayLabel": "Um 0 solto aparecendo na tela",
-        "badgeLabel": "3 não lidas",
-        "nothing": "Nada aparece ao lado de Inbox",
-        "explain": "Com count em 0, o React imprime o 0.",
-        "resolved": "Corrigido. O erro de lint sumiu."
-      },
-      "magicToast": {
-        "title": "react-native-magic-toast",
-        "body": "Um toast imperativo pra React Native que você chama de qualquer lugar."
       },
       "pegada": {
         "title": "Pegada",
-        "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e Next.js, agora open source.",
-        "pegava": "Primeira versão, arquivada",
-        "now": "A sucessora, mantida e open source",
-        "launch": "Lançado no Product Hunt em 2024"
-      }
-    },
-    "npm": {
-      "title": "Downloads no npm",
-      "rows": {
-        "magicModal": "os dois nomes, react-native-magic-modal incluso",
-        "safeJsx": "a regra do 0 solto",
-        "magicToast": "um toast que você chama de qualquer lugar",
-        "observability": "analytics e erros, este site roda nele",
-        "codePush": "CodePush pro Expo"
+        "role": "Projeto solo: o app, a API e o site.",
+        "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e React Native, hoje open source.",
+        "problem": "Quem tem cachorro quer amigos pro cachorro. Então todo perfil aqui é do cão: dá match com cães por perto e combina o passeio no chat.",
+        "built": "Expo SDK 55 e React Native 0.83 com expo-router, Reanimated e tRPC, assinaturas pelo RevenueCat, Prisma no Postgres e um site em Next.js. Open source desde abril de 2025.",
+        "status": "Na App Store desde {date}, nota {rating} com {ratings} avaliações no Brasil, e mais de 500 downloads no Google Play. Começou como Pegava, um app da pandemia que nunca foi lançado e ainda tem {stars} estrelas e {forks} forks.",
+        "appStore": "App Store",
+        "play": "Google Play",
+        "code": "Código no GitHub",
+        "screensLabel": "Telas do Pegada na App Store",
+        "screens": {
+          "deck": "O deck do Pegada: Nina, uma border collie a 0,5 km, com três reações pra escolher.",
+          "match": "A tela de match do Pegada: Você deu um match, com botões pra mandar mensagem ou continuar deslizando.",
+          "chat": "O chat do Pegada: dois tutores combinando um passeio no parque no sábado."
+        },
+        "readOn": "Avaliações lidas em {date}."
       },
-      "source": "Últimos 30 dias, de {start} a {end}, pelo <npm>npm</npm>."
-    },
-    "security": {
-      "title": "Correções de segurança, mergeadas",
-      "body": "Três correções, cada uma com teste de regressão, medidas pelo tamanho do diff.",
-      "diffLabel": "{added} linhas adicionadas, {removed} removidas",
-      "items": {
-        "authorization": "Upload liberado só pra quem pediu",
-        "identity": "OTP de uso único mesmo com concorrência",
-        "assetBoundary": "Arquivos de fora longe da origem deste site"
+      "libraries": {
+        "title": "Bibliotecas que outros times usam em produção",
+        "body": "Pequenas, tipadas e fáceis de adotar. Duas você roda aqui mesmo."
+      },
+      "magicModal": {
+        "title": "magic-modal",
+        "body": "Um modal mágico que você pode aguardar de qualquer lugar: React Native, Expo e web.",
+        "why": "Um passo de confirmação não precisa de uma flag de estado e dois callbacks. Chama o show, aguarda a resposta e segue.",
+        "comment": "// continua quando o modal fecha",
+        "run": "Rodar",
+        "idle": "Aperte Rodar pra abrir o pacote de verdade.",
+        "loading": "Carregando o pacote",
+        "pending": "await magicModal.show(Confirm)",
+        "resolved": "resolveu com",
+        "failed": "Não deu pra carregar o pacote. Tente de novo.",
+        "hint": "Tente Esc ou um clique fora, também.",
+        "modal": {
+          "label": "Confirmação de publicação",
+          "title": "Publicar esta versão?",
+          "body": "Este modal é o pacote de verdade. O que você escolher volta pro await.",
+          "yes": "Publicar",
+          "no": "Cancelar"
+        },
+        "facts": "{releases} versões desde {date}, publicado como react-native-magic-modal até a 10.0.",
+        "bundleTitle": "Bundle web, gzip",
+        "bundleLabel": "Versão {version}: {kb} KB",
+        "bundleSource": "Do changelog"
+      },
+      "safeJsx": {
+        "title": "safe-jsx",
+        "body": "Um plugin de ESLint que obriga a converter pra booleano antes de usar && com JSX, pra um 0 perdido nunca aparecer na tela em React ou React Native.",
+        "why": "O 0 perdido vai pra produção porque nada avisa. Essa regra avisa e corrige sozinha.",
+        "countLabel": "Mudar count pra",
+        "fix": "Aplicar a correção",
+        "inbox": "Caixa de entrada",
+        "stray": "o zero perdido",
+        "strayLabel": "Um 0 perdido na tela",
+        "badgeLabel": "3 não lidas",
+        "nothing": "Nada aparece ao lado da Caixa de entrada",
+        "explain": "Com count em 0, o React imprime o 0.",
+        "resolved": "Corrigido. O erro de lint sumiu."
+      },
+      "codePush": {
+        "title": "react-native-code-push-plugin",
+        "body": "Um config plugin do Expo que configura o CodePush no prebuild.",
+        "note": "As instalações caíram depois que a Microsoft aposentou o CodePush em {date}."
+      },
+      "magicToast": {
+        "title": "react-native-magic-toast",
+        "body": "Um toast que você chama de qualquer lugar num app React Native e depois aguarda o motivo de ele ter saído. Feito em cima do magic-modal."
+      },
+      "observability": {
+        "title": "magic-observability",
+        "body": "Erros e analytics no PostHog com o mesmo formato em toda plataforma. Este site roda nele."
       }
-    }
+    },
+    "also": {
+      "title": "Também lancei",
+      "installs": "{count} instalações",
+      "security": {
+        "title": "Correções de segurança, mergeadas",
+        "body": "Três correções, cada uma com um teste de regressão.",
+        "diffLabel": "{added} linhas adicionadas, {removed} removidas",
+        "items": {
+          "authorization": "Permissões de upload presas a quem pediu",
+          "identity": "OTPs de uso único mesmo com concorrência",
+          "assetBoundary": "Arquivos não confiáveis fora da origem deste site"
+        }
+      }
+    },
+    "starsRead": "Estrelas lidas no GitHub em {date}"
   },
   "work": {
     "title": "Times que liderei. Sistemas que ficaram de pé.",
