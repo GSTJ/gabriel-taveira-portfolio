@@ -54,42 +54,69 @@
     "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
   },
   "projects": {
-    "title": "Things I made.",
-    "sub": "The app I'm building now, and the open-source work other teams ship with.",
+    "title": "Things I built, and how they're doing.",
+    "sub": "Two apps in the stores and the libraries other teams install. Pick one to see the proof.",
+    "indexLabel": "Projects",
     "codeLabel": "Example code",
     "stars": "{count} stars on GitHub",
-    "starsSource": "Stars read on GitHub on {date}.",
+    "sources": "Installs from npm, all time to {npmDate}. Stars and store ratings read on {readDate}.",
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Founder · I built it",
         "body": "An iPhone app: you scan a room with LiDAR, then get a proposal with real products you can buy, plus the shopping list. Curated with architects from Curva Interiores.",
+        "kind": "iOS app",
+        "role": "Founder",
+        "number": "Live since {date}",
+        "note": "building this one now",
+        "problemLabel": "The problem",
+        "problem": "Buying furniture online means guessing if it fits. Curvinha measures the room first and only suggests pieces that do.",
+        "builtLabel": "What I built",
+        "built": "A native SwiftUI app that scans with RoomPlan and draws the plan and the 3D room with RealityKit. Behind it, a TypeScript API on Cloudflare Workers where an AI designer picks the pieces. Every measurement and fit check is computed in code, never by the model.",
+        "whereLabel": "Where it is",
+        "where": "On the <store>App Store</store> since {date}, for iPhone and iPad, in English and Portuguese. Curated with architects from Curva Interiores.",
         "cta": "Open curvinha.app",
-        "caption": "Screens from the app's sample room.",
-        "stepsLabel": "Curvinha, step by step",
-        "steps": {
-          "measure": {
-            "title": "Measure the room",
-            "body": "Walk the walls once with your iPhone. About 2 to 5 minutes.",
-            "alt": "Curvinha's measure screen: Let's measure your room. It takes about 2 to 5 minutes."
-          },
+        "video": {
+          "label": "A demo scan of the app's sample room, measuring the walls",
+          "play": "Play the scan",
+          "pause": "Pause the scan"
+        },
+        "shots": {
           "plan": {
-            "title": "Get the floor plan",
-            "body": "The room from above, with every piece laid out.",
-            "alt": "Curvinha's floor plan of the furnished sample room, seen from above."
+            "alt": "Curvinha's floor plan of the furnished sample room, from above.",
+            "caption": "The plan"
           },
           "room": {
-            "title": "See the proposal in 3D",
-            "body": "Real pieces from real stores, placed in your room.",
-            "alt": "Curvinha's 3D view of the sample room with the suggested pieces in place."
+            "alt": "Curvinha's 3D view of the sample room with the suggested pieces in place.",
+            "caption": "The proposal in 3D"
+          },
+          "fit": {
+            "alt": "Curvinha's fit check: 121 cm on the left, 279 cm on the right and 194 cm in front spare.",
+            "caption": "The fit check, in centimeters"
           }
-        },
-        "pause": "Pause tour",
-        "replay": "Replay tour"
+        }
+      },
+      "pegada": {
+        "title": "Pegada",
+        "body": "A dog dating app for iOS and Android, built with Expo and React Native, open source since 2025.",
+        "kind": "Expo app",
+        "role": "Creator",
+        "number": "{rating} stars, {count} ratings",
+        "lede": "Swipe, match and chat, for dogs. In the App Store since {date} and on Google Play, with subscriptions through RevenueCat.",
+        "stack": "Expo SDK 55, React Native 0.83, expo-router, Reanimated 4, tRPC, Prisma on Postgres, Next.js for the site. One pnpm and Turborepo monorepo.",
+        "appStore": "App Store, {rating} stars from {count} ratings",
+        "play": "Google Play, 500+ downloads",
+        "repo": "Source on GitHub, open since {date}",
+        "pegava": "Pegava, the first version: {stars} stars and {forks} forks, archived",
+        "shotsLabel": "Pegada's App Store screens",
+        "shots": {
+          "deck": "Pegada's deck: Nina, a border collie 0.5 km away, with three reactions to pick from.",
+          "match": "Pegada's match screen: You got a match, with two dog photos.",
+          "chat": "Pegada's chat between two dog owners planning a walk."
+        }
       },
       "magicModal": {
         "title": "magic-modal",
-        "body": "A magic modal you can await from anywhere: React Native, Expo, and the web.",
+        "body": "A modal you can await from anywhere: React Native, Expo, and the web.",
         "comment": "// resumes when the modal closes",
         "run": "Run it",
         "idle": "Press Run to open the real thing.",
@@ -104,7 +131,16 @@
           "body": "This modal is the real package. Whatever you pick goes back to the await.",
           "yes": "Publish",
           "no": "Cancel"
-        }
+        },
+        "kind": "Library",
+        "role": "Author",
+        "number": "{count} installs",
+        "bundle": {
+          "title": "Web bundle, gzip",
+          "source": "From the <log>changelog</log>.",
+          "label": "{version}: {kb} KB"
+        },
+        "installsLine": "{count} installs since {date}, both npm names together."
       },
       "safeJsx": {
         "title": "safe-jsx",
@@ -118,39 +154,55 @@
         "badgeLabel": "3 unread",
         "nothing": "Nothing renders next to Inbox",
         "explain": "With count at 0, React prints the 0.",
-        "resolved": "Fixed. The lint error is gone."
+        "resolved": "Fixed. The lint error is gone.",
+        "kind": "ESLint plugin",
+        "role": "Author",
+        "number": "{count} installs",
+        "installsLine": "{count} installs since {date}."
+      },
+      "codePush": {
+        "title": "react-native-code-push-plugin",
+        "body": "An Expo config plugin that sets up CodePush when the native code is generated.",
+        "kind": "Expo plugin",
+        "role": "Author",
+        "number": "{count} installs",
+        "chartTitle": "Installs per year",
+        "partial": "{year}, to {date}",
+        "retired": "Microsoft retired CodePush with App Center on {date}, and installs fell with it. It still works against a self-hosted server."
       },
       "magicToast": {
         "title": "react-native-magic-toast",
-        "body": "An imperative toast for React Native you can call from anywhere."
+        "body": "Call a toast from anywhere in a React Native app and await the reason it left the screen. Built on magic-modal.",
+        "kind": "Library",
+        "role": "Author",
+        "number": "{count} installs",
+        "video": {
+          "label": "The example app firing a success toast and an error toast, then printing why each one left",
+          "play": "Play the demo",
+          "pause": "Pause the demo"
+        }
       },
-      "pegada": {
-        "title": "Pegada",
-        "body": "A dog dating app for iOS and Android, built with Expo and Next.js, now open source.",
-        "pegava": "First version, archived",
-        "now": "The maintained successor, open source",
-        "launch": "Launched on Product Hunt in 2024"
-      }
-    },
-    "npm": {
-      "title": "npm downloads",
-      "rows": {
-        "magicModal": "both names, react-native-magic-modal included",
-        "safeJsx": "the stray 0 rule",
-        "magicToast": "a toast you call from anywhere",
-        "observability": "analytics and errors, this site runs on it",
-        "codePush": "CodePush for Expo"
+      "observability": {
+        "title": "magic-observability",
+        "body": "Init once per platform, catch errors in one boundary and ship them to PostHog in the same shape everywhere.",
+        "kind": "Library",
+        "role": "Author",
+        "number": "{count} installs",
+        "runs": "This site runs on it.",
+        "alt": "magic-observability's README diagram: a card declined error caught by the boundary, the captureError call, and the fields PostHog receives."
       },
-      "source": "Last 30 days, {start} to {end}, from <npm>npm</npm>."
-    },
-    "security": {
-      "title": "Security fixes, merged",
-      "body": "Three fixes, each with a regression check, sized by their diff.",
-      "diffLabel": "{added} lines added, {removed} removed",
-      "items": {
-        "authorization": "Upload grants bound to the caller",
-        "identity": "OTPs single-use under concurrency",
-        "assetBoundary": "Untrusted files kept off this site's origin"
+      "security": {
+        "title": "Security fixes",
+        "body": "Three fixes, each with a regression check, sized by their diff.",
+        "diffLabel": "{added} lines added, {removed} removed",
+        "items": {
+          "authorization": "Upload grants bound to the caller",
+          "identity": "OTPs single-use under concurrency",
+          "assetBoundary": "Untrusted files kept off this site's origin"
+        },
+        "kind": "Merged PRs",
+        "role": "Author",
+        "number": "{count} merged"
       }
     }
   },

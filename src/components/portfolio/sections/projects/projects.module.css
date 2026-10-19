@@ -1,318 +1,570 @@
 /*
- * Projects: a bento where each card proves its claim its own way. One grid,
- * one card surface (paper-2, 14px), and inside each card its own grammar.
- * Cards are size containers, so their insides adapt to the width they get in
- * either composition, not to the viewport.
+ * Projects: an index you can scan in seconds, and a stage for the proof.
+ * Wide (1000px and up, with JS): rows on the left, the selected row's panel
+ * sticky on the right, every panel stacked in the same grid cell so the
+ * outgoing one can fade while the next arrives. Narrow: each row opens its
+ * panel right under it. Without JS: every panel is open under its row.
  */
 
-/* ── Grid ───────────────────────────────────────────────────────────── */
+/* ── Index ──────────────────────────────────────────────────────────── */
 
-.bento {
+.index {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "cv" "mm" "sj" "npm" "sec" "pg";
-  gap: var(--space-3);
+  border-top: 1px solid var(--rule);
 }
 
-.areaCv {
-  grid-area: cv;
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.rowHead {
+  margin: 0;
+  font: inherit;
+}
+
+.row {
   display: grid;
-}
-.areaMm {
-  grid-area: mm;
-}
-.areaSj {
-  grid-area: sj;
-}
-.areaNpm {
-  grid-area: npm;
-}
-.areaSec {
-  grid-area: sec;
-}
-.areaPg {
-  grid-area: pg;
-}
-
-@media (width >= 760px) {
-  .bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "cv cv"
-      "mm sj"
-      "npm npm"
-      "sec pg";
-    gap: var(--space-4);
-  }
-}
-
-@media (width >= 1100px) {
-  /* Curvinha holds two rows on the left, the two running demos beside it. */
-  .bento {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-areas:
-      "cv cv cv cv cv cv cv cv mm mm mm mm"
-      "cv cv cv cv cv cv cv cv sj sj sj sj"
-      "npm npm npm npm npm npm npm pg pg pg pg pg"
-      "sec sec sec sec sec sec sec sec sec sec sec sec";
-  }
-}
-
-/* ── Card surface ───────────────────────────────────────────────────── */
-
-.card {
-  position: relative;
-  container-type: inline-size;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  min-width: 0;
-  padding: var(--space-6);
-  border-radius: var(--r-lg);
-  background: var(--paper-2);
-  overflow: hidden;
-}
-
-@media (width < 760px) {
-  .card {
-    padding: var(--space-5);
-  }
-}
-
-.cardTop {
-  display: flex;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name mark"
+    "meta mark"
+    "number mark";
   align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.stars {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3em;
-  font-size: var(--fs-meta);
+  gap: 2px var(--space-4);
+  width: 100%;
+  padding: var(--space-4) 0;
+  border: 0;
+  background: none;
   color: var(--ink-2);
-  text-decoration: none;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
 }
 
-.stars svg {
-  width: 0.95em;
-  height: 0.95em;
+.row:active {
+  transform: scale(0.99);
 }
 
-.end {
-  margin-top: auto;
-  align-self: flex-start;
+.row[aria-expanded="true"] {
+  color: var(--ink);
 }
 
-/* ── Curvinha: copy and steps on one side, the phone on the other ───── */
-
-.curvinha {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-5);
-  padding-bottom: 0;
+.rowName {
+  grid-area: name;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  overflow-wrap: anywhere;
 }
 
-/* The card itself is the container's child, so query its wrapper instead. */
-.areaCv {
-  container-type: inline-size;
+.rowMeta {
+  grid-area: meta;
+  color: var(--ink-3);
 }
 
-@container (inline-size >= 40rem) {
-  .curvinha {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-7);
-    padding: var(--space-7) var(--space-7) 0;
-  }
-
-  .cvCopy {
-    padding-bottom: var(--space-7);
-  }
-}
-
-.cvCopy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 28em;
-}
-
-.cvTitle {
-  font-family: var(--font-narrow);
-  font-stretch: var(--wd-heading);
-}
-
-.cvRole {
+.rowNumber {
+  grid-area: number;
+  font-size: var(--fs-small);
   color: var(--ink-2);
 }
 
-.cvBody {
+.row[aria-expanded="true"] .rowNumber {
+  color: var(--ink);
+}
+
+/* Narrow: a plus that turns into a minus. Wide: an arrow toward the stage. */
+.rowMark {
+  grid-area: mark;
+  align-self: center;
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: rotate(90deg);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.row[aria-expanded="true"] .rowMark {
+  transform: rotate(-90deg);
+}
+
+.panel {
+  padding: var(--space-2) 0 var(--space-6);
+}
+
+:global(.js) .panel:not([data-open], [data-leaving]) {
+  display: none;
+}
+
+.sources {
+  margin-top: var(--space-4);
+  color: var(--ink-3);
+}
+
+@media (width >= 1000px) {
+  /* Rows in column one; every panel in one cell spanning all of them, plus
+     a flexible last row that soaks up the stage's extra height. */
+  :global(.js) .index {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: repeat(var(--rows), auto) 1fr;
+    column-gap: var(--space-8);
+    border-top: 0;
+  }
+
+  :global(.js) .item {
+    display: contents;
+  }
+
+  :global(.js) .rowHead {
+    grid-column: 1;
+    border-top: 1px solid var(--rule);
+  }
+
+  :global(.js) .rowHead:nth-last-child(1 of .rowHead) {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  :global(.js) .row {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "name number mark"
+      "meta number mark";
+    padding: var(--space-3) 0;
+  }
+
+  :global(.js) .rowNumber {
+    align-self: center;
+    text-align: end;
+  }
+
+  :global(.js) .rowMark {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--dur-ui) ease,
+      transform var(--dur-ui) var(--ease-out);
+  }
+
+  :global(.js) .row[aria-expanded="true"] .rowMark {
+    opacity: 1;
+    transform: none;
+  }
+
+  :global(.js) .panel {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-5));
+    padding: var(--space-6);
+    border-radius: var(--r-lg);
+    background: var(--paper-2);
+  }
+
+  :global(.js) .panel[data-leaving] {
+    pointer-events: none;
+  }
+}
+
+/* The stage swap: out fast, in a little slower with a short rise and a
+   touch of blur, so two panels never read as two objects. */
+@media (width >= 1000px) and (prefers-reduced-motion: no-preference) {
+  :global(.js) .panel[data-open] {
+    animation: stage-in var(--dur-ui) var(--ease-out) both;
+  }
+
+  :global(.js) .panel[data-leaving] {
+    animation: stage-out var(--dur-exit) ease both;
+  }
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(8px);
+  }
+}
+
+@keyframes stage-out {
+  to {
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* Narrow: an opened panel fades up under its row. */
+@media (width < 1000px) and (prefers-reduced-motion: no-preference) {
+  :global(.js) .panel[data-open] {
+    animation: stage-in var(--dur-ui) var(--ease-out) both;
+  }
+}
+
+/* ── Panels, shared ─────────────────────────────────────────────────── */
+
+.lede {
+  max-width: var(--measure);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--ink-2);
 }
 
-.cvSteps {
-  display: grid;
-  margin-top: var(--space-3);
-  border-top: 1px solid var(--rule);
-}
-
-.cvStep {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.75rem minmax(0, 1fr);
-  align-items: baseline;
-  gap: var(--space-1) 0;
-  width: 100%;
-  padding: var(--space-3) 0 0.875rem;
-  border: 0;
-  border-bottom: 1px solid var(--rule);
-  background: none;
-  color: var(--ink-3);
-  font: inherit;
-  text-align: start;
-  cursor: pointer;
-  transition: color var(--dur-hover) ease;
-}
-
-.cvStep[aria-selected="true"] {
-  color: var(--ink);
-}
-
-.cvStepN {
-  font-size: var(--fs-meta);
-}
-
-.cvStepTitle {
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--tr-title);
-}
-
-.cvStepBody {
-  grid-column: 2;
-  display: none;
-  font-size: var(--fs-small);
-  color: var(--ink-2);
-}
-
-.cvStep[aria-selected="true"] .cvStepBody {
-  display: block;
-}
-
-/* The selected step's hairline. While the card plays itself it fills over the
-   step's time, so the visitor can see the next swap coming. */
-.cvTimer {
-  position: absolute;
-  inset-inline: 0;
-  bottom: -1px;
-  height: 1px;
-  background: var(--ink);
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-.cvStep[aria-selected="true"] .cvTimer {
-  transform: scaleX(1);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  [data-playing] .cvStep[aria-selected="true"] .cvTimer {
-    animation: cv-fill 3600ms linear both;
-  }
-}
-
-@keyframes cv-fill {
-  from {
-    transform: scaleX(0);
-  }
-}
-
-.cvTour {
-  align-self: flex-start;
-}
-
-.cvFoot {
+.lib {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3) var(--space-4);
-  margin-top: auto;
-  padding-top: var(--space-3);
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
 }
 
-/* The phone sits on the card's bottom edge and runs off it, so the crop line
-   above the app's price sheet is never on screen. */
 .phone {
-  justify-self: center;
-  width: min(70vw, 17rem);
-  aspect-ratio: 600 / 960;
-  padding: 0.5625rem 0.5625rem 0;
-  border-radius: 2.75rem 2.75rem 0 0;
+  position: relative;
+  flex: none;
+  width: min(42vw, 13.5rem);
+  padding: 0.4375rem;
+  border-radius: 2rem;
   background: var(--bezel);
   box-shadow: var(--shadow);
 }
 
-/* After the base rule, so the wider phone wins at desktop widths. */
-@container (inline-size >= 40rem) {
-  .phone {
-    width: clamp(17rem, 44cqi, 23rem);
-    align-self: end;
-    margin-top: var(--space-4);
-  }
+.phoneSmall {
+  width: min(42vw, 12rem);
 }
 
-.screen {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 2.25rem 2.25rem 0 0;
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.625rem;
   background: var(--paper-3);
 }
 
-.shot {
+.videoToggle {
   position: absolute;
-  inset: 0;
-  opacity: 0;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  border-color: transparent;
+  background: var(--paper);
+  box-shadow: var(--shadow);
 }
 
-.shot[data-on] {
-  opacity: 1;
+.videoToggle svg {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.shot img {
+/* ── Curvinha ───────────────────────────────────────────────────────── */
+
+.cv {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-5) var(--space-6);
+  align-items: start;
+}
+
+.cvText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  margin-top: calc(-1 * var(--space-3));
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.facts dt {
+  margin-top: var(--space-3);
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.shots {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.6fr;
+  align-items: start;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shot {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  color: var(--ink-3);
+}
+
+.shotFrame {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.shotFrame img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  /* Out fast, in slower with a little blur and scale, so two screens never
-     read as two objects overlapping. */
-  .shot {
-    filter: blur(3px);
-    transform: scale(1.015);
-    transition:
-      opacity 260ms ease,
-      filter 260ms ease,
-      transform 420ms var(--ease-out);
+/* The plan and the room crop to a square from the top, so the strip stays
+   short enough for the stage to fit a laptop screen. */
+.shot:not([data-shape="fit"]) .shotFrame {
+  aspect-ratio: 1;
+}
+
+.shot:not([data-shape="fit"]) .shotFrame img {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (width < 640px) {
+  .cv {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .shot[data-on] {
-    filter: none;
-    transform: none;
-    transition:
-      opacity 380ms var(--ease-out),
-      filter 380ms var(--ease-out),
-      transform 520ms var(--ease-out);
+  .cv > .phone {
+    justify-self: center;
+    width: min(62vw, 14rem);
+  }
+
+  .shots {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shot[data-shape="fit"] {
+    grid-column: 1 / -1;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .shot {
-    transition: opacity 200ms ease;
+/* ── Pegada ─────────────────────────────────────────────────────────── */
+
+.pg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pgShots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 11.25rem));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mini {
+  padding: 0.3125rem;
+  border-radius: 1.375rem;
+  background: var(--bezel);
+  box-shadow: var(--shadow);
+}
+
+.mini img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.0625rem;
+}
+
+.stack {
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.links {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  color: var(--ink);
+}
+
+/* ── magic-toast: the example app beside the call ───────────────────── */
+
+.toast {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.toast > .lib {
+  flex: 1 1 16rem;
+}
+
+.figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+}
+
+/* ── Charts: one series, ink on paper, every value labeled ──────────── */
+
+.chart {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.chartTitle {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+.bars {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bars li {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) 4.5rem;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--ink-2);
+}
+
+.bars li > :last-child {
+  text-align: end;
+}
+
+.barTrack {
+  height: 0.5rem;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+
+.barTrack i {
+  display: block;
+  width: calc(var(--w) * 100%);
+  min-width: 4px;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  transform-origin: left;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns li {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: var(--space-2);
+  color: var(--ink-2);
+  text-align: center;
+}
+
+/* The value rides on top of its column; the year sits on one baseline. */
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  height: 9rem;
+}
+
+.column i {
+  display: block;
+  width: 100%;
+  max-width: 3.5rem;
+  height: calc(var(--h) * 7rem);
+  min-height: 3px;
+  border-radius: var(--r-sm) var(--r-sm) 2px 2px;
+  background: var(--ink);
+  transform-origin: bottom;
+}
+
+/* Bars grow in once when their panel opens. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .panel[data-open] .barTrack i {
+    animation: grow-x 700ms var(--ease-out) calc(120ms + var(--i, 0) * 70ms)
+      both;
   }
+
+  :global(.js) .panel[data-open] .column i {
+    animation: grow-y 700ms var(--ease-out) calc(120ms + var(--i, 0) * 70ms)
+      both;
+  }
+
+  :global(.js) .panel[data-open] .add,
+  :global(.js) .panel[data-open] .del {
+    animation: grow-x 700ms var(--ease-out) calc(120ms + var(--i, 0) * 70ms)
+      both;
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.add,
+.del {
+  display: block;
+  height: 100%;
+  transform-origin: left;
 }
 
 /* ── Library cards: claim, code, the real thing ─────────────────────── */
@@ -636,67 +888,6 @@
   color: var(--ink);
 }
 
-/* ── npm ledger: names, numbers, one bar each ───────────────────────── */
-
-.dl {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.dlRow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-4);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.dlRow:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.dlName {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--space-3);
-  min-width: 0;
-}
-
-.dlName a {
-  color: var(--ink);
-  overflow-wrap: anywhere;
-}
-
-.dlValue {
-  font-weight: var(--fw-medium);
-}
-
-.bar {
-  grid-column: 1 / -1;
-  height: 3px;
-  border-radius: var(--r-pill);
-  background: var(--paper-3);
-  overflow: hidden;
-}
-
-.bar i,
-.add,
-.del {
-  display: block;
-  height: 100%;
-  transform-origin: left;
-}
-
-.bar i {
-  width: calc(var(--w) * 100%);
-  min-width: 3px;
-  background: var(--ink);
-}
-
 /* ── Security: three merged fixes, sized by their diff ──────────────── */
 
 .prs {
@@ -766,72 +957,10 @@
   white-space: nowrap;
 }
 
-/* Wide card: the three fixes side by side, each a column. */
-@container (inline-size >= 52rem) {
-  .prs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-6);
-  }
-
-  .pr {
-    align-content: start;
-  }
-}
-
-/* ── Pegada: where it came from ─────────────────────────────────────── */
-
-.lineage {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.lineage li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.lineage li:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.lineage a {
-  display: grid;
-  gap: 2px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.lineageName {
-  font-weight: var(--fw-medium);
-}
-
-/* ── Motion: bars grow once their card is in view ───────────────────── */
-
-@media (prefers-reduced-motion: no-preference) {
-  :global(.js) [data-reveal] .bar i,
-  :global(.js) [data-reveal] .add,
-  :global(.js) [data-reveal] .del {
-    transition: transform 900ms var(--ease-out)
-      calc(var(--dur-enter) * 0.4 + var(--i, 0) * 70ms);
-  }
-
-  :global(.js) [data-reveal]:not([data-in]) .bar i,
-  :global(.js) [data-reveal]:not([data-in]) .add,
-  :global(.js) [data-reveal]:not([data-in]) .del {
-    transform: scaleX(0);
-  }
-}
-
 /* ── Hover, only where there is a real pointer ──────────────────────── */
 
 @media (hover: hover) and (pointer: fine) {
-  .cvStep:hover {
+  .row:hover {
     color: var(--ink);
   }
 
@@ -839,10 +968,8 @@
     background: var(--paper-3);
   }
 
-  .stars:hover,
-  .dlName a:hover,
-  .lineage a:hover .lineageName,
-  .prLink:hover .prTitle {
+  .prLink:hover .prTitle,
+  .links a:hover {
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }

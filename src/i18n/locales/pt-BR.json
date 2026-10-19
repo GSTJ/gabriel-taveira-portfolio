@@ -54,42 +54,69 @@
     "body2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma."
   },
   "projects": {
-    "title": "Coisas que eu fiz.",
-    "sub": "O app que estou construindo agora e o open source que outros times usam em produção.",
+    "title": "O que eu construí, e como vai cada um.",
+    "sub": "Dois apps nas lojas e as bibliotecas que outros times instalam. Escolhe um pra ver a prova.",
+    "indexLabel": "Projetos",
     "codeLabel": "Código de exemplo",
     "stars": "{count} estrelas no GitHub",
-    "starsSource": "Estrelas lidas no GitHub em {date}.",
+    "sources": "Instalações do npm, desde sempre até {npmDate}. Estrelas e notas das lojas lidas em {readDate}.",
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Fundador · eu que construí",
         "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "kind": "App iOS",
+        "role": "Fundador",
+        "number": "No ar desde {date}",
+        "note": "construindo este agora",
+        "problemLabel": "O problema",
+        "problem": "Comprar móvel pela internet é chutar se cabe. O Curvinha mede o cômodo antes e só sugere o que cabe.",
+        "builtLabel": "O que eu construí",
+        "built": "Um app nativo em SwiftUI que escaneia com RoomPlan e desenha a planta e o 3D com RealityKit. Por trás, uma API em TypeScript no Cloudflare Workers onde um designer de IA escolhe as peças. Toda medida e checagem de encaixe é calculada em código, nunca pelo modelo.",
+        "whereLabel": "Onde está",
+        "where": "Na <store>App Store</store> desde {date}, pra iPhone e iPad, em português e inglês. Curadoria com arquitetas da Curva Interiores.",
         "cta": "Abrir curvinha.app",
-        "caption": "Telas do ambiente de exemplo do app.",
-        "stepsLabel": "Curvinha, passo a passo",
-        "steps": {
-          "measure": {
-            "title": "Meça o ambiente",
-            "body": "Dê uma volta pelas paredes com o iPhone. Leva uns 2 a 5 minutos.",
-            "alt": "Tela de medição da Curvinha: Vamos medir o seu ambiente. Leva uns 2 a 5 minutos."
-          },
+        "video": {
+          "label": "Uma medição de demonstração no ambiente de exemplo do app, medindo as paredes",
+          "play": "Tocar a medição",
+          "pause": "Pausar a medição"
+        },
+        "shots": {
           "plan": {
-            "title": "Receba a planta",
-            "body": "O ambiente visto de cima, com cada peça no lugar.",
-            "alt": "Planta do ambiente de exemplo mobiliado na Curvinha, vista de cima."
+            "alt": "Planta do ambiente de exemplo mobiliado na Curvinha, vista de cima.",
+            "caption": "A planta"
           },
           "room": {
-            "title": "Veja a proposta em 3D",
-            "body": "Peças reais de lojas reais, no seu ambiente.",
-            "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar."
+            "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar.",
+            "caption": "A proposta em 3D"
+          },
+          "fit": {
+            "alt": "Checagem de encaixe da Curvinha: sobram 121 cm à esquerda, 279 cm à direita e 194 cm na frente.",
+            "caption": "A checagem de encaixe, em centímetros"
           }
-        },
-        "pause": "Pausar tour",
-        "replay": "Rever tour"
+        }
+      },
+      "pegada": {
+        "title": "Pegada",
+        "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e React Native, open source desde 2025.",
+        "kind": "App Expo",
+        "role": "Criador",
+        "number": "Nota {rating}, {count} avaliações",
+        "lede": "Desliza, dá match e conversa, pra cachorros. Na App Store desde {date} e no Google Play, com assinatura pelo RevenueCat.",
+        "stack": "Expo SDK 55, React Native 0.83, expo-router, Reanimated 4, tRPC, Prisma com Postgres, Next.js no site. Um monorepo com pnpm e Turborepo.",
+        "appStore": "App Store, nota {rating} em {count} avaliações",
+        "play": "Google Play, mais de 500 downloads",
+        "repo": "Código no GitHub, aberto desde {date}",
+        "pegava": "Pegava, a primeira versão: {stars} estrelas e {forks} forks, arquivado",
+        "shotsLabel": "Telas do Pegada na App Store",
+        "shots": {
+          "deck": "Deck do Pegada: Nina, uma border collie a 0,5 km, com três reações pra escolher.",
+          "match": "Tela de match do Pegada: Você deu um match, com a foto dos dois cachorros.",
+          "chat": "Chat do Pegada entre dois tutores combinando um passeio."
+        }
       },
       "magicModal": {
         "title": "magic-modal",
-        "body": "Um modal mágico que você pode dar await de qualquer lugar: React Native, Expo e web.",
+        "body": "Um modal que você pode dar await de qualquer lugar: React Native, Expo e web.",
         "comment": "// continua quando o modal fecha",
         "run": "Rodar",
         "idle": "Aperte Rodar pra abrir o modal de verdade.",
@@ -104,7 +131,16 @@
           "body": "Esse modal é o pacote de verdade. O que você escolher volta pro await.",
           "yes": "Publicar",
           "no": "Cancelar"
-        }
+        },
+        "kind": "Biblioteca",
+        "role": "Autor",
+        "number": "{count} instalações",
+        "bundle": {
+          "title": "Bundle web, gzip",
+          "source": "Do <log>changelog</log>.",
+          "label": "{version}: {kb} KB"
+        },
+        "installsLine": "{count} instalações desde {date}, somando os dois nomes no npm."
       },
       "safeJsx": {
         "title": "safe-jsx",
@@ -118,39 +154,55 @@
         "badgeLabel": "3 não lidas",
         "nothing": "Nada aparece ao lado de Inbox",
         "explain": "Com count em 0, o React imprime o 0.",
-        "resolved": "Corrigido. O erro de lint sumiu."
+        "resolved": "Corrigido. O erro de lint sumiu.",
+        "kind": "Plugin de ESLint",
+        "role": "Autor",
+        "number": "{count} instalações",
+        "installsLine": "{count} instalações desde {date}."
+      },
+      "codePush": {
+        "title": "react-native-code-push-plugin",
+        "body": "Um config plugin de Expo que configura o CodePush quando o código nativo é gerado.",
+        "kind": "Plugin de Expo",
+        "role": "Autor",
+        "number": "{count} instalações",
+        "chartTitle": "Instalações por ano",
+        "partial": "{year}, até {date}",
+        "retired": "A Microsoft aposentou o CodePush junto com o App Center em {date}, e as instalações caíram junto. Ainda funciona com um servidor próprio."
       },
       "magicToast": {
         "title": "react-native-magic-toast",
-        "body": "Um toast imperativo pra React Native que você chama de qualquer lugar."
+        "body": "Chama um toast de qualquer lugar de um app React Native e dá await no motivo de ele ter saído da tela. Feito em cima do magic-modal.",
+        "kind": "Biblioteca",
+        "role": "Autor",
+        "number": "{count} instalações",
+        "video": {
+          "label": "O app de exemplo disparando um toast de sucesso e um de erro, e mostrando por que cada um saiu",
+          "play": "Tocar a demo",
+          "pause": "Pausar a demo"
+        }
       },
-      "pegada": {
-        "title": "Pegada",
-        "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e Next.js, agora open source.",
-        "pegava": "Primeira versão, arquivada",
-        "now": "A sucessora, mantida e open source",
-        "launch": "Lançado no Product Hunt em 2024"
-      }
-    },
-    "npm": {
-      "title": "Downloads no npm",
-      "rows": {
-        "magicModal": "os dois nomes, react-native-magic-modal incluso",
-        "safeJsx": "a regra do 0 solto",
-        "magicToast": "um toast que você chama de qualquer lugar",
-        "observability": "analytics e erros, este site roda nele",
-        "codePush": "CodePush pro Expo"
+      "observability": {
+        "title": "magic-observability",
+        "body": "Inicializa uma vez por plataforma, pega os erros numa boundary só e manda pro PostHog no mesmo formato em todo lugar.",
+        "kind": "Biblioteca",
+        "role": "Autor",
+        "number": "{count} instalações",
+        "runs": "Este site roda com ela.",
+        "alt": "Diagrama do README do magic-observability: um erro de cartão recusado pego pela boundary, a chamada captureError e os campos que chegam no PostHog."
       },
-      "source": "Últimos 30 dias, de {start} a {end}, pelo <npm>npm</npm>."
-    },
-    "security": {
-      "title": "Correções de segurança, mergeadas",
-      "body": "Três correções, cada uma com teste de regressão, medidas pelo tamanho do diff.",
-      "diffLabel": "{added} linhas adicionadas, {removed} removidas",
-      "items": {
-        "authorization": "Upload liberado só pra quem pediu",
-        "identity": "OTP de uso único mesmo com concorrência",
-        "assetBoundary": "Arquivos de fora longe da origem deste site"
+      "security": {
+        "title": "Correções de segurança",
+        "body": "Três correções, cada uma com teste de regressão, medidas pelo tamanho do diff.",
+        "diffLabel": "{added} linhas adicionadas, {removed} removidas",
+        "items": {
+          "authorization": "Upload liberado só pra quem pediu",
+          "identity": "OTP de uso único mesmo com concorrência",
+          "assetBoundary": "Arquivos de fora longe da origem deste site"
+        },
+        "kind": "PRs mergeados",
+        "role": "Autor",
+        "number": "{count} mergeados"
       }
     }
   },
