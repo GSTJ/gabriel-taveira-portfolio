@@ -21,7 +21,33 @@ export type WorkItem = {
    */
   billing: "current" | "top" | "main" | "agate";
   href: string;
+  /** The one fact-backed proof drawn beside the row, when a job has one. */
+  proofs?: readonly Proof[];
 };
+
+/**
+ * A proof drawn from a fact already in the row's copy. `coverage` is a
+ * before/after percentage, `deleted` a diff stat, `pr` a public merged PR,
+ * `parallel` the old and new app running side by side during a migration.
+ */
+export type Proof =
+  | {
+      kind: "coverage";
+      label: "coverageTeam" | "coverage";
+      before: number;
+      after: number;
+      atLeast?: boolean;
+    }
+  | { kind: "deleted"; lines: string }
+  | {
+      kind: "pr";
+      repo: string;
+      number: number;
+      title: string;
+      merged: string;
+      href: string;
+    }
+  | { kind: "parallel" };
 
 /** Newest first. `orgs`, `start` and `end` feed the resume, llms.txt and JSON-LD. */
 export const WORK: readonly WorkItem[] = [
@@ -42,6 +68,9 @@ export const WORK: readonly WorkItem[] = [
     tags: ["React Native", "Expo", "Architecture"],
     billing: "top",
     href: "https://www.coinbase.com/",
+    proofs: [
+      { kind: "coverage", label: "coverageTeam", before: 25, after: 45 },
+    ],
   },
   {
     id: "ateam",
@@ -69,6 +98,16 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Mentorship", "Fintech", "Testing"],
     billing: "main",
     href: "https://groundswell.io/",
+    proofs: [
+      {
+        kind: "coverage",
+        label: "coverage",
+        before: 30,
+        after: 80,
+        atLeast: true,
+      },
+      { kind: "deleted", lines: "16k" },
+    ],
   },
   {
     id: "ze",
@@ -78,6 +117,17 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Hiring", "Native", "Design Systems"],
     billing: "main",
     href: "https://www.ze.delivery/",
+    proofs: [
+      {
+        kind: "pr",
+        repo: "ab-inbev-ze-company/ze-code-challenges",
+        number: 35,
+        title:
+          "chore(frontend-mobile): replace the old api and queries with the newer ones",
+        merged: "2021-09-13",
+        href: "https://github.com/ab-inbev-ze-company/ze-code-challenges/pull/35",
+      },
+    ],
   },
   {
     id: "alfred",
@@ -85,8 +135,9 @@ export const WORK: readonly WorkItem[] = [
     start: 2019,
     end: 2020,
     tags: ["Migration", "React Native"],
-    billing: "agate",
+    billing: "main",
     href: LINKEDIN,
+    proofs: [{ kind: "parallel" }],
   },
   {
     id: "micro",

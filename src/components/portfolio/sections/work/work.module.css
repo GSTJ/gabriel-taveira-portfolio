@@ -1,66 +1,75 @@
 /*
- * The ledger: when | role and orgs | what shipped | where. Dates and orgs sit
- * in the left columns so a scan down the page reads the career in order.
+ * The spine: one node per job down the left, newest first, joined by a line
+ * from each node to the next. Each row reads when | who it reached and what
+ * shipped | the one proof its facts allow.
  */
-.ledger {
+.spine {
+  --node: 11px;
+  --pad: var(--space-6);
+  --rail: var(--space-6);
   display: grid;
-  border-bottom: 1px solid var(--rule);
 }
 
 .row {
+  position: relative;
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
-  gap: var(--space-6);
-  align-items: baseline;
-  padding-block: var(--space-6);
-  border-top: 1px solid var(--rule);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--pad);
+  padding-left: var(--rail);
 }
 
-/*
- * The featured role gets more air and a bigger title across both text
- * columns, so its blurb still lines up with every other row.
- */
-.row[data-billing="top"] {
-  padding-block: var(--space-7);
+/* The node sits on the dates' first line. */
+.row::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--pad) + 0.4rem);
+  left: 0;
+  width: var(--node);
+  height: var(--node);
+  border: 1.5px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  transition: background-color var(--dur-hover) var(--ease-out);
 }
 
-@media (width >= 1000px) {
-  .row[data-billing="top"] {
-    grid-template-areas:
-      "when head head go"
-      ". blurb blurb .";
-    row-gap: var(--space-5);
-  }
+/* The line from this node down to the next one. */
+.row::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--pad) + 0.4rem + var(--node));
+  left: calc(var(--node) / 2 - 0.5px);
+  width: 1px;
+  height: calc(100% - var(--node));
+  background: var(--rule-strong);
+  transform-origin: top center;
+}
 
-  .row[data-billing="top"] .when {
-    grid-area: when;
-  }
+.row:last-child::after {
+  content: none;
+}
 
-  .row[data-billing="top"] .head {
-    grid-area: head;
-  }
+.row[data-billing="top"]::before {
+  border-color: var(--ink);
+}
 
-  .row[data-billing="top"] .blurb {
-    grid-area: blurb;
-  }
-
-  .row[data-billing="top"] .go {
-    grid-area: go;
-  }
+/* Consulting is the only open job: a filled node with a ring, still going. */
+.row[data-open]::before {
+  border-color: var(--ink);
+  background: var(--ink);
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 0 4.5px var(--ink);
 }
 
 .when {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.when > :first-child {
   color: var(--ink-3);
 }
 
-.head {
+.main {
   display: grid;
   gap: var(--space-1);
+  align-content: start;
 }
 
 .title {
@@ -77,7 +86,32 @@
   letter-spacing: var(--tr-h2);
 }
 
+.row[data-billing="agate"] .title {
+  font-size: var(--fs-body);
+}
+
+/* Who the work reached: the line that grows down the page. */
+.scope {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-body);
+  font-weight: var(--fw-medium);
+  text-wrap: pretty;
+}
+
+.term {
+  margin-right: var(--space-1);
+  color: var(--ink-3);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-regular);
+}
+
+.orgs {
+  color: var(--ink-3);
+}
+
 .blurb {
+  margin-top: var(--space-3);
   color: var(--ink-2);
   max-width: var(--measure);
 }
@@ -89,24 +123,37 @@
 }
 
 .go {
-  justify-self: end;
+  justify-self: start;
 }
 
-/* ── The career axis ───────────────────────────────────────────────── */
-
-.axis {
-  display: flex;
-  justify-content: space-between;
-  width: 10rem;
-  padding-bottom: var(--space-2);
+.all {
+  margin-top: var(--space-5);
+  margin-left: var(--rail);
 }
 
-/* Every job on one axis, first job to now: the fill is this job's years. */
+/* ── Proofs ─────────────────────────────────────────────────────────── */
+
+.proofs {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+  max-width: 26rem;
+  padding-top: var(--space-3);
+}
+
+.proofs figure {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.proofs figcaption {
+  color: var(--ink-3);
+}
+
+/* Coverage: the fill grows from the old number to the new one. */
 .track {
   position: relative;
-  display: block;
-  width: 10rem;
-  height: 3px;
+  height: 6px;
   border-radius: var(--r-pill);
   background: var(--rule);
 }
@@ -114,87 +161,249 @@
 .fill {
   position: absolute;
   inset-block: 0;
-  left: var(--from);
-  width: var(--span);
+  left: 0;
+  width: var(--after);
   border-radius: inherit;
-  background: var(--ink-3);
-  transform-origin: left center;
-  transition: background-color var(--dur-hover) var(--ease-out);
-}
-
-.track[data-open] .fill {
   background: var(--ink);
+  transform-origin: left center;
 }
 
-/* ── Earlier ────────────────────────────────────────────────────────── */
-
-.earlier {
-  display: grid;
-  gap: var(--space-4);
-  padding-top: var(--space-6);
+/* A notch where the number started. */
+.was {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: var(--before);
+  width: 2px;
+  background: var(--paper);
 }
 
-.earlier ul {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.small {
-  display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
-  gap: var(--space-6);
-  align-items: baseline;
-}
-
-.small > :last-child {
-  max-width: var(--measure);
-}
-
-.org {
+.value {
   color: var(--ink);
   font-weight: var(--fw-medium);
 }
 
-/* ── Motion ─────────────────────────────────────────────────────────── */
+/* Deleted lines: a diff stat, deletions only. */
+.diffLine {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
 
-/* The span draws from the job's first year once its row lands. */
-@media (prefers-reduced-motion: no-preference) {
-  .fill {
-    transition:
-      transform var(--dur-pen) var(--ease-in-out)
-        calc(var(--delay, 0ms) + var(--dur-ui)),
-      background-color var(--dur-hover) var(--ease-out);
+.diffCount {
+  color: var(--ink);
+}
+
+.diffNum {
+  font-weight: var(--fw-medium);
+}
+
+.blocks {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.blocks span {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--ink-3);
+}
+
+/* The merged PR, as GitHub lists it. */
+.prCard {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--paper-2);
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    background-color var(--dur-hover) var(--ease-out),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.prCard:active {
+  transform: scale(0.98);
+}
+
+.repo {
+  color: var(--ink-3);
+  overflow-wrap: anywhere;
+}
+
+.prTitle {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.prMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--ink-2);
+}
+
+.mergeIcon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+/* The migration: old and new apps live side by side, then the old one stops. */
+.lanes {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.laneName {
+  color: var(--ink-2);
+}
+
+.lane {
+  position: relative;
+  height: 6px;
+}
+
+.lane > span {
+  position: absolute;
+  inset-block: 0;
+  border-radius: var(--r-pill);
+  transform-origin: left center;
+}
+
+.lane[data-lane="old"] > span {
+  left: 0;
+  width: 64%;
+  background: var(--ink-3);
+}
+
+.lane[data-lane="new"] > span {
+  left: 36%;
+  right: 0;
+  background: var(--ink);
+}
+
+/* The bracket under the stretch where both were live. */
+.overlap {
+  grid-column: 2;
+  margin-left: 36%;
+  width: 28%;
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--ink-3);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* ── Wide ───────────────────────────────────────────────────────────── */
+
+@media (width >= 1000px) {
+  .spine {
+    --rail: var(--space-7);
   }
 
-  :global(.js) [data-reveal]:not([data-in]) .fill {
+  .row {
+    grid-template-columns: 8rem minmax(0, 1fr) 20rem;
+    grid-template-areas:
+      "when main proofs"
+      ". go proofs";
+    column-gap: var(--space-7);
+    align-items: start;
+  }
+
+  .when {
+    grid-area: when;
+  }
+
+  .main {
+    grid-area: main;
+  }
+
+  .proofs {
+    grid-area: proofs;
+  }
+
+  .go {
+    grid-area: go;
+  }
+
+  .row::before {
+    top: calc(var(--pad) + 0.3rem);
+  }
+
+  .row::after {
+    top: calc(var(--pad) + 0.3rem + var(--node));
+  }
+
+  .when {
+    padding-top: 0.1rem;
+  }
+
+  .proofs {
+    padding-top: var(--space-1);
+  }
+}
+
+/* ── Motion ─────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The line to the next job draws down once its row lands. */
+  .row::after {
+    transition: transform var(--dur-pen) var(--ease-in-out)
+      calc(var(--delay, 0ms) + var(--dur-ui));
+  }
+
+  :global(.js) .row:not([data-in])::after {
+    transform: scaleY(0);
+  }
+
+  .fill,
+  .lane > span {
+    transition: transform var(--dur-pen) var(--ease-in-out)
+      calc(var(--delay, 0ms) + var(--dur-ui));
+  }
+
+  :global(.js) .meter:not([data-in]) .fill {
+    transform: scaleX(var(--grown));
+  }
+
+  .lane[data-lane="new"] > span {
+    transition-delay: calc(
+      var(--delay, 0ms) + var(--dur-ui) + var(--dur-pen) * 0.5
+    );
+  }
+
+  :global(.js) .parallel:not([data-in]) .lane > span {
     transform: scaleX(0);
+  }
+
+  .blocks span {
+    transition:
+      opacity var(--dur-ui) var(--ease-out),
+      transform var(--dur-ui) var(--ease-out);
+    transition-delay: calc(
+      var(--delay, 0ms) + var(--dur-ui) + var(--b) * var(--stagger)
+    );
+  }
+
+  :global(.js) .diff:not([data-in]) .blocks span {
+    opacity: 0;
+    transform: scale(0.6);
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .row:hover .fill {
-    background: var(--ink);
-  }
-}
-
-/* ── Narrow ─────────────────────────────────────────────────────────── */
-
-@media (width < 1000px) {
-  .row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-3);
+  .row:not([data-open], [data-billing="top"]):hover::before {
+    background: var(--ink-3);
   }
 
-  .row[data-billing="top"] {
-    padding-block: var(--space-6);
-  }
-
-  .go {
-    justify-self: start;
-  }
-
-  .small {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-2);
+  .prCard:hover {
+    background: var(--paper-3);
   }
 }
