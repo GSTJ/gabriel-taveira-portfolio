@@ -216,6 +216,11 @@
         "title": "Mobile architecture and engineering leadership",
         "body": "Independent consulting. Engagement details under NDA."
       },
+      "building": {
+        "chip": "Building",
+        "title": "Curvinha, an iOS app for planning your home",
+        "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
+      },
       "hosting": {
         "chip": "Hosting",
         "title": "Space Cast on Rocketseat",

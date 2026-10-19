@@ -224,12 +224,18 @@ export const WRITING_TOPICS: readonly TopicChip[] = [
 ] as const;
 
 export type NowItem = {
-  id: "consulting" | "hosting" | "mentoring" | "tinkering";
+  id: "consulting" | "building" | "hosting" | "mentoring" | "tinkering";
   tone: Tone;
+  href?: string;
 };
 
 export const NOW: readonly NowItem[] = [
   { id: "consulting", tone: "ember" },
+  {
+    id: "building",
+    tone: "teal",
+    href: "https://curvinha.app/?ct=gabrieltaveira-dev",
+  },
   { id: "hosting", tone: "brass" },
   { id: "mentoring", tone: "teal" },
   { id: "tinkering", tone: "coral" },
