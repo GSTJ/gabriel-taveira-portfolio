@@ -1,65 +1,217 @@
-/* ── Offers ─────────────────────────────────────────────────────────── */
+/* ── The switcher: problems on the left, the case on a stage ───────── */
 
-.offers {
+.switcher {
   display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1000px) {
+  .switcher {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+}
+
+/* Without JS there is nothing to switch: the tabs stay out and every case reads in order. */
+.tabs {
+  display: none;
+}
+
+:global(.js) .tabs {
+  position: relative;
+  display: grid;
+  align-content: start;
+  border-left: 1px solid var(--rule);
+}
+
+/* One bar marks the picked problem; it travels instead of jumping between tabs. */
+.bar {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 2px;
+  height: 1px;
+  background: var(--ink);
+  transform-origin: top;
+}
+
+.tab {
+  padding: var(--space-4) var(--space-5);
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  font: inherit;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  text-align: left;
+  text-wrap: balance;
+  cursor: pointer;
+  transform-origin: left center;
+  transition:
+    color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.tab:active {
+  transform: scale(0.97);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover {
+    color: var(--ink-2);
+  }
+
+  .tab[aria-selected="true"]:hover {
+    color: var(--ink);
+  }
+}
+
+/* ── The stage ──────────────────────────────────────────────────────── */
+
+.stage {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* With JS every case sits in the same cell: the stage keeps the tallest one's height. */
+:global(.js) .stage > .panel {
+  grid-area: 1 / 1;
+}
+
+:global(.js) .stage > .panel:not([data-active]) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.panel {
+  display: grid;
+  align-content: start;
+  padding: var(--space-5);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+}
+
+@media (min-width: 760px) {
+  .panel {
+    padding: var(--space-7);
+  }
+}
+
+/*
+ * Switching cases: the old one leaves fast, the new one settles in from a
+ * small rise with a 2px blur bridging the two. Transitions, not keyframes,
+ * so a quick run through the tabs retargets instead of restarting.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .stage > .panel {
+    transition:
+      opacity var(--dur-ui) var(--ease-out),
+      transform var(--dur-ui) var(--ease-out),
+      filter var(--dur-ui) var(--ease-out);
+  }
+
+  :global(.js) .stage > .panel:not([data-active]) {
+    transform: translateY(var(--space-2));
+    filter: blur(calc(var(--space-1) / 2));
+    transition:
+      opacity var(--dur-exit) ease,
+      transform 0s linear var(--dur-exit),
+      filter 0s linear var(--dur-exit),
+      visibility 0s linear var(--dur-exit);
+  }
+
+  .bar {
+    transition: transform var(--dur-ui) var(--ease-in-out);
+  }
 }
 
 .offer {
-  display: grid;
-  gap: var(--space-2);
-  align-content: start;
-  padding-block: var(--space-5) var(--space-6);
-  border-top: 1px solid var(--rule);
+  max-width: 20em;
 }
 
-.body {
+.get {
   max-width: var(--measure);
-}
-
-.proof {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-4);
   margin-top: var(--space-3);
 }
 
-.proof ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
+.receiptsLabel {
+  margin-top: var(--space-6);
 }
 
-/* A citation back up the page: the arrow says "proved above", the dates say when. */
+/* ── Receipts: the outcome large, what it was, and where to check it ── */
+
+.receipts {
+  display: grid;
+  margin-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.receipt {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 760px) {
+  .receipt {
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+    column-gap: var(--space-5);
+  }
+
+  .what,
+  .cite {
+    grid-column: 2;
+  }
+
+  .figure {
+    grid-row: span 2;
+  }
+}
+
+.figure {
+  color: var(--ink);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-medium);
+  font-stretch: var(--wd-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tr-title);
+  white-space: nowrap;
+}
+
+.what {
+  max-width: var(--measure);
+}
+
 .cite {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
+  justify-self: start;
   gap: var(--space-2);
-  color: var(--ink);
-  font-weight: var(--fw-medium);
+  color: var(--ink-3);
   text-decoration-line: underline;
   text-decoration-color: var(--rule-strong);
-  text-decoration-thickness: 1px;
-  transition: text-decoration-color var(--dur-hover) ease;
+  text-underline-offset: 0.2em;
+  transition: color var(--dur-hover) ease;
 }
 
 .cite svg {
-  width: 0.85em;
-  height: 0.85em;
+  width: 0.9em;
+  height: 0.9em;
   flex: none;
-  align-self: center;
-  color: var(--ink-3);
   transition: transform var(--dur-ui) var(--ease-out);
-}
-
-.dates {
-  margin-left: var(--space-2);
-  color: var(--ink-3);
-  font-weight: var(--fw-regular);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cite:hover {
+    color: var(--ink);
     text-decoration-color: currentColor;
   }
 
@@ -68,143 +220,31 @@
   }
 }
 
-/* One row per offer from 1000px, read across: what, how, where it was done. */
-@media (min-width: 1000px) {
-  .offer {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
-    gap: var(--space-6);
-    padding-block: var(--space-6);
-  }
-
-  .proof,
-  .proof ul {
-    display: grid;
-    gap: var(--space-2);
-    align-content: start;
-  }
-
-  .proof {
-    margin-top: 0;
-  }
-}
-
-/* ── How an engagement runs ─────────────────────────────────────────── */
-
-.flow {
-  display: grid;
-  gap: var(--space-2);
-  margin-top: var(--sec-head-gap);
-}
-
-.flowTitle {
-  font-weight: var(--fw-strong);
-}
-
-.flowSub {
-  max-width: var(--measure);
-}
-
-/*
- * Each step draws a segment to the next and its dot fills as the line
- * arrives: the order is the point. Vertical on phones, across from 760px.
- */
-.steps {
-  --dot: var(--space-3);
-  --track: var(--space-6);
-  --gap: var(--space-6);
-
-  display: grid;
-  gap: var(--gap);
+.start {
+  justify-self: start;
   margin-top: var(--space-6);
-  padding-left: var(--track);
 }
 
-.steps li {
-  position: relative;
-  display: grid;
-  gap: var(--space-2);
-  align-content: start;
+/* ── How it starts ──────────────────────────────────────────────────── */
+
+.starts {
+  max-width: var(--measure);
+  margin-top: var(--space-6);
 }
 
-.steps li::before {
-  content: "";
-  position: absolute;
-  top: var(--space-1);
-  left: calc(var(--track) * -1);
-  width: var(--dot);
-  height: var(--dot);
-  border: 1px solid var(--ink);
-  border-radius: var(--r-pill);
-  background: var(--ink);
+.starts strong {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
 }
 
-.steps li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: calc(var(--space-1) + var(--dot) / 2);
-  left: calc(var(--track) * -1 + var(--dot) / 2);
-  width: 1px;
-  height: calc(100% + var(--gap));
-  background: var(--ink);
-  transform-origin: top;
+.starts a {
+  color: var(--ink);
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 0.2em;
 }
 
-@media (min-width: 760px) {
-  .steps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding-left: 0;
-    padding-top: var(--track);
-  }
-
-  .steps li::before {
-    top: calc(var(--track) * -1);
-    left: 0;
-  }
-
-  .steps li:not(:last-child)::after {
-    top: calc(var(--track) * -1 + var(--dot) / 2);
-    left: var(--dot);
-    width: calc(100% + var(--gap) - var(--dot));
-    height: 1px;
-    transform-origin: left;
-  }
-}
-
-/* Segment i draws while step i+1 is due, so each dot fills as the line lands. */
-@media (prefers-reduced-motion: no-preference) {
-  .steps li {
-    --seg: calc(var(--dur-pen) / 2);
-    --land: calc(var(--i, 0) * var(--seg) + var(--stagger));
-
-    transition:
-      opacity var(--dur-enter) var(--ease-out) var(--land),
-      transform var(--dur-rise) var(--ease-out) var(--land);
-  }
-
-  .steps li::before {
-    transition: background-color var(--dur-ui) ease var(--land);
-  }
-
-  .steps li::after {
-    transition: transform var(--seg) linear var(--land);
-  }
-
-  :global(.js) .steps:not([data-in]) li {
-    opacity: 0;
-    transform: translateY(var(--rise));
-  }
-
-  :global(.js) .steps:not([data-in]) li::before {
-    background: var(--paper);
-  }
-
-  :global(.js) .steps:not([data-in]) li::after {
-    transform: scaleY(0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (min-width: 760px) {
-  :global(.js) .steps:not([data-in]) li::after {
-    transform: scaleX(0);
+@media (min-width: 1000px) {
+  .starts {
+    margin-left: calc((100% - var(--space-8)) / 3 + var(--space-8));
   }
 }

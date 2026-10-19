@@ -197,53 +197,62 @@
     "independent": "Independent"
   },
   "services": {
-    "title": "Hire me to unblock your mobile team.",
-    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
-    "proofs": {
-      "label": "Where I did it",
-      "work": "Teams I've led"
+    "title": "Which one sounds like your team?",
+    "sub": "Pick the problem. You'll see what you get and where I've already solved it, with the receipts.",
+    "tabsLabel": "Problems I solve",
+    "receiptsLabel": "Where I've done it",
+    "cta": "Draft the first email",
+    "mail": {
+      "app": "App",
+      "team": "Team",
+      "timeline": "Timeline"
     },
+    "sources": {
+      "history": "Work history since",
+      "talk": "Talk ·",
+      "npm": "{name} on GitHub, npm {from} to {to}"
+    },
+    "starts": "<strong>How it starts:</strong> email me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on <linkedin>LinkedIn</linkedin>.",
     "items": {
       "audit": {
-        "chip": "Audit",
+        "problem": "Releases feel risky and the tests don't catch much",
         "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
+        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute.",
+        "receipts": {
+          "coinbase": "Test coverage on team-owned files, on Coinbase's app.",
+          "groundswell": "Test coverage at Groundswell, a fintech.",
+          "msw": "Lines of brittle tests removed with MSW, and a Discover page 200% faster."
+        }
       },
       "migrations": {
-        "chip": "Migrations",
+        "problem": "We're stuck on an old setup and can't stop shipping",
         "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work.",
+        "receipts": {
+          "coinbase": "React Compiler adoption with the React WG, the Expo Prebuild migration, and React Native's new architecture on Coinbase's app.",
+          "alfred": "Franchises served by an app I moved from Ionic to React Native, in a cutover of about 6 months with Ionic 3 kept alive in parallel.",
+          "codePush": "npm downloads in 30 days of my Code Push plugin for Expo."
+        }
       },
       "leadership": {
-        "chip": "Leadership",
+        "problem": "We need a mobile lead now, and hiring takes months",
         "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself.",
+        "receipts": {
+          "reports": "Direct reports, from the smallest team I've led to the biggest.",
+          "ze": "Interviewed and onboarded senior engineers at Zé Delivery.",
+          "biweekly": "Founded the Mobile Engineering Biweekly forum at Groundswell.",
+          "talk": "A 3-day immersion on forming engineering leads."
+        }
       },
       "systems": {
-        "chip": "Design",
+        "problem": "Every screen gets built a little differently",
         "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
-      }
-    },
-    "engagement": {
-      "title": "How an engagement runs.",
-      "sub": "Sized to your app and your team.",
-      "steps": {
-        "review": {
-          "title": "Review",
-          "body": "I read the codebase, the release pipeline, and the backlog, and talk to the people who own them."
-        },
-        "plan": {
-          "title": "Plan",
-          "body": "A prioritized plan with the tradeoffs spelled out, short enough that people actually read it."
-        },
-        "ship": {
-          "title": "Ship",
-          "body": "I work inside your team on the riskiest parts: the migration, the performance work, the release train."
-        },
-        "handoff": {
-          "title": "Hand off",
-          "body": "Docs, standards, and people who own the result, so nothing depends on me sticking around."
+        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI.",
+        "receipts": {
+          "mozeic": "Co-built Mozeic, Zé Delivery's in-house design system, then gave a talk at TDC on shipping it.",
+          "kustomer": "An open-source design system and SDKs at Kustomer, with docs that lifted the DevX score.",
+          "safeJsx": "npm downloads in 30 days of eslint-plugin-safe-jsx, my lint rule for the stray 0 in JSX."
         }
       }
     }

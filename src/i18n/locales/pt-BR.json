@@ -197,53 +197,62 @@
     "independent": "Independente"
   },
   "services": {
-    "title": "Me contrata pra destravar seu time mobile.",
-    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
-    "proofs": {
-      "label": "Onde fiz isso",
-      "work": "Times que liderei"
+    "title": "Qual desses parece o seu time?",
+    "sub": "Escolhe o problema. Aparece o que você recebe e onde eu já resolvi isso, com a prova.",
+    "tabsLabel": "Problemas que eu resolvo",
+    "receiptsLabel": "Onde já fiz isso",
+    "cta": "Montar o primeiro email",
+    "mail": {
+      "app": "App",
+      "team": "Time",
+      "timeline": "Prazo"
     },
+    "sources": {
+      "history": "Histórico desde",
+      "talk": "Palestra ·",
+      "npm": "{name} no GitHub, npm de {from} a {to}"
+    },
+    "starts": "<strong>Como começa:</strong> me manda um email sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no <linkedin>LinkedIn</linkedin>.",
     "items": {
       "audit": {
-        "chip": "Auditoria",
+        "problem": "O release dá medo e os testes não pegam quase nada",
         "title": "Revisão de arquitetura React Native",
-        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
+        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar.",
+        "receipts": {
+          "coinbase": "Cobertura de testes nos arquivos do time, no app da Coinbase.",
+          "groundswell": "Cobertura de testes na Groundswell, uma fintech.",
+          "msw": "Linhas de testes frágeis apagadas com MSW, e a página Discover 200% mais rápida."
+        }
       },
       "migrations": {
-        "chip": "Migrações",
+        "problem": "Estamos presos numa base antiga e não dá pra parar de entregar",
         "title": "Migrações para Expo, nova arquitetura e React Compiler",
-        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
+        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap.",
+        "receipts": {
+          "coinbase": "Adoção do React Compiler junto ao React WG, migração pro Expo Prebuild e a nova arquitetura do React Native no app da Coinbase.",
+          "alfred": "Franquias atendidas pelo app que migrei de Ionic pra React Native, num cutover de uns 6 meses com o Ionic 3 rodando em paralelo.",
+          "codePush": "Downloads no npm em 30 dias do meu plugin de Code Push pra Expo."
+        }
       },
       "leadership": {
-        "chip": "Liderança",
+        "problem": "Precisamos de uma liderança mobile agora, e contratar leva meses",
         "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo.",
+        "receipts": {
+          "reports": "Reportes diretos, do menor ao maior time que liderei.",
+          "ze": "Entrevistei e fiz onboarding de engenheiros sêniores no Zé Delivery.",
+          "biweekly": "Fundei o fórum Mobile Engineering Biweekly na Groundswell.",
+          "talk": "Imersão de 3 dias pra formar líderes de engenharia."
+        }
       },
       "systems": {
-        "chip": "Design",
+        "problem": "Cada tela é feita de um jeito um pouco diferente",
         "title": "Design systems e experiência de desenvolvimento",
-        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
-      }
-    },
-    "engagement": {
-      "title": "Como funciona um projeto.",
-      "sub": "Dimensionado pro seu app e pro seu time.",
-      "steps": {
-        "review": {
-          "title": "Diagnóstico",
-          "body": "Leio o código, o pipeline de release e o backlog, e converso com quem é dono de cada um."
-        },
-        "plan": {
-          "title": "Plano",
-          "body": "Um plano priorizado com os tradeoffs explícitos, curto o bastante pra ser lido de verdade."
-        },
-        "ship": {
-          "title": "Execução",
-          "body": "Trabalho dentro do seu time nas partes mais arriscadas: a migração, a performance, o trem de release."
-        },
-        "handoff": {
-          "title": "Passagem",
-          "body": "Documentação, padrões e pessoas donas do resultado, pra nada depender de mim depois."
+        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI.",
+        "receipts": {
+          "mozeic": "Co-criei o Mozeic, o design system interno do Zé Delivery, e depois palestrei no TDC sobre a entrega dele.",
+          "kustomer": "Um design system open-source e SDKs na Kustomer, com a doc que subiu o score de DevX.",
+          "safeJsx": "Downloads no npm em 30 dias do eslint-plugin-safe-jsx, minha regra de lint pro 0 perdido no JSX."
         }
       }
     }
