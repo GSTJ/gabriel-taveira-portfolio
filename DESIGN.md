@@ -153,7 +153,7 @@ Roles, as classes in `ui.css`: `.t-display` (hero, contact ask), `.t-h1` (a card
 
 ## Elevation & Depth
 
-Flat by default. Depth comes from paper steps (paper → paper-2 → paper-3), not shadows. `--shadow` is reserved for things that physically float: the phone frame and a modal sheet. The sticky nav uses an 88% paper with a 12px backdrop blur and fades in a hairline over the first 24px of scroll (CSS scroll timeline, no JS).
+Flat by default. Depth comes from paper steps (paper → paper-2 → paper-3), not shadows. `--shadow` is reserved for things that physically float: the phone frame, a modal sheet and the "Email copied" toast. The sticky nav uses an 88% paper with a 12px backdrop blur and fades in a hairline over the first 24px of scroll (CSS scroll timeline, no JS).
 
 ## Shapes
 

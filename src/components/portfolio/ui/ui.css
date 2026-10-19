@@ -311,9 +311,10 @@
   }
 }
 
+/* 0.01, not 0: Chrome skips fully transparent text as an LCP candidate. */
 @keyframes enter-fade {
   from {
-    opacity: 0;
+    opacity: 0.01;
     filter: blur(var(--rise-blur));
   }
 }

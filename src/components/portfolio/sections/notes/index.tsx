@@ -9,6 +9,7 @@ import { reveal } from "../../ui/motion";
 import {
   AWARDS,
   NOW,
+  NOW_UPDATED,
   PUBLICATIONS,
   SHIPPED,
   SHIPPED_READ,
@@ -35,7 +36,7 @@ const Now = ({ t, locale }: { t: T; locale: string }) => (
         {t("now.title")}
       </h3>
       <p className="t-meta">
-        {t("now.updated", { date: currentMonthLabel(locale) })}
+        {t("now.updated", { date: currentMonthLabel(locale, NOW_UPDATED) })}
       </p>
     </div>
     <dl className={styles.nowRows}>
