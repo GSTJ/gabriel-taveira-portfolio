@@ -133,9 +133,6 @@ export const Contact = ({
               {tForm("send")}
               <ArrowRight />
             </button>
-            <span className="ws-kbd-hint">
-              <kbd>/</kbd> · <kbd>gt</kbd> · <kbd>↑↑↓↓←→←→BA</kbd>
-            </span>
           </div>
         </form>
       </div>

@@ -291,8 +291,7 @@
       "subjectPh": "O que precisa ser resolvido?",
       "message": "Me conta mais",
       "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
-      "send": "Enviar mensagem",
-      "shortcuts": "contato · ⚡ · auditoria"
+      "send": "Enviar mensagem"
     },
     "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
     "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
@@ -308,10 +307,6 @@
     "eyebrow": "Me acha online",
     "title": "Gabriel <em>Taveira</em>.",
     "sub": "Escolhe uma porta."
-  },
-  "toast": {
-    "konami": "Engenharia reversa detectada.",
-    "konamiSub": "Bem-vindo. As ferramentas estão ali do lado do chapéu de capitão. ⚡"
   },
   "resume": {
     "title": "Gabriel Taveira · Currículo",

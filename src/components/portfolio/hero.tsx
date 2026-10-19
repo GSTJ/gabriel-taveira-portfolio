@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { useTranslations } from "next-intl";
 
 import { CURRICULUM_PDF, LINKEDIN } from "./data";
-import { scrollToSection, useCountUp } from "./hooks";
+import { scrollToSection } from "./hooks";
 import { CAREER_START_YEAR, yearsInIndustry, yearsTinkering } from "./lifeline";
 import { Marginalia } from "./marginalia";
 import { Mark } from "./mark";
@@ -29,23 +29,12 @@ export const Hero = () => {
   const tStats = useTranslations("hero.stats");
   const tMarg = useTranslations("marginalia");
 
-  const yearsRef = useRef<HTMLDivElement | null>(null);
-  const reportsRef = useRef<HTMLDivElement | null>(null);
-  const tinkerRef = useRef<HTMLDivElement | null>(null);
-  const awardsRef = useRef<HTMLDivElement | null>(null);
-
   const yearsTarget = yearsInIndustry();
   const tinkerTarget = yearsTinkering();
-
-  const years = useCountUp(yearsTarget, yearsRef);
-  const reports = useCountUp(56, reportsRef);
-  const tinker = useCountUp(tinkerTarget, tinkerRef);
-  const awards = useCountUp(5, awardsRef);
 
   return (
     <section className="ws-hero" id="top">
       <div className="ws-hero-bg" />
-      <div className="ws-hero-aurora" />
 
       <div className="ws-hero-inner">
         <span className="ws-hero-eyebrow">
@@ -55,8 +44,6 @@ export const Hero = () => {
             <span className="ws-hero-eyebrow-dot" aria-hidden />
             <span className="ws-eyebrow">{t("availability")}</span>
           </span>
-          <span className="ws-eyebrow-sep ws-pdf-hide">·</span>
-          <span className="ws-eyebrow ws-pdf-hide" id="ws-clock" />
         </span>
 
         <h1 className="ws-hero-title">
@@ -128,10 +115,10 @@ export const Hero = () => {
         </div>
 
         <div className="ws-hero-stats">
-          <div ref={yearsRef} className="ws-hero-stat">
+          <div className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-ember" />
             <div className="ws-hero-stat-v ws-hero-stat-plus">
-              {years}
+              {yearsTarget}
               <em aria-hidden>+</em>
             </div>
             <div className="ws-hero-stat-l">{tStats("years")}</div>
@@ -139,9 +126,9 @@ export const Hero = () => {
               {tStats("yearsMeta", { since: CAREER_START_YEAR })}
             </div>
           </div>
-          <div ref={reportsRef} className="ws-hero-stat">
+          <div className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-coral" />
-            <div className="ws-hero-stat-v">{reports}</div>
+            <div className="ws-hero-stat-v">56</div>
             <div className="ws-hero-stat-l">{tStats("reports")}</div>
             <div className="ws-hero-stat-meta">{tStats("reportsMeta")}</div>
             <span className="ws-hero-stat-tag">
@@ -156,13 +143,13 @@ export const Hero = () => {
               </Marginalia>
             </span>
           </div>
-          <div ref={tinkerRef} className="ws-hero-stat">
+          <div className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-brass" />
-            <div className="ws-hero-stat-v">{tinker}</div>
+            <div className="ws-hero-stat-v">{tinkerTarget}</div>
             <div className="ws-hero-stat-l">{tStats("tinkering")}</div>
             <div className="ws-hero-stat-meta">{tStats("tinkeringMeta")}</div>
           </div>
-          <div ref={awardsRef} className="ws-hero-stat">
+          <div className="ws-hero-stat">
             <div className="ws-hero-stat-glow ws-hero-stat-glow-teal" />
             <div className="ws-hero-stat-v ws-hero-stat-trophy">
               <svg
@@ -243,7 +230,7 @@ export const Hero = () => {
                   />
                 </g>
               </svg>
-              <span>{awards}</span>
+              <span>5</span>
             </div>
             <div className="ws-hero-stat-l">{tStats("awards")}</div>
             <div className="ws-hero-stat-meta">{tStats("awardsMeta")}</div>

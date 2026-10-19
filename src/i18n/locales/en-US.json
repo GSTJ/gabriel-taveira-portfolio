@@ -291,8 +291,7 @@
       "subjectPh": "What needs solving?",
       "message": "Tell me more",
       "messagePh": "Team size, timeline, stack, what good looks like.",
-      "send": "Send message",
-      "shortcuts": "contact · ⚡ · audit"
+      "send": "Send message"
     },
     "sentTitle": "Thanks. I'll reply within the week. ⚡",
     "sentBody": "If you don't hear back by next Friday, ping again. Email sometimes loses the war with spam.",
@@ -308,10 +307,6 @@
     "eyebrow": "Find me online",
     "title": "Gabriel <em>Taveira</em>.",
     "sub": "Pick a doorway."
-  },
-  "toast": {
-    "konami": "Reverse engineering detected.",
-    "konamiSub": "Welcome. The tools are over by the captain's hat. ⚡"
   },
   "resume": {
     "title": "Gabriel Taveira · Resume",

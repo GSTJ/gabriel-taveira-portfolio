@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Fragment,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { cva } from "class-variance-authority";
 import { useTranslations } from "next-intl";
@@ -15,7 +9,6 @@ import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/utils/cn";
 
 import { WORK, type WorkItem } from "./data";
-import { Flourish } from "./flourishes";
 import { Mark } from "./mark";
 import { ArrowUpRight, Eyebrow, richTags, Tag } from "./shared";
 
@@ -31,7 +24,6 @@ const workCell = cva("ws-work-cell", {
       brass: "ws-work-tone-brass",
       teal: "ws-work-tone-teal",
     },
-    hover: { true: "is-hover", false: "" },
   },
 });
 
@@ -87,40 +79,13 @@ const HighlightedEyebrow = ({ text }: { text: string }) => (
 
 const WorkTile = ({ item }: { item: WorkItem }) => {
   const t = useTranslations(`work.items.${item.id}`);
-  const ref = useRef<HTMLAnchorElement | null>(null);
-  const [hover, setHover] = useState(false);
-  const [coords, setCoords] = useState({ x: 50, y: 50 });
-
-  const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    setCoords({
-      x: ((e.clientX - r.left) / r.width) * 100,
-      y: ((e.clientY - r.top) / r.height) * 100,
-    });
-  };
-
   return (
     <a
-      ref={ref}
       href={item.href}
       target="_blank"
       rel="noreferrer"
-      className={workCell({ tone: item.tone, hover })}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onMouseMove={onMouseMove}
-      style={
-        {
-          "--mx": `${coords.x}%`,
-          "--my": `${coords.y}%`,
-        } as CSSProperties
-      }
+      className={workCell({ tone: item.tone })}
     >
-      <div className="ws-work-cell-glow" />
-      <div className="ws-work-cell-flourish">
-        <Flourish kind={item.flourish} hover={hover} />
-      </div>
       <div className="ws-work-cell-top">
         <HighlightedEyebrow text={item.eyebrow} />
       </div>
