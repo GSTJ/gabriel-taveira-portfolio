@@ -131,6 +131,10 @@
   "services": {
     "title": "Hire me to unblock your mobile team.",
     "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
+    "proofs": {
+      "label": "Where I did it",
+      "work": "Teams I've led"
+    },
     "items": {
       "audit": {
         "chip": "Audit",
@@ -155,7 +159,7 @@
     },
     "engagement": {
       "title": "How an engagement runs.",
-      "sub": "Same sequence every time, sized to your app and your team.",
+      "sub": "Sized to your app and your team.",
       "steps": {
         "review": {
           "title": "Review",

@@ -131,6 +131,10 @@
   "services": {
     "title": "Me contrata pra destravar seu time mobile.",
     "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
+    "proofs": {
+      "label": "Onde fiz isso",
+      "work": "Times que liderei"
+    },
     "items": {
       "audit": {
         "chip": "Auditoria",
@@ -155,7 +159,7 @@
     },
     "engagement": {
       "title": "Como funciona um projeto.",
-      "sub": "Sempre a mesma sequência, dimensionada pro seu app e pro seu time.",
+      "sub": "Dimensionado pro seu app e pro seu time.",
       "steps": {
         "review": {
           "title": "Diagnóstico",
