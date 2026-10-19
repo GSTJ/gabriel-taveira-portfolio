@@ -4,7 +4,9 @@ import { getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
+import { LINKEDIN } from "../../profile";
 import { ArrowUpRight } from "../../ui/icons";
+import { Marginalia } from "../../ui/marginalia";
 import { reveal } from "../../ui/motion";
 import { WORK, type WorkItem, workDates, workOrgs } from "./data";
 
@@ -17,44 +19,38 @@ const blurbTags = {
   ),
 };
 
-/** "coinbase.com" for a company site, the locale's "LinkedIn" otherwise. */
-const linkLabel = (href: string, linkedin: string) => {
-  const host = new URL(href).hostname.replace(/^www\./, "");
-  return host === "linkedin.com" || host.endsWith(".linkedin.com")
-    ? linkedin
-    : host;
-};
-
 /** "D-ID" stays on one line: a title never breaks at a name's hyphen. */
 const keepHyphens = (text: string) =>
   text.replaceAll(/(\w)-(\w)/g, "$1\u2011$2");
+
+const host = (href: string) => new URL(href).hostname.replace(/^www\./, "");
 
 /** The career axis: the first job's year to the end of this year. */
 const AXIS_START = Math.min(...WORK.map((item) => item.start));
 const AXIS_END = new Date().getFullYear() + 1;
 const AXIS_YEARS = AXIS_END - AXIS_START;
+const YEARS = Array.from({ length: AXIS_YEARS }, (_, i) => AXIS_START + i);
+const YEARS_STYLE = { "--years": AXIS_YEARS } as CSSProperties;
 
-/** Where a job sits on the axis, in years counted whole (2024 → 2025 is two). */
-const spanStyle = (item: WorkItem) => {
+/**
+ * Where a job sits on the chart, in whole years (2024 → 2025 is two), and
+ * when it draws: oldest first, so the bars climb in the order they happened.
+ */
+const laneStyle = (item: WorkItem, index: number) => {
   const end = item.end === "now" ? AXIS_END : item.end + 1;
+  const from = (item.start - AXIS_START) / AXIS_YEARS;
   return {
-    "--from": `${((item.start - AXIS_START) / AXIS_YEARS) * 100}%`,
+    "--from": `${from * 100}%`,
     "--span": `${((end - item.start) / AXIS_YEARS) * 100}%`,
+    "--order": WORK.length - 1 - index,
   } as CSSProperties;
 };
 
-const Track = ({ item }: { item: WorkItem }) => (
-  <span
-    className={styles.track}
-    data-open={item.end === "now" ? "" : undefined}
-    style={spanStyle(item)}
-    aria-hidden
-  >
-    <span className={styles.fill} />
-  </span>
-);
+/** A label hangs off whichever end of its bar has room. */
+const side = (item: WorkItem) =>
+  (item.start - AXIS_START) / AXIS_YEARS > 0.5 ? "end" : "start";
 
-/** Newest first, one ruled row per job, the two earliest as small print. */
+/** Newest first: the chart of who each job reached, then one row per job. */
 export const WorkSection = async () => {
   const t = await getTranslations("work");
   const present = t("present");
@@ -71,10 +67,59 @@ export const WorkSection = async () => {
         <p>{t("sub")}</p>
       </div>
 
-      <p className={cn("t-meta num", styles.axis)} aria-hidden {...reveal()}>
-        <span>{AXIS_START}</span>
-        <span>{present}</span>
-      </p>
+      <figure className={styles.chart} {...reveal()}>
+        <ol
+          className={styles.lanes}
+          style={YEARS_STYLE}
+          aria-label={t("chart.label")}
+        >
+          {WORK.map((item, index) => (
+            <li
+              key={item.id}
+              className={styles.lane}
+              data-side={side(item)}
+              data-open={item.end === "now" ? "" : undefined}
+              style={laneStyle(item, index)}
+            >
+              <a className={styles.laneLink} href={`#work-${item.id}`}>
+                <span className={styles.label}>
+                  <span className={styles.scope}>
+                    {t(`items.${item.id}.scope`)}
+                  </span>{" "}
+                  <span className={styles.who}>
+                    {item.id === "consulting"
+                      ? t(`items.${item.id}.title`)
+                      : keepHyphens(item.orgs[0] ?? "")}
+                    <span className="visually-hidden">
+                      , {workDates(item, present)}
+                    </span>
+                  </span>
+                </span>
+                <span className={styles.bar} aria-hidden>
+                  <span className={styles.fill} />
+                </span>
+              </a>
+              {item.end === "now" ? (
+                <span className={styles.note}>
+                  <Marginalia placement="inline" note={t("chart.note")} />
+                </span>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+        <p
+          className={cn("t-meta num", styles.years)}
+          style={YEARS_STYLE}
+          aria-hidden
+        >
+          {YEARS.map((year) => (
+            <span key={year}>{year}</span>
+          ))}
+        </p>
+        <figcaption className={cn("t-meta", styles.caption)}>
+          {t("chart.caption")}
+        </figcaption>
+      </figure>
 
       <ol className={styles.ledger}>
         {rows.map((item) => (
@@ -85,23 +130,38 @@ export const WorkSection = async () => {
             data-billing={item.billing}
             {...reveal()}
           >
-            <p className={styles.when}>
-              <span className="t-small num">{workDates(item, present)}</span>
-              <Track item={item} />
+            <p className={cn("t-small num", styles.when)}>
+              {workDates(item, present)}
             </p>
             <div className={styles.head}>
               <h3 className={styles.title}>
                 {keepHyphens(t(`items.${item.id}.title`))}
               </h3>
-              <p className="t-meta">{keepHyphens(orgs(item))}</p>
+              {item.id === "consulting" ? null : (
+                <p className="t-meta">{keepHyphens(orgs(item))}</p>
+              )}
             </div>
             <p className={cn("t-body", styles.blurb)}>
               {t.rich(`items.${item.id}.blurb`, blurbTags)}
             </p>
-            <a className={cn("link-arrow t-small", styles.go)} href={item.href}>
-              {linkLabel(item.href, t("linkedin"))}
-              <ArrowUpRight />
-            </a>
+            <p className={cn("t-small", styles.go)}>
+              {item.href === LINKEDIN ? (
+                <a className="link-arrow" href="#services">
+                  {t("servicesLink")}
+                </a>
+              ) : (
+                <a className="link-arrow" href={item.href}>
+                  {host(item.href)}
+                  <ArrowUpRight />
+                </a>
+              )}
+              {item.artifact ? (
+                <a className="link-arrow" href={item.artifact.href}>
+                  {t(item.artifact.label)}
+                  <ArrowUpRight />
+                </a>
+              ) : null}
+            </p>
           </li>
         ))}
       </ol>
@@ -111,9 +171,8 @@ export const WorkSection = async () => {
         <ul>
           {earlier.map((item) => (
             <li key={item.id} id={`work-${item.id}`} className={styles.small}>
-              <p className={styles.when}>
-                <span className="t-small num">{workDates(item, present)}</span>
-                <Track item={item} />
+              <p className={cn("t-small num", styles.when)}>
+                {workDates(item, present)}
               </p>
               <div className={styles.head}>
                 <h4 className={cn("t-small", styles.org)}>{orgs(item)}</h4>
@@ -125,6 +184,12 @@ export const WorkSection = async () => {
             </li>
           ))}
         </ul>
+        <p className="t-small">
+          <a className="link-arrow" href={LINKEDIN}>
+            {t("linkedinFull")}
+            <ArrowUpRight />
+          </a>
+        </p>
       </div>
     </section>
   );

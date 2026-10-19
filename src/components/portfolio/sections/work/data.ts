@@ -21,6 +21,8 @@ export type WorkItem = {
    */
   billing: "current" | "top" | "main" | "agate";
   href: string;
+  /** A public artifact from the job itself, labeled by `work.<label>`. */
+  artifact?: { href: string; label: "zePr" };
 };
 
 /** Newest first. `orgs`, `start` and `end` feed the resume, llms.txt and JSON-LD. */
@@ -78,6 +80,11 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Hiring", "Native", "Design Systems"],
     billing: "main",
     href: "https://www.ze.delivery/",
+    artifact: {
+      // Merged 2021-09-13: the public mobile hiring challenge, kept current.
+      href: "https://github.com/ab-inbev-ze-company/ze-code-challenges/pull/35",
+      label: "zePr",
+    },
   },
   {
     id: "alfred",

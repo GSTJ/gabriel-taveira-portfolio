@@ -1,15 +1,128 @@
 /*
- * The ledger: when | role and orgs | what shipped | where. Dates and orgs sit
- * in the left columns so a scan down the page reads the career in order.
+ * The career chart: one lane per job on a shared year axis, newest on top,
+ * so the bars climb up and to the right. Each label says who the job
+ * reached. Below it, the ledger: when | role and orgs | what shipped | where.
  */
+
+/* ── The chart ──────────────────────────────────────────────────────── */
+
+.chart {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+/* One hairline per year boundary: the chart's own grid, not decoration. */
+.lanes {
+  display: grid;
+  border-left: 1px solid var(--rule);
+  background-image: linear-gradient(to left, var(--rule) 1px, transparent 1px);
+  background-size: calc(100% / var(--years)) 100%;
+}
+
+.lane {
+  position: relative;
+}
+
+.laneLink {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-2) var(--space-3);
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--r-sm);
+}
+
+/* The label starts where its bar starts, or ends where it ends. */
+.label {
+  font-size: var(--fs-small);
+  line-height: var(--lh-title);
+  text-wrap: balance;
+}
+
+.lane[data-side="start"] .label {
+  padding-left: calc(var(--from) + var(--space-2));
+  padding-right: var(--space-2);
+}
+
+.lane[data-side="end"] .label {
+  padding-right: calc(100% - var(--from) - var(--span) + var(--space-2));
+  padding-left: var(--space-2);
+  text-align: right;
+}
+
+.scope {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+}
+
+.who {
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  height: var(--space-2);
+}
+
+.fill {
+  position: absolute;
+  inset-block: 0;
+  left: var(--from);
+  width: var(--span);
+  border-radius: var(--r-pill);
+  background: var(--ink-3);
+  transform-origin: left center;
+  transition: background-color var(--dur-hover) var(--ease-out);
+}
+
+/* The open engagement is the only ink bar, and it runs off the edge. */
+.lane[data-open] .fill {
+  background: var(--ink);
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+/* His note under the open lane, at the "now" end. */
+.note {
+  display: block;
+  padding-right: var(--space-2);
+  margin-top: calc(-1 * var(--space-2));
+  text-align: right;
+}
+
+.years {
+  display: grid;
+  grid-template-columns: repeat(var(--years), minmax(0, 1fr));
+  color: var(--ink-3);
+}
+
+.years span {
+  padding-left: var(--space-2);
+}
+
+.caption {
+  color: var(--ink-3);
+}
+
+/* ── The ledger ─────────────────────────────────────────────────────── */
+
 .ledger {
   display: grid;
   border-bottom: 1px solid var(--rule);
 }
 
+.row,
+.small {
+  position: relative;
+  isolation: isolate;
+}
+
 .row {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
+  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 12rem;
   gap: var(--space-6);
   align-items: baseline;
   padding-block: var(--space-6);
@@ -50,11 +163,6 @@
 }
 
 .when {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.when > :first-child {
   color: var(--ink-3);
 }
 
@@ -89,41 +197,11 @@
 }
 
 .go {
-  justify-self: end;
-}
-
-/* ── The career axis ───────────────────────────────────────────────── */
-
-.axis {
-  display: flex;
-  justify-content: space-between;
-  width: 10rem;
-  padding-bottom: var(--space-2);
-}
-
-/* Every job on one axis, first job to now: the fill is this job's years. */
-.track {
-  position: relative;
-  display: block;
-  width: 10rem;
-  height: 3px;
-  border-radius: var(--r-pill);
-  background: var(--rule);
-}
-
-.fill {
-  position: absolute;
-  inset-block: 0;
-  left: var(--from);
-  width: var(--span);
-  border-radius: inherit;
-  background: var(--ink-3);
-  transform-origin: left center;
-  transition: background-color var(--dur-hover) var(--ease-out);
-}
-
-.track[data-open] .fill {
-  background: var(--ink);
+  display: grid;
+  justify-items: end;
+  white-space: nowrap;
+  gap: var(--space-2);
+  text-align: right;
 }
 
 /* ── Earlier ────────────────────────────────────────────────────────── */
@@ -141,7 +219,7 @@
 
 .small {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
+  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 12rem;
   gap: var(--space-6);
   align-items: baseline;
 }
@@ -157,23 +235,57 @@
 
 /* ── Motion ─────────────────────────────────────────────────────────── */
 
-/* The span draws from the job's first year once its row lands. */
 @media (prefers-reduced-motion: no-preference) {
+  /* Bars draw oldest first, each from its first year; its label follows. */
   .fill {
     transition:
       transform var(--dur-pen) var(--ease-in-out)
-        calc(var(--delay, 0ms) + var(--dur-ui)),
+        calc(var(--delay, 0ms) + var(--dur-ui) + var(--order) * var(--stagger)),
       background-color var(--dur-hover) var(--ease-out);
   }
 
-  :global(.js) [data-reveal]:not([data-in]) .fill {
+  .label {
+    transition: opacity var(--dur-ui) var(--ease-out)
+      calc(var(--delay, 0ms) + var(--dur-ui) + var(--order) * var(--stagger));
+  }
+
+  :global(.js) .chart:not([data-in]) .fill {
     transform: scaleX(0);
+  }
+
+  :global(.js) .chart:not([data-in]) .label {
+    opacity: 0;
+  }
+
+  /* A jump from the chart (or services) lands with a wash that fades out. */
+  .row:target::before,
+  .small:target::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: var(--r-md);
+    background: var(--pen-wash);
+    pointer-events: none;
+    animation: landed calc(var(--dur-note) * 2) var(--ease-out) both;
+  }
+}
+
+@keyframes landed {
+  to {
+    opacity: 0;
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .row:hover .fill {
+  .laneLink:hover .fill {
     background: var(--ink);
+  }
+
+  .laneLink:hover .scope {
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.2em;
   }
 }
 
@@ -190,11 +302,24 @@
   }
 
   .go {
-    justify-self: start;
+    justify-items: start;
+    text-align: left;
   }
 
   .small {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-2);
+  }
+}
+
+/* At phone width every label sits on its own full line above the bar. */
+@media (width < 760px) {
+  .lane[data-side] .label {
+    padding-inline: var(--space-2);
+    text-align: left;
+  }
+
+  .years span:nth-child(even) {
+    visibility: hidden;
   }
 }
