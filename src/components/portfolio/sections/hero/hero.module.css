@@ -46,6 +46,11 @@
   margin-top: clamp(2rem, 4vw, 3.5rem);
 }
 
+/* The note's anchor stays one phrase, so its underline never splits at 390. */
+.body strong {
+  white-space: nowrap;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -55,6 +60,7 @@
 }
 
 .plain {
-  margin-left: var(--space-2);
+  min-height: var(--space-7); /* a full tap target beside the 46px buttons */
+  padding-inline: var(--space-1);
   color: var(--ink-2);
 }
