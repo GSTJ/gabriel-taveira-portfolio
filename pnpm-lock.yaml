@@ -194,6 +194,9 @@ importers:
       '@vercel/analytics':
         specifier: 2.0.1
         version: 2.0.1(next@16.3.8(@types/node@26.6.4)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
+      magic-modal:
+        specifier: 10.2.1
+        version: 10.2.1(react@19.3.0)
       magic-observability:
         specifier: 1.0.5
         version: 1.0.5(@posthog/react@1.11.3(@types/react@19.3.0)(posthog-js@1.435.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(posthog-js@1.435.9(@types/react@19.3.0)(react@19.3.0))(posthog-node@5.55.0)(react@19.3.0)
@@ -1573,6 +1576,27 @@ packages:
     engines: {node: '>=22'}
     hasBin: true
 
+  magic-modal@10.2.1:
+    resolution: {integrity: sha512-nTZidNIPoqRJ9F5/ZOI+ap/hxWURFk/rigDZS+ZeDDI1iMdIB6ETNifHGG3OuUHJ3ZI94t6MroJRzAYNomMSKw==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-native: '>=0.81.0'
+      react-native-gesture-handler: '>=2.20.0'
+      react-native-reanimated: '>=4.1.0'
+      react-native-screens: '>=4.19.0'
+      react-native-worklets: '>=0.5.0'
+    peerDependenciesMeta:
+      react-native:
+        optional: true
+      react-native-gesture-handler:
+        optional: true
+      react-native-reanimated:
+        optional: true
+      react-native-screens:
+        optional: true
+      react-native-worklets:
+        optional: true
+
   magic-observability@1.0.5:
     resolution: {integrity: sha512-pvgSsmvLssmNR4B21QSPVIB2ALsM3KCROcEieiv624QaI3xlYaZ2dUgOiMhtRcsHT8ZsBGHs+Wc4GiiH285AoA==}
     engines: {node: '>=22'}
@@ -2788,6 +2812,10 @@ snapshots:
   magic-codemods@1.1.6:
     dependencies:
       ts-morph: 28.0.0
+
+  magic-modal@10.2.1(react@19.3.0):
+    dependencies:
+      react: 19.3.0
 
   magic-observability@1.0.5(@posthog/react@1.11.3(@types/react@19.3.0)(posthog-js@1.435.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(posthog-js@1.435.9(@types/react@19.3.0)(react@19.3.0))(posthog-node@5.55.0)(react@19.3.0):
     optionalDependencies:

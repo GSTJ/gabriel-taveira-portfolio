@@ -1,14 +1,835 @@
-.list {
+/*
+ * Projects: a bento where each card proves its claim its own way. One grid,
+ * one card surface (paper-2, 14px), and inside each card its own grammar.
+ * Cards are size containers, so their insides adapt to the width they get in
+ * either composition, not to the viewport.
+ */
+
+/* ── Grid ───────────────────────────────────────────────────────────── */
+
+.bento {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
-  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "cv" "mm" "sj" "npm" "sec" "pg";
+  gap: var(--space-3);
 }
 
-.item {
+.areaCv {
+  grid-area: cv;
   display: grid;
-  align-content: start;
-  gap: var(--space-3);
+}
+.areaMm {
+  grid-area: mm;
+}
+.areaSj {
+  grid-area: sj;
+}
+.areaNpm {
+  grid-area: npm;
+}
+.areaSec {
+  grid-area: sec;
+}
+.areaPg {
+  grid-area: pg;
+}
+
+@media (width >= 760px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "cv cv"
+      "mm sj"
+      "npm npm"
+      "sec pg";
+    gap: var(--space-4);
+  }
+}
+
+@media (width >= 1100px) {
+  /* Curvinha holds two rows on the left, the two running demos beside it. */
+  .bento {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      "cv cv cv cv cv cv cv cv mm mm mm mm"
+      "cv cv cv cv cv cv cv cv sj sj sj sj"
+      "npm npm npm npm npm npm npm pg pg pg pg pg"
+      "sec sec sec sec sec sec sec sec sec sec sec sec";
+  }
+}
+
+/* ── Card surface ───────────────────────────────────────────────────── */
+
+.card {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
   padding: var(--space-6);
   border-radius: var(--r-lg);
   background: var(--paper-2);
+  overflow: hidden;
+}
+
+@media (width < 760px) {
+  .card {
+    padding: var(--space-5);
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: var(--fs-meta);
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.stars svg {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.end {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ── Curvinha: copy and steps on one side, the phone on the other ───── */
+
+.curvinha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+  padding-bottom: 0;
+}
+
+/* The card itself is the container's child, so query its wrapper instead. */
+.areaCv {
+  container-type: inline-size;
+}
+
+@container (inline-size >= 40rem) {
+  .curvinha {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-7);
+    padding: var(--space-7) var(--space-7) 0;
+  }
+
+  .cvCopy {
+    padding-bottom: var(--space-7);
+  }
+
+  .phone {
+    width: clamp(17rem, 44cqi, 23rem);
+    align-self: end;
+    margin-top: var(--space-4);
+  }
+}
+
+.cvCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 28em;
+}
+
+.cvTitle {
+  font-stretch: var(--wd-heading);
+}
+
+.cvRole {
+  color: var(--ink-2);
+}
+
+.cvBody {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+
+.cvSteps {
+  display: grid;
+  margin-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.cvStep {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-1) 0;
+  width: 100%;
+  padding: var(--space-3) 0 0.875rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-3);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: color var(--dur-hover) ease;
+}
+
+.cvStep[aria-selected="true"] {
+  color: var(--ink);
+}
+
+.cvStepN {
+  font-size: var(--fs-meta);
+}
+
+.cvStepTitle {
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-title);
+}
+
+.cvStepBody {
+  grid-column: 2;
+  display: none;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.cvStep[aria-selected="true"] .cvStepBody {
+  display: block;
+}
+
+/* The selected step's hairline. While the card plays itself it fills over the
+   step's time, so the visitor can see the next swap coming. */
+.cvTimer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.cvStep[aria-selected="true"] .cvTimer {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-playing] .cvStep[aria-selected="true"] .cvTimer {
+    animation: cv-fill 3600ms linear both;
+  }
+}
+
+@keyframes cv-fill {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.cvFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+}
+
+/* The phone sits on the card's bottom edge and runs off it, so the crop line
+   above the app's price sheet is never on screen. */
+.phone {
+  justify-self: center;
+  width: min(70vw, 17rem);
+  aspect-ratio: 600 / 960;
+  padding: 0.5625rem 0.5625rem 0;
+  border-radius: 2.75rem 2.75rem 0 0;
+  background: var(--bezel);
+  box-shadow: var(--shadow);
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2.25rem 2.25rem 0 0;
+  background: var(--paper-3);
+}
+
+.shot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.shot[data-on] {
+  opacity: 1;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Out fast, in slower with a little blur and scale, so two screens never
+     read as two objects overlapping. */
+  .shot {
+    filter: blur(3px);
+    transform: scale(1.015);
+    transition:
+      opacity 260ms ease,
+      filter 260ms ease,
+      transform 420ms var(--ease-out);
+  }
+
+  .shot[data-on] {
+    filter: none;
+    transform: none;
+    transition:
+      opacity 380ms var(--ease-out),
+      filter 380ms var(--ease-out),
+      transform 520ms var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot {
+    transition: opacity 200ms ease;
+  }
+}
+
+/* ── Library cards: claim, code, the real thing ─────────────────────── */
+
+.code {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink-2);
+  font: var(--fs-mono) / 1.65 var(--font-mono);
+  white-space: pre;
+  overflow-x: auto;
+  tab-size: 2;
+}
+
+.k {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.c {
+  color: var(--ink-3);
+}
+
+.squiggle {
+  text-decoration: underline wavy var(--pen);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.fixed {
+  color: var(--ink);
+  background: var(--pen-wash);
+  border-radius: var(--r-sm);
+  box-shadow: 0 0 0 2px var(--pen-wash);
+}
+
+.readout {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  min-height: 3.4em;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.readout output {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.pending::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.18em;
+  background: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pending::after {
+    animation: caret 1s steps(1) infinite;
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.rowEnd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+}
+
+.rowEnd [aria-disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* The real modal's layer. The library positions its stack inside this box. */
+.modalHost {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.sheet {
+  align-self: center;
+  display: grid;
+  gap: var(--space-2);
+  width: min(23.75rem, calc(100vw - 2 * var(--gutter)));
+  padding: var(--space-5);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  font-family: var(--font-sans);
+}
+
+.sheetRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* safe-jsx */
+
+.lintControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.lintControls > span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+}
+
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+}
+
+.seg button {
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--r-pill);
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.seg button:active,
+.switch input:active {
+  transform: scale(0.97);
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.switch input {
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: 2.25rem;
+  height: 1.375rem;
+  margin: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-ui) ease,
+    border-color var(--dur-ui) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.switch input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 2px var(--shadow-far);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.switch input:checked {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.switch input:checked::after {
+  transform: translateX(0.875rem);
+}
+
+.render {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 3.25rem;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.renderLabel {
+  font-weight: var(--fw-medium);
+}
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.375rem;
+  height: 1.375rem;
+  padding: 0 0.4375rem;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+}
+
+/* His pen circling the 0 React printed. */
+.stray {
+  position: relative;
+  margin-left: var(--space-1);
+  color: var(--ink);
+}
+
+.stray svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.9rem;
+  height: 1.9rem;
+  max-width: none;
+  translate: -50% -52%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.stray path {
+  fill: none;
+  stroke: var(--pen);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.strayNote {
+  margin-left: var(--space-2);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stray path {
+    stroke-dasharray: 1;
+    animation: pen-circle var(--dur-pen) var(--ease-pen) both;
+  }
+
+  .strayNote {
+    animation: note-write var(--dur-note) var(--ease-pen) var(--dur-arrow) both;
+  }
+}
+
+@keyframes pen-circle {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes note-write {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.lintMsg {
+  transition: opacity var(--dur-ui) ease;
+}
+
+.lintMsg[data-hidden] {
+  opacity: 0;
+}
+
+.rule {
+  font: 600 var(--fs-meta) var(--font-mono);
+  color: var(--ink);
+}
+
+/* ── npm ledger: names, numbers, one bar each ───────────────────────── */
+
+.dl {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dlRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.dlRow:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.dlName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+  min-width: 0;
+}
+
+.dlName a {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.dlValue {
+  font-weight: var(--fw-medium);
+}
+
+.bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+
+.bar i,
+.add,
+.del {
+  display: block;
+  height: 100%;
+  transform-origin: left;
+}
+
+.bar i {
+  width: calc(var(--w) * 100%);
+  min-width: 3px;
+  background: var(--ink);
+}
+
+/* ── Security: three merged fixes, sized by their diff ──────────────── */
+
+.prs {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.prLink {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.prLink > span:first-child {
+  color: var(--ink-3);
+}
+
+.prTitle {
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-body);
+}
+
+.prLink svg {
+  width: 0.85em;
+  height: 0.85em;
+  align-self: center;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.diff {
+  display: flex;
+  gap: 2px;
+  height: 0.5rem;
+}
+
+.add {
+  width: calc(var(--add) * 100%);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.del {
+  width: calc(var(--del) * 100%);
+  min-width: 3px;
+  border-radius: var(--r-pill);
+  background: var(--rule-strong);
+}
+
+.diffNums {
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* Wide card: the three fixes side by side, each a column. */
+@container (inline-size >= 52rem) {
+  .prs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .pr {
+    align-content: start;
+  }
+}
+
+/* ── Pegada: where it came from ─────────────────────────────────────── */
+
+.lineage {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lineage li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.lineage li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.lineage a {
+  display: grid;
+  gap: 2px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.lineageName {
+  font-weight: var(--fw-medium);
+}
+
+/* ── Motion: bars grow once their card is in view ───────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) [data-reveal] .bar i,
+  :global(.js) [data-reveal] .add,
+  :global(.js) [data-reveal] .del {
+    transition: transform 900ms var(--ease-out)
+      calc(var(--dur-enter) * 0.4 + var(--i, 0) * 70ms);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .bar i,
+  :global(.js) [data-reveal]:not([data-in]) .add,
+  :global(.js) [data-reveal]:not([data-in]) .del {
+    transform: scaleX(0);
+  }
+}
+
+/* ── Hover, only where there is a real pointer ──────────────────────── */
+
+@media (hover: hover) and (pointer: fine) {
+  .cvStep:hover {
+    color: var(--ink);
+  }
+
+  .seg button:hover:not([aria-pressed="true"]) {
+    background: var(--paper-3);
+  }
+
+  .stars:hover,
+  .dlName a:hover,
+  .lineage a:hover .lineageName,
+  .prLink:hover .prTitle {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .prLink:hover svg {
+    transform: translate(2px, -2px);
+  }
 }

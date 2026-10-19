@@ -17,6 +17,7 @@
     "@next/third-parties": "16.3.8",
     "@posthog/react": "^1.10.3",
     "@vercel/analytics": "2.0.1",
+    "magic-modal": "10.2.1",
     "magic-observability": "1.0.5",
     "next": "16.3.8",
     "next-intl": "4.14.9",

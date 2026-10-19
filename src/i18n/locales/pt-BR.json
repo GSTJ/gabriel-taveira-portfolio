@@ -54,21 +54,65 @@
   "projects": {
     "title": "Coisas que eu fiz.",
     "sub": "O app que estou construindo agora e o open source que outros times usam em produção.",
-    "source": "Código no GitHub",
+    "codeLabel": "Código de exemplo",
+    "stars": "{count} estrelas no GitHub",
+    "starsSource": "Estrelas lidas no GitHub em {date}.",
     "items": {
       "curvinha": {
         "title": "Curvinha",
         "role": "Fundador · eu que construí",
         "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
-        "cta": "Abrir curvinha.app"
+        "cta": "Abrir curvinha.app",
+        "caption": "Telas do ambiente de exemplo do app.",
+        "stepsLabel": "Curvinha, passo a passo",
+        "steps": {
+          "measure": {
+            "title": "Meça o ambiente",
+            "body": "Dê uma volta pelas paredes com o iPhone. Leva uns 2 a 5 minutos.",
+            "alt": "Tela de medição da Curvinha: Vamos medir o seu ambiente. Leva uns 2 a 5 minutos."
+          },
+          "plan": {
+            "title": "Receba a planta",
+            "body": "O ambiente visto de cima, com cada peça no lugar.",
+            "alt": "Planta do ambiente de exemplo mobiliado na Curvinha, vista de cima."
+          },
+          "room": {
+            "title": "Veja a proposta em 3D",
+            "body": "Peças reais de lojas reais, no seu ambiente.",
+            "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar."
+          }
+        }
       },
       "magicModal": {
         "title": "magic-modal",
-        "body": "Um modal mágico que você pode dar await de qualquer lugar: React Native, Expo e web."
+        "body": "Um modal mágico que você pode dar await de qualquer lugar: React Native, Expo e web.",
+        "comment": "// continua quando o modal fecha",
+        "run": "Rodar",
+        "idle": "Aperte Rodar pra abrir o modal de verdade.",
+        "loading": "Carregando o pacote",
+        "pending": "await magicModal.show(Confirm)",
+        "resolved": "resolveu com",
+        "failed": "Não deu pra carregar o pacote. Tenta de novo.",
+        "hint": "Testa o Esc ou um clique fora também.",
+        "modal": {
+          "label": "Confirmar publicação",
+          "title": "Publicar esta versão?",
+          "body": "Esse modal é o pacote de verdade. O que você escolher volta pro await.",
+          "yes": "Publicar",
+          "no": "Cancelar"
+        }
       },
       "safeJsx": {
         "title": "safe-jsx",
-        "body": "Um plugin de ESLint que exige converter pra boolean antes de usar && com JSX, pra nunca aparecer um 0 solto na tela em React ou React Native."
+        "body": "Um plugin de ESLint que exige converter pra boolean antes de usar && com JSX, pra nunca aparecer um 0 solto na tela em React ou React Native.",
+        "short": "Uma regra de ESLint pro 0 solto que o && deixa vazar no JSX.",
+        "countLabel": "Mudar count para",
+        "fix": "Aplicar a correção",
+        "inbox": "Inbox",
+        "stray": "o zero solto",
+        "strayLabel": "Um 0 solto aparecendo na tela",
+        "badgeLabel": "3 não lidas",
+        "nothing": "Nada aparece ao lado de Inbox"
       },
       "magicToast": {
         "title": "react-native-magic-toast",
@@ -76,7 +120,31 @@
       },
       "pegada": {
         "title": "Pegada",
-        "body": "Um app de encontros pra cachorros feito com Expo e Next.js, agora open source."
+        "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e Next.js, agora open source.",
+        "pegava": "Primeira versão, arquivada",
+        "now": "A sucessora, mantida e open source",
+        "launch": "Lançado no Product Hunt em 2024"
+      }
+    },
+    "npm": {
+      "title": "Downloads no npm",
+      "rows": {
+        "magicModal": "os dois nomes, react-native-magic-modal incluso",
+        "safeJsx": "a regra do 0 solto",
+        "magicToast": "um toast que você chama de qualquer lugar",
+        "observability": "analytics e erros, este site roda nele",
+        "codePush": "CodePush pro Expo"
+      },
+      "source": "Últimos 30 dias, de {start} a {end}, pelo <npm>npm</npm>."
+    },
+    "security": {
+      "title": "Correções de segurança, mergeadas",
+      "body": "Três correções, cada uma com teste de regressão, medidas pelo tamanho do diff.",
+      "diffLabel": "{added} linhas adicionadas, {removed} removidas",
+      "items": {
+        "authorization": "Upload liberado só pra quem pediu",
+        "identity": "OTP de uso único mesmo com concorrência",
+        "assetBoundary": "Arquivos de fora longe da origem deste site"
       }
     }
   },
