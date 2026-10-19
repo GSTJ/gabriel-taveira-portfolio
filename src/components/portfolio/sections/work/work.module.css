@@ -1,44 +1,200 @@
+/*
+ * The ledger: when | role and orgs | what shipped | where. Dates and orgs sit
+ * in the left columns so a scan down the page reads the career in order.
+ */
 .ledger {
   display: grid;
+  border-bottom: 1px solid var(--rule);
 }
 
 .row {
   display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1.25fr) 10rem;
+  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
   gap: var(--space-6);
   align-items: baseline;
   padding-block: var(--space-6);
   border-top: 1px solid var(--rule);
 }
 
-.row > a {
+/*
+ * The featured role gets more air and a bigger title across both text
+ * columns, so its blurb still lines up with every other row.
+ */
+.row[data-billing="top"] {
+  padding-block: var(--space-7);
+}
+
+@media (width >= 1000px) {
+  .row[data-billing="top"] {
+    grid-template-areas:
+      "when head head go"
+      ". blurb blurb .";
+    row-gap: var(--space-5);
+  }
+
+  .row[data-billing="top"] .when {
+    grid-area: when;
+  }
+
+  .row[data-billing="top"] .head {
+    grid-area: head;
+  }
+
+  .row[data-billing="top"] .blurb {
+    grid-area: blurb;
+  }
+
+  .row[data-billing="top"] .go {
+    grid-area: go;
+  }
+}
+
+.when {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.when > :first-child {
+  color: var(--ink-3);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.title {
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  font-weight: var(--fw-medium);
+  text-wrap: balance;
+}
+
+.row[data-billing="top"] .title {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tr-h2);
+}
+
+.blurb {
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+.figure {
+  color: var(--ink);
+  font-weight: var(--fw-strong);
+  white-space: nowrap;
+}
+
+.go {
   justify-self: end;
 }
 
-.earlier {
-  display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr);
-  gap: var(--space-6);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--rule);
+/* ── The career axis ───────────────────────────────────────────────── */
+
+.axis {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+  padding-bottom: var(--space-2);
 }
 
-.earlier li + li {
-  margin-top: var(--space-2);
+/* Every job on one axis, first job to now: the fill is this job's years. */
+.track {
+  position: relative;
+  display: block;
+  width: 10rem;
+  height: 3px;
+  border-radius: var(--r-pill);
+  background: var(--rule);
 }
+
+.fill {
+  position: absolute;
+  inset-block: 0;
+  left: var(--from);
+  width: var(--span);
+  border-radius: inherit;
+  background: var(--ink-3);
+  transform-origin: left center;
+  transition: background-color var(--dur-hover) var(--ease-out);
+}
+
+.track[data-open] .fill {
+  background: var(--ink);
+}
+
+/* ── Earlier ────────────────────────────────────────────────────────── */
+
+.earlier {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+}
+
+.earlier ul {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.small {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
+  gap: var(--space-6);
+  align-items: baseline;
+}
+
+.small > :last-child {
+  max-width: var(--measure);
+}
+
+.org {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+}
+
+/* ── Motion ─────────────────────────────────────────────────────────── */
+
+/* The span draws from the job's first year once its row lands. */
+@media (prefers-reduced-motion: no-preference) {
+  .fill {
+    transition:
+      transform var(--dur-pen) var(--ease-in-out)
+        calc(var(--delay, 0ms) + var(--dur-ui)),
+      background-color var(--dur-hover) var(--ease-out);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .fill {
+    transform: scaleX(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover .fill {
+    background: var(--ink);
+  }
+}
+
+/* ── Narrow ─────────────────────────────────────────────────────────── */
 
 @media (width < 1000px) {
   .row {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
   }
 
-  .row > a {
+  .row[data-billing="top"] {
+    padding-block: var(--space-6);
+  }
+
+  .go {
     justify-self: start;
   }
 
-  .earlier {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
+  .small {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
   }
 }
