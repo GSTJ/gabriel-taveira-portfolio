@@ -1,19 +1,9 @@
 /** The /security page: merged, public fixes with a regression check. */
 
-export const SECURITY_TOPICS = [
-  "Application Security",
-  "Authentication",
-  "Authorization",
-  "Secure SDLC",
-  "Threat Modeling",
-  "Vulnerability Remediation",
-] as const;
-
 export type SecurityCase = {
   id: "assetBoundary" | "identity" | "authorization";
   eyebrow: string;
   metric: string;
-  tags: readonly string[];
   href: string;
 };
 
@@ -22,21 +12,18 @@ export const SECURITY_CASES: readonly SecurityCase[] = [
     id: "assetBoundary",
     eyebrow: "GABRIELTAVEIRA.DEV · 2026",
     metric: "XSS",
-    tags: ["Threat modeling", "Cloud boundary", "HTTP headers"],
     href: "https://github.com/GSTJ/gabriel-taveira-portfolio/pull/163",
   },
   {
     id: "identity",
     eyebrow: "PEGADA · 2026",
     metric: "25×",
-    tags: ["Authentication", "Concurrency", "Release integrity"],
     href: "https://github.com/GSTJ/pegada/pull/181",
   },
   {
     id: "authorization",
     eyebrow: "PEGADA · 2026",
     metric: "10m",
-    tags: ["Authorization", "Signed uploads", "Abuse controls"],
     href: "https://github.com/GSTJ/pegada/pull/180",
   },
 ] as const;

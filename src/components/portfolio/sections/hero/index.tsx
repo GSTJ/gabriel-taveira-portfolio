@@ -48,11 +48,9 @@ export const HeroSection = async () => {
         <span>{t("place", { month: currentMonthLabel(locale) })}</span>
       </p>
 
-      <h1
-        id="hero-title"
-        className={cn("t-display", styles.title)}
-        {...enter(60)}
-      >
+      {/* No entrance: the headline is readable on first paint. The pen
+          underline inside it still draws itself in. */}
+      <h1 id="hero-title" className={cn("t-display", styles.title)}>
         {t.rich("title", titleTags)}
       </h1>
 

@@ -97,7 +97,8 @@
   color: var(--ink-2);
 }
 
-.field:nth-child(n + 3),
+.handoff,
+.field:nth-child(n + 4),
 .form button {
   grid-column: 1 / -1;
 }
@@ -106,7 +107,7 @@
 .field textarea {
   width: 100%;
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--rule-strong);
+  border: 1px solid var(--control);
   border-radius: var(--r-md);
   background: var(--paper);
   color: var(--ink);
@@ -131,6 +132,11 @@
 
 .form button {
   justify-self: start;
+}
+
+.handoff {
+  max-width: var(--measure);
+  color: var(--ink-2);
 }
 
 /* ── The toast: react-native-magic-toast's drop from the top ───────── */

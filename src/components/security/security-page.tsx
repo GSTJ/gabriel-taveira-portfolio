@@ -8,7 +8,6 @@ import { ContactSection } from "../portfolio/sections/contact";
 import { Footer } from "../portfolio/shell/footer";
 import { ArrowUpRight } from "../portfolio/ui/icons";
 import { enter } from "../portfolio/ui/motion";
-import { SECURITY_TOPICS } from "./data";
 import { SecurityPractice } from "./security-practice";
 
 import styles from "./security.module.css";
@@ -35,7 +34,7 @@ export const SecurityPortfolio = async ({ locale }: { locale: string }) => {
           <p className="t-meta" {...enter()}>
             {t("eyebrow")}
           </p>
-          <h1 id="security-title" className="t-h2" {...enter(60)}>
+          <h1 id="security-title" className="t-h2">
             {t("title")}
           </h1>
           <p className="t-lede" {...enter(160)}>
@@ -53,7 +52,7 @@ export const SecurityPortfolio = async ({ locale }: { locale: string }) => {
               <ArrowUpRight />
             </a>
           </p>
-          <p className="t-meta">{SECURITY_TOPICS.join(" · ")}</p>
+          <p className="t-meta">{t("topics")}</p>
         </section>
         <SecurityPractice />
         <ContactSection />

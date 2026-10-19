@@ -11,6 +11,8 @@ export const bricolage = localFont({
   weight: "300 700",
   display: "swap",
   variable: "--font-bricolage",
+  /** globals.css declares two fallbacks tuned per width; one can't fit both. */
+  adjustFontFallback: false,
   declarations: [{ prop: "font-stretch", value: "90% 100%" }],
 });
 

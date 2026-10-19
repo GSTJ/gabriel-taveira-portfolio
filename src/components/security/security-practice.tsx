@@ -46,7 +46,7 @@ export const SecurityPractice = async () => {
                 ))}
               </details>
             ) : null}
-            <p className="t-meta">{item.tags.join(" · ")}</p>
+            <p className="t-meta">{t(`items.${item.id}.tags`)}</p>
             <a className="link-arrow t-small" href={item.href}>
               {t("readProof")}
               <ArrowUpRight />

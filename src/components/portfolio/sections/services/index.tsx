@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { cn } from "@/utils/cn";
 
 import { reveal, timingStyle } from "../../ui/motion";
-import { WORK, workDates } from "../work/data";
+import { WORK, workDates, workOrgs } from "../work/data";
 import { ArrowUp } from "./arrow-up";
 import { ENGAGEMENT_STEPS, SERVICES, type ServiceProof } from "./data";
 
@@ -20,7 +20,7 @@ export const ServicesSection = async () => {
     if (!job) throw new Error(`Unknown work row: ${proof}`);
     return {
       href: `#work-${job.id}`,
-      org: job.orgs[0],
+      org: workOrgs(job, tWork("independent"))[0],
       dates: workDates(job, tWork("present")),
     };
   };

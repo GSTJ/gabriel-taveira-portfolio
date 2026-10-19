@@ -15,9 +15,14 @@ export type SafeJsxCopy = {
   strayLabel: string;
   badgeLabel: string;
   nothing: string;
+  explain: string;
+  resolved: string;
 };
 
-/** The rule's own name and message, verbatim from eslint-plugin-safe-jsx. */
+/**
+ * The rule's own name and message, verbatim from eslint-plugin-safe-jsx, so
+ * they stay English on every locale; `explain` says it in the page's language.
+ */
 const RULE = "safe-jsx/jsx-explicit-boolean";
 const MESSAGE =
   "Please ensure a boolean conversion before using the && operator with JSX";
@@ -111,13 +116,19 @@ export const SafeJsxDemo = ({ copy }: { copy: SafeJsxCopy }) => {
       <div className={styles.render} aria-live="polite">
         <span className={styles.renderLabel}>{copy.inbox}</span>
         {rendered}
+        {fixed ? (
+          <span className="visually-hidden">{copy.resolved}</span>
+        ) : null}
       </div>
 
+      {/* Fades out once fixed, and leaves the accessibility tree with it. */}
       <p
         className={cn("t-meta", styles.lintMsg)}
         data-hidden={fixed || undefined}
+        aria-hidden={fixed || undefined}
       >
-        <code className={styles.rule}>{RULE}</code> {MESSAGE}
+        <code className={styles.rule}>{RULE}</code> <q lang="en">{MESSAGE}</q>{" "}
+        {copy.explain}
       </p>
     </>
   );

@@ -1,7 +1,9 @@
 {
   "meta": {
     "title": "Gabriel Taveira · React Native & Expo Consultant",
-    "description": "Independent consultant for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil."
+    "description": "Independent consultant for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil.",
+    "jobTitle": "Independent React Native and Expo consultant",
+    "worksFor": "Independent consulting"
   },
   "nav": {
     "label": "Main",
@@ -81,7 +83,9 @@
             "body": "Real pieces from real stores, placed in your room.",
             "alt": "Curvinha's 3D view of the sample room with the suggested pieces in place."
           }
-        }
+        },
+        "pause": "Pause tour",
+        "replay": "Replay tour"
       },
       "magicModal": {
         "title": "magic-modal",
@@ -112,7 +116,9 @@
         "stray": "the stray zero",
         "strayLabel": "A stray 0 rendered on screen",
         "badgeLabel": "3 unread",
-        "nothing": "Nothing renders next to Inbox"
+        "nothing": "Nothing renders next to Inbox",
+        "explain": "With count at 0, React prints the 0.",
+        "resolved": "Fixed. The lint error is gone."
       },
       "magicToast": {
         "title": "react-native-magic-toast",
@@ -187,7 +193,8 @@
         "title": "First job: systems for computer repairs",
         "blurb": "Real-time repair-status tracker for an Apple Service Provider. Internal dashboards for technicians and customer service. Headless-CMS sites for the holding's brands."
       }
-    }
+    },
+    "independent": "Independent"
   },
   "services": {
     "title": "Hire me to unblock your mobile team.",
@@ -375,7 +382,11 @@
       "subjectPh": "What needs solving?",
       "message": "Tell me more",
       "messagePh": "Team size, timeline, stack, what good looks like.",
-      "send": "Send message"
+      "send": "Open email draft",
+      "handoff": "The button opens a draft in your email app. If nothing opens, copy the address above.",
+      "defaultSubject": "Hi from your site",
+      "from": "From",
+      "reply": "Reply to"
     }
   },
   "links": {
@@ -405,7 +416,8 @@
     "proof": "The work below is public, merged, and linked to a reproduction or regression test.",
     "fullProfile": "Full engineering profile",
     "viewGitHub": "View GitHub",
-    "getInTouch": "Get in touch"
+    "getInTouch": "Get in touch",
+    "topics": "Application security · Authentication · Authorization · Secure SDLC · Threat modeling · Vulnerability remediation"
   },
   "security": {
     "eyebrow": "Selected security work",
@@ -428,17 +440,20 @@
           "validation": "A controlled local upstream reproduced script execution before the change. After it, the route returned the same bytes as application/pdf with nosniff. Production still serves a valid PDF through that contract.",
           "limitsTitle": "Limits",
           "limits": "The route does not inspect PDF structure or prove that production storage was compromised. The malicious-upstream regression remained a manual check because this repository had no automated test suite."
-        }
+        },
+        "tags": "Threat modeling · Cloud boundary · HTTP headers"
       },
       "identity": {
         "title": "Made OTPs single-use under concurrency",
         "body": "Moved OTP consumption into one atomic PostgreSQL update and added concurrency coverage across 25 code pairs. Every pair produced one success and one rejection.",
-        "metric": "OTP races covered"
+        "metric": "OTP races covered",
+        "tags": "Authentication · Concurrency · Release integrity"
       },
       "authorization": {
         "title": "Bound image upload grants to the caller",
         "body": "Added short-lived upload grants with ownership, exact-byte signatures, hourly caps, and cleanup. Only the user who requested a grant can claim it when creating or editing a profile.",
-        "metric": "upload grant TTL"
+        "metric": "upload grant TTL",
+        "tags": "Authorization · Signed uploads · Abuse controls"
       }
     }
   }

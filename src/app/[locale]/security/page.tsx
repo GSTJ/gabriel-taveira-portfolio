@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 
 import { setRequestLocale } from "next-intl/server";
 
+import { JsonLd } from "@/components/portfolio/structured-data";
 import { SecurityPortfolio } from "@/components/security/security-page";
-import { routing } from "@/utils/routing";
-import { SITE_URL } from "@/utils/site";
+import { pageMetadata } from "@/utils/metadata";
+
+import { BrandFonts } from "../../brand-fonts";
 
 const COPY = {
   "en-US": {
@@ -26,33 +28,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const selected = locale === "pt-BR" ? COPY["pt-BR"] : COPY["en-US"];
-  const languages = Object.fromEntries(
-    routing.locales.map((item) => [item, `${SITE_URL}/${item}/security`]),
-  );
 
   return {
-    ...selected,
+    ...(await pageMetadata({ locale, path: "/security", ...selected })),
     robots: {
       index: false,
       follow: false,
-    },
-    alternates: {
-      canonical: `${SITE_URL}/${locale}/security`,
-      languages: {
-        ...languages,
-        "x-default": `${SITE_URL}/${routing.defaultLocale}/security`,
-      },
-    },
-    openGraph: {
-      type: "profile",
-      url: `${SITE_URL}/${locale}/security`,
-      siteName: "Gabriel Taveira",
-      ...selected,
-    },
-    twitter: {
-      card: "summary_large_image",
-      ...selected,
-      creator: "@gabrieltaveira",
     },
   };
 }
@@ -65,7 +46,20 @@ const SecurityPage = async ({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <SecurityPortfolio locale={locale} />;
+  const selected = locale === "pt-BR" ? COPY["pt-BR"] : COPY["en-US"];
+
+  return (
+    <>
+      <BrandFonts />
+      <JsonLd
+        locale={locale}
+        path="/security"
+        type="WebPage"
+        name={selected.title}
+      />
+      <SecurityPortfolio locale={locale} />
+    </>
+  );
 };
 
 export default SecurityPage;

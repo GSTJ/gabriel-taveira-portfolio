@@ -20,6 +20,9 @@
   --ink-3: light-dark(#62615a, #8f8c85);
   --rule: light-dark(#d9d7cf, #2e2d2a);
   --rule-strong: light-dark(#c4c2b9, #403f3b);
+  /* A control's edge (inputs, the switch). 3:1 or better on every paper, so
+     the control is findable; dividers stay on --rule. */
+  --control: light-dark(#807e75, #76736d);
   --pen: light-dark(#2343c9, #93a6ff);
   --pen-wash: light-dark(rgb(35 67 201 / 0.1), rgb(147 166 255 / 0.14));
   --scrim: light-dark(rgb(20 20 18 / 0.38), rgb(0 0 0 / 0.55));
@@ -28,11 +31,20 @@
   --shadow-far: light-dark(rgb(25 25 23 / 0.22), rgb(0 0 0 / 0.7));
   --shadow: 0 1px 2px var(--shadow-near), 0 18px 40px -18px var(--shadow-far);
 
-  /* Type families. Mono is the system stack, no download. */
+  /*
+   * Type families. Mono is the system stack, no download. The two brand
+   * faces are defined by <BrandFonts> on the pages that use them; elsewhere
+   * (the resume) the fallback stack applies.
+   */
   --font-sans:
-    var(--font-bricolage), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    sans-serif;
-  --font-hand: var(--font-caveat), "Bradley Hand", "Segoe Print", cursive;
+    var(--font-bricolage, ui-sans-serif), "Bricolage Fallback", ui-sans-serif,
+    system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* For the narrowed widths (display, headings): a narrower fallback. */
+  --font-narrow:
+    var(--font-bricolage, ui-sans-serif), "Bricolage Narrow Fallback",
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand:
+    var(--font-caveat, "Bradley Hand"), "Bradley Hand", "Segoe Print", cursive;
   --font-mono:
     ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 

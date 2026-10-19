@@ -11,8 +11,9 @@ import {
   SKILLS,
 } from "@/components/portfolio/profile";
 import { AWARDS, TALKS } from "@/components/portfolio/sections/notes/data";
-import { WORK } from "@/components/portfolio/sections/work/data";
-import { routing } from "@/utils/routing";
+import { WORK, workOrgs } from "@/components/portfolio/sections/work/data";
+import { JsonLd } from "@/components/portfolio/structured-data";
+import { pageMetadata } from "@/utils/metadata";
 import { SITE_URL } from "@/utils/site";
 
 import "./resume.css";
@@ -22,19 +23,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "resume" });
-  const url = `${SITE_URL}/${locale}/resume`;
-
-  return {
+  return pageMetadata({
+    locale,
+    path: "/resume",
     title: t("title"),
     description: t("summary", { years: yearsInIndustry() }),
-    alternates: {
-      canonical: url,
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [l, `${SITE_URL}/${l}/resume`]),
-      ),
-    },
-    openGraph: { url, title: t("title") },
-  };
+  });
 }
 
 /** Plain text for the blurbs, which carry `<mark>` highlights on the page. */
@@ -50,12 +44,19 @@ const ResumePage = async ({ params }: Props) => {
   setRequestLocale(locale);
   const t = await getTranslations("resume");
   const tWork = await getTranslations("work.items");
+  const independent = (await getTranslations("work"))("independent");
   const tTalks = await getTranslations("notes.talks.items");
   const tAwards = await getTranslations("notes.awards");
   const years = yearsInIndustry();
 
   return (
     <main className="resume">
+      <JsonLd
+        locale={locale}
+        path="/resume"
+        type="ProfilePage"
+        name={t("title")}
+      />
       <header className="resume-head">
         <h1>Gabriel Taveira</h1>
         <p className="resume-role">{t("role")}</p>
@@ -91,7 +92,9 @@ const ResumePage = async ({ params }: Props) => {
                 {tWork(`${w.id}.title`)}
                 <span className="resume-date">{date}</span>
               </h3>
-              <p className="resume-company">{w.orgs.join(" · ")}</p>
+              <p className="resume-company">
+                {workOrgs(w, independent).join(" · ")}
+              </p>
               <p>{tWork.rich(`${w.id}.blurb`, plain)}</p>
             </article>
           );

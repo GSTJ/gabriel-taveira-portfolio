@@ -1,12 +1,10 @@
 "use client";
 
-import type { BoundaryFallbackProps } from "magic-observability/react";
+import type { BoundaryFallbackProps } from "magic-observability/boundary";
 
-import {
-  ObservabilityBoundary,
-  ObservabilityProvider,
-} from "magic-observability/react";
-import { getWebClient } from "magic-observability/web";
+import { ObservabilityBoundary } from "magic-observability/boundary";
+
+import { telemetry } from "./telemetry";
 
 /**
  * The fallback a render error leaves behind. Deliberately unstyled and in
@@ -24,23 +22,15 @@ const SomethingWentWrong = ({ reset }: BoundaryFallbackProps) => (
 );
 
 /**
- * Client-side observability for the whole document.
- *
- * `initWebAnalytics` already ran in `instrumentation-client.ts`, so both the
- * provider and the boundary pick the module-level client up rather than
- * building a second one. With no `NEXT_PUBLIC_POSTHOG_KEY` the client is a
- * no-op: the provider renders nothing of its own and the boundary still shows
- * the fallback, it just reports nowhere.
+ * Client-side error boundary for the whole document. It imports the
+ * boundary entry, which needs only React, and reports through the deferred
+ * `telemetry` client, so posthog-js stays out of the first-load bundle. No
+ * component reads `usePostHog`, so there is no PostHog provider to mount.
  */
 export const ObservabilityProviders = ({
   children,
 }: React.PropsWithChildren) => (
-  <ObservabilityProvider>
-    <ObservabilityBoundary
-      client={getWebClient()}
-      fallback={SomethingWentWrong}
-    >
-      {children}
-    </ObservabilityBoundary>
-  </ObservabilityProvider>
+  <ObservabilityBoundary client={telemetry} fallback={SomethingWentWrong}>
+    {children}
+  </ObservabilityBoundary>
 );

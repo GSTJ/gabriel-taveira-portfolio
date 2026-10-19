@@ -2,6 +2,8 @@
 
 import { useId, useState, type FormEvent } from "react";
 
+import { cn } from "@/utils/cn";
+
 import { EMAIL_ADDR } from "./data";
 
 import styles from "./contact.module.css";
@@ -9,7 +11,16 @@ import styles from "./contact.module.css";
 const FIELDS = ["name", "email", "subject", "message"] as const;
 type Field = (typeof FIELDS)[number];
 
-export type ContactFormCopy = Record<Field | `${Field}Ph` | "send", string>;
+export type ContactFormCopy = Record<
+  | Field
+  | `${Field}Ph`
+  | "send"
+  | "handoff"
+  | "defaultSubject"
+  | "from"
+  | "reply",
+  string
+>;
 
 const AUTOCOMPLETE: Record<Field, string> = {
   name: "name",
@@ -26,9 +37,11 @@ const EMPTY: Record<Field, string> = {
 };
 
 /**
- * Hands off to the visitor's mail client: no backend for the handful of
- * messages this gets, and their own SMTP handles delivery. Copy arrives as
- * props from the server section, so no translations ship to the client.
+ * Drafts the email in the visitor's mail client: no backend for the handful
+ * of messages this gets, and their own SMTP handles delivery. The note above
+ * the button says so, and points at the copy button for anyone without a
+ * mail app. Copy arrives as props from the server section, so no
+ * translations ship to the client.
  */
 export const ContactForm = ({ copy }: { copy: ContactFormCopy }) => {
   const id = useId();
@@ -40,19 +53,28 @@ export const ContactForm = ({ copy }: { copy: ContactFormCopy }) => {
       form.message,
       "",
       "--",
-      form.name ? `From: ${form.name}` : null,
-      `Reply: ${form.email}`,
+      form.name ? `${copy.from}: ${form.name}` : null,
+      `${copy.reply}: ${form.email}`,
     ]
       .filter((line) => line !== null)
       .join("\n");
     window.location.href =
       `mailto:${EMAIL_ADDR}` +
-      `?subject=${encodeURIComponent(form.subject.trim() || "Hi from your portfolio")}` +
+      `?subject=${encodeURIComponent(form.subject.trim() || copy.defaultSubject)}` +
       `&body=${encodeURIComponent(body)}`;
   };
 
+  const handoffId = `${id}-handoff`;
+
   return (
-    <form className={styles.form} onSubmit={submit}>
+    <form
+      className={styles.form}
+      onSubmit={submit}
+      aria-describedby={handoffId}
+    >
+      <p id={handoffId} className={cn("t-small", styles.handoff)}>
+        {copy.handoff}
+      </p>
       {FIELDS.map((field) => {
         const fieldId = `${id}-${field}`;
         const props = {

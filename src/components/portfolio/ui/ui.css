@@ -45,6 +45,7 @@
   line-height: var(--lh-display);
   letter-spacing: var(--tr-display);
   font-weight: var(--fw-light);
+  font-family: var(--font-narrow);
   font-stretch: var(--wd-display);
 }
 
@@ -60,6 +61,7 @@
   line-height: var(--lh-heading);
   letter-spacing: var(--tr-h2);
   font-weight: var(--fw-regular);
+  font-family: var(--font-narrow);
   font-stretch: var(--wd-heading);
 }
 

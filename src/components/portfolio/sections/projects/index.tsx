@@ -87,6 +87,8 @@ export const ProjectsSection = async () => {
               cta: t("items.curvinha.cta"),
               caption: t("items.curvinha.caption"),
               stepsLabel: t("items.curvinha.stepsLabel"),
+              pause: t("items.curvinha.pause"),
+              replay: t("items.curvinha.replay"),
               steps: Object.fromEntries(
                 CURVINHA_STEPS.map((step) => [
                   step,
@@ -178,6 +180,8 @@ export const ProjectsSection = async () => {
               strayLabel: t("items.safeJsx.strayLabel"),
               badgeLabel: t("items.safeJsx.badgeLabel"),
               nothing: t("items.safeJsx.nothing"),
+              explain: t("items.safeJsx.explain"),
+              resolved: t("items.safeJsx.resolved"),
             }}
           />
         </article>

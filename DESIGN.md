@@ -10,6 +10,7 @@ colors:
   ink-3: "light-dark(#62615a, #8f8c85)"
   rule: "light-dark(#d9d7cf, #2e2d2a)"
   rule-strong: "light-dark(#c4c2b9, #403f3b)"
+  control: "light-dark(#807e75, #76736d)"
   pen: "light-dark(#2343c9, #93a6ff)"
   pen-wash: "light-dark(rgb(35 67 201 / 0.1), rgb(147 166 255 / 0.14))"
 typography:
@@ -130,7 +131,8 @@ One neutral paper (cooler than Curvinha's cream on purpose), three inks, two rul
 
 - **paper / paper-2 / paper-3**: page, card stage, inset (code, inputs on a card).
 - **ink / ink-2 / ink-3**: headings and strong text, body, meta. Every ink is 4.6:1 or better on every paper in both themes (light ink-3 was darkened from C's mockup to clear paper-3).
-- **rule / rule-strong**: hairlines between rows and sections; ghost button and input borders.
+- **rule / rule-strong**: hairlines between rows and sections; ghost button borders.
+- **control**: the edge of an input and the switch (track border, off thumb). 3:1 or better on every paper, so a control reads as a control.
 - **pen**: his notes, the pen underline, focus rings, selection (as `pen-wash`). Never a button fill, never a heading color, never a second accent next to it.
 
 `--scrim`, `--bezel` and `--shadow` exist for the one modal and the phone frame the projects section may need.

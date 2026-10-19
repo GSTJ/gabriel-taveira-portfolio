@@ -3,6 +3,31 @@
 
 /* Base. Element defaults only; anything with a name lives in ui.css. */
 
+/*
+ * Arial sized to Bricolage, so the swap doesn't reflow the page. One
+ * fallback can't match both widths: at 100% width Bricolage runs ~5% wider
+ * than Arial, at the 92-94% heading widths ~5% narrower, which was enough to
+ * add a line to the hero h1. Ascent and descent keep Bricolage's line box
+ * (93% and 27% of the font size) under each size-adjust.
+ */
+@font-face {
+  font-family: "Bricolage Fallback";
+  src: local("Arial"), local("Helvetica");
+  size-adjust: 105%;
+  ascent-override: 88.6%;
+  descent-override: 25.7%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Bricolage Narrow Fallback";
+  src: local("Arial"), local("Helvetica");
+  size-adjust: 95%;
+  ascent-override: 97.9%;
+  descent-override: 28.4%;
+  line-gap-override: 0%;
+}
+
 *,
 *::before,
 *::after {

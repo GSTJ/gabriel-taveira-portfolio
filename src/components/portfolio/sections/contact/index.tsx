@@ -21,6 +21,10 @@ const FORM_KEYS = [
   "message",
   "messagePh",
   "send",
+  "handoff",
+  "defaultSubject",
+  "from",
+  "reply",
 ] as const;
 
 const ADDRESS_ID = "contact-address";

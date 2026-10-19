@@ -1,7 +1,9 @@
 {
   "meta": {
     "title": "Gabriel Taveira · Consultor React Native & Expo",
-    "description": "Consultoria independente para times React Native e Expo: arquitetura, migrações e contratação. {years}+ anos, infra do app da Coinbase. Remoto."
+    "description": "Consultoria independente para times React Native e Expo: arquitetura, migrações e contratação. {years}+ anos, infra do app da Coinbase. Remoto.",
+    "jobTitle": "Consultor independente de React Native e Expo",
+    "worksFor": "Consultoria independente"
   },
   "nav": {
     "label": "Principal",
@@ -81,7 +83,9 @@
             "body": "Peças reais de lojas reais, no seu ambiente.",
             "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar."
           }
-        }
+        },
+        "pause": "Pausar tour",
+        "replay": "Rever tour"
       },
       "magicModal": {
         "title": "magic-modal",
@@ -112,7 +116,9 @@
         "stray": "o zero solto",
         "strayLabel": "Um 0 solto aparecendo na tela",
         "badgeLabel": "3 não lidas",
-        "nothing": "Nada aparece ao lado de Inbox"
+        "nothing": "Nada aparece ao lado de Inbox",
+        "explain": "Com count em 0, o React imprime o 0.",
+        "resolved": "Corrigido. O erro de lint sumiu."
       },
       "magicToast": {
         "title": "react-native-magic-toast",
@@ -187,7 +193,8 @@
         "title": "Primeiro emprego: sistemas pra assistência técnica",
         "blurb": "Tracker em tempo real do status de reparos pra uma Apple Service Provider. Dashboards internos pra técnicos e atendimento. Sites em headless CMS pras marcas do grupo."
       }
-    }
+    },
+    "independent": "Independente"
   },
   "services": {
     "title": "Me contrata pra destravar seu time mobile.",
@@ -375,7 +382,11 @@
       "subjectPh": "O que precisa ser resolvido?",
       "message": "Me conta mais",
       "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
-      "send": "Enviar mensagem"
+      "send": "Abrir rascunho de email",
+      "handoff": "O botão abre um rascunho no seu app de email. Se nada abrir, copia o endereço lá em cima.",
+      "defaultSubject": "Oi, vim pelo seu site",
+      "from": "De",
+      "reply": "Responder para"
     }
   },
   "links": {
@@ -405,7 +416,8 @@
     "proof": "O trabalho abaixo é público, está mergeado e tem link para o repro ou teste de regressão.",
     "fullProfile": "Perfil completo de engenharia",
     "viewGitHub": "Ver GitHub",
-    "getInTouch": "Fala comigo"
+    "getInTouch": "Fala comigo",
+    "topics": "Segurança de aplicações · Autenticação · Autorização · SDLC seguro · Modelagem de ameaças · Correção de vulnerabilidades"
   },
   "security": {
     "eyebrow": "Trabalho selecionado em segurança",
@@ -428,17 +440,20 @@
           "validation": "Um upstream local controlado reproduziu a execução de script antes da mudança. Depois, a rota devolveu os mesmos bytes como application/pdf e nosniff. A produção continua servindo um PDF válido por esse contrato.",
           "limitsTitle": "Limites",
           "limits": "A rota não inspeciona a estrutura do PDF nem prova comprometimento do storage em produção. A regressão com upstream malicioso ficou como verificação manual porque o repositório não tinha uma suíte de testes automatizados."
-        }
+        },
+        "tags": "Modelagem de ameaças · Fronteira de cloud · Headers HTTP"
       },
       "identity": {
         "title": "Fiz OTPs serem de uso único mesmo sob concorrência",
         "body": "Levei o consumo do OTP para um único update atômico no PostgreSQL e adicionei cobertura de concorrência em 25 pares de códigos. Cada par produziu um sucesso e uma rejeição.",
-        "metric": "corridas de OTP cobertas"
+        "metric": "corridas de OTP cobertas",
+        "tags": "Autenticação · Concorrência · Integridade de release"
       },
       "authorization": {
         "title": "Vinculei cada grant de upload a quem pediu",
         "body": "Adicionei grants curtos com ownership, assinatura do tamanho exato, limite por hora e limpeza. Só quem pediu o grant consegue usá-lo ao criar ou editar um perfil.",
-        "metric": "validade do upload grant"
+        "metric": "validade do upload grant",
+        "tags": "Autorização · Uploads assinados · Controle de abuso"
       }
     }
   }

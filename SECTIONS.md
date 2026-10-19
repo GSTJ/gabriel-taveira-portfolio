@@ -23,7 +23,7 @@ Each folder has:
 
 Add as many files as you need inside your folder (client islands, sub-components, more CSS Modules).
 
-The lead owns everything else: `src/app/**` (tokens, globals, fonts, layout, routes), `src/components/portfolio/{index.tsx,profile.ts,lifeline.ts,structured-data.ts}`, `shell/`, `ui/`, `src/components/security/`, and the locale keys `meta`, `nav`, `common`, `links`, `resume`, `security`, `securityPage`.
+The lead owns everything else: `src/app/**` (tokens, globals, fonts, layout, routes), `src/components/portfolio/{index.tsx,profile.ts,lifeline.ts,structured-data.tsx}`, `shell/`, `ui/`, `src/components/security/`, and the locale keys `meta`, `nav`, `common`, `links`, `resume`, `security`, `securityPage`.
 
 ## Primitives you can use
 

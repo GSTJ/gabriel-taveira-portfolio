@@ -6,7 +6,7 @@ import { cn } from "@/utils/cn";
 
 import { ArrowUpRight } from "../../ui/icons";
 import { reveal } from "../../ui/motion";
-import { WORK, type WorkItem, workDates } from "./data";
+import { WORK, type WorkItem, workDates, workOrgs } from "./data";
 
 import styles from "./work.module.css";
 
@@ -56,6 +56,7 @@ const Track = ({ item }: { item: WorkItem }) => (
 export const WorkSection = async () => {
   const t = await getTranslations("work");
   const present = t("present");
+  const orgs = (item: WorkItem) => workOrgs(item, t("independent")).join(" · ");
   const rows = WORK.filter((item) => item.billing !== "agate");
   const earlier = WORK.filter((item) => item.billing === "agate");
 
@@ -90,7 +91,7 @@ export const WorkSection = async () => {
               <h3 className={styles.title}>
                 {keepHyphens(t(`items.${item.id}.title`))}
               </h3>
-              <p className="t-meta">{keepHyphens(item.orgs.join(" · "))}</p>
+              <p className="t-meta">{keepHyphens(orgs(item))}</p>
             </div>
             <p className={cn("t-body", styles.blurb)}>
               {t.rich(`items.${item.id}.blurb`, blurbTags)}
@@ -113,9 +114,7 @@ export const WorkSection = async () => {
                 <Track item={item} />
               </p>
               <div className={styles.head}>
-                <h4 className={cn("t-small", styles.org)}>
-                  {item.orgs.join(" · ")}
-                </h4>
+                <h4 className={cn("t-small", styles.org)}>{orgs(item)}</h4>
                 <p className="t-meta">{t(`items.${item.id}.title`)}</p>
               </div>
               <p className="t-small">

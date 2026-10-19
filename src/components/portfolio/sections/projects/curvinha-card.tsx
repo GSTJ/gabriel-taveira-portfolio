@@ -25,6 +25,8 @@ export type CurvinhaCopy = {
   cta: string;
   caption: string;
   stepsLabel: string;
+  pause: string;
+  replay: string;
   steps: Record<CurvinhaStep, { title: string; body: string; alt: string }>;
 };
 
@@ -40,11 +42,15 @@ const subscribeReduce = (cb: () => void) => {
   return () => mq.removeEventListener("change", cb);
 };
 
+/** How much of the phone has to be on screen before the tour plays. */
+const VISIBLE = 0.35;
+
 /**
- * Plays the three steps once while at least 35% of the card is on screen and
- * the tab is visible, then rests on the 3D room. Pressing or focusing a step
- * hands the card to the visitor for good. Reduced motion skips the tour and
- * opens on the room.
+ * Plays the three steps once while at least 35% of the phone is on screen
+ * and the tab is visible, then rests on the 3D room. Pressing or focusing a
+ * step hands the card to the visitor for good; the button under the steps
+ * pauses the tour or plays it again. Reduced motion skips the tour and opens
+ * on the room.
  */
 export const CurvinhaCard = ({
   copy,
@@ -56,11 +62,15 @@ export const CurvinhaCard = ({
   lang: "en" | "pt";
 }) => {
   const id = useId();
-  const card = useRef<HTMLElement>(null);
+  const phone = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const [step, setStep] = useState(0);
   const [inView, setInView] = useState(false);
+  /** The phone is within a screen of the viewport: time to fetch a screen. */
+  const [near, setNear] = useState(false);
   const [owned, setOwned] = useState(false);
+  /** Screens shown so far stay mounted; the rest load one step ahead. */
+  const [seen, setSeen] = useState<readonly number[]>([]);
   const reduce = useSyncExternalStore(
     subscribeReduce,
     () => matchMedia(REDUCE).matches,
@@ -68,24 +78,37 @@ export const CurvinhaCard = ({
   );
 
   const current = reduce && !owned ? LAST : step;
-  const playing = inView && !owned && !reduce && current < LAST;
+  const auto = !owned && current < LAST;
+  const playing = inView && auto && !reduce;
+  if (!seen.includes(current)) setSeen([...seen, current]);
 
   useEffect(() => {
-    const el = card.current;
+    const el = phone.current;
     if (!el) return;
     let visible = false;
     const sync = () => setInView(visible && !document.hidden);
+    // `isIntersecting` is true from the first pixel, so read the ratio.
     const io = new IntersectionObserver(
       ([entry]) => {
-        visible = entry?.isIntersecting ?? false;
+        visible = (entry?.intersectionRatio ?? 0) >= VISIBLE;
         sync();
       },
-      { threshold: 0.35 },
+      { threshold: [0, VISIBLE] },
     );
     io.observe(el);
+    const approach = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setNear(true);
+        approach.disconnect();
+      },
+      { rootMargin: "100% 0px" },
+    );
+    approach.observe(el);
     document.addEventListener("visibilitychange", sync);
     return () => {
       io.disconnect();
+      approach.disconnect();
       document.removeEventListener("visibilitychange", sync);
     };
   }, []);
@@ -127,11 +150,32 @@ export const CurvinhaCard = ({
     setOwned(true);
   };
 
+  const toggleTour = () => {
+    if (auto) {
+      takeOver();
+      return;
+    }
+    setOwned(false);
+    setStep(0);
+  };
+
   const panelId = `${id}-panel`;
+
+  const screens = (name: CurvinhaStep) =>
+    (["light", "dark"] as const).map((theme) => (
+      <Image
+        key={theme}
+        className={THEMES[theme]}
+        src={`/projects/curvinha/${name}-${theme}-${lang}.webp`}
+        width={600}
+        height={970}
+        sizes="(width < 760px) 270px, 350px"
+        alt={copy.steps[name].alt}
+      />
+    ));
 
   return (
     <article
-      ref={card}
       className={cn(styles.card, styles.curvinha)}
       aria-labelledby={`${id}-title`}
       data-playing={playing ? "" : undefined}
@@ -179,6 +223,15 @@ export const CurvinhaCard = ({
             </button>
           ))}
         </div>
+        {reduce ? null : (
+          <button
+            type="button"
+            className={cn("btn btn-ghost btn-small", styles.cvTour)}
+            onClick={toggleTour}
+          >
+            {auto ? copy.pause : copy.replay}
+          </button>
+        )}
 
         <div className={styles.cvFoot}>
           <a className="btn" href={href}>
@@ -190,6 +243,7 @@ export const CurvinhaCard = ({
       </div>
 
       <div
+        ref={phone}
         id={panelId}
         className={styles.phone}
         role="tabpanel"
@@ -203,17 +257,12 @@ export const CurvinhaCard = ({
               data-on={i === current ? "" : undefined}
               aria-hidden={i === current ? undefined : true}
             >
-              {(["light", "dark"] as const).map((theme) => (
-                <Image
-                  key={theme}
-                  className={THEMES[theme]}
-                  src={`/projects/curvinha/${name}-${theme}-${lang}.webp`}
-                  width={600}
-                  height={970}
-                  sizes="(width < 760px) 270px, 330px"
-                  alt={copy.steps[name].alt}
-                />
-              ))}
+              {/* Fetched once the phone is a screen away: the screen on
+                  show, the next one, and any already seen. */}
+              {near && (seen.includes(i) || i === current + 1)
+                ? screens(name)
+                : null}
+              {i === 0 ? <noscript>{screens(name)}</noscript> : null}
             </div>
           ))}
         </div>

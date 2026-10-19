@@ -99,6 +99,13 @@ export const WORK: readonly WorkItem[] = [
   },
 ] as const;
 
+/**
+ * The orgs line as a page shows it. "Independent" stays English in the data
+ * (llms.txt, JSON-LD alumni filter); pages pass the locale's word for it.
+ */
+export const workOrgs = (item: WorkItem, independent: string) =>
+  item.orgs.map((org) => (org === "Independent" ? independent : org));
+
 /** "2024 → 2025", or "2025 → now" with the locale's word for now. */
 export const workDates = (item: WorkItem, present: string) =>
   `${item.start} → ${item.end === "now" ? present : item.end}`;
