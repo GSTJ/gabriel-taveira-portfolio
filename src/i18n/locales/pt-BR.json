@@ -361,11 +361,11 @@
     }
   },
   "contact": {
-    "title": "Tem um desafio bom?",
-    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
-    "copy": "Copiar email",
-    "copied": "Email copiado",
-    "copyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
+    "title": "Me conta o que travou.",
+    "subLead": "Hoje sou independente e",
+    "subOpen": "estou pegando clientes novos.",
+    "asOf": "em {month}",
+    "subReasons": "Bons motivos pra escrever: um upgrade que vive sendo adiado, um app que ficou lento, alguém pra liderar o time enquanto vocês contratam, uma falha de segurança que você achou.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -373,20 +373,44 @@
       "medium": "Medium",
       "spaceCast": "Space Cast"
     },
-    "form": {
-      "name": "Nome",
-      "namePh": "Seu nome",
-      "email": "Email",
-      "emailPh": "voce@empresa.com",
-      "subject": "O desafio",
-      "subjectPh": "O que precisa ser resolvido?",
-      "message": "Me conta mais",
-      "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
-      "send": "Abrir rascunho de email",
-      "handoff": "O botão abre um rascunho no seu app de email. Se nada abrir, copia o endereço lá em cima.",
+    "elsewhere": "Prefere começar por outro lugar?",
+    "why": {
+      "linkedin": "Um oi rápido antes",
+      "github": "Ler meu código antes de conversar",
+      "medium": "O que eu escrevo",
+      "spaceCast": "O podcast que eu apresento"
+    },
+    "letter": {
+      "label": "Email pro Gabriel",
+      "to": "Para",
+      "subject": "Assunto",
+      "copyEmail": "Copiar email",
+      "emailCopied": "Email copiado",
+      "emailCopyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
+      "greeting": "Oi, Gabriel,",
+      "topicLegend": "Estou escrevendo sobre",
+      "topics": {
+        "review": "Revisão de arquitetura",
+        "migration": "Migração ou upgrade",
+        "lead": "Lead mobile interino",
+        "system": "Design system",
+        "security": "Falha de segurança",
+        "other": "Outra coisa"
+      },
       "defaultSubject": "Oi, vim pelo seu site",
-      "from": "De",
-      "reply": "Responder para"
+      "story": "Como estão as coisas",
+      "storyPh": "O app, o time, o prazo e o que seria um bom resultado.",
+      "storyPrompt": "O app:\nO time:\nO prazo:",
+      "signoff": "Valeu,",
+      "name": "Seu nome",
+      "namePh": "Seu nome",
+      "company": "Empresa",
+      "companyPh": "Empresa",
+      "open": "Abrir no meu app de email",
+      "copyLetter": "Copiar como texto",
+      "letterCopied": "Texto copiado",
+      "letterCopyFailed": "Não deu pra copiar. Abre no seu app de email.",
+      "handoff": "Nada é enviado desta página. Abre como rascunho no seu app de email, ou copia o texto e cola onde quiser, até no LinkedIn."
     }
   },
   "links": {

@@ -1,21 +1,205 @@
-/* ── The ask across the page, then channels beside the form ────────── */
+/* ── The ask, then the letter beside the other doors ───────────────── */
 
 .title {
   max-width: 11em;
 }
 
 .sub {
-  max-width: 30em;
+  max-width: 31em;
   margin-top: var(--space-6);
   color: var(--ink-2);
 }
 
 .rest {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   gap: var(--space-8);
   align-items: start;
   margin-top: var(--space-8);
+}
+
+/* ── The letter: an email compose, on its own sheet ────────────────── */
+
+.letter {
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+}
+
+.headRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  min-height: 3.25rem;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.key {
+  flex: none;
+  width: 4.75em;
+  font-size: var(--fs-meta);
+  color: var(--ink-3);
+}
+
+.to {
+  min-width: 0;
+  font-weight: var(--fw-medium);
+  overflow-wrap: anywhere;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 0.2em;
+}
+
+.copyEmail {
+  margin-left: auto;
+}
+
+.subject {
+  min-width: 0;
+  font-weight: var(--fw-medium);
+  overflow-wrap: anywhere;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-6);
+}
+
+.greeting {
+  font-size: var(--fs-lede);
+  letter-spacing: var(--tr-title);
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.topics legend,
+.field label {
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--control);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-small);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease,
+    border-color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+/* The native radio stays, invisible, over the whole chip. */
+.chip input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.chip:has(:checked) {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.chip:has(:focus-visible) {
+  outline: 2px solid var(--pen);
+  outline-offset: 2px;
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+.field {
+  display: grid;
+}
+
+.field textarea,
+.signature input {
+  width: 100%;
+  color: var(--ink);
+  font-size: var(--fs-body);
+}
+
+.field textarea {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--control);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  resize: vertical;
+}
+
+.signature {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1) var(--space-5);
+  max-width: 34rem;
+}
+
+.signature p {
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-1);
+}
+
+/* Signed on a line, the way you'd sign a letter. */
+.signature input {
+  padding: var(--space-2) 0;
+  border: 0;
+  border-bottom: 1px solid var(--control);
+  border-radius: 0;
+  background: transparent;
+}
+
+.field textarea::placeholder,
+.signature input::placeholder {
+  color: var(--ink-3);
+}
+
+.field textarea:focus-visible,
+.signature input:focus-visible {
+  outline-offset: 1px;
+  border-color: var(--pen);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.handoff {
+  flex-basis: 100%;
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+/* ── The other doors, each with its handle and what it's for ──────── */
+
+.asideTitle {
+  margin-bottom: var(--space-4);
 }
 
 .ledger {
@@ -24,57 +208,20 @@
 
 .ledger a {
   display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "icon label arrow"
+    ". why .";
   align-items: center;
-  gap: var(--space-3);
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
   padding-block: var(--space-4);
   border-bottom: 1px solid var(--rule);
   text-decoration: none;
 }
 
-.label {
-  font-weight: var(--fw-medium);
-}
-
-.handle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--ink-3);
-}
-
-.ledger a > svg {
-  width: 0.9em;
-  height: 0.9em;
-  color: var(--ink-3);
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
-/* ── Shared: the address and copy, channel icons, the form ─────────── */
-
-.mail {
-  margin-top: var(--space-7);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4) var(--space-5);
-}
-
-.address {
-  font-size: var(--fs-title);
-  font-weight: var(--fw-regular);
-  letter-spacing: var(--tr-title);
-  text-decoration: none;
-}
-
-@media (width >= 760px) {
-  .address {
-    font-size: var(--fs-h1);
-    letter-spacing: var(--tr-h2);
-  }
-}
-
 .icon {
+  grid-area: icon;
   display: inline-flex;
 }
 
@@ -84,59 +231,31 @@
   color: var(--ink-3);
 }
 
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
+.label {
+  grid-area: label;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+  font-weight: var(--fw-medium);
 }
 
-.field {
-  display: grid;
-  gap: var(--space-1);
-  font-size: var(--fs-small);
-  color: var(--ink-2);
-}
-
-.handoff,
-.field:nth-child(n + 4),
-.form button {
-  grid-column: 1 / -1;
-}
-
-.field input,
-.field textarea {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--control);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink);
-  font-size: var(--fs-body);
-  transition: border-color var(--dur-hover) ease;
-}
-
-.field textarea {
-  resize: vertical;
-}
-
-.field input::placeholder,
-.field textarea::placeholder {
+.handle {
+  font-weight: var(--fw-regular);
   color: var(--ink-3);
 }
 
-.field input:focus-visible,
-.field textarea:focus-visible {
-  outline-offset: 1px;
-  border-color: var(--pen);
-}
-
-.form button {
-  justify-self: start;
-}
-
-.handoff {
-  max-width: var(--measure);
+.why {
+  grid-area: why;
   color: var(--ink-2);
+}
+
+.ledger a > svg {
+  grid-area: arrow;
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
 /* ── The toast: react-native-magic-toast's drop from the top ───────── */
@@ -208,6 +327,19 @@
     stroke-dashoffset: 1;
     transition: none;
   }
+
+  /* A new topic rewrites the subject line: a short blur-in, not a swap. */
+  .subject {
+    animation: subject-in var(--dur-ui) var(--ease-out);
+  }
+}
+
+@keyframes subject-in {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -218,6 +350,10 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .chip:not(:has(:checked)):hover {
+    border-color: var(--ink);
+  }
+
   .ledger a:hover > svg {
     transform: translate(2px, -2px);
   }
@@ -232,15 +368,17 @@
 @media (width < 1000px) {
   .rest {
     grid-template-columns: 1fr;
+    gap: var(--space-7);
   }
 }
 
 @media (width < 560px) {
-  .form {
+  .signature {
     grid-template-columns: 1fr;
   }
 
-  .field {
-    grid-column: 1 / -1;
+  .letter {
+    margin-inline: calc(var(--space-2) * -1);
+    padding: var(--space-5) var(--space-4);
   }
 }

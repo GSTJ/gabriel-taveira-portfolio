@@ -23,3 +23,15 @@ export const CHANNELS: readonly Channel[] = [
   { id: "medium", handle: "@gabrieltaveira", url: MEDIUM },
   { id: "spaceCast", handle: "Rocketseat / YouTube", url: SPACE_CAST },
 ] as const;
+
+/** What the letter can be about. The last two keep it right on /security too. */
+export const TOPICS = [
+  "review",
+  "migration",
+  "lead",
+  "system",
+  "security",
+  "other",
+] as const;
+
+export type Topic = (typeof TOPICS)[number];

@@ -361,11 +361,11 @@
     }
   },
   "contact": {
-    "title": "Got an interesting challenge?",
-    "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee.",
-    "copy": "Copy email",
-    "copied": "Email copied",
-    "copyFailed": "Couldn't copy. The address is selected.",
+    "title": "Tell me what's stuck.",
+    "subLead": "I'm independent now and",
+    "subOpen": "taking on new clients.",
+    "asOf": "as of {month}",
+    "subReasons": "Good reasons to write: an upgrade that keeps slipping, an app that got slow, someone to lead the team while you hire, a security bug you found.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -373,20 +373,44 @@
       "medium": "Medium",
       "spaceCast": "Space Cast"
     },
-    "form": {
-      "name": "Name",
-      "namePh": "Your name",
-      "email": "Email",
-      "emailPh": "you@company.com",
-      "subject": "The challenge",
-      "subjectPh": "What needs solving?",
-      "message": "Tell me more",
-      "messagePh": "Team size, timeline, stack, what good looks like.",
-      "send": "Open email draft",
-      "handoff": "The button opens a draft in your email app. If nothing opens, copy the address above.",
+    "elsewhere": "Rather start somewhere else?",
+    "why": {
+      "linkedin": "A quick hello first",
+      "github": "Read my code before we talk",
+      "medium": "What I write",
+      "spaceCast": "The podcast I host"
+    },
+    "letter": {
+      "label": "Email to Gabriel",
+      "to": "To",
+      "subject": "Subject",
+      "copyEmail": "Copy email",
+      "emailCopied": "Email copied",
+      "emailCopyFailed": "Couldn't copy. The address is selected.",
+      "greeting": "Hi Gabriel,",
+      "topicLegend": "I'm writing about",
+      "topics": {
+        "review": "Architecture review",
+        "migration": "Migration or upgrade",
+        "lead": "Interim mobile lead",
+        "system": "Design system",
+        "security": "Security issue",
+        "other": "Something else"
+      },
       "defaultSubject": "Hi from your site",
-      "from": "From",
-      "reply": "Reply to"
+      "story": "Where things stand",
+      "storyPh": "The app, the team, the timeline, and what good looks like.",
+      "storyPrompt": "The app:\nThe team:\nThe timeline:",
+      "signoff": "Thanks,",
+      "name": "Your name",
+      "namePh": "Your name",
+      "company": "Company",
+      "companyPh": "Company",
+      "open": "Open in my email app",
+      "copyLetter": "Copy as text",
+      "letterCopied": "Text copied",
+      "letterCopyFailed": "Couldn't copy. Open it in your email app instead.",
+      "handoff": "Nothing gets sent from this page. It opens as a draft in your email app, or copy the text and paste it anywhere, LinkedIn included."
     }
   },
   "links": {
