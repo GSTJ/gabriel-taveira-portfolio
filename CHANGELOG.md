@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.11](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.10...v1.2.11) (2026-10-19)
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v26.6.4 ([#424](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/424)) ([1c55835](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1c5583595d42a052697881b8742341907f64a843))
+* **deps:** update dependency next-intl to v4.14.9 ([#426](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/426)) ([24b2b54](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/24b2b5446ba1166fe7d0680b1beffeee5513d31e))
+* **deps:** update dependency oxfmt to v0.72.0 ([#434](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/434)) ([bbabc87](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/bbabc87222160ecfc77b150c1d03149ea83c20dc))
+* **deps:** update dependency postcss to v8.5.29 ([#431](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/431)) ([1473a86](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1473a86c3c27268dd22da79c9b3afa7dd19a59bb))
+* **deps:** update dependency postcss to v8.5.29 ([#433](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/433)) ([9ebf2d6](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/9ebf2d648e7f5944d097f4c9040741bcefd7a01a))
+* **deps:** update dependency posthog-js to v1.435.3 ([#418](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/418)) ([96a999f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/96a999f6bb4afbd61ff4a1b06aa8f30c1b2874ec))
+* **deps:** update dependency posthog-js to v1.435.8 ([#427](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/427)) ([828dbc1](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/828dbc148466e6976dab24f8ae758bb32139c7f2))
+* **deps:** update dependency posthog-js to v1.435.9 ([#432](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/432)) ([cd44b30](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/cd44b30c8f42c07c88b54d19f17a4d755f48e671))
+* **deps:** update dependency wrangler to v4.145.0 ([#420](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/420)) ([1821c7e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1821c7e5ff2fd20f18410df04a70b8b23a2d4bf9))
+* **deps:** update dependency wrangler to v4.146.0 ([#422](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/422)) ([fc2dba2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fc2dba29262889831638c93d2ac573163716716f))
+* **deps:** update dependency wrangler to v4.147.0 ([#428](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/428)) ([e3d5fef](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e3d5fef8d2cb666afdc460df6fe40cf657309ad3))
+* **deps:** update pnpm to v12.9.0 ([#429](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/429)) ([eac7f62](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/eac7f6299e2d4a29d16847272e31280fb2e3f1c8))
+* **deps:** update pnpm to v12.9.1 ([#430](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/430)) ([da3d566](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/da3d56671b379d0a3a182a6636722a111a11cb16))
+* **deps:** update posthog sdks ([#421](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/421)) ([1f2d97b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1f2d97b65704e6affc2e6499dde9e59096f2375a))
+
 ## [1.2.10](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.2.9...v1.2.10) (2026-10-14)
 
 
