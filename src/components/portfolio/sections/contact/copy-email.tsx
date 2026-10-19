@@ -13,6 +13,8 @@ const VISIBLE_MS = 2400;
 /** A flick up this fast (px/ms) dismisses, however short the drag. */
 const FLICK = 0.11;
 const SWIPE_PX = 24;
+/** How long the marker stays on the address after a copy. */
+const SWEEP_MS = 1400;
 
 /**
  * Copy email with a toast that behaves like react-native-magic-toast: drops
@@ -35,6 +37,7 @@ export const CopyEmail = ({
   const startedAt = useRef(0);
   const paused = useRef(false);
   const drag = useRef<{ y: number; t: number } | null>(null);
+  const sweep = useRef<number | undefined>(undefined);
 
   const hide = () => {
     window.clearTimeout(timer.current);
@@ -66,7 +69,28 @@ export const CopyEmail = ({
     return () => document.removeEventListener("visibilitychange", onVisibility);
   });
 
-  useEffect(() => () => window.clearTimeout(timer.current), []);
+  useEffect(
+    () => () => {
+      window.clearTimeout(timer.current);
+      window.clearTimeout(sweep.current);
+    },
+    [],
+  );
+
+  /** Marks the address the way a highlighter would, then lets it go. */
+  const markAddress = () => {
+    const address = document.querySelector<HTMLElement>(`#${addressId}`);
+    if (!address) return;
+    window.clearTimeout(sweep.current);
+    delete address.dataset.swept;
+    // Read layout so a second copy restarts the sweep from the left.
+    void address.offsetWidth;
+    address.dataset.swept = "";
+    sweep.current = window.setTimeout(
+      () => delete address.dataset.swept,
+      SWEEP_MS,
+    );
+  };
 
   const show = (text: string, ok: boolean) => {
     setMessage({ text, ok });
@@ -77,10 +101,11 @@ export const CopyEmail = ({
   const onCopy = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL_ADDR);
+      markAddress();
       show(copy.copied, true);
     } catch {
       // No clipboard (insecure context, denied): select it for a manual copy.
-      const address = document.querySelector(`#${addressId}`);
+      const address = document.querySelector<HTMLElement>(`#${addressId}`);
       if (address) window.getSelection()?.selectAllChildren(address);
       show(copy.copyFailed, false);
     }

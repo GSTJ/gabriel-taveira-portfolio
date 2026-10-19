@@ -361,32 +361,45 @@
     }
   },
   "contact": {
-    "title": "Got an interesting challenge?",
-    "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee.",
+    "title": "Tell me what's stuck.",
+    "sub": "A migration you keep pushing back, an app that got slow, a team that needs a lead while you hire. Send me an email and we'll take it from there.",
+    "note": "taking new clients, {month}",
+    "write": "Write an email",
     "copy": "Copy email",
     "copied": "Email copied",
     "copyFailed": "Couldn't copy. The address is selected.",
+    "asksTitle": "What helps me reply",
+    "asks": {
+      "app": {
+        "label": "The app",
+        "hint": "What it does and who uses it."
+      },
+      "team": {
+        "label": "The team",
+        "hint": "Who works on it today."
+      },
+      "timeline": {
+        "label": "The timeline",
+        "hint": "When it needs to be done, and why then."
+      }
+    },
+    "draft": {
+      "subject": "Hi from your site",
+      "greeting": "Hi Gabriel,"
+    },
+    "elsewhere": "Elsewhere",
+    "purpose": {
+      "linkedin": "Send a message",
+      "github": "Read the code",
+      "medium": "Read my posts",
+      "spaceCast": "Watch the show"
+    },
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
       "email": "Email",
       "medium": "Medium",
       "spaceCast": "Space Cast"
-    },
-    "form": {
-      "name": "Name",
-      "namePh": "Your name",
-      "email": "Email",
-      "emailPh": "you@company.com",
-      "subject": "The challenge",
-      "subjectPh": "What needs solving?",
-      "message": "Tell me more",
-      "messagePh": "Team size, timeline, stack, what good looks like.",
-      "send": "Open email draft",
-      "handoff": "The button opens a draft in your email app. If nothing opens, copy the address above.",
-      "defaultSubject": "Hi from your site",
-      "from": "From",
-      "reply": "Reply to"
     }
   },
   "links": {

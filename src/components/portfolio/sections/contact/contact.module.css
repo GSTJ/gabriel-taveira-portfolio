@@ -1,70 +1,33 @@
-/* ── The ask across the page, then channels beside the form ────────── */
+/* ── The ask, then the one address and what to do with it ─────────── */
 
 .title {
   max-width: 11em;
 }
 
 .sub {
-  max-width: 30em;
-  margin-top: var(--space-6);
+  max-width: 34em;
+  margin-top: var(--space-5);
   color: var(--ink-2);
 }
 
-.rest {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-  gap: var(--space-8);
-  align-items: start;
-  margin-top: var(--space-8);
-}
-
-.ledger {
-  border-top: 1px solid var(--rule);
-}
-
-.ledger a {
-  display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-3);
-  padding-block: var(--space-4);
-  border-bottom: 1px solid var(--rule);
-  text-decoration: none;
-}
-
-.label {
-  font-weight: var(--fw-medium);
-}
-
-.handle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--ink-3);
-}
-
-.ledger a > svg {
-  width: 0.9em;
-  height: 0.9em;
-  color: var(--ink-3);
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
-/* ── Shared: the address and copy, channel icons, the form ─────────── */
-
 .mail {
   margin-top: var(--space-7);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4) var(--space-5);
+}
+
+/* Fit the address so the margin note hangs right after it. */
+.line {
+  width: fit-content;
+  max-width: 100%;
 }
 
 .address {
+  position: relative;
   font-size: var(--fs-title);
   font-weight: var(--fw-regular);
   letter-spacing: var(--tr-title);
   text-decoration: none;
+  overflow-wrap: anywhere;
+  isolation: isolate;
 }
 
 @media (width >= 760px) {
@@ -72,6 +35,106 @@
     font-size: var(--fs-h1);
     letter-spacing: var(--tr-h2);
   }
+}
+
+/* The marker a copy leaves on the address: pen wash, swept left to right. */
+.address::before {
+  content: "";
+  position: absolute;
+  inset: -0.04em -0.12em -0.02em;
+  z-index: -1;
+  border-radius: var(--r-sm);
+  background: var(--pen-wash);
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-exit) var(--ease-out),
+    clip-path 0s var(--dur-exit);
+}
+
+.address[data-swept]::before {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition:
+    opacity var(--dur-press) var(--ease-out),
+    clip-path var(--dur-ui) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .address::before,
+  .address[data-swept]::before {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+/* ── What helps me reply, and the other channels ───────────────────── */
+
+.rest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: var(--space-7) var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.restTitle {
+  margin-bottom: var(--space-4);
+}
+
+.asks {
+  border-top: 1px solid var(--rule);
+}
+
+.asks li {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.askLabel {
+  font-weight: var(--fw-medium);
+}
+
+.askHint {
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--rule);
+}
+
+.channels a {
+  display: grid;
+  gap: var(--space-1);
+  height: 100%;
+  padding: var(--space-3) var(--space-3) var(--space-4) 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-medium);
+}
+
+.name > svg {
+  width: 0.8em;
+  height: 0.8em;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
 .icon {
@@ -84,58 +147,14 @@
   color: var(--ink-3);
 }
 
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
-}
-
-.field {
-  display: grid;
-  gap: var(--space-1);
-  font-size: var(--fs-small);
-  color: var(--ink-2);
-}
-
-.handoff,
-.field:nth-child(n + 4),
-.form button {
-  grid-column: 1 / -1;
-}
-
-.field input,
-.field textarea {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--control);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink);
-  font-size: var(--fs-body);
-  transition: border-color var(--dur-hover) ease;
-}
-
-.field textarea {
-  resize: vertical;
-}
-
-.field input::placeholder,
-.field textarea::placeholder {
+.handle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--ink-3);
 }
 
-.field input:focus-visible,
-.field textarea:focus-visible {
-  outline-offset: 1px;
-  border-color: var(--pen);
-}
-
-.form button {
-  justify-self: start;
-}
-
-.handoff {
-  max-width: var(--measure);
+.purpose {
   color: var(--ink-2);
 }
 
@@ -218,11 +237,11 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .ledger a:hover > svg {
+  .channels a:hover .name > svg {
     transform: translate(2px, -2px);
   }
 
-  .ledger a:hover .label {
+  .channels a:hover .name {
     text-decoration: underline;
     text-decoration-color: var(--rule-strong);
     text-underline-offset: 0.2em;
@@ -232,15 +251,5 @@
 @media (width < 1000px) {
   .rest {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (width < 560px) {
-  .form {
-    grid-template-columns: 1fr;
-  }
-
-  .field {
-    grid-column: 1 / -1;
   }
 }

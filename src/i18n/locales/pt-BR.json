@@ -361,32 +361,45 @@
     }
   },
   "contact": {
-    "title": "Tem um desafio bom?",
-    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
+    "title": "Me conta o que travou.",
+    "sub": "Uma migração que vive ficando pra depois, um app que ficou lento, um time precisando de liderança enquanto você contrata. Me manda um email e a gente segue daí.",
+    "note": "pegando clientes novos, {month}",
+    "write": "Escrever email",
     "copy": "Copiar email",
     "copied": "Email copiado",
     "copyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
+    "asksTitle": "O que me ajuda a responder",
+    "asks": {
+      "app": {
+        "label": "O app",
+        "hint": "O que ele faz e quem usa."
+      },
+      "team": {
+        "label": "O time",
+        "hint": "Quem trabalha nele hoje."
+      },
+      "timeline": {
+        "label": "O prazo",
+        "hint": "Pra quando precisa ficar pronto, e por quê."
+      }
+    },
+    "draft": {
+      "subject": "Oi, vim pelo seu site",
+      "greeting": "Oi, Gabriel,"
+    },
+    "elsewhere": "Em outros lugares",
+    "purpose": {
+      "linkedin": "Manda uma mensagem",
+      "github": "Lê o código",
+      "medium": "Lê o que eu escrevo",
+      "spaceCast": "Assiste o programa"
+    },
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
       "email": "Email",
       "medium": "Medium",
       "spaceCast": "Space Cast"
-    },
-    "form": {
-      "name": "Nome",
-      "namePh": "Seu nome",
-      "email": "Email",
-      "emailPh": "voce@empresa.com",
-      "subject": "O desafio",
-      "subjectPh": "O que precisa ser resolvido?",
-      "message": "Me conta mais",
-      "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
-      "send": "Abrir rascunho de email",
-      "handoff": "O botão abre um rascunho no seu app de email. Se nada abrir, copia o endereço lá em cima.",
-      "defaultSubject": "Oi, vim pelo seu site",
-      "from": "De",
-      "reply": "Responder para"
     }
   },
   "links": {
