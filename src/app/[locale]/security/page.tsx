@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-import { SecurityPortfolio } from "@/components/portfolio/security-page";
+import { setRequestLocale } from "next-intl/server";
+
+import { SecurityPortfolio } from "@/components/security/security-page";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
 
@@ -61,6 +63,7 @@ const SecurityPage = async ({
   params: Promise<{ locale: string }>;
 }) => {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   return <SecurityPortfolio locale={locale} />;
 };

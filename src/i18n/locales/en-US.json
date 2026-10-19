@@ -1,117 +1,90 @@
 {
   "meta": {
     "title": "Gabriel Taveira · React Native & Expo Consultant",
-    "description": "Fractional mobile lead for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil."
+    "description": "Independent consultant for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil."
   },
   "nav": {
-    "services": "Services",
-    "work": "Work",
-    "media": "Media",
-    "talks": "Talks",
-    "awards": "Awards",
-    "now": "Now",
+    "label": "Main",
+    "skip": "Skip to content",
+    "sections": {
+      "projects": "Projects",
+      "work": "Work",
+      "services": "Services",
+      "contact": "Contact"
+    },
     "getInTouch": "Get in touch"
   },
-  "hero": {
-    "role": "Fractional Mobile Lead",
-    "name": "Gabriel",
-    "surname": "Taveira",
-    "intro": "I help product teams ship <strong>React Native and Expo apps that scale</strong>: the architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to 56 direct reports and worked on Coinbase's mobile app infrastructure.",
-    "intro2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape.",
-    "getInTouch": "Get in touch",
-    "viewLinkedIn": "View LinkedIn",
-    "downloadPdf": "Download PDF",
-    "currently": "Currently",
-    "consulting": "Consulting",
-    "location": "Remote · Ribeirão Preto, Brazil",
-    "stats": {
-      "years": "Years in industry",
-      "yearsMeta": "Since {since}",
-      "reports": "Most direct reports",
-      "reportsMeta": "Across 6 teams",
-      "tinkering": "Years tinkering",
-      "tinkeringMeta": "Started at age 8",
-      "awards": "Hackathons won",
-      "awardsMeta": "2019 → 2020"
+  "common": {
+    "theme": {
+      "toggle": "Switch theme",
+      "toDark": "Switch to dark theme",
+      "toLight": "Switch to light theme"
     },
-    "availability": "Open to new clients"
-  },
-  "services": {
-    "eyebrow": "Services · how I can help",
-    "title": "Hire me to <em>unblock</em> your mobile team.",
-    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
-    "items": {
-      "audit": {
-        "chip": "Audit",
-        "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
-      },
-      "migrations": {
-        "chip": "Migrations",
-        "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
-      },
-      "leadership": {
-        "chip": "Leadership",
-        "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
-      },
-      "systems": {
-        "chip": "Design",
-        "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
+    "language": {
+      "label": "Language",
+      "en-US": "EN",
+      "pt-BR": "PT",
+      "names": {
+        "en-US": "English",
+        "pt-BR": "Português"
       }
+    },
+    "newTab": "opens in a new tab",
+    "footer": {
+      "meta": "Gabriel Taveira · React Native & Expo Consultant · Ribeirão Preto, Brazil",
+      "tag": "Building and breaking systems since age 8",
+      "madeWith": "made with coffee · gt"
     }
   },
-  "securityPage": {
-    "navLabel": "Security profile navigation",
-    "eyebrow": "Gabriel Taveira · Application Security",
-    "title": "I find the boundary, reproduce the failure, and <em>fix it</em>.",
-    "intro": "I started at eight by reverse-engineering games to understand how software worked. More than {years} years into my professional engineering career, I bring that same curiosity to defensive application security across identity, authorization, untrusted uploads, and cloud boundaries.",
-    "proof": "The work below is public, merged, and linked to a reproduction or regression test.",
-    "fullProfile": "Full engineering profile",
-    "viewGitHub": "View GitHub",
-    "getInTouch": "Get in touch"
+  "hero": {
+    "status": "Independent consultant, open to new clients",
+    "place": "Ribeirão Preto, Brazil · {month}",
+    "title": "<me>I'm Gabriel.</me> I help product teams ship React Native and Expo <pen>apps that scale.</pen>",
+    "body": "The architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to <note>56 direct reports</note> and worked on Coinbase's mobile app infrastructure.",
+    "notes": {
+      "yesReally": "yes, really"
+    },
+    "cta": {
+      "getInTouch": "Get in touch",
+      "downloadPdf": "Download PDF",
+      "linkedIn": "LinkedIn"
+    },
+    "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
   },
-  "security": {
-    "eyebrow": "Selected security work",
-    "title": "Three defensive fixes, with the <em>proof</em> attached.",
-    "sub": "Each case starts with an observed security risk and ends with a scoped fix plus a regression check.",
-    "topicsLabel": "Security practice areas",
-    "readProof": "Read merged PR",
+  "projects": {
+    "title": "Things I made.",
+    "sub": "The app I'm building now, and the open-source work other teams ship with.",
+    "source": "Source on GitHub",
     "items": {
-      "assetBoundary": {
-        "title": "Prevented untrusted assets from executing on the application origin",
-        "body": "Reproduced a stored-XSS risk where a compromised R2 object could be served as HTML on this portfolio's origin. Replaced the proxy rewrite with a typed streaming route and restrictive response headers.",
-        "metric": "reproduced locally",
-        "caseStudy": {
-          "label": "Read the case study",
-          "causeTitle": "Root cause",
-          "cause": "The same-origin PDF rewrite forwarded the asset host's Content-Type. Control of that upstream response could make the browser interpret HTML inside the portfolio origin.",
-          "fixTitle": "Fix",
-          "fix": "I replaced the rewrite with a route that streams the body under a fixed PDF content type, nosniff, a fixed disposition, and explicit cache headers. Upstream response headers are discarded.",
-          "validationTitle": "Validation",
-          "validation": "A controlled local upstream reproduced script execution before the change. After it, the route returned the same bytes as application/pdf with nosniff. Production still serves a valid PDF through that contract.",
-          "limitsTitle": "Limits",
-          "limits": "The route does not inspect PDF structure or prove that production storage was compromised. The malicious-upstream regression remained a manual check because this repository had no automated test suite."
-        }
+      "curvinha": {
+        "title": "Curvinha",
+        "role": "Founder · I built it",
+        "body": "An iPhone app: you scan a room with LiDAR, then get a proposal with real products you can buy, plus the shopping list. Curated with architects from Curva Interiores.",
+        "cta": "Open curvinha.app"
       },
-      "identity": {
-        "title": "Made OTPs single-use under concurrency",
-        "body": "Moved OTP consumption into one atomic PostgreSQL update and added concurrency coverage across 25 code pairs. Every pair produced one success and one rejection.",
-        "metric": "OTP races covered"
+      "magicModal": {
+        "title": "magic-modal",
+        "body": "A magic modal you can await from anywhere: React Native, Expo, and the web."
       },
-      "authorization": {
-        "title": "Bound image upload grants to the caller",
-        "body": "Added short-lived upload grants with ownership, exact-byte signatures, hourly caps, and cleanup. Only the user who requested a grant can claim it when creating or editing a profile.",
-        "metric": "upload grant TTL"
+      "safeJsx": {
+        "title": "safe-jsx",
+        "body": "An ESLint plugin that makes you convert to a boolean before using && with JSX, so a stray 0 never renders in React or React Native."
+      },
+      "magicToast": {
+        "title": "react-native-magic-toast",
+        "body": "An imperative toast for React Native you can call from anywhere."
+      },
+      "pegada": {
+        "title": "Pegada",
+        "body": "A dog dating app made with Expo and Next.js, now open source."
       }
     }
   },
   "work": {
-    "eyebrow": "Professional Experience · 2017 → now",
-    "title": "Teams I've led. Systems that <em>lasted</em>.",
+    "title": "Teams I've led. Systems that lasted.",
     "sub": "From four direct reports to fifty-six, across startups, delivery apps, fintechs, and tech giants.",
+    "present": "now",
+    "earlier": "Earlier",
     "items": {
       "consulting": {
         "title": "Independent consulting",
@@ -155,126 +128,173 @@
       }
     }
   },
-  "publications": {
-    "eyebrow": "Publications & media",
-    "title": "Things I host, write, and <em>ambassador</em>.",
-    "onAir": "On air · Space Cast",
-    "featureTitle": "I host the <em>Space Cast</em> podcast on Rocketseat's YouTube.",
-    "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
-    "watchShow": "Watch the show",
-    "playlist": "Episode playlist →",
-    "mediumEyebrow": "Medium",
-    "mediumHandle": "medium.com/@gabrieltaveira",
-    "mediumBody": "Articles on programming, design systems, and team craft.",
-    "ambassadorEyebrow": "Ambassador",
-    "ambassadorTitle": "Space Squad · Rocketseat",
-    "ambassadorBody": "Mentoring the next generation of tech wizards."
-  },
-  "talks": {
-    "eyebrow": "Talks · selected",
-    "title": "I speak at <em>tech</em> and <em>leadership</em> events.",
-    "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
-    "topicLeadership": "Leadership",
-    "topicTech": "Tech",
+  "services": {
+    "title": "Hire me to unblock your mobile team.",
+    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
     "items": {
-      "brooklyn": {
-        "title": "Eficiência com IA",
-        "description": "How to lift team throughput with AI in day-to-day engineering.",
-        "venue": "The Brooklyn Brothers",
-        "city": "São Paulo",
-        "hrefLabel": "Slides on Figma"
+      "audit": {
+        "chip": "Audit",
+        "title": "React Native architecture review",
+        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
       },
-      "tdc": {
-        "title": "Shipping Mozeic at Zé Delivery",
-        "description": "Lessons from co-building an in-house design system at a high-traffic delivery app.",
-        "venue": "TDC · Design Systems",
-        "city": "São Paulo",
-        "hrefLabel": "Event site"
+      "migrations": {
+        "chip": "Migrations",
+        "title": "Expo, new architecture, and React Compiler upgrades",
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
       },
-      "assemble": {
-        "title": "Forming a Tech Lead, three days at a time",
-        "description": "3-day immersion focused on forming engineering leads.",
-        "venue": "Assemble · Rocketseat",
-        "city": "Remote",
-        "hrefLabel": "Rocketseat"
+      "leadership": {
+        "chip": "Leadership",
+        "title": "Fractional mobile engineering lead",
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
       },
-      "spaceSquad": {
-        "title": "Mentoring in the Space Squad community",
-        "description": "Ongoing mentorship through Rocketseat's ambassador program.",
-        "venue": "Space Squad · Rocketseat",
-        "city": "Remote",
-        "hrefLabel": "Space Squad"
+      "systems": {
+        "chip": "Design",
+        "title": "Design systems and developer experience",
+        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
+      }
+    },
+    "engagement": {
+      "title": "How an engagement runs.",
+      "sub": "Same sequence every time, sized to your app and your team.",
+      "steps": {
+        "review": {
+          "title": "Review",
+          "body": "I read the codebase, the release pipeline, and the backlog, and talk to the people who own them."
+        },
+        "plan": {
+          "title": "Plan",
+          "body": "A prioritized plan with the tradeoffs spelled out, short enough that people actually read it."
+        },
+        "ship": {
+          "title": "Ship",
+          "body": "I work inside your team on the riskiest parts: the migration, the performance work, the release train."
+        },
+        "handoff": {
+          "title": "Hand off",
+          "body": "Docs, standards, and people who own the result, so nothing depends on me sticking around."
+        }
       }
     }
   },
-  "awards": {
-    "eyebrow": "Awards · 2019 → 2020",
-    "title": "A small <em>trophy shelf</em>.",
-    "sub": "A few hackathons I crashed before the day job got busy.",
-    "positions": {
-      "first": "1st place",
-      "second": "2nd place",
-      "finalist": "Finalist"
+  "notes": {
+    "title": "Talks, writing, and what I'm doing now.",
+    "now": {
+      "title": "What I'm actually doing.",
+      "items": {
+        "consulting": {
+          "chip": "Consulting",
+          "title": "Mobile architecture and engineering leadership",
+          "body": "Taking on new engagements. Client details under NDA."
+        },
+        "building": {
+          "chip": "Building",
+          "title": "Curvinha, an iOS app for planning your home",
+          "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
+        },
+        "hosting": {
+          "chip": "Hosting",
+          "title": "Space Cast on Rocketseat",
+          "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Guest ideas welcome."
+        },
+        "mentoring": {
+          "chip": "Mentoring",
+          "title": "Space Squad · the next generation",
+          "body": "Ambassador in the Space Squad program. The compounding interest on a 20-minute coffee with a junior engineer is wild."
+        },
+        "tinkering": {
+          "chip": "Tinkering",
+          "title": "A native screen-recording detector for Expo",
+          "body": "Upstreaming work from a past engagement. Reverse-engineering for fun, then for prod. Both still scratch the same age-8 itch."
+        }
+      },
+      "updated": "Updated {date}."
     },
-    "items": {
-      "globalLegal": "Global Legal Hackathon SP",
-      "maoNaCevada": "Mão na Cevada",
-      "hackRibeirao": "HackRibeirão",
-      "jovemInovador": "Prêmio Jovem Inovador",
-      "nasa": "NASA Space Apps Challenge"
-    }
-  },
-  "writing": {
-    "eyebrow": "Writing",
-    "title": "Notes from the <em>shelf</em>.",
-    "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
-    "handle": "medium.com/@gabrieltaveira",
-    "calloutTitle": "I write on <em>Medium</em>.",
-    "calloutSub": "New posts whenever a thought stops being interesting only to me. Subscribe there for the next one.",
-    "topics": {
-      "leadership": "Engineering Leadership",
-      "mobile": "Mobile Architecture",
-      "design": "Design Systems",
-      "hiring": "Hiring & Mentorship",
-      "reverse": "Reverse Engineering"
+    "publications": {
+      "title": "Things I host, write, and ambassador.",
+      "onAir": "On air · Space Cast",
+      "featureTitle": "I host the Space Cast podcast on Rocketseat's YouTube.",
+      "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
+      "watchShow": "Watch the show",
+      "playlist": "Episode playlist",
+      "mediumEyebrow": "Medium",
+      "mediumHandle": "medium.com/@gabrieltaveira",
+      "mediumBody": "Articles on programming, design systems, and team craft.",
+      "ambassadorEyebrow": "Ambassador",
+      "ambassadorTitle": "Space Squad · Rocketseat",
+      "ambassadorBody": "Mentoring the next generation of tech wizards.",
+      "season": "season 3"
     },
-    "readOnMedium": "Read on Medium"
-  },
-  "now": {
-    "eyebrow": "Now · {date}",
-    "title": "What I'm actually <em>doing</em>.",
-    "items": {
-      "consulting": {
-        "chip": "Consulting",
-        "title": "Mobile architecture and engineering leadership",
-        "body": "Taking on new engagements. Client details under NDA."
-      },
-      "building": {
-        "chip": "Building",
-        "title": "Curvinha, an iOS app for planning your home",
-        "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
-      },
-      "hosting": {
-        "chip": "Hosting",
-        "title": "Space Cast on Rocketseat",
-        "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Bring a guest idea over ⚡."
-      },
-      "mentoring": {
-        "chip": "Mentoring",
-        "title": "Space Squad · the next generation",
-        "body": "Ambassador in the Space Squad program. The compounding interest on a 20-minute coffee with a junior engineer is wild."
-      },
-      "tinkering": {
-        "chip": "Tinkering",
-        "title": "A native screen-recording detector for Expo",
-        "body": "Upstreaming work from a past engagement. Reverse-engineering for fun, then for prod. Both still scratch the same age-8 itch."
+    "talks": {
+      "title": "I speak at tech and leadership events.",
+      "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
+      "topicLeadership": "Leadership",
+      "topicTech": "Tech",
+      "items": {
+        "brooklyn": {
+          "title": "Eficiência com IA",
+          "description": "How to lift team throughput with AI in day-to-day engineering.",
+          "venue": "The Brooklyn Brothers",
+          "city": "São Paulo",
+          "hrefLabel": "Slides on Figma"
+        },
+        "tdc": {
+          "title": "Shipping Mozeic at Zé Delivery",
+          "description": "Lessons from co-building an in-house design system at a high-traffic delivery app.",
+          "venue": "TDC · Design Systems",
+          "city": "São Paulo",
+          "hrefLabel": "Event site"
+        },
+        "assemble": {
+          "title": "Forming a Tech Lead, three days at a time",
+          "description": "3-day immersion focused on forming engineering leads.",
+          "venue": "Assemble · Rocketseat",
+          "city": "Remote",
+          "hrefLabel": "Rocketseat"
+        },
+        "spaceSquad": {
+          "title": "Mentoring in the Space Squad community",
+          "description": "Ongoing mentorship through Rocketseat's ambassador program.",
+          "venue": "Space Squad · Rocketseat",
+          "city": "Remote",
+          "hrefLabel": "Space Squad"
+        }
       }
+    },
+    "awards": {
+      "title": "A small trophy shelf.",
+      "sub": "A few hackathons I crashed before the day job got busy.",
+      "positions": {
+        "first": "1st place",
+        "second": "2nd place",
+        "finalist": "Finalist"
+      },
+      "items": {
+        "globalLegal": "Global Legal Hackathon SP",
+        "maoNaCevada": "Mão na Cevada",
+        "hackRibeirao": "HackRibeirão",
+        "jovemInovador": "Prêmio Jovem Inovador",
+        "nasa": "NASA Space Apps Challenge"
+      }
+    },
+    "writing": {
+      "title": "Notes from the shelf.",
+      "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
+      "handle": "medium.com/@gabrieltaveira",
+      "calloutTitle": "I write on Medium.",
+      "calloutSub": "New posts whenever a thought stops being interesting only to me. Subscribe there for the next one.",
+      "topics": {
+        "leadership": "Engineering Leadership",
+        "mobile": "Mobile Architecture",
+        "design": "Design Systems",
+        "hiring": "Hiring & Mentorship",
+        "reverse": "Reverse Engineering"
+      },
+      "readOnMedium": "Read on Medium"
     }
   },
   "contact": {
-    "eyebrow": "Get in touch",
-    "title": "Got an <em>interesting</em> challenge?",
-    "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee. ⚡",
+    "title": "Got an interesting challenge?",
+    "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -292,25 +312,15 @@
       "message": "Tell me more",
       "messagePh": "Team size, timeline, stack, what good looks like.",
       "send": "Send message"
-    },
-    "sentTitle": "Thanks. I'll reply within the week. ⚡",
-    "sentBody": "If you don't hear back by next Friday, ping again. Email sometimes loses the war with spam.",
-    "footerMeta": "Gabriel Taveira · React Native & Expo Consultant · Ribeirão Preto, Brazil",
-    "footerTag": "Building & breaking systems since age 8 · ⚡"
-  },
-  "marginalia": {
-    "yesReally": "yes, really",
-    "spaceCastSeason": "season 3 ✨",
-    "madeWith": "made with ☕ + ⚡ · gt"
+    }
   },
   "links": {
-    "eyebrow": "Find me online",
-    "title": "Gabriel <em>Taveira</em>.",
+    "title": "Gabriel Taveira.",
     "sub": "Pick a doorway."
   },
   "resume": {
     "title": "Gabriel Taveira · Resume",
-    "role": "Fractional Mobile Engineering Lead · React Native & Expo Consultant",
+    "role": "Independent consultant · React Native & Expo",
     "location": "Ribeirão Preto, Brazil · Remote (US hours)",
     "summaryTitle": "Summary",
     "summary": "Mobile engineering lead and React Native / Expo consultant with {years}+ years of professional experience. Led teams of up to 56 direct reports across six teams. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-built Zé Delivery's design system. Open to consulting engagements.",
@@ -322,5 +332,50 @@
     "backToSite": "Full portfolio",
     "download": "Download PDF",
     "present": "Present"
+  },
+  "securityPage": {
+    "navLabel": "Security profile navigation",
+    "eyebrow": "Gabriel Taveira · Application Security",
+    "title": "I find the boundary, reproduce the failure, and fix it.",
+    "intro": "I started at eight by reverse-engineering games to understand how software worked. More than {years} years into my professional engineering career, I bring that same curiosity to defensive application security across identity, authorization, untrusted uploads, and cloud boundaries.",
+    "proof": "The work below is public, merged, and linked to a reproduction or regression test.",
+    "fullProfile": "Full engineering profile",
+    "viewGitHub": "View GitHub",
+    "getInTouch": "Get in touch"
+  },
+  "security": {
+    "eyebrow": "Selected security work",
+    "title": "Three defensive fixes, with the proof attached.",
+    "sub": "Each case starts with an observed security risk and ends with a scoped fix plus a regression check.",
+    "topicsLabel": "Security practice areas",
+    "readProof": "Read merged PR",
+    "items": {
+      "assetBoundary": {
+        "title": "Prevented untrusted assets from executing on the application origin",
+        "body": "Reproduced a stored-XSS risk where a compromised R2 object could be served as HTML on this portfolio's origin. Replaced the proxy rewrite with a typed streaming route and restrictive response headers.",
+        "metric": "reproduced locally",
+        "caseStudy": {
+          "label": "Read the case study",
+          "causeTitle": "Root cause",
+          "cause": "The same-origin PDF rewrite forwarded the asset host's Content-Type. Control of that upstream response could make the browser interpret HTML inside the portfolio origin.",
+          "fixTitle": "Fix",
+          "fix": "I replaced the rewrite with a route that streams the body under a fixed PDF content type, nosniff, a fixed disposition, and explicit cache headers. Upstream response headers are discarded.",
+          "validationTitle": "Validation",
+          "validation": "A controlled local upstream reproduced script execution before the change. After it, the route returned the same bytes as application/pdf with nosniff. Production still serves a valid PDF through that contract.",
+          "limitsTitle": "Limits",
+          "limits": "The route does not inspect PDF structure or prove that production storage was compromised. The malicious-upstream regression remained a manual check because this repository had no automated test suite."
+        }
+      },
+      "identity": {
+        "title": "Made OTPs single-use under concurrency",
+        "body": "Moved OTP consumption into one atomic PostgreSQL update and added concurrency coverage across 25 code pairs. Every pair produced one success and one rejection.",
+        "metric": "OTP races covered"
+      },
+      "authorization": {
+        "title": "Bound image upload grants to the caller",
+        "body": "Added short-lived upload grants with ownership, exact-byte signatures, hourly caps, and cleanup. Only the user who requested a grant can claim it when creating or editing a profile.",
+        "metric": "upload grant TTL"
+      }
+    }
   }
 }

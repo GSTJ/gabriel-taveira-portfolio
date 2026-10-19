@@ -1,0 +1,182 @@
+/* Page chrome: the sticky nav, the language switch and the footer. */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.2) blur(12px);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
+  border-bottom: 1px solid transparent;
+}
+
+/* The hairline fades in over the first 24px of scroll, no JS. */
+@supports (animation-timeline: scroll()) {
+  .nav {
+    animation: nav-rule linear both;
+    animation-timeline: scroll();
+    animation-range: 0 24px;
+  }
+}
+
+@keyframes nav-rule {
+  to {
+    border-bottom-color: var(--rule);
+  }
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-areas: "brand links lang theme cta";
+  align-items: center;
+  column-gap: var(--space-3);
+  min-height: var(--nav-h);
+}
+
+.brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1.0625rem;
+  font-weight: var(--fw-strong);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-size: 1.375rem;
+  font-weight: 560;
+  line-height: 1;
+  color: var(--pen);
+}
+
+.links {
+  grid-area: links;
+  display: flex;
+  gap: var(--space-5);
+  margin-left: var(--space-5);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+
+.links a {
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur-hover) ease;
+}
+
+.langSlot {
+  grid-area: lang;
+}
+
+.cta {
+  grid-area: cta;
+}
+
+.lang {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+}
+
+.lang a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: var(--r-pill);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition:
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease;
+}
+
+.lang a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .links a:hover {
+    color: var(--ink);
+  }
+
+  .lang a:not([aria-current="page"]):hover {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+}
+
+/* Narrow: section links and the language switch get their own row. */
+@media (width < 760px) {
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "brand theme cta"
+      "links links lang";
+    row-gap: var(--space-1);
+    padding-block: var(--space-3) var(--space-2);
+  }
+
+  .links {
+    min-width: 0;
+    margin-left: 0;
+    gap: var(--space-4);
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-size: var(--fs-small);
+  }
+
+  .links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+
+  .langSlot {
+    justify-self: end;
+  }
+
+  /* The CTA right above already goes to #contact. */
+  .links .ctaTwin {
+    display: none;
+  }
+}
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--space-7) var(--space-6);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.footerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+}
+
+.footerTag {
+  color: var(--ink-3);
+}
+
+.signoff {
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}

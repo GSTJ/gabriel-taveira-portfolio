@@ -1,14 +1,12 @@
 import { getTranslations } from "next-intl/server";
 
-import {
-  AWARDS,
-  CHANNELS,
-  SERVICES,
-  SKILLS,
-  TALKS,
-  WORK,
-} from "@/components/portfolio/data";
 import { yearsInIndustry } from "@/components/portfolio/lifeline";
+import { SKILLS } from "@/components/portfolio/profile";
+import { CHANNELS } from "@/components/portfolio/sections/contact/data";
+import { AWARDS, NOW, TALKS } from "@/components/portfolio/sections/notes/data";
+import { PROJECTS } from "@/components/portfolio/sections/projects/data";
+import { SERVICES } from "@/components/portfolio/sections/services/data";
+import { WORK, workDates } from "@/components/portfolio/sections/work/data";
 import en from "@/i18n/locales/en-US.json";
 import { SITE_URL } from "@/utils/site";
 
@@ -27,9 +25,9 @@ import { SITE_URL } from "@/utils/site";
  * would be the fragile version of this, and CodeQL rightly flags it.
  */
 const plainTags = {
-  em: (chunks: string) => chunks,
   strong: (chunks: string) => chunks,
   mark: (chunks: string) => chunks,
+  note: (chunks: string) => chunks,
 };
 
 export async function GET() {
@@ -45,7 +43,7 @@ export async function GET() {
     "",
     `- Role: ${en.resume.role}`,
     `- Location: ${en.resume.location}`,
-    `- Availability: ${en.hero.availability}, consulting engagements`,
+    `- Availability: ${en.hero.status}`,
     `- Email: ${CHANNELS.find((c) => c.id === "email")?.handle}`,
     "",
     "## Services",
@@ -53,6 +51,21 @@ export async function GET() {
     ...SERVICES.map((s) => {
       const item = en.services.items[s.id];
       return `- **${item.title}**: ${item.body}`;
+    }),
+    "",
+    "## Projects",
+    "",
+    ...PROJECTS.map((p) => {
+      const item = en.projects.items[p.id];
+      return `- [${item.title}](${p.href}): ${item.body}`;
+    }),
+    "",
+    "## Now",
+    "",
+    ...NOW.map((n) => {
+      const item = en.notes.now.items[n.id];
+      const title = n.href ? `[${item.title}](${n.href})` : item.title;
+      return `- ${item.chip}: ${title}. ${item.body}`;
     }),
     "",
     "## Skills",
@@ -63,13 +76,14 @@ export async function GET() {
     "",
     ...WORK.map((w) => {
       const item = en.work.items[w.id];
-      return `- **${item.title}** (${w.eyebrow}): ${plain(`work.items.${w.id}.blurb`)}`;
+      const when = workDates(w, en.work.present);
+      return `- **${item.title}** (${w.orgs.join(" · ")}, ${when}): ${plain(`work.items.${w.id}.blurb`)}`;
     }),
     "",
     "## Talks",
     "",
     ...TALKS.map((t) => {
-      const item = en.talks.items[t.id];
+      const item = en.notes.talks.items[t.id];
       return `- **${item.title}** (${item.venue}, ${t.date}): ${item.description}`;
     }),
     "",
@@ -77,7 +91,7 @@ export async function GET() {
     "",
     ...AWARDS.map(
       (a) =>
-        `- ${en.awards.items[a.id]}, ${en.awards.positions[a.position]} (${a.year})`,
+        `- ${en.notes.awards.items[a.id]}, ${en.notes.awards.positions[a.position]} (${a.year})`,
     ),
     "",
     "## Links",

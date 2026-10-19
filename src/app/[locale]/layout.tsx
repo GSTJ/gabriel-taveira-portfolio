@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { notFound } from "next/navigation";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ObservabilityProviders } from "@/components/observability/providers";
 import { yearsInIndustry } from "@/components/portfolio/lifeline";
@@ -13,14 +12,27 @@ import {
   buildPortfolioJsonLd,
   serializeJsonLd,
 } from "@/components/portfolio/structured-data";
+import { BODY_SCRIPT, HEAD_SCRIPT } from "@/components/portfolio/ui/boot";
+import { THEME_COLORS } from "@/components/portfolio/ui/theme";
+import { cn } from "@/utils/cn";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
+
+import { bricolage, caveat } from "../fonts";
 
 const GTM_ID = "G-1S8PR4TDYM";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+/** Per-scheme browser chrome. An explicit theme repoints both in boot.ts. */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLORS.light },
+    { media: "(prefers-color-scheme: dark)", color: THEME_COLORS.dark },
+  ],
+};
 
 export async function generateMetadata({
   params,
@@ -86,25 +98,24 @@ const LocaleLayout = async ({
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
-  const messages = await getMessages();
+  // Lets every page under this layout prerender instead of reading headers.
+  setRequestLocale(locale);
   const jsonLd = buildPortfolioJsonLd(locale);
 
+  /*
+   * `suppressHydrationWarning` covers only <html>: the head script adds `js`
+   * and `data-theme` to it before React hydrates.
+   */
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      className={cn(bricolage.variable, caveat.variable)}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* eslint-disable-next-line nextjs/no-page-custom-font -- the rule is
-            about a font link living in a single Pages Router page; this is the
-            App Router root layout for every route under /[locale], so the
-            stylesheet is shared exactly as the rule wants it to be. */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Caveat:wght@500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
+        <script
+          // eslint-disable-next-line react/no-danger -- must run before first paint, so it cannot wait for a bundle. A static string from boot.ts, no input.
+          dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }}
         />
         <script
           type="application/ld+json"
@@ -115,11 +126,11 @@ const LocaleLayout = async ({
       <GoogleTagManager gtmId={GTM_ID} />
       <Analytics />
       <body>
-        <ObservabilityProviders>
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            {children}
-          </NextIntlClientProvider>
-        </ObservabilityProviders>
+        <ObservabilityProviders>{children}</ObservabilityProviders>
+        <script
+          // eslint-disable-next-line react/no-danger -- the reveal observer runs as soon as the HTML is parsed, not after hydration. A static string from boot.ts, no input.
+          dangerouslySetInnerHTML={{ __html: BODY_SCRIPT }}
+        />
       </body>
     </html>
   );

@@ -1,0 +1,135 @@
+/*
+ * Design tokens. The only place a raw color, size, curve or duration lives.
+ * Everything else reads these. Documented in DESIGN.md.
+ *
+ * One accent: the blue of the pen Gabriel writes his margin notes with. It is
+ * for his hand (notes, the pen underline), focus and selection. Nothing else.
+ */
+
+:root {
+  /*
+   * Color. `light-dark()` picks by the element's color-scheme, so each token
+   * is declared once. Every text pair is 4.6:1 or better on every paper.
+   */
+  color-scheme: light dark;
+  --paper: light-dark(#f6f6f3, #121211);
+  --paper-2: light-dark(#eeede8, #1b1b19);
+  --paper-3: light-dark(#e6e4dd, #242421);
+  --ink: light-dark(#191917, #edebe5);
+  --ink-2: light-dark(#47463f, #bdbab2);
+  --ink-3: light-dark(#62615a, #8f8c85);
+  --rule: light-dark(#d9d7cf, #2e2d2a);
+  --rule-strong: light-dark(#c4c2b9, #403f3b);
+  --pen: light-dark(#2343c9, #93a6ff);
+  --pen-wash: light-dark(rgb(35 67 201 / 0.1), rgb(147 166 255 / 0.14));
+  --scrim: light-dark(rgb(20 20 18 / 0.38), rgb(0 0 0 / 0.55));
+  --bezel: light-dark(#111110, #000);
+  --shadow-near: light-dark(rgb(25 25 23 / 0.06), rgb(0 0 0 / 0.4));
+  --shadow-far: light-dark(rgb(25 25 23 / 0.22), rgb(0 0 0 / 0.7));
+  --shadow: 0 1px 2px var(--shadow-near), 0 18px 40px -18px var(--shadow-far);
+
+  /* Type families. Mono is the system stack, no download. */
+  --font-sans:
+    var(--font-bricolage), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-hand: var(--font-caveat), "Bradley Hand", "Segoe Print", cursive;
+  --font-mono:
+    ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Type scale, one token per role. Sizes clamp between 390 and 1440. */
+  --fs-display: clamp(2.5rem, 4.3vw + 1.5rem, 5.625rem); /* 40 → 90 */
+  --fs-h1: clamp(2rem, 1.6vw + 1.375rem, 2.875rem); /* 32 → 46 */
+  --fs-h2: clamp(2rem, 2.2vw + 1.25rem, 3.375rem); /* 32 → 54 */
+  --fs-title: clamp(1.25rem, 0.4vw + 1.125rem, 1.375rem); /* 20 → 22 */
+  --fs-lede: clamp(1.125rem, 0.3vw + 1rem, 1.3125rem); /* 18 → 21 */
+  --fs-body: 1.03125rem; /* 16.5 */
+  --fs-small: 0.90625rem; /* 14.5 */
+  --fs-meta: 0.8125rem; /* 13 */
+  --fs-mono: 0.8125rem; /* 13 */
+  --fs-hand: clamp(1.3125rem, 0.5vw + 1.125rem, 1.625rem); /* 21 → 26 */
+
+  /* Line height and tracking per role. Tracking tightens as size grows. */
+  --lh-display: 0.98;
+  --lh-heading: 1.06;
+  --lh-title: 1.2;
+  --lh-lede: 1.5;
+  --lh-body: 1.55;
+  --tr-display: -0.036em;
+  --tr-h2: -0.032em;
+  --tr-title: -0.02em;
+  --tr-body: -0.01em;
+
+  /* Weight does the emphasis. No italic accent word. */
+  --fw-light: 380;
+  --fw-regular: 420;
+  --fw-medium: 520;
+  --fw-strong: 640;
+
+  /* Width axis of Bricolage: display runs narrower than text. */
+  --wd-display: 92%;
+  --wd-heading: 94%;
+
+  /* Space: a 4px base, named by step. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* Layout and section rhythm. */
+  --wrap: 80rem; /* 1280 */
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --measure: 37em;
+  --sec-y: clamp(6rem, 9vw, 10.5rem);
+  --sec-head-gap: clamp(2.5rem, 5vw, 4.5rem);
+  --nav-h: 4.25rem;
+
+  /* Radii. */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --r-pill: 999px;
+
+  /*
+   * Motion. One ease-out family for anything arriving, one ease-in-out for
+   * anything moving on screen, and the pen: the in-out curve softened so a
+   * stroke starts without hesitating.
+   */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-pen: cubic-bezier(0.55, 0.06, 0.35, 1);
+
+  --dur-press: 160ms; /* button press, scale .97 */
+  --dur-hover: 160ms; /* color, underline */
+  --dur-ui: 240ms; /* small state changes, theme crossfade */
+  --dur-exit: 160ms; /* exits run faster than entries */
+  --dur-arrow: 420ms; /* a note's arrow drawing */
+  --dur-pen: 640ms; /* the pen underline */
+  --dur-enter: 700ms; /* text opacity + blur on arrival */
+  --dur-note: 760ms; /* a note writing itself in */
+  --dur-rise: 820ms; /* text translate on arrival */
+  --stagger: 80ms; /* reading-order step between siblings */
+  --rise: 16px;
+  --rise-blur: 5px;
+}
+
+/* Narrow screens stack the nav into two rows: brand and actions, then links. */
+@media (width < 760px) {
+  :root {
+    --nav-h: 6.125rem;
+  }
+}
+
+/* An explicit choice from the toggle. No attribute means follow the system. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}

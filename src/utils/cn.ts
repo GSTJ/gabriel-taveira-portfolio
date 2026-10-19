@@ -1,14 +1,6 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
 /**
- * Joins class names, dropping falsy pieces, and lets a later Tailwind utility
- * beat an earlier one that sets the same property instead of leaving the
- * winner to stylesheet order.
- *
- * Most of this repo's classes are the hand-written `ws-*` ones from
- * `design-portfolio.css`, which `tailwind-merge` passes through untouched —
- * it only rewrites classes it recognises as Tailwind utilities, and
- * `globals.css` does import Tailwind, so those can appear at any point.
+ * Joins class names and drops falsy pieces. No Tailwind here, so there is
+ * nothing to merge: classes are tokens-backed globals or CSS Module names.
  */
-export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+export const cn = (...parts: (string | false | null | undefined)[]) =>
+  parts.filter(Boolean).join(" ");

@@ -1,0 +1,78 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.ask {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.address {
+  font-size: clamp(1.375rem, 1.6vw + 0.875rem, 2.25rem);
+  font-weight: 460;
+  letter-spacing: -0.025em;
+  text-decoration-color: var(--pen);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
+}
+
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+}
+
+.icon svg {
+  width: 15px;
+  height: 15px;
+  color: var(--ink-3);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--fs-body);
+  transition: border-color var(--dur-hover) ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-3);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline-offset: 1px;
+  border-color: var(--pen);
+}
+
+.form button {
+  justify-self: start;
+}
+
+@media (width < 1000px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

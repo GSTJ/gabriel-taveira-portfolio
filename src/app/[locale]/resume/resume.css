@@ -1,6 +1,6 @@
 /*
- * Light, print-first resume. Covers the site's dark body and its fixed
- * ambient gradient on screen; in print, backgrounds are off anyway.
+ * Light, print-first resume, whatever theme the rest of the site is in;
+ * in print, backgrounds are off anyway.
  */
 .resume {
   position: relative;
@@ -10,6 +10,7 @@
   max-width: none;
   margin: 0;
   padding: 56px max(24px, calc((100vw - 760px) / 2));
+  color-scheme: light;
   background: #fff;
   color: #1a1a1a;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -22,7 +23,7 @@
 /* The site's element rules give headings its variable display font (prints
    as Type 3 glyphs some ATS parsers can't read) and light-on-dark colors.
    `:where` keeps this at class specificity so the rules below still win. */
-.resume :where(h1, h2, h3, p, li) {
+.resume :where(h1, h2, h3, p, li, strong) {
   font-family: inherit;
   color: inherit;
 }

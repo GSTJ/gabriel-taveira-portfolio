@@ -1,117 +1,90 @@
 {
   "meta": {
     "title": "Gabriel Taveira · Consultor React Native & Expo",
-    "description": "Liderança mobile sob demanda para times React Native e Expo: arquitetura, migrações e contratação. {years}+ anos, infra do app da Coinbase. Remoto."
+    "description": "Consultoria independente para times React Native e Expo: arquitetura, migrações e contratação. {years}+ anos, infra do app da Coinbase. Remoto."
   },
   "nav": {
-    "services": "Serviços",
-    "work": "Trabalho",
-    "media": "Mídia",
-    "talks": "Palestras",
-    "awards": "Prêmios",
-    "now": "Agora",
+    "label": "Principal",
+    "skip": "Pular para o conteúdo",
+    "sections": {
+      "projects": "Projetos",
+      "work": "Trabalho",
+      "services": "Serviços",
+      "contact": "Contato"
+    },
     "getInTouch": "Fala comigo"
   },
-  "hero": {
-    "role": "Liderança Mobile sob Demanda",
-    "name": "Gabriel",
-    "surname": "Taveira",
-    "intro": "Ajudo times de produto a lançar <strong>apps React Native e Expo que escalam</strong>: a arquitetura, as migrações e o time que mantém tudo de pé. Com mais de {years} anos de carreira, já liderei times de até 56 reportes diretos e trabalhei na infraestrutura do app da Coinbase.",
-    "intro2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma.",
-    "getInTouch": "Fala comigo",
-    "viewLinkedIn": "Ver LinkedIn",
-    "downloadPdf": "Baixar PDF",
-    "currently": "Hoje",
-    "consulting": "Consultoria",
-    "location": "Remoto · Ribeirão Preto, Brasil",
-    "stats": {
-      "years": "Anos de carreira",
-      "yearsMeta": "Desde {since}",
-      "reports": "Reportes diretos",
-      "reportsMeta": "Em 6 times",
-      "tinkering": "Anos mexendo em código",
-      "tinkeringMeta": "Comecei aos 8",
-      "awards": "Hackathons vencidos",
-      "awardsMeta": "2019 → 2020"
+  "common": {
+    "theme": {
+      "toggle": "Trocar tema",
+      "toDark": "Mudar para o tema escuro",
+      "toLight": "Mudar para o tema claro"
     },
-    "availability": "Aberto a novos clientes"
-  },
-  "services": {
-    "eyebrow": "Serviços · como posso ajudar",
-    "title": "Me contrata pra <em>destravar</em> seu time mobile.",
-    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
-    "items": {
-      "audit": {
-        "chip": "Auditoria",
-        "title": "Revisão de arquitetura React Native",
-        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
-      },
-      "migrations": {
-        "chip": "Migrações",
-        "title": "Migrações para Expo, nova arquitetura e React Compiler",
-        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
-      },
-      "leadership": {
-        "chip": "Liderança",
-        "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
-      },
-      "systems": {
-        "chip": "Design",
-        "title": "Design systems e experiência de desenvolvimento",
-        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
+    "language": {
+      "label": "Idioma",
+      "en-US": "EN",
+      "pt-BR": "PT",
+      "names": {
+        "en-US": "English",
+        "pt-BR": "Português"
       }
+    },
+    "newTab": "abre em uma nova aba",
+    "footer": {
+      "meta": "Gabriel Taveira · Consultor React Native & Expo · Ribeirão Preto, Brasil",
+      "tag": "Construindo e desmontando sistemas desde os 8 anos",
+      "madeWith": "feito com café · gt"
     }
   },
-  "securityPage": {
-    "navLabel": "Navegação do perfil de segurança",
-    "eyebrow": "Gabriel Taveira · Application Security",
-    "title": "Encontro a fronteira, reproduzo a falha e <em>resolvo</em>.",
-    "intro": "Comecei aos oito anos fazendo engenharia reversa em jogos para entender como o software funcionava. Mais de {years} anos depois de começar minha carreira profissional, uso a mesma curiosidade em segurança defensiva de aplicações, cobrindo identidade, autorização, uploads não confiáveis e fronteiras de cloud.",
-    "proof": "O trabalho abaixo é público, está mergeado e tem link para o repro ou teste de regressão.",
-    "fullProfile": "Perfil completo de engenharia",
-    "viewGitHub": "Ver GitHub",
-    "getInTouch": "Fala comigo"
+  "hero": {
+    "status": "Consultor independente, aberto a novos clientes",
+    "place": "Ribeirão Preto, Brasil · {month}",
+    "title": "<me>Sou o Gabriel.</me> Ajudo times de produto a lançar apps React Native e Expo <pen>que escalam.</pen>",
+    "body": "A arquitetura, as migrações e o time que mantém tudo de pé. Com mais de {years} anos de carreira, já liderei times de até <note>56 reportes diretos</note> e trabalhei na infraestrutura do app da Coinbase.",
+    "notes": {
+      "yesReally": "é isso mesmo"
+    },
+    "cta": {
+      "getInTouch": "Fala comigo",
+      "downloadPdf": "Baixar PDF",
+      "linkedIn": "LinkedIn"
+    },
+    "body2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma."
   },
-  "security": {
-    "eyebrow": "Trabalho selecionado em segurança",
-    "title": "Três correções defensivas, com a <em>prova</em> junto.",
-    "sub": "Cada caso começa com um risco de segurança observado e termina com uma correção pontual e um teste de regressão.",
-    "topicsLabel": "Áreas de atuação em segurança",
-    "readProof": "Ver PR mergeado",
+  "projects": {
+    "title": "Coisas que eu fiz.",
+    "sub": "O app que estou construindo agora e o open source que outros times usam em produção.",
+    "source": "Código no GitHub",
     "items": {
-      "assetBoundary": {
-        "title": "Impedi assets não confiáveis de executar na origem da aplicação",
-        "body": "Reproduzi um risco de stored XSS em que um objeto comprometido no R2 poderia ser servido como HTML na origem deste portfólio. Troquei o proxy por uma rota tipada, com streaming e headers restritivos.",
-        "metric": "reproduzido localmente",
-        "caseStudy": {
-          "label": "Ler o estudo de caso",
-          "causeTitle": "Causa",
-          "cause": "O rewrite do PDF na mesma origem repassava o Content-Type do host de assets. Quem controlasse essa resposta upstream poderia fazer o navegador interpretar HTML dentro da origem do portfólio.",
-          "fixTitle": "Correção",
-          "fix": "Troquei o rewrite por uma rota que transmite o body com tipo PDF fixo, nosniff, disposition fixa e cache explícito. Os headers da resposta upstream são descartados.",
-          "validationTitle": "Validação",
-          "validation": "Um upstream local controlado reproduziu a execução de script antes da mudança. Depois, a rota devolveu os mesmos bytes como application/pdf e nosniff. A produção continua servindo um PDF válido por esse contrato.",
-          "limitsTitle": "Limites",
-          "limits": "A rota não inspeciona a estrutura do PDF nem prova comprometimento do storage em produção. A regressão com upstream malicioso ficou como verificação manual porque o repositório não tinha uma suíte de testes automatizados."
-        }
+      "curvinha": {
+        "title": "Curvinha",
+        "role": "Fundador · eu que construí",
+        "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "cta": "Abrir curvinha.app"
       },
-      "identity": {
-        "title": "Fiz OTPs serem de uso único mesmo sob concorrência",
-        "body": "Levei o consumo do OTP para um único update atômico no PostgreSQL e adicionei cobertura de concorrência em 25 pares de códigos. Cada par produziu um sucesso e uma rejeição.",
-        "metric": "corridas de OTP cobertas"
+      "magicModal": {
+        "title": "magic-modal",
+        "body": "Um modal mágico que você pode dar await de qualquer lugar: React Native, Expo e web."
       },
-      "authorization": {
-        "title": "Vinculei cada grant de upload a quem pediu",
-        "body": "Adicionei grants curtos com ownership, assinatura do tamanho exato, limite por hora e limpeza. Só quem pediu o grant consegue usá-lo ao criar ou editar um perfil.",
-        "metric": "validade do upload grant"
+      "safeJsx": {
+        "title": "safe-jsx",
+        "body": "Um plugin de ESLint que exige converter pra boolean antes de usar && com JSX, pra nunca aparecer um 0 solto na tela em React ou React Native."
+      },
+      "magicToast": {
+        "title": "react-native-magic-toast",
+        "body": "Um toast imperativo pra React Native que você chama de qualquer lugar."
+      },
+      "pegada": {
+        "title": "Pegada",
+        "body": "Um app de encontros pra cachorros feito com Expo e Next.js, agora open source."
       }
     }
   },
   "work": {
-    "eyebrow": "Experiência profissional · 2017 → hoje",
-    "title": "Times que liderei. Sistemas que <em>ficaram de pé</em>.",
+    "title": "Times que liderei. Sistemas que ficaram de pé.",
     "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech.",
+    "present": "agora",
+    "earlier": "Antes disso",
     "items": {
       "consulting": {
         "title": "Consultoria independente",
@@ -155,126 +128,173 @@
       }
     }
   },
-  "publications": {
-    "eyebrow": "Publicações & mídia",
-    "title": "O que eu apresento, escrevo e <em>represento</em>.",
-    "onAir": "No ar · Space Cast",
-    "featureTitle": "Apresento o podcast <em>Space Cast</em> no YouTube da Rocketseat.",
-    "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
-    "watchShow": "Assistir o programa",
-    "playlist": "Playlist de episódios →",
-    "mediumEyebrow": "Medium",
-    "mediumHandle": "medium.com/@gabrieltaveira",
-    "mediumBody": "Textos sobre programação, design systems e cultura de time.",
-    "ambassadorEyebrow": "Embaixador",
-    "ambassadorTitle": "Space Squad · Rocketseat",
-    "ambassadorBody": "Mentorando a próxima geração de devs."
-  },
-  "talks": {
-    "eyebrow": "Palestras · selecionadas",
-    "title": "Palestro em eventos de <em>tech</em> e <em>liderança</em>.",
-    "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
-    "topicLeadership": "Liderança",
-    "topicTech": "Tech",
+  "services": {
+    "title": "Me contrata pra destravar seu time mobile.",
+    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
     "items": {
-      "brooklyn": {
-        "title": "Eficiência com IA",
-        "description": "Como aumentar o throughput de um time usando IA no dia a dia da engenharia.",
-        "venue": "The Brooklyn Brothers",
-        "city": "São Paulo",
-        "hrefLabel": "Slides no Figma"
+      "audit": {
+        "chip": "Auditoria",
+        "title": "Revisão de arquitetura React Native",
+        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
       },
-      "tdc": {
-        "title": "Entregando o Mozeic no Zé Delivery",
-        "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
-        "venue": "TDC · Design Systems",
-        "city": "São Paulo",
-        "hrefLabel": "Site do evento"
+      "migrations": {
+        "chip": "Migrações",
+        "title": "Migrações para Expo, nova arquitetura e React Compiler",
+        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
       },
-      "assemble": {
-        "title": "Formando um Tech Lead, três dias por vez",
-        "description": "Imersão de 3 dias pra formar líderes de engenharia.",
-        "venue": "Assemble · Rocketseat",
-        "city": "Remoto",
-        "hrefLabel": "Rocketseat"
+      "leadership": {
+        "chip": "Liderança",
+        "title": "Líder de engenharia mobile sob demanda",
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
       },
-      "spaceSquad": {
-        "title": "Mentoria na comunidade Space Squad",
-        "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
-        "venue": "Space Squad · Rocketseat",
-        "city": "Remoto",
-        "hrefLabel": "Space Squad"
+      "systems": {
+        "chip": "Design",
+        "title": "Design systems e experiência de desenvolvimento",
+        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
+      }
+    },
+    "engagement": {
+      "title": "Como funciona um projeto.",
+      "sub": "Sempre a mesma sequência, dimensionada pro seu app e pro seu time.",
+      "steps": {
+        "review": {
+          "title": "Diagnóstico",
+          "body": "Leio o código, o pipeline de release e o backlog, e converso com quem é dono de cada um."
+        },
+        "plan": {
+          "title": "Plano",
+          "body": "Um plano priorizado com os tradeoffs explícitos, curto o bastante pra ser lido de verdade."
+        },
+        "ship": {
+          "title": "Execução",
+          "body": "Trabalho dentro do seu time nas partes mais arriscadas: a migração, a performance, o trem de release."
+        },
+        "handoff": {
+          "title": "Passagem",
+          "body": "Documentação, padrões e pessoas donas do resultado, pra nada depender de mim depois."
+        }
       }
     }
   },
-  "awards": {
-    "eyebrow": "Prêmios · 2019 → 2020",
-    "title": "Alguns <em>troféus</em>.",
-    "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
-    "positions": {
-      "first": "1º lugar",
-      "second": "2º lugar",
-      "finalist": "Finalista"
+  "notes": {
+    "title": "Palestras, textos e o que estou fazendo agora.",
+    "now": {
+      "title": "O que estou de fato fazendo.",
+      "items": {
+        "consulting": {
+          "chip": "Consultoria",
+          "title": "Arquitetura mobile e liderança de engenharia",
+          "body": "Aceitando novos projetos. Detalhes dos clientes sob NDA."
+        },
+        "building": {
+          "chip": "Construindo",
+          "title": "Curvinha, um app iOS pra planejar a casa",
+          "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D com produtos reais de lojas brasileiras, mais a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
+        },
+        "hosting": {
+          "chip": "Apresentando",
+          "title": "Space Cast na Rocketseat",
+          "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugestões de convidado são bem-vindas."
+        },
+        "mentoring": {
+          "chip": "Mentoria",
+          "title": "Space Squad · a próxima geração",
+          "body": "Embaixador no programa Space Squad. O juros compostos de 20 minutos de café com um júnior é absurdo."
+        },
+        "tinkering": {
+          "chip": "Mexendo",
+          "title": "Detector nativo de gravação de tela pra Expo",
+          "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
+        }
+      },
+      "updated": "Atualizado em {date}."
     },
-    "items": {
-      "globalLegal": "Global Legal Hackathon SP",
-      "maoNaCevada": "Mão na Cevada",
-      "hackRibeirao": "HackRibeirão",
-      "jovemInovador": "Prêmio Jovem Inovador",
-      "nasa": "NASA Space Apps Challenge"
-    }
-  },
-  "writing": {
-    "eyebrow": "Escritos",
-    "title": "Algumas <em>anotações</em>.",
-    "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
-    "handle": "medium.com/@gabrieltaveira",
-    "calloutTitle": "Escrevo no <em>Medium</em>.",
-    "calloutSub": "Posts novos quando uma ideia para de ser interessante só pra mim. Assina lá pro próximo.",
-    "topics": {
-      "leadership": "Liderança em Engenharia",
-      "mobile": "Arquitetura Mobile",
-      "design": "Design Systems",
-      "hiring": "Contratação & Mentoria",
-      "reverse": "Engenharia Reversa"
+    "publications": {
+      "title": "O que eu apresento, escrevo e represento.",
+      "onAir": "No ar · Space Cast",
+      "featureTitle": "Apresento o podcast Space Cast no YouTube da Rocketseat.",
+      "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
+      "watchShow": "Assistir o programa",
+      "playlist": "Playlist de episódios",
+      "mediumEyebrow": "Medium",
+      "mediumHandle": "medium.com/@gabrieltaveira",
+      "mediumBody": "Textos sobre programação, design systems e cultura de time.",
+      "ambassadorEyebrow": "Embaixador",
+      "ambassadorTitle": "Space Squad · Rocketseat",
+      "ambassadorBody": "Mentorando a próxima geração de devs.",
+      "season": "temporada 3"
     },
-    "readOnMedium": "Ler no Medium"
-  },
-  "now": {
-    "eyebrow": "Agora · {date}",
-    "title": "O que estou de fato <em>fazendo</em>.",
-    "items": {
-      "consulting": {
-        "chip": "Consultoria",
-        "title": "Arquitetura mobile e liderança de engenharia",
-        "body": "Aceitando novos projetos. Detalhes dos clientes sob NDA."
-      },
-      "building": {
-        "chip": "Construindo",
-        "title": "Curvinha, um app iOS pra planejar a casa",
-        "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D com produtos reais de lojas brasileiras, mais a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
-      },
-      "hosting": {
-        "chip": "Apresentando",
-        "title": "Space Cast na Rocketseat",
-        "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugere um convidado mandando uma ⚡."
-      },
-      "mentoring": {
-        "chip": "Mentoria",
-        "title": "Space Squad · a próxima geração",
-        "body": "Embaixador no programa Space Squad. O juros compostos de 20 minutos de café com um júnior é absurdo."
-      },
-      "tinkering": {
-        "chip": "Mexendo",
-        "title": "Detector nativo de gravação de tela pra Expo",
-        "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
+    "talks": {
+      "title": "Palestro em eventos de tech e liderança.",
+      "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
+      "topicLeadership": "Liderança",
+      "topicTech": "Tech",
+      "items": {
+        "brooklyn": {
+          "title": "Eficiência com IA",
+          "description": "Como aumentar o throughput de um time usando IA no dia a dia da engenharia.",
+          "venue": "The Brooklyn Brothers",
+          "city": "São Paulo",
+          "hrefLabel": "Slides no Figma"
+        },
+        "tdc": {
+          "title": "Entregando o Mozeic no Zé Delivery",
+          "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
+          "venue": "TDC · Design Systems",
+          "city": "São Paulo",
+          "hrefLabel": "Site do evento"
+        },
+        "assemble": {
+          "title": "Formando um Tech Lead, três dias por vez",
+          "description": "Imersão de 3 dias pra formar líderes de engenharia.",
+          "venue": "Assemble · Rocketseat",
+          "city": "Remoto",
+          "hrefLabel": "Rocketseat"
+        },
+        "spaceSquad": {
+          "title": "Mentoria na comunidade Space Squad",
+          "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
+          "venue": "Space Squad · Rocketseat",
+          "city": "Remoto",
+          "hrefLabel": "Space Squad"
+        }
       }
+    },
+    "awards": {
+      "title": "Alguns troféus.",
+      "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
+      "positions": {
+        "first": "1º lugar",
+        "second": "2º lugar",
+        "finalist": "Finalista"
+      },
+      "items": {
+        "globalLegal": "Global Legal Hackathon SP",
+        "maoNaCevada": "Mão na Cevada",
+        "hackRibeirao": "HackRibeirão",
+        "jovemInovador": "Prêmio Jovem Inovador",
+        "nasa": "NASA Space Apps Challenge"
+      }
+    },
+    "writing": {
+      "title": "Algumas anotações.",
+      "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
+      "handle": "medium.com/@gabrieltaveira",
+      "calloutTitle": "Escrevo no Medium.",
+      "calloutSub": "Posts novos quando uma ideia para de ser interessante só pra mim. Assina lá pro próximo.",
+      "topics": {
+        "leadership": "Liderança em Engenharia",
+        "mobile": "Arquitetura Mobile",
+        "design": "Design Systems",
+        "hiring": "Contratação & Mentoria",
+        "reverse": "Engenharia Reversa"
+      },
+      "readOnMedium": "Ler no Medium"
     }
   },
   "contact": {
-    "eyebrow": "Fala comigo",
-    "title": "Tem um <em>desafio</em> bom?",
-    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café. ⚡",
+    "title": "Tem um desafio bom?",
+    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -292,25 +312,15 @@
       "message": "Me conta mais",
       "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
       "send": "Enviar mensagem"
-    },
-    "sentTitle": "Valeu. Respondo dentro da semana. ⚡",
-    "sentBody": "Se não chegar resposta até sexta que vem, me cutuca de novo. Email às vezes some no spam.",
-    "footerMeta": "Gabriel Taveira · Consultor React Native & Expo · Ribeirão Preto, Brasil",
-    "footerTag": "Construindo e desmontando sistemas desde os 8 anos · ⚡"
-  },
-  "marginalia": {
-    "yesReally": "é isso mesmo",
-    "spaceCastSeason": "temporada 3 ✨",
-    "madeWith": "feito com ☕ + ⚡ · gt"
+    }
   },
   "links": {
-    "eyebrow": "Me acha online",
-    "title": "Gabriel <em>Taveira</em>.",
+    "title": "Gabriel Taveira.",
     "sub": "Escolhe uma porta."
   },
   "resume": {
     "title": "Gabriel Taveira · Currículo",
-    "role": "Líder de Engenharia Mobile sob Demanda · Consultor React Native & Expo",
+    "role": "Consultor independente · React Native & Expo",
     "location": "Ribeirão Preto, Brasil · Remoto (horário dos EUA)",
     "summaryTitle": "Resumo",
     "summary": "Líder de engenharia mobile e consultor React Native / Expo com mais de {years} anos de experiência profissional. Liderei times de até 56 reportes diretos em seis times. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-criei o design system do Zé Delivery. Aberto a projetos de consultoria.",
@@ -322,5 +332,50 @@
     "backToSite": "Portfólio completo",
     "download": "Baixar PDF",
     "present": "Atual"
+  },
+  "securityPage": {
+    "navLabel": "Navegação do perfil de segurança",
+    "eyebrow": "Gabriel Taveira · Application Security",
+    "title": "Encontro a fronteira, reproduzo a falha e resolvo.",
+    "intro": "Comecei aos oito anos fazendo engenharia reversa em jogos para entender como o software funcionava. Mais de {years} anos depois de começar minha carreira profissional, uso a mesma curiosidade em segurança defensiva de aplicações, cobrindo identidade, autorização, uploads não confiáveis e fronteiras de cloud.",
+    "proof": "O trabalho abaixo é público, está mergeado e tem link para o repro ou teste de regressão.",
+    "fullProfile": "Perfil completo de engenharia",
+    "viewGitHub": "Ver GitHub",
+    "getInTouch": "Fala comigo"
+  },
+  "security": {
+    "eyebrow": "Trabalho selecionado em segurança",
+    "title": "Três correções defensivas, com a prova junto.",
+    "sub": "Cada caso começa com um risco de segurança observado e termina com uma correção pontual e um teste de regressão.",
+    "topicsLabel": "Áreas de atuação em segurança",
+    "readProof": "Ver PR mergeado",
+    "items": {
+      "assetBoundary": {
+        "title": "Impedi assets não confiáveis de executar na origem da aplicação",
+        "body": "Reproduzi um risco de stored XSS em que um objeto comprometido no R2 poderia ser servido como HTML na origem deste portfólio. Troquei o proxy por uma rota tipada, com streaming e headers restritivos.",
+        "metric": "reproduzido localmente",
+        "caseStudy": {
+          "label": "Ler o estudo de caso",
+          "causeTitle": "Causa",
+          "cause": "O rewrite do PDF na mesma origem repassava o Content-Type do host de assets. Quem controlasse essa resposta upstream poderia fazer o navegador interpretar HTML dentro da origem do portfólio.",
+          "fixTitle": "Correção",
+          "fix": "Troquei o rewrite por uma rota que transmite o body com tipo PDF fixo, nosniff, disposition fixa e cache explícito. Os headers da resposta upstream são descartados.",
+          "validationTitle": "Validação",
+          "validation": "Um upstream local controlado reproduziu a execução de script antes da mudança. Depois, a rota devolveu os mesmos bytes como application/pdf e nosniff. A produção continua servindo um PDF válido por esse contrato.",
+          "limitsTitle": "Limites",
+          "limits": "A rota não inspeciona a estrutura do PDF nem prova comprometimento do storage em produção. A regressão com upstream malicioso ficou como verificação manual porque o repositório não tinha uma suíte de testes automatizados."
+        }
+      },
+      "identity": {
+        "title": "Fiz OTPs serem de uso único mesmo sob concorrência",
+        "body": "Levei o consumo do OTP para um único update atômico no PostgreSQL e adicionei cobertura de concorrência em 25 pares de códigos. Cada par produziu um sucesso e uma rejeição.",
+        "metric": "corridas de OTP cobertas"
+      },
+      "authorization": {
+        "title": "Vinculei cada grant de upload a quem pediu",
+        "body": "Adicionei grants curtos com ownership, assinatura do tamanho exato, limite por hora e limpeza. Só quem pediu o grant consegue usá-lo ao criar ou editar um perfil.",
+        "metric": "validade do upload grant"
+      }
+    }
   }
 }

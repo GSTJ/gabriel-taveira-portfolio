@@ -1,0 +1,59 @@
+.page {
+  max-width: 36rem;
+  padding-block: clamp(3rem, 10vw, 7rem);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--pen);
+  text-decoration: none;
+}
+
+.list {
+  display: grid;
+}
+
+.list a {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto 14px;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 56px;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.list li:last-child a {
+  border-bottom: 1px solid var(--rule);
+}
+
+.icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--ink-3);
+}
+
+.label {
+  font-weight: var(--fw-medium);
+}
+
+.list a > svg {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .list a:hover > svg {
+    transform: translate(2px, -2px);
+  }
+}

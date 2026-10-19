@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { CHANNELS } from "@/components/portfolio/data";
-import {
-  ArrowUpRight,
-  BrandMark,
-  Eyebrow,
-  richTags,
-} from "@/components/portfolio/shared";
-import { SOCIAL_ICONS } from "@/components/portfolio/social-icons";
+import { CHANNELS } from "@/components/portfolio/sections/contact/data";
+import { ArrowUpRight, CHANNEL_ICONS } from "@/components/portfolio/ui/icons";
+import { enter } from "@/components/portfolio/ui/motion";
+import { cn } from "@/utils/cn";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
+
+import styles from "./links.module.css";
 
 export async function generateMetadata({
   params,
@@ -22,7 +20,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "links" });
   const url = `${SITE_URL}/${locale}/links`;
   return {
-    title: "Gabriel Taveira \u00B7 Links",
+    title: "Gabriel Taveira · Links",
     description: t("sub"),
     /** Without its own canonical it inherits the home page's from the layout. */
     alternates: {
@@ -35,39 +33,40 @@ export async function generateMetadata({
   };
 }
 
-const LinksPage = async () => {
+const LinksPage = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("links");
   const tChannels = await getTranslations("contact.channels");
 
   return (
-    <main className="ws-section ws-links">
-      <div className="ws-links-inner">
-        <header className="ws-links-head">
-          <BrandMark size={32} withText={false} />
-          <Eyebrow accent>{t("eyebrow")}</Eyebrow>
-          <h1 className="ws-hero-title ws-links-title">
-            {t.rich("title", richTags)}
-          </h1>
-          <p className="ws-links-sub">{t("sub")}</p>
-        </header>
-
-        <nav className="ws-contact-channels ws-links-list" aria-label="Links">
-          {CHANNELS.map((c) => (
-            <a
-              key={c.id}
-              className="ws-channel"
-              href={c.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {SOCIAL_ICONS[c.icon]}
-              <span className="ws-channel-label">{tChannels(c.id)}</span>
-              <span className="ws-channel-handle">{c.handle}</span>
-              <ArrowUpRight size={14} />
-            </a>
+    <main id="main" className={cn("wrap", styles.page)}>
+      <header className={styles.head} {...enter()}>
+        <a className={styles.hand} href={`/${locale}`}>
+          <span aria-hidden="true">gt</span>
+          <span className="visually-hidden">Gabriel Taveira</span>
+        </a>
+        <h1 className="t-h2">{t("title")}</h1>
+        <p className="t-lede">{t("sub")}</p>
+      </header>
+      <nav aria-label="Links">
+        <ul className={styles.list}>
+          {CHANNELS.map((channel, index) => (
+            <li key={channel.id} {...enter(80 + index * 60)}>
+              <a href={channel.url}>
+                <span className={styles.icon}>{CHANNEL_ICONS[channel.id]}</span>
+                <span className={styles.label}>{tChannels(channel.id)}</span>
+                <span className="t-meta">{channel.handle}</span>
+                <ArrowUpRight />
+              </a>
+            </li>
           ))}
-        </nav>
-      </div>
+        </ul>
+      </nav>
     </main>
   );
 };

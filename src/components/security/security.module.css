@@ -1,0 +1,71 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.bar nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--nav-h);
+}
+
+.hero {
+  display: grid;
+  gap: var(--space-5);
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+.hero > * {
+  max-width: var(--measure);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: var(--space-4);
+}
+
+.case {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+}
+
+.metric {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-regular);
+  letter-spacing: -0.03em;
+}
+
+.details {
+  display: grid;
+  gap: var(--space-3);
+  font-size: var(--fs-small);
+}
+
+.details summary {
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+}
+
+.details h4 {
+  font-weight: var(--fw-medium);
+  margin-top: var(--space-3);
+}

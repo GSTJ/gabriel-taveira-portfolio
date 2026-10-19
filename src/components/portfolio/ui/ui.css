@@ -1,0 +1,501 @@
+/*
+ * Shared primitives. Global on purpose: every section composes these, so they
+ * keep their plain names. Section-specific styles live in each section's CSS
+ * Module instead. Only tokens from src/app/tokens.css appear here.
+ */
+
+/* ── Layout ─────────────────────────────────────────────────────────── */
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--sec-y);
+  scroll-margin-top: var(--nav-h);
+}
+
+/* A hairline between consecutive sections, inset to the content width. */
+.section + .section {
+  background: linear-gradient(var(--rule), var(--rule)) no-repeat top center /
+    calc(min(100%, var(--wrap)) - 2 * var(--gutter)) 1px;
+}
+
+.section-head {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 40em;
+  margin-bottom: var(--sec-head-gap);
+}
+
+.section-head > p {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink-2);
+  max-width: 34em;
+}
+
+/* ── Type roles ─────────────────────────────────────────────────────── */
+
+.t-display {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tr-display);
+  font-weight: var(--fw-light);
+  font-stretch: var(--wd-display);
+}
+
+.t-h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+  letter-spacing: -0.034em;
+  font-weight: var(--fw-medium);
+}
+
+.t-h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tr-h2);
+  font-weight: var(--fw-regular);
+  font-stretch: var(--wd-heading);
+}
+
+.t-title {
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  font-weight: var(--fw-medium);
+}
+
+.t-lede {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: -0.013em;
+  color: var(--ink-2);
+}
+
+.t-body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+
+.t-small {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.t-meta {
+  font-size: var(--fs-meta);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--ink-3);
+}
+
+.t-mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0;
+}
+
+.t-hand {
+  font-family: var(--font-hand);
+  font-size: var(--fs-hand);
+  font-weight: 560;
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: var(--pen);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Actions ────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.96875rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-hover) ease,
+    border-color var(--dur-hover) ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+
+.btn-small {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: var(--fs-small);
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-hover) ease;
+}
+
+.icon-btn:active {
+  transform: scale(0.94);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* A text link that leaves the page: the arrow nudges toward where it goes. */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+}
+
+.link-arrow svg {
+  width: 0.9em;
+  height: 0.9em;
+  flex: none;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: color-mix(in oklab, var(--ink) 86%, var(--paper));
+  }
+
+  .btn-ghost:hover {
+    background: var(--paper-2);
+    border-color: color-mix(in oklab, var(--ink) 30%, var(--rule));
+  }
+
+  .icon-btn:hover {
+    background: var(--paper-2);
+  }
+
+  .link-arrow:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* ── Accessibility helpers ──────────────────────────────────────────── */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* ── Theme-specific content (images, icons) ─────────────────────────── */
+
+:root[data-theme="dark"] .only-light,
+:root[data-theme="light"] .only-dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .only-light {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .only-dark {
+    display: none;
+  }
+}
+
+/*
+ * ── Motion ─────────────────────────────────────────────────────────────
+ *
+ * [data-enter]   first viewport. CSS keyframes from first paint, no JS wait.
+ * [data-reveal]  below the fold. Hidden only once `.js` is on <html> (set in
+ *                <head> before paint), shown by the boot script's observer
+ *                the first time it is 12% into view. Never re-hides.
+ * [data-draw]    a pen stroke or a margin note: drawn when it enters view.
+ *
+ * `--i` is a sibling's index (staggered by `--stagger`, reading order) and
+ * `--d` an extra offset in ms. Children inherit both, so a note inside the
+ * third item writes in after the third item lands.
+ * Reduced motion: nothing starts hidden and nothing moves.
+ */
+
+[data-enter],
+[data-reveal],
+[data-draw] {
+  --delay: calc(var(--i, 0) * var(--stagger) + var(--d, 0ms));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-enter] {
+    animation:
+      enter-fade var(--dur-enter) var(--ease-out) var(--delay) both,
+      enter-rise var(--dur-rise) var(--ease-out) var(--delay) both;
+  }
+
+  .js [data-reveal] {
+    transition:
+      opacity var(--dur-enter) var(--ease-out) var(--delay),
+      transform var(--dur-rise) var(--ease-out) var(--delay),
+      filter var(--dur-enter) var(--ease-out) var(--delay);
+  }
+
+  .js [data-reveal]:not([data-in]) {
+    opacity: 0;
+    transform: translateY(var(--rise));
+    filter: blur(var(--rise-blur));
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+    filter: blur(var(--rise-blur));
+  }
+}
+
+@keyframes enter-rise {
+  from {
+    transform: translateY(var(--rise));
+  }
+}
+
+/* ── Pen underline ──────────────────────────────────────────────────── */
+
+.pen {
+  position: relative;
+  white-space: nowrap;
+}
+
+.pen-stroke {
+  position: absolute;
+  left: -0.02em;
+  right: -0.02em;
+  bottom: -0.16em;
+  width: calc(100% + 0.04em);
+  height: 0.28em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.pen-stroke path {
+  fill: none;
+  stroke: var(--pen);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /*
+   * Non-scaling strokes dash in screen space, so `pathLength=1` stops being
+   * the full stroke once the phrase is wider than the 300-unit viewBox. A dash
+   * of 3 covers a phrase up to 3x that stretch.
+   */
+  .js .pen-stroke path {
+    stroke-dasharray: 3;
+    transition: stroke-dashoffset var(--dur-pen) var(--ease-pen) var(--delay);
+  }
+
+  .js .pen-stroke path + path {
+    transition-delay: calc(var(--delay) + var(--dur-pen) * 0.45);
+  }
+
+  .js .pen:not([data-in]) .pen-stroke path {
+    stroke-dashoffset: 3;
+  }
+}
+
+/*
+ * ── Marginalia ─────────────────────────────────────────────────────────
+ *
+ * A handwritten note tied to an anchor phrase. At 1000px and up it sits in
+ * the margin to the right of its `.annotated` block, on the anchor's line,
+ * with an arrow pointing back. Below that it drops under the block on its own
+ * line and the anchor gets a pen underline, so the sentence never breaks.
+ * One margin note per `.annotated` block.
+ */
+
+.annotated {
+  position: relative;
+}
+
+.mg-note {
+  font-family: var(--font-hand);
+  font-size: var(--fs-hand);
+  font-weight: 560;
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: var(--pen);
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.mg-ink {
+  display: inline-block;
+}
+
+.mg-arrow {
+  position: absolute;
+  overflow: visible;
+}
+
+.mg-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mg-inline .mg-note {
+  margin-left: 0.35em;
+  transform: rotate(-3deg);
+}
+
+.mg-inline .mg-arrow {
+  display: none;
+}
+
+/* Narrow: the note goes under the block, the anchor carries the pen line. */
+@media (width < 1000px) {
+  .annotated:has(> .mg-margin, > * > .mg-margin) {
+    padding-bottom: calc(var(--fs-hand) * 1.5);
+  }
+
+  .mg-margin .mg-anchor {
+    text-decoration: underline;
+    text-decoration-color: var(--pen);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.22em;
+  }
+
+  .mg-margin .mg-note {
+    position: absolute;
+    top: calc(100% - var(--fs-hand) * 1.25);
+    left: 1.6em;
+    transform: rotate(-2deg);
+    transform-origin: left center;
+  }
+
+  .mg-margin .mg-arrow {
+    right: calc(100% + 4px);
+    bottom: 0.45em;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Wide: the note hangs in the margin on the anchor's line. */
+@media (width >= 1000px) {
+  .mg-margin .mg-note {
+    position: absolute;
+    left: calc(100% + var(--note-gap, 56px));
+    margin-top: -0.35em;
+    transform: rotate(-3deg);
+    transform-origin: left center;
+  }
+
+  .mg-margin .mg-arrow {
+    right: calc(100% + 6px);
+    top: 0.2em;
+    width: 46px;
+    height: 26px;
+  }
+
+  .mg-margin .mg-arrow-up {
+    display: none;
+  }
+}
+
+@media (width < 1000px) {
+  .mg-margin .mg-arrow-side {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .mg-ink {
+    clip-path: inset(-30% -12% -30% -6%);
+    transition: clip-path var(--dur-note) var(--ease-pen)
+      calc(var(--delay) + 120ms);
+  }
+
+  .js .mg:not([data-in]) .mg-ink {
+    clip-path: inset(-30% 100% -30% -6%);
+  }
+
+  .js .mg-arrow path {
+    stroke-dasharray: 1;
+    transition: stroke-dashoffset var(--dur-arrow) var(--ease-out)
+      calc(var(--delay) + 120ms + var(--dur-note) * 0.85);
+  }
+
+  .js .mg:not([data-in]) .mg-arrow path {
+    stroke-dashoffset: 1;
+  }
+}

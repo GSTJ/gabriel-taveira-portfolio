@@ -9,36 +9,13 @@
 import en from "@/i18n/locales/en-US.json";
 import { SITE_URL } from "@/utils/site";
 
-import {
-  AWARDS,
-  EMAIL_ADDR,
-  GITHUB,
-  LINKEDIN,
-  MEDIUM,
-  SERVICES,
-  SKILLS,
-  WORK,
-} from "./data";
 import { yearsInIndustry } from "./lifeline";
+import { EMAIL_ADDR, GITHUB, LINKEDIN, MEDIUM, SKILLS } from "./profile";
+import { AWARDS } from "./sections/notes/data";
+import { SERVICES } from "./sections/services/data";
+import { WORK } from "./sections/work/data";
 
 const PERSON_ID = `${SITE_URL}/#person`;
-
-/**
- * Extracts the primary company name from an eyebrow string like
- * "COINBASE · G2I · 2024 → 25" — first dot-separated token, normalised.
- */
-const companyNameFromEyebrow = (eyebrow: string): string => {
-  const first = eyebrow.split("·")[0]?.trim() ?? "";
-  if (!first) return "";
-  // Title-case the all-caps eyebrow. Not `\b`: it is ASCII-only even with the
-  // `u` flag, so it saw a boundary inside "ZÉ" and kept the É uppercase.
-  return first
-    .toLocaleLowerCase("en-US")
-    .replaceAll(
-      /(^|[\s.-])(\p{L})/gu,
-      (_, sep: string, c: string) => sep + c.toLocaleUpperCase("en-US"),
-    );
-};
 
 /**
  * Past employers. `worksFor` means a current employer, and the only current
@@ -48,7 +25,7 @@ const companyNameFromEyebrow = (eyebrow: string): string => {
 const pastEmployers = () =>
   WORK.filter((item) => item.id !== "consulting").map((item) => ({
     "@type": "Organization",
-    name: companyNameFromEyebrow(item.eyebrow),
+    name: item.orgs[0],
     url: item.href,
   }));
 
@@ -78,8 +55,8 @@ export function buildPortfolioJsonLd(locale: string) {
     name: "Gabriel Taveira",
     givenName: "Gabriel",
     familyName: "Taveira",
-    jobTitle: "Fractional Mobile Engineering Lead",
-    description: `Fractional mobile engineering lead and React Native / Expo consultant with ${years}+ years of experience. Led teams of up to 56 direct reports and shipped for Coinbase, D-ID, Meta/Kustomer and AB InBev. Open to consulting engagements.`,
+    jobTitle: "Independent React Native & Expo Consultant",
+    description: `Independent React Native and Expo consultant and mobile engineering lead with ${years}+ years of experience. Led teams of up to 56 direct reports and shipped for Coinbase, D-ID, Meta/Kustomer and AB InBev. Open to consulting engagements.`,
     url: SITE_URL,
     image: `${SITE_URL}/og-image.png`,
     email: `mailto:${EMAIL_ADDR}`,
@@ -92,7 +69,7 @@ export function buildPortfolioJsonLd(locale: string) {
     alumniOf: pastEmployers(),
     knowsAbout: SKILLS,
     knowsLanguage: ["en", "pt-BR"],
-    award: AWARDS.map((a) => `${en.awards.items[a.id]} (${a.year})`),
+    award: AWARDS.map((a) => `${en.notes.awards.items[a.id]} (${a.year})`),
     makesOffer: offers(),
     address: {
       "@type": "PostalAddress",

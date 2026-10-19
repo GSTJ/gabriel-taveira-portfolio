@@ -1,15 +1,15 @@
 # Gabriel Taveira's Open-Source Portfolio
 
-Welcome to my open-source portfolio! This project is built using Next.js, Tailwind, and Server Components.
+Welcome to my open-source portfolio! This project is built using Next.js, next-intl, and Server Components, styled with hand-written CSS on design tokens.
 
 <img width="1498" alt="preview" src="https://assets.gabrieltaveira.dev/demo.gif">
 
 ## Features
 
-- Responsive design with Tailwind CSS
-- Dark mode support
-- Server Components for improved performance
-- A live COIN quote on the hero, served from `/api/coin` with a cached fallback
+- Light, dark and system themes with no flash on load
+- English and Brazilian Portuguese
+- Every page prerendered, all copy in the first HTML
+- Design system in `DESIGN.md`, section ownership in `SECTIONS.md`
 
 ## Getting Started
 

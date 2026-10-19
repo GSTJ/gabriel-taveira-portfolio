@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { yearsInIndustry } from "@/components/portfolio/lifeline";
 import {
-  AWARDS,
   CURRICULUM_PDF,
   EMAIL_ADDR,
   GITHUB,
   LINKEDIN,
   SKILLS,
-  TALKS,
-  WORK,
-} from "@/components/portfolio/data";
-import { yearsInIndustry } from "@/components/portfolio/lifeline";
+} from "@/components/portfolio/profile";
+import { AWARDS, TALKS } from "@/components/portfolio/sections/notes/data";
+import { WORK } from "@/components/portfolio/sections/work/data";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
 
@@ -48,20 +47,12 @@ const plain = { mark: (chunks: React.ReactNode) => chunks };
  */
 const ResumePage = async ({ params }: Props) => {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("resume");
   const tWork = await getTranslations("work.items");
-  const tTalks = await getTranslations("talks.items");
-  const tAwards = await getTranslations("awards");
+  const tTalks = await getTranslations("notes.talks.items");
+  const tAwards = await getTranslations("notes.awards");
   const years = yearsInIndustry();
-
-  /** "COINBASE · G2I · 2024 → 25" into ["COINBASE · G2I", "2024 - 2025"]. */
-  const splitEyebrow = (eyebrow: string) => {
-    const parts = eyebrow.split(" · ");
-    const date = (parts.pop() ?? "")
-      .replace("→ NOW", `- ${t("present")}`)
-      .replace(/(\d\d)(\d\d) → (\d\d)$/, "$1$2 - $1$3");
-    return [parts.join(" · "), date] as const;
-  };
 
   return (
     <main className="resume">
@@ -93,14 +84,14 @@ const ResumePage = async ({ params }: Props) => {
       <section>
         <h2>{t("experienceTitle")}</h2>
         {WORK.map((w) => {
-          const [company, date] = splitEyebrow(w.eyebrow);
+          const date = `${w.start} - ${w.end === "now" ? t("present") : w.end}`;
           return (
             <article key={w.id} className="resume-job">
               <h3>
                 {tWork(`${w.id}.title`)}
                 <span className="resume-date">{date}</span>
               </h3>
-              <p className="resume-company">{company}</p>
+              <p className="resume-company">{w.orgs.join(" · ")}</p>
               <p>{tWork.rich(`${w.id}.blurb`, plain)}</p>
             </article>
           );
