@@ -1,56 +1,19 @@
-/* ── The ask across the page, then channels beside the form ────────── */
+/* ── The ask, then a ledger of situations, each with its door ───────── */
 
-.title {
-  max-width: 11em;
-}
-
-.sub {
-  max-width: 30em;
-  margin-top: var(--space-6);
+.status {
   color: var(--ink-2);
 }
 
-.rest {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-  gap: var(--space-8);
-  align-items: start;
-  margin-top: var(--space-8);
+.title {
+  max-width: 11em;
+  margin-top: var(--space-4);
 }
 
-.ledger {
-  border-top: 1px solid var(--rule);
+.sub {
+  max-width: 32em;
+  margin-top: var(--space-6);
+  color: var(--ink-2);
 }
-
-.ledger a {
-  display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-3);
-  padding-block: var(--space-4);
-  border-bottom: 1px solid var(--rule);
-  text-decoration: none;
-}
-
-.label {
-  font-weight: var(--fw-medium);
-}
-
-.handle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--ink-3);
-}
-
-.ledger a > svg {
-  width: 0.9em;
-  height: 0.9em;
-  color: var(--ink-3);
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
-/* ── Shared: the address and copy, channel icons, the form ─────────── */
 
 .mail {
   margin-top: var(--space-7);
@@ -74,6 +37,67 @@
   }
 }
 
+/* ── The routes ─────────────────────────────────────────────────────── */
+
+.routes {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--rule);
+}
+
+.route {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3) var(--space-7);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* The pen-wash ground the hover sweeps in, left to right. */
+.route::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--r-sm);
+  background: var(--pen-wash);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--dur-exit) var(--ease-out);
+}
+
+.situation {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.body {
+  max-width: 34em;
+  color: var(--ink-2);
+}
+
+.action {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  text-decoration: none;
+}
+
+/* The row's one door covers the whole row, so the row is the target. */
+.stretch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.quiet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+}
+
 .icon {
   display: inline-flex;
 }
@@ -84,59 +108,54 @@
   color: var(--ink-3);
 }
 
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
+.label {
+  font-weight: var(--fw-medium);
 }
 
-.field {
-  display: grid;
-  gap: var(--space-1);
-  font-size: var(--fs-small);
-  color: var(--ink-2);
-}
-
-.handoff,
-.field:nth-child(n + 4),
-.form button {
-  grid-column: 1 / -1;
-}
-
-.field input,
-.field textarea {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--control);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink);
-  font-size: var(--fs-body);
-  transition: border-color var(--dur-hover) ease;
-}
-
-.field textarea {
-  resize: vertical;
-}
-
-.field input::placeholder,
-.field textarea::placeholder {
+.handle {
   color: var(--ink-3);
 }
 
-.field input:focus-visible,
-.field textarea:focus-visible {
-  outline-offset: 1px;
-  border-color: var(--pen);
+.action > svg {
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
-.form button {
-  justify-self: start;
+@media (hover: hover) and (pointer: fine) {
+  .route::before {
+    inset: 0 calc(-1 * var(--space-3));
+  }
+
+  .route:hover::before {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path var(--dur-ui) var(--ease-out);
+  }
+
+  .route:hover .action > svg,
+  .quiet .action:hover > svg {
+    transform: translate(2px, -2px);
+  }
+
+  .quiet .action:hover .label {
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.2em;
+  }
 }
 
-.handoff {
-  max-width: var(--measure);
-  color: var(--ink-2);
+@media (prefers-reduced-motion: reduce) {
+  .route::before,
+  .action > svg {
+    transition: none;
+  }
+}
+
+@media (width < 760px) {
+  .route {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ── The toast: react-native-magic-toast's drop from the top ───────── */
@@ -214,33 +233,5 @@
   .toast,
   .toast:not([data-shown]) {
     transform: translate(-50%, 0);
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .ledger a:hover > svg {
-    transform: translate(2px, -2px);
-  }
-
-  .ledger a:hover .label {
-    text-decoration: underline;
-    text-decoration-color: var(--rule-strong);
-    text-underline-offset: 0.2em;
-  }
-}
-
-@media (width < 1000px) {
-  .rest {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (width < 560px) {
-  .form {
-    grid-template-columns: 1fr;
-  }
-
-  .field {
-    grid-column: 1 / -1;
   }
 }

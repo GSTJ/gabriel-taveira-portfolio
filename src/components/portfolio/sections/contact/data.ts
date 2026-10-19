@@ -23,3 +23,22 @@ export const CHANNELS: readonly Channel[] = [
   { id: "medium", handle: "@gabrieltaveira", url: MEDIUM },
   { id: "spaceCast", handle: "Rocketseat / YouTube", url: SPACE_CAST },
 ] as const;
+
+/**
+ * The situations the section routes, in the order most visitors need them.
+ * `mail` rows open a draft with a subject and questions from the locale; the
+ * rest go to a channel. The last row carries two quiet links.
+ */
+export const ROUTES = [
+  { id: "project", mail: true },
+  { id: "hello", channel: "linkedin" },
+  { id: "code", channel: "github" },
+  { id: "security", mail: true },
+  { id: "talk", mail: true },
+  { id: "reading", channels: ["medium", "spaceCast"] },
+] as const satisfies readonly {
+  id: string;
+  mail?: true;
+  channel?: Channel["id"];
+  channels?: readonly Channel["id"][];
+}[];

@@ -361,11 +361,14 @@
     }
   },
   "contact": {
-    "title": "Got an interesting challenge?",
-    "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee.",
+    "status": "Independent consultant, open to new clients · {month}",
+    "title": "What are you writing about?",
+    "sub": "Find the line closest to yours. Each one opens the right door, and when that door is email, the draft comes with the questions I'd ask anyway.",
     "copy": "Copy email",
     "copied": "Email copied",
     "copyFailed": "Couldn't copy. The address is selected.",
+    "startHere": "start here",
+    "draftHint": "draft with 3 questions",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -373,20 +376,42 @@
       "medium": "Medium",
       "spaceCast": "Space Cast"
     },
-    "form": {
-      "name": "Name",
-      "namePh": "Your name",
-      "email": "Email",
-      "emailPh": "you@company.com",
-      "subject": "The challenge",
-      "subjectPh": "What needs solving?",
-      "message": "Tell me more",
-      "messagePh": "Team size, timeline, stack, what good looks like.",
-      "send": "Open email draft",
-      "handoff": "The button opens a draft in your email app. If nothing opens, copy the address above.",
-      "defaultSubject": "Hi from your site",
-      "from": "From",
-      "reply": "Reply to"
+    "routes": {
+      "project": {
+        "title": "My mobile app needs help",
+        "body": "A migration, an app that got slow, an architecture review, or a lead while you hire.",
+        "action": "Start the email",
+        "subject": "Project: ",
+        "draft": "Hi Gabriel,\n\nThe app:\n\nThe team:\n\nThe timeline:\n"
+      },
+      "hello": {
+        "title": "I'd rather say hi first",
+        "body": "No brief yet, just a quick message to see if it fits.",
+        "action": "Message me"
+      },
+      "code": {
+        "title": "I want to see the code first",
+        "body": "Libraries, the apps I open sourced, and the PRs behind them.",
+        "action": "Read my code"
+      },
+      "security": {
+        "title": "I found a security issue in something you built",
+        "body": "Send it privately, with the steps to reproduce it.",
+        "action": "Report it",
+        "subject": "Security: ",
+        "draft": "Hi Gabriel,\n\nWhere it is:\n\nSteps to reproduce:\n\nWhat it affects:\n"
+      },
+      "talk": {
+        "title": "I want you to speak at my event",
+        "body": "Talks, panels, podcasts. I host Space Cast, so I know the other side too.",
+        "action": "Invite me",
+        "subject": "Talk: ",
+        "draft": "Hi Gabriel,\n\nThe event:\n\nThe date:\n\nThe topic:\n"
+      },
+      "reading": {
+        "title": "I'm just reading along",
+        "body": "What I write and the show I host."
+      }
     }
   },
   "links": {

@@ -361,11 +361,14 @@
     }
   },
   "contact": {
-    "title": "Tem um desafio bom?",
-    "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
+    "status": "Consultor independente, aberto a novos clientes · {month}",
+    "title": "Sobre o que você quer falar?",
+    "sub": "Acha a linha mais parecida com a sua. Cada uma abre a porta certa, e quando a porta é email, o rascunho já vem com as perguntas que eu faria de qualquer jeito.",
     "copy": "Copiar email",
     "copied": "Email copiado",
     "copyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
+    "startHere": "comece por aqui",
+    "draftHint": "rascunho com 3 perguntas",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -373,20 +376,42 @@
       "medium": "Medium",
       "spaceCast": "Space Cast"
     },
-    "form": {
-      "name": "Nome",
-      "namePh": "Seu nome",
-      "email": "Email",
-      "emailPh": "voce@empresa.com",
-      "subject": "O desafio",
-      "subjectPh": "O que precisa ser resolvido?",
-      "message": "Me conta mais",
-      "messagePh": "Tamanho do time, prazo, stack, o que é entregar bem.",
-      "send": "Abrir rascunho de email",
-      "handoff": "O botão abre um rascunho no seu app de email. Se nada abrir, copia o endereço lá em cima.",
-      "defaultSubject": "Oi, vim pelo seu site",
-      "from": "De",
-      "reply": "Responder para"
+    "routes": {
+      "project": {
+        "title": "Meu app mobile precisa de ajuda",
+        "body": "Uma migração, um app que ficou lento, uma revisão de arquitetura ou um líder enquanto você contrata.",
+        "action": "Começar o email",
+        "subject": "Projeto: ",
+        "draft": "Oi Gabriel,\n\nO app:\n\nO time:\n\nO prazo:\n"
+      },
+      "hello": {
+        "title": "Prefiro dar um oi antes",
+        "body": "Sem escopo ainda, só uma mensagem rápida pra ver se faz sentido.",
+        "action": "Me manda mensagem"
+      },
+      "code": {
+        "title": "Quero ver o código antes",
+        "body": "Bibliotecas, os apps que abri o código e os PRs por trás deles.",
+        "action": "Ler meu código"
+      },
+      "security": {
+        "title": "Achei uma falha de segurança em algo que você fez",
+        "body": "Manda no privado, com os passos pra reproduzir.",
+        "action": "Reportar",
+        "subject": "Segurança: ",
+        "draft": "Oi Gabriel,\n\nOnde está:\n\nPassos pra reproduzir:\n\nO que afeta:\n"
+      },
+      "talk": {
+        "title": "Quero você palestrando no meu evento",
+        "body": "Palestras, painéis, podcasts. Eu apresento o Space Cast, então conheço o outro lado também.",
+        "action": "Me convidar",
+        "subject": "Palestra: ",
+        "draft": "Oi Gabriel,\n\nO evento:\n\nA data:\n\nO tema:\n"
+      },
+      "reading": {
+        "title": "Só estou acompanhando",
+        "body": "O que eu escrevo e o programa que apresento."
+      }
     }
   },
   "links": {

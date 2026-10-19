@@ -1,45 +1,36 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
+import { currentMonthLabel } from "../../lifeline";
 import { ArrowUpRight, CHANNEL_ICONS } from "../../ui/icons";
+import { Marginalia } from "../../ui/marginalia";
 import { reveal } from "../../ui/motion";
 import { PenUnderline } from "../../ui/pen-underline";
-import { ContactForm } from "./contact-form";
 import { CopyEmail } from "./copy-email";
-import { CHANNELS, EMAIL, EMAIL_ADDR } from "./data";
+import { CHANNELS, EMAIL, EMAIL_ADDR, ROUTES, type Channel } from "./data";
 
 import styles from "./contact.module.css";
 
-const FORM_KEYS = [
-  "name",
-  "namePh",
-  "email",
-  "emailPh",
-  "subject",
-  "subjectPh",
-  "message",
-  "messagePh",
-  "send",
-  "handoff",
-  "defaultSubject",
-  "from",
-  "reply",
-] as const;
-
 const ADDRESS_ID = "contact-address";
 
+const BY_ID = Object.fromEntries(CHANNELS.map((c) => [c.id, c])) as Record<
+  Channel["id"],
+  Channel
+>;
+const channel = (id: Channel["id"]) => BY_ID[id];
+
+const draft = (subject: string, body: string) =>
+  `${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
 /**
- * The ask, then the address (copy it or open the mail app), the other
- * channels, and a form that drafts the email for you. Self-contained: it also
- * closes /security.
+ * The ask, routed: the visitor finds their situation and gets the right
+ * door, with the email already started when email is the door. Works on its
+ * own, so it also closes /security.
  */
 export const ContactSection = async () => {
   const t = await getTranslations("contact");
-  const formCopy = Object.fromEntries(
-    FORM_KEYS.map((key) => [key, t(`form.${key}`)]),
-  ) as Record<(typeof FORM_KEYS)[number], string>;
-  const channels = CHANNELS.filter((channel) => channel.id !== "email");
+  const locale = await getLocale();
 
   return (
     <section
@@ -47,17 +38,20 @@ export const ContactSection = async () => {
       className="section wrap"
       aria-labelledby="contact-title"
     >
+      <p className={cn("t-meta", styles.status)} {...reveal()}>
+        {t("status", { month: currentMonthLabel(locale) })}
+      </p>
       <h2
         id="contact-title"
         className={cn("t-display", styles.title)}
-        {...reveal()}
+        {...reveal(1)}
       >
         {t("title")}
       </h2>
-      <p className={cn("t-lede", styles.sub)} {...reveal(1)}>
+      <p className={cn("t-lede", styles.sub)} {...reveal(2)}>
         {t("sub")}
       </p>
-      <div className={styles.mail} {...reveal(2)}>
+      <div className={styles.mail} {...reveal(3)}>
         <a id={ADDRESS_ID} className={styles.address} href={EMAIL}>
           <PenUnderline delay={240}>{EMAIL_ADDR}</PenUnderline>
         </a>
@@ -70,27 +64,66 @@ export const ContactSection = async () => {
           }}
         />
       </div>
-      <div className={styles.rest}>
-        <ul className={styles.ledger} {...reveal(3)}>
-          {channels.map((channel) => (
-            <li key={channel.id}>
-              <a href={channel.url}>
-                <span className={styles.icon}>{CHANNEL_ICONS[channel.id]}</span>
-                <span className={styles.label}>
-                  {t(`channels.${channel.id}`)}
-                </span>
-                <span className={cn("t-meta", styles.handle)}>
-                  {channel.handle}
-                </span>
-                <ArrowUpRight />
-              </a>
+      <ul className={styles.routes}>
+        {ROUTES.map((route, index) => {
+          const key = `routes.${route.id}` as const;
+          return (
+            <li key={route.id} className={styles.route} {...reveal(index)}>
+              <div className={styles.situation}>
+                <h3 className="t-title">{t(`${key}.title`)}</h3>
+                <p className={cn("t-small", styles.body)}>{t(`${key}.body`)}</p>
+              </div>
+              {"channels" in route ? (
+                <p className={styles.quiet}>
+                  {route.channels.map((id) => (
+                    <a
+                      key={id}
+                      className={styles.action}
+                      href={channel(id).url}
+                    >
+                      <span className={styles.icon}>{CHANNEL_ICONS[id]}</span>
+                      <span className={styles.label}>
+                        {t(`channels.${id}`)}
+                      </span>
+                      <span className={cn("t-meta", styles.handle)}>
+                        {channel(id).handle}
+                      </span>
+                      <ArrowUpRight />
+                    </a>
+                  ))}
+                </p>
+              ) : (
+                <a
+                  className={cn(styles.action, styles.stretch)}
+                  href={
+                    "mail" in route
+                      ? draft(t(`${key}.subject`), t(`${key}.draft`))
+                      : channel(route.channel).url
+                  }
+                >
+                  <span className={styles.icon}>
+                    {CHANNEL_ICONS["mail" in route ? "email" : route.channel]}
+                  </span>
+                  <span className={styles.label}>{t(`${key}.action`)}</span>
+                  <span className={cn("t-meta", styles.handle)}>
+                    {"mail" in route
+                      ? t("draftHint")
+                      : channel(route.channel).handle}
+                  </span>
+                  <ArrowUpRight />
+                  {route.id === "project" ? (
+                    <Marginalia
+                      placement="inline"
+                      note={t("startHere")}
+                      delay={400}
+                    />
+                  ) : null}
+                </a>
+              )}
             </li>
-          ))}
-        </ul>
-        <div {...reveal(4)}>
-          <ContactForm copy={formCopy} />
-        </div>
-      </div>
+          );
+        })}
+      </ul>
     </section>
   );
 };
