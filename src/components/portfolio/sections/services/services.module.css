@@ -1,10 +1,10 @@
-.grid {
+/* ── Offers ─────────────────────────────────────────────────────────── */
+
+.offers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
-  gap: 0 var(--space-8);
 }
 
-.item {
+.offer {
   display: grid;
   gap: var(--space-2);
   align-content: start;
@@ -12,22 +12,199 @@
   border-top: 1px solid var(--rule);
 }
 
+.body {
+  max-width: var(--measure);
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.proof ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+
+/* A citation back up the page: the arrow says "proved above", the dates say when. */
+.cite {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule-strong);
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--dur-hover) ease;
+}
+
+.cite svg {
+  width: 0.85em;
+  height: 0.85em;
+  flex: none;
+  align-self: center;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.dates {
+  margin-left: var(--space-2);
+  color: var(--ink-3);
+  font-weight: var(--fw-regular);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cite:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .cite:hover svg {
+    transform: translateY(-2px);
+  }
+}
+
+/* One row per offer from 1000px, read across: what, how, where it was done. */
+@media (min-width: 1000px) {
+  .offer {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+  }
+
+  .proof,
+  .proof ul {
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+
+  .proof {
+    margin-top: 0;
+  }
+}
+
+/* ── How an engagement runs ─────────────────────────────────────────── */
+
 .flow {
   display: grid;
   gap: var(--space-2);
-  margin-top: clamp(4rem, 7vw, 6.5rem);
+  margin-top: var(--sec-head-gap);
 }
 
+.flowTitle {
+  font-weight: var(--fw-strong);
+}
+
+.flowSub {
+  max-width: var(--measure);
+}
+
+/*
+ * Each step draws a segment to the next and its dot fills as the line
+ * arrives: the order is the point. Vertical on phones, across from 760px.
+ */
 .steps {
+  --dot: var(--space-3);
+  --track: var(--space-6);
+  --gap: var(--space-6);
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-  gap: var(--space-6);
-  margin-top: var(--space-5);
+  gap: var(--gap);
+  margin-top: var(--space-6);
+  padding-left: var(--track);
 }
 
 .steps li {
+  position: relative;
   display: grid;
   gap: var(--space-2);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--ink);
+  align-content: start;
+}
+
+.steps li::before {
+  content: "";
+  position: absolute;
+  top: var(--space-1);
+  left: calc(var(--track) * -1);
+  width: var(--dot);
+  height: var(--dot);
+  border: 1px solid var(--ink);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--space-1) + var(--dot) / 2);
+  left: calc(var(--track) * -1 + var(--dot) / 2);
+  width: 1px;
+  height: calc(100% + var(--gap));
+  background: var(--ink);
+  transform-origin: top;
+}
+
+@media (min-width: 760px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-left: 0;
+    padding-top: var(--track);
+  }
+
+  .steps li::before {
+    top: calc(var(--track) * -1);
+    left: 0;
+  }
+
+  .steps li:not(:last-child)::after {
+    top: calc(var(--track) * -1 + var(--dot) / 2);
+    left: var(--dot);
+    width: calc(100% + var(--gap) - var(--dot));
+    height: 1px;
+    transform-origin: left;
+  }
+}
+
+/* Segment i draws while step i+1 is due, so each dot fills as the line lands. */
+@media (prefers-reduced-motion: no-preference) {
+  .steps li {
+    --seg: calc(var(--dur-pen) / 2);
+    --land: calc(var(--i, 0) * var(--seg) + var(--stagger));
+
+    transition:
+      opacity var(--dur-enter) var(--ease-out) var(--land),
+      transform var(--dur-rise) var(--ease-out) var(--land);
+  }
+
+  .steps li::before {
+    transition: background-color var(--dur-ui) ease var(--land);
+  }
+
+  .steps li::after {
+    transition: transform var(--seg) linear var(--land);
+  }
+
+  :global(.js) .steps:not([data-in]) li {
+    opacity: 0;
+    transform: translateY(var(--rise));
+  }
+
+  :global(.js) .steps:not([data-in]) li::before {
+    background: var(--paper);
+  }
+
+  :global(.js) .steps:not([data-in]) li::after {
+    transform: scaleY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 760px) {
+  :global(.js) .steps:not([data-in]) li::after {
+    transform: scaleX(0);
+  }
 }
