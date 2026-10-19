@@ -41,17 +41,18 @@
   "hero": {
     "status": "Independent consultant, open to new clients",
     "place": "Ribeirão Preto, Brazil · {month}",
-    "title": "<me>I'm Gabriel.</me> I help product teams ship React Native and Expo <pen>apps that scale.</pen>",
-    "body": "The architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to <note>56 direct reports</note> and worked on Coinbase's mobile app infrastructure.",
+    "title": "<me>I'm Gabriel.</me> I help React Native and Expo teams through <pen>the hard parts.</pen>",
+    "body": "At Coinbase I drove React Compiler adoption and helped move the app to Expo Prebuild and the new architecture.",
+    "body2": "I started at eight, reverse-engineering games, and in over {years} years of work I've led teams of up to <note>56 direct reports</note>.",
     "notes": {
+      "hardParts": "<r><l>the migrations,</l> <l>the architecture,</l></r> <r><l>and the team</l></r>",
       "yesReally": "yes, really"
     },
     "cta": {
       "getInTouch": "Get in touch",
       "downloadPdf": "Download PDF",
       "linkedIn": "LinkedIn"
-    },
-    "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
+    }
   },
   "projects": {
     "title": "Things I made.",
