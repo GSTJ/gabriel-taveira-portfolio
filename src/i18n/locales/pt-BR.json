@@ -295,6 +295,9 @@
   "contact": {
     "title": "Tem um desafio bom?",
     "sub": "Me conta sobre o app, o time e o prazo. Respondo dentro da semana. Se for urgente, me chama no LinkedIn. Eu confiro antes do café.",
+    "copy": "Copiar email",
+    "copied": "Email copiado",
+    "copyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",

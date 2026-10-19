@@ -1,39 +1,92 @@
-.grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: var(--space-8);
-  align-items: start;
+/* ── The ask across the page, then channels beside the form ────────── */
+
+.title {
+  max-width: 11em;
 }
 
-.ask {
+.sub {
+  max-width: 30em;
+  margin-top: var(--space-6);
+  color: var(--ink-2);
+}
+
+.rest {
   display: grid;
-  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: var(--space-8);
+  align-items: start;
+  margin-top: var(--space-8);
+}
+
+.ledger {
+  border-top: 1px solid var(--rule);
+}
+
+.ledger a {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.label {
+  font-weight: var(--fw-medium);
+}
+
+.handle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-3);
+}
+
+.ledger a > svg {
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+/* ── Shared: the address and copy, channel icons, the form ─────────── */
+
+.mail {
+  margin-top: var(--space-7);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
 }
 
 .address {
-  font-size: clamp(1.375rem, 1.6vw + 0.875rem, 2.25rem);
-  font-weight: 460;
-  letter-spacing: -0.025em;
-  text-decoration-color: var(--pen);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
-  overflow-wrap: anywhere;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tr-title);
+  text-decoration: none;
 }
 
-.channels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-6);
+@media (width >= 760px) {
+  .address {
+    font-size: var(--fs-h1);
+    letter-spacing: var(--tr-h2);
+  }
+}
+
+.icon {
+  display: inline-flex;
 }
 
 .icon svg {
-  width: 15px;
-  height: 15px;
+  width: 1em;
+  height: 1em;
   color: var(--ink-3);
 }
 
 .form {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
 }
 
@@ -42,6 +95,11 @@
   gap: var(--space-1);
   font-size: var(--fs-small);
   color: var(--ink-2);
+}
+
+.field:nth-child(n + 3),
+.form button {
+  grid-column: 1 / -1;
 }
 
 .field input,
@@ -54,6 +112,10 @@
   color: var(--ink);
   font-size: var(--fs-body);
   transition: border-color var(--dur-hover) ease;
+}
+
+.field textarea {
+  resize: vertical;
 }
 
 .field input::placeholder,
@@ -71,8 +133,108 @@
   justify-self: start;
 }
 
+/* ── The toast: react-native-magic-toast's drop from the top ───────── */
+
+.toast {
+  position: fixed;
+  z-index: 60;
+  top: calc(var(--nav-h) + var(--space-3));
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: calc(100vw - 2 * var(--gutter));
+  padding: var(--space-3) var(--space-5) var(--space-3) var(--space-4);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-body);
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  transform: translate(-50%, 0);
+  opacity: 1;
+  transition:
+    transform var(--dur-ui) var(--ease-out),
+    opacity var(--dur-ui) var(--ease-out);
+}
+
+.toast:not([data-shown]) {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - var(--nav-h)));
+  transition:
+    transform var(--dur-exit) var(--ease-out),
+    opacity var(--dur-exit) var(--ease-out),
+    visibility 0s var(--dur-exit);
+}
+
+.toast:active {
+  cursor: grabbing;
+}
+
+.toast svg {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.toast path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The check draws once the pill has landed. */
+  .toast path {
+    stroke-dasharray: 1;
+    transition: stroke-dashoffset var(--dur-ui) var(--ease-out) var(--dur-ui);
+  }
+
+  .toast:not([data-shown]) path {
+    stroke-dashoffset: 1;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toast:not([data-shown]) {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ledger a:hover > svg {
+    transform: translate(2px, -2px);
+  }
+
+  .ledger a:hover .label {
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.2em;
+  }
+}
+
 @media (width < 1000px) {
-  .grid {
+  .rest {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (width < 560px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .field {
+    grid-column: 1 / -1;
   }
 }

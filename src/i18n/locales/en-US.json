@@ -295,6 +295,9 @@
   "contact": {
     "title": "Got an interesting challenge?",
     "sub": "Tell me about the app, the team, and the timeline. I reply within the week. If it's urgent, ping me on LinkedIn. I check before coffee.",
+    "copy": "Copy email",
+    "copied": "Email copied",
+    "copyFailed": "Couldn't copy. The address is selected.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
