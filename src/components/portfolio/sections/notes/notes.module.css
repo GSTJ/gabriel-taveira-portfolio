@@ -1,22 +1,8 @@
-/* Shared pieces */
+/* Now pinned on the left, the dated record on the right, newest first. */
 
-.col,
-.block,
-.stack {
+.layout {
   display: grid;
-  align-content: start;
-}
-
-.col {
-  gap: var(--space-8);
-}
-
-.block {
-  gap: var(--space-5);
-}
-
-.stack {
-  gap: var(--space-3);
+  gap: var(--space-9);
 }
 
 .head {
@@ -25,19 +11,11 @@
   max-width: var(--measure);
 }
 
-.rows {
-  display: grid;
-  border-bottom: 1px solid var(--rule);
-}
-
-.rows > li {
-  border-top: 1px solid var(--rule);
-}
-
-/* Now: the one block that changes month to month, so it leads. */
+/* Now */
 
 .now {
   display: grid;
+  align-content: start;
   gap: var(--space-5);
 }
 
@@ -53,21 +31,6 @@
   border-top: 1px solid var(--rule);
 }
 
-.nowRow dt {
-  padding-top: 0.2em;
-}
-
-/* Inline so a wrapped title keeps its arrow on the last word. */
-.nowTitle a {
-  display: inline;
-}
-
-.nowTitle a svg {
-  display: inline;
-  margin-left: 0.3em;
-  vertical-align: -0.05em;
-}
-
 .nowTitle {
   font-size: var(--fs-body);
   font-weight: var(--fw-medium);
@@ -75,59 +38,89 @@
   letter-spacing: var(--tr-body);
 }
 
-/* Talks */
+/* Inline so a wrapped title keeps its arrow on the last word. */
+.nowTitle a,
+a.title {
+  display: inline;
+}
 
-.talk {
+.nowTitle a svg,
+a.title svg {
+  display: inline;
+  margin-left: 0.3em;
+  vertical-align: -0.05em;
+}
+
+/* The record */
+
+.record {
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  gap: var(--space-4);
+  align-content: start;
+  gap: var(--space-7);
+}
+
+.years {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.year {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.yearLabel {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-light);
+  line-height: 1;
+  letter-spacing: var(--tr-h1);
+  color: var(--ink-3);
+}
+
+.entries {
+  display: grid;
+  border-bottom: 1px solid var(--rule);
+}
+
+.entries > li {
+  border-top: 1px solid var(--rule);
+}
+
+.entry {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
   padding-block: var(--space-4);
 }
 
-.talk > span {
-  padding-top: 0.2em;
-}
-
-.talk > div {
-  display: grid;
-  gap: var(--space-1);
-}
-
-.rowTitle {
+.title {
   font-weight: var(--fw-medium);
-  color: var(--ink);
-}
-
-.talk abbr {
-  text-decoration: none;
-}
-
-/* On air and writing */
-
-.feature {
-  font-size: var(--fs-lede);
-  line-height: var(--lh-lede);
-  letter-spacing: -0.013em;
   color: var(--ink);
   text-wrap: pretty;
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+.measure {
+  max-width: var(--measure);
 }
 
-/* Shipped lately: a dated changelog strip, each row a link to the release. */
+.out {
+  justify-self: start;
+}
+
+.source {
+  margin-top: var(--space-1);
+}
+
+/* Releases: the package name carries the link. */
 
 .ship {
   display: grid;
   gap: var(--space-1);
-  padding-block: var(--space-3);
   text-decoration: none;
 }
 
 .pkg {
+  justify-self: start;
   color: var(--ink);
   overflow-wrap: anywhere;
   text-decoration: underline;
@@ -141,58 +134,170 @@
   color: var(--ink-3);
 }
 
+/* The modal guide and what it became. */
+
+.became {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  max-width: var(--measure);
+}
+
+/* Hackathons: one quiet line each. */
+
+.award {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  padding-block: var(--space-3);
+}
+
+/*
+ * Space Cast contact sheet. The caption line under the grid is reserved, so
+ * naming an episode on hover swaps text in place and never moves the page.
+ */
+
+.sheet {
+  position: relative;
+  margin-top: var(--space-3);
+  /* Two lines of .t-meta (1.4 line height) plus a gap. */
+  padding-bottom: calc(var(--fs-meta) * 1.4 * 2 + var(--space-3));
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.tile {
+  display: block;
+  border-radius: var(--r-sm);
+  outline-offset: 2px;
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-sm);
+  filter: grayscale(1);
+  transition: filter var(--dur-hover) ease;
+}
+
+/* The three episodes that went out without him. */
+.tile[data-host="no"] img {
+  opacity: 0.32;
+}
+
+.cap,
+.capDefault {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: grid;
+  height: 2lh;
+  overflow: hidden;
+}
+
+.cap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.capTitle {
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tile:focus-visible img {
+  filter: none;
+  opacity: 1;
+}
+
+.tile:focus-visible .cap {
+  opacity: 1;
+}
+
+.sheet:has(.tile:focus-visible) .capDefault {
+  opacity: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .ship:hover .pkg {
     text-decoration-color: var(--pen);
   }
+
+  .tile:hover img {
+    filter: none;
+    opacity: 1;
+  }
+
+  .tile:hover .cap {
+    opacity: 1;
+  }
+
+  .sheet:has(.tile:hover) .capDefault {
+    opacity: 0;
+  }
 }
 
-/* Hackathons: small print, all five, quieter than everything above. */
+/* Forty weeks in order: each tile lands a quarter-stagger after the last. */
+@media (prefers-reduced-motion: no-preference) {
+  .tiles > li {
+    transition:
+      opacity var(--dur-arrow) var(--ease-out),
+      transform var(--dur-arrow) var(--ease-out);
+    transition-delay: calc(var(--n, 0) * var(--stagger) / 4);
+  }
 
-.awards {
-  display: grid;
-  gap: var(--space-2);
-  max-width: 60rem;
-}
-
-.awards h3 {
-  font-weight: var(--fw-medium);
-  color: var(--ink-2);
-}
-
-.awardList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-5);
-  margin-top: var(--space-1);
-}
-
-/* Now runs full width, three columns under it, hackathons as a footnote. */
-
-.layout {
-  display: grid;
-  gap: var(--space-9);
-}
-
-.trio {
-  display: grid;
-  gap: var(--space-8);
+  :global(.js) .sheet:not([data-in]) .tiles > li {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }
 
 @media (width >= 1000px) {
-  .nowRow {
-    grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1.2fr);
-    column-gap: var(--space-6);
+  .layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-8);
   }
 
-  .trio {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-7);
+  /* Now stays in view while the record scrolls back through the years. */
+  .now {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-6));
+    align-self: start;
   }
 
-  .awards {
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--rule);
-    max-width: none;
+  .year {
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .yearLabel {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-6));
+    align-self: start;
+    padding-top: var(--space-4);
+  }
+
+  .year > .source {
+    grid-column: 2;
+  }
+
+  .tiles {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }

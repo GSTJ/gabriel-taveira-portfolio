@@ -249,7 +249,8 @@
     }
   },
   "notes": {
-    "title": "Palestras, textos e o que estou fazendo agora.",
+    "title": "Fora do NDA.",
+    "lede": "Trabalho de cliente fica sob NDA. Aqui é a parte que qualquer um pode conferir: o que estou fazendo agora e um registro com data de palestras, episódios, textos e releases.",
     "now": {
       "title": "Agora",
       "items": {
@@ -262,11 +263,6 @@
           "chip": "Construindo",
           "title": "Curvinha, um app iOS pra planejar a casa",
           "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D com produtos reais de lojas brasileiras, mais a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
-        },
-        "hosting": {
-          "chip": "Apresentando",
-          "title": "Space Cast na Rocketseat",
-          "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugestões de convidado são bem-vindas."
         },
         "mentoring": {
           "chip": "Mentoria",
@@ -281,19 +277,29 @@
       },
       "updated": "Atualizado em {date}."
     },
-    "publications": {
-      "title": "No ar",
-      "featureTitle": "Apresento o podcast Space Cast no YouTube da Rocketseat.",
-      "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
-      "watchShow": "Assistir o programa",
-      "playlist": "Playlist de episódios",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentorando a próxima geração de devs.",
-      "season": "temporada 3"
+    "record": {
+      "title": "No registro",
+      "kinds": {
+        "release": "Release",
+        "talk": "Palestra",
+        "podcast": "Podcast",
+        "article": "Texto",
+        "hackathon": "Hackathon"
+      }
+    },
+    "shipped": {
+      "title": "Lançado há pouco",
+      "source": "Das minhas releases no GitHub, lidas em {date}.",
+      "items": {
+        "pegada": "Limite diário de likes configurável e plano semanal",
+        "safeJsx": "A regra agora pega brechas com booleanos mutáveis",
+        "codePush": "As duas URLs do servidor CodePush viraram obrigatórias, então config errada falha cedo",
+        "magicModal": "Peers de React Native viraram opcionais, a instalação web é um pacote só"
+      }
     },
     "talks": {
       "title": "Palestras",
-      "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
+      "sub": "Até agora, todas em português. Topo fazer em inglês.",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
@@ -319,7 +325,30 @@
           "venue": "Space Squad · Rocketseat",
           "city": "Remoto"
         }
+      },
+      "links": {
+        "slides": "Slides no Figma",
+        "event": "Site do evento",
+        "channel": "Space Squad no YouTube"
       }
+    },
+    "spaceCast": {
+      "title": "Space Cast, o podcast semanal da Rocketseat",
+      "body": "40 episódios de 18 de janeiro a 18 de outubro de 2023, umas 41 horas de devs, designers e líderes de engenharia falando de carreira e código. Apresentei 37 deles.",
+      "caption": "Apresentador em 37 de 40. Os três apagados saíram sem mim.",
+      "episode": "Episódio {n}, {date}",
+      "playlist": "Todos os episódios no YouTube",
+      "spotify": "Spotify",
+      "sheetLabel": "Episódios do Space Cast, 1 a 40"
+    },
+    "writing": {
+      "items": {
+        "modalsEn": "You Have Been Using React Native Modals Wrong",
+        "modalsPt": "O Guia Definitivo de Modais no React Native"
+      },
+      "became": "O código desse guia virou a react-native-magic-modal, hoje <link>magic-modal</link>: {stars} estrelas no GitHub, lido em {date}.",
+      "note": "virou biblioteca",
+      "more": "Mais no Medium"
     },
     "awards": {
       "title": "Hackathons",
@@ -335,28 +364,6 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
-      }
-    },
-    "writing": {
-      "title": "Textos",
-      "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
-      "topics": {
-        "leadership": "Liderança em Engenharia",
-        "mobile": "Arquitetura Mobile",
-        "design": "Design Systems",
-        "hiring": "Contratação & Mentoria",
-        "reverse": "Engenharia Reversa"
-      },
-      "readOnMedium": "Ler no Medium"
-    },
-    "shipped": {
-      "title": "Lançado há pouco",
-      "source": "Das minhas releases no GitHub, lidas em {date}.",
-      "items": {
-        "pegada": "Limite diário de likes configurável e plano semanal",
-        "safeJsx": "A regra agora pega brechas com booleanos mutáveis",
-        "codePush": "As duas URLs do servidor CodePush viraram obrigatórias, então config errada falha cedo",
-        "magicModal": "Peers de React Native viraram opcionais, a instalação web é um pacote só"
       }
     }
   },

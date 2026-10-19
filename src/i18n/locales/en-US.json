@@ -249,7 +249,8 @@
     }
   },
   "notes": {
-    "title": "Talks, writing, and what I'm doing now.",
+    "title": "Outside the NDA.",
+    "lede": "Client work stays under NDA. This is the part anyone can check: what I'm on now, and a dated record of talks, episodes, writing and releases.",
     "now": {
       "title": "Now",
       "items": {
@@ -262,11 +263,6 @@
           "chip": "Building",
           "title": "Curvinha, an iOS app for planning your home",
           "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
-        },
-        "hosting": {
-          "chip": "Hosting",
-          "title": "Space Cast on Rocketseat",
-          "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Guest ideas welcome."
         },
         "mentoring": {
           "chip": "Mentoring",
@@ -281,19 +277,29 @@
       },
       "updated": "Updated {date}."
     },
-    "publications": {
-      "title": "On air",
-      "featureTitle": "I host the Space Cast podcast on Rocketseat's YouTube.",
-      "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
-      "watchShow": "Watch the show",
-      "playlist": "Episode playlist",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentoring the next generation of tech wizards.",
-      "season": "season 3"
+    "record": {
+      "title": "On the record",
+      "kinds": {
+        "release": "Release",
+        "talk": "Talk",
+        "podcast": "Podcast",
+        "article": "Article",
+        "hackathon": "Hackathon"
+      }
+    },
+    "shipped": {
+      "title": "Shipped lately",
+      "source": "From my GitHub releases, read {date}.",
+      "items": {
+        "pegada": "Configurable daily like limit and a weekly plan",
+        "safeJsx": "The rule now catches mutable boolean bypasses",
+        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
+        "magicModal": "React Native peers are optional, so the web install is one package"
+      }
     },
     "talks": {
       "title": "Talks",
-      "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
+      "sub": "Talks so far are in Portuguese. Happy to give them in English.",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
@@ -319,7 +325,30 @@
           "venue": "Space Squad · Rocketseat",
           "city": "Remote"
         }
+      },
+      "links": {
+        "slides": "Slides on Figma",
+        "event": "Event site",
+        "channel": "Space Squad on YouTube"
       }
+    },
+    "spaceCast": {
+      "title": "Space Cast, Rocketseat's weekly podcast",
+      "body": "40 episodes from January 18 to October 18, 2023, about 41 hours of developers, designers and engineering leads talking careers and code. I co-hosted 37 of them.",
+      "caption": "Named host on 37 of 40. The faded three went out without me.",
+      "episode": "Episode {n}, {date}",
+      "playlist": "All episodes on YouTube",
+      "spotify": "Spotify",
+      "sheetLabel": "Space Cast episodes, 1 to 40"
+    },
+    "writing": {
+      "items": {
+        "modalsEn": "You Have Been Using React Native Modals Wrong",
+        "modalsPt": "O Guia Definitivo de Modais no React Native"
+      },
+      "became": "The code in this guide became react-native-magic-modal, now <link>magic-modal</link>: {stars} stars on GitHub, read {date}.",
+      "note": "turned into a library",
+      "more": "More on Medium"
     },
     "awards": {
       "title": "Hackathons",
@@ -335,28 +364,6 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
-      }
-    },
-    "writing": {
-      "title": "Writing",
-      "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
-      "topics": {
-        "leadership": "Engineering Leadership",
-        "mobile": "Mobile Architecture",
-        "design": "Design Systems",
-        "hiring": "Hiring & Mentorship",
-        "reverse": "Reverse Engineering"
-      },
-      "readOnMedium": "Read on Medium"
-    },
-    "shipped": {
-      "title": "Shipped lately",
-      "source": "From my GitHub releases, read {date}.",
-      "items": {
-        "pegada": "Configurable daily like limit and a weekly plan",
-        "safeJsx": "The rule now catches mutable boolean bypasses",
-        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
-        "magicModal": "React Native peers are optional, so the web install is one package"
       }
     }
   },
