@@ -1,29 +1,97 @@
+import type { ReactNode } from "react";
+
 import { getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
-import { reveal, timingStyle } from "../../ui/motion";
+import { EMAIL, LINKEDIN } from "../../profile";
+import { ArrowUpRight } from "../../ui/icons";
+import { reveal } from "../../ui/motion";
+import { PenUnderline } from "../../ui/pen-underline";
 import { WORK, workDates, workOrgs } from "../work/data";
 import { ArrowUp } from "./arrow-up";
-import { ENGAGEMENT_STEPS, SERVICES, type ServiceProof } from "./data";
+import { READ_ON, SERVICES, type ServiceNote } from "./data";
 
 import styles from "./services.module.css";
 
-/** The four offers, each citing the job that proves it, then how an engagement runs. */
+const noteId = (n: number) => `services-note-${n}`;
+const refId = (n: number) => `services-ref-${n}`;
+
+const startTags = {
+  pen: (chunks: ReactNode) => <PenUnderline delay={400}>{chunks}</PenUnderline>,
+};
+
+/**
+ * The first page of a scope: one paragraph per offer, every claim carrying a
+ * numbered note with where it happened, when, and a link to check it.
+ */
 export const ServicesSection = async () => {
   const t = await getTranslations("services");
   const tWork = await getTranslations("work");
 
-  const proofLink = (proof: ServiceProof) => {
-    if (proof === "work") return { href: "#work", org: t("proofs.work") };
-    const job = WORK.find((item) => item.id === proof);
-    if (!job) throw new Error(`Unknown work row: ${proof}`);
-    return {
-      href: `#work-${job.id}`,
-      org: workOrgs(job, tWork("independent"))[0],
-      dates: workDates(job, tWork("present")),
-    };
+  const sources = (note: ServiceNote) => {
+    if ("work" in note) {
+      const job = WORK.find((item) => item.id === note.work);
+      if (!job) throw new Error(`Unknown work row: ${note.work}`);
+      return [
+        {
+          href: `#work-${job.id}`,
+          label: workOrgs(job, tWork("independent"))[0],
+          meta: workDates(job, tWork("present")),
+          external: false,
+        },
+      ];
+    }
+    if ("anchor" in note) {
+      return [
+        {
+          href: `#${note.anchor}`,
+          label: t(note.anchor === "work" ? "sources.work" : "sources.talks"),
+          meta: undefined,
+          external: false,
+        },
+      ];
+    }
+    return note.links.map((link) => ({
+      href: link.href,
+      label: t(`sources.${link.source}`),
+      meta: link.source === "npm" ? READ_ON : undefined,
+      external: true,
+    }));
   };
+
+  // Notes are numbered across the whole letter, in reading order.
+  const rows = SERVICES.map((service, index) => ({
+    service,
+    first:
+      1 + SERVICES.slice(0, index).reduce((sum, s) => sum + s.notes.length, 0),
+  }));
+
+  const marker = (n: number, k: number) => (chunks: ReactNode) => (
+    <>
+      <span className={styles.claim}>{chunks}</span>
+      <sup className={styles.sup}>
+        <a
+          id={refId(n)}
+          href={`#${noteId(n)}`}
+          className={cn("num", styles.ref)}
+          data-k={k}
+          aria-label={t("noteRef", { n })}
+          aria-describedby={`${noteId(n)}-text`}
+        >
+          {n}
+        </a>
+      </sup>
+    </>
+  );
+
+  const draft = `${EMAIL}?subject=${encodeURIComponent(
+    t("start.subject"),
+  )}&body=${encodeURIComponent(
+    [t("start.app"), t("start.team"), t("start.timeline")]
+      .map((field) => `${field}: \n`)
+      .join(""),
+  )}`;
 
   return (
     <section
@@ -37,53 +105,84 @@ export const ServicesSection = async () => {
         </h2>
         <p>{t("sub")}</p>
       </div>
-      <ul className={styles.offers}>
-        {SERVICES.map((service) => (
-          <li key={service.id} className={styles.offer} {...reveal()}>
-            <h3 className="t-title">{t(`items.${service.id}.title`)}</h3>
-            <p className={cn("t-body", styles.body)}>
-              {t(`items.${service.id}.body`)}
-            </p>
-            <div className={styles.proof}>
-              <p className="t-meta">{t("proofs.label")}</p>
-              <ul>
-                {service.proofs.map(proofLink).map((link) => (
-                  <li key={link.href}>
-                    <a className={cn("t-small", styles.cite)} href={link.href}>
-                      <ArrowUp />
-                      <span>
-                        {link.org}
-                        {link.dates ? (
-                          <span className={cn("num", styles.dates)}>
-                            {link.dates}
-                          </span>
-                        ) : null}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+      <div className={styles.letter}>
+        {rows.map(({ service, first }) => (
+          <div key={service.id} className={styles.row} {...reveal()}>
+            <div className={styles.text}>
+              <h3 className="t-title">{t(`items.${service.id}.title`)}</h3>
+              <p className={cn("t-lede", styles.para)}>
+                {t.rich(
+                  `items.${service.id}.letter`,
+                  Object.fromEntries(
+                    service.notes.map((_, i) => [
+                      `n${i + 1}`,
+                      marker(first + i, i + 1),
+                    ]),
+                  ),
+                )}
+              </p>
             </div>
-          </li>
+            <ol className={styles.notes}>
+              {service.notes.map((note, i) => {
+                const n = first + i;
+                return (
+                  <li
+                    key={n}
+                    id={noteId(n)}
+                    value={n}
+                    className={styles.note}
+                    data-k={i + 1}
+                  >
+                    <a
+                      href={`#${refId(n)}`}
+                      className={cn("num", styles.back)}
+                      aria-label={t("noteBack", { n })}
+                    >
+                      {n}
+                    </a>
+                    <div className={styles.noteBody}>
+                      <p id={`${noteId(n)}-text`} className="t-small">
+                        {t(`items.${service.id}.notes.n${i + 1}`)}
+                      </p>
+                      <p className={styles.sources}>
+                        {sources(note).map((source) => (
+                          <a
+                            key={source.href}
+                            href={source.href}
+                            className={cn("t-meta", styles.source)}
+                          >
+                            {source.label}
+                            {source.meta ? (
+                              <span className={cn("num", styles.meta)}>
+                                {source.meta}
+                              </span>
+                            ) : null}
+                            {source.external ? <ArrowUpRight /> : <ArrowUp />}
+                          </a>
+                        ))}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
         ))}
-      </ul>
-      <div className={styles.flow}>
-        <h3 className={cn("t-title", styles.flowTitle)} {...reveal()}>
-          {t("engagement.title")}
-        </h3>
-        <p className={cn("t-body", styles.flowSub)} {...reveal(1)}>
-          {t("engagement.sub")}
+      </div>
+      <div className={styles.start} {...reveal()}>
+        <p className={cn("t-lede", styles.para)}>
+          {t.rich("start.body", startTags)}
         </p>
-        <ol className={styles.steps} data-draw="" suppressHydrationWarning>
-          {ENGAGEMENT_STEPS.map((step, index) => (
-            <li key={step} style={timingStyle({ index })}>
-              <strong className="t-title">
-                {t(`engagement.steps.${step}.title`)}
-              </strong>
-              <p className="t-body">{t(`engagement.steps.${step}.body`)}</p>
-            </li>
-          ))}
-        </ol>
+        <div className={styles.actions}>
+          <a className="btn" href={draft}>
+            {t("start.email")}
+          </a>
+          <a className="btn btn-ghost link-arrow" href={LINKEDIN}>
+            {t("start.linkedin")}
+            <ArrowUpRight />
+          </a>
+        </div>
+        <p className={cn("t-meta", styles.nda)}>{t("start.nda")}</p>
       </div>
     </section>
   );

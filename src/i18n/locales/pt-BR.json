@@ -197,55 +197,67 @@
     "independent": "Independente"
   },
   "services": {
-    "title": "Me contrata pra destravar seu time mobile.",
-    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
-    "proofs": {
-      "label": "Onde fiz isso",
-      "work": "Times que liderei"
-    },
+    "title": "O que eu faria no seu app, e onde já fiz isso.",
+    "sub": "Quatro tipos de trabalho. Cada afirmação tem uma nota numerada dizendo onde e quando aconteceu, pra você conferir.",
     "items": {
       "audit": {
-        "chip": "Auditoria",
         "title": "Revisão de arquitetura React Native",
-        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
+        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase.",
+        "letter": "Faço uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, e você recebe um plano priorizado que o time consegue executar. Na Coinbase, a cobertura de testes nos arquivos do meu time foi <n1>de 25% para 45%</n1>. Na Groundswell subi a cobertura <n2>de 30% pra 80%+</n2> e apaguei 16k linhas de testes frágeis no caminho.",
+        "notes": {
+          "n1": "Time de Consumer App Infra. Cobertura de testes nos arquivos do time: 25% → 45%.",
+          "n2": "Cobertura 30% → 80%+. 16k linhas de testes frágeis removidas com MSW. Página Discover 200% mais rápida."
+        }
       },
       "migrations": {
-        "chip": "Migrações",
         "title": "Migrações para Expo, nova arquitetura e React Compiler",
-        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
+        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native.",
+        "letter": "Você migra pro Expo Prebuild, pra nova arquitetura do React Native ou pro React Compiler sem congelar o roadmap. Na Coinbase eu <n1>puxei a adoção do React Compiler e ajudei nas outras duas</n1>. No Alfred Delivery liderei uma <n2>reescrita de Ionic pra React Native</n2> com o app antigo rodando, e escrevi um <n3>plugin de Code Push pra Expo</n3> com 378 downloads no npm em 30 dias.",
+        "notes": {
+          "n1": "Time de Consumer App Infra. Adoção do React Compiler junto ao React WG, migração pro Expo Prebuild e a nova arquitetura do React Native.",
+          "n2": "Um app que atendia 90+ franquias. Cerca de 6 meses de cutover, com o Ionic 3 legado rodando em paralelo.",
+          "n3": "react-native-code-push-plugin. Downloads dos últimos 30 dias no npm."
+        }
       },
       "leadership": {
-        "chip": "Liderança",
         "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos.",
+        "letter": "Liderança mobile interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de <n1>4 a 56 reportes diretos</n1>, entrevistei e fiz onboarding de engenheiros no <n2>Zé Delivery</n2>, fundei o fórum <n3>Mobile Engineering Biweekly</n3> na Groundswell e conduzi uma <n4>imersão de três dias pra formar tech leads</n4>.",
+        "notes": {
+          "n1": "Somando os cargos do meu histórico, de quatro reportes diretos a cinquenta e seis.",
+          "n2": "Entrevistei e fiz onboarding de engenheiros sêniores.",
+          "n3": "Fundei o fórum Mobile Engineering Biweekly.",
+          "n4": "\"Formando um Tech Lead, três dias por vez\", Assemble · Rocketseat, 2023."
+        }
       },
       "systems": {
-        "chip": "Design",
         "title": "Design systems e experiência de desenvolvimento",
-        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
-      }
-    },
-    "engagement": {
-      "title": "Como funciona um projeto.",
-      "sub": "Dimensionado pro seu app e pro seu time.",
-      "steps": {
-        "review": {
-          "title": "Diagnóstico",
-          "body": "Leio o código, o pipeline de release e o backlog, e converso com quem é dono de cada um."
-        },
-        "plan": {
-          "title": "Plano",
-          "body": "Um plano priorizado com os tradeoffs explícitos, curto o bastante pra ser lido de verdade."
-        },
-        "ship": {
-          "title": "Execução",
-          "body": "Trabalho dentro do seu time nas partes mais arriscadas: a migração, a performance, o trem de release."
-        },
-        "handoff": {
-          "title": "Passagem",
-          "body": "Documentação, padrões e pessoas donas do resultado, pra nada depender de mim depois."
+        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer.",
+        "letter": "Bibliotecas de componentes, SDKs e regras de lint que deixam o time de produto andar rápido sem quebrar a UI. Co-criei o <n1>Mozeic no Zé Delivery</n1> e um <n2>design system open-source na Kustomer</n2>, e escrevi o <n3>eslint-plugin-safe-jsx</n3>, uma regra de lint com 7.228 downloads no npm em 30 dias.",
+        "notes": {
+          "n1": "Co-criei o Mozeic, o design system interno, e contei como foi entregar ele no TDC em 2024.",
+          "n2": "Padronizei a UI para devs externos, entreguei SDKs e escrevi a doc que subiu o score de DevX.",
+          "n3": "eslint-plugin-safe-jsx. Downloads dos últimos 30 dias no npm."
         }
       }
+    },
+    "sources": {
+      "github": "GitHub",
+      "npm": "npm",
+      "work": "Histórico",
+      "talks": "Palestras"
+    },
+    "noteRef": "Nota {n}",
+    "noteBack": "Voltar ao texto da nota {n}",
+    "start": {
+      "body": "Pra começar, me manda um email sobre o app, o time e o prazo. Respondo <pen>dentro da semana</pen>. Se for urgente, me chama no LinkedIn.",
+      "email": "Abrir rascunho de email",
+      "linkedin": "LinkedIn",
+      "nda": "Detalhes dos clientes ficam sob NDA.",
+      "subject": "Oi, vim pelo seu site",
+      "app": "App",
+      "team": "Time",
+      "timeline": "Prazo"
     }
   },
   "notes": {

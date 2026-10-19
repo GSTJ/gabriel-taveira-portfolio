@@ -197,55 +197,67 @@
     "independent": "Independent"
   },
   "services": {
-    "title": "Hire me to unblock your mobile team.",
-    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
-    "proofs": {
-      "label": "Where I did it",
-      "work": "Teams I've led"
-    },
+    "title": "What I'd do for your app, and where I've done it.",
+    "sub": "Four kinds of work. Every claim has a numbered note with where it happened and when, so you can check it.",
     "items": {
       "audit": {
-        "chip": "Audit",
         "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
+        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase.",
+        "letter": "I take a hard look at your app's performance, release pipeline, and test strategy, and you get a prioritized plan your team can actually execute. At Coinbase, test coverage on the files my team owned went <n1>from 25% to 45%</n1>. At Groundswell I lifted it <n2>from 30% to 80%+</n2> and deleted 16k lines of brittle tests on the way.",
+        "notes": {
+          "n1": "Consumer App Infra. Test coverage on team-owned files: 25% → 45%.",
+          "n2": "Coverage 30% → 80%+. 16k lines of brittle tests removed with MSW. Discover page 200% faster."
+        }
       },
       "migrations": {
-        "chip": "Migrations",
         "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite.",
+        "letter": "You move to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. At Coinbase I <n1>drove React Compiler adoption and helped with the other two</n1>. At Alfred Delivery I led an <n2>Ionic to React Native rewrite</n2> while the old app kept running, and I wrote a <n3>Code Push plugin for Expo</n3> with 378 npm downloads in 30 days.",
+        "notes": {
+          "n1": "Consumer App Infra. React Compiler adoption with the React WG, the move to Expo Prebuild, and React Native's new architecture.",
+          "n2": "An app serving 90+ franchises. About 6 months of cutover, with the legacy Ionic 3 app alive in parallel.",
+          "n3": "react-native-code-push-plugin. Downloads over the last 30 days on npm."
+        }
       },
       "leadership": {
-        "chip": "Leadership",
         "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports.",
+        "letter": "An interim mobile lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've led teams of <n1>4 to 56 direct reports</n1>, interviewed and onboarded engineers at <n2>Zé Delivery</n2>, started the <n3>Mobile Engineering Biweekly</n3> forum at Groundswell, and ran a <n4>three-day immersion for new tech leads</n4>.",
+        "notes": {
+          "n1": "Across the roles in my work history, from four direct reports to fifty-six.",
+          "n2": "Interviewed and onboarded high-proficiency engineers.",
+          "n3": "Founded the Mobile Engineering Biweekly forum.",
+          "n4": "\"Forming a Tech Lead, three days at a time\", Assemble · Rocketseat, 2023."
+        }
       },
       "systems": {
-        "chip": "Design",
         "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
-      }
-    },
-    "engagement": {
-      "title": "How an engagement runs.",
-      "sub": "Sized to your app and your team.",
-      "steps": {
-        "review": {
-          "title": "Review",
-          "body": "I read the codebase, the release pipeline, and the backlog, and talk to the people who own them."
-        },
-        "plan": {
-          "title": "Plan",
-          "body": "A prioritized plan with the tradeoffs spelled out, short enough that people actually read it."
-        },
-        "ship": {
-          "title": "Ship",
-          "body": "I work inside your team on the riskiest parts: the migration, the performance work, the release train."
-        },
-        "handoff": {
-          "title": "Hand off",
-          "body": "Docs, standards, and people who own the result, so nothing depends on me sticking around."
+        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer.",
+        "letter": "Component libraries, SDKs, and lint rules that let product teams move fast without breaking the UI. I co-built <n1>Mozeic at Zé Delivery</n1> and an <n2>open-source design system at Kustomer</n2>, and I wrote <n3>eslint-plugin-safe-jsx</n3>, a lint rule with 7,228 npm downloads in 30 days.",
+        "notes": {
+          "n1": "Co-built Mozeic, the in-house design system, and talked about shipping it at TDC in 2024.",
+          "n2": "Standardized UI for external developers, shipped SDKs, and wrote the docs that lifted the DevX score.",
+          "n3": "eslint-plugin-safe-jsx. Downloads over the last 30 days on npm."
         }
       }
+    },
+    "sources": {
+      "github": "GitHub",
+      "npm": "npm",
+      "work": "Work history",
+      "talks": "Talks"
+    },
+    "noteRef": "Note {n}",
+    "noteBack": "Back to the text for note {n}",
+    "start": {
+      "body": "To start, email me about the app, the team, and the timeline. I reply <pen>within the week</pen>. If it's urgent, ping me on LinkedIn.",
+      "email": "Open email draft",
+      "linkedin": "LinkedIn",
+      "nda": "Client details stay under NDA.",
+      "subject": "Hi from your site",
+      "app": "App",
+      "team": "Team",
+      "timeline": "Timeline"
     }
   },
   "notes": {
