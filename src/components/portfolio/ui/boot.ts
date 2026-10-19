@@ -2,7 +2,7 @@ import { THEME_COLORS, THEME_STORAGE_KEY } from "./theme";
 
 /** JSON for an inline script: `<` escaped so a value can never close the tag. */
 const inline = (value: unknown) =>
-  JSON.stringify(value).replaceAll("<", "\\u003c");
+  JSON.stringify(value).replaceAll("<", String.raw`\u003c`);
 
 /**
  * Two inline scripts, so nothing waits for hydration.
