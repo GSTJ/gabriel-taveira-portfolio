@@ -54,38 +54,47 @@
     "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
   },
   "projects": {
-    "title": "Things I made.",
-    "sub": "The app I'm building now, and the open-source work other teams ship with.",
+    "title": "Things I made, still running.",
+    "sub": "Two apps in the stores and the libraries other teams install every month. Every number has a date and a source.",
     "codeLabel": "Example code",
     "stars": "{count} stars on GitHub",
-    "starsSource": "Stars read on GitHub on {date}.",
+    "installs": "{count} installs since {since}",
+    "source": "npm installs from first publish to {end}, from the npm downloads API. Stars and store ratings read on {read}.",
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Founder · I built it",
+        "role": "Founder. I designed and built it, app to API.",
         "body": "An iPhone app: you scan a room with LiDAR, then get a proposal with real products you can buy, plus the shopping list. Curated with architects from Curva Interiores.",
+        "problem": "Buying furniture online means guessing if it fits. Curvinha measures the room first and only suggests what fits.",
+        "stack": "SwiftUI, RoomPlan and RealityKit on the phone, a TypeScript API on Cloudflare Workers behind it. The AI picks the pieces; code does every measurement.",
+        "live": "On the App Store since {date}",
+        "devices": "iPhone and iPad",
+        "languages": "English and Portuguese",
         "cta": "Open curvinha.app",
-        "caption": "Screens from the app's sample room.",
-        "stepsLabel": "Curvinha, step by step",
+        "video": {
+          "label": "Curvinha scanning the app's sample room",
+          "play": "Play the scan",
+          "pause": "Pause the scan"
+        },
+        "scanCaption": "The scan, a demo of the app's sample room",
+        "stepsLabel": "What the scan turns into",
         "steps": {
-          "measure": {
-            "title": "Measure the room",
-            "body": "Walk the walls once with your iPhone. About 2 to 5 minutes.",
-            "alt": "Curvinha's measure screen: Let's measure your room. It takes about 2 to 5 minutes."
-          },
           "plan": {
-            "title": "Get the floor plan",
-            "body": "The room from above, with every piece laid out.",
+            "title": "Floor plan",
+            "body": "Drawn from the scan.",
             "alt": "Curvinha's floor plan of the furnished sample room, seen from above."
           },
           "room": {
-            "title": "See the proposal in 3D",
-            "body": "Real pieces from real stores, placed in your room.",
+            "title": "Proposal in 3D",
+            "body": "Real pieces from real stores, in place.",
             "alt": "Curvinha's 3D view of the sample room with the suggested pieces in place."
+          },
+          "fit": {
+            "title": "Fit check",
+            "body": "Measured in code, to the centimeter.",
+            "alt": "Curvinha's fit check: 121 cm on the left, 279 cm on the right and 194 cm in front to spare."
           }
-        },
-        "pause": "Pause tour",
-        "replay": "Replay tour"
+        }
       },
       "magicModal": {
         "title": "magic-modal",
@@ -98,6 +107,10 @@
         "resolved": "resolved with",
         "failed": "Couldn't load the package. Try again.",
         "hint": "Try Esc or a click outside, too.",
+        "bothNames": "both npm names",
+        "bundle": "Web bundle, gzip",
+        "bundleSource": "from the changelog",
+        "bundleRow": "version {version}, {kb} KB",
         "modal": {
           "label": "Publish confirmation",
           "title": "Publish this release?",
@@ -122,26 +135,47 @@
       },
       "magicToast": {
         "title": "react-native-magic-toast",
-        "body": "An imperative toast for React Native you can call from anywhere."
+        "body": "An imperative toast for React Native you can call from anywhere.",
+        "video": {
+          "label": "The magic-toast example app firing and dismissing toasts",
+          "play": "Play the demo",
+          "pause": "Pause the demo"
+        }
       },
       "pegada": {
         "title": "Pegada",
+        "role": "I built it, in Expo and React Native.",
         "body": "A dog dating app for iOS and Android, built with Expo and Next.js, now open source.",
-        "pegava": "First version, archived",
-        "now": "The maintained successor, open source",
-        "launch": "Launched on Product Hunt in 2024"
+        "problem": "Tinder for dogs: owners match their dogs for walks and set them up in the chat.",
+        "stack": "Expo SDK 55, React Native 0.83, tRPC, Prisma and RevenueCat. Open source since April 2025.",
+        "live": "On the App Store since {date}",
+        "rating": "{rating} stars from {count} ratings in Brazil",
+        "play": "{count} downloads on Google Play",
+        "pegava": "It started as Pegava, now archived: {stars} stars and {forks} forks.",
+        "appStore": "App Store",
+        "googlePlay": "Google Play",
+        "code": "Source",
+        "screensLabel": "Pegada's App Store screens",
+        "screens": {
+          "deck": "Pegada's deck: Nina, a border collie 0.5 km away, with reactions to pick from.",
+          "match": "Pegada's match screen: You got a match, Nina likes you too.",
+          "chat": "A Pegada chat where two owners set up a walk at the park."
+        }
       }
     },
-    "npm": {
-      "title": "npm downloads",
-      "rows": {
-        "magicModal": "both names, react-native-magic-modal included",
-        "safeJsx": "the stray 0 rule",
-        "magicToast": "a toast you call from anywhere",
-        "observability": "analytics and errors, this site runs on it",
-        "codePush": "CodePush for Expo"
+    "tools": {
+      "title": "Smaller tools",
+      "codePush": {
+        "title": "react-native-code-push-plugin",
+        "body": "An Expo config plugin that wires CodePush in at prebuild.",
+        "chart": "Installs per year",
+        "note": "App Center retired CodePush on March 31, 2025, and installs fell with it.",
+        "year": "{year}: {count} installs"
       },
-      "source": "Last 30 days, {start} to {end}, from <npm>npm</npm>."
+      "observability": {
+        "title": "magic-observability",
+        "body": "Errors and analytics to PostHog in one shape on every platform. This site runs on it."
+      }
     },
     "security": {
       "title": "Security fixes, merged",

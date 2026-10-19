@@ -54,38 +54,47 @@
     "body2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma."
   },
   "projects": {
-    "title": "Coisas que eu fiz.",
-    "sub": "O app que estou construindo agora e o open source que outros times usam em produção.",
+    "title": "Coisas que fiz, ainda no ar.",
+    "sub": "Dois apps nas lojas e as bibliotecas que outros times instalam todo mês. Todo número tem data e fonte.",
     "codeLabel": "Código de exemplo",
     "stars": "{count} estrelas no GitHub",
-    "starsSource": "Estrelas lidas no GitHub em {date}.",
+    "installs": "{count} instalações desde {since}",
+    "source": "Instalações no npm da primeira versão até {end}, pela API de downloads do npm. Estrelas e notas das lojas lidas em {read}.",
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Fundador · eu que construí",
+        "role": "Fundador. Desenhei e construí, do app à API.",
         "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "problem": "Comprar móvel pela internet é chutar se cabe. O Curvinha mede o cômodo antes e só sugere o que cabe.",
+        "stack": "SwiftUI, RoomPlan e RealityKit no celular, uma API em TypeScript no Cloudflare Workers por trás. A IA escolhe as peças; toda medida é feita em código.",
+        "live": "Na App Store desde {date}",
+        "devices": "iPhone e iPad",
+        "languages": "Português e inglês",
         "cta": "Abrir curvinha.app",
-        "caption": "Telas do ambiente de exemplo do app.",
-        "stepsLabel": "Curvinha, passo a passo",
+        "video": {
+          "label": "O Curvinha escaneando o ambiente de exemplo do app",
+          "play": "Tocar o escaneamento",
+          "pause": "Pausar o escaneamento"
+        },
+        "scanCaption": "O escaneamento, uma demo no ambiente de exemplo do app",
+        "stepsLabel": "No que o escaneamento vira",
         "steps": {
-          "measure": {
-            "title": "Meça o ambiente",
-            "body": "Dê uma volta pelas paredes com o iPhone. Leva uns 2 a 5 minutos.",
-            "alt": "Tela de medição da Curvinha: Vamos medir o seu ambiente. Leva uns 2 a 5 minutos."
-          },
           "plan": {
-            "title": "Receba a planta",
-            "body": "O ambiente visto de cima, com cada peça no lugar.",
-            "alt": "Planta do ambiente de exemplo mobiliado na Curvinha, vista de cima."
+            "title": "Planta",
+            "body": "Desenhada a partir do escaneamento.",
+            "alt": "Planta do ambiente de exemplo mobiliado no Curvinha, vista de cima."
           },
           "room": {
-            "title": "Veja a proposta em 3D",
-            "body": "Peças reais de lojas reais, no seu ambiente.",
-            "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar."
+            "title": "Proposta em 3D",
+            "body": "Peças reais de lojas reais, no lugar.",
+            "alt": "Vista 3D do ambiente de exemplo no Curvinha, com as peças sugeridas no lugar."
+          },
+          "fit": {
+            "title": "Checagem de encaixe",
+            "body": "Medida em código, no centímetro.",
+            "alt": "Checagem de encaixe do Curvinha: sobram 121 cm à esquerda, 279 cm à direita e 194 cm na frente."
           }
-        },
-        "pause": "Pausar tour",
-        "replay": "Rever tour"
+        }
       },
       "magicModal": {
         "title": "magic-modal",
@@ -98,6 +107,10 @@
         "resolved": "resolveu com",
         "failed": "Não deu pra carregar o pacote. Tenta de novo.",
         "hint": "Testa o Esc ou um clique fora também.",
+        "bothNames": "os dois nomes no npm",
+        "bundle": "Bundle web, gzip",
+        "bundleSource": "pelo changelog",
+        "bundleRow": "versão {version}, {kb} KB",
         "modal": {
           "label": "Confirmar publicação",
           "title": "Publicar esta versão?",
@@ -122,26 +135,47 @@
       },
       "magicToast": {
         "title": "react-native-magic-toast",
-        "body": "Um toast imperativo pra React Native que você chama de qualquer lugar."
+        "body": "Um toast imperativo pra React Native que você chama de qualquer lugar.",
+        "video": {
+          "label": "O app de exemplo do magic-toast abrindo e fechando toasts",
+          "play": "Tocar a demo",
+          "pause": "Pausar a demo"
+        }
       },
       "pegada": {
         "title": "Pegada",
+        "role": "Construí em Expo e React Native.",
         "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e Next.js, agora open source.",
-        "pegava": "Primeira versão, arquivada",
-        "now": "A sucessora, mantida e open source",
-        "launch": "Lançado no Product Hunt em 2024"
+        "problem": "Um Tinder pra cachorro: os donos dão match entre os cães e combinam o passeio no chat.",
+        "stack": "Expo SDK 55, React Native 0.83, tRPC, Prisma e RevenueCat. Open source desde abril de 2025.",
+        "live": "Na App Store desde {date}",
+        "rating": "Nota {rating} em {count} avaliações no Brasil",
+        "play": "{count} downloads no Google Play",
+        "pegava": "Começou como Pegava, hoje arquivado: {stars} estrelas e {forks} forks.",
+        "appStore": "App Store",
+        "googlePlay": "Google Play",
+        "code": "Código",
+        "screensLabel": "Telas do Pegada na App Store",
+        "screens": {
+          "deck": "O deck do Pegada: Nina, uma border collie a 0,5 km, com reações pra escolher.",
+          "match": "A tela de match do Pegada: Você deu um match, a Nina também curtiu.",
+          "chat": "Um chat do Pegada onde dois donos combinam um passeio no parque."
+        }
       }
     },
-    "npm": {
-      "title": "Downloads no npm",
-      "rows": {
-        "magicModal": "os dois nomes, react-native-magic-modal incluso",
-        "safeJsx": "a regra do 0 solto",
-        "magicToast": "um toast que você chama de qualquer lugar",
-        "observability": "analytics e erros, este site roda nele",
-        "codePush": "CodePush pro Expo"
+    "tools": {
+      "title": "Ferramentas menores",
+      "codePush": {
+        "title": "react-native-code-push-plugin",
+        "body": "Um config plugin de Expo que liga o CodePush no prebuild.",
+        "chart": "Instalações por ano",
+        "note": "O App Center aposentou o CodePush em 31 de março de 2025, e as instalações caíram junto.",
+        "year": "{year}: {count} instalações"
       },
-      "source": "Últimos 30 dias, de {start} a {end}, pelo <npm>npm</npm>."
+      "observability": {
+        "title": "magic-observability",
+        "body": "Erros e analytics no PostHog com o mesmo formato em toda plataforma. Este site roda nele."
+      }
     },
     "security": {
       "title": "Correções de segurança, mergeadas",

@@ -1,4 +1,6 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
+
+import Image from "next/image";
 
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -8,27 +10,33 @@ import { ArrowUpRight } from "../../ui/icons";
 import { reveal } from "../../ui/motion";
 import { CurvinhaCard } from "./curvinha-card";
 import {
+  CODE_PUSH_YEARS,
+  CURVINHA,
   CURVINHA_STEPS,
-  PEGADA_LAUNCH_HREF,
-  PEGAVA_HREF,
+  INSTALLS,
+  MODAL_BUNDLE,
+  MODAL_CHANGELOG,
+  NPM_SINCE_END,
+  PEGADA,
+  PEGADA_SCREENS,
   PROJECTS,
+  READ_ON,
   SECURITY_PRS,
   STARS,
-  STARS_READ_ON,
+  TOOLS,
+  npmStat,
 } from "./data";
+import { LoopVideo } from "./loop-video";
 import { ModalDemo } from "./modal-demo";
-import { getNpmLedger } from "./npm";
+import { Near } from "./near";
 import { SafeJsxDemo } from "./safe-jsx-demo";
 
 import styles from "./projects.module.css";
 
-const href = (id: (typeof PROJECTS)[number]["id"]) =>
-  PROJECTS.find((p) => p.id === id)?.href ?? "";
-
-/** A `t.rich` tag that renders its chunk as a link. */
-const linkTo = (url: string) => (chunks: ReactNode) => (
-  <a href={url}>{chunks}</a>
-);
+const project = (id: (typeof PROJECTS)[number]["id"]) =>
+  PROJECTS.find((p) => p.id === id);
+const at = (iso: string) => new Date(`${iso}T00:00:00Z`);
+const href = (id: (typeof PROJECTS)[number]["id"]) => project(id)?.href ?? "";
 
 const Star = () => (
   <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -37,15 +45,14 @@ const Star = () => (
 );
 
 /**
- * Things he made, as a bento where each card proves its claim its own way:
- * Curvinha's real screens, magic-modal running for real, safe-jsx's stray 0,
- * npm numbers with their date and source, and the merged security fixes by
- * diff size.
+ * Things he made, as a bento sized by weight: Curvinha's scan and what it
+ * turns into, Pegada's store screens (the Expo app), magic-modal and safe-jsx
+ * running for real, the smaller tools each with their own proof, and the
+ * merged security fixes by diff size. Every number carries its source.
  */
 export const ProjectsSection = async () => {
   const t = await getTranslations("projects");
   const locale = await getLocale();
-  const npm = await getNpmLedger();
 
   const fmt = new Intl.NumberFormat(locale);
   const day = (iso: string) =>
@@ -54,10 +61,30 @@ export const ProjectsSection = async () => {
       month: "long",
       year: "numeric",
       timeZone: "UTC",
-    }).format(new Date(`${iso}T00:00:00Z`));
+    }).format(at(iso));
+  const month = (iso: string) =>
+    new Intl.DateTimeFormat(locale, {
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(at(iso));
   const stars = (count: number) => t("stars", { count: fmt.format(count) });
 
-  const maxDownloads = Math.max(...npm.rows.map((r) => r.total));
+  /** "221,908 installs since February 2022", linked to the same range on npm-stat. */
+  const installs = (id: keyof typeof INSTALLS, names: readonly string[]) => (
+    <a
+      className={cn("t-meta", styles.installs)}
+      href={npmStat(names, INSTALLS[id].since)}
+    >
+      {t("installs", {
+        count: fmt.format(INSTALLS[id].total),
+        since: month(INSTALLS[id].since),
+      })}
+    </a>
+  );
+
+  const maxBundle = Math.max(...MODAL_BUNDLE.map((b) => b.kb));
+  const maxYear = Math.max(...CODE_PUSH_YEARS.map((y) => y.installs));
   const maxDiff = Math.max(
     ...SECURITY_PRS.map((pr) => pr.additions + pr.deletions),
   );
@@ -79,16 +106,26 @@ export const ProjectsSection = async () => {
         <div className={styles.areaCv} {...reveal()}>
           <CurvinhaCard
             href={href("curvinha")}
+            appStore={CURVINHA.appStore}
             lang={locale.startsWith("pt") ? "pt" : "en"}
             copy={{
               title: t("items.curvinha.title"),
               role: t("items.curvinha.role"),
-              body: t("items.curvinha.body"),
+              problem: t("items.curvinha.problem"),
+              stack: t("items.curvinha.stack"),
+              live: t("items.curvinha.live", {
+                date: day(CURVINHA.liveSince),
+              }),
+              devices: t("items.curvinha.devices"),
+              languages: t("items.curvinha.languages"),
               cta: t("items.curvinha.cta"),
-              caption: t("items.curvinha.caption"),
+              video: {
+                label: t("items.curvinha.video.label"),
+                play: t("items.curvinha.video.play"),
+                pause: t("items.curvinha.video.pause"),
+              },
+              scanCaption: t("items.curvinha.scanCaption"),
               stepsLabel: t("items.curvinha.stepsLabel"),
-              pause: t("items.curvinha.pause"),
-              replay: t("items.curvinha.replay"),
               steps: Object.fromEntries(
                 CURVINHA_STEPS.map((step) => [
                   step,
@@ -102,6 +139,79 @@ export const ProjectsSection = async () => {
             }}
           />
         </div>
+
+        <article
+          className={cn(styles.card, styles.pegada, styles.areaPg)}
+          aria-labelledby="pg-title"
+          {...reveal()}
+        >
+          <div className={styles.pgCopy}>
+            <h3 id="pg-title" className={cn("t-h1", styles.cvTitle)}>
+              {t("items.pegada.title")}
+            </h3>
+            <p className={cn("t-small", styles.role)}>
+              {t("items.pegada.role")}
+            </p>
+            <p className="t-small">{t("items.pegada.problem")}</p>
+            <ul className={cn("t-meta", styles.facts, styles.factsCol)}>
+              <li>
+                <a href={PEGADA.appStore}>
+                  {t("items.pegada.live", { date: month(PEGADA.liveSince) })}
+                </a>
+              </li>
+              <li>
+                {t("items.pegada.rating", {
+                  rating: fmt.format(PEGADA.rating),
+                  count: fmt.format(PEGADA.ratings),
+                })}
+              </li>
+              <li>
+                <a href={PEGADA.play}>
+                  {t("items.pegada.play", { count: PEGADA.playDownloads })}
+                </a>
+              </li>
+            </ul>
+            <p className={cn("t-meta", styles.stack)}>
+              {t("items.pegada.stack")}{" "}
+              <a href={PEGADA.pegava}>
+                {t("items.pegada.pegava", {
+                  stars: fmt.format(PEGADA.pegavaStars),
+                  forks: fmt.format(PEGADA.pegavaForks),
+                })}
+              </a>
+            </p>
+            <a
+              className={cn("link-arrow t-small", styles.end)}
+              href={href("pegada")}
+              aria-label={`${t("items.pegada.code")}: GSTJ/pegada, ${stars(PEGADA.stars)}`}
+            >
+              {t("items.pegada.code")}
+              <ArrowUpRight />
+            </a>
+          </div>
+          <ul
+            className={styles.fan}
+            aria-label={t("items.pegada.screensLabel")}
+          >
+            {PEGADA_SCREENS.map((screen, i) => (
+              <li
+                key={screen}
+                className={styles.fanPhone}
+                style={{ "--i": i } as CSSProperties}
+              >
+                <Near className={styles.fanScreen}>
+                  <Image
+                    src={`/projects/pegada/${screen}.webp`}
+                    width={450}
+                    height={980}
+                    sizes="(width < 760px) 34vw, 160px"
+                    alt={t(`items.pegada.screens.${screen}`)}
+                  />
+                </Near>
+              </li>
+            ))}
+          </ul>
+        </article>
 
         <article
           className={cn(styles.card, styles.lib, styles.areaMm)}
@@ -122,6 +232,10 @@ export const ProjectsSection = async () => {
             </a>
           </div>
           <p className="t-small">{t("items.magicModal.body")}</p>
+          <p className={styles.metaRow}>
+            {installs("magicModal", project("magicModal")?.npm ?? [])}
+            <span className="t-meta">{t("items.magicModal.bothNames")}</span>
+          </p>
           <pre className={styles.code} aria-label={t("codeLabel")}>
             <code>
               <span className={styles.k}>const</span>
@@ -149,12 +263,46 @@ export const ProjectsSection = async () => {
               },
             }}
           />
+          <figure className={styles.bundle}>
+            <figcaption className={styles.metaRow}>
+              <span className={cn("t-meta", styles.ink)}>
+                {t("items.magicModal.bundle")}
+              </span>
+              <a className="t-meta" href={MODAL_CHANGELOG}>
+                {t("items.magicModal.bundleSource")}
+              </a>
+            </figcaption>
+            <ol className={styles.hbars}>
+              {MODAL_BUNDLE.map((b, i) => (
+                <li
+                  key={b.version}
+                  style={{ "--w": b.kb / maxBundle, "--i": i } as CSSProperties}
+                >
+                  <span className="visually-hidden">
+                    {t("items.magicModal.bundleRow", {
+                      version: b.version,
+                      kb: fmt.format(b.kb),
+                    })}
+                  </span>
+                  <span className="t-mono" aria-hidden="true">
+                    {b.version}
+                  </span>
+                  <span className={styles.hbar} aria-hidden="true">
+                    <i />
+                  </span>
+                  <span className="num t-meta" aria-hidden="true">
+                    {fmt.format(b.kb)} KB
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </figure>
         </article>
 
         <article
           className={cn(styles.card, styles.lib, styles.areaSj)}
           aria-labelledby="sj-title"
-          {...reveal(2)}
+          {...reveal()}
         >
           <div className={styles.cardTop}>
             <h3 id="sj-title" className="t-title">
@@ -170,6 +318,7 @@ export const ProjectsSection = async () => {
             </a>
           </div>
           <p className="t-small">{t("items.safeJsx.short")}</p>
+          {installs("safeJsx", project("safeJsx")?.npm ?? [])}
           <SafeJsxDemo
             copy={{
               codeLabel: t("codeLabel"),
@@ -187,69 +336,104 @@ export const ProjectsSection = async () => {
         </article>
 
         <article
-          className={cn(styles.card, styles.ledger, styles.areaNpm)}
-          aria-labelledby="npm-title"
-          {...reveal()}
+          className={cn(styles.card, styles.tools, styles.areaTb)}
+          aria-labelledby="tb-title"
+          {...reveal(1)}
         >
-          <h3 id="npm-title" className="t-title">
-            {t("npm.title")}
+          <h3 id="tb-title" className="t-title">
+            {t("tools.title")}
           </h3>
-          <ol className={styles.dl}>
-            {npm.rows.map((row, i) => (
-              <li
-                key={row.id}
-                className={styles.dlRow}
-                style={{ "--i": i } as CSSProperties}
-              >
-                <span className={styles.dlName}>
-                  <a
-                    className="t-mono"
-                    href={`https://www.npmjs.com/package/${row.names[0]}`}
-                  >
-                    {row.names[0]}
+          <div className={styles.toolGrid}>
+            <section className={styles.toast} aria-labelledby="mt-title">
+              <div className={styles.toastClip}>
+                <LoopVideo
+                  src="/projects/oss/magic-toast-demo.mp4"
+                  poster="/projects/oss/magic-toast-demo-poster.webp"
+                  width={400}
+                  height={598}
+                  copy={{
+                    label: t("items.magicToast.video.label"),
+                    play: t("items.magicToast.video.play"),
+                    pause: t("items.magicToast.video.pause"),
+                  }}
+                />
+              </div>
+              <div className={styles.toolText}>
+                <h4 id="mt-title" className={styles.toolName}>
+                  <a className="t-mono" href={href("magicToast")}>
+                    {t("items.magicToast.title")}
                   </a>
-                  <span className="t-meta">{t(`npm.rows.${row.id}`)}</span>
-                </span>
-                <span className={cn("num", styles.dlValue)}>
-                  {fmt.format(row.total)}
-                </span>
-                <span className={styles.bar} aria-hidden="true">
-                  <i
-                    style={
-                      {
-                        "--w": row.total / maxDownloads,
-                      } as CSSProperties
-                    }
-                  />
-                </span>
-              </li>
-            ))}
-          </ol>
-          <p className="t-meta">
-            {t.rich("npm.source", {
-              start: day(npm.start),
-              end: day(npm.end),
-              npm: linkTo(
-                `https://npm-stat.com/charts.html?package=${npm.rows
-                  .flatMap((r) => r.names)
-                  .join("&package=")}&from=${npm.start}&until=${npm.end}`,
-              ),
-            })}{" "}
-            {t("starsSource", { date: day(STARS_READ_ON) })}
-          </p>
+                </h4>
+                <p className="t-small">{t("items.magicToast.body")}</p>
+                {installs("magicToast", TOOLS.magicToast.npm)}
+              </div>
+            </section>
+
+            <section className={styles.tool} aria-labelledby="cp-title">
+              <h4 id="cp-title" className={styles.toolName}>
+                <a className="t-mono" href={TOOLS.codePush.href}>
+                  {t("tools.codePush.title")}
+                </a>
+              </h4>
+              <p className="t-small">{t("tools.codePush.body")}</p>
+              {installs("codePush", TOOLS.codePush.npm)}
+              <figure className={styles.years}>
+                <figcaption className="visually-hidden">
+                  {t("tools.codePush.chart")}
+                </figcaption>
+                <ol>
+                  {CODE_PUSH_YEARS.map((y, i) => (
+                    <li
+                      key={y.year}
+                      style={
+                        {
+                          "--h": y.installs / maxYear,
+                          "--i": i,
+                        } as CSSProperties
+                      }
+                    >
+                      <span className="visually-hidden">
+                        {t("tools.codePush.year", {
+                          year: y.year,
+                          count: fmt.format(y.installs),
+                        })}
+                      </span>
+                      <span className={styles.vbar} aria-hidden="true">
+                        <i />
+                      </span>
+                      <span className="num t-meta" aria-hidden="true">
+                        {y.year}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </figure>
+              <p className="t-meta">{t("tools.codePush.note")}</p>
+            </section>
+
+            <section className={styles.tool} aria-labelledby="ob-title">
+              <h4 id="ob-title" className={styles.toolName}>
+                <a className="t-mono" href={TOOLS.observability.href}>
+                  {t("tools.observability.title")}
+                </a>
+              </h4>
+              <p className="t-small">{t("tools.observability.body")}</p>
+              {installs("observability", TOOLS.observability.npm)}
+            </section>
+          </div>
         </article>
 
         <article
           className={cn(styles.card, styles.security, styles.areaSec)}
           aria-labelledby="sec-title"
-          {...reveal(1)}
+          {...reveal()}
         >
-          <div className={styles.cardTop}>
+          <div className={styles.secHead}>
             <h3 id="sec-title" className="t-title">
               {t("security.title")}
             </h3>
+            <p className="t-small">{t("security.body")}</p>
           </div>
-          <p className="t-small">{t("security.body")}</p>
           <ol className={styles.prs}>
             {SECURITY_PRS.map((pr, i) => (
               <li
@@ -296,53 +480,11 @@ export const ProjectsSection = async () => {
             ))}
           </ol>
         </article>
-
-        <article
-          className={cn(styles.card, styles.pegada, styles.areaPg)}
-          aria-labelledby="pg-title"
-          {...reveal(2)}
-        >
-          <h3 id="pg-title" className="t-title">
-            {t("items.pegada.title")}
-          </h3>
-          <p className="t-small">{t("items.pegada.body")}</p>
-          <ol className={styles.lineage}>
-            <li>
-              <a href={PEGAVA_HREF}>
-                <span className={styles.lineageName}>Pegava</span>
-                <span className="t-meta">{t("items.pegada.pegava")}</span>
-              </a>
-              <span
-                className={cn("num", styles.stars)}
-                aria-label={stars(STARS.pegava)}
-              >
-                <Star />
-                {fmt.format(STARS.pegava)}
-              </span>
-            </li>
-            <li>
-              <a href={href("pegada")}>
-                <span className={styles.lineageName}>Pegada</span>
-                <span className="t-meta">{t("items.pegada.now")}</span>
-              </a>
-              <span
-                className={cn("num", styles.stars)}
-                aria-label={stars(STARS.pegada)}
-              >
-                <Star />
-                {fmt.format(STARS.pegada)}
-              </span>
-            </li>
-          </ol>
-          <a
-            className={cn("link-arrow t-small", styles.end)}
-            href={PEGADA_LAUNCH_HREF}
-          >
-            {t("items.pegada.launch")}
-            <ArrowUpRight />
-          </a>
-        </article>
       </div>
+
+      <p className={cn("t-meta", styles.source)}>
+        {t("source", { end: day(NPM_SINCE_END), read: day(READ_ON) })}
+      </p>
     </section>
   );
 };
