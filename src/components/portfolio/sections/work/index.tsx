@@ -20,7 +20,9 @@ const blurbTags = {
 /** "coinbase.com" for a company site, the locale's "LinkedIn" otherwise. */
 const linkLabel = (href: string, linkedin: string) => {
   const host = new URL(href).hostname.replace(/^www\./, "");
-  return host.endsWith("linkedin.com") ? linkedin : host;
+  return host === "linkedin.com" || host.endsWith(".linkedin.com")
+    ? linkedin
+    : host;
 };
 
 /** "D-ID" stays on one line: a title never breaks at a name's hyphen. */
