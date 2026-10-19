@@ -41,8 +41,9 @@
   "hero": {
     "status": "Independent consultant, open to new clients",
     "place": "Ribeirão Preto, Brazil · {month}",
-    "title": "<me>I'm Gabriel.</me> I help product teams ship React Native and Expo <pen>apps that scale.</pen>",
-    "body": "The architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to <note>56 direct reports</note> and worked on Coinbase's mobile app infrastructure.",
+    "title": "<me>I'm Gabriel.</me> I help React Native and Expo teams through <pen>the hard parts.</pen>",
+    "lede": "The architecture, the migrations nobody wants to own, and the team that ships them. I've led up to <note>56 direct reports</note>.",
+    "origin": "I started at eight, reverse-engineering games.",
     "notes": {
       "yesReally": "yes, really"
     },
@@ -51,7 +52,24 @@
       "downloadPdf": "Download PDF",
       "linkedIn": "LinkedIn"
     },
-    "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
+    "sheet": {
+      "label": "Where to see it on this page",
+      "toProjects": "See it in Projects",
+      "toWork": "See it in Work",
+      "curvinha": {
+        "title": "Curvinha",
+        "body": "The iPhone app I'm building, from the LiDAR scan to the floor plan.",
+        "alt": "Curvinha's floor plan of a furnished sample room, seen from above."
+      },
+      "oss": {
+        "body": "{total, number} npm downloads of my packages, {start} to {end}."
+      },
+      "coinbase": {
+        "meta": "Coinbase · 2024 to 2025",
+        "title": "React Compiler, Expo Prebuild and the new architecture",
+        "body": "The migrations I helped ship on Consumer App Infra."
+      }
+    }
   },
   "projects": {
     "title": "Things I made.",
