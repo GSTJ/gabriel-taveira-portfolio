@@ -197,55 +197,112 @@
     "independent": "Independente"
   },
   "services": {
-    "title": "Me contrata pra destravar seu time mobile.",
-    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
-    "proofs": {
-      "label": "Onde fiz isso",
-      "work": "Times que liderei"
+    "title": "Os problemas mobile que eu já resolvi.",
+    "sub": "Projetos com escopo fechado ou liderança sob demanda, remoto com times dos EUA. Cada problema aponta pra onde eu resolvi, com os números.",
+    "columns": {
+      "problem": "Se isso parece o seu time",
+      "get": "O que você recebe",
+      "receipts": "Onde eu já fiz"
     },
+    "ask": "Me manda um email sobre isso",
     "items": {
       "audit": {
-        "chip": "Auditoria",
+        "problem": "Cada release dá medo, e os testes quase não pegam nada.",
         "title": "Revisão de arquitetura React Native",
-        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
+        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar.",
+        "receipts": {
+          "coinbase": {
+            "figure": "25% → 45%",
+            "text": "de cobertura de testes nos arquivos do time"
+          },
+          "groundswell": {
+            "figure": "30% → 80%+",
+            "text": "de cobertura de testes"
+          },
+          "msw": {
+            "figure": "16k",
+            "text": "linhas de testes frágeis removidas com MSW"
+          }
+        }
       },
       "migrations": {
-        "chip": "Migrações",
+        "problem": "O app está preso num setup antigo e o time não pode parar de entregar pra arrumar.",
         "title": "Migrações para Expo, nova arquitetura e React Compiler",
-        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
+        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap.",
+        "receipts": {
+          "coinbase": {
+            "figure": "",
+            "text": "Expo Prebuild, a nova arquitetura e a adoção do React Compiler junto ao React WG"
+          },
+          "alfred": {
+            "figure": "90+",
+            "text": "franquias migradas de Ionic pra React Native, com o app antigo rodando em paralelo por uns 6 meses"
+          },
+          "codePush": {
+            "figure": "",
+            "text": "Meu plugin open source de Code Push pra Expo"
+          }
+        }
       },
       "leadership": {
-        "chip": "Liderança",
+        "problem": "Vocês precisam de alguém liderando o mobile agora, e contratar leva meses.",
         "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo.",
+        "receipts": {
+          "reports": {
+            "figure": "4 → 56",
+            "text": "reportes diretos, nos times que liderei"
+          },
+          "hiring": {
+            "figure": "",
+            "text": "Entrevistei e fiz onboarding de engenheiros sêniores"
+          },
+          "forum": {
+            "figure": "",
+            "text": "Fundei o fórum Mobile Engineering Biweekly"
+          }
+        }
       },
       "systems": {
-        "chip": "Design",
+        "problem": "Cada tela é construída de um jeito diferente.",
         "title": "Design systems e experiência de desenvolvimento",
-        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
-      }
-    },
-    "engagement": {
-      "title": "Como funciona um projeto.",
-      "sub": "Dimensionado pro seu app e pro seu time.",
-      "steps": {
-        "review": {
-          "title": "Diagnóstico",
-          "body": "Leio o código, o pipeline de release e o backlog, e converso com quem é dono de cada um."
-        },
-        "plan": {
-          "title": "Plano",
-          "body": "Um plano priorizado com os tradeoffs explícitos, curto o bastante pra ser lido de verdade."
-        },
-        "ship": {
-          "title": "Execução",
-          "body": "Trabalho dentro do seu time nas partes mais arriscadas: a migração, a performance, o trem de release."
-        },
-        "handoff": {
-          "title": "Passagem",
-          "body": "Documentação, padrões e pessoas donas do resultado, pra nada depender de mim depois."
+        "body": "Bibliotecas de componentes, SDKs e regras de lint que deixam os times de produto andarem rápido sem quebrar a UI.",
+        "receipts": {
+          "mozeic": {
+            "figure": "",
+            "text": "Co-criei o Mozeic, o design system interno, e falei dele no TDC 2024"
+          },
+          "kustomer": {
+            "figure": "",
+            "text": "Um design system open source e SDKs pra devs externos"
+          },
+          "safeJsx": {
+            "figure": "",
+            "text": "downloads no npm do eslint-plugin-safe-jsx, minha regra de lint pra JSX"
+          }
         }
       }
+    },
+    "cite": {
+      "all": "Todos os cargos",
+      "github": "GitHub",
+      "npm": "npm, {start} a {end}"
+    },
+    "start": {
+      "title": "Como começa",
+      "body": "Me manda o app, o time e o prazo. Respondo <pen>dentro da semana</pen>. Se for urgente, me chama no LinkedIn.",
+      "nda": "Os clientes desde 2025 estão sob NDA, então as provas acima vêm dos cargos anteriores.",
+      "draftLabel": "O email que isso abre",
+      "to": "Para",
+      "subjectLabel": "Assunto",
+      "subject": "Ajuda com mobile",
+      "fields": {
+        "app": "App:",
+        "team": "Time:",
+        "timeline": "Prazo:"
+      },
+      "open": "Abrir rascunho de email",
+      "linkedin": "LinkedIn"
     }
   },
   "notes": {

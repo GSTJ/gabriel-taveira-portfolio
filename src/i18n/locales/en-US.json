@@ -197,55 +197,112 @@
     "independent": "Independent"
   },
   "services": {
-    "title": "Hire me to unblock your mobile team.",
-    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
-    "proofs": {
-      "label": "Where I did it",
-      "work": "Teams I've led"
+    "title": "The mobile problems I've already solved.",
+    "sub": "Scoped engagements or fractional leadership, remote with US teams. Each problem links to where I solved it, with the numbers.",
+    "columns": {
+      "problem": "If this sounds like your team",
+      "get": "What you get",
+      "receipts": "Where I've done it"
     },
+    "ask": "Email me about this",
     "items": {
       "audit": {
-        "chip": "Audit",
+        "problem": "Releases feel risky, and the tests don't catch much.",
         "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
+        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute.",
+        "receipts": {
+          "coinbase": {
+            "figure": "25% → 45%",
+            "text": "test coverage on team-owned files"
+          },
+          "groundswell": {
+            "figure": "30% → 80%+",
+            "text": "test coverage"
+          },
+          "msw": {
+            "figure": "16k",
+            "text": "lines of brittle tests removed with MSW"
+          }
+        }
       },
       "migrations": {
-        "chip": "Migrations",
+        "problem": "You're stuck on an old setup and can't stop shipping to fix it.",
         "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work.",
+        "receipts": {
+          "coinbase": {
+            "figure": "",
+            "text": "Expo Prebuild, the new architecture, and React Compiler adoption with the React WG"
+          },
+          "alfred": {
+            "figure": "90+",
+            "text": "franchises moved from Ionic to React Native, with the old app live in parallel for about 6 months"
+          },
+          "codePush": {
+            "figure": "",
+            "text": "My open-source Code Push plugin for Expo"
+          }
+        }
       },
       "leadership": {
-        "chip": "Leadership",
+        "problem": "You need a mobile lead now, and hiring one takes months.",
         "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself.",
+        "receipts": {
+          "reports": {
+            "figure": "4 → 56",
+            "text": "direct reports, across the teams I've led"
+          },
+          "hiring": {
+            "figure": "",
+            "text": "Interviewed and onboarded senior engineers"
+          },
+          "forum": {
+            "figure": "",
+            "text": "Founded the Mobile Engineering Biweekly forum"
+          }
+        }
       },
       "systems": {
-        "chip": "Design",
+        "problem": "Every screen gets built a little differently.",
         "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
-      }
-    },
-    "engagement": {
-      "title": "How an engagement runs.",
-      "sub": "Sized to your app and your team.",
-      "steps": {
-        "review": {
-          "title": "Review",
-          "body": "I read the codebase, the release pipeline, and the backlog, and talk to the people who own them."
-        },
-        "plan": {
-          "title": "Plan",
-          "body": "A prioritized plan with the tradeoffs spelled out, short enough that people actually read it."
-        },
-        "ship": {
-          "title": "Ship",
-          "body": "I work inside your team on the riskiest parts: the migration, the performance work, the release train."
-        },
-        "handoff": {
-          "title": "Hand off",
-          "body": "Docs, standards, and people who own the result, so nothing depends on me sticking around."
+        "body": "Component libraries, SDKs, and lint rules that let product teams move fast without breaking the UI.",
+        "receipts": {
+          "mozeic": {
+            "figure": "",
+            "text": "Co-built Mozeic, the in-house design system, and spoke about it at TDC 2024"
+          },
+          "kustomer": {
+            "figure": "",
+            "text": "An open-source design system and SDKs for external developers"
+          },
+          "safeJsx": {
+            "figure": "",
+            "text": "npm downloads of eslint-plugin-safe-jsx, my lint rule for JSX"
+          }
         }
       }
+    },
+    "cite": {
+      "all": "All my roles",
+      "github": "GitHub",
+      "npm": "npm, {start} to {end}"
+    },
+    "start": {
+      "title": "How it starts",
+      "body": "Send me the app, the team, and the timeline. I reply <pen>within the week</pen>. If it's urgent, ping me on LinkedIn.",
+      "nda": "Client work since 2025 is under NDA, so the receipts above come from the roles before it.",
+      "draftLabel": "The email this opens",
+      "to": "To",
+      "subjectLabel": "Subject",
+      "subject": "Mobile help",
+      "fields": {
+        "app": "App:",
+        "team": "Team:",
+        "timeline": "Timeline:"
+      },
+      "open": "Open email draft",
+      "linkedin": "LinkedIn"
     }
   },
   "notes": {

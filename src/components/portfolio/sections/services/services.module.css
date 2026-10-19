@@ -1,45 +1,116 @@
-/* ── Offers ─────────────────────────────────────────────────────────── */
+/* ── The ledger: problem, what you get, receipts ─────────────────────── */
 
-.offers {
-  display: grid;
+/* Column heads print once, above the first rule, where the columns exist. */
+.columns {
+  display: none;
 }
 
-.offer {
+.ledger {
   display: grid;
-  gap: var(--space-2);
-  align-content: start;
-  padding-block: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-5);
+  padding-block: var(--space-6) var(--space-7);
   border-top: 1px solid var(--rule);
 }
 
-.body {
+.problem {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.problemTitle {
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+.offer {
+  color: var(--ink-3);
+}
+
+.get {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
   max-width: var(--measure);
 }
 
-.proof {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-4);
-  margin-top: var(--space-3);
+.label {
+  color: var(--ink-3);
 }
 
-.proof ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
-}
-
-/* A citation back up the page: the arrow says "proved above", the dates say when. */
-.cite {
+/* Starts an email about this offer: the arrow says it leaves the page. */
+.ask {
+  justify-self: start;
   display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-2);
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
   color: var(--ink);
   font-weight: var(--fw-medium);
   text-decoration-line: underline;
   text-decoration-color: var(--rule-strong);
   text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--dur-hover) ease;
+}
+
+.ask svg {
+  width: 0.9em;
+  height: 0.9em;
+  flex: none;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+/* ── Receipts ───────────────────────────────────────────────────────── */
+
+.receipts {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.receipts ul {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* The figure, when a receipt has one, sits above its line like a ledger entry. */
+.receipt {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.receipt p {
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.figure {
+  color: var(--ink);
+  font-size: var(--fs-title);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  white-space: nowrap;
+}
+
+/* A citation: the up arrow says "proved above", the dates say when. */
+.cite {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
   transition: text-decoration-color var(--dur-hover) ease;
 }
 
@@ -53,158 +124,141 @@
 }
 
 .dates {
-  margin-left: var(--space-2);
+  margin-left: var(--space-1);
   color: var(--ink-3);
   font-weight: var(--fw-regular);
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .ask:hover,
   .cite:hover {
     text-decoration-color: currentColor;
   }
 
-  .cite:hover svg {
+  .ask:hover svg,
+  .cite[target]:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .cite:not([target]):hover svg {
     transform: translateY(-2px);
   }
 }
 
-/* One row per offer from 1000px, read across: what, how, where it was done. */
+/* Read across from 1000px: the problem, what you get, where it was done. */
 @media (min-width: 1000px) {
-  .offer {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
-    gap: var(--space-6);
-    padding-block: var(--space-6);
-  }
-
-  .proof,
-  .proof ul {
+  .columns {
     display: grid;
-    gap: var(--space-2);
-    align-content: start;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    padding-bottom: var(--space-3);
+    color: var(--ink-3);
   }
 
-  .proof {
-    margin-top: 0;
+  .row {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    padding-block: var(--space-6) var(--space-7);
+  }
+
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
 
-/* ── How an engagement runs ─────────────────────────────────────────── */
+/* ── How it starts ──────────────────────────────────────────────────── */
 
-.flow {
+.start {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-7);
   margin-top: var(--sec-head-gap);
 }
 
-.flowTitle {
-  font-weight: var(--fw-strong);
-}
-
-.flowSub {
+.startCopy {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
   max-width: var(--measure);
 }
 
-/*
- * Each step draws a segment to the next and its dot fills as the line
- * arrives: the order is the point. Vertical on phones, across from 760px.
- */
-.steps {
-  --dot: var(--space-3);
-  --track: var(--space-6);
-  --gap: var(--space-6);
-
-  display: grid;
-  gap: var(--gap);
-  margin-top: var(--space-6);
-  padding-left: var(--track);
+.startTitle {
+  text-wrap: balance;
 }
 
-.steps li {
-  position: relative;
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.nda {
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+/* The email the button opens, shown before it opens: To, Subject, three lines to fill. */
+.draft {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-4);
   align-content: start;
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
 }
 
-.steps li::before {
-  content: "";
-  position: absolute;
-  top: var(--space-1);
-  left: calc(var(--track) * -1);
-  width: var(--dot);
-  height: var(--dot);
-  border: 1px solid var(--ink);
-  border-radius: var(--r-pill);
-  background: var(--ink);
+.draft figcaption {
+  color: var(--ink-3);
 }
 
-.steps li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: calc(var(--space-1) + var(--dot) / 2);
-  left: calc(var(--track) * -1 + var(--dot) / 2);
-  width: 1px;
-  height: calc(100% + var(--gap));
-  background: var(--ink);
-  transform-origin: top;
+.headers {
+  display: grid;
+  border-top: 1px solid var(--rule);
 }
 
-@media (min-width: 760px) {
-  .steps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding-left: 0;
-    padding-top: var(--track);
-  }
-
-  .steps li::before {
-    top: calc(var(--track) * -1);
-    left: 0;
-  }
-
-  .steps li:not(:last-child)::after {
-    top: calc(var(--track) * -1 + var(--dot) / 2);
-    left: var(--dot);
-    width: calc(100% + var(--gap) - var(--dot));
-    height: 1px;
-    transform-origin: left;
-  }
+.headers div {
+  display: grid;
+  grid-template-columns: calc(var(--space-9) - var(--space-3)) minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--rule);
 }
 
-/* Segment i draws while step i+1 is due, so each dot fills as the line lands. */
-@media (prefers-reduced-motion: no-preference) {
-  .steps li {
-    --seg: calc(var(--dur-pen) / 2);
-    --land: calc(var(--i, 0) * var(--seg) + var(--stagger));
-
-    transition:
-      opacity var(--dur-enter) var(--ease-out) var(--land),
-      transform var(--dur-rise) var(--ease-out) var(--land);
-  }
-
-  .steps li::before {
-    transition: background-color var(--dur-ui) ease var(--land);
-  }
-
-  .steps li::after {
-    transition: transform var(--seg) linear var(--land);
-  }
-
-  :global(.js) .steps:not([data-in]) li {
-    opacity: 0;
-    transform: translateY(var(--rise));
-  }
-
-  :global(.js) .steps:not([data-in]) li::before {
-    background: var(--paper);
-  }
-
-  :global(.js) .steps:not([data-in]) li::after {
-    transform: scaleY(0);
-  }
+.headers dt {
+  color: var(--ink-3);
 }
 
-@media (prefers-reduced-motion: no-preference) and (min-width: 760px) {
-  :global(.js) .steps:not([data-in]) li::after {
-    transform: scaleX(0);
+.headers dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+}
+
+.lines {
+  display: grid;
+  margin-top: var(--space-2);
+  color: var(--ink);
+}
+
+/* Ruled like a page waiting for the answer. */
+.lines li {
+  padding-block: var(--space-4) var(--space-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 1000px) {
+  .start {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-9);
+    align-items: start;
+  }
+
+  .draft {
+    padding: var(--space-7);
   }
 }
