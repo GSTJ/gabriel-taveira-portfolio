@@ -249,9 +249,15 @@
     }
   },
   "notes": {
-    "title": "Talks, writing, and what I'm doing now.",
+    "title": "The work I do in public.",
+    "lede": "A weekly podcast, a few talks, two articles that turned into a library, and what's on my desk right now.",
+    "lang": {
+      "PT": "Portuguese",
+      "EN": "English"
+    },
     "now": {
       "title": "Now",
+      "updated": "Updated {date}.",
       "items": {
         "consulting": {
           "chip": "Consulting",
@@ -263,11 +269,6 @@
           "title": "Curvinha, an iOS app for planning your home",
           "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
         },
-        "hosting": {
-          "chip": "Hosting",
-          "title": "Space Cast on Rocketseat",
-          "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Guest ideas welcome."
-        },
         "mentoring": {
           "chip": "Mentoring",
           "title": "Space Squad · the next generation",
@@ -278,22 +279,35 @@
           "title": "A native screen-recording detector for Expo",
           "body": "Upstreaming work from a past engagement. Reverse-engineering for fun, then for prod. Both still scratch the same age-8 itch."
         }
-      },
-      "updated": "Updated {date}."
+      }
     },
-    "publications": {
-      "title": "On air",
-      "featureTitle": "I host the Space Cast podcast on Rocketseat's YouTube.",
-      "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
-      "watchShow": "Watch the show",
-      "playlist": "Episode playlist",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentoring the next generation of tech wizards.",
-      "season": "season 3"
+    "spaceCast": {
+      "title": "Space Cast",
+      "lead": "I co-hosted Space Cast, the Space Squad podcast on Rocketseat's YouTube.",
+      "fact": "40 episodes, one every Wednesday from January 18 to October 18, 2023. I'm listed as host on 37 of them.",
+      "satOut": "I sat this one out",
+      "playlist": "Full playlist",
+      "spotify": "On Spotify",
+      "list": "All 40 episodes",
+      "prev": "Earlier episodes",
+      "next": "Later episodes",
+      "source": "Read from YouTube on {date}."
+    },
+    "writing": {
+      "title": "Writing",
+      "lead": "In 2022 I wrote up a better way to handle modals in React Native, once in English and once in Portuguese.",
+      "note": "then it became a library",
+      "renamed": "<code>react-native-magic-modal</code>, now <code>magic-modal</code>",
+      "outcome": "{stars} stars on GitHub, read {date}.",
+      "more": "All posts on Medium"
     },
     "talks": {
       "title": "Talks",
-      "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
+      "sub": "So far in Portuguese. Happy to give them in English.",
+      "links": {
+        "brooklyn": "Slides on Figma",
+        "spaceSquad": "Space Squad on YouTube"
+      },
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
@@ -315,10 +329,20 @@
         },
         "spaceSquad": {
           "title": "Mentoring in the Space Squad community",
-          "description": "Ongoing mentorship through Rocketseat's ambassador program.",
+          "description": "Mentorship through Rocketseat's ambassador program.",
           "venue": "Space Squad · Rocketseat",
           "city": "Remote"
         }
+      }
+    },
+    "shipped": {
+      "title": "Shipped lately",
+      "source": "From my GitHub releases, read {date}.",
+      "items": {
+        "pegada": "Configurable daily like limit and a weekly plan",
+        "safeJsx": "The rule now catches mutable boolean bypasses",
+        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
+        "magicModal": "React Native peers are optional, so the web install is one package"
       }
     },
     "awards": {
@@ -335,28 +359,6 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
-      }
-    },
-    "writing": {
-      "title": "Writing",
-      "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
-      "topics": {
-        "leadership": "Engineering Leadership",
-        "mobile": "Mobile Architecture",
-        "design": "Design Systems",
-        "hiring": "Hiring & Mentorship",
-        "reverse": "Reverse Engineering"
-      },
-      "readOnMedium": "Read on Medium"
-    },
-    "shipped": {
-      "title": "Shipped lately",
-      "source": "From my GitHub releases, read {date}.",
-      "items": {
-        "pegada": "Configurable daily like limit and a weekly plan",
-        "safeJsx": "The rule now catches mutable boolean bypasses",
-        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
-        "magicModal": "React Native peers are optional, so the web install is one package"
       }
     }
   },

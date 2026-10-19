@@ -1,22 +1,13 @@
-/* Shared pieces */
+/*
+ * A shelf of public work. Each piece of proof keeps its own shape: Now is a
+ * ledger, Space Cast a strip of real episodes, Writing a chain from article
+ * to library, Talks a dated list, Shipped a changelog row. Paper-2 stages
+ * only where the proof needs one (the strip, the chain).
+ */
 
-.col,
-.block,
-.stack {
+.shelf {
   display: grid;
-  align-content: start;
-}
-
-.col {
   gap: var(--space-8);
-}
-
-.block {
-  gap: var(--space-5);
-}
-
-.stack {
-  gap: var(--space-3);
 }
 
 .head {
@@ -25,36 +16,58 @@
   max-width: var(--measure);
 }
 
-.rows {
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.card {
   display: grid;
-  border-bottom: 1px solid var(--rule);
+  align-content: start;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-5);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
 }
 
-.rows > li {
-  border-top: 1px solid var(--rule);
-}
-
-/* Now: the one block that changes month to month, so it leads. */
+/* ── Now: four things, one line each ──────────────────────────────── */
 
 .now {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-4);
+}
+
+.nowHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
 }
 
 .nowRows {
   display: grid;
-  border-bottom: 1px solid var(--rule);
+  border-block: 1px solid var(--rule);
 }
 
-.nowRow {
+.nowItem {
   display: grid;
+  align-content: start;
   gap: var(--space-1);
   padding-block: var(--space-4);
+}
+
+.nowItem + .nowItem {
   border-top: 1px solid var(--rule);
 }
 
-.nowRow dt {
-  padding-top: 0.2em;
+.nowTitle {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+  letter-spacing: var(--tr-body);
+  text-wrap: pretty;
 }
 
 /* Inline so a wrapped title keeps its arrow on the last word. */
@@ -68,14 +81,222 @@
   vertical-align: -0.05em;
 }
 
-.nowTitle {
-  font-size: var(--fs-body);
-  font-weight: var(--fw-medium);
-  color: var(--ink);
-  letter-spacing: var(--tr-body);
+/* ── Space Cast: the 40 real episodes on a strip ──────────────────── */
+
+.castHead {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--measure);
 }
 
-/* Talks */
+.castHead > div {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.castLead {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: -0.013em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.stripWrap {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  margin-top: var(--space-3);
+}
+
+.stripBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.stripButtons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Hidden, not removed, until hydration: no dead buttons, no row jump. */
+.stripButtons:not([data-ready]) {
+  visibility: hidden;
+}
+
+.stripButtons button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
+.strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(15rem, 70vw);
+  gap: var(--space-4);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--space-1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+  /* Room for focus rings, which the scroller would otherwise clip. */
+  padding: var(--space-1) var(--space-1) var(--space-3);
+  margin: calc(var(--space-1) * -1);
+  mask-image: linear-gradient(
+    to right,
+    var(--ink) calc(100% - var(--space-8)),
+    transparent
+  );
+}
+
+.ep {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.ep a {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  text-decoration: none;
+  border-radius: var(--r-md);
+}
+
+.thumb {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--paper-3);
+  aspect-ratio: 16 / 9;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.epTitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.satOut {
+  color: var(--ink-3);
+}
+
+/* ── Writing: the article, then what it became ─────────────────────── */
+
+.articles {
+  display: grid;
+  border-block: 1px solid var(--rule-strong);
+}
+
+.articles li + li {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.article {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+  text-decoration: none;
+}
+
+.articleTitle,
+.rowTitle {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.articleTitle {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule-strong);
+  transition: text-decoration-color var(--dur-hover) ease;
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-left: var(--space-3);
+  color: var(--pen);
+}
+
+.chainArrow {
+  width: 2.25rem;
+  height: 4rem;
+  flex: none;
+  overflow: visible;
+}
+
+.chainArrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chainNote {
+  font-family: var(--font-hand);
+  font-size: var(--fs-hand);
+  font-weight: 560;
+  line-height: 1.05;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+.outcome {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.renamed {
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* ── Talks ────────────────────────────────────────────────────────── */
+
+.talks {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+}
+
+.rows {
+  display: grid;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rows > li {
+  border-top: 1px solid var(--rule);
+}
 
 .talk {
   display: grid;
@@ -90,38 +311,34 @@
 
 .talk > div {
   display: grid;
+  justify-items: start;
   gap: var(--space-1);
 }
 
-.rowTitle {
-  font-weight: var(--fw-medium);
-  color: var(--ink);
-}
-
-.talk abbr {
+.talk abbr,
+.article abbr {
   text-decoration: none;
 }
 
-/* On air and writing */
+/* ── Shipped lately: a dated changelog row ────────────────────────── */
 
-.feature {
-  font-size: var(--fs-lede);
-  line-height: var(--lh-lede);
-  letter-spacing: -0.013em;
-  color: var(--ink);
-  text-wrap: pretty;
+.shipped {
+  display: grid;
+  gap: var(--space-5);
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+.ships {
+  display: grid;
+  border-block: 1px solid var(--rule);
 }
 
-/* Shipped lately: a dated changelog strip, each row a link to the release. */
+.ships li + li {
+  border-top: 1px solid var(--rule);
+}
 
 .ship {
   display: grid;
+  align-content: start;
   gap: var(--space-1);
   padding-block: var(--space-3);
   text-decoration: none;
@@ -130,6 +347,9 @@
 .pkg {
   color: var(--ink);
   overflow-wrap: anywhere;
+}
+
+.ship .pkg {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
@@ -141,18 +361,11 @@
   color: var(--ink-3);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .ship:hover .pkg {
-    text-decoration-color: var(--pen);
-  }
-}
-
-/* Hackathons: small print, all five, quieter than everything above. */
+/* ── Hackathons: small print, all five ────────────────────────────── */
 
 .awards {
   display: grid;
   gap: var(--space-2);
-  max-width: 60rem;
 }
 
 .awards h3 {
@@ -167,32 +380,120 @@
   margin-top: var(--space-1);
 }
 
-/* Now runs full width, three columns under it, hackathons as a footnote. */
+/* ── Hover, fine pointers only ────────────────────────────────────── */
 
-.layout {
-  display: grid;
-  gap: var(--space-9);
+@media (hover: hover) and (pointer: fine) {
+  .ep a:hover .thumb img {
+    transform: scale(1.03);
+  }
+
+  .ep a:hover .epTitle {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .article:hover .articleTitle,
+  .ship:hover .pkg {
+    text-decoration-color: var(--pen);
+  }
+
+  .outcome:hover .pkg {
+    text-decoration: underline;
+    text-decoration-color: var(--pen);
+    text-underline-offset: 0.2em;
+  }
 }
 
-.trio {
-  display: grid;
-  gap: var(--space-8);
+/* ── The pen draws the chain once it is in view ───────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .chainArrow path {
+    stroke-dasharray: 1;
+    transition: stroke-dashoffset var(--dur-pen) var(--ease-pen);
+  }
+
+  .js .chainArrow path + path {
+    transition-duration: var(--dur-arrow);
+    transition-delay: calc(var(--dur-pen) * 0.85);
+  }
+
+  .js .chainNote {
+    transition: clip-path var(--dur-note) var(--ease-pen)
+      calc(var(--dur-pen) * 0.6);
+  }
+
+  .js .chain:not([data-in]) .chainArrow path {
+    stroke-dashoffset: 1;
+  }
+
+  .js .chain:not([data-in]) .chainNote {
+    clip-path: inset(-20% 100% -20% 0);
+  }
+
+  .js .chain[data-in] .chainNote {
+    clip-path: inset(-20% -10% -20% 0);
+  }
 }
+
+/* ── Wide: the 12-column shelf ────────────────────────────────────── */
 
 @media (width >= 1000px) {
-  .nowRow {
-    grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1.2fr);
-    column-gap: var(--space-6);
+  .shelf {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-6);
   }
 
-  .trio {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-7);
-  }
-
+  .now,
+  .cast,
+  .shipped,
   .awards {
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--rule);
+    grid-column: 1 / -1;
+  }
+
+  .writing {
+    grid-column: span 5;
+  }
+
+  .talks {
+    grid-column: span 7;
+  }
+
+  .card {
+    padding: var(--space-6);
+  }
+
+  .nowRows {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .nowItem {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .nowItem:first-child {
+    padding-left: 0;
+  }
+
+  .nowItem + .nowItem {
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+  }
+
+  /* Title and lead on the left, the dated fact and links on the right. */
+  .castHead {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: end;
+    column-gap: var(--space-8);
     max-width: none;
+  }
+
+  .ships {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .ships li + li {
+    border-top: 0;
   }
 }

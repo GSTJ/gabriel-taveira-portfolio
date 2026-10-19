@@ -1,12 +1,7 @@
-import {
-  MEDIUM,
-  SPACE_CAST,
-  SPACE_CAST_PLAYLIST,
-  SPACE_SQUAD,
-} from "../../profile";
+import { SPACE_CAST, SPACE_CAST_PLAYLIST } from "../../profile";
 
 export type NowItem = {
-  id: "consulting" | "building" | "hosting" | "mentoring" | "tinkering";
+  id: "consulting" | "building" | "mentoring" | "tinkering";
   href?: string;
 };
 
@@ -14,23 +9,276 @@ export type NowItem = {
 export const NOW: readonly NowItem[] = [
   { id: "consulting" },
   { id: "building", href: "https://curvinha.app/?ct=gabrieltaveira-dev" },
-  { id: "hosting" },
   { id: "mentoring" },
   { id: "tinkering" },
 ] as const;
 
-export const PUBLICATIONS = {
-  spaceCast: SPACE_CAST,
+/** When the Now list was last edited. Bump it with the list, so "Updated" stays honest. */
+export const NOW_UPDATED = new Date("2026-10-19T12:00:00Z");
+
+/** When EPISODES was read from YouTube. */
+export const SPACE_CAST_READ = "2026-10-19";
+
+export const SPACE_CAST_LINKS = {
+  channel: SPACE_CAST,
   playlist: SPACE_CAST_PLAYLIST,
-  medium: MEDIUM,
-  spaceSquad: SPACE_SQUAD,
+  spotify: "https://open.spotify.com/show/5TvGqomzjc81obDK7iNiTu",
 } as const;
+
+export type Episode = {
+  n: number;
+  /** YouTube video id; the thumbnail is public/notes/space-cast/<id>.webp. */
+  id: string;
+  date: string;
+  /** The episode's own title on YouTube, verbatim (Portuguese). */
+  title: string;
+  /** False on the three episodes whose description doesn't list me as host. */
+  host?: false;
+};
+
+/**
+ * Every Space Cast episode, #1 to #40, read from YouTube on 2026-10-19
+ * (playlist PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V plus #37, which sits outside it).
+ * Hosts come from each video's description.
+ */
+export const EPISODES: readonly Episode[] = [
+  {
+    n: 1,
+    id: "9bfIwqwun6Q",
+    date: "2023-01-18",
+    title: "Iniciando na Programação com Mayk Brito",
+  },
+  {
+    n: 2,
+    id: "6WgEpSh5L1c",
+    date: "2023-01-25",
+    title: "Elevando a Carreira com Daniel Costa",
+  },
+  {
+    n: 3,
+    id: "k2vWbLIc9vU",
+    date: "2023-02-01",
+    title:
+      "A Importância da Comunidade na Vida do Dev com Jakeliny Gracielly e Nadia Lidia",
+  },
+  {
+    n: 4,
+    id: "ZYD_sMkg5V0",
+    date: "2023-02-08",
+    title: "Construindo uma plataforma de ensino com Gabriel Buzzi",
+  },
+  {
+    n: 5,
+    id: "SmkOSCqnBsg",
+    date: "2023-02-15",
+    title: "As tendências e frameworks com Diego Fernandes",
+  },
+  {
+    n: 6,
+    id: "mBHhp0AvKm0",
+    date: "2023-02-22",
+    title: "De Atleta à Tech Lead na Zup: A Trajetória de Lucas Thomaz",
+  },
+  {
+    n: 7,
+    id: "mqNxEA-mrmE",
+    date: "2023-03-01",
+    title: "Desvendando o Design com David Arty",
+  },
+  {
+    n: 8,
+    id: "GzsE5kj5utc",
+    date: "2023-03-08",
+    title: "Desenvolvendo Sua Liderança com Eduardo Matos",
+  },
+  {
+    n: 9,
+    id: "t0W2Eas3TYY",
+    date: "2023-03-15",
+    title: "Gerando Valor com Ana Neri",
+  },
+  { n: 10, id: "6rBT5UbhQ64", date: "2023-03-22", title: "Jakeliny Gracielly" },
+  { n: 11, id: "isBi6IYMdjs", date: "2023-03-29", title: "Ahirton Lopes" },
+  { n: 12, id: "mCPU7G9IqCA", date: "2023-04-05", title: "Nathally Souza" },
+  {
+    n: 13,
+    id: "4rlktCGOFRQ",
+    date: "2023-04-12",
+    title: "Qual o Papel de um Head de Engenharia com Sergio Fiorotti",
+  },
+  {
+    n: 14,
+    id: "mH42lps6O7A",
+    date: "2023-04-19",
+    title: "Equilibrando vida pessoal e trabalho com Laura Kibum",
+  },
+  {
+    n: 15,
+    id: "xmhFe-7NvcI",
+    date: "2023-04-26",
+    title: "A Pressão do SHOW ME THE CODE com José Carlos Teles",
+  },
+  {
+    n: 16,
+    id: "oR8E5yTGIo4",
+    date: "2023-05-03",
+    title: "Trabalhando No Exterior com Ilda Neta",
+  },
+  {
+    n: 17,
+    id: "H6O5vxtXRfM",
+    date: "2023-05-10",
+    title: "A Interface Perfeita com Jonas Milan",
+  },
+  {
+    n: 18,
+    id: "MNeH30-zr1o",
+    date: "2023-05-17",
+    title: "Angular no Exterior com Leonardo Natal",
+  },
+  {
+    n: 19,
+    id: "mDWqnYIgUy0",
+    date: "2023-05-24",
+    title: "Agarrando Oportunidades com Vitor Castro",
+    host: false,
+  },
+  {
+    n: 20,
+    id: "bgTW6PInZDs",
+    date: "2023-05-31",
+    title: "Evolução Constante com Kamila Code",
+  },
+  {
+    n: 21,
+    id: "Gd1DpDf65HM",
+    date: "2023-06-07",
+    title: "Encontrando Um Propósito com Abraão Sena",
+  },
+  {
+    n: 22,
+    id: "fIbMAq43OFs",
+    date: "2023-06-14",
+    title: "Redes Sociais para Devs com Valks Carvalho",
+  },
+  {
+    n: 23,
+    id: "Y0lL018lwAs",
+    date: "2023-06-21",
+    title: "Comunidade PHP com PokemãoBR",
+  },
+  {
+    n: 24,
+    id: "I3UykAUPvAs",
+    date: "2023-06-28",
+    title: "Cybersegurança com Laís e Lillian",
+    host: false,
+  },
+  {
+    n: 25,
+    id: "lX2v1TS7gM4",
+    date: "2023-07-05",
+    title: "O Mundo da Inteligência Artificial com Carla Vieira",
+    host: false,
+  },
+  {
+    n: 26,
+    id: "tKc91BExzrY",
+    date: "2023-07-12",
+    title: "Carreira de DevRel com Gabriel Bolzi",
+  },
+  {
+    n: 27,
+    id: "jtyi0PmJzLQ",
+    date: "2023-07-19",
+    title: "Conheça o Space Squad com Julião",
+  },
+  {
+    n: 28,
+    id: "kD0kf75N7WE",
+    date: "2023-07-26",
+    title: "Perspectiva Gringa: Devs Brasileiros com Patrick Cason",
+  },
+  {
+    n: 29,
+    id: "hITHDVvTYnk",
+    date: "2023-08-02",
+    title: "Como ser Fullcycle com Wesley Willians",
+  },
+  {
+    n: 30,
+    id: "n7ppFE9xybw",
+    date: "2023-08-09",
+    title: "Desenvolvimento Mobile com Rodrigo Gonçalves",
+  },
+  {
+    n: 31,
+    id: "3DZEftUeSLM",
+    date: "2023-08-16",
+    title: "Construindo A Sua História com Joel Backschat",
+  },
+  {
+    n: 32,
+    id: "ioQ5gjjOaf4",
+    date: "2023-08-23",
+    title: "Liderança Ágil com Alexandre Abdalla",
+  },
+  {
+    n: 33,
+    id: "JLMvXHPZABE",
+    date: "2023-08-30",
+    title: "Transformação Digital Em Empresas Centenárias com Heitor Penha",
+  },
+  {
+    n: 34,
+    id: "ErHBAMZ9qjI",
+    date: "2023-09-06",
+    title: "Mercado de Tecnologia para Pessoas Atípicas com Gui Estevão",
+  },
+  {
+    n: 35,
+    id: "FAzEPoQBY2I",
+    date: "2023-09-13",
+    title: "Decolando sua Carreira Júnior com Fernanda Kipper",
+  },
+  {
+    n: 36,
+    id: "DLEaut5emsU",
+    date: "2023-09-20",
+    title: "Abraçando o Caos com Josi Assis",
+  },
+  {
+    n: 37,
+    id: "UIYb8zd02ZY",
+    date: "2023-09-27",
+    title: "Mercado Dev para 40+ com Dan Vitoriano",
+  },
+  {
+    n: 38,
+    id: "r_g_UpP5j1o",
+    date: "2023-10-04",
+    title: "Se Tornando Dev com Simara Conceição",
+  },
+  {
+    n: 39,
+    id: "D6QtBuJoQ1A",
+    date: "2023-10-11",
+    title: "Ser DevRel no Github com Pachi Parra",
+  },
+  {
+    n: 40,
+    id: "FD2BsDW7jJg",
+    date: "2023-10-18",
+    title: "Sistemas Legados e Organização com Gi Bordignon",
+  },
+] as const;
 
 export type TalkItem = {
   id: "brooklyn" | "tdc" | "assemble" | "spaceSquad";
   date: string;
   lang: "PT" | "EN";
-  href: string;
+  /** Only where something public exists: slides, the show. */
+  href?: string;
 };
 
 export const TALKS: readonly TalkItem[] = [
@@ -40,24 +288,9 @@ export const TALKS: readonly TalkItem[] = [
     lang: "PT",
     href: "https://www.figma.com/file/nBdwnIQxwLseSXicLhzRoB/Efici%C3%AAncia-Com-AI---The-Brooklyn-Brothers",
   },
-  {
-    id: "tdc",
-    date: "2024",
-    lang: "PT",
-    href: "https://thedevconf.com/",
-  },
-  {
-    id: "assemble",
-    date: "2023",
-    lang: "PT",
-    href: "https://www.rocketseat.com.br/",
-  },
-  {
-    id: "spaceSquad",
-    date: "2023",
-    lang: "PT",
-    href: SPACE_SQUAD,
-  },
+  { id: "tdc", date: "2024", lang: "PT" },
+  { id: "assemble", date: "2023", lang: "PT" },
+  { id: "spaceSquad", date: "2023", lang: "PT", href: SPACE_CAST },
 ] as const;
 
 export type AwardItem = {
@@ -74,13 +307,43 @@ export const AWARDS: readonly AwardItem[] = [
   { id: "nasa", year: 2019, position: "finalist" },
 ] as const;
 
-export const WRITING_TOPICS = [
-  "leadership",
-  "mobile",
-  "design",
-  "hiring",
-  "reverse",
+export type Article = {
+  id: "modalsEn" | "modalsPt";
+  /** The article's own title, verbatim. */
+  title: string;
+  lang: "EN" | "PT";
+  /** Where it was published. */
+  outlet: string;
+  date: string;
+  href: string;
+};
+
+/** Read from the Medium RSS feed on 2026-10-19. */
+export const ARTICLES: readonly Article[] = [
+  {
+    id: "modalsEn",
+    title: "You Have Been Using React Native Modals Wrong",
+    lang: "EN",
+    outlet: "JavaScript in Plain English",
+    date: "2022-08-01",
+    href: "https://javascript.plainenglish.io/you-have-been-using-react-native-modals-wrong-9b8c17de2f96",
+  },
+  {
+    id: "modalsPt",
+    title: "O Guia Definitivo de Modais no React Native",
+    lang: "PT",
+    outlet: "Medium",
+    date: "2022-09-16",
+    href: "https://medium.com/@gabrieltaveira/o-guia-definitivo-de-modais-no-react-native-d39d0b6846fe",
+  },
 ] as const;
+
+/** What the articles became. Stars read from GitHub on MAGIC_MODAL.read. */
+export const MAGIC_MODAL = {
+  href: "https://github.com/GSTJ/magic-modal",
+  stars: 651,
+  read: "2026-10-19",
+} as const;
 
 export type ShippedItem = {
   id: "pegada" | "safeJsx" | "codePush" | "magicModal";
@@ -125,6 +388,3 @@ export const SHIPPED: readonly ShippedItem[] = [
     href: "https://github.com/GSTJ/magic-modal/releases/tag/magic-modal-10.2.0",
   },
 ] as const;
-
-/** When the Now list was last edited. Bump it with the list, so "Updated" stays honest. */
-export const NOW_UPDATED = new Date("2026-10-19T12:00:00Z");
