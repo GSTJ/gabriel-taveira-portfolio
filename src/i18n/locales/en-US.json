@@ -41,8 +41,9 @@
   "hero": {
     "status": "Independent consultant, open to new clients",
     "place": "Ribeirão Preto, Brazil · {month}",
-    "title": "<me>I'm Gabriel.</me> I help product teams ship React Native and Expo <pen>apps that scale.</pen>",
-    "body": "The architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to <note>56 direct reports</note> and worked on Coinbase's mobile app infrastructure.",
+    "title": "<me>I'm Gabriel.</me> I help React Native and Expo teams through <pen>the hard parts.</pen>",
+    "lede": "Architecture reviews, migrations like Expo Prebuild and the new architecture, and leading the team through them.",
+    "started": "I started at eight, reverse-engineering games.",
     "notes": {
       "yesReally": "yes, really"
     },
@@ -51,7 +52,26 @@
       "downloadPdf": "Download PDF",
       "linkedIn": "LinkedIn"
     },
-    "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
+    "proof": {
+      "label": "Proof, with sources",
+      "coinbase": {
+        "org": "Coinbase, Consumer App Infra",
+        "dates": "2024 to 25",
+        "body": "Drove the React Compiler rollout with the React WG and helped move the app to Expo Prebuild and the new architecture.",
+        "link": "The work"
+      },
+      "teams": {
+        "org": "Teams I've led",
+        "body": "Six teams, from a team of <num>4</num> to <note>56 direct reports.</note>",
+        "link": "The teams"
+      },
+      "npm": {
+        "org": "npm",
+        "dates": "{start} to {end}",
+        "body": "<num>{total}</num> downloads of my packages in the last 30 days, counted by <src>npm</src>.",
+        "link": "The libraries"
+      }
+    }
   },
   "projects": {
     "title": "Things I made.",
