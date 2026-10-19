@@ -156,45 +156,59 @@
   },
   "work": {
     "title": "Teams I've led. Systems that lasted.",
-    "sub": "From four direct reports to fifty-six, across startups, delivery apps, fintechs, and tech giants.",
+    "sub": "Since 2017, newest first. Each line is who the work reached. Open one to see what shipped.",
     "present": "now",
-    "earlier": "Earlier",
-    "linkedin": "LinkedIn",
     "items": {
       "consulting": {
         "title": "Independent consulting",
-        "blurb": "Mobile architecture, engineering leadership, and team craft for product companies. Client details under NDA. Taking on new engagements, so reach out."
+        "blurb": "Mobile architecture, engineering leadership, and team craft for product companies. Client details under NDA. Taking on new engagements, so reach out.",
+        "scope": "Product teams that bring me in"
       },
       "coinbase": {
         "title": "Mobile architecture at Coinbase",
-        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, helped migrate Coinbase to Expo Prebuild, and helped enable React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>."
+        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, helped migrate Coinbase to Expo Prebuild, and helped enable React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>.",
+        "scope": "<pen>Coinbase's app infrastructure</pen>, with the React WG",
+        "figure": "Coverage 25% → 45%"
       },
       "ateam": {
         "title": "Lead Engineer on D-ID's mobile flagship",
-        "blurb": "Built the company's new core product, the mobile app, from zero. 1.5M registrants/week on the parent web app. Best UX 2023 on A.Team. Golden Kitty award on Product Hunt."
+        "blurb": "Built the company's new core product, the mobile app, from zero. 1.5M registrants/week on the parent web app. Best UX 2023 on A.Team. Golden Kitty award on Product Hunt.",
+        "scope": "The company's new core product"
       },
       "meta": {
         "title": "Open-source design system at Kustomer",
-        "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score."
+        "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score.",
+        "scope": "Developers outside the company"
       },
       "xteam": {
         "title": "Mentored mobile engineering at a fintech",
-        "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage <mark>30% → 80%+</mark>. Killed 16k lines of brittle tests with MSW. Discover page 200% faster."
+        "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage <mark>30% → 80%+</mark>. Killed 16k lines of brittle tests with MSW. Discover page 200% faster.",
+        "scope": "A fintech's mobile engineers",
+        "figure": "Coverage 30% → 80%+"
       },
       "ze": {
         "title": "Refactored Brazil's biggest beer app",
-        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built <mark>Mozeic</mark>, the in-house design system."
+        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built <mark>Mozeic</mark>, the in-house design system.",
+        "scope": "Brazil's biggest beer app, plus its hiring"
       },
       "alfred": {
         "title": "Led migration from Ionic to React Native",
-        "blurb": "Coordinated the rewrite of an app serving 90+ franchises across smaller Brazilian cities. ~6-month cutover with legacy Ionic 3 kept alive in parallel."
+        "blurb": "Coordinated the rewrite of an app serving 90+ franchises across smaller Brazilian cities. ~6-month cutover with legacy Ionic 3 kept alive in parallel.",
+        "scope": "An app for 90+ franchises"
       },
       "micro": {
         "title": "First job: systems for computer repairs",
-        "blurb": "Real-time repair-status tracker for an Apple Service Provider. Internal dashboards for technicians and customer service. Headless-CMS sites for the holding's brands."
+        "blurb": "Real-time repair-status tracker for an Apple Service Provider. Internal dashboards for technicians and customer service. Headless-CMS sites for the holding's brands.",
+        "scope": "Tools for one company's technicians"
       }
     },
-    "independent": "Independent"
+    "independent": "Independent",
+    "contact": "Get in touch",
+    "history": "Full history on LinkedIn",
+    "pr": {
+      "caption": "Updated the public mobile code challenge for Zé's hiring.",
+      "merged": "Merged {date}"
+    }
   },
   "services": {
     "title": "Hire me to unblock your mobile team.",

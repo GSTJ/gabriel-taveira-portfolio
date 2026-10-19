@@ -109,3 +109,29 @@ export const workOrgs = (item: WorkItem, independent: string) =>
 /** "2024 → 2025", or "2025 → now" with the locale's word for now. */
 export const workDates = (item: WorkItem, present: string) =>
   `${item.start} → ${item.end === "now" ? present : item.end}`;
+
+/** A public trace of the job, read with `gh` on 2026-10-19. */
+export type WorkArtifact = {
+  repo: string;
+  number: number;
+  title: string;
+  merged: string;
+  href: string;
+};
+
+export const ARTIFACTS: Partial<Record<WorkItem["id"], WorkArtifact>> = {
+  ze: {
+    repo: "ab-inbev-ze-company/ze-code-challenges",
+    number: 35,
+    title:
+      "chore(frontend-mobile): replace the old api and queries with the newer ones",
+    merged: "2021-09-13",
+    href: "https://github.com/ab-inbev-ze-company/ze-code-challenges/pull/35",
+  },
+};
+
+/** Open on first paint: the current engagement and the featured role. */
+export const OPEN_BY_DEFAULT: readonly WorkItem["id"][] = [
+  "consulting",
+  "coinbase",
+];
