@@ -1,12 +1,12 @@
 /* ── The ask, then a ledger of situations, each with its door ───────── */
 
 .status {
+  margin-top: var(--space-4);
   color: var(--ink-2);
 }
 
 .title {
   max-width: 11em;
-  margin-top: var(--space-4);
 }
 
 .sub {

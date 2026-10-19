@@ -38,18 +38,18 @@ export const ContactSection = async () => {
       className="section wrap"
       aria-labelledby="contact-title"
     >
-      <p className={cn("t-meta", styles.status)} {...reveal()}>
-        {t("status", { month: currentMonthLabel(locale) })}
-      </p>
       <h2
         id="contact-title"
         className={cn("t-display", styles.title)}
-        {...reveal(1)}
+        {...reveal()}
       >
         {t("title")}
       </h2>
-      <p className={cn("t-lede", styles.sub)} {...reveal(2)}>
+      <p className={cn("t-lede", styles.sub)} {...reveal(1)}>
         {t("sub")}
+      </p>
+      <p className={cn("t-meta", styles.status)} {...reveal(2)}>
+        {t("status", { month: currentMonthLabel(locale) })}
       </p>
       <div className={styles.mail} {...reveal(3)}>
         <a id={ADDRESS_ID} className={styles.address} href={EMAIL}>
