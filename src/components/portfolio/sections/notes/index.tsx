@@ -1,37 +1,128 @@
+import type { ReactNode } from "react";
+
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
 import { currentMonthLabel } from "../../lifeline";
 import { ArrowUpRight } from "../../ui/icons";
-import { Marginalia } from "../../ui/marginalia";
+import { Annotated, Marginalia } from "../../ui/marginalia";
 import { reveal } from "../../ui/motion";
+import { PenUnderline } from "../../ui/pen-underline";
 import {
+  ARTICLES,
   AWARDS,
-  NOW,
+  CURVINHA_NOW,
+  EPISODES,
   NOW_UPDATED,
-  PUBLICATIONS,
+  RECORD_READ,
   SHIPPED,
-  SHIPPED_READ,
+  SPACE_CAST_LINKS,
+  SPACE_CAST_TOTAL,
   TALKS,
-  WRITING_TOPICS,
 } from "./data";
+import { RecordPreview } from "./record-preview";
 
 import styles from "./notes.module.css";
 
 type T = Awaited<ReturnType<typeof getTranslations<"notes">>>;
 
-const shortDate = (iso: string, locale: string) =>
-  new Date(iso).toLocaleDateString(locale, {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
+type Kind = "talk" | "episode" | "article" | "release" | "hackathon";
+
+const KINDS: readonly Kind[] = [
+  "talk",
+  "episode",
+  "article",
+  "release",
+  "hackathon",
+];
+
+const COUNTS: Record<Kind, number> = {
+  talk: TALKS.length,
+  episode: EPISODES.length,
+  article: ARTICLES.length,
+  release: SHIPPED.length,
+  hackathon: AWARDS.length,
+};
+
+const TOTAL = Object.values(COUNTS).reduce((sum, n) => sum + n, 0);
+
+const YEARS = [
+  ...TALKS.map((talk) => Number(talk.date)),
+  ...EPISODES.map((ep) => Number(ep.date.slice(0, 4))),
+  ...ARTICLES.map((article) => Number(article.date.slice(0, 4))),
+  ...SHIPPED.map((item) => Number(item.date.slice(0, 4))),
+  ...AWARDS.map((award) => award.year),
+];
+
+const HOURS = Math.round(
+  EPISODES.reduce((sum, ep) => sum + ep.minutes, 0) / 60,
+);
+
+const formatDate = (
+  iso: string,
+  locale: string,
+  options: Intl.DateTimeFormatOptions,
+) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
+    ...options,
     timeZone: "UTC",
   });
 
-const Now = ({ t, locale }: { t: T; locale: string }) => (
-  <section className={styles.now} aria-labelledby="notes-now">
-    <div className={styles.head} {...reveal()}>
+const external = (href: string, label: ReactNode) => (
+  <a className="link-arrow" href={href}>
+    {label}
+    <ArrowUpRight />
+  </a>
+);
+
+/** One line of the record: year, kind, then `What` and `Meta` as children. */
+const Row = ({
+  kind,
+  year,
+  label,
+  thumb,
+  children,
+}: {
+  kind: Kind | "show";
+  year: string | number;
+  label: string;
+  thumb?: string;
+  children: ReactNode;
+}) => (
+  <li className={styles.row} data-kind={kind} data-thumb={thumb}>
+    <span className={cn("t-meta num", styles.year)}>{year}</span>
+    <span className={cn("t-meta", styles.kind)}>{label}</span>
+    {children}
+  </li>
+);
+
+const What = ({ children }: { children: ReactNode }) => (
+  <div className={styles.what}>{children}</div>
+);
+
+const Meta = ({ children }: { children: ReactNode }) => (
+  <div className={cn("t-small", styles.meta)}>{children}</div>
+);
+
+const curvinhaTag = (note: string) => (chunks: ReactNode) => (
+  <>
+    <a className={styles.curvinha} href={CURVINHA_NOW}>
+      <PenUnderline delay={240}>{chunks}</PenUnderline>
+    </a>
+    <Marginalia note={note} delay={700} />
+  </>
+);
+
+const libraryTag = (href: string) => (chunks: ReactNode) => (
+  <a className="t-mono" href={href}>
+    {chunks}
+  </a>
+);
+
+const Letter = ({ t, locale }: { t: T; locale: string }) => (
+  <section className={styles.letter} aria-labelledby="notes-now">
+    <div className={styles.letterHead} {...reveal()}>
       <h3 id="notes-now" className="t-title">
         {t("now.title")}
       </h3>
@@ -39,162 +130,243 @@ const Now = ({ t, locale }: { t: T; locale: string }) => (
         {t("now.updated", { date: currentMonthLabel(locale, NOW_UPDATED) })}
       </p>
     </div>
-    <dl className={styles.nowRows}>
-      {NOW.map((item, i) => (
-        <div key={item.id} className={styles.nowRow} {...reveal(i)}>
-          <dt className="t-meta">{t(`now.items.${item.id}.chip`)}</dt>
-          <dd className={styles.nowTitle}>
-            {item.href ? (
-              <a className="link-arrow" href={item.href}>
-                {t(`now.items.${item.id}.title`)}
-                <ArrowUpRight />
-              </a>
-            ) : (
-              t(`now.items.${item.id}.title`)
-            )}
-          </dd>
-          <dd className="t-small">{t(`now.items.${item.id}.body`)}</dd>
-        </div>
-      ))}
-    </dl>
+    <p className="t-lede" {...reveal(1)}>
+      {t("now.letter.consulting")}
+    </p>
+    <Annotated as="p" className="t-lede" {...reveal(2)}>
+      {t.rich("now.letter.building", {
+        link: curvinhaTag(t("now.letter.note")),
+      })}
+    </Annotated>
+    <p className="t-lede" {...reveal(3)}>
+      {t("now.letter.rest")}
+    </p>
   </section>
 );
 
-const Talks = ({ t }: { t: T }) => (
-  <section className={styles.block} aria-labelledby="notes-talks">
-    <div className={styles.head} {...reveal()}>
-      <h3 id="notes-talks" className="t-title">
-        {t("talks.title")}
-      </h3>
-      <p className="t-small">{t("talks.sub")}</p>
-    </div>
-    <ol className={styles.rows}>
-      {TALKS.map((talk, i) => (
-        <li key={talk.id} className={styles.talk} {...reveal(i)}>
-          <span className="t-meta num">{talk.date}</span>
-          <div>
-            <a className={styles.rowTitle} href={talk.href}>
-              {t(`talks.items.${talk.id}.title`)}
-            </a>
-            <p className="t-meta">
-              {t(`talks.items.${talk.id}.venue`)} ·{" "}
-              {t(`talks.items.${talk.id}.city`)} ·{" "}
-              <abbr title={talk.lang === "PT" ? "Português" : "English"}>
-                {talk.lang}
-              </abbr>
-            </p>
-            <p className="t-small">{t(`talks.items.${talk.id}.description`)}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  </section>
-);
+const Record = ({ t, locale }: { t: T; locale: string }) => {
+  const monthYear = (iso: string) =>
+    formatDate(iso, locale, { month: "short", year: "numeric" });
+  const day = (iso: string) =>
+    formatDate(iso, locale, { day: "numeric", month: "short" });
+  const first = EPISODES.at(-1)?.date ?? "";
+  const last = EPISODES[0]?.date ?? "";
 
-const OnAir = ({ t }: { t: T }) => (
-  <section className={styles.block} aria-labelledby="notes-media">
-    <h3 id="notes-media" className="t-title" {...reveal()}>
-      {t("publications.title")}
-    </h3>
-    <div className={styles.stack} {...reveal(1)}>
-      <p className={styles.feature}>
-        <Marginalia placement="inline" note={t("publications.season")}>
-          {t("publications.featureTitle")}
-        </Marginalia>
-      </p>
-      <p className="t-small">{t("publications.featureSub")}</p>
-      <p className={styles.links}>
-        <a className="link-arrow t-small" href={PUBLICATIONS.spaceCast}>
-          {t("publications.watchShow")}
-          <ArrowUpRight />
-        </a>
-        <a className="link-arrow t-small" href={PUBLICATIONS.playlist}>
-          {t("publications.playlist")}
-          <ArrowUpRight />
-        </a>
-      </p>
-      <p className="t-small">
-        <a href={PUBLICATIONS.spaceSquad}>
-          {t("publications.ambassadorTitle")}
-        </a>
-        . {t("publications.ambassadorBody")}
-      </p>
-    </div>
-  </section>
-);
+  return (
+    <section
+      className={styles.record}
+      aria-labelledby="notes-record"
+      {...reveal()}
+    >
+      <div className={styles.recordHead}>
+        <h3 id="notes-record" className="t-title">
+          {t("record.title")}
+        </h3>
+        <p className="t-meta">
+          {t("record.summary", {
+            count: TOTAL,
+            from: Math.min(...YEARS),
+            to: Math.max(...YEARS),
+          })}{" "}
+          {t("talks.sub")}
+        </p>
+      </div>
 
-const Writing = ({ t }: { t: T }) => (
-  <section className={styles.block} aria-labelledby="notes-writing">
-    <h3 id="notes-writing" className="t-title" {...reveal()}>
-      {t("writing.title")}
-    </h3>
-    <div className={styles.stack} {...reveal(1)}>
-      <p className="t-small">{t("writing.sub")}</p>
-      <p className="t-meta">
-        {WRITING_TOPICS.map((topic) => t(`writing.topics.${topic}`)).join(
-          " · ",
-        )}
-      </p>
-      <a className="link-arrow t-small" href={PUBLICATIONS.medium}>
-        {t("writing.readOnMedium")}
-        <ArrowUpRight />
-      </a>
-    </div>
-  </section>
-);
-
-const Shipped = ({ t, locale }: { t: T; locale: string }) => (
-  <section className={styles.block} aria-labelledby="notes-shipped">
-    <div className={styles.head} {...reveal()}>
-      <h3 id="notes-shipped" className="t-title">
-        {t("shipped.title")}
-      </h3>
-      <p className="t-meta">
-        {t("shipped.source", { date: shortDate(SHIPPED_READ, locale) })}
-      </p>
-    </div>
-    <ol className={styles.rows}>
-      {SHIPPED.map((item, i) => (
-        <li key={item.id} {...reveal(i)}>
-          <a className={styles.ship} href={item.href}>
-            <time className="t-meta num" dateTime={item.date}>
-              {shortDate(item.date, locale)}
-            </time>
-            <span className={cn("t-mono", styles.pkg)}>
-              {item.name}
-              <span className={styles.version}>@{item.version}</span>
+      <fieldset className={styles.filters}>
+        <legend className="visually-hidden">{t("record.legend")}</legend>
+        {(["all", ...KINDS] as const).map((filter) => (
+          <label key={filter} className={styles.chip}>
+            <input
+              type="radio"
+              name="notes-filter"
+              id={`notes-filter-${filter}`}
+              value={filter}
+              defaultChecked={filter === "all"}
+            />
+            {t(`record.filters.${filter}`)}
+            <span className={cn("num", styles.count)}>
+              {filter === "all" ? TOTAL : COUNTS[filter]}
             </span>
-            <span className="t-small">{t(`shipped.items.${item.id}`)}</span>
-          </a>
-        </li>
-      ))}
-    </ol>
-  </section>
+          </label>
+        ))}
+      </fieldset>
+
+      <RecordPreview>
+        <ol className={styles.rows}>
+          {SHIPPED.map((item) => (
+            <Row
+              key={item.id}
+              kind="release"
+              year={item.date.slice(0, 4)}
+              label={t("record.kinds.release")}
+            >
+              <What>
+                <a className={cn("t-mono", styles.pkg)} href={item.href}>
+                  {item.name}
+                  <span className={styles.version}>@{item.version}</span>
+                </a>
+              </What>
+              <Meta>
+                <p>{t(`shipped.items.${item.id}`)}</p>
+                <time className="num" dateTime={item.date}>
+                  {day(item.date)}
+                </time>
+              </Meta>
+            </Row>
+          ))}
+
+          {TALKS.filter((talk) => talk.date === "2024").map((talk) => (
+            <TalkRow key={talk.id} t={t} talk={talk} />
+          ))}
+
+          <Row kind="show" year="2023" label={t("record.kinds.show")}>
+            <What>
+              <span className={styles.title}>{t("record.show.title")}</span>
+            </What>
+
+            <Meta>
+              <p>
+                {t("record.show.meta", {
+                  hosted: EPISODES.length,
+                  total: SPACE_CAST_TOTAL,
+                  from: monthYear(first),
+                  to: monthYear(last),
+                  hours: HOURS,
+                })}
+              </p>
+              <p className={styles.links}>
+                <label htmlFor="notes-filter-episode" className={styles.seeAll}>
+                  {t("record.show.seeAll", { hosted: EPISODES.length })}
+                </label>
+                {external(SPACE_CAST_LINKS.playlist, t("record.show.youtube"))}
+                {external(SPACE_CAST_LINKS.spotify, t("record.show.spotify"))}
+              </p>
+            </Meta>
+          </Row>
+
+          {EPISODES.map((ep) => (
+            <Row
+              key={ep.id}
+              kind="episode"
+              year={ep.date.slice(0, 4)}
+              label={t("record.kinds.episode", { n: ep.n })}
+              thumb={`/notes/space-cast/${ep.id}.webp`}
+            >
+              <What>
+                <a
+                  className={styles.title}
+                  href={`https://www.youtube.com/watch?v=${ep.id}`}
+                  lang="pt-BR"
+                >
+                  {ep.title}
+                </a>
+              </What>
+              <Meta>
+                <p>
+                  <time className="num" dateTime={ep.date}>
+                    {day(ep.date)}
+                  </time>{" "}
+                  · {t("record.episodeMeta", { minutes: ep.minutes })}
+                </p>
+              </Meta>
+            </Row>
+          ))}
+
+          {TALKS.filter((talk) => talk.date !== "2024").map((talk) => (
+            <TalkRow key={talk.id} t={t} talk={talk} />
+          ))}
+
+          {ARTICLES.map((article) => (
+            <Row
+              key={article.id}
+              kind="article"
+              year={article.date.slice(0, 4)}
+              label={t("record.kinds.article")}
+            >
+              <What>
+                <a
+                  className={styles.title}
+                  href={article.href}
+                  lang={article.lang === "PT" ? "pt-BR" : "en"}
+                >
+                  {article.title}
+                </a>
+              </What>
+              <Meta>
+                <p>
+                  {article.publication} ·{" "}
+                  <time className="num" dateTime={article.date}>
+                    {day(article.date)}
+                  </time>{" "}
+                  ·{" "}
+                  <abbr title={article.lang === "PT" ? "Português" : "English"}>
+                    {article.lang}
+                  </abbr>
+                </p>
+                {article.became ? (
+                  <p>
+                    {t.rich("record.became", {
+                      name: article.became.name,
+                      stars: article.became.stars.toLocaleString(locale),
+                      link: libraryTag(article.became.href),
+                    })}
+                  </p>
+                ) : null}
+              </Meta>
+            </Row>
+          ))}
+
+          {AWARDS.map((award) => (
+            <Row
+              key={award.id}
+              kind="hackathon"
+              year={award.year}
+              label={t("record.kinds.hackathon")}
+            >
+              <What>
+                <span className={styles.title}>
+                  {t(`awards.items.${award.id}`)}
+                </span>
+              </What>
+              <Meta>{t(`awards.positions.${award.position}`)}</Meta>
+            </Row>
+          ))}
+        </ol>
+      </RecordPreview>
+
+      <p className="t-meta">
+        {t("record.source", {
+          date: formatDate(RECORD_READ, locale, {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          }),
+        })}
+      </p>
+    </section>
+  );
+};
+
+const TalkRow = ({ t, talk }: { t: T; talk: (typeof TALKS)[number] }) => (
+  <Row kind="talk" year={talk.date} label={t("record.kinds.talk")}>
+    <What>
+      <span className={styles.title}>{t(`talks.items.${talk.id}.title`)}</span>
+    </What>
+    <Meta>
+      <p>
+        {t(`talks.items.${talk.id}.venue`)} · {t(`talks.items.${talk.id}.city`)}{" "}
+        ·{" "}
+        <abbr title={talk.lang === "PT" ? "Português" : "English"}>
+          {talk.lang}
+        </abbr>
+      </p>
+      <p>{t(`talks.items.${talk.id}.description`)}</p>
+      <p>{external(talk.href, t(`talks.items.${talk.id}.link`))}</p>
+    </Meta>
+  </Row>
 );
 
-const Awards = ({ t }: { t: T }) => (
-  <section
-    className={styles.awards}
-    aria-labelledby="notes-awards"
-    {...reveal()}
-  >
-    <h3 id="notes-awards" className="t-small">
-      {t("awards.title")}
-    </h3>
-    <p className="t-meta">{t("awards.sub")}</p>
-    <ul className={styles.awardList}>
-      {AWARDS.map((award) => (
-        <li key={award.id} className="t-meta">
-          <span className="num">{award.year}</span>{" "}
-          {t(`awards.items.${award.id}`)},{" "}
-          {t(`awards.positions.${award.position}`)}
-        </li>
-      ))}
-    </ul>
-  </section>
-);
-
-/** Now, Space Cast and writing, talks, recent releases and hackathons. */
+/** Now as a short letter, then every public thing on one filterable record. */
 export const NotesSection = async () => {
   const t = await getTranslations("notes");
   const locale = await getLocale();
@@ -208,16 +380,8 @@ export const NotesSection = async () => {
       </div>
 
       <div className={styles.layout}>
-        <Now t={t} locale={locale} />
-        <div className={styles.trio}>
-          <Talks t={t} />
-          <div className={styles.col}>
-            <OnAir t={t} />
-            <Writing t={t} />
-          </div>
-          <Shipped t={t} locale={locale} />
-        </div>
-        <Awards t={t} />
+        <Letter t={t} locale={locale} />
+        <Record t={t} locale={locale} />
       </div>
     </section>
   );

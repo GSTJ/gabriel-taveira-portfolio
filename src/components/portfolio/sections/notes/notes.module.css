@@ -1,198 +1,255 @@
-/* Shared pieces */
-
-.col,
-.block,
-.stack {
+.layout {
   display: grid;
-  align-content: start;
+  gap: var(--space-9);
 }
 
-.col {
-  gap: var(--space-8);
+/* Now: a short letter, set as lede. The note hangs in the right margin. */
+
+.letter {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 36em;
 }
 
-.block {
+.letter > p {
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.letterHead {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.curvinha {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+}
+
+/* On the record: one index of every public thing, filterable with radios. */
+
+.record {
+  display: grid;
   gap: var(--space-5);
 }
 
-.stack {
-  gap: var(--space-3);
-}
-
-.head {
+.recordHead {
   display: grid;
   gap: var(--space-2);
   max-width: var(--measure);
 }
 
-.rows {
-  display: grid;
-  border-bottom: 1px solid var(--rule);
-}
-
-.rows > li {
-  border-top: 1px solid var(--rule);
-}
-
-/* Now: the one block that changes month to month, so it leads. */
-
-.now {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.nowRows {
-  display: grid;
-  border-bottom: 1px solid var(--rule);
-}
-
-.nowRow {
-  display: grid;
-  gap: var(--space-1);
-  padding-block: var(--space-4);
-  border-top: 1px solid var(--rule);
-}
-
-.nowRow dt {
-  padding-top: 0.2em;
-}
-
-/* Inline so a wrapped title keeps its arrow on the last word. */
-.nowTitle a {
-  display: inline;
-}
-
-.nowTitle a svg {
-  display: inline;
-  margin-left: 0.3em;
-  vertical-align: -0.05em;
-}
-
-.nowTitle {
-  font-size: var(--fs-body);
-  font-weight: var(--fw-medium);
-  color: var(--ink);
-  letter-spacing: var(--tr-body);
-}
-
-/* Talks */
-
-.talk {
-  display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  gap: var(--space-4);
-  padding-block: var(--space-4);
-}
-
-.talk > span {
-  padding-top: 0.2em;
-}
-
-.talk > div {
-  display: grid;
-  gap: var(--space-1);
-}
-
-.rowTitle {
-  font-weight: var(--fw-medium);
-  color: var(--ink);
-}
-
-.talk abbr {
-  text-decoration: none;
-}
-
-/* On air and writing */
-
-.feature {
-  font-size: var(--fs-lede);
-  line-height: var(--lh-lede);
-  letter-spacing: -0.013em;
-  color: var(--ink);
-  text-wrap: pretty;
-}
-
-.links {
+.filters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  gap: var(--space-2);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
 }
 
-/* Shipped lately: a dated changelog strip, each row a link to the release. */
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 38px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease;
+}
 
-.ship {
+/* The radio stays in the accessibility tree and takes focus; the pill shows it. */
+.chip input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.chip:has(input:checked) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.chip:has(input:focus-visible) {
+  outline: 2px solid var(--pen);
+  outline-offset: 3px;
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+.count {
+  font-weight: var(--fw-regular);
+  color: var(--ink-3);
+}
+
+.chip:has(input:checked) .count {
+  color: color-mix(in oklab, var(--paper) 72%, var(--ink));
+}
+
+.rows {
+  border-bottom: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  grid-template-areas:
+    "year kind"
+    ". what"
+    ". meta";
+  column-gap: var(--space-4);
+  row-gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.year {
+  grid-area: year;
+  padding-top: 0.2em;
+}
+
+.kind {
+  grid-area: kind;
+  padding-top: 0.2em;
+}
+
+.what {
+  grid-area: what;
+  min-width: 0;
+}
+
+.meta {
+  grid-area: meta;
   display: grid;
   gap: var(--space-1);
-  padding-block: var(--space-3);
-  text-decoration: none;
+  color: var(--ink-2);
+}
+
+.title {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+  text-wrap: pretty;
 }
 
 .pkg {
   color: var(--ink);
   overflow-wrap: anywhere;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  text-decoration-color: var(--rule-strong);
-  transition: text-decoration-color var(--dur-hover) ease;
 }
 
 .version {
   color: var(--ink-3);
 }
 
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+}
+
+.seeAll {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule-strong);
+  cursor: pointer;
+}
+
+/*
+ * Filters, no JS: the checked radio decides which rows exist. "All" folds the
+ * 37 episodes into the one Space Cast row; "Space Cast" opens them under it.
+ */
+.record:has(input[value="all"]:checked) .row[data-kind="episode"],
+.record:has(input[value="talk"]:checked) .row:not([data-kind="talk"]),
+.record:has(input[value="episode"]:checked)
+  .row:not([data-kind="episode"], [data-kind="show"]),
+.record:has(input[value="article"]:checked) .row:not([data-kind="article"]),
+.record:has(input[value="release"]:checked) .row:not([data-kind="release"]),
+.record:has(input[value="hackathon"]:checked)
+  .row:not([data-kind="hackathon"]) {
+  display: none;
+}
+
+.record:has(input[value="episode"]:checked) .seeAll {
+  display: none;
+}
+
+/* Episode thumbnail that trails the pointer (record-preview.tsx). */
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 192px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-md);
+  background: var(--paper-3) center / cover no-repeat;
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity var(--dur-exit) ease,
+    transform var(--dur-exit) var(--ease-out);
+}
+
+.preview[data-on] {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--dur-ui);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview {
+    display: none;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .ship:hover .pkg {
+  .chip:hover:not(:has(input:checked)) {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+
+  .seeAll:hover {
+    text-decoration-color: var(--pen);
+  }
+
+  .row[data-thumb]:hover .title {
     text-decoration-color: var(--pen);
   }
 }
 
-/* Hackathons: small print, all five, quieter than everything above. */
-
-.awards {
-  display: grid;
-  gap: var(--space-2);
-  max-width: 60rem;
-}
-
-.awards h3 {
-  font-weight: var(--fw-medium);
-  color: var(--ink-2);
-}
-
-.awardList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-5);
-  margin-top: var(--space-1);
-}
-
-/* Now runs full width, three columns under it, hackathons as a footnote. */
-
-.layout {
-  display: grid;
-  gap: var(--space-9);
-}
-
-.trio {
-  display: grid;
-  gap: var(--space-8);
-}
-
 @media (width >= 1000px) {
-  .nowRow {
-    grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1.2fr);
-    column-gap: var(--space-6);
+  .letter > p {
+    max-width: 30em;
   }
 
-  .trio {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-7);
+  .row {
+    grid-template-columns: 3.5rem 8.5rem minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-areas: "year kind what meta";
+    column-gap: var(--space-5);
   }
 
-  .awards {
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--rule);
-    max-width: none;
+  .row[data-kind="episode"] {
+    padding-block: var(--space-3);
   }
 }

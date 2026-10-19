@@ -249,9 +249,16 @@
     }
   },
   "notes": {
-    "title": "Palestras, textos e o que estou fazendo agora.",
+    "title": "Agora, e tudo que ficou registrado.",
     "now": {
       "title": "Agora",
+      "updated": "Atualizado em {date}.",
+      "letter": {
+        "consulting": "Hoje faço consultoria em arquitetura mobile e liderança de engenharia, e estou aceitando novos projetos. Detalhes dos clientes ficam sob NDA.",
+        "building": "Por fora, estou construindo o <link>Curvinha</link>, um app iOS pra planejar a casa. Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D com produtos reais de lojas brasileiras, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "note": "fundador, eu que fiz",
+        "rest": "No resto do tempo, mentoro no Space Squad da Rocketseat e mexo num detector nativo de gravação de tela pra Expo, levando pro upstream um trabalho de um contrato anterior."
+      },
       "items": {
         "consulting": {
           "chip": "Consultoria",
@@ -263,11 +270,6 @@
           "title": "Curvinha, um app iOS pra planejar a casa",
           "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D com produtos reais de lojas brasileiras, mais a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
         },
-        "hosting": {
-          "chip": "Apresentando",
-          "title": "Space Cast na Rocketseat",
-          "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugestões de convidado são bem-vindas."
-        },
         "mentoring": {
           "chip": "Mentoria",
           "title": "Space Squad · a próxima geração",
@@ -278,52 +280,81 @@
           "title": "Detector nativo de gravação de tela pra Expo",
           "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
         }
-      },
-      "updated": "Atualizado em {date}."
+      }
     },
-    "publications": {
-      "title": "No ar",
-      "featureTitle": "Apresento o podcast Space Cast no YouTube da Rocketseat.",
-      "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
-      "watchShow": "Assistir o programa",
-      "playlist": "Playlist de episódios",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentorando a próxima geração de devs.",
-      "season": "temporada 3"
+    "record": {
+      "title": "Pra constar",
+      "summary": "{count} coisas em público, de {from} a {to}.",
+      "source": "Releases, estrelas e episódios lidos em {date} no GitHub, YouTube e Medium.",
+      "legend": "Mostrar",
+      "filters": {
+        "all": "Tudo",
+        "talk": "Palestras",
+        "episode": "Space Cast",
+        "article": "Textos",
+        "release": "Releases",
+        "hackathon": "Hackathons"
+      },
+      "kinds": {
+        "talk": "Palestra",
+        "episode": "Episódio {n}",
+        "article": "Texto",
+        "release": "Release",
+        "hackathon": "Hackathon",
+        "show": "Space Cast"
+      },
+      "show": {
+        "title": "Co-apresentador do podcast semanal da Rocketseat",
+        "meta": "{hosted} de {total} episódios, de {from} a {to}. Umas {hours} horas de conversa.",
+        "seeAll": "Ver os {hosted}",
+        "youtube": "Playlist no YouTube",
+        "spotify": "Spotify"
+      },
+      "episodeMeta": "{minutes} min",
+      "became": "Virou o <link>{name}</link>, {stars} estrelas no GitHub."
     },
     "talks": {
-      "title": "Palestras",
-      "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
+      "sub": "Palestras em português até agora. Aberto a eventos em inglês.",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
           "description": "Como aumentar o throughput de um time usando IA no dia a dia da engenharia.",
           "venue": "The Brooklyn Brothers",
-          "city": "São Paulo"
+          "city": "São Paulo",
+          "link": "Slides no Figma"
         },
         "tdc": {
           "title": "Entregando o Mozeic no Zé Delivery",
           "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
           "venue": "TDC · Design Systems",
-          "city": "São Paulo"
+          "city": "São Paulo",
+          "link": "Site do evento"
         },
         "assemble": {
           "title": "Formando um Tech Lead, três dias por vez",
           "description": "Imersão de 3 dias pra formar líderes de engenharia.",
           "venue": "Assemble · Rocketseat",
-          "city": "Remoto"
+          "city": "Remoto",
+          "link": "Rocketseat"
         },
         "spaceSquad": {
           "title": "Mentoria na comunidade Space Squad",
           "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
           "venue": "Space Squad · Rocketseat",
-          "city": "Remoto"
+          "city": "Remoto",
+          "link": "Space Squad no YouTube"
         }
       }
     },
+    "shipped": {
+      "items": {
+        "pegada": "Limite diário de likes configurável e plano semanal",
+        "safeJsx": "A regra agora pega brechas com booleanos mutáveis",
+        "codePush": "As duas URLs do servidor CodePush viraram obrigatórias, então config errada falha cedo",
+        "magicModal": "Peers de React Native viraram opcionais, a instalação web é um pacote só"
+      }
+    },
     "awards": {
-      "title": "Hackathons",
-      "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
       "positions": {
         "first": "1º lugar",
         "second": "2º lugar",
@@ -335,28 +366,6 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
-      }
-    },
-    "writing": {
-      "title": "Textos",
-      "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
-      "topics": {
-        "leadership": "Liderança em Engenharia",
-        "mobile": "Arquitetura Mobile",
-        "design": "Design Systems",
-        "hiring": "Contratação & Mentoria",
-        "reverse": "Engenharia Reversa"
-      },
-      "readOnMedium": "Ler no Medium"
-    },
-    "shipped": {
-      "title": "Lançado há pouco",
-      "source": "Das minhas releases no GitHub, lidas em {date}.",
-      "items": {
-        "pegada": "Limite diário de likes configurável e plano semanal",
-        "safeJsx": "A regra agora pega brechas com booleanos mutáveis",
-        "codePush": "As duas URLs do servidor CodePush viraram obrigatórias, então config errada falha cedo",
-        "magicModal": "Peers de React Native viraram opcionais, a instalação web é um pacote só"
       }
     }
   },

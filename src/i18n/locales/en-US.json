@@ -249,9 +249,16 @@
     }
   },
   "notes": {
-    "title": "Talks, writing, and what I'm doing now.",
+    "title": "Now, and everything on the record.",
     "now": {
       "title": "Now",
+      "updated": "Updated {date}.",
+      "letter": {
+        "consulting": "I'm consulting on mobile architecture and engineering leadership, and taking on new engagements. Client details stay under NDA.",
+        "building": "On the side I'm building <link>Curvinha</link>, an iOS app for planning your home. Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores.",
+        "note": "founder, built it",
+        "rest": "The rest of the time I mentor in Rocketseat's Space Squad and tinker with a native screen-recording detector for Expo, upstreaming work from a past engagement."
+      },
       "items": {
         "consulting": {
           "chip": "Consulting",
@@ -263,11 +270,6 @@
           "title": "Curvinha, an iOS app for planning your home",
           "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
         },
-        "hosting": {
-          "chip": "Hosting",
-          "title": "Space Cast on Rocketseat",
-          "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Guest ideas welcome."
-        },
         "mentoring": {
           "chip": "Mentoring",
           "title": "Space Squad · the next generation",
@@ -278,52 +280,81 @@
           "title": "A native screen-recording detector for Expo",
           "body": "Upstreaming work from a past engagement. Reverse-engineering for fun, then for prod. Both still scratch the same age-8 itch."
         }
-      },
-      "updated": "Updated {date}."
+      }
     },
-    "publications": {
-      "title": "On air",
-      "featureTitle": "I host the Space Cast podcast on Rocketseat's YouTube.",
-      "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
-      "watchShow": "Watch the show",
-      "playlist": "Episode playlist",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentoring the next generation of tech wizards.",
-      "season": "season 3"
+    "record": {
+      "title": "On the record",
+      "summary": "{count} things in public, {from} to {to}.",
+      "source": "Releases, stars and episodes read on {date} from GitHub, YouTube and Medium.",
+      "legend": "Show",
+      "filters": {
+        "all": "All",
+        "talk": "Talks",
+        "episode": "Space Cast",
+        "article": "Writing",
+        "release": "Releases",
+        "hackathon": "Hackathons"
+      },
+      "kinds": {
+        "talk": "Talk",
+        "episode": "Episode {n}",
+        "article": "Article",
+        "release": "Release",
+        "hackathon": "Hackathon",
+        "show": "Space Cast"
+      },
+      "show": {
+        "title": "Co-host of Rocketseat's weekly podcast",
+        "meta": "{hosted} of {total} episodes, {from} to {to}. About {hours} hours of conversation.",
+        "seeAll": "See all {hosted}",
+        "youtube": "YouTube playlist",
+        "spotify": "Spotify"
+      },
+      "episodeMeta": "{minutes} min",
+      "became": "Turned into <link>{name}</link>, {stars} stars on GitHub."
     },
     "talks": {
-      "title": "Talks",
-      "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
+      "sub": "Talks so far in Portuguese. Open to English ones.",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
           "description": "How to lift team throughput with AI in day-to-day engineering.",
           "venue": "The Brooklyn Brothers",
-          "city": "São Paulo"
+          "city": "São Paulo",
+          "link": "Slides on Figma"
         },
         "tdc": {
           "title": "Shipping Mozeic at Zé Delivery",
           "description": "Lessons from co-building an in-house design system at a high-traffic delivery app.",
           "venue": "TDC · Design Systems",
-          "city": "São Paulo"
+          "city": "São Paulo",
+          "link": "Event site"
         },
         "assemble": {
           "title": "Forming a Tech Lead, three days at a time",
           "description": "3-day immersion focused on forming engineering leads.",
           "venue": "Assemble · Rocketseat",
-          "city": "Remote"
+          "city": "Remote",
+          "link": "Rocketseat"
         },
         "spaceSquad": {
           "title": "Mentoring in the Space Squad community",
           "description": "Ongoing mentorship through Rocketseat's ambassador program.",
           "venue": "Space Squad · Rocketseat",
-          "city": "Remote"
+          "city": "Remote",
+          "link": "Space Squad on YouTube"
         }
       }
     },
+    "shipped": {
+      "items": {
+        "pegada": "Configurable daily like limit and a weekly plan",
+        "safeJsx": "The rule now catches mutable boolean bypasses",
+        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
+        "magicModal": "React Native peers are optional, so the web install is one package"
+      }
+    },
     "awards": {
-      "title": "Hackathons",
-      "sub": "A few hackathons I crashed before the day job got busy.",
       "positions": {
         "first": "1st place",
         "second": "2nd place",
@@ -335,28 +366,6 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
-      }
-    },
-    "writing": {
-      "title": "Writing",
-      "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
-      "topics": {
-        "leadership": "Engineering Leadership",
-        "mobile": "Mobile Architecture",
-        "design": "Design Systems",
-        "hiring": "Hiring & Mentorship",
-        "reverse": "Reverse Engineering"
-      },
-      "readOnMedium": "Read on Medium"
-    },
-    "shipped": {
-      "title": "Shipped lately",
-      "source": "From my GitHub releases, read {date}.",
-      "items": {
-        "pegada": "Configurable daily like limit and a weekly plan",
-        "safeJsx": "The rule now catches mutable boolean bypasses",
-        "codePush": "Both CodePush server URLs are required, so a bad config fails early",
-        "magicModal": "React Native peers are optional, so the web install is one package"
       }
     }
   },
