@@ -134,7 +134,7 @@ One neutral paper (cooler than Curvinha's cream on purpose), three inks, two rul
 - **rule / rule-strong**: hairlines between rows and sections; ghost button borders.
 - **control**: the edge of an input and the switch (track border, off thumb). 3:1 or better on every paper, so a control reads as a control.
 - **pen**: his notes, the pen underline, focus rings, selection (as `pen-wash`). Never a button fill, never a heading color, never a second accent next to it.
-- **gold / silver** (and their `-shine`): medal metal, only on a real, sourced placement. Never a fill for anything else.
+- **gold / silver / bronze** (and their `-shine`): medal metal, only on a real placement. Bronze marks a finalist spot; the words still say "finalist". Never a fill for anything else.
 
 `--scrim`, `--bezel` and `--shadow` exist for the one modal, the phone frame the projects section may need, and the hero's app icons.
 

@@ -33,6 +33,8 @@
   --gold-shine: light-dark(#f1d27a, #f6dc8c);
   --silver: light-dark(#9aa3ad, #b9c1ca);
   --silver-shine: light-dark(#e3e7eb, #eef1f4);
+  --bronze: light-dark(#b0703a, #cf945c);
+  --bronze-shine: light-dark(#e2b383, #eec39a);
   --scrim: light-dark(rgb(20 20 18 / 0.38), rgb(0 0 0 / 0.55));
   --bezel: light-dark(#111110, #000);
   --shadow-near: light-dark(rgb(25 25 23 / 0.06), rgb(0 0 0 / 0.4));

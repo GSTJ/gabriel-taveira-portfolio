@@ -569,7 +569,7 @@
 }
 
 /* Hover a result and the rest of the board steps back while its medal pins
-   on: gold for a win, silver for second, a plain ribbon for the finalist. */
+   on: gold for a win, silver for second, bronze for the finalist spot. */
 .result {
   --metal: var(--gold);
   --metal-shine: var(--gold-shine);
@@ -581,8 +581,8 @@
 }
 
 .result[data-position="finalist"] {
-  --metal: var(--ink-3);
-  --metal-shine: var(--paper-2);
+  --metal: var(--bronze);
+  --metal-shine: var(--bronze-shine);
 }
 
 .place {
@@ -621,10 +621,6 @@
     fill: var(--pen);
   }
 
-  .result[data-position="finalist"] .ribbon {
-    fill: var(--ink-3);
-  }
-
   .disc {
     fill: var(--metal);
   }
@@ -633,11 +629,6 @@
     fill: none;
     stroke: var(--metal-shine);
     stroke-width: 1.2;
-  }
-
-  .result[data-position="finalist"] .disc,
-  .result[data-position="finalist"] .ring {
-    display: none;
   }
 
   /* On the children: the li's own opacity and transition belong to reveal. */
