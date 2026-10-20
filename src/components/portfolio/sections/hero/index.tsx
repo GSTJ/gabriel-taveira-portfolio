@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+
+import Image from "next/image";
 
 import { getTranslations } from "next-intl/server";
 
@@ -7,7 +9,7 @@ import { cn } from "@/utils/cn";
 import { ArrowUpRight } from "../../ui/icons";
 import { enter } from "../../ui/motion";
 import { PenUnderline } from "../../ui/pen-underline";
-import { HERO_LINKS } from "./data";
+import { HERO_APPS, HERO_LINKS } from "./data";
 
 import styles from "./hero.module.css";
 
@@ -59,6 +61,33 @@ export const HeroSection = async () => {
           </a>
         </div>
       </div>
+
+      {/* Pre-sized 192px webps, so no optimizer. Lazy and low priority: the
+          lede stays the LCP and the box is sized before they arrive. */}
+      <ul className={styles.apps} aria-label={t("apps.label")} {...enter(360)}>
+        {HERO_APPS.map((app, i) => (
+          <li
+            key={app.id}
+            className={styles.app}
+            style={{ "--i": i } as CSSProperties}
+          >
+            <a href={app.href}>
+              <Image
+                src={`/hero/${app.id}.webp`}
+                alt=""
+                width={96}
+                height={96}
+                unoptimized
+                loading="lazy"
+                fetchPriority="low"
+              />
+              <span className={styles.label}>
+                {app.name} · {t(`apps.items.${app.id}`)}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

@@ -55,6 +55,17 @@
       "getInTouch": "Fala comigo",
       "downloadPdf": "Baixar PDF",
       "linkedIn": "LinkedIn"
+    },
+    "apps": {
+      "label": "Apps em que trabalhei",
+      "items": {
+        "coinbase": "infra do app",
+        "did": "construí do zero",
+        "curvinha": "fundador",
+        "ze": "refatorei o app",
+        "groundswell": "mentoria mobile",
+        "pegada": "fundador"
+      }
     }
   },
   "projects": {

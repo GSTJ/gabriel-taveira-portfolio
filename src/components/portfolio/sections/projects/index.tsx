@@ -99,7 +99,7 @@ export const ProjectsSection = async () => {
       </div>
 
       <div className={styles.bento}>
-        <div className={styles.areaCv} {...reveal()}>
+        <div id="project-curvinha" className={styles.areaCv} {...reveal()}>
           <CurvinhaCard
             href={href("curvinha")}
             lang={locale.startsWith("pt") ? "pt" : "en"}
@@ -134,7 +134,7 @@ export const ProjectsSection = async () => {
           />
         </div>
 
-        <div className={styles.areaPg} {...reveal(1)}>
+        <div id="project-pegada" className={styles.areaPg} {...reveal(1)}>
           <PegadaCard
             copy={{
               title: t("items.pegada.title"),
