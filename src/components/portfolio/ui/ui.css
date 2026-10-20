@@ -492,7 +492,7 @@
   font-size: var(--fs-h1);
   line-height: var(--lh-title);
   letter-spacing: var(--tr-h2);
-  color: var(--ink-2);
+  color: var(--ink-3);
   text-wrap: balance;
   hanging-punctuation: first last;
 }
@@ -505,10 +505,43 @@
   content: "\201D";
 }
 
+/*
+ * Scrubbed ink: each word turns from ink-3 to ink as `--scrub` passes its
+ * place `--w`, a quarter of the way ahead, so a few words are mid-stroke at
+ * once. The highlighter under the marked phrase (`--ws` to `--we`) runs with
+ * its words. Unset `--scrub` (no JS, reduced motion) is fully inked.
+ */
+.ink-w {
+  --k: clamp(0, (var(--scrub, 1) * 1.25 - var(--w)) * 4, 1);
+  color: color-mix(in oklab, var(--ink) calc(var(--k) * 100%), var(--ink-3));
+}
+
+.ink-mark {
+  --h: clamp(
+    0,
+    (var(--scrub, 1) * 1.25 - var(--ws)) / (var(--we) - var(--ws) + 0.25),
+    1
+  );
+  --marker: color-mix(in oklab, var(--pen) 22%, transparent);
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat 0 90% /
+    calc(var(--h) * 100%) 0.5em;
+}
+
 .interlude figcaption {
   color: var(--ink-3);
 }
 
 .interlude figcaption a {
   color: var(--ink-2);
+}
+
+/* ── Depth: a stage's layers drift at their own rate as it passes ────── */
+
+/*
+ * `--depth` on a layer is its travel, at rest when the stage is centered.
+ * A layer placed with `translate` sets `--place-y` instead, so both add up.
+ */
+[data-scrub="depth"] > * {
+  translate: 0
+    calc(var(--place-y, 0px) + (0.5 - var(--scrub, 0.5)) * var(--depth, 0px));
 }

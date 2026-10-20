@@ -383,6 +383,7 @@
 }
 
 .cvFront {
+  --depth: 12px;
   position: absolute;
   top: 0;
   left: 0;
@@ -413,6 +414,7 @@
 }
 
 .cvPull {
+  --depth: 36px;
   position: absolute;
   top: 106cqi;
   right: 0;
@@ -490,7 +492,7 @@
   .cvPull {
     top: 87cqi;
     width: 60cqi;
-    translate: 0 -100%;
+    --place-y: -100%;
   }
 
   .cvNote {
@@ -630,6 +632,7 @@
 }
 
 .pgScreen {
+  --depth: 24px;
   position: absolute;
   top: 18cqi;
   right: 7cqi;
