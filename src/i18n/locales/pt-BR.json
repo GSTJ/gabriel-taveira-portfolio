@@ -191,53 +191,48 @@
     "independent": "Independente"
   },
   "services": {
-    "title": "Me contrata pra destravar seu time mobile.",
-    "sub": "Projetos com escopo fechado ou liderança sob demanda. Já fiz cada um desses em escala.",
+    "title": "Como posso ajudar.",
+    "sub": "Projetos com escopo fechado ou liderança interina, remoto com times dos EUA.",
     "proofs": {
       "label": "Onde fiz isso",
-      "work": "Times que liderei"
+      "work": "Histórico"
     },
     "items": {
       "audit": {
-        "chip": "Auditoria",
         "title": "Revisão de arquitetura React Native",
-        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app, terminando num plano priorizado que o time consegue executar. Mesmo método que usei pra levar a cobertura de testes de 25% para 45% na Coinbase."
+        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app. Você sai com um plano priorizado que o time toca sem mim."
       },
       "migrations": {
-        "chip": "Migrações",
         "title": "Migrações para Expo, nova arquitetura e React Compiler",
-        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler sem congelar o roadmap. Fiz isso no app da Coinbase e liderei uma reescrita completa de Ionic para React Native."
+        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler com o time seguindo nas features."
       },
       "leadership": {
-        "chip": "Liderança",
         "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já liderei times de 4 a 56 reportes diretos."
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já fui responsável por 56 pessoas em dois níveis, incluindo líderes que tocavam os próprios times."
       },
       "systems": {
-        "chip": "Design",
         "title": "Design systems e experiência de desenvolvimento",
-        "body": "Bibliotecas de componentes e SDKs que deixam os times de produto andarem rápido sem quebrar a UI. Co-criei o Mozeic no Zé Delivery e um design system open-source na Kustomer."
+        "body": "Bibliotecas de componentes e SDKs pros times de produto entregarem telas sem quebrar a UI."
       }
     },
     "engagement": {
       "title": "Como funciona um projeto.",
-      "sub": "Dimensionado pro seu app e pro seu time.",
       "steps": {
         "review": {
           "title": "Diagnóstico",
-          "body": "Leio o código, o pipeline de release e o backlog, e converso com quem é dono de cada um."
+          "body": "Leio o código, o pipeline de release e o backlog, e converso com quem cuida de cada um."
         },
         "plan": {
           "title": "Plano",
-          "body": "Um plano priorizado com os tradeoffs explícitos, curto o bastante pra ser lido de verdade."
+          "body": "Um plano curto por escrito: o que corrigir primeiro, quanto custa e o que pode esperar."
         },
         "ship": {
           "title": "Execução",
-          "body": "Trabalho dentro do seu time nas partes mais arriscadas: a migração, a performance, o trem de release."
+          "body": "Trabalho dentro do seu time começando pela parte mais arriscada: a migração, as telas lentas, o trem de release."
         },
         "handoff": {
           "title": "Passagem",
-          "body": "Documentação, padrões e pessoas donas do resultado, pra nada depender de mim depois."
+          "body": "Documentação, padrões de review e alguém do seu time dono de cada parte."
         }
       }
     }
