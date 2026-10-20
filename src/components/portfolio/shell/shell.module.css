@@ -116,29 +116,81 @@
 }
 
 /*
- * One signature on screen at a time: as the footer's comes into view, this
- * one drops away toward it, and comes back on the way up. Browsers without
- * scroll-driven animations just keep it.
+ * The signature is written in on arrival, in the footer's hand (same curve,
+ * same pace), and leans in a touch under the pointer.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .signature {
+    animation: write-in calc(var(--dur-note) * 1.5) var(--ease-pen) 200ms both;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .signature {
+    transform-origin: 0 75%;
+    transition:
+      rotate var(--dur-ui) var(--ease-out),
+      scale var(--dur-ui) var(--ease-out);
+  }
+
+  .brand:hover .signature {
+    rotate: -2deg;
+    scale: 1.04;
+  }
+}
+
+@keyframes write-in {
+  from {
+    clip-path: inset(-30% 100% -30% -6%);
+  }
+  to {
+    clip-path: inset(-30% -12% -30% -6%);
+  }
+}
+
+/*
+ * One signature on screen at a time. As the footer's scrolls in, this one
+ * unwrites right to left, the pen going back, while it dips and tilts toward
+ * the footer, which then writes itself in. Scrolling back up writes it again.
+ * Browsers without scroll-driven animations just keep it; reduced motion only
+ * fades it.
  */
 @supports (animation-timeline: view()) {
-  .signature {
-    --drift: 0px;
-    animation: hand-off linear both;
+  .brand {
+    animation: hand-off-still linear both;
     animation-timeline: --signoff;
-    animation-range: entry 0% entry 70%;
+    /* About 200px of scroll, overlapping the footer's own write-in. */
+    animation-range: cover 0% cover 20%;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .signature {
-      --drift: 8px;
+    .brand {
+      animation-name: hand-off;
     }
   }
 }
 
 @keyframes hand-off {
+  from {
+    clip-path: inset(-40% -10% -40% -10%);
+    animation-timing-function: var(--ease-in-out);
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(-40% 100% -40% -10%);
+    translate: 0 10px;
+    rotate: -3deg;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hand-off-still {
   to {
     opacity: 0;
-    transform: translateY(var(--drift));
+    visibility: hidden;
   }
 }
 
