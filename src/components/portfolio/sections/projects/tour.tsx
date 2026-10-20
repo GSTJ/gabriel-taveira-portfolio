@@ -32,11 +32,12 @@ export type TourStep = { title: string; body: string };
 
 /**
  * A card that shows an app in steps. It plays the steps once while at least
- * 35% of the screen is in view and the tab is visible, then rests on the last.
+ * 35% of the screen is in view and the tab is visible, then rests on `rest`
+ * (the last step unless the card says otherwise).
  * Pressing, focusing or swiping hands the card to the visitor for good.
  * Reduced motion skips the tour and opens on `still`.
  */
-export const useTour = (count: number, still = 0) => {
+export const useTour = (count: number, still = 0, rest = count - 1) => {
   const last = count - 1;
   const screen = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -45,6 +46,7 @@ export const useTour = (count: number, still = 0) => {
   /** The screen is within a viewport of the window: time to fetch images. */
   const [near, setNear] = useState(false);
   const [owned, setOwned] = useState(false);
+  const [done, setDone] = useState(false);
   /** Screens shown so far stay mounted; the rest load one step ahead. */
   const [seen, setSeen] = useState<readonly number[]>([]);
   const reduce = useSyncExternalStore(
@@ -54,7 +56,7 @@ export const useTour = (count: number, still = 0) => {
   );
 
   const active = reduce && !owned ? still : step;
-  const auto = !owned && !reduce && active < last;
+  const auto = !owned && !reduce && !done;
   const playing = inView && auto;
   if (!seen.includes(active)) setSeen([...seen, active]);
 
@@ -91,12 +93,13 @@ export const useTour = (count: number, still = 0) => {
 
   useEffect(() => {
     if (!playing) return;
-    const timer = setInterval(
-      () => setStep((i) => Math.min(i + 1, last)),
-      STEP_MS,
-    );
+    const timer = setInterval(() => {
+      if (step < last) return setStep(step + 1);
+      setStep(rest);
+      setDone(true);
+    }, STEP_MS);
     return () => clearInterval(timer);
-  }, [playing, last]);
+  }, [playing, step, last, rest]);
 
   const select = (index: number, focus = false) => {
     const next = (index + count) % count;

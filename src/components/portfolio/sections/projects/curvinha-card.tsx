@@ -59,7 +59,7 @@ export const CurvinhaCard = ({
   facts: { swift: ReactNode; tests: ReactNode; versions: ReactNode };
 }) => {
   const id = useId();
-  const tour = useTour(CURVINHA_STEPS.length);
+  const tour = useTour(CURVINHA_STEPS.length, 0, 0);
 
   /** Both themes of one capture; CSS shows the one that matches the page. */
   const capture = (
