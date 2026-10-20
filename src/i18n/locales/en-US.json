@@ -98,11 +98,9 @@
         "roomAlt": "Curvinha's 3D view of the sample living room, furnished with 12 suggested pieces from 5 stores.",
         "fitAlt": "Why it's for you: fits on the window wall with 121 cm to spare. R$ 533,71, within your R$ 4.000 to R$ 6.000. Material: linen, solid wood, eucalyptus, metal.",
         "fitNote": "the fit check is plain math",
-        "countedOn": "Counted in the app's code on {date}.",
         "facts": {
-          "swift": "<b>{lines} lines of Swift</b>, {roomKit} of them in RoomKit, my own package for the scan, the geometry, the floor plan and the 3D.",
-          "tests": "<b>{count} Swift tests</b>, some checking that the phone places each piece where the server's TypeScript solver does.",
-          "versions": "<b>{count} versions</b> since the first commit, on {date}."
+          "roomKit": "<b>RoomKit</b>, my own Swift package for the scan, the geometry, the floor plan and the 3D.",
+          "parity": "<b>Same answer on the phone and the server</b>: tests check that the app places each piece where the server's TypeScript solver does."
         }
       },
       "magicModal": {

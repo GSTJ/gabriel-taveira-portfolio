@@ -31,7 +31,6 @@ export type CurvinhaCopy = {
   roomAlt: string;
   fitAlt: string;
   fitNote: string;
-  countedOn: string;
 };
 
 const THEMES = { light: "only-light", dark: "only-dark" } as const;
@@ -45,7 +44,7 @@ const PHONE = {
  * Two whole screens beside the copy: the front phone plays the three steps
  * from the LiDAR scan, the other holds the room RoomKit furnished in 3D, with
  * a piece page's "Why it's for you" block enlarged over its foot. `facts` are
- * the repo's counts, rich text from the server.
+ * how it's built, rich text from the server.
  */
 export const CurvinhaCard = ({
   copy,
@@ -56,7 +55,7 @@ export const CurvinhaCard = ({
   copy: CurvinhaCopy;
   href: string;
   lang: "en" | "pt";
-  facts: { swift: ReactNode; tests: ReactNode; versions: ReactNode };
+  facts: { roomKit: ReactNode; parity: ReactNode };
 }) => {
   const id = useId();
   const tour = useTour(CURVINHA_STEPS.length, 0, 0);
@@ -144,11 +143,9 @@ export const CurvinhaCard = ({
 
       <div className={styles.cvFacts}>
         <ul>
-          <li>{facts.swift}</li>
-          <li>{facts.tests}</li>
-          <li>{facts.versions}</li>
+          <li>{facts.roomKit}</li>
+          <li>{facts.parity}</li>
         </ul>
-        <p className="t-meta">{copy.countedOn}</p>
       </div>
     </article>
   );

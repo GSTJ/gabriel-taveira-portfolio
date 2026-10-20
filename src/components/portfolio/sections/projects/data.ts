@@ -50,24 +50,6 @@ export const PROJECTS: readonly ProjectItem[] = [
 export const CURVINHA_STEPS = ["scan", "plan", "list"] as const;
 export type CurvinhaStep = (typeof CURVINHA_STEPS)[number];
 
-/**
- * How big Curvinha is, counted in its repo at origin/main 28ab5d04f
- * (2026-10-19 23:11 -03), from `git archive origin/main app-ios | tar -x`:
- * - swift: `find app-ios -name '*.swift' -type f -print0 | xargs -0 cat | wc -l`
- *   (`-type f` skips the replay tool's symlinks), and the same over
- *   `app-ios/Packages/RoomKit/Sources` for `roomKit`.
- * - tests: Swift Testing `@Test` plus XCTest `func test*(`, one per line:
- *   `grep -rhE '^[[:space:]]*@Test([[:space:](]|$)|func test[A-Za-z0-9_]*\(' --include='*.swift' app-ios | wc -l`.
- * - versions: `git tag --list 'v*' --merged origin/main | wc -l`, v1.0.0
- *   (2026-09-27) to v2.18.0; the first commit is `since`.
- */
-export const CURVINHA_FACTS = {
-  read: "2026-10-19",
-  swift: { lines: 185355, roomKit: 62010 },
-  tests: 2200,
-  versions: { count: 56, since: "2026-09-26" },
-} as const;
-
 /** What Curvinha is built in: Apple's own frameworks, no cross-platform layer. */
 export const CURVINHA_STACK = [
   { id: "swiftUi", name: "SwiftUI" },
