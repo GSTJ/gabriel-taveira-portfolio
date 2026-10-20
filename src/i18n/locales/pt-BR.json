@@ -40,7 +40,7 @@
   "hero": {
     "status": "Consultor independente",
     "title": "Faço apps e ajudo times a <pen>fazer os deles.</pen>",
-    "body": "Já cheguei a ter <strong>56 pessoas</strong> sob a minha gestão. No time de infra do app da Coinbase, puxei a adoção do React Compiler. Hoje sou consultor independente, construo a Curvinha e mantenho bibliotecas como magic-modal e safe-jsx.",
+    "body": "Já cheguei a ter <strong>56 pessoas</strong> sob a minha gestão. No time de infra do app da Coinbase, ajudei nos releases e nas migrações grandes do app. Hoje sou consultor independente, construo a Curvinha e mantenho bibliotecas como magic-modal e safe-jsx.",
     "cta": {
       "getInTouch": "Fala comigo",
       "downloadPdf": "Baixar PDF",
@@ -161,7 +161,7 @@
       },
       "coinbase": {
         "title": "Migrações no app da Coinbase",
-        "blurb": "Time de Consumer App Infra. Puxei a adoção do React Compiler junto ao React WG, ajudei a migrar a Coinbase pro Expo Prebuild e ajudei a habilitar a nova arquitetura do React Native. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>."
+        "blurb": "Time de Consumer App Infra. Ajudei nos releases do app, na migração do design system, na implementação do React Compiler e da nova arquitetura do React Native, e na migração pro Expo Prebuild. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>."
       },
       "ateam": {
         "title": "Lead Engineer no app mobile da D-ID",

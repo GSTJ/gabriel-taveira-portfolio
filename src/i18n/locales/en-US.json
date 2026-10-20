@@ -40,7 +40,7 @@
   "hero": {
     "status": "Independent consultant",
     "title": "I build apps and help teams <pen>build theirs.</pen>",
-    "body": "At my largest, <strong>56 people</strong> reported up to me. On Coinbase's app infrastructure team I drove React Compiler adoption. Now I consult independently, build Curvinha and maintain libraries like magic-modal and safe-jsx.",
+    "body": "At my largest, <strong>56 people</strong> reported up to me. On Coinbase's app infrastructure team I helped with releases and the app's big migrations. Now I consult independently, build Curvinha and maintain libraries like magic-modal and safe-jsx.",
     "cta": {
       "getInTouch": "Get in touch",
       "downloadPdf": "Download PDF",
@@ -161,7 +161,7 @@
       },
       "coinbase": {
         "title": "Migrations on the Coinbase app",
-        "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, helped migrate Coinbase to Expo Prebuild, and helped enable React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>."
+        "blurb": "On Consumer App Infra. Helped with app releases, the design system migration, rolling out React Compiler and React Native's new architecture, and the move to Expo Prebuild. Test coverage on team-owned files: <mark>25% → 45%</mark>."
       },
       "ateam": {
         "title": "Lead Engineer on D-ID's mobile flagship",
