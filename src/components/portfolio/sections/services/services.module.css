@@ -100,10 +100,6 @@
   font-weight: var(--fw-strong);
 }
 
-.flowSub {
-  max-width: var(--measure);
-}
-
 /*
  * Each step draws a segment to the next and its dot fills as the line
  * arrives: the order is the point. Vertical on phones, across from 760px.

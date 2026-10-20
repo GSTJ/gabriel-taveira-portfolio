@@ -196,53 +196,48 @@
     "independent": "Independent"
   },
   "services": {
-    "title": "Hire me to unblock your mobile team.",
-    "sub": "Scoped engagements or fractional leadership. I've done every one of these at scale.",
+    "title": "How I can help.",
+    "sub": "Scoped projects or interim leadership, remote with US teams.",
     "proofs": {
       "label": "Where I did it",
-      "work": "Teams I've led"
+      "work": "Work history"
     },
     "items": {
       "audit": {
-        "chip": "Audit",
         "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy, ending in a prioritized plan your team can actually execute. Same playbook I used to take test coverage from 25% to 45% at Coinbase."
+        "body": "A hard look at your app's performance, release pipeline, and test strategy. You get a prioritized plan your team can run without me."
       },
       "migrations": {
-        "chip": "Migrations",
         "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler without freezing feature work. I've done it on Coinbase's app and led a full Ionic to React Native rewrite."
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler while feature work keeps shipping."
       },
       "leadership": {
-        "chip": "Leadership",
         "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've managed teams from 4 to 56 direct reports."
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've been responsible for 56 people across two levels, including leads who ran their own teams."
       },
       "systems": {
-        "chip": "Design",
         "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams move fast without breaking the UI. Co-built Mozeic at Zé Delivery and an open-source design system at Kustomer."
+        "body": "Component libraries and SDKs that let product teams ship screens without breaking the UI."
       }
     },
     "engagement": {
       "title": "How an engagement runs.",
-      "sub": "Sized to your app and your team.",
       "steps": {
         "review": {
           "title": "Review",
-          "body": "I read the codebase, the release pipeline, and the backlog, and talk to the people who own them."
+          "body": "I read the code, the release pipeline, and the backlog, and talk to whoever owns each one."
         },
         "plan": {
           "title": "Plan",
-          "body": "A prioritized plan with the tradeoffs spelled out, short enough that people actually read it."
+          "body": "A short written plan: what to fix first, what it costs, and what can wait."
         },
         "ship": {
           "title": "Ship",
-          "body": "I work inside your team on the riskiest parts: the migration, the performance work, the release train."
+          "body": "I work inside your team on the riskiest part first: the migration, the slow screens, the release train."
         },
         "handoff": {
           "title": "Hand off",
-          "body": "Docs, standards, and people who own the result, so nothing depends on me sticking around."
+          "body": "Docs, review standards, and an owner on your team for each piece."
         }
       }
     }

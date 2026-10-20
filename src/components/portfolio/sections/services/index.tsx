@@ -71,9 +71,6 @@ export const ServicesSection = async () => {
         <h3 className={cn("t-title", styles.flowTitle)} {...reveal()}>
           {t("engagement.title")}
         </h3>
-        <p className={cn("t-body", styles.flowSub)} {...reveal(1)}>
-          {t("engagement.sub")}
-        </p>
         <ol className={styles.steps} data-draw="" suppressHydrationWarning>
           {ENGAGEMENT_STEPS.map((step, index) => (
             <li key={step} style={timingStyle({ index })}>
