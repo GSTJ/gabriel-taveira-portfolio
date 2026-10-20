@@ -12,14 +12,13 @@ import {
   GITHUB,
   LINKEDIN,
   MEDIUM,
+  NPM,
+  SITE_SOURCE,
 } from "../profile";
 import { NOW_UPDATED } from "../sections/notes/data";
 import { ArrowUpRight, CHANNEL_ICONS } from "../ui/icons";
 
 import styles from "./shell.module.css";
-
-/** The npm user that publishes his packages (registry `maintainers`). */
-const NPM = "https://www.npmjs.com/~gabrieltaveira";
 
 const NpmIcon = (
   <svg
@@ -49,9 +48,11 @@ const SECTIONS = ["projects", "work", "services", "contact"] as const;
 const LLMS_TXT = "/llms.txt";
 
 /**
- * Opens with his pen signing off across the page, then the map of the site,
- * where else he is, the files, and a fine line with the date the page was
- * last touched. Also renders on /security, so every link is absolute.
+ * The page ends the way a letter does: a closing line, his name written in
+ * his pen with a flourish under it, the line a signature carries (what he
+ * does, his email) and a P.S. Beside it, a quiet map of the site, where else
+ * he is and the files; under it, a fine line with the date the page was last
+ * touched. Also renders on /security, so every link is absolute.
  */
 export const Footer = async () => {
   const t = await getTranslations("common.footer");
@@ -61,31 +62,38 @@ export const Footer = async () => {
   return (
     <footer className={styles.footer}>
       <div className="wrap">
-        <svg
-          className={styles.sign}
-          data-draw=""
-          suppressHydrationWarning
-          viewBox="0 0 1200 40"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path
-            pathLength={1}
-            d="M4 26C160 18 330 30 520 22s390-14 560-6c40 2 70 0 96-9 8-3 14-1 10 5"
-          />
-        </svg>
-
         <div className={styles.footCols}>
-          <div className={styles.footBrand}>
-            <a className={styles.footName} href={`/${locale}`}>
-              Gabriel Taveira
-            </a>
+          <div className={styles.signoff}>
+            <p className={styles.closing}>{t("closing")}</p>
+            <p className={styles.sign} data-draw="" suppressHydrationWarning>
+              <span className={styles.signName}>Gabriel Taveira</span>
+              <svg
+                className={styles.flourish}
+                viewBox="0 0 320 28"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  pathLength={1}
+                  d="M6 17C70 12 150 10 236 13c34 1 58-1 72-9 6-3 9 0 5 5"
+                />
+              </svg>
+            </p>
             <p>{t("tagline")}</p>
             <a className={styles.footMail} href={EMAIL}>
               <span className={styles.footIcon}>{CHANNEL_ICONS.email}</span>
               {EMAIL_ADDR}
             </a>
+            <p className={styles.ps}>
+              <span className={styles.psMark}>P.S.</span> {t("ps")}{" "}
+              <a className="link-arrow" href={SITE_SOURCE}>
+                <span className={styles.glue}>
+                  {t("psLink")}
+                  <ArrowUpRight />
+                </span>
+              </a>
+            </p>
           </div>
 
           <nav aria-label={t("site")}>

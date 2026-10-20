@@ -4,6 +4,8 @@ import { useSyncExternalStore } from "react";
 
 import { THEME_COLORS, THEME_STORAGE_KEY, type Theme } from "../ui/theme";
 
+import styles from "./shell.module.css";
+
 const DARK_QUERY = "(prefers-color-scheme: dark)";
 
 const systemTheme = (): Theme =>
@@ -58,7 +60,7 @@ export const ThemeToggle = ({
 }: {
   labels: { toggle: string; toDark: string; toLight: string };
 }) => {
-  // Unknown on the server: the label settles on the client, the icon is CSS.
+  // Unknown on the server: the label settles on the client, the knob is CSS.
   const theme = useSyncExternalStore(subscribe, effectiveTheme, () => null);
 
   const toggle = () => {
@@ -78,25 +80,14 @@ export const ThemeToggle = ({
   return (
     <button
       type="button"
-      className="icon-btn"
+      className={styles.theme}
       onClick={toggle}
       aria-label={label}
       title={label}
     >
+      <span className={styles.knob} aria-hidden="true" />
       <svg
-        className="only-light"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
-      </svg>
-      <svg
-        className="only-dark"
+        className={styles.sun}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -106,6 +97,18 @@ export const ThemeToggle = ({
       >
         <circle cx="12" cy="12" r="4" />
         <path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" />
+      </svg>
+      <svg
+        className={styles.moon}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
       </svg>
     </button>
   );

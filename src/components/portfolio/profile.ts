@@ -9,6 +9,10 @@ export const GITHUB = "https://github.com/GSTJ";
 export const EMAIL_ADDR = "gabrielstaveira@gmail.com";
 export const EMAIL = `mailto:${EMAIL_ADDR}`;
 export const MEDIUM = "https://medium.com/@gabrieltaveira";
+/** The npm user that publishes his packages (registry `maintainers`). */
+export const NPM = "https://www.npmjs.com/~gabrieltaveira";
+/** This site's own code, public. */
+export const SITE_SOURCE = "https://github.com/GSTJ/gabriel-taveira-portfolio";
 export const SPACE_CAST = "https://www.youtube.com/@spacesquad-rocketseat";
 export const SPACE_CAST_PLAYLIST =
   "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V";
