@@ -12,7 +12,6 @@ export const MEDIUM = "https://medium.com/@gabrieltaveira";
 export const SPACE_CAST = "https://www.youtube.com/@spacesquad-rocketseat";
 export const SPACE_CAST_PLAYLIST =
   "https://www.youtube.com/playlist?list=PLRqjZNegpUk8KgQxIvOh49093Iu-vFc9V";
-export const SPACE_SQUAD = "https://www.rocketseat.com.br/space-squad";
 export const CURRICULUM_PDF = "/curriculum.pdf";
 
 /**

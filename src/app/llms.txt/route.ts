@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 import { yearsInIndustry } from "@/components/portfolio/lifeline";
-import { SKILLS } from "@/components/portfolio/profile";
+import { SKILLS, SPACE_CAST } from "@/components/portfolio/profile";
 import { CHANNELS } from "@/components/portfolio/sections/contact/data";
 import { AWARDS, NOW, TALKS } from "@/components/portfolio/sections/notes/data";
 import { PROJECTS } from "@/components/portfolio/sections/projects/data";
@@ -43,7 +43,6 @@ export async function GET() {
     "",
     `- Role: ${en.resume.role}`,
     `- Location: ${en.resume.location}`,
-    `- Role: ${en.hero.status}`,
     `- Email: ${CHANNELS.find((c) => c.id === "email")?.handle}`,
     "",
     "## Services",
@@ -86,6 +85,10 @@ export async function GET() {
       const item = en.notes.talks.items[t.id];
       return `- **${item.title}** (${item.venue}, ${t.date}): ${item.description}`;
     }),
+    "",
+    "## Media",
+    "",
+    `- Hosted [Space Cast](${SPACE_CAST}), Rocketseat's podcast on YouTube: 37 of its 40 episodes, January to October 2023, when the show ended.`,
     "",
     "## Awards",
     "",
