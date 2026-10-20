@@ -3,13 +3,10 @@ import type { WorkItem } from "@/components/portfolio/sections/work/data";
 import { AWARDS, TALKS } from "@/components/portfolio/sections/notes/data";
 
 /**
- * Each job as an ATS reads it: the title, and the months where a source has
- * them ("YYYY-MM"). Without months the row falls back to `WORK`'s years.
- * Titles come from his earlier site's work history; Coinbase's months from
- * the placement (Mar 2024) and the contract's planned end (Dec 2025). Alfred
- * stays at the official title; being the only engineer goes in its bullet.
- * Keep each title's role word bare ("Engineer", not "Engineer,"): parsers
- * match it as a whole word.
+ * Each job as an ATS reads it: the title and months exactly as his LinkedIn
+ * shows them (read 2026-10-20), so a recruiter or background check finds the
+ * same thing in both places. Keep each title's role word bare ("Engineer",
+ * not "Engineer,"): parsers match it as a whole word.
  */
 export const RESUME_JOBS: Record<
   WorkItem["id"],
@@ -17,16 +14,20 @@ export const RESUME_JOBS: Record<
 > = {
   consulting: { title: "Fractional CTO & Engineering Consultant" },
   coinbase: {
-    title: "App Infrastructure Engineer",
+    title: "Senior Software Engineer",
     start: "2024-03",
     end: "2025-12",
   },
-  ateam: { title: "Lead Software Engineer" },
-  meta: { title: "Senior Software Engineer (Contract)" },
-  xteam: { title: "Senior Software Engineer" },
-  ze: { title: "Frontend Engineer III" },
-  alfred: { title: "Software Engineer" },
-  micro: { title: "Full Stack Developer" },
+  ateam: { title: "Lead Mobile Engineer", start: "2023-09", end: "2025-02" },
+  meta: { title: "Senior Software Engineer", start: "2022-10", end: "2023-12" },
+  xteam: {
+    title: "Senior Software Engineer",
+    start: "2022-04",
+    end: "2023-09",
+  },
+  ze: { title: "Software Engineer III", start: "2020-09", end: "2022-04" },
+  alfred: { title: "Mobile Engineer", start: "2019-10", end: "2020-09" },
+  micro: { title: "Software Engineer", start: "2017-04", end: "2019-10" },
 };
 
 /** Talks he gave (Space Squad was a mentoring program) and hackathon wins. */
