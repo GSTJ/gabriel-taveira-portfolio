@@ -97,21 +97,25 @@
  * stand a little over the links' capitals, and centered on them by eye, not
  * by box: those letters' middle sits 0.219 of the height below the box's,
  * so it rises that much and 1px more, where the capitals' middle sits
- * (measured on the rendered nav at both sizes).
+ * (measured on the rendered nav at both sizes). Then it settles 2px lower,
+ * for air above the tall G.
  */
+.bar {
+  --sig-h: 28px;
+}
+
 .signature {
-  --h: 28px;
   display: block;
-  height: var(--h);
+  height: var(--sig-h);
   aspect-ratio: 3.974;
   background: var(--sign);
   mask: url("/signature.svg") center / contain no-repeat;
-  translate: 0 calc(var(--h) * -0.219 - 1px);
+  translate: 0 calc(var(--sig-h) * -0.219 + 1px);
 }
 
 @media (width < 760px) {
-  .signature {
-    --h: 25px;
+  .bar {
+    --sig-h: 25px;
   }
 }
 
@@ -191,6 +195,32 @@
   to {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+/*
+ * Once the signature is gone the links slide over into its place, so the
+ * bar doesn't keep a hole where it was: the first link's text lands on the
+ * content's left edge (signature width, the gap, the links' margin and the
+ * link's own padding). Desktop only; on narrow screens the links have their
+ * own row.
+ */
+@supports (animation-timeline: view()) {
+  @media (width >= 760px) and (prefers-reduced-motion: no-preference) {
+    .links {
+      animation: links-home linear both;
+      animation-timeline: --signoff;
+      animation-range: cover 12% cover 24%;
+    }
+  }
+}
+
+@keyframes links-home {
+  from {
+    animation-timing-function: var(--ease-in-out);
+  }
+  to {
+    translate: calc(-1 * (var(--sig-h) * 3.974 + 3 * var(--space-3))) 0;
   }
 }
 
