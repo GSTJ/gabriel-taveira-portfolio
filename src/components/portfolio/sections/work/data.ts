@@ -99,7 +99,9 @@ export const WORK: readonly WorkItem[] = [
     proof: [
       // Mozeic's three packages (app, web, style dictionary), Gabriel a listed
       // maintainer on each. All-time npm downloads to 2026-10-18: 77,396 +
-      // 9,911 + 90,276 = 177,583.
+      // 9,911 + 90,276 = 177,583. The first Mozeic package, unscoped
+      // `mozeic-app-design-system` 0.1.0, went out from his own npm account on
+      // 2020-12-22, a week before the scoped one.
       {
         id: "mozeic",
         href: "https://www.npmjs.com/package/@zedelivery/mozeic-app-design-system",
