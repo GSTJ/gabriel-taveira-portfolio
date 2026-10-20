@@ -38,19 +38,14 @@
     }
   },
   "hero": {
-    "status": "Independent consultant, open to new clients",
-    "place": "Ribeirão Preto, Brazil · {month}",
-    "title": "<me>I'm Gabriel.</me> I help product teams ship React Native and Expo <pen>apps that scale.</pen>",
-    "body": "The architecture, the migrations, and the team that keeps it running. Over {years} years in, I've led teams of up to <note>56 direct reports</note> and worked on Coinbase's mobile app infrastructure.",
-    "notes": {
-      "yesReally": "yes, really"
-    },
+    "status": "Independent React Native and Expo consultant",
+    "title": "I build React Native apps and help teams <pen>build theirs.</pen>",
+    "body": "I've been responsible for <strong>56 people</strong> across two levels, leads and the teams they ran. On Coinbase's app infrastructure team I drove React Compiler adoption. Now I consult independently, build Curvinha and maintain libraries like magic-modal and safe-jsx.",
     "cta": {
       "getInTouch": "Get in touch",
       "downloadPdf": "Download PDF",
       "linkedIn": "LinkedIn"
-    },
-    "body2": "Taking on consulting engagements now, remote with US teams. My engineering journey started when I was eight, reverse-engineering games. {tinkering} years of building and breaking systems later, the itch hasn't changed shape."
+    }
   },
   "projects": {
     "title": "Things I made.",
