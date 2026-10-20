@@ -78,13 +78,6 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Design Systems", "DevX", "SDKs"],
     billing: "main",
     href: "https://www.kustomer.com/",
-    proof: [
-      // Public on npm since 2022-12-02: React components on @kustomer/apps-tokens.
-      {
-        id: "sdk",
-        href: "https://www.npmjs.com/package/@kustomer/apps-react-client",
-      },
-    ],
   },
   {
     id: "xteam",
