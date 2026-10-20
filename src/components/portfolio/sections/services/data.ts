@@ -17,11 +17,8 @@ export type ServiceItem = {
   receipts: readonly Receipt[];
 };
 
-const PEGADA = { repo: "GSTJ/pegada", name: "Pegada" };
-
 /**
- * Numbers are the best true frame from the source: PR bodies on
- * github.com/GSTJ/pegada (read 2026-10-19) and the work rows' own copy.
+ * Numbers are the best true frame from the work rows' own copy.
  */
 export const SERVICES: readonly ServiceItem[] = [
   {
@@ -29,8 +26,6 @@ export const SERVICES: readonly ServiceItem[] = [
     receipts: [
       { id: "coinbase", source: { work: "coinbase" } },
       { id: "groundswell", source: { work: "xteam" } },
-      // #153: Android cold start 2113 ms -> 1606 ms, APK 58.97 -> 53.39 MB
-      { id: "pegada", source: { pr: { ...PEGADA, number: 153, year: 2026 } } },
     ],
   },
   {
@@ -38,8 +33,6 @@ export const SERVICES: readonly ServiceItem[] = [
     receipts: [
       { id: "coinbase", source: { work: "coinbase" } },
       { id: "alfred", source: { work: "alfred" } },
-      // #14: expo 51 -> 55, react-native 0.74 -> 0.83, react 18 -> 19
-      { id: "pegada", source: { pr: { ...PEGADA, number: 14, year: 2026 } } },
     ],
   },
   {
@@ -55,8 +48,6 @@ export const SERVICES: readonly ServiceItem[] = [
     receipts: [
       { id: "mozeic", source: { work: "ze" } },
       { id: "kustomer", source: { work: "meta" } },
-      // #145: 170 files, 684 style comparisons equal, 64 screenshots 0 px diff
-      { id: "pegada", source: { pr: { ...PEGADA, number: 145, year: 2026 } } },
     ],
   },
 ] as const;

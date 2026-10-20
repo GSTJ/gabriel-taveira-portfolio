@@ -204,8 +204,7 @@
         "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app. Você sai com um plano priorizado que o time toca sem mim.",
         "receipts": {
           "coinbase": "Cobertura de testes <b>25% → 45%</b> nos arquivos do time",
-          "groundswell": "Cobertura de testes <b>30% → 80%+</b>, depois de cortar 16 mil linhas de testes frágeis",
-          "pegada": "Cold start no Android <b>24% mais rápido</b>, APK 9,5% menor"
+          "groundswell": "Cobertura de testes <b>30% → 80%+</b>, depois de cortar 16 mil linhas de testes frágeis"
         }
       },
       "migrations": {
@@ -213,8 +212,7 @@
         "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler com o time seguindo nas features.",
         "receipts": {
           "coinbase": "Ajudei a levar o app pra <b>Expo Prebuild</b>, a nova arquitetura e o React Compiler",
-          "alfred": "<b>Ionic → React Native</b> pra 90+ franquias, com o app antigo no ar durante 6 meses de transição",
-          "pegada": "<b>Expo SDK 51 → 55</b> de uma vez: React Native 0.83 e React 19"
+          "alfred": "<b>Ionic → React Native</b> pra 90+ franquias, com o app antigo no ar durante 6 meses de transição"
         }
       },
       "leadership": {
@@ -231,8 +229,7 @@
         "body": "Bibliotecas de componentes e SDKs pros times de produto entregarem telas sem quebrar a UI.",
         "receipts": {
           "mozeic": "Co-criei o <b>Mozeic</b>, o design system da casa, e palestrei sobre ele no TDC 2024",
-          "kustomer": "Um <b>design system open source</b> e SDKs pra devs de fora",
-          "pegada": "Migrei <b>170 arquivos</b> pra um novo sistema de estilo via codemod, com zero pixel de diferença em 64 capturas"
+          "kustomer": "Um <b>design system open source</b> e SDKs pra devs de fora"
         }
       }
     },
