@@ -1,0 +1,546 @@
+/* Page chrome: the sticky nav, the language and theme switches, the footer. */
+
+/*
+ * The bar always takes --nav-h in the flow (no layout shift). Only its
+ * drawing changes: at the top it is transparent; once the page scrolls
+ * (`data-scrolled` on <html>, set by boot.ts) a translucent paper with a
+ * blur and a hairline fade in, a little shorter than the box, and the bar
+ * rises half that difference to stay centered in it. The strip left under
+ * the paper lets clicks through.
+ */
+.nav {
+  --lift: 0px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--nav-h);
+  pointer-events: none;
+}
+
+/*
+ * The paper and the hairline are their own layers, so they fade and stop
+ * short of the box without touching the bar. 96% paper on purpose: where a
+ * renderer skips the backdrop blur (WebKit without GPU compositing, some
+ * embedded previews) the content behind still can't be read.
+ */
+.nav::before,
+.nav::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  pointer-events: none;
+  transition: opacity var(--dur-ui) var(--ease-out);
+}
+
+.nav::before {
+  height: calc(100% - var(--lift));
+  background: color-mix(in oklab, var(--paper) 96%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+}
+
+.nav::after {
+  top: calc(100% - var(--lift) - 1px);
+  height: 1px;
+  background: var(--rule);
+}
+
+/* Without JS the paper is always on, so nothing ever reads through. */
+:global(.js):not([data-scrolled]) .nav::before,
+:global(.js):not([data-scrolled]) .nav::after {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav {
+    --lift: var(--space-3);
+  }
+
+  .bar {
+    transition: translate var(--dur-ui) var(--ease-out);
+  }
+
+  [data-scrolled] .bar {
+    translate: 0 calc(var(--lift) / -2);
+  }
+}
+
+.bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-areas: "brand links lang theme cta";
+  align-items: center;
+  column-gap: var(--space-3);
+  height: 100%;
+}
+
+.bar > * {
+  pointer-events: auto;
+}
+
+.brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1.0625rem;
+  font-weight: var(--fw-strong);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.links {
+  grid-area: links;
+  position: relative;
+  display: flex;
+  gap: 2px;
+  margin-left: var(--space-3);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+
+.links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding-inline: var(--space-3);
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur-hover) ease;
+}
+
+.links a[aria-current] {
+  color: var(--ink);
+}
+
+/*
+ * One pill as wide as the row, clipped to the target link, so moving between
+ * links is a clip-path glide (no width animation). `data-jump` lands it
+ * without the glide when it appears from nothing.
+ */
+.pill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 34px;
+  margin-top: -17px;
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--ink) 6%, transparent);
+  clip-path: inset(0 var(--r, 100%) 0 var(--l, 0) round var(--r-pill));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-ui) var(--ease-out);
+}
+
+.pill[data-on] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pill:not([data-jump]) {
+    transition:
+      clip-path var(--dur-ui) var(--ease-out),
+      opacity var(--dur-ui) var(--ease-out);
+  }
+}
+
+.langSlot {
+  grid-area: lang;
+}
+
+.cta {
+  grid-area: cta;
+}
+
+.lang {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+}
+
+.lang a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: var(--r-pill);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition:
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease;
+}
+
+.lang a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/*
+ * Light / dark: the same track as the language switch, sun and moon on it,
+ * and an ink knob resting under the theme in effect. CSS places the knob
+ * (an explicit `data-theme`, else the system), so it is right before
+ * hydration; the button only flips the theme.
+ */
+.theme {
+  grid-area: theme;
+  position: relative;
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background-color var(--dur-hover) ease;
+}
+
+.knob {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.theme svg {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+}
+
+.sun {
+  color: var(--paper);
+}
+
+:root[data-theme="dark"] .knob {
+  translate: 32px 0;
+}
+
+:root[data-theme="dark"] .sun {
+  color: inherit;
+  rotate: -45deg;
+}
+
+:root[data-theme="dark"] .moon {
+  color: var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .knob {
+    translate: 32px 0;
+  }
+
+  :root:not([data-theme]) .sun {
+    color: inherit;
+    rotate: -45deg;
+  }
+
+  :root:not([data-theme]) .moon {
+    color: var(--paper);
+  }
+}
+
+/* The knob slides over and the sun turns away as it leaves. */
+@media (prefers-reduced-motion: no-preference) {
+  .knob {
+    transition:
+      translate var(--dur-ui) var(--ease-out),
+      scale var(--dur-press) var(--ease-out);
+  }
+
+  .theme svg {
+    transition:
+      color var(--dur-ui) var(--ease-out),
+      rotate var(--dur-ui) var(--ease-out);
+  }
+
+  .theme:active .knob {
+    scale: 0.92;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .links a:hover {
+    color: var(--ink);
+  }
+
+  .lang a:not([aria-current="page"]):hover {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+
+  .theme:hover {
+    background: var(--paper-2);
+  }
+}
+
+/* Narrow: section links and the language switch get their own row. */
+@media (width < 760px) {
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "brand theme cta"
+      "links links lang";
+    row-gap: var(--space-1);
+    align-content: center;
+  }
+
+  .links {
+    min-width: 0;
+    /* The first label lines up with the brand, the pill bleeds left. */
+    margin-left: calc(var(--space-2) * -1);
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-size: var(--fs-small);
+  }
+
+  /* Tighter, so three pt-BR labels fit beside the language switch at 390. */
+  .links a {
+    padding-inline: var(--space-2);
+  }
+
+  .pill {
+    height: 30px;
+    margin-top: -15px;
+  }
+
+  .links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .langSlot {
+    justify-self: end;
+  }
+
+  /* The CTA right above already goes to #contact. */
+  .links .ctaTwin {
+    display: none;
+  }
+}
+
+/*
+ * Footer: the page ends the way a letter does. A closing line, his name
+ * written in his pen with a flourish under it, the line a signature carries
+ * and a P.S.; beside it a quiet map, and a fine line with the date. The paper
+ * settles into a slightly deeper tone on the way down.
+ */
+.footer {
+  padding-block: var(--space-9) var(--space-6);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--paper-2) 80%, transparent)
+  );
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.footCols {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.signoff {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+}
+
+.closing {
+  font-size: var(--fs-lede);
+  letter-spacing: -0.013em;
+  color: var(--ink);
+}
+
+/* Sized to the name, so the flourish runs exactly under it. */
+.sign {
+  position: relative;
+  margin-block: var(--space-2) var(--space-5);
+  font-family: var(--font-hand);
+  font-size: clamp(2.75rem, 1.2vw + 2.25rem, 3.5rem);
+  font-weight: 560;
+  line-height: 1;
+  color: var(--pen);
+}
+
+.signName {
+  display: inline-block;
+}
+
+.flourish {
+  position: absolute;
+  left: -0.04em;
+  bottom: -0.3em;
+  width: calc(100% + 0.3em);
+  height: 0.45em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.flourish path {
+  fill: none;
+  stroke: var(--pen);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/*
+ * Signed the first time it is in view (boot.ts marks it): the name writes in
+ * left to right, then the flourish runs under it. The dash is 1.5 for the
+ * same reason as the pen underline's 3: non-scaling strokes dash in screen
+ * space, and the flourish never stretches past 1.5x its viewBox.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .signName {
+    clip-path: inset(-30% -12% -30% -6%);
+    transition: clip-path calc(var(--dur-note) * 1.5) var(--ease-pen);
+  }
+
+  :global(.js) .sign:not([data-in]) .signName {
+    clip-path: inset(-30% 100% -30% -6%);
+  }
+
+  :global(.js) .flourish path {
+    stroke-dasharray: 1.5;
+    transition: stroke-dashoffset calc(var(--dur-pen) * 1.5) var(--ease-pen)
+      calc(var(--dur-note) * 1.2);
+  }
+
+  :global(.js) .sign:not([data-in]) .flourish path {
+    stroke-dashoffset: 1.5;
+  }
+}
+
+.signoff > p:not([class]) {
+  max-width: 22em;
+}
+
+.ps {
+  margin-top: var(--space-5);
+}
+
+.psMark {
+  font-family: var(--font-hand);
+  font-size: 1.35em;
+  font-weight: 560;
+  line-height: 0;
+  color: var(--pen);
+}
+
+.ps a {
+  color: var(--ink);
+}
+
+.footCols nav {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  padding-top: var(--space-1);
+}
+
+.footCols h2 {
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-regular);
+  letter-spacing: -0.005em;
+  color: var(--ink-3);
+}
+
+.footCols nav a,
+.footMail {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  color: var(--ink-2);
+  font-weight: var(--fw-regular);
+  text-decoration: none;
+  transition: color var(--dur-hover) ease;
+}
+
+.footIcon {
+  display: inline-grid;
+  color: var(--ink-3);
+  transition: color var(--dur-hover) ease;
+}
+
+.footIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* The arrow stays on the last word's line, never alone on the next one. */
+.glue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  white-space: nowrap;
+}
+
+.footFine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footCols nav a:hover,
+  .footMail:hover {
+    color: var(--ink);
+  }
+
+  .footCols nav a:hover .footIcon,
+  .footMail:hover .footIcon {
+    color: var(--ink);
+  }
+}
+
+/* Touch: every footer link gets the full 44px. */
+@media (pointer: coarse) {
+  .footCols nav a,
+  .footMail {
+    min-height: 44px;
+  }
+}
+
+/* Narrow: the sign-off on its own row, the three columns two by two under it. */
+@media (width < 760px) {
+  .footer {
+    padding-top: var(--space-8);
+  }
+
+  .footCols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+  }
+
+  .signoff {
+    grid-column: 1 / -1;
+    margin-bottom: var(--space-2);
+  }
+
+  .footFine {
+    margin-top: var(--space-7);
+  }
+}

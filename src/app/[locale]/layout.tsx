@@ -1,34 +1,29 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { notFound } from "next/navigation";
 
-import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ObservabilityProviders } from "@/components/observability/providers";
-import {
-  buildPortfolioJsonLd,
-  serializeJsonLd,
-} from "@/components/portfolio/structured-data";
+import { yearsInIndustry } from "@/components/portfolio/lifeline";
+import { BODY_SCRIPT, HEAD_SCRIPT } from "@/components/portfolio/ui/boot";
+import { THEME_COLORS } from "@/components/portfolio/ui/theme";
+import { pageMetadata } from "@/utils/metadata";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
-
-const GTM_ID = "G-1S8PR4TDYM";
-
-/**
- * Dense, ATS-friendly description. Packs role, tenure, stack and location into
- * one sentence while staying under 160 characters for SERP truncation.
- */
-const DESCRIPTION =
-  "Gabriel Taveira · Engineering Lead with 9+ years in React Native, Expo and mobile architecture. Brazil-based (Ribeirão Preto), remote with US teams.";
-
-const TITLE = "Gabriel Taveira · Engineering Lead";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+/** Per-scheme browser chrome. An explicit theme repoints both in boot.ts. */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLORS.light },
+    { media: "(prefers-color-scheme: dark)", color: THEME_COLORS.dark },
+  ],
+};
 
 export async function generateMetadata({
   params,
@@ -36,45 +31,24 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+  /** Per locale, and kept under 160 characters for SERP truncation. */
+  const title = t("title");
+  const description = t("description", { years: yearsInIndustry() });
 
-  const languages: Record<string, string> = {
-    "x-default": `${SITE_URL}/${routing.defaultLocale}`,
-  };
-  for (const l of routing.locales) {
-    languages[l] = `${SITE_URL}/${l}`;
-  }
+  const home = await pageMetadata({ locale, title, description });
 
+  /** The home page's set. Every child page builds its own with pageMetadata. */
   return {
-    title: TITLE,
-    description: DESCRIPTION,
+    ...home,
     authors: [{ name: "Gabriel Taveira", url: SITE_URL }],
     creator: "Gabriel Taveira",
     publisher: "Gabriel Taveira",
     alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages,
+      ...home.alternates,
       types: {
         "application/pdf": [{ url: "/curriculum.pdf", title: "Resume PDF" }],
       },
-    },
-    openGraph: {
-      type: "profile",
-      url: `${SITE_URL}/${locale}`,
-      siteName: "Gabriel Taveira",
-      title: TITLE,
-      description: DESCRIPTION,
-      locale: locale.replace("-", "_"),
-      images: ["/og-image.png"],
-      firstName: "Gabriel",
-      lastName: "Taveira",
-      username: "gabrieltaveira",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: TITLE,
-      description: DESCRIPTION,
-      images: ["/og-image.png"],
-      creator: "@gabrieltaveira",
     },
   };
 }
@@ -90,45 +64,28 @@ const LocaleLayout = async ({
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
-  const messages = await getMessages();
-  const { person, profilePage } = buildPortfolioJsonLd(locale);
+  // Lets every page under this layout prerender instead of reading headers.
+  setRequestLocale(locale);
 
+  /*
+   * `suppressHydrationWarning` covers only <html>: the head script adds `js`
+   * and `data-theme` to it before React hydrates.
+   */
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* eslint-disable-next-line nextjs/no-page-custom-font -- the rule is
-            about a font link living in a single Pages Router page; this is the
-            App Router root layout for every route under /[locale], so the
-            stylesheet is shared exactly as the rule wants it to be. */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Caveat:wght@500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
-        />
         <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger -- JSON-LD has no React representation, so a raw script body is the only way to emit it. serializeJsonLd escapes `<` so the payload cannot close this tag.
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(person) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger -- same as above.
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(profilePage) }}
+          // eslint-disable-next-line react/no-danger -- must run before first paint, so it cannot wait for a bundle. A static string from boot.ts, no input.
+          dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }}
         />
       </head>
-      <GoogleTagManager gtmId={GTM_ID} />
-      <Analytics />
       <body>
-        <ObservabilityProviders>
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            {children}
-          </NextIntlClientProvider>
-        </ObservabilityProviders>
+        <ObservabilityProviders>{children}</ObservabilityProviders>
+        <script
+          // eslint-disable-next-line react/no-danger -- the reveal observer runs as soon as the HTML is parsed, not after hydration. A static string from boot.ts, no input.
+          dangerouslySetInnerHTML={{ __html: BODY_SCRIPT }}
+        />
+        <Analytics />
       </body>
     </html>
   );

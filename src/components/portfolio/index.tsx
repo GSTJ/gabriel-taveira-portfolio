@@ -1,37 +1,43 @@
-import { Provider as BalancerProvider } from "react-wrap-balancer";
+import { getTranslations } from "next-intl/server";
 
-import { Awards } from "./awards";
-import { ClientChrome } from "./client-chrome";
-import { Contact } from "./contact";
-import { Hero } from "./hero";
-import { NowPlaying } from "./now-playing";
-import { Publications } from "./publications";
-import { TalksList } from "./talks-list";
-import { WorkGrid } from "./work-grid";
-import { WritingList } from "./writing-list";
+import { ContactSection } from "./sections/contact";
+import { HeroSection } from "./sections/hero";
+import { NotesSection } from "./sections/notes";
+import { ProjectsSection } from "./sections/projects";
+import { ServicesSection } from "./sections/services";
+import { WorkSection } from "./sections/work";
+import { Footer } from "./shell/footer";
+import { Nav } from "./shell/nav";
+import { Interlude } from "./ui/interlude";
+import { ScrollMoments } from "./ui/scroll-moments";
 
 /**
- * Server component that composes the page. Each section that doesn't need
- * browser-only behavior is itself a server component, so the full editorial
- * copy is in the initial HTML for SEO. `ClientChrome` injects the sticky
- * Nav and the global keyboard/easter-egg behavior.
- *
- * `<BalancerProvider>` from react-wrap-balancer wraps the tree so any
- * `<Balancer>` used inside a heading shares a single inline script for
- * line-balancing measurements.
+ * The home page, in reading order: who he is and the offer, what he made,
+ * the teams he led, what you can hire him for, his public work, the ask.
+ * Every section is a server component, so all copy is in the first HTML.
+ * Section ids are stable: nav links, llms.txt and the section agents use them.
  */
-export const Portfolio = () => {
+export const Portfolio = async () => {
+  const t = await getTranslations("nav");
+
   return (
-    <BalancerProvider>
-      <ClientChrome />
-      <Hero />
-      <WorkGrid />
-      <Publications />
-      <TalksList />
-      <Awards />
-      <WritingList />
-      <NowPlaying />
-      <Contact />
-    </BalancerProvider>
+    <>
+      <a className="skip-link" href="#main">
+        {t("skip")}
+      </a>
+      <Nav />
+      <main id="main">
+        <HeroSection />
+        <ProjectsSection />
+        <WorkSection />
+        <Interlude id="patrick" />
+        <ServicesSection />
+        <Interlude id="brandon" />
+        <NotesSection />
+        <ContactSection />
+      </main>
+      <Footer />
+      <ScrollMoments />
+    </>
   );
 };

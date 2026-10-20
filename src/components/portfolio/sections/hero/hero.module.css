@@ -1,0 +1,34 @@
+/* No bottom padding: Projects' own section rhythm is the only gap, so the
+   work starts inside the first scroll. */
+.hero {
+  padding-top: clamp(2.5rem, 7vw, 7rem);
+  scroll-margin-top: var(--nav-h);
+}
+
+.title {
+  max-width: 12em;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-6);
+  max-width: var(--measure);
+  margin-top: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.body strong {
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.plain {
+  min-height: var(--space-7); /* a full tap target beside the 46px buttons */
+  padding-inline: var(--space-1);
+  color: var(--ink-2);
+}

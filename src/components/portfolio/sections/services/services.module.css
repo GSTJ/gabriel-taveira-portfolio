@@ -1,0 +1,282 @@
+/* ── Offers ─────────────────────────────────────────────────────────── */
+
+.offers {
+  display: grid;
+}
+
+.offer {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  padding-block: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--rule);
+}
+
+.body {
+  max-width: var(--measure);
+}
+
+.proof {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  margin-top: var(--space-4);
+}
+
+/*
+ * A ledger of receipts: the figures share one column so they read down like
+ * a stack of numbers, and each line finishes the figure's sentence beside it.
+ */
+.receipts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-4);
+  max-width: var(--measure);
+}
+
+.receipt {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  row-gap: var(--space-1);
+  align-items: baseline;
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.receipt:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.figure {
+  color: var(--ink);
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.text {
+  text-wrap: pretty;
+}
+
+/* From 600px the figures get their own column, one width for every offer. */
+@media (min-width: 600px) {
+  .receipts {
+    grid-template-columns: calc(var(--fs-title) * 7) minmax(0, 1fr);
+  }
+
+  .figure {
+    grid-row: span 2;
+  }
+
+  .cite {
+    grid-column: 2;
+  }
+}
+
+/* A citation: up when the proof is a row above, up-right when it leaves the page. */
+.cite {
+  justify-self: start;
+  color: var(--ink-3);
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--dur-hover) ease,
+    text-decoration-color var(--dur-hover) ease;
+}
+
+.glue {
+  white-space: nowrap;
+}
+
+.cite svg {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.3em;
+  vertical-align: -0.1em;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.dates {
+  color: var(--ink-3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cite:hover {
+    color: var(--ink);
+    text-decoration-color: currentColor;
+  }
+
+  .cite[href^="#"]:hover svg {
+    transform: translateY(-2px);
+  }
+
+  .cite:not([href^="#"]):hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* One row per offer from 1000px, read across: what, how, where it was done. */
+@media (min-width: 1000px) {
+  .offer {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 5fr);
+    gap: var(--space-6);
+    padding-block: var(--space-6) var(--space-7);
+  }
+
+  .proof {
+    margin-top: 0;
+  }
+
+  /* Sits on the title's first line, like the body beside it. */
+  .proofLabel {
+    line-height: var(--lh-title);
+  }
+}
+
+/* ── How an engagement runs ─────────────────────────────────────────── */
+
+.flow {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--sec-head-gap);
+}
+
+.flowTitle {
+  font-weight: var(--fw-strong);
+}
+
+/*
+ * Each step draws a segment to the next and its dot fills as the line
+ * arrives: the order is the point. Vertical on phones, across from 760px.
+ */
+.steps {
+  --dot: var(--space-3);
+  --track: var(--space-6);
+  --gap: var(--space-6);
+
+  display: grid;
+  gap: var(--gap);
+  margin-top: var(--space-6);
+  padding-left: var(--track);
+}
+
+.steps li {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+/* What the step leaves behind, on a hairline like a receipt stub. */
+.out {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.out .t-small {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+}
+
+.steps li::before {
+  content: "";
+  position: absolute;
+  top: var(--space-1);
+  left: calc(var(--track) * -1);
+  width: var(--dot);
+  height: var(--dot);
+  border: 1px solid var(--ink);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--space-1) + var(--dot) / 2);
+  left: calc(var(--track) * -1 + var(--dot) / 2);
+  width: 1px;
+  height: calc(100% + var(--gap));
+  background: var(--ink);
+  transform-origin: top;
+}
+
+@media (min-width: 760px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-left: 0;
+    padding-top: var(--track);
+  }
+
+  /* Title, body and deliverable share rows, so the stubs line up across. */
+  .steps li {
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: var(--space-2);
+  }
+
+  .out {
+    align-self: start;
+  }
+
+  .steps li::before {
+    top: calc(var(--track) * -1);
+    left: 0;
+  }
+
+  .steps li:not(:last-child)::after {
+    top: calc(var(--track) * -1 + var(--dot) / 2);
+    left: var(--dot);
+    width: calc(100% + var(--gap) - var(--dot));
+    height: 1px;
+    transform-origin: left;
+  }
+}
+
+/* Segment i draws while step i+1 is due, so each dot fills as the line lands. */
+@media (prefers-reduced-motion: no-preference) {
+  .steps li {
+    --seg: calc(var(--dur-pen) / 2);
+    --land: calc(var(--i, 0) * var(--seg) + var(--stagger));
+
+    transition:
+      opacity var(--dur-enter) var(--ease-out) var(--land),
+      transform var(--dur-rise) var(--ease-out) var(--land);
+  }
+
+  .steps li::before {
+    transition: background-color var(--dur-ui) ease var(--land);
+  }
+
+  .steps li::after {
+    transition: transform var(--seg) linear var(--land);
+  }
+
+  :global(.js) .steps:not([data-in]) li {
+    opacity: 0;
+    transform: translateY(var(--rise));
+  }
+
+  :global(.js) .steps:not([data-in]) li::before {
+    background: var(--paper);
+  }
+
+  :global(.js) .steps:not([data-in]) li::after {
+    transform: scaleY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 760px) {
+  :global(.js) .steps:not([data-in]) li::after {
+    transform: scaleX(0);
+  }
+}

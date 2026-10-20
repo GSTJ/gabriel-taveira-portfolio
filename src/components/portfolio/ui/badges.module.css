@@ -1,0 +1,123 @@
+/* Badges ride inline next to the text that already says what they mean. */
+
+.medal {
+  display: inline-block;
+  width: 1em;
+  height: 1.33em;
+  margin-left: 0.3em;
+  vertical-align: -0.38em;
+  transform-origin: 50% 0;
+  overflow: visible;
+}
+
+.gold {
+  --metal: var(--gold);
+  --metal-shine: var(--gold-shine);
+}
+
+.silver {
+  --metal: var(--silver);
+  --metal-shine: var(--silver-shine);
+}
+
+.ribbon {
+  fill: var(--pen);
+}
+
+.disc {
+  fill: var(--metal);
+}
+
+.rim {
+  fill: none;
+  stroke: var(--metal-shine);
+  stroke-width: 0.8;
+}
+
+.numeral {
+  fill: none;
+  stroke: var(--metal-shine);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kitty {
+  fill: var(--metal-shine);
+  fill-rule: evenodd;
+}
+
+.rating {
+  --row: 4.725em;
+  position: relative;
+  display: inline-block;
+  width: var(--row);
+  height: 0.9em;
+  margin-right: 0.4em;
+  vertical-align: -0.08em;
+  color: var(--ink-2);
+}
+
+.rating svg {
+  display: block;
+  width: var(--row);
+  height: 0.9em;
+  fill: var(--rule-strong);
+}
+
+.ratingFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--fill);
+  overflow: hidden;
+}
+
+.ratingFill svg {
+  max-width: none;
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* It lands after the line it hangs on has risen in. */
+  :global(.js) .medal {
+    transition:
+      opacity var(--dur-hover) ease calc(var(--delay, 0ms) + var(--dur-arrow)),
+      transform var(--dur-note) var(--ease-swing)
+        calc(var(--delay, 0ms) + var(--dur-arrow));
+  }
+
+  :global(.js) .medal:not([data-in]) {
+    opacity: 0;
+    transform: translateY(-0.3em) rotate(-18deg) scale(0.6);
+  }
+
+  /* The stars fill left to right, like the pen drawing a line. */
+  :global(.js) .ratingFill {
+    transition: clip-path var(--dur-pen) var(--ease-pen)
+      calc(var(--delay, 0ms) + var(--dur-arrow));
+  }
+
+  :global(.js) .rating:not([data-in]) .ratingFill {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  li:hover .medal[data-in] {
+    animation: swing var(--dur-note) var(--ease-in-out);
+  }
+}
+
+@keyframes swing {
+  30% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(-6deg);
+  }
+
+  85% {
+    transform: rotate(2deg);
+  }
+}

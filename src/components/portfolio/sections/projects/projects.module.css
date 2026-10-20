@@ -1,0 +1,1315 @@
+/*
+ * Projects: a bento where each card proves its claim its own way. One grid,
+ * one card surface (paper-2, 14px), and inside each card its own grammar.
+ * Cards are size containers, so their insides adapt to the width they get in
+ * either composition, not to the viewport.
+ */
+
+/* ── Grid ───────────────────────────────────────────────────────────── */
+
+.bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "cv" "pg" "npm" "mm" "sj";
+  gap: var(--space-3);
+}
+
+/* Wrappers carry the reveal and are the containers the two app cards query,
+   named so the stages inside (containers too) don't answer instead. */
+.areaCv,
+.areaPg {
+  display: grid;
+}
+
+.areaCv {
+  grid-area: cv;
+  container: cv / inline-size;
+}
+.areaPg {
+  grid-area: pg;
+  container: pg / inline-size;
+}
+.areaMm {
+  grid-area: mm;
+}
+.areaSj {
+  grid-area: sj;
+}
+.areaNpm {
+  grid-area: npm;
+}
+
+@media (width >= 760px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "cv cv"
+      "pg pg"
+      "npm npm"
+      "mm sj";
+    gap: var(--space-4);
+  }
+}
+
+@media (width >= 1100px) {
+  /* Curvinha across the top, Pegada wide beside the npm ledger, then the
+     two running demos: three rows, no two cards the same size. */
+  .bento {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      "cv cv cv cv cv cv cv cv cv cv cv cv"
+      "pg pg pg pg pg pg pg pg npm npm npm npm"
+      "mm mm mm mm mm mm mm sj sj sj sj sj";
+  }
+}
+
+/* ── Card surface ───────────────────────────────────────────────────── */
+
+.card {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+@media (width < 760px) {
+  .card {
+    padding: var(--space-5);
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: var(--fs-meta);
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.stars svg {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.end {
+  margin-top: auto;
+}
+
+/* ── Tours: numbered steps that drive a phone ───────────────────────── */
+
+.steps {
+  display: grid;
+  width: 100%;
+  border-top: 1px solid var(--rule);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-1) 0;
+  width: 100%;
+  padding: var(--space-3) 0 0.875rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-3);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: color var(--dur-hover) ease;
+}
+
+.step[aria-selected="true"] {
+  color: var(--ink);
+}
+
+.stepN {
+  font-size: var(--fs-meta);
+}
+
+.stepTitle {
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-title);
+}
+
+/* Every step's line is there, folded, so the list never jumps: the open
+   step unfolds its line, the rest keep theirs at zero height. */
+.stepBody {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 0fr;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.stepBody > span {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.step[aria-selected="true"] .stepBody {
+  grid-template-rows: 1fr;
+}
+
+/* The selected step's hairline. While the card plays itself it fills over the
+   step's time, so the visitor can see the next swap coming. */
+.timer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.step[aria-selected="true"] .timer {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-playing] .step[aria-selected="true"] .timer {
+    animation: tour-fill 3600ms linear both;
+  }
+}
+
+@keyframes tour-fill {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* A phone screen, whole, with the iPhone's own corner. */
+.screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 13.5% / 6.2%;
+  background: var(--paper-3);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    var(--shadow);
+}
+
+.screen img {
+  width: 100%;
+}
+
+/* The screen the steps drive. A drag sideways turns it, so the page keeps
+   scrolling vertically but the browser leaves horizontal swipes to us. */
+.tourScreen {
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.shot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.shot[data-on] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Out fast, in slower with a little blur and scale, so two screens never
+     read as two objects overlapping. */
+  .shot {
+    filter: blur(3px);
+    transform: scale(1.015);
+    transition:
+      opacity 260ms ease,
+      filter 260ms ease,
+      transform 420ms var(--ease-out);
+  }
+
+  .shot[data-on] {
+    filter: none;
+    transform: none;
+    transition:
+      opacity 380ms var(--ease-out),
+      filter 380ms var(--ease-out),
+      transform 520ms var(--ease-out);
+  }
+
+  .stepBody {
+    transition: grid-template-rows var(--dur-ui) var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot {
+    transition: opacity 200ms ease;
+  }
+}
+
+/* ── Curvinha: the copy and steps beside two whole screens ──────────── */
+
+/* Narrow app cards: the phone right under the title, the steps right under
+   the phone, so a tapped step changes a screen that's on screen. Wide, the
+   copy column comes back (see the container queries below). The stage holds
+   no focusable element, so keyboard order is untouched. */
+.cvCopy,
+.pgCopy {
+  display: contents;
+}
+
+.cvHead,
+.pgHead {
+  order: -2;
+}
+
+.cvStage,
+.pgStage {
+  order: -1;
+}
+
+.curvinha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.cvCopy {
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.cvHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 34em;
+}
+
+.cvTitle {
+  font-family: var(--font-narrow);
+  font-stretch: var(--wd-heading);
+}
+
+.cvRole {
+  color: var(--ink-2);
+}
+
+.cvBody {
+  margin-top: var(--space-1);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+
+/* What it's built in: Apple's frameworks, each with the job it does. */
+.cvStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-meta);
+  color: var(--ink-3);
+}
+
+.cvStack li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+}
+
+.cvStack span {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+/* Narrow, after the facts, which come later in the source. */
+.cvFoot {
+  order: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+/* The repo's counts: lead words in ink, the date they were counted after.
+   Narrow, they sit between the steps and the link; wide, they run across
+   the card's foot. */
+
+/* The stage measures itself, so every piece is placed in its own width
+   (cqi): the tour on the left, the 3D room on the right, and a piece page's
+   fit check enlarged over the room's foot. Narrow, the check rests on the
+   phones' foot; wide, it covers the room's lower third. Nothing runs off the
+   card. */
+.cvStage {
+  position: relative;
+  container-type: inline-size;
+  width: min(100%, 26rem);
+  justify-self: center;
+  aspect-ratio: 100 / 144;
+}
+
+.cvFront {
+  --depth: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 49cqi;
+  aspect-ratio: 600 / 1304;
+}
+
+.cvBack {
+  position: absolute;
+  top: 6cqi;
+  right: 0;
+  width: 47cqi;
+}
+
+/* The Dynamic Island, where the iPhone 17 Pro Max the captures come from has
+   it: measured on the scan capture, which shows it (x 215 to 385, y 19 to 69
+   of 600 x 1304), a pixel wider all round so it covers that one exactly. */
+.curvinha .screen::after {
+  content: "";
+  position: absolute;
+  top: 1.38%;
+  left: 35.67%;
+  width: 28.67%;
+  aspect-ratio: 172 / 52;
+  border-radius: var(--r-pill);
+  background: var(--bezel);
+}
+
+.cvPull {
+  --depth: 36px;
+  position: absolute;
+  top: 106cqi;
+  right: 0;
+  z-index: 2;
+  width: 62cqi;
+  margin: 0;
+}
+
+.cvPull img {
+  width: 100%;
+  border-radius: var(--r-md);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    var(--shadow);
+}
+
+.cvNote {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-2);
+}
+
+/* Wide card: copy on the left, the stage beside it from the top, so the card
+   is as tall as the screens and no taller. */
+@container cv (inline-size >= 52rem) {
+  .curvinha {
+    grid-template-columns: minmax(18rem, 1fr) minmax(0, 1.45fr);
+    gap: var(--space-7);
+    padding: var(--space-7);
+  }
+
+  .cvCopy {
+    display: flex;
+  }
+
+  .cvHead,
+  .cvStage {
+    order: 0;
+  }
+
+  .cvFoot {
+    margin-top: auto;
+  }
+
+  .cvStage {
+    width: 100%;
+    align-self: start;
+    aspect-ratio: 100 / 96;
+  }
+
+  .cvFront {
+    width: 38cqi;
+  }
+
+  .cvBack {
+    top: 5cqi;
+    right: auto;
+    left: 42cqi;
+    width: 37cqi;
+  }
+
+  /* Wider than the room's phone and resting on its foot, whatever height
+     each language's capture has. */
+  .cvPull {
+    top: 87cqi;
+    width: 60cqi;
+    --place-y: -100%;
+  }
+
+  .cvNote {
+    position: absolute;
+    top: 100%;
+    right: 0;
+  }
+}
+
+/* ── Pegada: the steps beside Lua and the real app ──────────────────── */
+
+.pegada {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.pgCopy {
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.pgHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pgFoot {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.pgLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pgLinks a {
+  min-height: 2.75rem;
+}
+
+/* The receipts: lead words in ink, the source as a plain link after. */
+.pgFacts {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-4) 0 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.pgFacts strong {
+  color: var(--ink);
+}
+
+.pgFacts a {
+  color: inherit;
+}
+
+/* What he shipped in it lately: three PRs across the card's foot. */
+.pgShipped {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.pgShippedTitle {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+}
+
+.prs {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pr {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+}
+
+.prDetail {
+  color: var(--ink-2);
+}
+
+.prLink {
+  display: grid;
+  gap: 2px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.prLink > span:first-child {
+  color: var(--ink-3);
+}
+
+.prTitle {
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-body);
+}
+
+/* Lua's photo, cropped on her face, with the phone standing whole on its
+   lower right, inset from the card's edge so its frame and shadow have air.
+   Everything is placed in the stage's own width. */
+.pgStage {
+  position: relative;
+  container-type: inline-size;
+  width: min(100%, 26rem);
+  justify-self: center;
+  margin: 0;
+}
+
+.pgPhoto {
+  position: relative;
+  width: 70cqi;
+  height: 84cqi;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+
+.pgPhoto img {
+  object-fit: cover;
+  object-position: 30% 45%;
+}
+
+.pgScreen {
+  --depth: 24px;
+  position: absolute;
+  top: 18cqi;
+  right: 7cqi;
+  z-index: 1;
+  width: 46cqi;
+  aspect-ratio: 450 / 980;
+}
+
+.pgCaption {
+  /* Clears the phone, which runs below the photo. */
+  margin-top: calc(18cqi + 46cqi * 980 / 450 - 84cqi + var(--space-4));
+  color: var(--ink-3);
+}
+
+.pgHint {
+  color: var(--ink-2);
+}
+
+@container pg (inline-size >= 40rem) {
+  .pegada {
+    grid-template-columns: minmax(15rem, 1fr) minmax(0, 1.2fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "copy stage" "copy facts" "ship ship";
+    gap: var(--space-5) var(--space-6);
+  }
+
+  .pgCopy {
+    grid-area: copy;
+  }
+
+  .pgStage {
+    grid-area: stage;
+  }
+
+  .pgFacts {
+    grid-area: facts;
+    align-self: start;
+  }
+
+  .pgShipped {
+    grid-area: ship;
+  }
+
+  .pgCopy {
+    display: flex;
+  }
+
+  .pgHead,
+  .pgStage {
+    order: 0;
+  }
+
+  .prs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .pgStage {
+    width: 100%;
+    align-self: start;
+  }
+}
+
+/* ── Library cards: claim, code, the real thing ─────────────────────── */
+
+.k {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.c {
+  color: var(--ink-3);
+}
+
+.squiggle {
+  text-decoration: underline wavy var(--pen);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.fixed {
+  color: var(--ink);
+  background: var(--pen-wash);
+  border-radius: var(--r-sm);
+  box-shadow: 0 0 0 2px var(--pen-wash);
+}
+
+/* The console the example logs to: what the await resolved with. */
+.readout {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--rule);
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.readoutLabel {
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  color: var(--ink-3);
+}
+
+.readoutLines {
+  display: grid;
+  align-content: end;
+  min-height: 3em;
+}
+
+.readoutLines output {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.pending::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.18em;
+  background: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pending::after {
+    animation: caret 1s steps(1) infinite;
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* The library cards' test bench: a framed example with its file name, its
+   source, a stage where it runs, and the panel it reports to. The stage
+   takes the spare height, so both benches fill their cards. */
+.sandbox {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.sbBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.sbChip {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-pill);
+  background: var(--pen-wash);
+  color: var(--pen);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+}
+
+.sbFile {
+  color: var(--ink-3);
+}
+
+.sbCode {
+  margin: 0;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  font: var(--fs-mono) / 1.65 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+/* Where the example runs. The modal itself opens over the whole page. */
+.sbStage {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  background: var(--paper-3);
+  text-align: center;
+}
+
+.sbStage > [aria-disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.sbHint {
+  max-width: 26em;
+}
+
+/* The real modal's layer, fixed over the viewport and above the header. The
+   library's portal fills it; the layer itself lets presses through. */
+.modalLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.sheet {
+  align-self: center;
+  display: grid;
+  gap: var(--space-3);
+  width: min(30rem, calc(100% - 2 * var(--gutter)));
+  max-height: calc(100% - 2 * var(--gutter));
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    var(--shadow);
+  font-family: var(--font-sans);
+  text-align: start;
+}
+
+.sheetTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-right: calc(-1 * var(--space-2));
+}
+
+.sheetClose {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-hover) ease;
+}
+
+.sheetClose:active {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sheetClose:hover {
+    background: var(--paper-2);
+  }
+}
+
+.sheetClose svg {
+  width: 17px;
+  height: 17px;
+}
+
+.sheetClose svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.sheetTitle {
+  margin-top: var(--space-2);
+  font-family: var(--font-narrow);
+  font-size: var(--fs-h1);
+  font-stretch: var(--wd-heading);
+  text-wrap: balance;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sheetBody {
+  color: var(--ink-2);
+}
+
+/* Each answer shows the value it resolves the await with. */
+.answers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.answer {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: var(--paper-2);
+  color: var(--ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.answer:active {
+  transform: scale(0.97);
+}
+
+.answerLabel {
+  font-weight: var(--fw-medium);
+}
+
+.answerCode {
+  color: var(--ink-3);
+}
+
+.sheetFoot {
+  color: var(--ink-3);
+}
+
+/* safe-jsx: the same bench, with the editor's problem count in the bar,
+   the rendered row in the stage and the lint message as its panel. */
+
+.problems {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-pill);
+  background: var(--pen-wash);
+  color: var(--pen);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  transition:
+    background-color var(--dur-ui) ease,
+    color var(--dur-ui) ease;
+}
+
+.problems[data-clean] {
+  background: var(--paper-3);
+  color: var(--ink-2);
+}
+
+.sjStage {
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-4);
+  background: var(--paper-3);
+}
+
+.lintControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.lintControls > span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+}
+
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+}
+
+.seg button {
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--r-pill);
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.seg button:active,
+.switch input:active {
+  transform: scale(0.97);
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.switch input {
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: 2.25rem;
+  height: 1.375rem;
+  margin: 0;
+  border: 1px solid var(--control);
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-ui) ease,
+    border-color var(--dur-ui) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.switch input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--control);
+  box-shadow: 0 1px 2px var(--shadow-far);
+  transition: background-color var(--dur-ui) ease;
+}
+
+/* Reduced motion: the thumb jumps, the colors still change. */
+@media (prefers-reduced-motion: no-preference) {
+  .switch input::after {
+    transition:
+      background-color var(--dur-ui) ease,
+      transform var(--dur-ui) var(--ease-out);
+  }
+}
+
+.switch input:checked {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.switch input:checked::after {
+  background: var(--paper);
+  transform: translateX(0.875rem);
+}
+
+.render {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 3.25rem;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.renderLabel {
+  font-weight: var(--fw-medium);
+}
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.375rem;
+  height: 1.375rem;
+  padding: 0 0.4375rem;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+}
+
+/* His pen circling the 0 React printed. */
+.stray {
+  position: relative;
+  margin-left: var(--space-1);
+  color: var(--ink);
+}
+
+.stray svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.9rem;
+  height: 1.9rem;
+  max-width: none;
+  translate: -50% -52%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.stray path {
+  fill: none;
+  stroke: var(--pen);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.strayNote {
+  margin-left: var(--space-2);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stray path {
+    stroke-dasharray: 1;
+    animation: pen-circle var(--dur-pen) var(--ease-pen) both;
+  }
+
+  .strayNote {
+    animation: note-write var(--dur-note) var(--ease-pen) var(--dur-arrow) both;
+  }
+}
+
+@keyframes pen-circle {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes note-write {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.lintMsg {
+  min-height: 3em;
+  color: var(--ink-2);
+}
+
+.rule {
+  font: 600 var(--fs-meta) var(--font-mono);
+  color: var(--ink);
+}
+
+/* ── npm ledger: the all-time total, then each package ──────────────── */
+
+.npmHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.npmTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+}
+
+.npmBig {
+  font-family: var(--font-narrow);
+  font-size: var(--fs-h1);
+  font-stretch: var(--wd-heading);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.dlStars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  color: var(--ink-2);
+}
+
+.dlStars svg {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+/* The rows share the card's height, so a tall card spaces its ledger
+   evenly instead of leaving a gap above the source line. */
+.dl {
+  flex: 1;
+  display: grid;
+  align-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dlRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.dlRow:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.dlName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+  min-width: 0;
+}
+
+.dlName a {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.dlValue {
+  font-weight: var(--fw-medium);
+}
+
+.bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  transform-origin: left;
+}
+
+.bar i {
+  width: calc(var(--w) * 100%);
+  min-width: 3px;
+  background: var(--ink);
+}
+
+/* ── Motion: bars grow once their card is in view ───────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) [data-reveal] .bar i {
+    transition: transform 900ms var(--ease-out)
+      calc(var(--dur-enter) * 0.4 + var(--i, 0) * 70ms);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .bar i {
+    transform: scaleX(0);
+  }
+
+  /* The fit check lifts off its page a beat after the Curvinha card lands. */
+  :global(.js) [data-reveal] .cvPull {
+    transition:
+      opacity var(--dur-enter) var(--ease-out) calc(var(--dur-enter) * 0.5),
+      transform var(--dur-enter) var(--ease-out) calc(var(--dur-enter) * 0.5);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .cvPull {
+    opacity: 0;
+    transform: translateY(var(--rise)) scale(0.97);
+  }
+}
+
+/* ── Hover, only where there is a real pointer ──────────────────────── */
+
+@media (hover: hover) and (pointer: fine) {
+  .step:hover {
+    color: var(--ink);
+  }
+
+  .answer:hover {
+    background: var(--paper-3);
+  }
+
+  .seg button:hover:not([aria-pressed="true"]) {
+    background: var(--paper-3);
+  }
+
+  .stars:hover,
+  .dlName a:hover,
+  .prLink:hover .prTitle {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.tourScreen:active {
+  cursor: grabbing;
+}

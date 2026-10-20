@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { captureError } from "magic-observability/web";
+import { telemetry } from "@/components/observability/telemetry";
 
 /**
  * The last boundary: a throw from the root layout itself, where Next has
@@ -21,7 +21,7 @@ const GlobalError = ({
   reset: () => void;
 }) => {
   useEffect(() => {
-    captureError(error, {
+    telemetry.captureError(error, {
       source: "app-global-error-boundary",
       digest: error.digest,
     });

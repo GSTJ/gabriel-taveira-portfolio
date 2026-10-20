@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { captureError } from "magic-observability/web";
+import { telemetry } from "@/components/observability/telemetry";
 
 /**
  * Segment-level error UI. Next renders this instead of the route when a
@@ -22,7 +22,7 @@ const RouteError = ({
   reset: () => void;
 }) => {
   useEffect(() => {
-    captureError(error, {
+    telemetry.captureError(error, {
       source: "app-error-boundary",
       digest: error.digest,
     });

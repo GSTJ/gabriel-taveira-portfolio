@@ -1,246 +1,181 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap");
-@import "tailwindcss";
-@import "./design-tokens.css";
-@import "./design-portfolio.css";
+@import "./tokens.css";
+@import "../components/portfolio/ui/ui.css";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* Base. Element defaults only; anything with a name lives in ui.css. */
 
-:root {
-  scroll-behavior: smooth;
-}
-.animate-shine {
-  animation: shine 4s ease-in-out infinite;
-}
-
-@property --gradient-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes rotation {
-  0% {
-    --gradient-angle: 0deg;
-  }
-
-  100% {
-    --gradient-angle: 360deg;
-  }
-}
-
-.bg-gradient-rotate {
-  animation: rotation 5s linear infinite;
-  background-image: conic-gradient(
-    from var(--gradient-angle),
-    var(--tw-gradient-stops)
-  );
-}
-
-.colorful-text {
-  background: linear-gradient(122.25deg, rgb(244, 63, 94) 30%, #ea6608);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes shine {
-  0% {
-    filter: brightness(100%);
-  }
-
-  50% {
-    filter: brightness(150%);
-  }
-
-  to {
-    filter: brightness(100%);
-  }
-}
-
-@keyframes fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-up {
-  animation: fade-up 1s ease-in-out;
-}
-
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 1000;
-  }
-}
-
-.animate-dash {
-  animation: dash 15s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 25s linear infinite;
-}
-
-@keyframes marquee2 {
-  0% {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-.animate-marquee2 {
-  animation: marquee2 25s linear infinite;
-}
-
-.animate-spin-slow {
-  animation: spin 60s linear infinite;
-}
-
-.animate-shimmer {
-  animation: shimmer 4s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes pulse {
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.animate-fade-up-shine {
-  animation:
-    fade-up 1s ease-in-out,
-    shine 4s ease-in-out infinite;
-}
-
-.heading {
-  font-family:
-    "Grifter", "SF Pro Display", "Avant Garde", Helvetica, sans-serif;
+/*
+ * Arial sized to Bricolage, so the swap doesn't reflow the page. One
+ * fallback can't match both widths: at 100% width Bricolage runs ~5% wider
+ * than Arial, at the 92-94% heading widths ~5% narrower, which was enough to
+ * add a line to the hero h1. Ascent and descent keep Bricolage's line box
+ * (93% and 27% of the font size) under each size-adjust.
+ */
+@font-face {
+  font-family: "Bricolage Fallback";
+  src: local("Arial"), local("Helvetica");
+  size-adjust: 105%;
+  ascent-override: 88.6%;
+  descent-override: 25.7%;
+  line-gap-override: 0%;
 }
 
 @font-face {
-  font-family: "Plusjakartasans";
-  src:
-    url("https://assets.website-files.com/5837424ae11409586f837994/61184140db8801774ceee218_PlusJakartaSans-Bold.ttf")
-      format("truetype"),
-    url("https://assets.website-files.com/5837424ae11409586f837994/61184140548e6753b0695e6a_PlusJakartaSans-ExtraBold.ttf")
-      format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  font-family: "Bricolage Narrow Fallback";
+  src: local("Arial"), local("Helvetica");
+  size-adjust: 95%;
+  ascent-override: 97.9%;
+  descent-override: 28.4%;
+  line-gap-override: 0%;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/61184140e75ed446fd44d631_PlusJakartaSans-Regular.ttf")
-    format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/61184140f899a9f2d2b69477_PlusJakartaSans-MediumItalic.ttf")
-    format("truetype");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-h) + var(--space-5));
+  background: var(--paper);
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/6118414011c2b9ef95292ecc_PlusJakartaSans-Medium.ttf")
-    format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/6118414066e93c16a147d852_PlusJakartaSans-Light.ttf")
-    format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-body);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/6118414066e93c684847d851_PlusJakartaSans-LightItalic.ttf")
-    format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/611841403ceb838bd08f963d_PlusJakartaSans-Italic.ttf")
-    format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+
+ul,
+ol {
+  list-style: none;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/611841407e15e31382fa913f_PlusJakartaSans-ExtraLightItalic.ttf")
-    format("truetype");
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--fw-regular);
+  text-wrap: balance;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/61184140e10dfdc3c68f309b_PlusJakartaSans-ExtraLight.ttf")
-    format("truetype");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+
+p,
+li,
+dd {
+  text-wrap: pretty;
 }
-@font-face {
-  font-family: "Plusjakartasans";
-  src:
-    url("https://assets.website-files.com/5837424ae11409586f837994/6118414070df9234ccf49428_PlusJakartaSans-BoldItalic.ttf")
-      format("truetype"),
-    url("https://assets.website-files.com/5837424ae11409586f837994/611841401babbbc5473921ee_PlusJakartaSans-ExtraBoldItalic.ttf")
-      format("truetype");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+
+strong,
+b {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
 }
-@font-face {
-  font-family: "Grifter";
-  src: url("https://assets.website-files.com/5837424ae11409586f837994/611aee5b70cc88187b78993c_GRIFTER.otf")
-    format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+  -webkit-user-drag: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule-strong);
+  transition: text-decoration-color var(--dur-hover) ease;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  letter-spacing: 0;
+}
+
+::selection {
+  background: var(--pen-wash);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--pen);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-color: var(--pen);
+  }
+}
+
+/* Theme switch: one crossfade of the whole page, no per-element transitions. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-ui);
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
