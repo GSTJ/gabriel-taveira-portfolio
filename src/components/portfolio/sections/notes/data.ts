@@ -414,5 +414,4 @@ export const SHIPPED: readonly ShippedItem[] = [
   },
 ] as const;
 
-/** When the Now list was last edited. Bump it with the list, so "Updated" stays honest. */
-export const NOW_UPDATED = new Date("2026-10-19T12:00:00Z");
+export { SITE_UPDATED } from "@/env";

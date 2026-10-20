@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
-import { currentMonthLabel } from "../lifeline";
+import { currentMonthLabel, currentYear } from "../lifeline";
 import {
   CURRICULUM_PDF,
   EMAIL,
@@ -15,7 +15,7 @@ import {
   NPM,
   SITE_SOURCE,
 } from "../profile";
-import { NOW_UPDATED } from "../sections/notes/data";
+import { SITE_UPDATED } from "../sections/notes/data";
 import { ArrowUpRight, CHANNEL_ICONS } from "../ui/icons";
 
 import styles from "./shell.module.css";
@@ -128,9 +128,9 @@ export const Footer = async () => {
         </div>
 
         <div className={cn("t-meta", styles.footFine)}>
-          <p>© {NOW_UPDATED.getUTCFullYear()} Gabriel Taveira</p>
+          <p>© {currentYear()} Gabriel Taveira</p>
           <p>
-            {t("updated", { date: currentMonthLabel(locale, NOW_UPDATED) })} ·{" "}
+            {t("updated", { date: currentMonthLabel(locale, SITE_UPDATED) })} ·{" "}
             {t("place")}
           </p>
         </div>

@@ -19,7 +19,7 @@ import {
   GUIDE,
   MAGIC_MODAL,
   NOW,
-  NOW_UPDATED,
+  SITE_UPDATED,
   PUBLICATIONS,
   SHIPPED,
   SHIPPED_READ,
@@ -79,7 +79,7 @@ const Now = ({ t, locale }: { t: T; locale: string }) => (
         {t("now.title")}
       </h3>
       <p className="t-meta">
-        {t("now.updated", { date: currentMonthLabel(locale, NOW_UPDATED) })}
+        {t("now.updated", { date: currentMonthLabel(locale, SITE_UPDATED) })}
       </p>
     </div>
     <dl className={styles.nowRows}>
