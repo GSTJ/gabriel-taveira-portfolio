@@ -65,7 +65,13 @@
       "curvinha": {
         "title": "Curvinha",
         "role": "Fundador · eu que construí",
-        "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "stackLabel": "Feito em",
+        "stack": {
+          "swiftUi": "a interface",
+          "roomPlan": "o scan",
+          "realityKit": "o 3D"
+        },
+        "body": "Um app nativo de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
         "cta": "Abrir curvinha.app",
         "caption": "Ambiente de exemplo do app. Produtos e preços de exemplo.",
         "stepsLabel": "Curvinha, passo a passo",
@@ -86,8 +92,6 @@
             "alt": "Lista da Curvinha: 12 peças de 7 lojas, cada uma com o link da loja."
           }
         },
-        "pause": "Pausar tour",
-        "replay": "Rever tour",
         "pieceAlt": "Página de um sofá na Curvinha: por que ele é pra você e as peças que combinam com ele.",
         "fitAlt": "Por que para você: cabe na parede da janela com 121 cm de folga. R$ 533,71, dentro dos seus R$ 4.000 a R$ 6.000. Material: linho, madeira maciça, eucalipto, metal.",
         "fitNote": "a folga é matemática pura"
@@ -103,13 +107,16 @@
         "pending": "await magicModal.show(HelloModal)",
         "resolved": "resolveu com",
         "failed": "Não deu pra carregar o pacote. Tenta de novo.",
-        "hint": "Responda, aperte Esc ou clique fora. O que voltar aparece embaixo.",
+        "hint": "Ele abre por cima da página. O que o await devolver aparece no console aqui embaixo.",
         "modal": {
           "label": "Modal de exemplo",
-          "title": "Oi, eu sou o magic-modal de verdade",
-          "body": "É só um exemplo. Escolha uma resposta e ela volta pro await.",
+          "title": "Oi, eu sou o <name>magic-modal</name> de verdade",
+          "body": "Abri por cima da página inteira, com backdrop e o foco preso aqui dentro. Escolha uma resposta e ela volta pro await.",
           "yes": "Curti",
-          "no": "Nem tanto"
+          "no": "Nem tanto",
+          "close": "Fechar",
+          "returns": "Devolve",
+          "dismiss": "Esc, um clique fora ou o X também fecham, cada um com o seu motivo."
         },
         "console": "Console"
       },
@@ -125,7 +132,10 @@
         "badgeLabel": "3 não lidas",
         "nothing": "Nada aparece ao lado de Inbox",
         "explain": "Com count em 0, o React imprime o 0.",
-        "resolved": "Corrigido. O erro de lint sumiu."
+        "resolved": "Nenhum problema. Com Boolean(count), o 0 não aparece mais.",
+        "problems": "Problemas",
+        "problemsOne": "1 problema",
+        "problemsNone": "0 problemas"
       },
       "magicToast": {
         "title": "react-native-magic-toast",

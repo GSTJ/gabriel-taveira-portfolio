@@ -17,6 +17,9 @@ export type SafeJsxCopy = {
   nothing: string;
   explain: string;
   resolved: string;
+  problems: string;
+  problemsOne: string;
+  problemsNone: string;
 };
 
 /**
@@ -64,8 +67,15 @@ export const SafeJsxDemo = ({ copy }: { copy: SafeJsxCopy }) => {
   }
 
   return (
-    <>
-      <pre className={styles.code} aria-label={copy.codeLabel}>
+    <div className={styles.sandbox}>
+      <div className={styles.sbBar}>
+        <span className={styles.problems} data-clean={fixed || undefined}>
+          {fixed ? copy.problemsNone : copy.problemsOne}
+        </span>
+        <span className={cn("t-mono", styles.sbFile)}>inbox.tsx</span>
+      </div>
+
+      <pre className={styles.sbCode} aria-label={copy.codeLabel}>
         <code>
           <span className={styles.k}>{"<Row"}</span>
           {' label="Inbox"'}
@@ -85,51 +95,55 @@ export const SafeJsxDemo = ({ copy }: { copy: SafeJsxCopy }) => {
         </code>
       </pre>
 
-      <div className={styles.lintControls}>
-        <span aria-hidden="true">count</span>
-        <fieldset className={styles.seg}>
-          <legend className="visually-hidden">{copy.countLabel}</legend>
-          {[0, 3].map((n) => (
-            <button
-              key={n}
-              type="button"
-              className="num"
-              aria-pressed={count === n}
-              onClick={() => setCount(n)}
-            >
-              {n}
-            </button>
-          ))}
-        </fieldset>
-        <label className={styles.switch}>
-          <input
-            type="checkbox"
-            role="switch"
-            aria-checked={fixed}
-            checked={fixed}
-            onChange={(e) => setFixed(e.target.checked)}
-          />
-          {copy.fix}
-        </label>
+      <div className={styles.sjStage}>
+        <div className={styles.lintControls}>
+          <span aria-hidden="true">count</span>
+          <fieldset className={styles.seg}>
+            <legend className="visually-hidden">{copy.countLabel}</legend>
+            {[0, 3].map((n) => (
+              <button
+                key={n}
+                type="button"
+                className="num"
+                aria-pressed={count === n}
+                onClick={() => setCount(n)}
+              >
+                {n}
+              </button>
+            ))}
+          </fieldset>
+          <label className={styles.switch}>
+            <input
+              type="checkbox"
+              role="switch"
+              aria-checked={fixed}
+              checked={fixed}
+              onChange={(e) => setFixed(e.target.checked)}
+            />
+            {copy.fix}
+          </label>
+        </div>
+
+        <div className={styles.render} aria-live="polite">
+          <span className={styles.renderLabel}>{copy.inbox}</span>
+          {rendered}
+        </div>
       </div>
 
-      <div className={styles.render} aria-live="polite">
-        <span className={styles.renderLabel}>{copy.inbox}</span>
-        {rendered}
-        {fixed ? (
-          <span className="visually-hidden">{copy.resolved}</span>
-        ) : null}
+      {/* The editor's problems panel: the rule's own words, or a clean bill. */}
+      <div className={styles.readout}>
+        <span className={styles.readoutLabel}>{copy.problems}</span>
+        <p className={cn("t-meta", styles.lintMsg)} aria-live="polite">
+          {fixed ? (
+            copy.resolved
+          ) : (
+            <>
+              <code className={styles.rule}>{RULE}</code>{" "}
+              <q lang="en">{MESSAGE}</q> {copy.explain}
+            </>
+          )}
+        </p>
       </div>
-
-      {/* Fades out once fixed, and leaves the accessibility tree with it. */}
-      <p
-        className={cn("t-meta", styles.lintMsg)}
-        data-hidden={fixed || undefined}
-        aria-hidden={fixed || undefined}
-      >
-        <code className={styles.rule}>{RULE}</code> <q lang="en">{MESSAGE}</q>{" "}
-        {copy.explain}
-      </p>
-    </>
+    </div>
   );
 };

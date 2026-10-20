@@ -7,6 +7,7 @@ import { cn } from "@/utils/cn";
 import { reveal } from "../../ui/motion";
 import { CurvinhaCard } from "./curvinha-card";
 import {
+  CURVINHA_STACK,
   CURVINHA_STEPS,
   PEGADA_FACTS,
   PEGADA_SHIPPED,
@@ -39,6 +40,11 @@ const bold = (chunks: ReactNode) => <strong>{chunks}</strong>;
 /** A `t.rich` tag for the npm card's big number. */
 const big = (chunks: ReactNode) => (
   <span className={styles.npmBig}>{chunks}</span>
+);
+
+/** A `t.rich` tag for a name that must not break at its hyphen. */
+const nowrap = (chunks: ReactNode) => (
+  <span className={styles.nowrap}>{chunks}</span>
 );
 
 /**
@@ -91,12 +97,17 @@ export const ProjectsSection = async () => {
             copy={{
               title: t("items.curvinha.title"),
               role: t("items.curvinha.role"),
+              stackLabel: t("items.curvinha.stackLabel"),
+              stack: Object.fromEntries(
+                CURVINHA_STACK.map((item) => [
+                  item.id,
+                  t(`items.curvinha.stack.${item.id}`),
+                ]),
+              ) as Parameters<typeof CurvinhaCard>[0]["copy"]["stack"],
               body: t("items.curvinha.body"),
               cta: t("items.curvinha.cta"),
               caption: t("items.curvinha.caption"),
               stepsLabel: t("items.curvinha.stepsLabel"),
-              pause: t("items.curvinha.pause"),
-              replay: t("items.curvinha.replay"),
               steps: Object.fromEntries(
                 CURVINHA_STEPS.map((step) => [
                   step,
@@ -121,8 +132,6 @@ export const ProjectsSection = async () => {
               role: t("items.pegada.role"),
               body: t("items.pegada.body"),
               stepsLabel: t("items.pegada.stepsLabel"),
-              pause: t("items.curvinha.pause"),
-              replay: t("items.curvinha.replay"),
               hint: t("items.pegada.hint"),
               steps: Object.fromEntries(
                 PEGADA_STEPS.map((step) => [
@@ -296,10 +305,13 @@ export const ProjectsSection = async () => {
               console: t("items.magicModal.console"),
               modal: {
                 label: t("items.magicModal.modal.label"),
-                title: t("items.magicModal.modal.title"),
+                title: t.rich("items.magicModal.modal.title", { name: nowrap }),
                 body: t("items.magicModal.modal.body"),
                 yes: t("items.magicModal.modal.yes"),
                 no: t("items.magicModal.modal.no"),
+                close: t("items.magicModal.modal.close"),
+                returns: t("items.magicModal.modal.returns"),
+                dismiss: t("items.magicModal.modal.dismiss"),
               },
             }}
           >
@@ -349,6 +361,9 @@ export const ProjectsSection = async () => {
               nothing: t("items.safeJsx.nothing"),
               explain: t("items.safeJsx.explain"),
               resolved: t("items.safeJsx.resolved"),
+              problems: t("items.safeJsx.problems"),
+              problemsOne: t("items.safeJsx.problemsOne"),
+              problemsNone: t("items.safeJsx.problemsNone"),
             }}
           />
         </article>
