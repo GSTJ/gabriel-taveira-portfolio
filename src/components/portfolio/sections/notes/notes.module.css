@@ -569,13 +569,13 @@
 /* Hover a result and the rest of the board steps back while its medal pins
    on: gold for a win, silver for second, a plain ribbon for the finalist. */
 .result {
-  --metal: light-dark(#c9971c, #e2b84a);
-  --metal-shine: light-dark(#f1d27a, #f6dc8c);
+  --metal: var(--gold);
+  --metal-shine: var(--gold-shine);
 }
 
 .result[data-position="second"] {
-  --metal: light-dark(#9aa3ad, #b9c1ca);
-  --metal-shine: light-dark(#e3e7eb, #eef1f4);
+  --metal: var(--silver);
+  --metal-shine: var(--silver-shine);
 }
 
 .result[data-position="finalist"] {
@@ -650,7 +650,7 @@
     .medal {
       transition:
         opacity 160ms ease,
-        transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        transform var(--dur-arrow) var(--ease-swing);
     }
   }
 }

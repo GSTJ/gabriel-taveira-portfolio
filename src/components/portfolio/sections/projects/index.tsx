@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
+import { Medal } from "../../ui/badges";
 import { reveal } from "../../ui/motion";
 import { CurvinhaCard } from "./curvinha-card";
 import {
@@ -36,6 +37,14 @@ const linkTo = (url: string) => (chunks: ReactNode) => (
 
 /** A `t.rich` tag for a fact's lead words. */
 const bold = (chunks: ReactNode) => <strong>{chunks}</strong>;
+
+/** Product Hunt's #2 of the day, with its silver medal glued to the words. */
+const second = (chunks: ReactNode) => (
+  <strong className={styles.nowrap}>
+    {chunks}
+    <Medal award="second" />
+  </strong>
+);
 
 /** A `t.rich` tag for the npm card's big number. */
 const big = (chunks: ReactNode) => (
@@ -186,7 +195,7 @@ export const ProjectsSection = async () => {
               productHunt: t.rich("items.pegada.facts.productHunt", {
                 rank: PEGADA_FACTS.productHunt.rank,
                 date: day(PEGADA_FACTS.productHunt.date),
-                b: bold,
+                b: second,
                 ph: linkTo(PEGADA_FACTS.productHunt.href),
               }),
               github: t.rich("items.pegada.facts.github", {

@@ -25,6 +25,11 @@
   --control: light-dark(#807e75, #76736d);
   --pen: light-dark(#2343c9, #93a6ff);
   --pen-wash: light-dark(rgb(35 67 201 / 0.1), rgb(147 166 255 / 0.14));
+  /* Medal metal, only on a real placement: the disc, then its engraving. */
+  --gold: light-dark(#c9971c, #e2b84a);
+  --gold-shine: light-dark(#f1d27a, #f6dc8c);
+  --silver: light-dark(#9aa3ad, #b9c1ca);
+  --silver-shine: light-dark(#e3e7eb, #eef1f4);
   --scrim: light-dark(rgb(20 20 18 / 0.38), rgb(0 0 0 / 0.55));
   --bezel: light-dark(#111110, #000);
   --shadow-near: light-dark(rgb(25 25 23 / 0.06), rgb(0 0 0 / 0.4));
@@ -116,6 +121,8 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-pen: cubic-bezier(0.55, 0.06, 0.35, 1);
+  /* A medal pinning on: overshoots, then settles on its ribbon. */
+  --ease-swing: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   --dur-press: 160ms; /* button press, scale .97 */
   --dur-hover: 160ms; /* color, underline */
