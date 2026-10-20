@@ -16,10 +16,10 @@ export type WorkItem = {
   end: number | "now";
   tags: readonly string[];
   /**
-   * How much room the row gets: "current" is the open engagement, "top" the
-   * featured role, "main" a standard row, "agate" the small print at the end.
+   * How much room the row gets: "current" is the open engagement, "main" a
+   * standard row, "agate" the small print at the end.
    */
-  billing: "current" | "top" | "main" | "agate";
+  billing: "current" | "main" | "agate";
   href: string;
 };
 
@@ -40,7 +40,7 @@ export const WORK: readonly WorkItem[] = [
     start: 2024,
     end: 2025,
     tags: ["React Native", "Expo", "Architecture"],
-    billing: "top",
+    billing: "main",
     href: "https://www.coinbase.com/",
   },
   {

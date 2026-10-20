@@ -82,7 +82,6 @@ export const WorkSection = async () => {
             key={item.id}
             id={`work-${item.id}`}
             className={styles.row}
-            data-billing={item.billing}
             {...reveal()}
           >
             <p className={styles.when}>

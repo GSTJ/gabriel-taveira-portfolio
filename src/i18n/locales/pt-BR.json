@@ -154,18 +154,18 @@
     }
   },
   "work": {
-    "title": "Times que liderei. Sistemas que ficaram de pé.",
-    "sub": "De quatro reportes diretos a cinquenta e seis, passando por startups, apps de delivery, fintechs e gigantes da tech.",
+    "title": "Onde já trabalhei",
+    "sub": "Startups, apps de delivery, fintechs e big techs, desde 2017.",
     "present": "agora",
     "earlier": "Antes disso",
     "linkedin": "LinkedIn",
     "items": {
       "consulting": {
         "title": "Consultoria independente",
-        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time para empresas de produto. Detalhes dos clientes sob NDA. Aceitando novos projetos, então chama."
+        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time para empresas de produto. Detalhes dos clientes sob NDA."
       },
       "coinbase": {
-        "title": "Arquitetura mobile na Coinbase",
+        "title": "Migrações no app da Coinbase",
         "blurb": "Time de Consumer App Infra. Puxei a adoção do React Compiler junto ao React WG, ajudei a migrar a Coinbase pro Expo Prebuild e ajudei a habilitar a nova arquitetura do React Native. Cobertura de testes nos arquivos do time: <mark>25% → 45%</mark>."
       },
       "ateam": {
