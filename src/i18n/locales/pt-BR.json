@@ -551,7 +551,6 @@
     "skillsTitle": "Competências",
     "talksTitle": "Palestras",
     "awardsTitle": "Prêmios",
-    "educationTitle": "Formação",
     "backToSite": "Portfólio completo",
     "download": "Baixar PDF",
     "range": "{start} a {end}",
@@ -589,7 +588,7 @@
         "Co-escrevi o Mozeic, o design system interno (177 mil+ downloads no npm), e entrevistei candidatos de engenharia."
       ],
       "alfred": [
-        "Liderei a migração de Ionic para React Native de um app que atendia 90+ franquias."
+        "Como único engenheiro, liderei a migração de Ionic para React Native de um app que atendia 90+ franquias."
       ],
       "micro": [
         "Construí um tracker em tempo real do status de reparos e dashboards internos para uma Apple Service Provider."
@@ -601,11 +600,6 @@
       "openSource": "Open source",
       "maintainer": "Mantenedor",
       "openSourceBody": "magic-modal, eslint-plugin-safe-jsx, react-native-code-push-plugin e outros: {downloads} mil+ downloads no npm e {stars} estrelas no GitHub."
-    },
-    "education": {
-      "school": "Rocketseat",
-      "program": "GoStack Bootcamp",
-      "date": "2020"
     }
   },
   "securityPage": {
