@@ -16,39 +16,6 @@
   border-top: 1px solid var(--rule);
 }
 
-/*
- * The featured role gets more air and a bigger title across both text
- * columns, so its blurb still lines up with every other row.
- */
-.row[data-billing="top"] {
-  padding-block: var(--space-7);
-}
-
-@media (width >= 1000px) {
-  .row[data-billing="top"] {
-    grid-template-areas:
-      "when head head go"
-      ". blurb blurb .";
-    row-gap: var(--space-5);
-  }
-
-  .row[data-billing="top"] .when {
-    grid-area: when;
-  }
-
-  .row[data-billing="top"] .head {
-    grid-area: head;
-  }
-
-  .row[data-billing="top"] .blurb {
-    grid-area: blurb;
-  }
-
-  .row[data-billing="top"] .go {
-    grid-area: go;
-  }
-}
-
 .when {
   display: grid;
   gap: var(--space-3);
@@ -69,12 +36,6 @@
   letter-spacing: var(--tr-title);
   font-weight: var(--fw-medium);
   text-wrap: balance;
-}
-
-.row[data-billing="top"] .title {
-  font-size: var(--fs-h1);
-  line-height: var(--lh-heading);
-  letter-spacing: var(--tr-h2);
 }
 
 .blurb {
@@ -183,10 +144,6 @@
   .row {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-3);
-  }
-
-  .row[data-billing="top"] {
-    padding-block: var(--space-6);
   }
 
   .go {

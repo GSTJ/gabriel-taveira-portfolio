@@ -154,18 +154,18 @@
     }
   },
   "work": {
-    "title": "Teams I've led. Systems that lasted.",
-    "sub": "From four direct reports to fifty-six, across startups, delivery apps, fintechs, and tech giants.",
+    "title": "Where I've worked",
+    "sub": "Startups, delivery apps, fintechs, and big tech, since 2017.",
     "present": "now",
     "earlier": "Earlier",
     "linkedin": "LinkedIn",
     "items": {
       "consulting": {
         "title": "Independent consulting",
-        "blurb": "Mobile architecture, engineering leadership, and team craft for product companies. Client details under NDA. Taking on new engagements, so reach out."
+        "blurb": "Mobile architecture, engineering leadership, and team craft for product companies. Client details under NDA."
       },
       "coinbase": {
-        "title": "Mobile architecture at Coinbase",
+        "title": "Migrations on the Coinbase app",
         "blurb": "On Consumer App Infra. Drove React Compiler adoption with the React WG, helped migrate Coinbase to Expo Prebuild, and helped enable React Native's new architecture. Test coverage on team-owned files: <mark>25% → 45%</mark>."
       },
       "ateam": {
