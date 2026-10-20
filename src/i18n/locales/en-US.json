@@ -195,24 +195,45 @@
     "sub": "Scoped projects or interim leadership, remote with US teams.",
     "proofs": {
       "label": "Where I did it",
-      "work": "Work history"
+      "work": "Work history",
+      "pr": "{name} PR #{number}"
     },
     "items": {
       "audit": {
         "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy. You get a prioritized plan your team can run without me."
+        "body": "A hard look at your app's performance, release pipeline, and test strategy. You get a prioritized plan your team can run without me.",
+        "receipts": {
+          "coinbase": "Test coverage <b>25% → 45%</b> on team-owned files",
+          "groundswell": "Test coverage <b>30% → 80%+</b>, after cutting 16k lines of brittle tests",
+          "pegada": "Android cold start <b>24% faster</b>, APK 9.5% smaller"
+        }
       },
       "migrations": {
         "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler while feature work keeps shipping."
+        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler while feature work keeps shipping.",
+        "receipts": {
+          "coinbase": "Helped move the app to <b>Expo Prebuild</b>, the new architecture, and React Compiler",
+          "alfred": "<b>Ionic → React Native</b> for 90+ franchises, with the old app live through a 6-month cutover",
+          "pegada": "<b>Expo SDK 51 → 55</b> in one pass: React Native 0.83 and React 19"
+        }
       },
       "leadership": {
         "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. At my largest, 56 people reported up to me."
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself.",
+        "receipts": {
+          "people": "<b>56 people</b> reported up to me at my largest",
+          "hiring": "<b>Interviewed and onboarded</b> new engineers",
+          "forum": "Founded the <b>Mobile Engineering Biweekly</b> forum"
+        }
       },
       "systems": {
         "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams ship screens without breaking the UI."
+        "body": "Component libraries and SDKs that let product teams ship screens without breaking the UI.",
+        "receipts": {
+          "mozeic": "Co-built <b>Mozeic</b>, the in-house design system, then gave a talk on it at TDC 2024",
+          "kustomer": "An <b>open-source design system</b> and SDKs for external developers",
+          "pegada": "Moved <b>170 files</b> to a new styling system by codemod, with zero pixels changed across 64 screenshots"
+        }
       }
     },
     "engagement": {
@@ -220,21 +241,26 @@
       "steps": {
         "review": {
           "title": "Review",
-          "body": "I read the code, the release pipeline, and the backlog, and talk to whoever owns each one."
+          "body": "I read the code, the release pipeline, and the backlog, and talk to whoever owns each one.",
+          "out": "A list of what's slowing you down, ranked by risk"
         },
         "plan": {
           "title": "Plan",
-          "body": "A short written plan: what to fix first, what it costs, and what can wait."
+          "body": "A short written plan: what to fix first, what it costs, and what can wait.",
+          "out": "A written plan, in order and costed"
         },
         "ship": {
           "title": "Ship",
-          "body": "I work inside your team on the riskiest part first: the migration, the slow screens, the release train."
+          "body": "I work inside your team on the riskiest part first: the migration, the slow screens, the release train.",
+          "out": "Pull requests in your repo, reviewed by your team"
         },
         "handoff": {
           "title": "Hand off",
-          "body": "Docs, review standards, and an owner on your team for each piece."
+          "body": "Docs, review standards, and an owner on your team for each piece.",
+          "out": "A team that keeps it running without me"
         }
-      }
+      },
+      "out": "You get"
     }
   },
   "notes": {

@@ -1,29 +1,100 @@
+import type { ReactNode } from "react";
+
 import { getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
+import { ArrowUpRight } from "../../ui/icons";
 import { reveal, timingStyle } from "../../ui/motion";
 import { WORK, workDates, workOrgs } from "../work/data";
 import { ArrowUp } from "./arrow-up";
-import { ENGAGEMENT_STEPS, SERVICES, type ServiceProof } from "./data";
+import {
+  ENGAGEMENT_STEPS,
+  type ReceiptSource,
+  SERVICES,
+  type ServiceItem,
+} from "./data";
 
 import styles from "./services.module.css";
 
-/** The four offers, each citing the job that proves it, then how an engagement runs. */
+type Cite = { href: string; label: string; dates?: string; external?: true };
+
+/** The arrow rides on the last word, so it never wraps onto a line alone. */
+const citeText = ({ label, dates, external }: Cite) => {
+  const arrow = external ? <ArrowUpRight /> : <ArrowUp />;
+  const glue = (text: ReactNode) => (
+    <span className={styles.glue}>
+      {text}
+      {arrow}
+    </span>
+  );
+  if (dates) {
+    return (
+      <>
+        {label} {glue(<span className={cn("num", styles.dates)}>{dates}</span>)}
+      </>
+    );
+  }
+  const cut = label.lastIndexOf(" ");
+  return (
+    <>
+      {label.slice(0, cut + 1)}
+      {glue(label.slice(cut + 1))}
+    </>
+  );
+};
+
+const figure = (chunks: ReactNode) => <strong className="num">{chunks}</strong>;
+
+/** The four offers, each with dated outcomes that link to their source, then how an engagement runs. */
 export const ServicesSection = async () => {
   const t = await getTranslations("services");
   const tWork = await getTranslations("work");
 
-  const proofLink = (proof: ServiceProof) => {
-    if (proof === "work") return { href: "#work", org: t("proofs.work") };
-    const job = WORK.find((item) => item.id === proof);
-    if (!job) throw new Error(`Unknown work row: ${proof}`);
+  const cite = (source: ReceiptSource): Cite => {
+    if ("pr" in source) {
+      const { repo, name, number, year } = source.pr;
+      return {
+        href: `https://github.com/${repo}/pull/${number}`,
+        label: t("proofs.pr", { name, number }),
+        dates: String(year),
+        external: true,
+      };
+    }
+    if (source.work === "all")
+      return { href: "#work", label: t("proofs.work") };
+    const job = WORK.find((item) => item.id === source.work);
+    if (!job) throw new Error(`Unknown work row: ${source.work}`);
     return {
       href: `#work-${job.id}`,
-      org: workOrgs(job, tWork("independent"))[0],
+      label: workOrgs(job, tWork("independent"))[0] ?? "",
       dates: workDates(job, tWork("present")),
     };
   };
+
+  const receipts = (service: ServiceItem) => (
+    <ul className={styles.receipts}>
+      {service.receipts.map((receipt, index) => {
+        const source = cite(receipt.source);
+        return (
+          <li
+            key={receipt.id}
+            className={styles.receipt}
+            {...reveal(index + 1)}
+          >
+            <p className="t-small">
+              {t.rich(`items.${service.id}.receipts.${receipt.id}`, {
+                b: figure,
+              })}
+            </p>
+            <a className={cn("t-meta", styles.cite)} href={source.href}>
+              {citeText(source)}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
 
   return (
     <section
@@ -45,24 +116,10 @@ export const ServicesSection = async () => {
               {t(`items.${service.id}.body`)}
             </p>
             <div className={styles.proof}>
-              <p className="t-meta">{t("proofs.label")}</p>
-              <ul>
-                {service.proofs.map(proofLink).map((link) => (
-                  <li key={link.href}>
-                    <a className={cn("t-small", styles.cite)} href={link.href}>
-                      <ArrowUp />
-                      <span>
-                        {link.org}
-                        {link.dates ? (
-                          <span className={cn("num", styles.dates)}>
-                            {link.dates}
-                          </span>
-                        ) : null}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <p className={cn("t-meta", styles.proofLabel)}>
+                {t("proofs.label")}
+              </p>
+              {receipts(service)}
             </div>
           </li>
         ))}
@@ -78,6 +135,12 @@ export const ServicesSection = async () => {
                 {t(`engagement.steps.${step}.title`)}
               </strong>
               <p className="t-body">{t(`engagement.steps.${step}.body`)}</p>
+              <p className={styles.out}>
+                <span className="t-meta">{t("engagement.out")}</span>
+                <span className="t-small">
+                  {t(`engagement.steps.${step}.out`)}
+                </span>
+              </p>
             </li>
           ))}
         </ol>
