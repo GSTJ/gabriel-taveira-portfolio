@@ -242,7 +242,7 @@
       },
       "ze": {
         "title": "Refatorei o maior app de cerveja do Brasil",
-        "blurb": "Entrevistei e fiz onboarding de engenheiros sêniores. Reconstruí o módulo Browse. Implementei deep-links que aumentaram a conversão das campanhas. Co-criei o <mark>Mozeic</mark>, o design system interno.",
+        "blurb": "Reconstruí o módulo Browse. Implementei deep-links que aumentaram a conversão das campanhas. Co-escrevi o código do <mark>Mozeic</mark>, o design system interno.",
         "proof": {
           "mozeic": {
             "label": "Mozeic no npm",
@@ -401,7 +401,7 @@
         },
         "tdc": {
           "title": "Entregando o Mozeic no Zé Delivery",
-          "description": "Lições de co-criar um design system interno num app de delivery de tráfego alto.",
+          "description": "Lições de escrever junto o código de um design system interno num app de delivery de tráfego alto.",
           "venue": "TDC · Design Systems",
           "city": "São Paulo"
         },
@@ -510,7 +510,7 @@
     "role": "Consultor independente · React Native & Expo",
     "location": "Ribeirão Preto, Brasil · Remoto (horário dos EUA)",
     "summaryTitle": "Resumo",
-    "summary": "Líder de engenharia mobile e consultor React Native / Expo com mais de {years} anos de experiência profissional. Cheguei a ter 56 pessoas sob a minha gestão. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-criei o design system do Zé Delivery.",
+    "summary": "Líder de engenharia mobile e consultor independente com mais de {years} anos de experiência profissional. Cheguei a ter 56 pessoas sob a minha gestão. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-escrevi o código do design system do Zé Delivery.",
     "skillsTitle": "Competências",
     "experienceTitle": "Experiência",
     "talksTitle": "Palestras",

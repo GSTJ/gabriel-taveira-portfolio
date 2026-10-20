@@ -242,7 +242,7 @@
       },
       "ze": {
         "title": "Refactored Brazil's biggest beer app",
-        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built <mark>Mozeic</mark>, the in-house design system.",
+        "blurb": "Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-wrote the code for <mark>Mozeic</mark>, the in-house design system.",
         "proof": {
           "mozeic": {
             "label": "Mozeic on npm",
@@ -401,7 +401,7 @@
         },
         "tdc": {
           "title": "Shipping Mozeic at Zé Delivery",
-          "description": "Lessons from co-building an in-house design system at a high-traffic delivery app.",
+          "description": "Lessons from co-writing an in-house design system at a high-traffic delivery app.",
           "venue": "TDC · Design Systems",
           "city": "São Paulo"
         },
@@ -510,7 +510,7 @@
     "role": "Independent consultant · React Native & Expo",
     "location": "Ribeirão Preto, Brazil · Remote (US hours)",
     "summaryTitle": "Summary",
-    "summary": "Mobile engineering lead and React Native / Expo consultant with {years}+ years of professional experience. Managed an org of up to 56 people. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-built Zé Delivery's design system.",
+    "summary": "Mobile engineering lead and independent consultant with {years}+ years of professional experience. Managed an org of up to 56 people. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-wrote the code for Zé Delivery's design system.",
     "skillsTitle": "Skills",
     "experienceTitle": "Experience",
     "talksTitle": "Talks",
