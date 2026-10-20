@@ -1,52 +1,21 @@
+/* No bottom padding: Projects' own section rhythm is the only gap, so the
+   work starts inside the first scroll. */
 .hero {
-  padding-top: clamp(2.5rem, 6vw, 5.5rem);
-  padding-bottom: clamp(3.5rem, 6vw, 6rem);
+  padding-top: clamp(2.5rem, 7vw, 7rem);
   scroll-margin-top: var(--nav-h);
 }
 
-.letterhead {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-2) var(--space-4);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: clamp(2.25rem, 5vw, 4.5rem);
-  color: var(--ink-3);
-}
-
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--ink-2);
-}
-
-.status::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--pen);
-}
-
 .title {
-  max-width: 15.2em;
-}
-
-.me {
-  display: block;
-  font-weight: var(--fw-strong);
+  max-width: 12em;
 }
 
 .body {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-6);
   max-width: var(--measure);
-  margin-top: clamp(2rem, 4vw, 3.5rem);
+  margin-top: clamp(1.75rem, 3vw, 2.75rem);
 }
 
-/* The note's anchor stays one phrase, so its underline never splits at 390. */
 .body strong {
   white-space: nowrap;
 }
@@ -56,7 +25,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3);
-  margin-top: var(--space-3);
 }
 
 .plain {

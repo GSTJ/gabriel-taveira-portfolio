@@ -38,19 +38,14 @@
     }
   },
   "hero": {
-    "status": "Consultor independente, aberto a novos clientes",
-    "place": "Ribeirão Preto, Brasil · {month}",
-    "title": "<me>Sou o Gabriel.</me> Ajudo times de produto a lançar apps React Native e Expo <pen>que escalam.</pen>",
-    "body": "A arquitetura, as migrações e o time que mantém tudo de pé. Com mais de {years} anos de carreira, já liderei times de até <note>56 reportes diretos</note> e trabalhei na infraestrutura do app da Coinbase.",
-    "notes": {
-      "yesReally": "é isso mesmo"
-    },
+    "status": "Consultor independente de React Native e Expo",
+    "title": "Faço apps em React Native e ajudo times a <pen>fazer os deles.</pen>",
+    "body": "Já fui responsável por <strong>56 pessoas</strong> em dois níveis, líderes e os times deles. No time de infra do app da Coinbase, puxei a adoção do React Compiler. Hoje sou consultor independente, construo a Curvinha e mantenho bibliotecas como magic-modal e safe-jsx.",
     "cta": {
       "getInTouch": "Fala comigo",
       "downloadPdf": "Baixar PDF",
       "linkedIn": "LinkedIn"
-    },
-    "body2": "Aceitando novos projetos de consultoria, remoto com times dos EUA. Comecei na engenharia aos oito anos, fazendo engenharia reversa em jogos. {tinkering} anos depois, construindo e desmontando sistemas, a curiosidade segue a mesma."
+    }
   },
   "projects": {
     "title": "Coisas que eu fiz.",
