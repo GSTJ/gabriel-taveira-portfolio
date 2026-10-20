@@ -58,17 +58,37 @@ export const CURVINHA_STACK = [
 ] as const;
 export type CurvinhaStackId = (typeof CURVINHA_STACK)[number]["id"];
 
-/** GitHub stars, read by hand. Shown with this date, never as a live number. */
-export const STARS_READ_ON = "2026-10-19";
-export const STARS = {
-  magicModal: 651,
-  safeJsx: 29,
-  pegada: 28,
-  pegava: 433,
-  magicToast: 16,
-  codePush: 17,
-  observability: 0,
+/** Each star count's repo. Observability lives in the `magic` monorepo. */
+export const REPOS = {
+  magicModal: "GSTJ/magic-modal",
+  safeJsx: "GSTJ/safe-jsx",
+  pegada: "GSTJ/pegada",
+  pegava: "GSTJ/pegava-dating-app",
+  magicToast: "GSTJ/react-native-magic-toast",
+  codePush: "GSTJ/react-native-code-push-plugin",
+  observability: "GSTJ/magic",
 } as const;
+export type RepoId = keyof typeof REPOS;
+
+/**
+ * GitHub's numbers as read by hand on `read`: stars per repo, Pegada's and
+ * Pegava's forks, and the public Pegada repo's commit count. The live read in
+ * `github.ts` falls back to this whole, dated with its own `read`.
+ */
+export const GITHUB_SNAPSHOT = {
+  read: "2026-10-19",
+  stars: {
+    magicModal: 651,
+    safeJsx: 29,
+    pegada: 28,
+    pegava: 433,
+    magicToast: 16,
+    codePush: 17,
+    observability: 0,
+  } as Record<RepoId, number>,
+  forks: { pegada: 9, pegava: 144 },
+  commits: 244,
+};
 
 /** Pegada's three steps, each a real App Store screen (pt-BR, light). */
 export const PEGADA_STEPS = ["deck", "match", "chat"] as const;
@@ -78,11 +98,11 @@ export const PEGAVA_HREF = "https://github.com/GSTJ/pegava-dating-app";
 
 /**
  * Pegada's receipts, each with its source. Commits: the public repo's count
- * (gh, read on `STARS_READ_ON`) plus the closed-source history he posted
- * about when he opened it. Rank: Product Hunt's own award page.
+ * (live, from `github.ts`) plus the closed-source history he posted about
+ * when he opened it. Rank: Product Hunt's own award page.
  */
 export const PEGADA_FACTS = {
-  commits: { public: 244, before: 1300 },
+  commitsBefore: 1300,
   openSourceHref: "https://github.com/GSTJ/pegada/commits",
   openSourcePostHref:
     "https://www.linkedin.com/posts/gabrieltaveira_opensource-reactnative-nextjs-activity-7319492711873437696-RCzo",
@@ -91,7 +111,6 @@ export const PEGADA_FACTS = {
     date: "2024-08-10",
     href: "https://www.producthunt.com/products/pegada/awards",
   },
-  forks: { pegada: 9, pegava: 144 },
 } as const;
 
 /** What he shipped in Pegada lately, newest work first, from the PRs. */
@@ -125,7 +144,7 @@ export const PEGADA_STORES = {
 /**
  * The npm ledger, biggest first. `names` sums every name a package shipped
  * under (magic-modal was react-native-magic-modal until v10). `stars` is the
- * package's repo in `STARS`.
+ * package's repo in `REPOS`.
  */
 export const NPM_ROWS = [
   {

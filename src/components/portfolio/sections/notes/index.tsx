@@ -12,17 +12,18 @@ import { currentMonthLabel } from "../../lifeline";
 import { ArrowUpRight } from "../../ui/icons";
 import { Marginalia } from "../../ui/marginalia";
 import { reveal } from "../../ui/motion";
+import { getGitHub } from "../projects/github";
+import { getNpmLedger } from "../projects/npm";
 import {
   ALSO,
   AWARDS,
   EPISODES,
   GUIDE,
-  MAGIC_MODAL,
+  MAGIC_MODAL_HREF,
   NOW,
   SITE_UPDATED,
   PUBLICATIONS,
   SHIPPED,
-  SHIPPED_READ,
   SPACE_CAST_READ,
   SPACE_CAST_TOTALS,
   TALKS,
@@ -285,7 +286,17 @@ const Post = ({
  * The guide in his own words, its two editions, then his pen drawing the line
  * from the guide down to the library it became. Other posts trail after.
  */
-const Writing = ({ t, locale }: { t: T; locale: string }) => (
+type Library = { stars: number; downloads: number; read: string };
+
+const Writing = ({
+  t,
+  locale,
+  lib,
+}: {
+  t: T;
+  locale: string;
+  lib: Library;
+}) => (
   <section className={styles.block} aria-labelledby="notes-writing">
     <div className={styles.head} {...reveal()}>
       <h3 id="notes-writing" className="t-title">
@@ -318,27 +329,27 @@ const Writing = ({ t, locale }: { t: T; locale: string }) => (
         <span className="t-hand">{t("writing.became")}</span>
       </div>
       <div className={styles.lib} {...reveal(3)}>
-        <a className={cn("t-mono", styles.libName)} href={MAGIC_MODAL.href}>
+        <a className={cn("t-mono", styles.libName)} href={MAGIC_MODAL_HREF}>
           magic-modal
           <ArrowUpRight />
         </a>
         <p className={styles.figures}>
           <span>
             {t.rich("writing.stars", {
-              n: MAGIC_MODAL.stars.toLocaleString(locale),
+              n: lib.stars.toLocaleString(locale),
               num: figure,
             })}
           </span>
           <span>
             {t.rich("writing.downloads", {
-              n: MAGIC_MODAL.downloads.toLocaleString(locale),
+              n: lib.downloads.toLocaleString(locale),
               num: figure,
             })}
           </span>
         </p>
         <p className="t-small">{t.rich("writing.library", { old: oldName })}</p>
         <p className="t-meta">
-          {t("writing.source", { date: shortDate(MAGIC_MODAL.read, locale) })}
+          {t("writing.source", { date: shortDate(lib.read, locale) })}
         </p>
       </div>
     </div>
@@ -362,9 +373,7 @@ const Shipped = ({ t, locale }: { t: T; locale: string }) => (
       <h3 id="notes-shipped" className="t-title">
         {t("shipped.title")}
       </h3>
-      <p className="t-meta">
-        {t("shipped.source", { date: shortDate(SHIPPED_READ, locale) })}
-      </p>
+      <p className="t-meta">{t("shipped.source")}</p>
     </div>
     <ol className={styles.rows}>
       {SHIPPED.map((item, i) => (
@@ -441,6 +450,13 @@ const Awards = ({ t }: { t: T }) => (
 export const NotesSection = async () => {
   const t = await getTranslations("notes");
   const locale = await getLocale();
+  const [npm, github] = await Promise.all([getNpmLedger(), getGitHub()]);
+  const modal = npm.rows.find((row) => row.id === "magicModal");
+  const lib = {
+    stars: github.stars.magicModal,
+    downloads: modal?.total ?? 0,
+    read: github.read,
+  };
 
   return (
     <section id="notes" className="section wrap" aria-labelledby="notes-title">
@@ -457,7 +473,7 @@ export const NotesSection = async () => {
           <Podcast t={t} locale={locale} />
           <div className={styles.col}>
             <Shipped t={t} locale={locale} />
-            <Writing t={t} locale={locale} />
+            <Writing t={t} locale={locale} lib={lib} />
           </div>
         </div>
         <Awards t={t} />

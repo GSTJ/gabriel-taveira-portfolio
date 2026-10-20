@@ -238,7 +238,7 @@
         "proof": {
           "app": {
             "label": "D-ID na App Store",
-            "meta": "4,6 estrelas em 3,4 mil avaliações"
+            "meta": "{rating} estrelas em {ratings} avaliações"
           },
           "kitty": {
             "label": "Golden Kitty 2023",
@@ -266,7 +266,7 @@
         "proof": {
           "mozeic": {
             "label": "Mozeic no npm",
-            "meta": "177 mil+ downloads. A primeira versão saiu da minha conta, em dez. de 2020"
+            "meta": "{mozeic} mil+ downloads. A primeira versão saiu da minha conta, em dez. de 2020"
           }
         }
       },
@@ -331,7 +331,7 @@
             "text": "pessoas sob a minha gestão, no auge"
           },
           "did": {
-            "figure": "4,6",
+            "figure": "{rating}",
             "text": "estrelas na App Store pro app da D-ID, que construí do zero como Lead Engineer"
           }
         }
@@ -341,7 +341,7 @@
         "body": "Uma biblioteca de componentes que o time usa de verdade: cada tela nova sai mais rápido e com a cara do resto do app.",
         "receipts": {
           "mozeic": {
-            "figure": "177 mil+",
+            "figure": "{mozeic} mil+",
             "text": "downloads no npm. Co-escrevi o código do Mozeic, o design system do Zé"
           },
           "kustomer": {
@@ -479,7 +479,7 @@
     },
     "shipped": {
       "title": "Lançado há pouco",
-      "source": "Das minhas releases no GitHub, lidas em {date}.",
+      "source": "Das minhas releases no GitHub.",
       "items": {
         "pegada": "Limite diário de likes configurável e plano semanal",
         "safeJsx": "A regra agora pega brechas com booleanos mutáveis",
@@ -576,7 +576,7 @@
       ],
       "ateam": [
         "Construí do zero o novo produto principal da empresa, o app mobile, com React Native e Expo.",
-        "4,6 estrelas em 3,4 mil avaliações na App Store. Golden Kitty 2023 no Product Hunt, Best UX 2023 na A.Team."
+        "{rating} estrelas em {ratings} avaliações na App Store. Golden Kitty 2023 no Product Hunt, Best UX 2023 na A.Team."
       ],
       "meta": [
         "Construí o design system open source e os SDKs para devs que integram com as APIs da Kustomer."
@@ -587,7 +587,7 @@
       ],
       "ze": [
         "Reconstruí o módulo Browse e implementei deep-links que aumentaram a conversão das campanhas.",
-        "Co-escrevi o Mozeic, o design system interno (177 mil+ downloads no npm), e entrevistei candidatos de engenharia."
+        "Co-escrevi o Mozeic, o design system interno ({mozeic} mil+ downloads no npm), e entrevistei candidatos de engenharia."
       ],
       "alfred": [
         "Como único engenheiro, liderei a migração de Ionic para React Native de um app que atendia 90+ franquias."

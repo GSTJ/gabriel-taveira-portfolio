@@ -7,3 +7,6 @@ const parsed = new Date(process.env.SITE_UPDATED ?? "");
 export const SITE_UPDATED = Number.isNaN(parsed.getTime())
   ? new Date()
   : parsed;
+
+/** Optional. Lifts GitHub's unauthenticated limit (60 an hour) for the live star counts. */
+export const { GITHUB_TOKEN } = process.env;
