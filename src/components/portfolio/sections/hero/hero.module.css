@@ -32,3 +32,180 @@
   padding-inline: var(--space-1);
   color: var(--ink-2);
 }
+
+/*
+ * Real icons of apps he worked on. Narrow: a compact row under the CTAs.
+ * 1000px and up: a cluster in the hero's empty right column. Each links to
+ * the row or card that says what he did; the label is its accessible name
+ * and shows on hover or keyboard focus.
+ */
+.apps {
+  --icon: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.app a {
+  position: relative;
+  display: block;
+  border-radius: 22.5%;
+  box-shadow:
+    0 0 0 0.5px color-mix(in oklab, var(--ink) 14%, transparent),
+    0 1px 2px var(--shadow-near),
+    0 10px 22px -12px var(--shadow-far);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.app a:active {
+  transform: scale(0.97);
+}
+
+.app img {
+  display: block;
+  width: var(--icon);
+  height: var(--icon);
+  border-radius: inherit;
+}
+
+.label {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 50%;
+  z-index: 1;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  box-shadow:
+    0 0 0 1px var(--rule),
+    var(--shadow);
+  color: var(--ink);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  translate: -50% calc(var(--space-1) * -1);
+  rotate: calc(var(--r, 0deg) * -1); /* level, whatever the icon's tilt */
+  transition:
+    opacity var(--dur-exit) var(--ease-out),
+    translate var(--dur-exit) var(--ease-out);
+}
+
+/* The narrow row has no room for labels: each stays the link's name only. */
+@media (width < 1000px) {
+  .label {
+    clip-path: inset(50%);
+  }
+}
+
+.app a:focus-visible .label {
+  opacity: 1;
+  translate: -50% 0;
+  transition-duration: var(--dur-ui);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .app a:hover {
+    transform: translateY(-3px) scale(1.04);
+  }
+
+  .app a:hover .label {
+    opacity: 1;
+    translate: -50% 0;
+    transition-duration: var(--dur-ui);
+  }
+}
+
+@media (width >= 1000px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(18rem, 30vw, 27.5rem);
+    column-gap: var(--space-7);
+  }
+
+  .title,
+  .body {
+    grid-column: 1;
+  }
+
+  /* Hand-placed in two loose rows, sized in cqi so the cluster scales with
+     its column. Sizes and tilts vary a little. */
+  .apps {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    container-type: inline-size;
+    margin-top: 0;
+    position: relative;
+    aspect-ratio: 1 / 0.9;
+  }
+
+  .app {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    rotate: var(--r);
+  }
+
+  .app:nth-child(1) {
+    --x: 6%;
+    --y: 6%;
+    --r: -5deg;
+    --icon: 25cqi;
+  }
+
+  .app:nth-child(2) {
+    --x: 42%;
+    --y: 0%;
+    --r: 3deg;
+    --icon: 21cqi;
+  }
+
+  .app:nth-child(3) {
+    --x: 73%;
+    --y: 15%;
+    --r: -3deg;
+    --icon: 22cqi;
+  }
+
+  .app:nth-child(4) {
+    --x: 15%;
+    --y: 50%;
+    --r: 4deg;
+    --icon: 21cqi;
+  }
+
+  .app:nth-child(5) {
+    --x: 46%;
+    --y: 41%;
+    --r: -3deg;
+    --icon: 23cqi;
+  }
+
+  .app:nth-child(6) {
+    --x: 75%;
+    --y: 60%;
+    --r: 5deg;
+    --icon: 20cqi;
+  }
+}
+
+/* A calm idle drift, out of step per icon. Reduced motion: still. */
+@media (width >= 1000px) and (prefers-reduced-motion: no-preference) {
+  .app a {
+    animation: drift 7s var(--ease-in-out) calc(var(--i) * -1.3s) infinite
+      alternate;
+  }
+
+  .app a:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes drift {
+  to {
+    translate: 0 -5px;
+  }
+}

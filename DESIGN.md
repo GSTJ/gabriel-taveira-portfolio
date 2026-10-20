@@ -136,7 +136,7 @@ One neutral paper (cooler than Curvinha's cream on purpose), three inks, two rul
 - **pen**: his notes, the pen underline, focus rings, selection (as `pen-wash`). Never a button fill, never a heading color, never a second accent next to it.
 - **gold / silver** (and their `-shine`): medal metal, only on a real, sourced placement. Never a fill for anything else.
 
-`--scrim`, `--bezel` and `--shadow` exist for the one modal and the phone frame the projects section may need.
+`--scrim`, `--bezel` and `--shadow` exist for the one modal, the phone frame the projects section may need, and the hero's app icons.
 
 ## Typography
 
@@ -175,6 +175,7 @@ Pill for every button, the language switch and toggles. 14px for a card stage, 1
 - **Theme toggle**: the same 38px track as the language switch, sun and moon on it, and an ink knob resting under the theme in effect. CSS places the knob (explicit `data-theme`, else the system), so it is right before hydration. On a flip the knob slides over (240ms `--ease-out`, press 0.92), the sun turns 45° away as it leaves, and the page crossfades with a View Transition (240ms). Picking the theme the system already uses clears the choice, so the page returns to auto.
 - **Footer**: the page signs off like a letter. A closing line ("Valeu por ler até aqui."), his name in Caveat in pen, written in left to right through `clip-path` the first time it is in view (1140ms `--ease-pen`), then a 2px pen flourish draws under it (960ms). Under the signature the line a signature carries (what he does, his email) and a P.S. with the site's public repo. Beside it a quiet map (Site, Elsewhere, Files) and a fine line with the date the page was last touched. The paper deepens toward paper-2 on the way down. Reduced motion: already signed.
 - **Badges** (`ui/badges.tsx`): a `<Medal>` on a pen ribbon for a real award (silver "2" for Product Hunt's #2 of the day on Pegada, gold kitty for D-ID's Golden Kitty) and a `<Rating>` row of five stars for the App Store score. Inline SVG, `aria-hidden`, beside words that already say it. The medal swings onto its ribbon the first time it is in view (`--ease-swing`) and swings again on hover; the stars fill left to right. Reduced motion: already there.
+- **Hero app icons** (`sections/hero`): the real App Store icons of apps he worked on (`public/hero/`, sources and fetch dates in `hero/data.ts`), never company logos. At 1000px and up a hand-placed cluster in the hero's right column, each icon tilted a few degrees and drifting 5px on a slow, out-of-step loop; below that a 40px row under the CTAs. Each links to its work row or project card, and a level pill under it (name · role) shows on hover or keyboard focus and is the link's name. Lazy, low priority, sized before they load, so the lede stays the LCP. Reduced motion: still.
 - **Card** (a section-local pattern, paper-2 on a 14px radius, 32px padding): only when the proof inside needs a stage.
 
 ### Motion
