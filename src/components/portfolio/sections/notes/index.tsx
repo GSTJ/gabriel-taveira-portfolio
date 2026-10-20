@@ -91,33 +91,27 @@ const Talks = ({ t }: { t: T }) => (
   </section>
 );
 
-const OnAir = ({ t }: { t: T }) => (
+const Podcast = ({ t }: { t: T }) => (
   <section className={styles.block} aria-labelledby="notes-media">
     <h3 id="notes-media" className="t-title" {...reveal()}>
       {t("publications.title")}
     </h3>
     <div className={styles.stack} {...reveal(1)}>
       <p className={styles.feature}>
-        <Marginalia placement="inline" note={t("publications.season")}>
+        <Marginalia placement="inline" note={t("publications.ended")}>
           {t("publications.featureTitle")}
         </Marginalia>
       </p>
       <p className="t-small">{t("publications.featureSub")}</p>
       <p className={styles.links}>
-        <a className="link-arrow t-small" href={PUBLICATIONS.spaceCast}>
-          {t("publications.watchShow")}
-          <ArrowUpRight />
-        </a>
         <a className="link-arrow t-small" href={PUBLICATIONS.playlist}>
           {t("publications.playlist")}
           <ArrowUpRight />
         </a>
-      </p>
-      <p className="t-small">
-        <a href={PUBLICATIONS.spaceSquad}>
-          {t("publications.ambassadorTitle")}
+        <a className="link-arrow t-small" href={PUBLICATIONS.spaceCast}>
+          {t("publications.channel")}
+          <ArrowUpRight />
         </a>
-        . {t("publications.ambassadorBody")}
       </p>
     </div>
   </section>
@@ -212,7 +206,7 @@ export const NotesSection = async () => {
         <div className={styles.trio}>
           <Talks t={t} />
           <div className={styles.col}>
-            <OnAir t={t} />
+            <Podcast t={t} />
             <Writing t={t} />
           </div>
           <Shipped t={t} locale={locale} />
