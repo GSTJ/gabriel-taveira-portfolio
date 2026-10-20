@@ -34,6 +34,24 @@
   border-top: 1px solid var(--rule);
 }
 
+/* Inline so a wrapped link keeps its arrow on the last word. */
+.out {
+  display: inline;
+  color: var(--ink);
+}
+
+.out svg {
+  display: inline;
+  margin-left: 0.3em;
+  vertical-align: -0.05em;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
 /* Now: the one block that changes month to month, so it leads. */
 
 .now {
@@ -57,15 +75,14 @@
   padding-top: 0.2em;
 }
 
-/* Inline so a wrapped title keeps its arrow on the last word. */
-.nowTitle a {
-  display: inline;
+.nowMain {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-1);
 }
 
-.nowTitle a svg {
-  display: inline;
-  margin-left: 0.3em;
-  vertical-align: -0.05em;
+.store {
+  color: var(--ink-2);
 }
 
 .nowTitle {
@@ -98,11 +115,44 @@
   color: var(--ink);
 }
 
-.talk abbr {
+.rows abbr {
   text-decoration: none;
 }
 
-/* On air and writing */
+/* The deck's real title slide, one link with its label, gray like the sheet until pointed at. */
+.slide {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  max-width: 20rem;
+  text-decoration: none;
+  border-radius: var(--r-md);
+  outline-offset: 3px;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-md);
+  outline: 1px solid var(--rule);
+  outline-offset: -1px;
+  filter: grayscale(1);
+  transition:
+    filter var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.slide:focus-visible img {
+  filter: none;
+}
+
+.slide:active img {
+  transform: scale(0.98);
+}
+
+/* Podcast */
 
 .feature {
   font-size: var(--fs-lede);
@@ -112,10 +162,108 @@
   text-wrap: pretty;
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+/* The contact sheet. Its caption line is reserved, so pointing at a tile
+   swaps the text without moving anything below. */
+.sheet {
+  position: relative;
+  /* Two lines of .t-meta (1.4 line height) plus a gap. */
+  padding-bottom: calc(var(--fs-meta) * 1.4 * 2 + var(--space-3));
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.tile {
+  display: block;
+  border-radius: var(--r-sm);
+  outline-offset: 2px;
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-sm);
+  filter: grayscale(1);
+  transition:
+    filter var(--dur-hover) ease,
+    opacity var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.tile:active img {
+  transform: scale(0.96);
+}
+
+/* The three episodes that went out without him. */
+.tile[data-host="no"] img {
+  opacity: 0.3;
+}
+
+.cap,
+.capDefault {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: grid;
+  height: 2lh;
+  overflow: hidden;
+  transition: opacity var(--dur-hover) ease;
+}
+
+.cap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.capTitle {
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tile:focus-visible img {
+  filter: none;
+  opacity: 1;
+}
+
+.tile:focus-visible .cap {
+  opacity: 1;
+}
+
+.sheet:has(.tile:focus-visible) .capDefault {
+  opacity: 0;
+}
+
+/* Writing: the two versions of the guide, then the library it became. */
+
+.article {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+}
+
+.articleTitle {
+  font-weight: var(--fw-medium);
+  text-wrap: pretty;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.pkgLink {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule-strong);
+  transition: text-decoration-color var(--dur-hover) ease;
 }
 
 /* Shipped lately: a dated changelog strip, each row a link to the release. */
@@ -125,11 +273,16 @@
   gap: var(--space-1);
   padding-block: var(--space-3);
   text-decoration: none;
+  border-radius: var(--r-sm);
+  outline-offset: 2px;
 }
 
 .pkg {
   color: var(--ink);
   overflow-wrap: anywhere;
+}
+
+.pkgName {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
@@ -141,9 +294,60 @@
   color: var(--ink-3);
 }
 
+.pkg svg {
+  display: inline;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.35em;
+  vertical-align: -0.1em;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .ship:hover .pkg {
+  .ship:hover .pkgName,
+  .pkgLink:hover {
     text-decoration-color: var(--pen);
+  }
+
+  .ship:hover .pkg svg {
+    transform: translate(2px, -2px);
+  }
+
+  .slide:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .slide:hover img {
+    filter: none;
+  }
+
+  .tile:hover img {
+    filter: none;
+    opacity: 1;
+  }
+
+  .tile:hover .cap {
+    opacity: 1;
+  }
+
+  .sheet:has(.tile:hover) .capDefault {
+    opacity: 0;
+  }
+}
+
+/* Forty weeks in order: each tile lands a quarter-stagger after the last. */
+@media (prefers-reduced-motion: no-preference) {
+  .tiles > li {
+    transition:
+      opacity var(--dur-arrow) var(--ease-out),
+      transform var(--dur-arrow) var(--ease-out);
+    transition-delay: calc(var(--n, 0) * var(--stagger) / 4);
+  }
+
+  :global(.js) .sheet:not([data-in]) .tiles > li {
+    opacity: 0;
+    transform: scale(0.96);
   }
 }
 

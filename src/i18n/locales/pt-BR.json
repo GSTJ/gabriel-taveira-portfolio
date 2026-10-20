@@ -297,14 +297,20 @@
           "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D, com produtos reais de lojas brasileiras e a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
         }
       },
-      "updated": "Atualizado em {date}."
+      "updated": "Atualizado em {date}.",
+      "live": "Na App Store desde {date}"
     },
     "publications": {
       "title": "Podcast",
       "featureTitle": "Apresentei o podcast Space Cast no YouTube da Rocketseat.",
-      "featureSub": "Papos longos toda semana sobre engenharia, liderança e carreira em tech. Estou em 37 dos 40 episódios, de janeiro de 2023 até o programa acabar em outubro.",
+      "featureSub": "Papos longos toda semana com devs, designers e líderes de engenharia sobre carreira e código, de janeiro a outubro de 2023.",
+      "stats": "Estou em 37 dos 40 episódios: {hours} horas no ar e {views} visualizações.",
+      "source": "Somado no YouTube, lido em {date}.",
+      "sheetLabel": "Episódios 1 a 40 do Space Cast, cada um abre no YouTube",
+      "sheetCaption": "Os três apagados foram ao ar sem mim.",
+      "episode": "#{n} · {date}",
       "playlist": "Playlist de episódios",
-      "channel": "Canal no YouTube",
+      "spotify": "Spotify",
       "ended": "até out. 2023"
     },
     "talks": {
@@ -335,7 +341,8 @@
           "venue": "Space Squad · Rocketseat",
           "city": "Remoto"
         }
-      }
+      },
+      "slides": "Ver os {count} slides no Figma"
     },
     "awards": {
       "title": "Hackathons",
@@ -355,15 +362,14 @@
     },
     "writing": {
       "title": "Textos",
-      "sub": "Quase sempre sobre liderar engenheiros, entregar mobile em escala e as partes do trabalho que nenhuma descrição de vaga menciona.",
-      "topics": {
-        "leadership": "Liderança em Engenharia",
-        "mobile": "Arquitetura Mobile",
-        "design": "Design Systems",
-        "hiring": "Contratação & Mentoria",
-        "reverse": "Engenharia Reversa"
+      "sub": "Em 2022 escrevi um jeito melhor de lidar com modais no React Native, uma vez em inglês e outra em português.",
+      "items": {
+        "modalsEn": "You Have Been Using React Native Modals Wrong",
+        "modalsPt": "O Guia Definitivo de Modais no React Native"
       },
-      "readOnMedium": "Ler no Medium"
+      "became": "O código desse guia virou a <old>react-native-magic-modal</old>, hoje <link>magic-modal</link>: {stars} estrelas e {downloads} downloads no npm somando os dois nomes.",
+      "source": "GitHub e npm, desde o início, lido em {date}.",
+      "more": "Mais no Medium"
     },
     "shipped": {
       "title": "Lançado há pouco",
