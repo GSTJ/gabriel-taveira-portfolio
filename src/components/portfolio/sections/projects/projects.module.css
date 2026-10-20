@@ -10,13 +10,24 @@
 .bento {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "cv" "mm" "sj" "npm" "sec" "pg";
+  grid-template-areas: "cv" "pg" "npm" "mm" "sj";
   gap: var(--space-3);
+}
+
+/* Wrappers carry the reveal and are the containers the two app cards query,
+   named so the stages inside (containers too) don't answer instead. */
+.areaCv,
+.areaPg {
+  display: grid;
 }
 
 .areaCv {
   grid-area: cv;
-  display: grid;
+  container: cv / inline-size;
+}
+.areaPg {
+  grid-area: pg;
+  container: pg / inline-size;
 }
 .areaMm {
   grid-area: mm;
@@ -27,34 +38,28 @@
 .areaNpm {
   grid-area: npm;
 }
-.areaSec {
-  grid-area: sec;
-}
-.areaPg {
-  grid-area: pg;
-}
 
 @media (width >= 760px) {
   .bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "cv cv"
-      "mm sj"
+      "pg pg"
       "npm npm"
-      "sec pg";
+      "mm sj";
     gap: var(--space-4);
   }
 }
 
 @media (width >= 1100px) {
-  /* Curvinha holds two rows on the left, the two running demos beside it. */
+  /* Curvinha across the top, Pegada wide beside the npm ledger, then the
+     two running demos: three rows, no two cards the same size. */
   .bento {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-template-areas:
-      "cv cv cv cv cv cv cv cv mm mm mm mm"
-      "cv cv cv cv cv cv cv cv sj sj sj sj"
-      "npm npm npm npm npm npm npm pg pg pg pg pg"
-      "sec sec sec sec sec sec sec sec sec sec sec sec";
+      "cv cv cv cv cv cv cv cv cv cv cv cv"
+      "pg pg pg pg pg pg pg pg npm npm npm npm"
+      "mm mm mm mm mm mm mm sj sj sj sj sj";
   }
 }
 
@@ -102,64 +107,24 @@
 
 .end {
   margin-top: auto;
-  align-self: flex-start;
 }
 
-/* ── Curvinha: copy and steps on one side, the phone on the other ───── */
+/* ── Tours: numbered steps that drive a phone ───────────────────────── */
 
-.curvinha {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-5);
-  padding-bottom: 0;
-}
-
-/* The card itself is the container's child, so query its wrapper instead. */
-.areaCv {
-  container-type: inline-size;
-}
-
-@container (inline-size >= 40rem) {
-  .curvinha {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-7);
-    padding: var(--space-7) var(--space-7) 0;
-  }
-
-  .cvCopy {
-    padding-bottom: var(--space-7);
-  }
-}
-
-.cvCopy {
+.tour {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-4);
-  max-width: 28em;
 }
 
-.cvTitle {
-  font-family: var(--font-narrow);
-  font-stretch: var(--wd-heading);
-}
-
-.cvRole {
-  color: var(--ink-2);
-}
-
-.cvBody {
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--ink-2);
-}
-
-.cvSteps {
+.steps {
   display: grid;
-  margin-top: var(--space-3);
+  width: 100%;
   border-top: 1px solid var(--rule);
 }
 
-.cvStep {
+.step {
   position: relative;
   display: grid;
   grid-template-columns: 1.75rem minmax(0, 1fr);
@@ -177,33 +142,41 @@
   transition: color var(--dur-hover) ease;
 }
 
-.cvStep[aria-selected="true"] {
+.step[aria-selected="true"] {
   color: var(--ink);
 }
 
-.cvStepN {
+.stepN {
   font-size: var(--fs-meta);
 }
 
-.cvStepTitle {
+.stepTitle {
   font-weight: var(--fw-medium);
   letter-spacing: var(--tr-title);
 }
 
-.cvStepBody {
+/* Every step's line is there, folded, so the list never jumps: the open
+   step unfolds its line, the rest keep theirs at zero height. */
+.stepBody {
   grid-column: 2;
-  display: none;
+  display: grid;
+  grid-template-rows: 0fr;
   font-size: var(--fs-small);
   color: var(--ink-2);
 }
 
-.cvStep[aria-selected="true"] .cvStepBody {
-  display: block;
+.stepBody > span {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.step[aria-selected="true"] .stepBody {
+  grid-template-rows: 1fr;
 }
 
 /* The selected step's hairline. While the card plays itself it fills over the
    step's time, so the visitor can see the next swap coming. */
-.cvTimer {
+.timer {
   position: absolute;
   inset-inline: 0;
   bottom: -1px;
@@ -213,62 +186,43 @@
   transform-origin: left;
 }
 
-.cvStep[aria-selected="true"] .cvTimer {
+.step[aria-selected="true"] .timer {
   transform: scaleX(1);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  [data-playing] .cvStep[aria-selected="true"] .cvTimer {
-    animation: cv-fill 3600ms linear both;
+  [data-playing] .step[aria-selected="true"] .timer {
+    animation: tour-fill 3600ms linear both;
   }
 }
 
-@keyframes cv-fill {
+@keyframes tour-fill {
   from {
     transform: scaleX(0);
   }
 }
 
-.cvTour {
-  align-self: flex-start;
-}
-
-.cvFoot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3) var(--space-4);
-  margin-top: auto;
-  padding-top: var(--space-3);
-}
-
-/* The phone sits on the card's bottom edge and runs off it, so the crop line
-   above the app's price sheet is never on screen. */
-.phone {
-  justify-self: center;
-  width: min(70vw, 17rem);
-  aspect-ratio: 600 / 960;
-  padding: 0.5625rem 0.5625rem 0;
-  border-radius: 2.75rem 2.75rem 0 0;
-  background: var(--bezel);
-  box-shadow: var(--shadow);
-}
-
-/* After the base rule, so the wider phone wins at desktop widths. */
-@container (inline-size >= 40rem) {
-  .phone {
-    width: clamp(17rem, 44cqi, 23rem);
-    align-self: end;
-    margin-top: var(--space-4);
-  }
-}
-
+/* A phone screen, whole, with the iPhone's own corner. */
 .screen {
   position: relative;
-  height: 100%;
   overflow: hidden;
-  border-radius: 2.25rem 2.25rem 0 0;
+  border-radius: 13.5% / 6.2%;
   background: var(--paper-3);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    var(--shadow);
+}
+
+.screen img {
+  width: 100%;
+}
+
+/* The screen the steps drive. A drag sideways turns it, so the page keeps
+   scrolling vertically but the browser leaves horizontal swipes to us. */
+.tourScreen {
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
 }
 
 .shot {
@@ -279,12 +233,6 @@
 
 .shot[data-on] {
   opacity: 1;
-}
-
-.shot img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -307,11 +255,374 @@
       filter 380ms var(--ease-out),
       transform 520ms var(--ease-out);
   }
+
+  .stepBody {
+    transition: grid-template-rows var(--dur-ui) var(--ease-out);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .shot {
     transition: opacity 200ms ease;
+  }
+}
+
+/* ── Curvinha: the copy and steps beside two whole screens ──────────── */
+
+/* Narrow app cards: the phone right under the title, the steps right under
+   the phone, so a tapped step changes a screen that's on screen. Wide, the
+   copy column comes back (see the container queries below). The stage holds
+   no focusable element, so keyboard order is untouched. */
+.cvCopy,
+.pgCopy {
+  display: contents;
+}
+
+.cvHead,
+.pgHead {
+  order: -2;
+}
+
+.cvStage,
+.pgStage {
+  order: -1;
+}
+
+.curvinha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.cvCopy {
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.cvHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 34em;
+}
+
+.cvTitle {
+  font-family: var(--font-narrow);
+  font-stretch: var(--wd-heading);
+}
+
+.cvRole {
+  color: var(--ink-2);
+}
+
+.cvBody {
+  margin-top: var(--space-1);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+
+.cvFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+/* The stage measures itself, so every piece is placed in its own width
+   (cqi): the tour on the left, a piece page on the right, and that page's
+   fit check lifted off and enlarged. Narrow, the check rests on the phones'
+   foot; wide, it covers the page's lower third. Nothing runs off the card. */
+.cvStage {
+  position: relative;
+  container-type: inline-size;
+  width: min(100%, 26rem);
+  justify-self: center;
+  aspect-ratio: 100 / 144;
+}
+
+.cvFront {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 49cqi;
+  aspect-ratio: 600 / 1304;
+}
+
+.cvBack {
+  position: absolute;
+  top: 6cqi;
+  right: 0;
+  width: 47cqi;
+}
+
+.cvPull {
+  position: absolute;
+  top: 106cqi;
+  right: 0;
+  z-index: 2;
+  width: 62cqi;
+  margin: 0;
+}
+
+.cvPull img {
+  width: 100%;
+  border-radius: var(--r-md);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    var(--shadow);
+}
+
+.cvNote {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-2);
+}
+
+/* Wide card: copy on the left, the stage beside it from the top, so the card
+   is as tall as the screens and no taller. */
+@container cv (inline-size >= 52rem) {
+  .curvinha {
+    grid-template-columns: minmax(18rem, 1fr) minmax(0, 1.45fr);
+    gap: var(--space-7);
+    padding: var(--space-7);
+  }
+
+  .cvCopy {
+    display: flex;
+  }
+
+  .cvHead,
+  .cvStage {
+    order: 0;
+  }
+
+  .cvCopy .cvFoot {
+    margin-top: auto;
+  }
+
+  .cvStage {
+    width: 100%;
+    align-self: start;
+    aspect-ratio: 100 / 96;
+  }
+
+  .cvFront {
+    width: 38cqi;
+  }
+
+  .cvBack {
+    top: 5cqi;
+    right: auto;
+    left: 42cqi;
+    width: 37cqi;
+  }
+
+  /* Wider than the page it came from and resting on its foot, so it reads
+     as lifted off, whatever height each language's capture has. */
+  .cvPull {
+    top: 87cqi;
+    width: 60cqi;
+    translate: 0 -100%;
+  }
+
+  .cvNote {
+    position: absolute;
+    top: 100%;
+    right: 0;
+  }
+}
+
+/* ── Pegada: the steps beside Lua and the real app ──────────────────── */
+
+.pegada {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.pgCopy {
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.pgHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pgFoot {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.pgLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pgLinks a {
+  min-height: 2.75rem;
+}
+
+/* The receipts: lead words in ink, the source as a plain link after. */
+.pgFacts {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-4) 0 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.pgFacts strong {
+  color: var(--ink);
+}
+
+.pgFacts a {
+  color: inherit;
+}
+
+/* What he shipped in it lately: three PRs across the card's foot. */
+.pgShipped {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.pgShippedTitle {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+}
+
+.prs {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pr {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+}
+
+.prDetail {
+  color: var(--ink-2);
+}
+
+.prLink {
+  display: grid;
+  gap: 2px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.prLink > span:first-child {
+  color: var(--ink-3);
+}
+
+.prTitle {
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-body);
+}
+
+/* Lua's photo, cropped on her face, with the phone standing whole on its
+   lower right. Everything is placed in the stage's own width. */
+.pgStage {
+  position: relative;
+  container-type: inline-size;
+  width: min(100%, 26rem);
+  justify-self: center;
+  margin: 0;
+}
+
+.pgPhoto {
+  position: relative;
+  width: 70cqi;
+  height: 84cqi;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+
+.pgPhoto img {
+  object-fit: cover;
+  object-position: 30% 45%;
+}
+
+.pgScreen {
+  position: absolute;
+  top: 18cqi;
+  right: 0;
+  z-index: 1;
+  width: 48cqi;
+  aspect-ratio: 450 / 980;
+}
+
+.pgCaption {
+  /* Clears the phone, which runs below the photo. */
+  margin-top: calc(18cqi + 48cqi * 980 / 450 - 84cqi + var(--space-3));
+  color: var(--ink-3);
+}
+
+.pgHint {
+  color: var(--ink-2);
+}
+
+@container pg (inline-size >= 40rem) {
+  .pegada {
+    grid-template-columns: minmax(15rem, 1fr) minmax(0, 1.2fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "copy stage" "copy facts" "ship ship";
+    gap: var(--space-5) var(--space-6);
+  }
+
+  .pgCopy {
+    grid-area: copy;
+  }
+
+  .pgStage {
+    grid-area: stage;
+  }
+
+  .pgFacts {
+    grid-area: facts;
+    align-self: start;
+  }
+
+  .pgShipped {
+    grid-area: ship;
+  }
+
+  .pgCopy {
+    display: flex;
+  }
+
+  .pgHead,
+  .pgStage {
+    order: 0;
+  }
+
+  .prs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .pgStage {
+    width: 100%;
+    align-self: start;
   }
 }
 
@@ -351,17 +662,30 @@
   box-shadow: 0 0 0 2px var(--pen-wash);
 }
 
+/* The console the example logs to: what the await resolved with. */
 .readout {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  display: grid;
   gap: var(--space-1);
-  min-height: 3.4em;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--rule);
   color: var(--ink-3);
   line-height: 1.5;
 }
 
-.readout output {
+.readoutLabel {
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  color: var(--ink-3);
+}
+
+.readoutLines {
+  display: grid;
+  align-content: end;
+  min-height: 3em;
+}
+
+.readoutLines output {
   color: var(--ink);
   overflow-wrap: anywhere;
 }
@@ -388,24 +712,81 @@
   }
 }
 
-.rowEnd {
+/* magic-modal's sandbox: a framed example with its file name, its source,
+   a stage the real modal opens inside, and the console it logs to. Nothing
+   in it reaches past the frame, so it reads as a test bench. */
+.sandbox {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.sbBar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-3);
-  margin-top: auto;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+  border-bottom: 1px solid var(--rule);
 }
 
-.rowEnd [aria-disabled] {
+.sbChip {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-pill);
+  background: var(--pen-wash);
+  color: var(--pen);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+}
+
+.sbFile {
+  color: var(--ink-3);
+}
+
+.sbCode {
+  margin: 0;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  font: var(--fs-mono) / 1.65 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+/* Tall enough for the whole sheet, so the modal opens inside the example. */
+.sbStage {
+  position: relative;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  min-height: 13.5rem;
+  padding: var(--space-5) var(--space-4);
+  background: var(--paper-3);
+  text-align: center;
+}
+
+.sbStage > [aria-disabled] {
   opacity: 0.6;
   cursor: progress;
 }
 
-/* The real modal's layer. The library positions its stack inside this box. */
+.sbHint {
+  max-width: 24em;
+}
+
+/* The real modal's layer. The library's portal fills this box, so its
+   backdrop and sheet stay inside the stage. */
 .modalHost {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 60;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -413,8 +794,9 @@
   align-self: center;
   display: grid;
   gap: var(--space-2);
-  width: min(23.75rem, calc(100vw - 2 * var(--gutter)));
-  padding: var(--space-5);
+  width: min(22rem, calc(100% - 2 * var(--space-3)));
+  text-align: start;
+  padding: var(--space-5) var(--space-4) var(--space-4);
   border-radius: var(--r-xl);
   background: var(--paper);
   color: var(--ink);
@@ -424,6 +806,7 @@
 
 .sheetRow {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: var(--space-2);
   margin-top: var(--space-4);
@@ -636,10 +1019,46 @@
   color: var(--ink);
 }
 
-/* ── npm ledger: names, numbers, one bar each ───────────────────────── */
+/* ── npm ledger: the all-time total, then each package ──────────────── */
 
-.dl {
+.npmHead {
   display: grid;
+  gap: var(--space-2);
+}
+
+.npmTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+}
+
+.npmBig {
+  font-family: var(--font-narrow);
+  font-size: var(--fs-h1);
+  font-stretch: var(--wd-heading);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.dlStars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  color: var(--ink-2);
+}
+
+.dlStars svg {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+/* The rows share the card's height, so a tall card spaces its ledger
+   evenly instead of leaving a gap above the source line. */
+.dl {
+  flex: 1;
+  display: grid;
+  align-content: space-evenly;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -683,9 +1102,7 @@
   overflow: hidden;
 }
 
-.bar i,
-.add,
-.del {
+.bar i {
   display: block;
   height: 100%;
   transform-origin: left;
@@ -697,141 +1114,35 @@
   background: var(--ink);
 }
 
-/* ── Security: three merged fixes, sized by their diff ──────────────── */
-
-.prs {
-  display: grid;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pr {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-2) var(--space-4);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.prLink {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--space-3);
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.prLink > span:first-child {
-  color: var(--ink-3);
-}
-
-.prTitle {
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--tr-body);
-}
-
-.prLink svg {
-  width: 0.85em;
-  height: 0.85em;
-  align-self: center;
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
-.diff {
-  display: flex;
-  gap: 2px;
-  height: 0.5rem;
-}
-
-.add {
-  width: calc(var(--add) * 100%);
-  border-radius: var(--r-pill);
-  background: var(--ink);
-}
-
-.del {
-  width: calc(var(--del) * 100%);
-  min-width: 3px;
-  border-radius: var(--r-pill);
-  background: var(--rule-strong);
-}
-
-.diffNums {
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-/* Wide card: the three fixes side by side, each a column. */
-@container (inline-size >= 52rem) {
-  .prs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-6);
-  }
-
-  .pr {
-    align-content: start;
-  }
-}
-
-/* ── Pegada: where it came from ─────────────────────────────────────── */
-
-.lineage {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.lineage li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.lineage li:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.lineage a {
-  display: grid;
-  gap: 2px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.lineageName {
-  font-weight: var(--fw-medium);
-}
-
 /* ── Motion: bars grow once their card is in view ───────────────────── */
 
 @media (prefers-reduced-motion: no-preference) {
-  :global(.js) [data-reveal] .bar i,
-  :global(.js) [data-reveal] .add,
-  :global(.js) [data-reveal] .del {
+  :global(.js) [data-reveal] .bar i {
     transition: transform 900ms var(--ease-out)
       calc(var(--dur-enter) * 0.4 + var(--i, 0) * 70ms);
   }
 
-  :global(.js) [data-reveal]:not([data-in]) .bar i,
-  :global(.js) [data-reveal]:not([data-in]) .add,
-  :global(.js) [data-reveal]:not([data-in]) .del {
+  :global(.js) [data-reveal]:not([data-in]) .bar i {
     transform: scaleX(0);
+  }
+
+  /* The fit check lifts off its page a beat after the Curvinha card lands. */
+  :global(.js) [data-reveal] .cvPull {
+    transition:
+      opacity var(--dur-enter) var(--ease-out) calc(var(--dur-enter) * 0.5),
+      transform var(--dur-enter) var(--ease-out) calc(var(--dur-enter) * 0.5);
+  }
+
+  :global(.js) [data-reveal]:not([data-in]) .cvPull {
+    opacity: 0;
+    transform: translateY(var(--rise)) scale(0.97);
   }
 }
 
 /* ── Hover, only where there is a real pointer ──────────────────────── */
 
 @media (hover: hover) and (pointer: fine) {
-  .cvStep:hover {
+  .step:hover {
     color: var(--ink);
   }
 
@@ -841,13 +1152,12 @@
 
   .stars:hover,
   .dlName a:hover,
-  .lineage a:hover .lineageName,
   .prLink:hover .prTitle {
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
+}
 
-  .prLink:hover svg {
-    transform: translate(2px, -2px);
-  }
+.tourScreen:active {
+  cursor: grabbing;
 }
