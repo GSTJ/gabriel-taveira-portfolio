@@ -50,6 +50,14 @@ export const PROJECTS: readonly ProjectItem[] = [
 export const CURVINHA_STEPS = ["measure", "room", "list"] as const;
 export type CurvinhaStep = (typeof CURVINHA_STEPS)[number];
 
+/** What Curvinha is built in: Apple's own frameworks, no cross-platform layer. */
+export const CURVINHA_STACK = [
+  { id: "swiftUi", name: "SwiftUI" },
+  { id: "roomPlan", name: "RoomPlan" },
+  { id: "realityKit", name: "RealityKit" },
+] as const;
+export type CurvinhaStackId = (typeof CURVINHA_STACK)[number]["id"];
+
 /** GitHub stars, read by hand. Shown with this date, never as a live number. */
 export const STARS_READ_ON = "2026-10-19";
 export const STARS = {

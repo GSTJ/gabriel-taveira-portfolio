@@ -22,8 +22,6 @@ export type PegadaCopy = {
   role: string;
   body: string;
   stepsLabel: string;
-  pause: string;
-  replay: string;
   hint: string;
   steps: Record<PegadaStep, TourStep & { alt: string }>;
   luaAlt: string;
@@ -77,8 +75,6 @@ export const PegadaCard = ({
           label={copy.stepsLabel}
           order={PEGADA_STEPS}
           steps={copy.steps}
-          pause={copy.pause}
-          replay={copy.replay}
         />
 
         <div className={styles.pgFoot}>

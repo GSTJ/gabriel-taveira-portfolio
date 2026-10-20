@@ -8,7 +8,12 @@ import { cn } from "@/utils/cn";
 
 import { ArrowUpRight } from "../../ui/icons";
 import { Marginalia } from "../../ui/marginalia";
-import { CURVINHA_STEPS, type CurvinhaStep } from "./data";
+import {
+  CURVINHA_STACK,
+  CURVINHA_STEPS,
+  type CurvinhaStackId,
+  type CurvinhaStep,
+} from "./data";
 import { TourScreen, TourSteps, useTour, type TourStep } from "./tour";
 
 import styles from "./projects.module.css";
@@ -16,12 +21,12 @@ import styles from "./projects.module.css";
 export type CurvinhaCopy = {
   title: string;
   role: string;
+  stackLabel: string;
+  stack: Record<CurvinhaStackId, string>;
   body: string;
   cta: string;
   caption: string;
   stepsLabel: string;
-  pause: string;
-  replay: string;
   steps: Record<CurvinhaStep, TourStep & { alt: string }>;
   pieceAlt: string;
   fitAlt: string;
@@ -81,6 +86,13 @@ export const CurvinhaCard = ({
           </h3>
           <p className={cn("t-small", styles.cvRole)}>{copy.role}</p>
           <p className={styles.cvBody}>{copy.body}</p>
+          <ul className={styles.cvStack} aria-label={copy.stackLabel}>
+            {CURVINHA_STACK.map((item) => (
+              <li key={item.id}>
+                <span lang="en">{item.name}</span> {copy.stack[item.id]}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <TourSteps
@@ -89,8 +101,6 @@ export const CurvinhaCard = ({
           label={copy.stepsLabel}
           order={CURVINHA_STEPS}
           steps={copy.steps}
-          pause={copy.pause}
-          replay={copy.replay}
         />
 
         <div className={styles.cvFoot}>

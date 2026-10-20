@@ -11,6 +11,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { createPortal } from "react-dom";
 
 import { cn } from "@/utils/cn";
 
@@ -20,6 +21,7 @@ type MagicModal = {
   magicModal: typeof magicModal;
   MagicModalPortal: typeof MagicModalPortal;
 };
+/** What each answer resolves with. The close button resolves with no data. */
 type Choice = { liked: boolean };
 
 export type ModalDemoCopy = {
@@ -34,10 +36,13 @@ export type ModalDemoCopy = {
   console: string;
   modal: {
     label: string;
-    title: string;
+    title: ReactNode;
     body: string;
     yes: string;
     no: string;
+    close: string;
+    returns: string;
+    dismiss: string;
   };
 };
 
@@ -63,36 +68,62 @@ const format = (value: unknown) =>
 /** Context crosses the portal, so the modal gets its copy and its close. */
 const Demo = createContext<{
   copy: ModalDemoCopy["modal"];
-  hide: (choice: Choice) => void;
+  label: string;
+  hide: (choice?: Choice) => void;
 } | null>(null);
 
+const ANSWERS = [
+  { key: "yes", choice: { liked: true } },
+  { key: "no", choice: { liked: false } },
+] as const;
+
+/**
+ * The example modal: its label, a toy question, and two answers that each
+ * show what they hand back to the await. Nothing in it is sent anywhere.
+ */
 const Sheet = ({
   copy,
+  label,
   hide,
 }: {
   copy: ModalDemoCopy["modal"];
-  hide: (choice: Choice) => void;
+  label: string;
+  hide: (choice?: Choice) => void;
 }) => {
   return (
     <section className={styles.sheet}>
-      <h2 className="t-title">{copy.title}</h2>
-      <p className="t-small">{copy.body}</p>
-      <div className={styles.sheetRow}>
+      <div className={styles.sheetTop}>
+        <span className={styles.sbChip}>{label}</span>
         <button
-          className="btn btn-ghost btn-small"
+          className={cn("icon-btn", styles.sheetClose)}
           type="button"
-          onClick={() => hide({ liked: false })}
+          aria-label={copy.close}
+          onClick={() => hide()}
         >
-          {copy.no}
-        </button>
-        <button
-          className="btn btn-small"
-          type="button"
-          onClick={() => hide({ liked: true })}
-        >
-          {copy.yes}
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M4 4l8 8M12 4l-8 8" />
+          </svg>
         </button>
       </div>
+      <h2 className={cn("t-h2", styles.sheetTitle)}>{copy.title}</h2>
+      <p className={styles.sheetBody}>{copy.body}</p>
+      <div className={styles.answers}>
+        {ANSWERS.map(({ key, choice }) => (
+          <button
+            key={key}
+            className={styles.answer}
+            type="button"
+            onClick={() => hide(choice)}
+          >
+            <span className={styles.answerLabel}>{copy[key]}</span>
+            <span className={cn("t-mono", styles.answerCode)}>
+              <span className="visually-hidden">{copy.returns} </span>
+              {format(choice)}
+            </span>
+          </button>
+        ))}
+      </div>
+      <p className={cn("t-meta", styles.sheetFoot)}>{copy.dismiss}</p>
     </section>
   );
 };
@@ -103,12 +134,13 @@ const HelloModal = () => {
 };
 
 /**
- * Runs the real magic-modal inside a sandbox frame: its own portal, backdrop,
- * focus trap and animations, mounted in the example's stage (the portal is
- * `position: absolute`), so the modal opens inside the example and never over
- * the page. The readout prints exactly what `await magicModal.show()`
- * resolved with, so Escape and a backdrop press show their own reasons.
- * `children` is the example's source, rendered on the server.
+ * Runs the real magic-modal over the whole page: its own portal, backdrop,
+ * focus trap and animations, in a fixed layer on `body` (the portal is
+ * `position: absolute`, so the layer gives it the viewport). The page stops
+ * scrolling while it is open. The readout prints exactly what
+ * `await magicModal.show()` resolved with, so Escape, a backdrop press and
+ * the close button show their own reasons. `children` is the example's
+ * source, rendered on the server.
  */
 export const ModalDemo = ({
   copy,
@@ -127,9 +159,10 @@ export const ModalDemo = ({
   const demo = useMemo(
     () => ({
       copy: copy.modal,
-      hide: (choice: Choice) => handle.current?.hide(choice),
+      label: copy.label,
+      hide: (choice?: Choice) => handle.current?.hide(choice),
     }),
-    [copy.modal],
+    [copy.modal, copy.label],
   );
 
   const run = async () => {
@@ -149,6 +182,9 @@ export const ModalDemo = ({
     if (status !== "open" || !pkg) return;
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
     let live = true;
+    const root = document.documentElement.style;
+    root.overflow = "hidden";
+    root.scrollbarGutter = "stable";
     handle.current = pkg.magicModal.show<Choice>(HelloModal, {
       accessibilityLabel: copy.modal.label,
       backdropColor: "var(--scrim)",
@@ -160,8 +196,11 @@ export const ModalDemo = ({
       setResult(format(value));
       setStatus("done");
     });
+    // Resolving moves `status` on, and this cleanup gives the page its scroll back.
     return () => {
       live = false;
+      root.overflow = "";
+      root.scrollbarGutter = "";
     };
   }, [status, pkg, copy.modal.label]);
 
@@ -192,13 +231,16 @@ export const ModalDemo = ({
           {copy.run}
         </button>
         <span className={cn("t-meta", styles.sbHint)}>{copy.hint}</span>
-        {pkg ? (
-          <Demo value={demo}>
-            <div className={styles.modalHost}>
-              <pkg.MagicModalPortal />
-            </div>
-          </Demo>
-        ) : null}
+        {pkg
+          ? createPortal(
+              <Demo value={demo}>
+                <div className={styles.modalLayer}>
+                  <pkg.MagicModalPortal />
+                </div>
+              </Demo>,
+              document.body,
+            )
+          : null}
       </div>
       <div className={cn("t-mono", styles.readout)}>
         <span className={styles.readoutLabel}>{copy.console}</span>

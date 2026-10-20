@@ -33,9 +33,8 @@ export type TourStep = { title: string; body: string };
 /**
  * A card that shows an app in steps. It plays the steps once while at least
  * 35% of the screen is in view and the tab is visible, then rests on the last.
- * Pressing, focusing or swiping hands the card to the visitor for good; the
- * button under the steps pauses the tour or plays it again. Reduced motion
- * skips the tour and opens on `still`.
+ * Pressing, focusing or swiping hands the card to the visitor for good.
+ * Reduced motion skips the tour and opens on `still`.
  */
 export const useTour = (count: number, still = 0) => {
   const last = count - 1;
@@ -112,49 +111,33 @@ export const useTour = (count: number, still = 0) => {
     setOwned(true);
   };
 
-  const toggle = () => {
-    if (auto) {
-      takeOver();
-      return;
-    }
-    setOwned(false);
-    setStep(0);
-  };
-
   return {
     screen,
     tabs,
     active,
     playing,
-    auto,
-    reduce,
     near,
     seen,
     select,
     takeOver,
-    toggle,
   };
 };
 
 export type Tour = ReturnType<typeof useTour>;
 
-/** The numbered steps, as tabs, with the pause and replay button under them. */
+/** The numbered steps, as tabs. */
 export const TourSteps = ({
   tour,
   id,
   label,
   order,
   steps,
-  pause,
-  replay,
 }: {
   tour: Tour;
   id: string;
   label: string;
   order: readonly string[];
   steps: Record<string, TourStep>;
-  pause: string;
-  replay: string;
 }) => {
   const { active } = tour;
   const onKey = (e: KeyboardEvent) => {
@@ -173,52 +156,41 @@ export const TourSteps = ({
   };
 
   return (
-    <div className={styles.tour}>
-      <div
-        className={styles.steps}
-        role="tablist"
-        aria-label={label}
-        aria-orientation="vertical"
-      >
-        {order.map((name, i) => (
-          <button
-            key={name}
-            ref={(el) => {
-              tour.tabs.current[i] = el;
-            }}
-            id={`${id}-tab-${i}`}
-            className={styles.step}
-            type="button"
-            role="tab"
-            aria-selected={i === active}
-            aria-controls={`${id}-panel`}
-            tabIndex={i === active ? 0 : -1}
-            onClick={() => tour.select(i)}
-            onFocus={tour.takeOver}
-            onKeyDown={onKey}
-          >
-            <span className={cn("num", styles.stepN)}>{i + 1}</span>
-            <span className={styles.stepTitle}>{steps[name]?.title}</span>
-            <span className={styles.stepBody}>
-              <span>{steps[name]?.body}</span>
-            </span>
-            <span
-              key={`${active}-${tour.playing}`}
-              className={styles.timer}
-              aria-hidden="true"
-            />
-          </button>
-        ))}
-      </div>
-      {tour.reduce ? null : (
+    <div
+      className={styles.steps}
+      role="tablist"
+      aria-label={label}
+      aria-orientation="vertical"
+    >
+      {order.map((name, i) => (
         <button
+          key={name}
+          ref={(el) => {
+            tour.tabs.current[i] = el;
+          }}
+          id={`${id}-tab-${i}`}
+          className={styles.step}
           type="button"
-          className="btn btn-ghost btn-small"
-          onClick={tour.toggle}
+          role="tab"
+          aria-selected={i === active}
+          aria-controls={`${id}-panel`}
+          tabIndex={i === active ? 0 : -1}
+          onClick={() => tour.select(i)}
+          onFocus={tour.takeOver}
+          onKeyDown={onKey}
         >
-          {tour.auto ? pause : replay}
+          <span className={cn("num", styles.stepN)}>{i + 1}</span>
+          <span className={styles.stepTitle}>{steps[name]?.title}</span>
+          <span className={styles.stepBody}>
+            <span>{steps[name]?.body}</span>
+          </span>
+          <span
+            key={`${active}-${tour.playing}`}
+            className={styles.timer}
+            aria-hidden="true"
+          />
         </button>
-      )}
+      ))}
     </div>
   );
 };

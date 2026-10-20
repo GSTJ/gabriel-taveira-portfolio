@@ -111,13 +111,6 @@
 
 /* ── Tours: numbered steps that drive a phone ───────────────────────── */
 
-.tour {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-
 .steps {
   display: grid;
   width: 100%;
@@ -322,6 +315,29 @@
   color: var(--ink-2);
 }
 
+/* What it's built in: Apple's frameworks, each with the job it does. */
+.cvStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-meta);
+  color: var(--ink-3);
+}
+
+.cvStack li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+}
+
+.cvStack span {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
 .cvFoot {
   display: flex;
   flex-wrap: wrap;
@@ -398,7 +414,30 @@
     order: 0;
   }
 
-  .cvCopy .cvFoot {
+  .cvCopy /* What it's built in: Apple's frameworks, each with the job it does. */
+.cvStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-1) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--fs-meta);
+    color: var(--ink-3);
+  }
+
+  .cvStack li {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--r-pill);
+  }
+
+  .cvStack span {
+    font-weight: var(--fw-medium);
+    color: var(--ink);
+  }
+
+  .cvFoot {
     margin-top: auto;
   }
 
@@ -540,7 +579,8 @@
 }
 
 /* Lua's photo, cropped on her face, with the phone standing whole on its
-   lower right. Everything is placed in the stage's own width. */
+   lower right, inset from the card's edge so its frame and shadow have air.
+   Everything is placed in the stage's own width. */
 .pgStage {
   position: relative;
   container-type: inline-size;
@@ -565,15 +605,15 @@
 .pgScreen {
   position: absolute;
   top: 18cqi;
-  right: 0;
+  right: 7cqi;
   z-index: 1;
-  width: 48cqi;
+  width: 46cqi;
   aspect-ratio: 450 / 980;
 }
 
 .pgCaption {
   /* Clears the phone, which runs below the photo. */
-  margin-top: calc(18cqi + 48cqi * 980 / 450 - 84cqi + var(--space-3));
+  margin-top: calc(18cqi + 46cqi * 980 / 450 - 84cqi + var(--space-4));
   color: var(--ink-3);
 }
 
@@ -627,18 +667,6 @@
 }
 
 /* ── Library cards: claim, code, the real thing ─────────────────────── */
-
-.code {
-  margin: 0;
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink-2);
-  font: var(--fs-mono) / 1.65 var(--font-mono);
-  white-space: pre;
-  overflow-x: auto;
-  tab-size: 2;
-}
 
 .k {
   color: var(--ink);
@@ -712,9 +740,9 @@
   }
 }
 
-/* magic-modal's sandbox: a framed example with its file name, its source,
-   a stage the real modal opens inside, and the console it logs to. Nothing
-   in it reaches past the frame, so it reads as a test bench. */
+/* The library cards' test bench: a framed example with its file name, its
+   source, a stage where it runs, and the panel it reports to. The stage
+   takes the spare height, so both benches fill their cards. */
 .sandbox {
   flex: 1;
   display: grid;
@@ -759,15 +787,13 @@
   tab-size: 2;
 }
 
-/* Tall enough for the whole sheet, so the modal opens inside the example. */
+/* Where the example runs. The modal itself opens over the whole page. */
 .sbStage {
-  position: relative;
   display: grid;
   place-content: center;
   justify-items: center;
   gap: var(--space-3);
-  min-height: 13.5rem;
-  padding: var(--space-5) var(--space-4);
+  padding: var(--space-6) var(--space-4);
   background: var(--paper-3);
   text-align: center;
 }
@@ -778,41 +804,134 @@
 }
 
 .sbHint {
-  max-width: 24em;
+  max-width: 26em;
 }
 
-/* The real modal's layer. The library's portal fills this box, so its
-   backdrop and sheet stay inside the stage. */
-.modalHost {
-  position: absolute;
+/* The real modal's layer, fixed over the viewport and above the header. The
+   library's portal fills it; the layer itself lets presses through. */
+.modalLayer {
+  position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 30;
   pointer-events: none;
 }
 
 .sheet {
   align-self: center;
   display: grid;
-  gap: var(--space-2);
-  width: min(22rem, calc(100% - 2 * var(--space-3)));
-  text-align: start;
-  padding: var(--space-5) var(--space-4) var(--space-4);
+  gap: var(--space-3);
+  width: min(30rem, calc(100% - 2 * var(--gutter)));
+  max-height: calc(100% - 2 * var(--gutter));
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6) var(--space-6);
   border-radius: var(--r-xl);
   background: var(--paper);
   color: var(--ink);
-  box-shadow: var(--shadow);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    var(--shadow);
   font-family: var(--font-sans);
+  text-align: start;
 }
 
-.sheetRow {
+.sheetTop {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-right: calc(-1 * var(--space-2));
 }
 
-/* safe-jsx */
+.sheetClose svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.sheetTitle {
+  margin-top: var(--space-2);
+  font-family: var(--font-narrow);
+  font-size: var(--fs-h1);
+  font-stretch: var(--wd-heading);
+  text-wrap: balance;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sheetBody {
+  color: var(--ink-2);
+}
+
+/* Each answer shows the value it resolves the await with. */
+.answers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.answer {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: var(--paper-2);
+  color: var(--ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-hover) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.answer:active {
+  transform: scale(0.97);
+}
+
+.answerLabel {
+  font-weight: var(--fw-medium);
+}
+
+.answerCode {
+  color: var(--ink-3);
+}
+
+.sheetFoot {
+  color: var(--ink-3);
+}
+
+/* safe-jsx: the same bench, with the editor's problem count in the bar,
+   the rendered row in the stage and the lint message as its panel. */
+
+.problems {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-pill);
+  background: var(--pen-wash);
+  color: var(--pen);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  transition:
+    background-color var(--dur-ui) ease,
+    color var(--dur-ui) ease;
+}
+
+.problems[data-clean] {
+  background: var(--paper-3);
+  color: var(--ink-2);
+}
+
+.sjStage {
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-4);
+  background: var(--paper-3);
+}
 
 .lintControls {
   display: flex;
@@ -1007,11 +1126,8 @@
 }
 
 .lintMsg {
-  transition: opacity var(--dur-ui) ease;
-}
-
-.lintMsg[data-hidden] {
-  opacity: 0;
+  min-height: 3em;
+  color: var(--ink-2);
 }
 
 .rule {
@@ -1144,6 +1260,10 @@
 @media (hover: hover) and (pointer: fine) {
   .step:hover {
     color: var(--ink);
+  }
+
+  .answer:hover {
+    background: var(--paper-3);
   }
 
   .seg button:hover:not([aria-pressed="true"]) {

@@ -68,7 +68,13 @@
       "curvinha": {
         "title": "Curvinha",
         "role": "Founder · I built it",
-        "body": "An iPhone app: you scan a room with LiDAR, then get a proposal with real products you can buy, plus the shopping list. Curated with architects from Curva Interiores.",
+        "stackLabel": "Built with",
+        "stack": {
+          "swiftUi": "the UI",
+          "roomPlan": "the scan",
+          "realityKit": "the 3D"
+        },
+        "body": "A native iPhone app: you scan a room with LiDAR, then get a proposal with real products you can buy, plus the shopping list. Curated with architects from Curva Interiores.",
         "cta": "Open curvinha.app",
         "caption": "The app's sample room. Example products and prices.",
         "stepsLabel": "Curvinha, step by step",
@@ -89,8 +95,6 @@
             "alt": "Curvinha's list: 12 pieces from 7 stores, each with a link to its store."
           }
         },
-        "pause": "Pause tour",
-        "replay": "Replay tour",
         "pieceAlt": "Curvinha's page for one sofa: why it's for you, and the pieces that go well with it.",
         "fitAlt": "Why it's for you: fits on the window wall with 121 cm to spare. R$ 533,71, within your R$ 4.000 to R$ 6.000. Material: linen, solid wood, eucalyptus, metal.",
         "fitNote": "the fit check is plain math"
@@ -106,13 +110,16 @@
         "pending": "await magicModal.show(HelloModal)",
         "resolved": "resolved with",
         "failed": "Couldn't load the package. Try again.",
-        "hint": "Answer it, press Esc, or click outside. What comes back shows up below.",
+        "hint": "It opens over the page. Whatever the await returns shows up in the console below.",
         "modal": {
           "label": "Example modal",
-          "title": "Hi, I'm the real magic-modal",
-          "body": "This is just an example. Pick an answer and it goes back to the await.",
+          "title": "Hi, I'm the real <name>magic-modal</name>",
+          "body": "I opened over the whole page, with a backdrop and focus kept inside me. Pick an answer and it goes back to the await.",
           "yes": "I like it",
-          "no": "Not really"
+          "no": "Not really",
+          "close": "Close",
+          "returns": "Returns",
+          "dismiss": "Esc, a click outside, or the X close it too, each with its own reason."
         },
         "console": "Console"
       },
@@ -128,7 +135,10 @@
         "badgeLabel": "3 unread",
         "nothing": "Nothing renders next to Inbox",
         "explain": "With count at 0, React prints the 0.",
-        "resolved": "Fixed. The lint error is gone."
+        "resolved": "No problems. With Boolean(count), the 0 doesn't render anymore.",
+        "problems": "Problems",
+        "problemsOne": "1 problem",
+        "problemsNone": "0 problems"
       },
       "magicToast": {
         "title": "react-native-magic-toast",
