@@ -91,6 +91,21 @@
   white-space: nowrap;
 }
 
+/* His signature, in pen ink. A mask so it follows --pen in both themes. */
+.signature {
+  display: block;
+  height: 44px;
+  aspect-ratio: 3.566;
+  background: var(--pen);
+  mask: url("/signature.svg") center / contain no-repeat;
+}
+
+@media (width < 760px) {
+  .signature {
+    height: 36px;
+  }
+}
+
 .links {
   grid-area: links;
   position: relative;

@@ -16,7 +16,8 @@ export const Nav = async () => {
     <header className={styles.nav}>
       <div className={cn("wrap", styles.bar)}>
         <a className={styles.brand} href="#hero">
-          Gabriel Taveira
+          <span className={styles.signature} aria-hidden="true" />
+          <span className="visually-hidden">Gabriel Taveira</span>
         </a>
         <NavLinks
           label={t("label")}
