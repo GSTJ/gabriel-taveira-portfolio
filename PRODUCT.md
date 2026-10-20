@@ -20,7 +20,7 @@ Gabriel Taveira's personal site. It sells consulting (React Native and Expo arch
 
 An independent consultant (since 2025) who helped with the hard migrations on a famous app (Coinbase Consumer App Infra: React Compiler, Expo Prebuild, the new architecture), has been responsible for up to 56 people across two levels (not direct reports), and builds things people use: Curvinha as founder, and open-source libraries other teams ship with (magic-modal, eslint-plugin-safe-jsx, react-native-magic-toast).
 
-The current role is "independent consultant" / "consultoria independente". G2i never appears as a current employer anywhere (copy, meta, JSON-LD, llms.txt, resume). Past jobs stay exactly as listed.
+The role line is "independent consultant" / "consultoria independente", the same in copy, meta, JSON-LD, llms.txt and the resume. Past jobs stay exactly as listed.
 
 ## Operating Context
 
