@@ -9,8 +9,8 @@ import {
   useMemo,
   useRef,
   useState,
+  type ReactNode,
 } from "react";
-import { createPortal } from "react-dom";
 
 import { cn } from "@/utils/cn";
 
@@ -20,9 +20,10 @@ type MagicModal = {
   magicModal: typeof magicModal;
   MagicModalPortal: typeof MagicModalPortal;
 };
-type Choice = { confirmed: boolean };
+type Choice = { liked: boolean };
 
 export type ModalDemoCopy = {
+  label: string;
   run: string;
   idle: string;
   loading: string;
@@ -30,6 +31,7 @@ export type ModalDemoCopy = {
   resolved: string;
   failed: string;
   hint: string;
+  console: string;
   modal: {
     label: string;
     title: string;
@@ -42,7 +44,7 @@ export type ModalDemoCopy = {
 type Status = "idle" | "loading" | "open" | "done" | "error";
 
 let loading: Promise<MagicModal> | undefined;
-/** The package's web entry, fetched once, the first time someone reaches for Run. */
+/** The package's web entry, fetched once, the first time someone reaches for the button. */
 const load = () => {
   loading ??= import("magic-modal").catch((error: unknown) => {
     loading = undefined;
@@ -52,7 +54,7 @@ const load = () => {
 };
 const preload = () => void load().catch(() => undefined);
 
-/** `{ reason: "INTENTIONAL_HIDE", data: { confirmed: true } }`, as a dev would log it. */
+/** `{ reason: "INTENTIONAL_HIDE", data: { liked: true } }`, as a dev would log it. */
 const format = (value: unknown) =>
   JSON.stringify(value, null, 1)
     .replaceAll(/\n\s*/g, " ")
@@ -64,7 +66,7 @@ const Demo = createContext<{
   hide: (choice: Choice) => void;
 } | null>(null);
 
-const ConfirmSheet = ({
+const Sheet = ({
   copy,
   hide,
 }: {
@@ -79,14 +81,14 @@ const ConfirmSheet = ({
         <button
           className="btn btn-ghost btn-small"
           type="button"
-          onClick={() => hide({ confirmed: false })}
+          onClick={() => hide({ liked: false })}
         >
           {copy.no}
         </button>
         <button
           className="btn btn-small"
           type="button"
-          onClick={() => hide({ confirmed: true })}
+          onClick={() => hide({ liked: true })}
         >
           {copy.yes}
         </button>
@@ -95,17 +97,28 @@ const ConfirmSheet = ({
   );
 };
 
-const Confirm = () => {
+const HelloModal = () => {
   const demo = use(Demo);
-  return demo ? <ConfirmSheet {...demo} /> : null;
+  return demo ? <Sheet {...demo} /> : null;
 };
 
 /**
- * Runs the real magic-modal: its own portal, backdrop, focus trap and
- * animations. The readout prints exactly what `await magicModal.show()`
+ * Runs the real magic-modal inside a sandbox frame: its own portal, backdrop,
+ * focus trap and animations, mounted in the example's stage (the portal is
+ * `position: absolute`), so the modal opens inside the example and never over
+ * the page. The readout prints exactly what `await magicModal.show()`
  * resolved with, so Escape and a backdrop press show their own reasons.
+ * `children` is the example's source, rendered on the server.
  */
-export const ModalDemo = ({ copy }: { copy: ModalDemoCopy }) => {
+export const ModalDemo = ({
+  copy,
+  file,
+  children,
+}: {
+  copy: ModalDemoCopy;
+  file: string;
+  children: ReactNode;
+}) => {
   const [pkg, setPkg] = useState<MagicModal>();
   const [status, setStatus] = useState<Status>("idle");
   const [result, setResult] = useState("");
@@ -136,7 +149,7 @@ export const ModalDemo = ({ copy }: { copy: ModalDemoCopy }) => {
     if (status !== "open" || !pkg) return;
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
     let live = true;
-    handle.current = pkg.magicModal.show<Choice>(Confirm, {
+    handle.current = pkg.magicModal.show<Choice>(HelloModal, {
       accessibilityLabel: copy.modal.label,
       backdropColor: "var(--scrim)",
       animationInTiming: still ? 1 : 240,
@@ -161,12 +174,13 @@ export const ModalDemo = ({ copy }: { copy: ModalDemoCopy }) => {
   }[status];
 
   return (
-    <>
-      <div className={cn("t-mono", styles.readout)} aria-live="polite">
-        <span className={cn(status === "open" && styles.pending)}>{line}</span>
-        {result ? <output>{result}</output> : null}
+    <div className={styles.sandbox}>
+      <div className={styles.sbBar}>
+        <span className={styles.sbChip}>{copy.label}</span>
+        <span className={cn("t-mono", styles.sbFile)}>{file}</span>
       </div>
-      <div className={styles.rowEnd}>
+      {children}
+      <div className={styles.sbStage}>
         <button
           className="btn btn-small"
           type="button"
@@ -177,18 +191,24 @@ export const ModalDemo = ({ copy }: { copy: ModalDemoCopy }) => {
         >
           {copy.run}
         </button>
-        <span className="t-meta">{copy.hint}</span>
+        <span className={cn("t-meta", styles.sbHint)}>{copy.hint}</span>
+        {pkg ? (
+          <Demo value={demo}>
+            <div className={styles.modalHost}>
+              <pkg.MagicModalPortal />
+            </div>
+          </Demo>
+        ) : null}
       </div>
-      {pkg
-        ? createPortal(
-            <Demo value={demo}>
-              <div className={styles.modalHost}>
-                <pkg.MagicModalPortal />
-              </div>
-            </Demo>,
-            document.body,
-          )
-        : null}
-    </>
+      <div className={cn("t-mono", styles.readout)}>
+        <span className={styles.readoutLabel}>{copy.console}</span>
+        <div className={styles.readoutLines} aria-live="polite">
+          <span className={cn(status === "open" && styles.pending)}>
+            {line}
+          </span>
+          {result ? <output>{result}</output> : null}
+        </div>
+      </div>
+    </div>
   );
 };

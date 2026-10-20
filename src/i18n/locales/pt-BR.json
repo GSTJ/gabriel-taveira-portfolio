@@ -67,7 +67,7 @@
         "role": "Fundador · eu que construí",
         "body": "Um app de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
         "cta": "Abrir curvinha.app",
-        "caption": "Telas do ambiente de exemplo do app.",
+        "caption": "Ambiente de exemplo do app. Produtos e preços de exemplo.",
         "stepsLabel": "Curvinha, passo a passo",
         "steps": {
           "measure": {
@@ -75,38 +75,43 @@
             "body": "Dê uma volta pelas paredes com o iPhone. Leva uns 2 a 5 minutos.",
             "alt": "Tela de medição da Curvinha: Vamos medir o seu ambiente. Leva uns 2 a 5 minutos."
           },
-          "plan": {
-            "title": "Receba a planta",
-            "body": "O ambiente visto de cima, com cada peça no lugar.",
-            "alt": "Planta do ambiente de exemplo mobiliado na Curvinha, vista de cima."
-          },
           "room": {
-            "title": "Veja a proposta em 3D",
-            "body": "Peças reais de lojas reais, no seu ambiente.",
-            "alt": "Vista 3D do ambiente de exemplo na Curvinha, com as peças sugeridas no lugar."
+            "title": "Veja tudo mobiliado em 3D",
+            "body": "Planta e 3D, com peças reais de lojas reais.",
+            "alt": "Vista 3D da sala de exemplo na Curvinha, mobiliada com 12 peças sugeridas de 5 lojas."
+          },
+          "list": {
+            "title": "Compre pela lista",
+            "body": "Cada peça leva pra loja dela.",
+            "alt": "Lista da Curvinha: 12 peças de 7 lojas, cada uma com o link da loja."
           }
         },
         "pause": "Pausar tour",
-        "replay": "Rever tour"
+        "replay": "Rever tour",
+        "pieceAlt": "Página de um sofá na Curvinha: por que ele é pra você e as peças que combinam com ele.",
+        "fitAlt": "Por que para você: cabe na parede da janela com 121 cm de folga. R$ 533,71, dentro dos seus R$ 4.000 a R$ 6.000. Material: linho, madeira maciça, eucalipto, metal.",
+        "fitNote": "a folga é matemática pura"
       },
       "magicModal": {
         "title": "magic-modal",
         "body": "Um modal mágico que você pode dar await de qualquer lugar: React Native, Expo e web.",
-        "comment": "// continua quando o modal fecha",
-        "run": "Rodar",
-        "idle": "Aperte Rodar pra abrir o modal de verdade.",
-        "loading": "Carregando o pacote",
-        "pending": "await magicModal.show(Confirm)",
+        "comment": "// espera aqui até o modal fechar",
+        "label": "Exemplo · nada é enviado",
+        "run": "Abrir o modal",
+        "idle": "// nada no console ainda",
+        "loading": "// carregando o pacote",
+        "pending": "await magicModal.show(HelloModal)",
         "resolved": "resolveu com",
         "failed": "Não deu pra carregar o pacote. Tenta de novo.",
-        "hint": "Testa o Esc ou um clique fora também.",
+        "hint": "Responda, aperte Esc ou clique fora. O que voltar aparece embaixo.",
         "modal": {
-          "label": "Confirmar publicação",
-          "title": "Publicar esta versão?",
-          "body": "Esse modal é o pacote de verdade. O que você escolher volta pro await.",
-          "yes": "Publicar",
-          "no": "Cancelar"
-        }
+          "label": "Modal de exemplo",
+          "title": "Oi, eu sou o magic-modal de verdade",
+          "body": "É só um exemplo. Escolha uma resposta e ela volta pro await.",
+          "yes": "Curti",
+          "no": "Nem tanto"
+        },
+        "console": "Console"
       },
       "safeJsx": {
         "title": "safe-jsx",
@@ -128,14 +133,57 @@
       },
       "pegada": {
         "title": "Pegada",
-        "body": "Um app de encontros pra cachorros, pra iOS e Android, feito com Expo e Next.js, agora open source.",
-        "pegava": "Primeira versão, arquivada",
-        "now": "A sucessora, mantida e open source",
-        "launch": "Lançado no Product Hunt em 2024"
+        "role": "Fundador · eu que construí",
+        "body": "Um app de encontros pra cachorros no iOS e no Android. Eu fiz com Expo e React Native, coloquei na App Store em 2023 e abri o código em 2025.",
+        "facts": {
+          "commits": "<b>{count}+ commits</b>: {public} públicos desde que <oss>abri o código</oss>, {before}+ <post>antes disso</post>.",
+          "productHunt": "<b>#{rank} do dia</b> no <ph>Product Hunt</ph>, em {date}.",
+          "github": "<b>{stars} estrelas e {forks} forks</b> no GitHub, contando o <pegava>Pegava</pegava>, a primeira versão, da pandemia, hoje arquivado."
+        },
+        "luaAlt": "Lua, uma border collie preta e branca, com uma bolinha amarela na boca",
+        "caption": "A Lua, do site da Pegada, e as telas de verdade do app.",
+        "stepsLabel": "Pegada, passo a passo",
+        "steps": {
+          "deck": {
+            "title": "Deslize pelos cães perto",
+            "body": "Reaja com um emoji: não, talvez ou amei.",
+            "alt": "Deck de swipe da Pegada mostrando a Nina, uma border collie a 0,5 km, com três reações em emoji"
+          },
+          "match": {
+            "title": "Deu match",
+            "body": "Quando os dois cães se curtem, os dois recebem o match.",
+            "alt": "Tela de match da Pegada: Você e Nina se curtiram, com os botões Enviar mensagem e Continue deslizando"
+          },
+          "chat": {
+            "title": "Combinem o passeio no chat",
+            "body": "Escolham o parque e a hora.",
+            "alt": "Chat da Pegada com a dona da Mel combinando um passeio no sábado de manhã"
+          }
+        },
+        "hint": "Deslize o celular pra navegar.",
+        "shipped": {
+          "title": "No Pegada, ultimamente",
+          "items": {
+            "upgrade": {
+              "title": "Atualizei do Expo 51 pro 55 de uma vez",
+              "detail": "React Native 0.74 → 0.83 e React 18 → 19 no mesmo PR."
+            },
+            "perf": {
+              "title": "Deixei o cold start do Android 24% mais rápido",
+              "detail": "2113 → 1606 ms, medido em A/B, e um APK 9,5% menor."
+            },
+            "codemod": {
+              "title": "Migrei 170 arquivos por codemod, 0 px de diferença",
+              "detail": "styled-components → Unistyles, conferido em 64 screenshots."
+            }
+          }
+        },
+        "readOn": "Números do GitHub lidos em {date}."
       }
     },
     "npm": {
-      "title": "Downloads no npm",
+      "title": "<big>{count} mil+</big> downloads no npm",
+      "stars": "E {count} estrelas no GitHub nos repositórios desses pacotes.",
       "rows": {
         "magicModal": "os dois nomes, react-native-magic-modal incluso",
         "safeJsx": "a regra do 0 solto",
@@ -143,17 +191,7 @@
         "observability": "analytics e erros, este site roda nele",
         "codePush": "CodePush pro Expo"
       },
-      "source": "Últimos 30 dias, de {start} a {end}, pelo <npm>npm</npm>."
-    },
-    "security": {
-      "title": "Correções de segurança, mergeadas",
-      "body": "Três correções, cada uma com teste de regressão, medidas pelo tamanho do diff.",
-      "diffLabel": "{added} linhas adicionadas, {removed} removidas",
-      "items": {
-        "authorization": "Upload liberado só pra quem pediu",
-        "identity": "OTP de uso único mesmo com concorrência",
-        "assetBoundary": "Arquivos de fora longe da origem deste site"
-      }
+      "source": "Total desde a primeira versão ({start}) até {end}: {total} downloads, somando as contagens diárias do npm. <npm>Ver no npm-stat</npm>."
     }
   },
   "work": {
