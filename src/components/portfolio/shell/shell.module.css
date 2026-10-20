@@ -46,14 +46,6 @@
   white-space: nowrap;
 }
 
-.hand {
-  font-family: var(--font-hand);
-  font-size: 1.375rem;
-  font-weight: 560;
-  line-height: 1;
-  color: var(--pen);
-}
-
 .links {
   grid-area: links;
   display: flex;
@@ -174,9 +166,4 @@
 
 .footerTag {
   color: var(--ink-3);
-}
-
-.signoff {
-  transform: rotate(-2deg);
-  transform-origin: left center;
 }

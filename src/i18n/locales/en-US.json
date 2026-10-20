@@ -34,8 +34,7 @@
     "newTab": "opens in a new tab",
     "footer": {
       "meta": "Gabriel Taveira · React Native & Expo Consultant · Ribeirão Preto, Brazil",
-      "tag": "Building and breaking systems since age 8",
-      "madeWith": "made with coffee · gt"
+      "updated": "Updated {date}"
     }
   },
   "hero": {

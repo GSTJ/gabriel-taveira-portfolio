@@ -19,9 +19,6 @@ export const Nav = async () => {
       <div className={cn("wrap", styles.bar)}>
         <a className={styles.brand} href="#hero">
           Gabriel Taveira
-          <span className={styles.hand} aria-hidden="true">
-            gt
-          </span>
         </a>
         <nav className={styles.links} aria-label={t("label")}>
           {SECTION_LINKS.map((id) => (
