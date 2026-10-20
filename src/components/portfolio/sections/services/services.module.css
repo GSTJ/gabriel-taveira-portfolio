@@ -17,74 +17,93 @@
 }
 
 .proof {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-4);
-  margin-top: var(--space-3);
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  margin-top: var(--space-4);
 }
 
-.proof ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
+/* Each receipt: the outcome with its figure set in ink, then where it happened. */
+.receipts {
+  display: grid;
+  gap: var(--space-4);
 }
 
-/* A citation back up the page: the arrow says "proved above", the dates say when. */
-.cite {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-2);
+.receipt {
+  display: grid;
+  gap: var(--space-1);
+  max-width: var(--measure);
+}
+
+.receipt p {
+  text-wrap: pretty;
+}
+
+.receipt strong {
   color: var(--ink);
   font-weight: var(--fw-medium);
+}
+
+/* A citation: up when the proof is a row above, up-right when it leaves the page. */
+.cite {
+  justify-self: start;
+  color: var(--ink-3);
   text-decoration-line: underline;
   text-decoration-color: var(--rule-strong);
   text-decoration-thickness: 1px;
-  transition: text-decoration-color var(--dur-hover) ease;
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--dur-hover) ease,
+    text-decoration-color var(--dur-hover) ease;
+}
+
+.glue {
+  white-space: nowrap;
 }
 
 .cite svg {
-  width: 0.85em;
-  height: 0.85em;
-  flex: none;
-  align-self: center;
-  color: var(--ink-3);
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.3em;
+  vertical-align: -0.1em;
   transition: transform var(--dur-ui) var(--ease-out);
 }
 
 .dates {
-  margin-left: var(--space-2);
   color: var(--ink-3);
-  font-weight: var(--fw-regular);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cite:hover {
+    color: var(--ink);
     text-decoration-color: currentColor;
   }
 
-  .cite:hover svg {
+  .cite[href^="#"]:hover svg {
     transform: translateY(-2px);
+  }
+
+  .cite:not([href^="#"]):hover svg {
+    transform: translate(2px, -2px);
   }
 }
 
 /* One row per offer from 1000px, read across: what, how, where it was done. */
 @media (min-width: 1000px) {
   .offer {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+    grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 5fr);
     gap: var(--space-6);
-    padding-block: var(--space-6);
-  }
-
-  .proof,
-  .proof ul {
-    display: grid;
-    gap: var(--space-2);
-    align-content: start;
+    padding-block: var(--space-6) var(--space-7);
   }
 
   .proof {
     margin-top: 0;
+  }
+
+  /* Sits on the title's first line, like the body beside it. */
+  .proofLabel {
+    line-height: var(--lh-title);
   }
 }
 
@@ -122,6 +141,20 @@
   align-content: start;
 }
 
+/* What the step leaves behind, on a hairline like a receipt stub. */
+.out {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.out .t-small {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+}
+
 .steps li::before {
   content: "";
   position: absolute;
@@ -150,6 +183,17 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding-left: 0;
     padding-top: var(--track);
+  }
+
+  /* Title, body and deliverable share rows, so the stubs line up across. */
+  .steps li {
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: var(--space-2);
+  }
+
+  .out {
+    align-self: start;
   }
 
   .steps li::before {
