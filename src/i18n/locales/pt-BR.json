@@ -67,7 +67,7 @@
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Fundador · eu que construí",
+        "role": "Fundador",
         "stackLabel": "Feito em",
         "stack": {
           "swiftUi": "a interface",
@@ -97,11 +97,7 @@
         },
         "roomAlt": "Vista 3D da sala de exemplo na Curvinha, mobiliada com 12 peças sugeridas de 5 lojas.",
         "fitAlt": "Por que para você: cabe na parede da janela com 121 cm de folga. R$ 533,71, dentro dos seus R$ 4.000 a R$ 6.000. Material: linho, madeira maciça, eucalipto, metal.",
-        "fitNote": "a folga é matemática pura",
-        "facts": {
-          "roomKit": "<b>RoomKit</b>, o pacote em Swift que eu fiz pro scan, a geometria, a planta e o 3D.",
-          "parity": "<b>Mesma resposta no celular e no servidor</b>: testes conferem se o app põe cada peça onde o solver em TypeScript do servidor põe."
-        }
+        "fitNote": "a folga é matemática pura"
       },
       "magicModal": {
         "title": "magic-modal",
@@ -150,7 +146,7 @@
       },
       "pegada": {
         "title": "Pegada",
-        "role": "Fundador · eu que construí",
+        "role": "Fundador",
         "body": "Um app de encontros pra cachorros no iOS e no Android. Eu fiz com Expo e React Native, coloquei na App Store em 2023 e abri o código em 2025.",
         "facts": {
           "commits": "<b>{count}+ commits</b>: {public} públicos desde que <oss>abri o código</oss>, {before}+ <post>antes disso</post>.",

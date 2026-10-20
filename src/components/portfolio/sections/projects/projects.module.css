@@ -350,24 +350,6 @@
 /* The repo's counts: lead words in ink, the date they were counted after.
    Narrow, they sit between the steps and the link; wide, they run across
    the card's foot. */
-.cvFacts {
-  display: grid;
-  gap: var(--space-3);
-  font-size: var(--fs-small);
-  color: var(--ink-2);
-}
-
-.cvFacts ul {
-  display: grid;
-  gap: var(--space-2);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.cvFacts strong {
-  color: var(--ink);
-}
 
 /* The stage measures itself, so every piece is placed in its own width
    (cqi): the tour on the left, the 3D room on the right, and a piece page's
@@ -457,17 +439,6 @@
 
   .cvFoot {
     margin-top: auto;
-  }
-
-  .cvFacts {
-    grid-column: 1 / -1;
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--rule);
-  }
-
-  .cvFacts ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
   }
 
   .cvStage {

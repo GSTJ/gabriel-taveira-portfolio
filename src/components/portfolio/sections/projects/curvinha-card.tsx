@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, type ReactNode } from "react";
+import { useId } from "react";
 
 import Image from "next/image";
 
@@ -44,19 +44,16 @@ const PHONE = {
 /**
  * Two whole screens beside the copy: the front phone plays the three steps
  * from the LiDAR scan, the other holds the room RoomKit furnished in 3D, with
- * a piece page's "Why it's for you" block enlarged over its foot. `facts` are
- * how it's built, rich text from the server.
+ * a piece page's "Why it's for you" block enlarged over its foot.
  */
 export const CurvinhaCard = ({
   copy,
   href,
   lang,
-  facts,
 }: {
   copy: CurvinhaCopy;
   href: string;
   lang: "en" | "pt";
-  facts: { roomKit: ReactNode; parity: ReactNode };
 }) => {
   const id = useId();
   const tour = useTour(CURVINHA_STEPS.length, 0, 0);
@@ -140,13 +137,6 @@ export const CurvinhaCard = ({
             <Marginalia placement="inline" note={copy.fitNote} />
           </figcaption>
         </figure>
-      </div>
-
-      <div className={styles.cvFacts}>
-        <ul>
-          <li>{facts.roomKit}</li>
-          <li>{facts.parity}</li>
-        </ul>
       </div>
     </article>
   );

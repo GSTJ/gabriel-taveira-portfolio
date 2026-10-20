@@ -67,7 +67,7 @@
     "items": {
       "curvinha": {
         "title": "Curvinha",
-        "role": "Founder · I built it",
+        "role": "Founder",
         "stackLabel": "Built with",
         "stack": {
           "swiftUi": "the UI",
@@ -97,11 +97,7 @@
         },
         "roomAlt": "Curvinha's 3D view of the sample living room, furnished with 12 suggested pieces from 5 stores.",
         "fitAlt": "Why it's for you: fits on the window wall with 121 cm to spare. R$ 533,71, within your R$ 4.000 to R$ 6.000. Material: linen, solid wood, eucalyptus, metal.",
-        "fitNote": "the fit check is plain math",
-        "facts": {
-          "roomKit": "<b>RoomKit</b>, my own Swift package for the scan, the geometry, the floor plan and the 3D.",
-          "parity": "<b>Same answer on the phone and the server</b>: tests check that the app places each piece where the server's TypeScript solver does."
-        }
+        "fitNote": "the fit check is plain math"
       },
       "magicModal": {
         "title": "magic-modal",
@@ -150,7 +146,7 @@
       },
       "pegada": {
         "title": "Pegada",
-        "role": "Founder · I built it",
+        "role": "Founder",
         "body": "A dating app for dogs on iOS and Android. I built it with Expo and React Native, put it on the App Store in 2023 and open-sourced it in 2025.",
         "facts": {
           "commits": "<b>{count}+ commits</b>: {public} public since I <oss>opened the code</oss>, {before}+ <post>before that</post>.",

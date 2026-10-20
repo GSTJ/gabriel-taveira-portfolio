@@ -131,10 +131,6 @@ export const ProjectsSection = async () => {
               fitAlt: t("items.curvinha.fitAlt"),
               fitNote: t("items.curvinha.fitNote"),
             }}
-            facts={{
-              roomKit: t.rich("items.curvinha.facts.roomKit", { b: bold }),
-              parity: t.rich("items.curvinha.facts.parity", { b: bold }),
-            }}
           />
         </div>
 
