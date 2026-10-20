@@ -55,6 +55,17 @@
       "getInTouch": "Get in touch",
       "downloadPdf": "Download PDF",
       "linkedIn": "LinkedIn"
+    },
+    "apps": {
+      "label": "Apps I worked on",
+      "items": {
+        "coinbase": "app infrastructure",
+        "did": "built from zero",
+        "curvinha": "founder",
+        "ze": "refactored the app",
+        "groundswell": "mentored mobile",
+        "pegada": "founder"
+      }
     }
   },
   "projects": {
