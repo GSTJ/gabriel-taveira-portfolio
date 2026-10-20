@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { cn } from "@/utils/cn";
 
 import { LINKEDIN } from "../../profile";
+import { Medal, Rating } from "../../ui/badges";
 import { ArrowUpRight } from "../../ui/icons";
 import { reveal } from "../../ui/motion";
 import { WORK, type WorkItem, workDates, workOrgs } from "./data";
@@ -58,6 +59,15 @@ const Arrowed = ({ text }: { text: string }) => {
   );
 };
 
+type ProofBadge = NonNullable<NonNullable<WorkItem["proof"]>[number]["badge"]>;
+
+const Badge = ({ badge }: { badge: ProofBadge }) =>
+  "medal" in badge ? (
+    <Medal award={badge.medal} className={styles.medal} />
+  ) : (
+    <Rating value={badge.rating} className={styles.rating} />
+  );
+
 type Translate = Awaited<ReturnType<typeof getTranslations<"work">>>;
 
 /** A job's public artifacts, each with its number or date, then the company site. */
@@ -70,7 +80,10 @@ const Proof = ({ item, t }: { item: WorkItem; t: Translate }) => (
           <a className={styles.link} href={proof.href}>
             <Arrowed text={keepHyphens(t(`${key}.label`))} />
           </a>
-          <p className="t-meta num">{t(`${key}.meta`)}</p>
+          <p className="t-meta num">
+            {proof.badge ? <Badge badge={proof.badge} /> : null}
+            {t(`${key}.meta`)}
+          </p>
         </li>
       );
     })}

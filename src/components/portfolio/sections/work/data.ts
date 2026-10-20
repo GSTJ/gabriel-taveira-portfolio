@@ -1,3 +1,5 @@
+import type { MedalAward } from "../../ui/badges";
+
 import { LINKEDIN } from "../../profile";
 
 export type WorkItem = {
@@ -24,9 +26,15 @@ export type WorkItem = {
   href: string;
   /**
    * Public artifacts behind the blurb, strongest first. Each `id` has a
-   * `label` and a `meta` line under `work.items.<job>.proof.<id>`.
+   * `label` and a `meta` line under `work.items.<job>.proof.<id>`. A
+   * `badge` leads the meta line: a medal for a real award, or the store's
+   * star rating, both already said in words.
    */
-  proof?: readonly { id: string; href: string }[];
+  proof?: readonly {
+    id: string;
+    href: string;
+    badge?: { medal: MedalAward } | { rating: number };
+  }[];
 };
 
 /** Newest first. `orgs`, `start` and `end` feed the resume, llms.txt and JSON-LD. */
@@ -62,11 +70,13 @@ export const WORK: readonly WorkItem[] = [
       {
         id: "app",
         href: "https://apps.apple.com/us/app/d-id-ai-video-generator/id6463755563",
+        badge: { rating: 4.6 },
       },
       // Golden Kitty Awards 2023 winners (Jan 2024): "Marketing & Sales: D-ID".
       {
         id: "kitty",
         href: "https://www.producthunt.com/newsletters/archive/27186-and-the-award-goes-to",
+        badge: { medal: "kitty" },
       },
     ],
   },
