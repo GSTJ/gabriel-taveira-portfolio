@@ -13,6 +13,13 @@ import { pageMetadata } from "@/utils/metadata";
 import { routing } from "@/utils/routing";
 import { SITE_URL } from "@/utils/site";
 
+/**
+ * Every page re-renders at least daily, so the footer's year and anything
+ * counted from today (years in the industry, the work axis) roll over on
+ * their own.
+ */
+export const revalidate = 86400;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }

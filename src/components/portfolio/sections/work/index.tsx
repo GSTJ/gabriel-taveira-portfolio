@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
@@ -9,6 +9,7 @@ import { Medal, Rating } from "../../ui/badges";
 import { ArrowUpRight } from "../../ui/icons";
 import { reveal } from "../../ui/motion";
 import { WORK, type WorkItem, workDates, workOrgs } from "./data";
+import { getFigures } from "./figures";
 
 import styles from "./work.module.css";
 
@@ -61,17 +62,26 @@ const Arrowed = ({ text }: { text: string }) => {
 
 type ProofBadge = NonNullable<NonNullable<WorkItem["proof"]>[number]["badge"]>;
 
-const Badge = ({ badge }: { badge: ProofBadge }) =>
-  "medal" in badge ? (
-    <Medal award={badge.medal} className={styles.medal} />
+const Badge = ({ badge, stars }: { badge: ProofBadge; stars: number }) =>
+  badge === "rating" ? (
+    <Rating value={stars} className={styles.rating} />
   ) : (
-    <Rating value={badge.rating} className={styles.rating} />
+    <Medal award={badge.medal} className={styles.medal} />
   );
 
 type Translate = Awaited<ReturnType<typeof getTranslations<"work">>>;
+type Figures = Awaited<ReturnType<typeof getFigures>>;
 
 /** A job's public artifacts, each with its number or date, then the company site. */
-const Proof = ({ item, t }: { item: WorkItem; t: Translate }) => (
+const Proof = ({
+  item,
+  t,
+  figures,
+}: {
+  item: WorkItem;
+  t: Translate;
+  figures: Figures;
+}) => (
   <ul className={styles.proof}>
     {item.proof?.map((proof) => {
       const key = `items.${item.id}.proof.${proof.id}`;
@@ -81,8 +91,10 @@ const Proof = ({ item, t }: { item: WorkItem; t: Translate }) => (
             <Arrowed text={keepHyphens(t(`${key}.label`))} />
           </a>
           <p className="t-meta num">
-            {proof.badge ? <Badge badge={proof.badge} /> : null}
-            {t(`${key}.meta`)}
+            {proof.badge ? (
+              <Badge badge={proof.badge} stars={figures.stars} />
+            ) : null}
+            {t(`${key}.meta`, figures.params)}
           </p>
         </li>
       );
@@ -109,6 +121,7 @@ const Track = ({ item }: { item: WorkItem }) => (
 /** Newest first, one ruled row per job, the two earliest as small print. */
 export const WorkSection = async () => {
   const t = await getTranslations("work");
+  const figures = await getFigures(await getLocale());
   const present = t("present");
   const orgs = (item: WorkItem) => workOrgs(item, t("independent")).join(" · ");
   const rows = WORK.filter((item) => item.billing !== "agate");
@@ -149,7 +162,7 @@ export const WorkSection = async () => {
             <p className={cn("t-body", styles.blurb)}>
               {t.rich(`items.${item.id}.blurb`, blurbTags)}
             </p>
-            <Proof item={item} t={t} />
+            <Proof item={item} t={t} figures={figures} />
           </li>
         ))}
       </ol>
@@ -170,7 +183,9 @@ export const WorkSection = async () => {
               <p className="t-small">
                 {t.rich(`items.${item.id}.blurb`, blurbTags)}
               </p>
-              {item.href === LINKEDIN ? null : <Proof item={item} t={t} />}
+              {item.href === LINKEDIN ? null : (
+                <Proof item={item} t={t} figures={figures} />
+              )}
             </li>
           ))}
         </ul>

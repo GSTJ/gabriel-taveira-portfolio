@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Gabriel Taveira · React Native & Expo Consultant",
-    "description": "Independent consultant for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil.",
-    "jobTitle": "Independent React Native and Expo consultant",
+    "title": "Gabriel Taveira · Fractional CTO and engineering leader",
+    "description": "Fractional CTO and engineering leader for product teams: architecture, migrations, teams and hiring. {years}+ years, from Coinbase's app infra to apps built from zero. Remote from Brazil.",
+    "jobTitle": "Fractional CTO and engineering consultant",
     "worksFor": "Independent consulting"
   },
   "nav": {
@@ -59,11 +59,15 @@
     "apps": {
       "label": "Apps I worked on",
       "items": {
+        "meta": "Kustomer",
         "coinbase": "app infrastructure",
-        "did": "built from zero",
-        "curvinha": "founder",
         "ze": "refactored the app",
-        "groundswell": "mentored mobile",
+        "did": "built from zero",
+        "mm": "mobile app",
+        "g2i": "engineering leadership",
+        "groundswell": "senior engineer",
+        "alfred": "moved it to React Native",
+        "curvinha": "founder",
         "pegada": "founder"
       }
     }
@@ -238,7 +242,7 @@
         "proof": {
           "app": {
             "label": "D-ID on the App Store",
-            "meta": "4.6 stars from 3.4K ratings"
+            "meta": "{rating} stars from {ratings} ratings"
           },
           "kitty": {
             "label": "Golden Kitty 2023",
@@ -247,7 +251,7 @@
         }
       },
       "meta": {
-        "title": "Open-source design system at Kustomer",
+        "title": "Open-source design system at Kustomer, then a Meta company",
         "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score.",
         "proof": {
           "sdk": {
@@ -257,7 +261,7 @@
         }
       },
       "xteam": {
-        "title": "Mentored mobile engineering at a fintech",
+        "title": "Senior engineer at a fintech",
         "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage <mark>30% → 80%+</mark>. Killed 16k lines of brittle tests with MSW. Discover page 200% faster."
       },
       "ze": {
@@ -266,7 +270,7 @@
         "proof": {
           "mozeic": {
             "label": "Mozeic on npm",
-            "meta": "177k+ downloads. The first version shipped from my account, Dec 2020"
+            "meta": "{mozeic}k+ downloads. The first version shipped from my account, Dec 2020"
           }
         }
       },
@@ -331,7 +335,7 @@
             "text": "people reported up to me at my largest"
           },
           "did": {
-            "figure": "4.6",
+            "figure": "{rating}",
             "text": "App Store stars on D-ID's app, which I built from zero as Lead Engineer"
           }
         }
@@ -341,7 +345,7 @@
         "body": "A component library your teams actually use, so every new screen ships faster and looks like the rest of the app.",
         "receipts": {
           "mozeic": {
-            "figure": "177k+",
+            "figure": "{mozeic}k+",
             "text": "npm downloads. Co-wrote Mozeic's code, Zé's in-house design system"
           },
           "kustomer": {
@@ -479,7 +483,7 @@
     },
     "shipped": {
       "title": "Shipped lately",
-      "source": "From my GitHub releases, read {date}.",
+      "source": "From my GitHub releases.",
       "items": {
         "pegada": "Configurable daily like limit and a weekly plan",
         "safeJsx": "The rule now catches mutable boolean bypasses",
@@ -576,7 +580,7 @@
       ],
       "ateam": [
         "Built the company's new core product, its mobile app, from zero with React Native and Expo.",
-        "4.6 stars from 3.4K App Store ratings. Golden Kitty 2023 on Product Hunt, Best UX 2023 at A.Team."
+        "{rating} stars from {ratings} App Store ratings. Golden Kitty 2023 on Product Hunt, Best UX 2023 at A.Team."
       ],
       "meta": [
         "Built the open-source design system and SDKs for developers integrating with Kustomer's APIs."
@@ -587,7 +591,7 @@
       ],
       "ze": [
         "Rebuilt the Browse module and shipped deep-link handling that lifted campaign conversion.",
-        "Co-wrote Mozeic, the in-house design system (177k+ npm downloads), and interviewed engineering candidates."
+        "Co-wrote Mozeic, the in-house design system ({mozeic}k+ npm downloads), and interviewed engineering candidates."
       ],
       "alfred": [
         "As the only engineer, led the migration from Ionic to React Native for an app serving 90+ franchises."

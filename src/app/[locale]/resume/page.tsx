@@ -18,6 +18,7 @@ import {
 } from "@/components/portfolio/sections/projects/data";
 import { getNpmLedger } from "@/components/portfolio/sections/projects/npm";
 import { WORK, workOrgs } from "@/components/portfolio/sections/work/data";
+import { getFigures } from "@/components/portfolio/sections/work/figures";
 import { JsonLd } from "@/components/portfolio/structured-data";
 import { cn } from "@/utils/cn";
 import { pageMetadata } from "@/utils/metadata";
@@ -92,7 +93,10 @@ const ResumePage = async ({ params }: Props) => {
   const tTalks = await getTranslations("notes.talks.items");
   const tAwards = await getTranslations("notes.awards");
   const years = yearsInIndustry();
-  const npm = await getNpmLedger();
+  const [npm, { params: figures }] = await Promise.all([
+    getNpmLedger(),
+    getFigures(locale),
+  ]);
 
   const month = new Intl.DateTimeFormat(locale, {
     month: "short",
@@ -143,7 +147,9 @@ const ResumePage = async ({ params }: Props) => {
           <h2>{t("experienceTitle")}</h2>
           {WORK.map((w) => {
             const job = RESUME_JOBS[w.id];
-            const bullets = t.raw(`jobs.${w.id}`) as string[];
+            const bullets = (t.raw(`jobs.${w.id}`) as string[]).map((_, i) =>
+              t(`jobs.${w.id}.${i}`, figures),
+            );
             return (
               <Entry
                 key={w.id}

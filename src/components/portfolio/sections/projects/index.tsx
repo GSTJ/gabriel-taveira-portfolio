@@ -16,9 +16,8 @@ import {
   PEGADA_STORES,
   PEGAVA_HREF,
   PROJECTS,
-  STARS,
-  STARS_READ_ON,
 } from "./data";
+import { getGitHub } from "./github";
 import { ModalDemo } from "./modal-demo";
 import { getNpmLedger } from "./npm";
 import { PegadaCard } from "./pegada-card";
@@ -65,7 +64,7 @@ const nowrap = (chunks: ReactNode) => (
 export const ProjectsSection = async () => {
   const t = await getTranslations("projects");
   const locale = await getLocale();
-  const npm = await getNpmLedger();
+  const [npm, github] = await Promise.all([getNpmLedger(), getGitHub()]);
 
   const fmt = new Intl.NumberFormat(locale);
   const day = (iso: string) =>
@@ -169,7 +168,7 @@ export const ProjectsSection = async () => {
                   typeof PegadaCard
                 >[0]["copy"]["shipped"]["items"],
               },
-              readOn: t("items.pegada.readOn", { date: day(STARS_READ_ON) }),
+              readOn: t("items.pegada.readOn", { date: day(github.read) }),
             }}
             links={{
               appStore: PEGADA_STORES.appStore,
@@ -181,13 +180,11 @@ export const ProjectsSection = async () => {
                 // Floored to the hundred, so "1,500+" stays true.
                 count: fmt.format(
                   Math.floor(
-                    (PEGADA_FACTS.commits.public +
-                      PEGADA_FACTS.commits.before) /
-                      100,
+                    (github.commits + PEGADA_FACTS.commitsBefore) / 100,
                   ) * 100,
                 ),
-                public: fmt.format(PEGADA_FACTS.commits.public),
-                before: fmt.format(PEGADA_FACTS.commits.before),
+                public: fmt.format(github.commits),
+                before: fmt.format(PEGADA_FACTS.commitsBefore),
                 b: bold,
                 oss: linkTo(PEGADA_FACTS.openSourceHref),
                 post: linkTo(PEGADA_FACTS.openSourcePostHref),
@@ -199,10 +196,8 @@ export const ProjectsSection = async () => {
                 ph: linkTo(PEGADA_FACTS.productHunt.href),
               }),
               github: t.rich("items.pegada.facts.github", {
-                stars: fmt.format(STARS.pegada + STARS.pegava),
-                forks: fmt.format(
-                  PEGADA_FACTS.forks.pegada + PEGADA_FACTS.forks.pegava,
-                ),
+                stars: fmt.format(github.stars.pegada + github.stars.pegava),
+                forks: fmt.format(github.forks.pegada + github.forks.pegava),
                 b: bold,
                 pegava: linkTo(PEGAVA_HREF),
               }),
@@ -277,7 +272,7 @@ export const ProjectsSection = async () => {
                   .join("&package=")}&from=${npm.since}&until=${npm.end}`,
               ),
             })}{" "}
-            {t("starsSource", { date: day(STARS_READ_ON) })}
+            {t("starsSource", { date: day(github.read) })}
           </p>
         </article>
 
@@ -293,10 +288,10 @@ export const ProjectsSection = async () => {
             <a
               className={styles.stars}
               href={href("magicModal")}
-              aria-label={`${t("items.magicModal.title")}, ${stars(STARS.magicModal)}`}
+              aria-label={`${t("items.magicModal.title")}, ${stars(github.stars.magicModal)}`}
             >
               <Star />
-              <span className="num">{fmt.format(STARS.magicModal)}</span>
+              <span className="num">{fmt.format(github.stars.magicModal)}</span>
             </a>
           </div>
           <p className="t-small">{t("items.magicModal.body")}</p>
@@ -351,10 +346,10 @@ export const ProjectsSection = async () => {
             <a
               className={styles.stars}
               href={href("safeJsx")}
-              aria-label={`${t("items.safeJsx.title")}, ${stars(STARS.safeJsx)}`}
+              aria-label={`${t("items.safeJsx.title")}, ${stars(github.stars.safeJsx)}`}
             >
               <Star />
-              <span className="num">{fmt.format(STARS.safeJsx)}</span>
+              <span className="num">{fmt.format(github.stars.safeJsx)}</span>
             </a>
           </div>
           <p className="t-small">{t("items.safeJsx.short")}</p>
