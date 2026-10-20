@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
 
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
 import { ArrowUpRight } from "../../ui/icons";
 import { reveal, timingStyle } from "../../ui/motion";
 import { WORK, workDates, workOrgs } from "../work/data";
+import { getFigures } from "../work/figures";
 import { ArrowUp } from "./arrow-up";
 import {
   ENGAGEMENT_STEPS,
@@ -48,6 +49,7 @@ const citeText = ({ label, dates, external }: Cite) => {
 export const ServicesSection = async () => {
   const t = await getTranslations("services");
   const tWork = await getTranslations("work");
+  const { params } = await getFigures(await getLocale());
 
   const cite = (source: ReceiptSource): Cite => {
     if ("pr" in source) {
@@ -83,7 +85,7 @@ export const ServicesSection = async () => {
             {...reveal(index + 1)}
           >
             <strong className={cn("num", styles.figure)}>
-              {t(`${key}.figure`)}
+              {t(`${key}.figure`, params)}
             </strong>{" "}
             <span className={cn("t-small", styles.text)}>
               {t(`${key}.text`)}

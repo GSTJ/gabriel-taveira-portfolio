@@ -15,13 +15,20 @@
 const ASSETS_ORIGIN =
   process.env.ASSETS_ORIGIN ?? "https://assets.gabrieltaveira.dev";
 
-/** Matches what the workflow uploads and what the old rewrite served. */
-const PDF_CACHE_CONTROL = "public, max-age=14400, s-maxage=14400";
+/**
+ * Short on the CDN, so a resume CI just uploaded shows up within minutes of
+ * the deploy instead of hours; `stale-while-revalidate` keeps it instant.
+ */
+const PDF_CACHE_CONTROL =
+  "public, max-age=300, s-maxage=300, stale-while-revalidate=86400";
+
+/** Five-minute buckets: each one misses the assets domain's own edge cache. */
+const freshness = () => Math.floor(Date.now() / 300_000);
 
 /**
  * Dynamic on purpose. Prerendering this would make every deploy depend on R2
  * being reachable at build time, and the CDN already absorbs the traffic via
- * `s-maxage` — one upstream hit per region per four hours.
+ * `s-maxage`: one upstream hit per region per five minutes.
  */
 export const dynamic = "force-dynamic";
 
@@ -36,7 +43,8 @@ export async function GET() {
   let upstream: Response;
 
   try {
-    upstream = await fetch(`${ASSETS_ORIGIN}/curriculum.pdf`, {
+    upstream = await fetch(`${ASSETS_ORIGIN}/curriculum.pdf?v=${freshness()}`, {
+      cache: "no-store",
       signal: AbortSignal.timeout(10_000),
     });
   } catch {

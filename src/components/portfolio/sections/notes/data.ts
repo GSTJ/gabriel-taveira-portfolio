@@ -359,16 +359,10 @@ export const ALSO: readonly Article[] = [
 ] as const;
 
 /**
- * The library the modal guide turned into. Downloads are all time, both package
- * names (react-native-magic-modal 219,524 + magic-modal 2,384, npm range API to
- * 2026-10-18); stars read the same day.
+ * The library the modal guide turned into. Its stars and all-time downloads
+ * (both package names) are the projects ledger's live magic-modal row.
  */
-export const MAGIC_MODAL = {
-  href: "https://github.com/GSTJ/magic-modal",
-  stars: 651,
-  downloads: 221_908,
-  read: "2026-10-19",
-} as const;
+export const MAGIC_MODAL_HREF = "https://github.com/GSTJ/magic-modal";
 
 export type ShippedItem = {
   id: "pegada" | "safeJsx" | "codePush" | "magicModal";
@@ -379,10 +373,11 @@ export type ShippedItem = {
   href: string;
 };
 
-/** When SHIPPED was read from GitHub releases (`gh release list`, read only). */
-export const SHIPPED_READ = "2026-10-19";
-
-/** Real releases with a user-facing change, newest first. A snapshot, dated. */
+/**
+ * Real releases with a user-facing change, newest first, picked by hand from
+ * `gh release list` on 2026-10-19. Each line's copy describes that release,
+ * so a live feed would outrun it; each row shows its own date instead.
+ */
 export const SHIPPED: readonly ShippedItem[] = [
   {
     id: "pegada",
@@ -414,5 +409,4 @@ export const SHIPPED: readonly ShippedItem[] = [
   },
 ] as const;
 
-/** When the Now list was last edited. Bump it with the list, so "Updated" stays honest. */
-export const NOW_UPDATED = new Date("2026-10-19T12:00:00Z");
+export { SITE_UPDATED } from "@/env";

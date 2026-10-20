@@ -28,14 +28,42 @@ export type WorkItem = {
    * Public artifacts behind the blurb, strongest first. Each `id` has a
    * `label` and a `meta` line under `work.items.<job>.proof.<id>`. A
    * `badge` leads the meta line: a medal for a real award, or the store's
-   * star rating, both already said in words.
+   * live star rating (`figures.ts`), both already said in words.
    */
   proof?: readonly {
     id: string;
     href: string;
-    badge?: { medal: MedalAward } | { rating: number };
+    badge?: { medal: MedalAward } | "rating";
   }[];
 };
+
+/**
+ * D-ID on the US App Store: released 2023-10-23. The rating is read live
+ * from the iTunes Lookup API and falls back to these, fetched 2026-10-19.
+ */
+export const DID_APP = {
+  id: "6463755563",
+  href: "https://apps.apple.com/us/app/d-id-ai-video-generator/id6463755563",
+  rating: 4.6317,
+  ratings: 3399,
+} as const;
+
+/**
+ * Mozeic's three packages (app, web, style dictionary), Gabriel a listed
+ * maintainer on each. All-time npm downloads to `end`: 77,396 + 9,911 +
+ * 90,276. The live read adds the days since. The first Mozeic package,
+ * unscoped `mozeic-app-design-system` 0.1.0, went out from his own npm account
+ * on 2020-12-22, a week before the scoped one.
+ */
+export const MOZEIC = {
+  names: [
+    "@zedelivery/mozeic-app-design-system",
+    "@zedelivery/mozeic-web-design-system",
+    "@zedelivery/mozeic-style-dictionary",
+  ],
+  end: "2026-10-18",
+  total: 177_583,
+} as const;
 
 /** Newest first. `orgs`, `start` and `end` feed the resume, llms.txt and JSON-LD. */
 export const WORK: readonly WorkItem[] = [
@@ -66,12 +94,7 @@ export const WORK: readonly WorkItem[] = [
     billing: "main",
     href: "https://www.d-id.com/",
     proof: [
-      // US App Store, fetched 2026-10-19: released 2023-10-23, 4.6 from 3,399 ratings.
-      {
-        id: "app",
-        href: "https://apps.apple.com/us/app/d-id-ai-video-generator/id6463755563",
-        badge: { rating: 4.6 },
-      },
+      { id: "app", href: DID_APP.href, badge: "rating" },
       // Golden Kitty Awards 2023 winners (Jan 2024): "Marketing & Sales: D-ID".
       {
         id: "kitty",
@@ -107,14 +130,9 @@ export const WORK: readonly WorkItem[] = [
     billing: "main",
     href: "https://www.ze.delivery/",
     proof: [
-      // Mozeic's three packages (app, web, style dictionary), Gabriel a listed
-      // maintainer on each. All-time npm downloads to 2026-10-18: 77,396 +
-      // 9,911 + 90,276 = 177,583. The first Mozeic package, unscoped
-      // `mozeic-app-design-system` 0.1.0, went out from his own npm account on
-      // 2020-12-22, a week before the scoped one.
       {
         id: "mozeic",
-        href: "https://www.npmjs.com/package/@zedelivery/mozeic-app-design-system",
+        href: `https://www.npmjs.com/package/${MOZEIC.names[0]}`,
       },
     ],
   },

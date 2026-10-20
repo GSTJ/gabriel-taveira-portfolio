@@ -19,6 +19,11 @@ export function yearsTinkering(today = now()): number {
   return today.getFullYear() - BIRTH_YEAR - FIRST_TINKER_AGE;
 }
 
+/** The footer's copyright year. */
+export function currentYear(today = now()): number {
+  return today.getUTCFullYear();
+}
+
 export function careerStartYear(): number {
   return CAREER_START_YEAR;
 }

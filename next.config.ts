@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { execSync } from "node:child_process";
+
 import withNextIntl from "next-intl/plugin";
 
 const createNextIntl = withNextIntl(
@@ -30,7 +32,21 @@ const SECURITY_HEADERS = [
   },
 ];
 
+/**
+ * When the site last changed: the deployed commit's date, so the footer's
+ * "Updated" line moves with every deploy and never needs a hand edit. Falls
+ * back to build time where git isn't available.
+ */
+const lastCommitDate = () => {
+  try {
+    return execSync("git log -1 --format=%cI", { encoding: "utf8" }).trim();
+  } catch {
+    return "";
+  }
+};
+
 const nextConfig = {
+  env: { SITE_UPDATED: lastCommitDate() || new Date().toISOString() },
   devIndicators: false,
   reactCompiler: true,
   /** `X-Powered-By: Next.js` tells an attacker which CVEs to try. */
