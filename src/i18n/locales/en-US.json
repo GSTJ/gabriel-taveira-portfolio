@@ -544,7 +544,6 @@
     "skillsTitle": "Skills",
     "talksTitle": "Talks",
     "awardsTitle": "Awards",
-    "educationTitle": "Education",
     "backToSite": "Full portfolio",
     "download": "Download PDF",
     "range": "{start} to {end}",
@@ -582,7 +581,7 @@
         "Co-wrote Mozeic, the in-house design system (177k+ npm downloads), and interviewed engineering candidates."
       ],
       "alfred": [
-        "Led the migration from Ionic to React Native for an app serving 90+ franchises."
+        "As the only engineer, led the migration from Ionic to React Native for an app serving 90+ franchises."
       ],
       "micro": [
         "Built a real-time repair-status tracker and internal dashboards for an Apple Service Provider."
@@ -594,11 +593,6 @@
       "openSource": "Open source",
       "maintainer": "Maintainer",
       "openSourceBody": "magic-modal, eslint-plugin-safe-jsx, react-native-code-push-plugin and more: {downloads}k+ npm downloads and {stars} GitHub stars."
-    },
-    "education": {
-      "school": "Rocketseat",
-      "program": "GoStack Bootcamp",
-      "date": "2020"
     }
   },
   "securityPage": {

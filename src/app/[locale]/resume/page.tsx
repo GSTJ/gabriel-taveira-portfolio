@@ -11,7 +11,7 @@ import {
   LINKEDIN,
   SKILL_GROUPS,
 } from "@/components/portfolio/profile";
-import { AWARDS, NOW, TALKS } from "@/components/portfolio/sections/notes/data";
+import { NOW } from "@/components/portfolio/sections/notes/data";
 import {
   NPM_SINCE,
   PEGADA_FACTS,
@@ -23,7 +23,7 @@ import { cn } from "@/utils/cn";
 import { pageMetadata } from "@/utils/metadata";
 import { SITE_URL } from "@/utils/site";
 
-import { RESUME_JOBS } from "./data";
+import { RESUME_AWARDS, RESUME_JOBS, RESUME_TALKS } from "./data";
 
 import "./resume.css";
 
@@ -217,7 +217,7 @@ const ResumePage = async ({ params }: Props) => {
         <section>
           <h2>{t("talksTitle")}</h2>
           <ul className="resume-list">
-            {TALKS.map((talk) => (
+            {RESUME_TALKS.map((talk) => (
               <li key={talk.id}>
                 <span>
                   <strong>{tTalks(`${talk.id}.title`)}</strong>,{" "}
@@ -232,7 +232,7 @@ const ResumePage = async ({ params }: Props) => {
         <section>
           <h2>{t("awardsTitle")}</h2>
           <ul className="resume-list">
-            {AWARDS.map((a) => (
+            {RESUME_AWARDS.map((a) => (
               <li key={a.id}>
                 <span>
                   <strong>{tAwards(`items.${a.id}`)}</strong>,{" "}
@@ -242,15 +242,6 @@ const ResumePage = async ({ params }: Props) => {
               </li>
             ))}
           </ul>
-        </section>
-
-        <section>
-          <h2>{t("educationTitle")}</h2>
-          <Entry
-            title={t("education.program")}
-            org={t("education.school")}
-            date={t("education.date")}
-          />
         </section>
       </div>
     </main>
