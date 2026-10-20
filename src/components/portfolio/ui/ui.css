@@ -504,3 +504,40 @@
     stroke-dashoffset: 1;
   }
 }
+
+/* ── Interlude: a quote between sections ─────────────────────────────── */
+
+.interlude {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-9);
+  text-align: center;
+}
+
+.interlude-text {
+  max-width: 22em;
+  margin: 0;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-h2);
+  color: var(--ink-2);
+  text-wrap: balance;
+  hanging-punctuation: first last;
+}
+
+.interlude-text p::before {
+  content: "\201C";
+}
+
+.interlude-text p::after {
+  content: "\201D";
+}
+
+.interlude figcaption {
+  color: var(--ink-3);
+}
+
+.interlude figcaption a {
+  color: var(--ink-2);
+}

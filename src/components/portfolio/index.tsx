@@ -8,6 +8,7 @@ import { ServicesSection } from "./sections/services";
 import { WorkSection } from "./sections/work";
 import { Footer } from "./shell/footer";
 import { Nav } from "./shell/nav";
+import { Interlude } from "./ui/interlude";
 
 /**
  * The home page, in reading order: who he is and the offer, what he made,
@@ -28,7 +29,9 @@ export const Portfolio = async () => {
         <HeroSection />
         <ProjectsSection />
         <WorkSection />
+        <Interlude id="patrick" />
         <ServicesSection />
+        <Interlude id="brandon" />
         <NotesSection />
         <ContactSection />
       </main>

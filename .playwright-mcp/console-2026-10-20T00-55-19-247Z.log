@@ -1,0 +1,37 @@
+[    1280ms] [LOG] Running frontend commit 4abb9d700c9bc53319e714df41e45d521d09c73a @ https://www.figma.com/embed/interstitial?embed_host=oembed&embed_path=%2Ffile%2FnBdwnIQxwLseSXicLhzRoB%2F%3Fembed-host%3Doembed%26kind%3Dfile%26page-selector%3D1%26theme%3Dlight%26version%3D2%26viewer%3D1&theme=light&version=2:497
+[    2813ms] [LOG] Running frontend commit 4abb9d700c9bc53319e714df41e45d521d09c73a @ https://www.figma.com/file/nBdwnIQxwLseSXicLhzRoB/?kind=file:697
+[    5484ms] [WARNING] Statsig is not ready to log exposures, will retry in 1 seconds @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    5489ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ https://browser-intake-datadoghq.com/api/v2/rum:0
+[    5554ms] [LOG] Loaded 230 scripts (12920444b), 53 from cache (1363646b) @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    5679ms] [LOG] [import] git: 722a48135fa48f328f4e8990681b196cffc4d9f6, stamp: CA2AA5E50AE12164 @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6021ms] [INFO] [Fullscreen] Booting... (emscripten version 4.0.21) @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6106ms] [INFO] [GPU] graphicsAPI:"WebGL 2", vendor:"Google Inc. (Apple)", renderer:"ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)" version:"OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))" @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6110ms] [LOG] [Fullscreen] Ready in 130.9ms @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6233ms] [INFO] [FullscreenApp] calling setEditorTheme and setting preference light @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6265ms] [INFO] [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/nBdwnIQxwLseSXicLhzRoB?role=editor&tracking_session_id=gPJW89iiyYLadjUL&version=249&recentReload=0&file-load-streaming-compression&client_release=4abb9d700c9bc53319e714df41e45d521d09c73a @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6275ms] [INFO] [FullscreenApp] calling setEditorTheme and setting preference light @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    6368ms] [INFO] [MultiplayerSession] Joining file version 106 (initial load) @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    7581ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://static.figma.com/fullscreen/34f8082c6237c33e56394307561fed8192801f63/fullscreen-wasm/compiled_wasm.js.br:1
+[    7596ms] [INFO] afterJoinEnd PageSyncing: Loaded incrementally {loaded_pages: 0:1} @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    7997ms] [LOG] [Fullscreen] loadtime=6.12s maxmem=12295928 @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[    8586ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.figma.com/api/design_systems/libraries_by_library_keys:0
+[   86527ms] [LOG] Running frontend commit 4abb9d700c9bc53319e714df41e45d521d09c73a @ https://www.figma.com/design/nBdwnIQxwLseSXicLhzRoB/Efici%C3%AAncia-Com-IA---The-Brooklyn-Brothers?node-id=0-1&p=f:697
+[   88320ms] [WARNING] Statsig is not ready to log exposures, will retry in 1 seconds @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88323ms] [LOG] Loaded 177 scripts (11556798b), 177 from cache (11556798b) @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88419ms] [LOG] [import] git: 722a48135fa48f328f4e8990681b196cffc4d9f6, stamp: CA2AA5E50AE12164 @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88633ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ https://browser-intake-datadoghq.com/api/v2/rum:0
+[   88833ms] [INFO] [Fullscreen] Booting... (emscripten version 4.0.21) @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88865ms] [INFO] [GPU] graphicsAPI:"WebGL 2", vendor:"Google Inc. (Apple)", renderer:"ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)" version:"OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))" @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88867ms] [LOG] [Fullscreen] Ready in 216.9ms @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88938ms] [INFO] [FullscreenApp] calling setEditorTheme and setting preference light @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88948ms] [INFO] [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/nBdwnIQxwLseSXicLhzRoB?role=editor&tracking_session_id=QskjknZL0JTq52MV&version=249&recentReload=0&file-load-streaming-compression&scenegraph-queries-initial-nodes=0:1&client_release=4abb9d700c9bc53319e714df41e45d521d09c73a @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   88951ms] [INFO] [FullscreenApp] calling setEditorTheme and setting preference light @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   89152ms] [INFO] [MultiplayerSession] Joining file version 106 (initial load) @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   89195ms] [LOG] Migration succeeded: context: fullscreen_migrate_SceneGraphManager, version: 106, duration: 0ms. @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   89270ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://static.figma.com/fullscreen/34f8082c6237c33e56394307561fed8192801f63/fullscreen-wasm/compiled_wasm.js.br:1
+[   89281ms] [INFO] afterJoinEnd PageSyncing: Loaded incrementally {loaded_pages: 0:1} @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   89381ms] [WARNING] Blocked aria-hidden on an element because its descendant retained focus. The focus must not be hidden from assistive technology users. Avoid using aria-hidden on a focused element or its ancestor. Consider using the inert attribute instead, which will also prevent focus. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden.
+Element with focus: <input.focus-target>
+Ancestor with aria-hidden: <input.focus-target> @ https://www.figma.com/design/nBdwnIQxwLseSXicLhzRoB/Efici%C3%AAncia-Com-IA---The-Brooklyn-Brothers:0
+[   89459ms] [LOG] [Fullscreen] loadtime=3.97s maxmem=12728872 @ https://www.figma.com/webpack-artifacts/assets/vendor-7e963b1eb81546e2.min.js.br:135
+[   90720ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.figma.com/api/design_systems/libraries_by_library_keys:0

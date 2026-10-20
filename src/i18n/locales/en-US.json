@@ -486,5 +486,17 @@
         "tags": "Authorization · Signed uploads · Abuse controls"
       }
     }
+  },
+  "quotes": {
+    "patrick": {
+      "text": "Gabriel is one of those top 0.1% engineers that are incredibly hard to find. He's a top-notch engineer, and a top-notch human being.",
+      "name": "Patrick Cason",
+      "role": "my manager at G2i and a peer at Meta"
+    },
+    "brandon": {
+      "text": "I'd highly recommend Gabriel to any organization looking for a strong engineering leader who genuinely cares about both his people and the success of the business.",
+      "name": "Brandon McKay",
+      "role": "a team lead who reported to me at G2i"
+    }
   }
 }

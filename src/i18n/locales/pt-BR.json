@@ -486,5 +486,18 @@
         "tags": "Autorização · Uploads assinados · Controle de abuso"
       }
     }
+  },
+  "quotes": {
+    "translated": "traduzido do inglês",
+    "patrick": {
+      "text": "O Gabriel é um daqueles engenheiros top 0,1% que são dificílimos de encontrar. Um engenheiro de primeira e um ser humano de primeira.",
+      "name": "Patrick Cason",
+      "role": "meu gestor na G2i e colega na Meta"
+    },
+    "brandon": {
+      "text": "Recomendo muito o Gabriel pra qualquer empresa que procura um líder de engenharia forte, que se importa de verdade com as pessoas e com o resultado do negócio.",
+      "name": "Brandon McKay",
+      "role": "team lead que respondia a mim na G2i"
+    }
   }
 }
