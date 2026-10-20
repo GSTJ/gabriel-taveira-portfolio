@@ -1,29 +1,20 @@
-import {
-  MEDIUM,
-  SPACE_CAST,
-  SPACE_CAST_PLAYLIST,
-  SPACE_SQUAD,
-} from "../../profile";
+import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST } from "../../profile";
 
 export type NowItem = {
-  id: "consulting" | "building" | "hosting" | "mentoring" | "tinkering";
+  id: "building" | "mentoring";
   href?: string;
 };
 
 /** The Curvinha line keeps `?ct=gabrieltaveira-dev` (the project card has its own). */
 export const NOW: readonly NowItem[] = [
-  { id: "consulting" },
   { id: "building", href: "https://curvinha.app/?ct=gabrieltaveira-dev" },
-  { id: "hosting" },
   { id: "mentoring" },
-  { id: "tinkering" },
 ] as const;
 
 export const PUBLICATIONS = {
   spaceCast: SPACE_CAST,
   playlist: SPACE_CAST_PLAYLIST,
   medium: MEDIUM,
-  spaceSquad: SPACE_SQUAD,
 } as const;
 
 export type TalkItem = {
@@ -56,7 +47,7 @@ export const TALKS: readonly TalkItem[] = [
     id: "spaceSquad",
     date: "2023",
     lang: "PT",
-    href: SPACE_SQUAD,
+    href: SPACE_CAST,
   },
 ] as const;
 

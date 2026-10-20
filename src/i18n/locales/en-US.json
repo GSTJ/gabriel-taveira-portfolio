@@ -242,47 +242,30 @@
     "now": {
       "title": "Now",
       "items": {
-        "consulting": {
-          "chip": "Consulting",
-          "title": "Mobile architecture and engineering leadership",
-          "body": "Taking on new engagements. Client details under NDA."
-        },
         "building": {
           "chip": "Building",
           "title": "Curvinha, an iOS app for planning your home",
-          "body": "Scan a room with LiDAR, get a full layout in plan and 3D with real products from Brazilian stores, plus the shopping list. Curated with architects from Curva Interiores."
-        },
-        "hosting": {
-          "chip": "Hosting",
-          "title": "Space Cast on Rocketseat",
-          "body": "Long-form chats on engineering, leadership, and the strange shapes of a tech career. Guest ideas welcome."
+          "body": "Scan a room with LiDAR and get a layout in plan and 3D, with real products from Brazilian stores and the shopping list. Curated with architects from Curva Interiores."
         },
         "mentoring": {
           "chip": "Mentoring",
-          "title": "Space Squad · the next generation",
-          "body": "Ambassador in the Space Squad program. The compounding interest on a 20-minute coffee with a junior engineer is wild."
-        },
-        "tinkering": {
-          "chip": "Tinkering",
-          "title": "A native screen-recording detector for Expo",
-          "body": "Upstreaming work from a past engagement. Reverse-engineering for fun, then for prod. Both still scratch the same age-8 itch."
+          "title": "Space Squad at Rocketseat",
+          "body": "Ambassador in Rocketseat's community program, helping devs who are early in their careers."
         }
       },
       "updated": "Updated {date}."
     },
     "publications": {
-      "title": "On air",
-      "featureTitle": "I host the Space Cast podcast on Rocketseat's YouTube.",
-      "featureSub": "Long-form conversations on engineering, leadership, and the strange shapes of a tech career. Now in season three.",
-      "watchShow": "Watch the show",
+      "title": "Podcast",
+      "featureTitle": "I hosted the Space Cast podcast on Rocketseat's YouTube.",
+      "featureSub": "Weekly long-form chats on engineering, leadership and tech careers. I'm on 37 of its 40 episodes, from January 2023 until the show ended that October.",
       "playlist": "Episode playlist",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentoring the next generation of tech wizards.",
-      "season": "season 3"
+      "channel": "YouTube channel",
+      "ended": "ended Oct 2023"
     },
     "talks": {
       "title": "Talks",
-      "sub": "Currently in Portuguese. Open to English engagements. If you're organizing a conference, talk titles can flex to your audience.",
+      "sub": "All in Portuguese, 2023 and 2024.",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
@@ -298,13 +281,13 @@
         },
         "assemble": {
           "title": "Forming a Tech Lead, three days at a time",
-          "description": "3-day immersion focused on forming engineering leads.",
+          "description": "A three-day immersion for new engineering leads.",
           "venue": "Assemble · Rocketseat",
           "city": "Remote"
         },
         "spaceSquad": {
           "title": "Mentoring in the Space Squad community",
-          "description": "Ongoing mentorship through Rocketseat's ambassador program.",
+          "description": "Mentoring through Rocketseat's ambassador program.",
           "venue": "Space Squad · Rocketseat",
           "city": "Remote"
         }
@@ -312,7 +295,7 @@
     },
     "awards": {
       "title": "Hackathons",
-      "sub": "A few hackathons I crashed before the day job got busy.",
+      "sub": "From before the day job took the weekends.",
       "positions": {
         "first": "1st place",
         "second": "2nd place",

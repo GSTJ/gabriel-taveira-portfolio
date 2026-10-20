@@ -242,47 +242,30 @@
     "now": {
       "title": "Agora",
       "items": {
-        "consulting": {
-          "chip": "Consultoria",
-          "title": "Arquitetura mobile e liderança de engenharia",
-          "body": "Aceitando novos projetos. Detalhes dos clientes sob NDA."
-        },
         "building": {
           "chip": "Construindo",
           "title": "Curvinha, um app iOS pra planejar a casa",
-          "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D com produtos reais de lojas brasileiras, mais a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
-        },
-        "hosting": {
-          "chip": "Apresentando",
-          "title": "Space Cast na Rocketseat",
-          "body": "Papos longos sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Sugestões de convidado são bem-vindas."
+          "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D, com produtos reais de lojas brasileiras e a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
         },
         "mentoring": {
           "chip": "Mentoria",
-          "title": "Space Squad · a próxima geração",
-          "body": "Embaixador no programa Space Squad. O juros compostos de 20 minutos de café com um júnior é absurdo."
-        },
-        "tinkering": {
-          "chip": "Mexendo",
-          "title": "Detector nativo de gravação de tela pra Expo",
-          "body": "Subindo upstream um trabalho de um contrato anterior. Engenharia reversa por diversão, depois por produção. Os dois ainda mexem com a mesma curiosidade dos 8 anos."
+          "title": "Space Squad na Rocketseat",
+          "body": "Embaixador no programa de comunidade da Rocketseat, ajudando devs no começo da carreira."
         }
       },
       "updated": "Atualizado em {date}."
     },
     "publications": {
-      "title": "No ar",
-      "featureTitle": "Apresento o podcast Space Cast no YouTube da Rocketseat.",
-      "featureSub": "Conversas longas sobre engenharia, liderança e os caminhos tortos de uma carreira em tech. Já na terceira temporada.",
-      "watchShow": "Assistir o programa",
+      "title": "Podcast",
+      "featureTitle": "Apresentei o podcast Space Cast no YouTube da Rocketseat.",
+      "featureSub": "Papos longos toda semana sobre engenharia, liderança e carreira em tech. Estou em 37 dos 40 episódios, de janeiro de 2023 até o programa acabar em outubro.",
       "playlist": "Playlist de episódios",
-      "ambassadorTitle": "Space Squad · Rocketseat",
-      "ambassadorBody": "Mentorando a próxima geração de devs.",
-      "season": "temporada 3"
+      "channel": "Canal no YouTube",
+      "ended": "até out. 2023"
     },
     "talks": {
       "title": "Palestras",
-      "sub": "Hoje em português. Aberto a eventos em inglês. Se você está organizando uma conferência, os títulos se adaptam ao público.",
+      "sub": "Todas em português, em 2023 e 2024.",
       "items": {
         "brooklyn": {
           "title": "Eficiência com IA",
@@ -298,13 +281,13 @@
         },
         "assemble": {
           "title": "Formando um Tech Lead, três dias por vez",
-          "description": "Imersão de 3 dias pra formar líderes de engenharia.",
+          "description": "Imersão de três dias pra quem está virando líder de engenharia.",
           "venue": "Assemble · Rocketseat",
           "city": "Remoto"
         },
         "spaceSquad": {
           "title": "Mentoria na comunidade Space Squad",
-          "description": "Mentoria contínua pelo programa de embaixadores da Rocketseat.",
+          "description": "Mentoria pelo programa de embaixadores da Rocketseat.",
           "venue": "Space Squad · Rocketseat",
           "city": "Remoto"
         }
@@ -312,7 +295,7 @@
     },
     "awards": {
       "title": "Hackathons",
-      "sub": "Hackathons que rolaram antes do dia a dia engolir o tempo livre.",
+      "sub": "De antes do trabalho ocupar os fins de semana.",
       "positions": {
         "first": "1º lugar",
         "second": "2º lugar",
