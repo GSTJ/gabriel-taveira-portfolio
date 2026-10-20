@@ -1,30 +1,26 @@
+import { cache } from "react";
+
+import { count, get, rating } from "../live";
 import { getMozeicDownloads } from "../projects/npm";
 import { DID_APP } from "./data";
 
 /** D-ID's US App Store rating, refreshed daily, `DID_APP` when Apple doesn't answer. */
-const getRating = async () => {
+const getRating = cache(async () => {
   try {
-    const res = await fetch(
+    const res = await get(
       `https://itunes.apple.com/lookup?id=${DID_APP.id}&country=us`,
-      { next: { revalidate: 86400 } },
     );
-    if (!res.ok) throw new Error(`itunes ${res.status}`);
     const body = (await res.json()) as {
       results?: { averageUserRating?: unknown; userRatingCount?: unknown }[];
     };
-    const { averageUserRating: rating, userRatingCount: ratings } =
-      body.results?.[0] ?? {};
-    if (typeof rating !== "number" || rating < 1 || rating > 5) {
-      throw new Error("itunes: no rating");
-    }
-    if (typeof ratings !== "number" || ratings < 1) {
-      throw new Error("itunes: no count");
-    }
-    return { rating, ratings };
+    const { averageUserRating, userRatingCount } = body.results?.[0] ?? {};
+    const ratings = count(userRatingCount);
+    if (ratings < 1) throw new Error("itunes: no ratings");
+    return { rating: rating(averageUserRating), ratings };
   } catch {
     return { rating: DID_APP.rating, ratings: DID_APP.ratings };
   }
-};
+});
 
 /**
  * The live numbers inside work and services copy, as the copy prints them:

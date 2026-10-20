@@ -603,9 +603,18 @@
     width: 0.55em;
     margin-left: 0.12em;
     opacity: 0;
-    transform: translateY(-0.25em) rotate(-14deg) scale(0.6);
+    transform: rotate(-14deg) scale(0.6);
     transform-origin: 50% 0;
     pointer-events: none;
+  }
+
+  /* On the board the ribbon hangs from the row's top rule, like a medal
+     pinned to the line. */
+  @media (width >= 1000px) {
+    .medal {
+      top: calc(-1 * var(--space-4) - 1px);
+      bottom: auto;
+    }
   }
 
   .ribbon {

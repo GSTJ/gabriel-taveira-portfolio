@@ -1,29 +1,19 @@
+import { cache } from "react";
+
 import { GITHUB_TOKEN } from "@/env";
 
+import { count, get as live } from "../live";
 import { GITHUB_SNAPSHOT, REPOS, type RepoId } from "./data";
 
 export type GitHubNumbers = typeof GITHUB_SNAPSHOT;
 
 const IDS = Object.keys(REPOS) as RepoId[];
 
-const get = async (path: string) => {
-  const res = await fetch(`https://api.github.com/${path}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
-    },
-    next: { revalidate: 86400 },
+const get = (path: string) =>
+  live(`https://api.github.com/${path}`, {
+    Accept: "application/vnd.github+json",
+    ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
   });
-  if (!res.ok) throw new Error(`github ${res.status}`);
-  return res;
-};
-
-const count = (n: unknown) => {
-  if (typeof n !== "number" || !Number.isInteger(n) || n < 0) {
-    throw new Error("github: bad count");
-  }
-  return n;
-};
 
 /** The day GitHub answered, from its own `Date` header, kept with the cached response. */
 const answeredOn = (res: Response) => {
@@ -64,10 +54,10 @@ const read = async (): Promise<GitHubNumbers> => {
  * oldest answer. Any failed or malformed answer falls back to the snapshot as
  * a whole, so the numbers never mix a partial read under one date.
  */
-export const getGitHub = async (): Promise<GitHubNumbers> => {
+export const getGitHub = cache(async (): Promise<GitHubNumbers> => {
   try {
     return await read();
   } catch {
     return GITHUB_SNAPSHOT;
   }
-};
+});

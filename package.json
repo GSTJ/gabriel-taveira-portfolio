@@ -8,6 +8,7 @@
     "start": "next start",
     "get:pdf": "node ./scripts/get-pdf.js",
     "get:og": "node ./scripts/get-og.js",
+    "check:live": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON ./scripts/check-live.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --report-unused-disable-directives",
     "lint:fix": "oxlint --report-unused-disable-directives --fix",
