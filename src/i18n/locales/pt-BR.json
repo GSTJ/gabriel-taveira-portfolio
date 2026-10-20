@@ -79,15 +79,15 @@
         "caption": "Ambiente de exemplo do app. Produtos e preços de exemplo.",
         "stepsLabel": "Curvinha, passo a passo",
         "steps": {
-          "measure": {
-            "title": "Meça o ambiente",
-            "body": "Dê uma volta pelas paredes com o iPhone. Leva uns 2 a 5 minutos.",
-            "alt": "Tela de medição da Curvinha: Vamos medir o seu ambiente. Leva uns 2 a 5 minutos."
+          "scan": {
+            "title": "Escaneie o ambiente",
+            "body": "Dê uma volta pelas paredes. RoomPlan e LiDAR medem paredes, portas e janelas em uns 2 a 5 minutos.",
+            "alt": "A Curvinha escaneando a sala de exemplo: a mini planta se completa ao vivo a cada parede medida, com a dica de pra onde andar."
           },
-          "room": {
-            "title": "Veja tudo mobiliado em 3D",
-            "body": "Planta e 3D, com peças reais de lojas reais.",
-            "alt": "Vista 3D da sala de exemplo na Curvinha, mobiliada com 12 peças sugeridas de 5 lojas."
+          "plan": {
+            "title": "Receba a planta mobiliada",
+            "body": "Cada peça onde ela cabe, na planta e no 3D.",
+            "alt": "Planta da sala de exemplo vista de cima na Curvinha, mobiliada com as 12 peças sugeridas."
           },
           "list": {
             "title": "Compre pela lista",
@@ -95,9 +95,15 @@
             "alt": "Lista da Curvinha: 12 peças de 7 lojas, cada uma com o link da loja."
           }
         },
-        "pieceAlt": "Página de um sofá na Curvinha: por que ele é pra você e as peças que combinam com ele.",
+        "roomAlt": "Vista 3D da sala de exemplo na Curvinha, mobiliada com 12 peças sugeridas de 5 lojas.",
         "fitAlt": "Por que para você: cabe na parede da janela com 121 cm de folga. R$ 533,71, dentro dos seus R$ 4.000 a R$ 6.000. Material: linho, madeira maciça, eucalipto, metal.",
-        "fitNote": "a folga é matemática pura"
+        "fitNote": "a folga é matemática pura",
+        "countedOn": "Contado no código do app em {date}.",
+        "facts": {
+          "swift": "<b>{lines} linhas de Swift</b>, {roomKit} delas no RoomKit, o pacote que eu fiz pro scan, a geometria, a planta e o 3D.",
+          "tests": "<b>{count} testes em Swift</b>, alguns conferindo se o celular põe cada peça onde o solver em TypeScript do servidor põe.",
+          "versions": "<b>{count} versões</b> desde o primeiro commit, em {date}."
+        }
       },
       "magicModal": {
         "title": "magic-modal",
