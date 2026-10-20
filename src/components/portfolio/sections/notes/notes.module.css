@@ -566,6 +566,95 @@
   color: var(--ink-3);
 }
 
+/* Hover a result and the rest of the board steps back while its medal pins
+   on: gold for a win, silver for second, a plain ribbon for the finalist. */
+.result {
+  --metal: light-dark(#c9971c, #e2b84a);
+  --metal-shine: light-dark(#f1d27a, #f6dc8c);
+}
+
+.result[data-position="second"] {
+  --metal: light-dark(#9aa3ad, #b9c1ca);
+  --metal-shine: light-dark(#e3e7eb, #eef1f4);
+}
+
+.result[data-position="finalist"] {
+  --metal: var(--ink-3);
+  --metal-shine: var(--paper-2);
+}
+
+.place {
+  position: relative;
+  width: fit-content;
+}
+
+.medal {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .medal {
+    display: block;
+    position: absolute;
+    left: 100%;
+    bottom: 0.5em;
+    width: 0.55em;
+    margin-left: 0.12em;
+    opacity: 0;
+    transform: translateY(-0.25em) rotate(-14deg) scale(0.6);
+    transform-origin: 50% 0;
+    pointer-events: none;
+  }
+
+  .ribbon {
+    fill: var(--pen);
+  }
+
+  .result[data-position="finalist"] .ribbon {
+    fill: var(--ink-3);
+  }
+
+  .disc {
+    fill: var(--metal);
+  }
+
+  .ring {
+    fill: none;
+    stroke: var(--metal-shine);
+    stroke-width: 1.2;
+  }
+
+  .result[data-position="finalist"] .disc,
+  .result[data-position="finalist"] .ring {
+    display: none;
+  }
+
+  /* On the children: the li's own opacity and transition belong to reveal. */
+  .result > * {
+    transition:
+      opacity var(--dur-hover) ease,
+      filter var(--dur-hover) ease;
+  }
+
+  .board:has(.result:hover) .result:not(:hover) > * {
+    opacity: 0.45;
+    filter: blur(1.5px);
+  }
+
+  .result:hover .medal {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .medal {
+      transition:
+        opacity 160ms ease,
+        transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  }
+}
+
 /* Now runs full width, three columns under it, hackathons as a footnote. */
 
 .layout {

@@ -386,6 +386,20 @@ const Shipped = ({ t, locale }: { t: T; locale: string }) => (
   </section>
 );
 
+/** Pinned on the hovered result; its metal comes from `data-position`. */
+const Medal = () => (
+  <svg
+    className={styles.medal}
+    viewBox="0 0 24 32"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path className={styles.ribbon} d="M6 0h5l3 11h-5zM13 0h5l-3 11h-5z" />
+    <circle className={styles.disc} cx="12" cy="20" r="9" />
+    <circle className={styles.ring} cx="12" cy="20" r="6.2" />
+  </svg>
+);
+
 /**
  * The five placements as a results board: the place set large, wins in full
  * ink, then fading by result, so it reads honestly at a glance.
@@ -410,6 +424,7 @@ const Awards = ({ t }: { t: T }) => (
             <span aria-hidden="true">
               {t(`awards.ordinals.${award.position}`)}
             </span>
+            <Medal />
             <span className="visually-hidden">
               {t(`awards.positions.${award.position}`)}
             </span>
