@@ -59,11 +59,15 @@
     "apps": {
       "label": "Apps em que trabalhei",
       "items": {
+        "meta": "Kustomer",
         "coinbase": "infra do app",
-        "did": "construí do zero",
-        "curvinha": "fundador",
         "ze": "refatorei o app",
+        "did": "construí do zero",
+        "mm": "app mobile",
+        "g2i": "liderança de engenharia",
         "groundswell": "engenheiro sênior",
+        "alfred": "migrei pra React Native",
+        "curvinha": "fundador",
         "pegada": "fundador"
       }
     }

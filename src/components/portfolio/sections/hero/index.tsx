@@ -69,6 +69,7 @@ export const HeroSection = async () => {
           <li
             key={app.id}
             className={styles.app}
+            data-tier={app.tier}
             style={{ "--i": i } as CSSProperties}
           >
             <a href={app.href}>

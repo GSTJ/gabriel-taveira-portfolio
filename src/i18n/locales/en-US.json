@@ -59,11 +59,15 @@
     "apps": {
       "label": "Apps I worked on",
       "items": {
+        "meta": "Kustomer",
         "coinbase": "app infrastructure",
-        "did": "built from zero",
-        "curvinha": "founder",
         "ze": "refactored the app",
+        "did": "built from zero",
+        "mm": "mobile app",
+        "g2i": "engineering leadership",
         "groundswell": "senior engineer",
+        "alfred": "moved it to React Native",
+        "curvinha": "founder",
         "pegada": "founder"
       }
     }
