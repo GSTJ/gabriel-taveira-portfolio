@@ -404,18 +404,32 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
+      },
+      "ordinals": {
+        "first": "1º",
+        "second": "2º",
+        "finalist": "Finalista"
       }
     },
     "writing": {
       "title": "Textos",
-      "sub": "Em 2022 escrevi um jeito melhor de lidar com modais no React Native, uma vez em inglês e outra em português.",
+      "sub": "Em 2022 escrevi um guia de modais no React Native, em inglês e em português.",
+      "quote": "Uma vez que você passa de dois modais na mesma tela, seu componente principal se torna uma bagunça, e os estados crescem exponencialmente.",
+      "quoteCite": "Do guia, 2022",
       "items": {
-        "modalsEn": "You Have Been Using React Native Modals Wrong",
-        "modalsPt": "O Guia Definitivo de Modais no React Native"
+        "modalsEn": "What Everyone Is Getting Wrong About React Native Modals",
+        "modalsPt": "O Guia Definitivo de Modais no React Native",
+        "lessons": "5 Lições Valiosas Que Aprendi Como Desenvolvedor Sênior da Meta e <nb>X-Team</nb>"
       },
-      "became": "O código desse guia virou a <old>react-native-magic-modal</old>, hoje <link>magic-modal</link>: {stars} estrelas e {downloads} downloads no npm somando os dois nomes.",
+      "minutes": "{n} min de leitura",
+      "claps": "{n} aplausos",
+      "became": "virou uma lib",
+      "stars": "<num>{n}</num> estrelas",
+      "downloads": "<num>{n}</num> downloads no npm",
+      "library": "Publicada primeiro como <old>react-native-magic-modal</old>. Os downloads somam os dois nomes.",
       "source": "GitHub e npm, desde o início, lido em {date}.",
-      "more": "Mais no Medium"
+      "also": "Também no Medium",
+      "more": "Todos os textos no Medium"
     },
     "shipped": {
       "title": "Lançado há pouco",

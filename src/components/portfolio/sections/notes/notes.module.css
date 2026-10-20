@@ -237,15 +237,77 @@
   opacity: 0;
 }
 
-/* Writing: the two versions of the guide, then the library it became. */
+/* Writing: his line from the guide, its two editions, his pen down to the
+   library it became, then the other posts. */
 
-.article {
+.quote {
   display: grid;
-  gap: var(--space-1);
+  gap: var(--space-2);
+}
+
+.quote blockquote p {
+  position: relative;
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: var(--tr-body);
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* Hanging marks, so the first letter lines up with the column. */
+.quote blockquote p::before,
+.quote blockquote p::after {
+  color: var(--ink-3);
+}
+
+.quote blockquote p::before {
+  content: "\201C";
+  position: absolute;
+  right: 100%;
+  padding-right: 0.06em;
+}
+
+.quote blockquote p::after {
+  content: "\201D";
+}
+
+.lineage {
+  display: grid;
+}
+
+.posts {
+  display: grid;
+  border-bottom: 1px solid var(--rule);
+}
+
+.posts > li {
+  border-top: 1px solid var(--rule);
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: var(--space-3);
   padding-block: var(--space-3);
 }
 
-.articleTitle {
+.lang {
+  justify-self: start;
+  align-self: start;
+  margin-top: 0.15em;
+  padding-inline: var(--space-1);
+  color: var(--ink-2);
+  text-decoration: none;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+}
+
+.postMain {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.postTitle {
   font-weight: var(--fw-medium);
   text-wrap: pretty;
 }
@@ -254,13 +316,105 @@
   white-space: nowrap;
 }
 
-.pkgLink {
+/* His pen, from the guide down to the library. */
+.became {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 4.5rem;
+  padding-inline-start: var(--space-4);
+  color: var(--pen);
+}
+
+.became svg {
+  flex: none;
+  width: 2.5rem;
+  height: 4.5rem;
+  overflow: visible;
+}
+
+.became path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.became span {
+  white-space: nowrap;
+  transform: rotate(-3deg);
+}
+
+/* The library as a receipt: name, two dated numbers, where they come from. */
+.lib {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--paper-2);
+  border-radius: var(--r-lg);
+}
+
+.libName {
+  justify-self: start;
   color: var(--ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   text-decoration-color: var(--rule-strong);
+  border-radius: var(--r-sm);
   transition: text-decoration-color var(--dur-hover) ease;
+}
+
+.libName svg {
+  display: inline;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.35em;
+  vertical-align: -0.1em;
+  color: var(--ink-3);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.figure {
+  margin-inline-end: 0.2em;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-title);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .became path {
+    stroke-dasharray: 1;
+    transition: stroke-dashoffset var(--dur-pen) var(--ease-pen);
+  }
+
+  .became path + path {
+    transition-duration: var(--dur-ui);
+    transition-delay: calc(var(--dur-pen) * 0.85);
+  }
+
+  .became span {
+    transition: clip-path var(--dur-note) var(--ease-pen)
+      calc(var(--dur-pen) * 0.6);
+  }
+
+  :global(.js) .became:not([data-in]) path {
+    stroke-dashoffset: 1;
+  }
+
+  :global(.js) .became:not([data-in]) span {
+    clip-path: inset(0 100% 0 0);
+  }
 }
 
 /* Shipped lately: a dated changelog strip, each row a link to the release. */
@@ -303,11 +457,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .ship:hover .pkgName,
-  .pkgLink:hover {
+  .libName:hover {
     text-decoration-color: var(--pen);
   }
 
-  .ship:hover .pkg svg {
+  .ship:hover .pkg svg,
+  .libName:hover svg {
     transform: translate(2px, -2px);
   }
 
@@ -348,24 +503,67 @@
   }
 }
 
-/* Hackathons: small print, all five, quieter than everything above. */
+/* Hackathons: a results board. The place leads, set large; wins in full ink,
+   seconds a step lighter, the finalist spot smaller still. */
 
 .awards {
   display: grid;
-  gap: var(--space-2);
-  max-width: 60rem;
+  gap: var(--space-5);
 }
 
-.awards h3 {
+.board {
+  display: grid;
+  border-bottom: 1px solid var(--rule);
+}
+
+.result {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  grid-template-areas:
+    "place event"
+    "place year";
+  align-content: center;
+  column-gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+/* Every place gets the numeral's line box, so names line up across a row. */
+.place {
+  grid-area: place;
+  align-self: center;
+  display: flex;
+  align-items: flex-end;
+  min-height: calc(var(--fs-h1) * var(--lh-heading));
+  font-family: var(--font-narrow);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-light);
+  font-stretch: var(--wd-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tr-h2);
+  color: var(--ink);
+}
+
+.event {
+  grid-area: event;
+  align-self: end;
   font-weight: var(--fw-medium);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.result > :last-child {
+  grid-area: year;
+}
+
+.result[data-position="second"] .place {
   color: var(--ink-2);
 }
 
-.awardList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-5);
-  margin-top: var(--space-1);
+.result[data-position="finalist"] .place {
+  font-size: var(--fs-title);
+  letter-spacing: var(--tr-title);
+  color: var(--ink-3);
 }
 
 /* Now runs full width, three columns under it, hackathons as a footnote. */
@@ -391,9 +589,24 @@
     gap: var(--space-7);
   }
 
-  .awards {
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--rule);
-    max-width: none;
+  .board {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: var(--space-5);
+    border-bottom: 0;
+  }
+
+  .result {
+    grid-template-columns: none;
+    grid-template-areas:
+      "place"
+      "event"
+      "year";
+    align-content: start;
+    row-gap: var(--space-1);
+  }
+
+  .place {
+    align-self: end;
+    margin-bottom: var(--space-3);
   }
 }

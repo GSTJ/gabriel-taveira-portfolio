@@ -311,21 +311,31 @@ export const AWARDS: readonly AwardItem[] = [
 ] as const;
 
 export type Article = {
-  id: "modalsEn" | "modalsPt";
+  id: "modalsEn" | "modalsPt" | "lessons";
   lang: "EN" | "PT";
   date: string;
   outlet: string;
   href: string;
+  /** Medium's own read time, in minutes. */
+  minutes: number;
+  /** Shown only where the count says something. */
+  claps?: number;
 };
 
-/** From his Medium feed (read 2026-10-19). Both versions of the modal guide. */
-export const ARTICLES: readonly Article[] = [
+/**
+ * From his Medium feed and the article pages (read 2026-10-19). The two
+ * versions of the modal guide, then the 2023 career post. Left out: the 2025
+ * LinkedIn analysis (its title carries an em dash and it's off the mobile story).
+ */
+export const GUIDE: readonly Article[] = [
   {
     id: "modalsEn",
     lang: "EN",
     date: "2022-08-01",
     outlet: "JavaScript in Plain English",
     href: "https://javascript.plainenglish.io/you-have-been-using-react-native-modals-wrong-9b8c17de2f96",
+    minutes: 5,
+    claps: 359,
   },
   {
     id: "modalsPt",
@@ -333,6 +343,18 @@ export const ARTICLES: readonly Article[] = [
     date: "2022-09-16",
     outlet: "Medium",
     href: "https://medium.com/@gabrieltaveira/o-guia-definitivo-de-modais-no-react-native-d39d0b6846fe",
+    minutes: 5,
+  },
+] as const;
+
+export const ALSO: readonly Article[] = [
+  {
+    id: "lessons",
+    lang: "PT",
+    date: "2023-03-19",
+    outlet: "Medium",
+    href: "https://medium.com/@gabrieltaveira/5-li%C3%A7%C3%B5es-valiosas-que-aprendi-como-desenvolvedor-s%C3%AAnior-da-meta-e-x-team-e667a8e67a69",
+    minutes: 3,
   },
 ] as const;
 

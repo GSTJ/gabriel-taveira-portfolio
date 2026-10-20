@@ -404,18 +404,32 @@
         "hackRibeirao": "HackRibeirão",
         "jovemInovador": "Prêmio Jovem Inovador",
         "nasa": "NASA Space Apps Challenge"
+      },
+      "ordinals": {
+        "first": "1st",
+        "second": "2nd",
+        "finalist": "Finalist"
       }
     },
     "writing": {
       "title": "Writing",
-      "sub": "In 2022 I wrote up a better way to handle modals in React Native, once in English and once in Portuguese.",
+      "sub": "In 2022 I wrote one guide to React Native modals, in English and in Portuguese.",
+      "quote": "Once you get past two modals, your main component is a mess, and the state is all over the place.",
+      "quoteCite": "From the guide, 2022",
       "items": {
-        "modalsEn": "You Have Been Using React Native Modals Wrong",
-        "modalsPt": "O Guia Definitivo de Modais no React Native"
+        "modalsEn": "What Everyone Is Getting Wrong About React Native Modals",
+        "modalsPt": "O Guia Definitivo de Modais no React Native",
+        "lessons": "5 Lições Valiosas Que Aprendi Como Desenvolvedor Sênior da Meta e <nb>X-Team</nb>"
       },
-      "became": "The code from that guide became <old>react-native-magic-modal</old>, now <link>magic-modal</link>: {stars} stars and {downloads} npm downloads across both names.",
+      "minutes": "{n} min read",
+      "claps": "{n} claps",
+      "became": "became a library",
+      "stars": "<num>{n}</num> stars",
+      "downloads": "<num>{n}</num> npm downloads",
+      "library": "First published as <old>react-native-magic-modal</old>. Downloads count both names.",
       "source": "GitHub and npm, all time, read {date}.",
-      "more": "More on Medium"
+      "also": "Also on Medium",
+      "more": "All posts on Medium"
     },
     "shipped": {
       "title": "Shipped lately",
