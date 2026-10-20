@@ -248,14 +248,20 @@
           "body": "Scan a room with LiDAR and get a layout in plan and 3D, with real products from Brazilian stores and the shopping list. Curated with architects from Curva Interiores."
         }
       },
-      "updated": "Updated {date}."
+      "updated": "Updated {date}.",
+      "live": "On the Brazilian App Store since {date}"
     },
     "publications": {
       "title": "Podcast",
       "featureTitle": "I hosted the Space Cast podcast on Rocketseat's YouTube.",
-      "featureSub": "Weekly long-form chats on engineering, leadership and tech careers. I'm on 37 of its 40 episodes, from January 2023 until the show ended that October.",
+      "featureSub": "Weekly long-form chats with devs, designers and engineering leads about careers and code, January to October 2023.",
+      "stats": "I'm on 37 of the 40 episodes: {hours} hours on air and {views} views.",
+      "source": "Summed from YouTube, read {date}.",
+      "sheetLabel": "Space Cast episodes 1 to 40, each opens on YouTube",
+      "sheetCaption": "The three faded ones went out without me.",
+      "episode": "#{n} · {date}",
       "playlist": "Episode playlist",
-      "channel": "YouTube channel",
+      "spotify": "Spotify",
       "ended": "ended Oct 2023"
     },
     "talks": {
@@ -286,7 +292,8 @@
           "venue": "Space Squad · Rocketseat",
           "city": "Remote"
         }
-      }
+      },
+      "slides": "See all {count} slides on Figma"
     },
     "awards": {
       "title": "Hackathons",
@@ -306,15 +313,14 @@
     },
     "writing": {
       "title": "Writing",
-      "sub": "Mostly about leading engineers, shipping mobile at scale, and the parts of the job nobody writes job descriptions for.",
-      "topics": {
-        "leadership": "Engineering Leadership",
-        "mobile": "Mobile Architecture",
-        "design": "Design Systems",
-        "hiring": "Hiring & Mentorship",
-        "reverse": "Reverse Engineering"
+      "sub": "In 2022 I wrote up a better way to handle modals in React Native, once in English and once in Portuguese.",
+      "items": {
+        "modalsEn": "You Have Been Using React Native Modals Wrong",
+        "modalsPt": "O Guia Definitivo de Modais no React Native"
       },
-      "readOnMedium": "Read on Medium"
+      "became": "The code from that guide became <old>react-native-magic-modal</old>, now <link>magic-modal</link>: {stars} stars and {downloads} npm downloads across both names.",
+      "source": "GitHub and npm, all time, read {date}.",
+      "more": "More on Medium"
     },
     "shipped": {
       "title": "Shipped lately",
