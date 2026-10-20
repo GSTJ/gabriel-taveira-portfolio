@@ -33,17 +33,34 @@ export const day = (s: unknown) => {
 };
 
 /**
- * A GET cached for a day. The deadline covers the headers and the body read,
- * since the body streams under the same signal. A signal opts the call out of
- * Next's per-render memoization (the data cache still applies), so readers
- * memoize themselves with React's `cache`.
+ * Rejects once the deadline passes, whatever the promise is doing. Next drops
+ * a fetch's `signal` when it revalidates stale data, so the signal alone
+ * can't bound a stalled upstream.
  */
-export const get = async (url: string, headers?: HeadersInit) => {
-  const res = await fetch(url, {
-    headers,
-    signal: AbortSignal.timeout(DEADLINE_MS),
-    next: { revalidate: 86400 },
+const within = <T>(work: Promise<T>) => {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_resolve, reject) => {
+    timer = setTimeout(() => reject(new Error("live: deadline")), DEADLINE_MS);
   });
-  if (!res.ok) throw new Error(`live: ${res.status} ${url}`);
-  return res;
+  return Promise.race([work, deadline]).finally(() => clearTimeout(timer));
 };
+
+/**
+ * A GET cached for a day, headers and body read inside one deadline. The body
+ * is buffered here, so callers read it from memory and can't stall past it.
+ * A signal opts the call out of Next's per-render memoization (the data cache
+ * still applies), so readers memoize themselves with React's `cache`.
+ */
+export const get = (url: string, headers?: HeadersInit) =>
+  within(
+    (async () => {
+      const res = await fetch(url, {
+        headers,
+        signal: AbortSignal.timeout(DEADLINE_MS),
+        next: { revalidate: 86400 },
+      });
+      if (!res.ok) throw new Error(`live: ${res.status} ${url}`);
+      const body = await res.text();
+      return new Response(body, { status: res.status, headers: res.headers });
+    })(),
+  );
