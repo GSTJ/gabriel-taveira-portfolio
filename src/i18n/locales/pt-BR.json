@@ -485,9 +485,6 @@
   "contact": {
     "title": "Me conta do seu app",
     "sub": "Respondo dentro da semana. Se for urgente, o LinkedIn é mais rápido.",
-    "copy": "Copiar email",
-    "copied": "Email copiado",
-    "copyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
     "channels": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
@@ -495,20 +492,42 @@
       "medium": "Medium",
       "spaceCast": "Space Cast"
     },
-    "form": {
-      "name": "Nome",
-      "namePh": "Seu nome",
-      "email": "Email",
-      "emailPh": "voce@empresa.com",
+    "why": {
+      "linkedin": "Um oi rápido antes",
+      "github": "Ler meu código antes de conversar",
+      "medium": "O que eu escrevo",
+      "spaceCast": "O podcast que eu apresentei"
+    },
+    "elsewhere": "Prefere começar por outro lugar?",
+    "letter": {
+      "label": "Email pro Gabriel",
+      "to": "Para",
       "subject": "Assunto",
-      "subjectPh": "O que precisa ser resolvido?",
-      "message": "Mensagem",
-      "messagePh": "Tamanho do time, prazo, stack, o que travou.",
-      "send": "Abrir rascunho de email",
-      "handoff": "O botão abre um rascunho no seu app de email. Se nada abrir, copia o endereço lá em cima.",
+      "copyEmail": "Copiar email",
+      "emailCopied": "Email copiado",
+      "emailCopyFailed": "Não deu pra copiar. O endereço ficou selecionado.",
+      "greeting": "Oi, Gabriel,",
+      "topicLegend": "Escrevo sobre",
+      "topics": {
+        "review": "Revisão de arquitetura",
+        "migration": "Migração ou upgrade",
+        "lead": "Lead mobile sob demanda",
+        "system": "Design system",
+        "security": "Falha de segurança",
+        "other": "Outra coisa"
+      },
       "defaultSubject": "Oi, vim pelo seu site",
-      "from": "De",
-      "reply": "Responder para"
+      "message": "Mensagem",
+      "messagePh": "O app, o time, o prazo e o que travou.",
+      "messagePrompt": "O app:\nO time:\nO prazo:\nO que travou:",
+      "signoff": "Valeu,",
+      "name": "Seu nome",
+      "company": "Empresa",
+      "open": "Abrir no meu app de email",
+      "copyLetter": "Copiar como texto",
+      "letterCopied": "Texto copiado",
+      "letterCopyFailed": "Não deu pra copiar. Abre no seu app de email.",
+      "handoff": "Nada é enviado desta página. Abre como rascunho no seu app de email, ou copia o texto e cola onde quiser."
     }
   },
   "links": {
