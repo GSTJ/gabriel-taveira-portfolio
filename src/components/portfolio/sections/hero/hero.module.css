@@ -72,7 +72,7 @@
 .label {
   position: absolute;
   top: calc(100% + var(--space-2));
-  left: 50%;
+  left: var(--label-at, 50%);
   z-index: 1;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--r-pill);
@@ -86,23 +86,28 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  translate: -50% calc(var(--space-1) * -1);
+  translate: calc(var(--label-at, 50%) * -1) calc(var(--space-1) * -1);
   rotate: calc(var(--r, 0deg) * -1); /* level, whatever the icon's tilt */
   transition:
     opacity var(--dur-exit) var(--ease-out),
     translate var(--dur-exit) var(--ease-out);
 }
 
-/* The narrow row has no room for labels: each stays the link's name only. */
+/* The narrow row has no room for labels: each stays the link's name only.
+   It keeps the big names only, so the CTAs stay in the first view. */
 @media (width < 1000px) {
   .label {
     clip-path: inset(50%);
+  }
+
+  .app:not([data-tier="core"]) {
+    display: none;
   }
 }
 
 .app a:focus-visible .label {
   opacity: 1;
-  translate: -50% 0;
+  translate: calc(var(--label-at, 50%) * -1) 0;
   transition-duration: var(--dur-ui);
 }
 
@@ -113,9 +118,15 @@
 
   .app a:hover .label {
     opacity: 1;
-    translate: -50% 0;
+    translate: calc(var(--label-at, 50%) * -1) 0;
     transition-duration: var(--dur-ui);
   }
+}
+
+/* A raised icon's label passes over its neighbors. */
+.app:hover,
+.app:focus-within {
+  z-index: 1;
 }
 
 @media (width >= 1000px) {
@@ -130,8 +141,9 @@
     grid-column: 1;
   }
 
-  /* Hand-placed in two loose rows, sized in cqi so the cluster scales with
-     its column. Sizes and tilts vary a little. */
+  /* Hierarchy, not a flat scatter: the big names large in the middle, the
+     rest orbiting smaller, his own apps tiny at the edge. Each icon is placed
+     by its center in cqi, so the cluster scales with its column. */
   .apps {
     grid-column: 2;
     grid-row: 1 / span 2;
@@ -139,64 +151,121 @@
     container-type: inline-size;
     margin-top: 0;
     position: relative;
-    aspect-ratio: 1 / 0.9;
+    aspect-ratio: 1 / 0.92;
   }
 
   .app {
     position: absolute;
     left: var(--x);
     top: var(--y);
+    translate: -50% -50%;
     rotate: var(--r);
   }
 
-  .app:nth-child(1) {
-    --x: 6%;
-    --y: 6%;
-    --r: -5deg;
-    --icon: 25cqi;
-  }
-
-  .app:nth-child(2) {
-    --x: 42%;
-    --y: 0%;
-    --r: 3deg;
-    --icon: 21cqi;
-  }
-
-  .app:nth-child(3) {
-    --x: 73%;
-    --y: 15%;
-    --r: -3deg;
-    --icon: 22cqi;
-  }
-
-  .app:nth-child(4) {
-    --x: 15%;
-    --y: 50%;
-    --r: 4deg;
-    --icon: 21cqi;
-  }
-
-  .app:nth-child(5) {
-    --x: 46%;
-    --y: 41%;
-    --r: -3deg;
+  .app[data-tier="core"] {
     --icon: 23cqi;
   }
 
-  .app:nth-child(6) {
-    --x: 75%;
-    --y: 60%;
+  .app[data-tier="orbit"] {
+    --icon: 15cqi;
+  }
+
+  .app[data-tier="own"] {
+    --icon: 10cqi;
+  }
+
+  /* Meta */
+  .app:nth-child(1) {
+    --x: 50cqi;
+    --y: 43cqi;
+    --r: -3deg;
+    --icon: 27cqi;
+  }
+
+  /* Coinbase */
+  .app:nth-child(2) {
+    --x: 16cqi;
+    --y: 32cqi;
+    --r: -6deg;
+  }
+
+  /* Near the column's right edge a pill hangs from the icon's right edge, so
+     it stays on screen. */
+  .app:nth-child(3),
+  .app:nth-child(8),
+  .app:nth-child(10) {
+    --label-at: 100%;
+  }
+
+  /* Zé Delivery */
+  .app:nth-child(3) {
+    --x: 84cqi;
+    --y: 36cqi;
     --r: 5deg;
+  }
+
+  /* D-ID, a step down */
+  .app:nth-child(4) {
+    --x: 60cqi;
+    --y: 75cqi;
+    --r: -4deg;
     --icon: 20cqi;
+  }
+
+  /* Morgan & Morgan */
+  .app:nth-child(5) {
+    --x: 25cqi;
+    --y: 69cqi;
+    --r: 4deg;
+  }
+
+  /* G2i */
+  .app:nth-child(6) {
+    --x: 37cqi;
+    --y: 9cqi;
+    --r: 5deg;
+  }
+
+  /* Groundswell */
+  .app:nth-child(7) {
+    --x: 68cqi;
+    --y: 10cqi;
+    --r: -4deg;
+  }
+
+  /* Alfred Delivery */
+  .app:nth-child(8) {
+    --x: 88cqi;
+    --y: 67cqi;
+    --r: 3deg;
+  }
+
+  /* Curvinha */
+  .app:nth-child(9) {
+    --x: 9cqi;
+    --y: 8cqi;
+    --r: -7deg;
+  }
+
+  /* Pegada */
+  .app:nth-child(10) {
+    --x: 89cqi;
+    --y: 87cqi;
+    --r: 6deg;
   }
 }
 
-/* A calm idle drift, out of step per icon. Reduced motion: still. */
+/* A calm idle drift, out of step per icon; the outer ring drifts slower and a
+   little farther. Reduced motion: still. */
 @media (width >= 1000px) and (prefers-reduced-motion: no-preference) {
   .app a {
     animation: drift 7s var(--ease-in-out) calc(var(--i) * -1.3s) infinite
       alternate;
+  }
+
+  .app:not([data-tier="core"]) a {
+    --drift: -7px;
+    animation-duration: 10s;
   }
 
   .app a:hover {
@@ -206,6 +275,6 @@
 
 @keyframes drift {
   to {
-    translate: 0 -5px;
+    translate: 0 var(--drift, -5px);
   }
 }
