@@ -88,7 +88,7 @@ export async function GET() {
     "",
     "## Media",
     "",
-    `- Hosted [Space Cast](${SPACE_CAST}), Rocketseat's podcast on YouTube: 37 of its 40 episodes, January to October 2023, when the show ended.`,
+    `- Hosted [Space Cast](${SPACE_CAST}), Rocketseat's podcast on YouTube: all 40 episodes, January to October 2023, when the show ended.`,
     "",
     "## Awards",
     "",

@@ -158,7 +158,7 @@ const Talks = ({ t }: { t: T }) => (
 /**
  * All forty episodes as a contact sheet, in airing order, grayscale so the pen
  * stays the only color. They land one week at a time the first time the sheet
- * is in view; the three he isn't on stay faded. Pointing at one names it.
+ * is in view. Pointing at one names it.
  */
 const Podcast = ({ t, locale }: { t: T; locale: string }) => (
   <section className={styles.block} aria-labelledby="notes-media">
@@ -177,11 +177,7 @@ const Podcast = ({ t, locale }: { t: T; locale: string }) => (
       <ol className={styles.tiles} aria-label={t("publications.sheetLabel")}>
         {EPISODES.map((ep, i) => (
           <li key={ep.id} style={{ "--n": i } as CSSProperties}>
-            <a
-              className={styles.tile}
-              href={episodeUrl(ep.id)}
-              data-host={ep.host === false ? "no" : undefined}
-            >
+            <a className={styles.tile} href={episodeUrl(ep.id)}>
               <Image
                 src={`/notes/space-cast/${ep.id}.webp`}
                 width={320}

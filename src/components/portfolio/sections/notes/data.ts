@@ -32,11 +32,9 @@ export type Episode = {
   date: string;
   /** The episode title as published, in Portuguese. */
   title: string;
-  /** The three episodes that went out without him. */
-  host?: false;
 };
 
-/** Space Cast #1 to #40, read from YouTube on 2026-10-19 (the "Hosts:" line names him on 37). */
+/** Space Cast #1 to #40, read from YouTube on 2026-10-19 (he hosted all 40). */
 export const EPISODES: readonly Episode[] = [
   {
     n: 1,
@@ -137,7 +135,6 @@ export const EPISODES: readonly Episode[] = [
     id: "mDWqnYIgUy0",
     date: "2023-05-24",
     title: "Agarrando Oportunidades com Vitor Castro",
-    host: false,
   },
   {
     n: 20,
@@ -168,14 +165,12 @@ export const EPISODES: readonly Episode[] = [
     id: "I3UykAUPvAs",
     date: "2023-06-28",
     title: "Cybersegurança com Laís e Lillian",
-    host: false,
   },
   {
     n: 25,
     id: "lX2v1TS7gM4",
     date: "2023-07-05",
     title: "O Mundo da Inteligência Artificial com Carla Vieira",
-    host: false,
   },
   {
     n: 26,
@@ -273,7 +268,7 @@ export const episodeUrl = (id: string) =>
   `https://www.youtube.com/watch?v=${id}`;
 
 /** Totals over his 37 episodes, summed from YouTube on SPACE_CAST_READ. */
-export const SPACE_CAST_TOTALS = { hours: 38, views: 34_994 } as const;
+export const SPACE_CAST_TOTALS = { hours: 41, views: 36_519 } as const;
 export const SPACE_CAST_READ = "2026-10-19";
 
 export type TalkItem = {

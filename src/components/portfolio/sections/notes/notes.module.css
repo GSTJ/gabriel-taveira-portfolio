@@ -200,9 +200,6 @@
 }
 
 /* The three episodes that went out without him. */
-.tile[data-host="no"] img {
-  opacity: 0.3;
-}
 
 .cap,
 .capDefault {
