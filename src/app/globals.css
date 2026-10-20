@@ -39,6 +39,8 @@ html {
   text-size-adjust: 100%;
   scroll-padding-top: calc(var(--nav-h) + var(--space-5));
   background: var(--paper);
+  /* The footer signature's view timeline, read by the nav's (shell). */
+  timeline-scope: --signoff;
 }
 
 @media (prefers-reduced-motion: no-preference) {
