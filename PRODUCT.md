@@ -18,7 +18,7 @@ Gabriel Taveira's personal site. It sells consulting (React Native and Expo arch
 
 ## Positioning
 
-An independent consultant (since 2025) who has done the hard migrations on a famous app (Coinbase Consumer App Infra: React Compiler, Expo Prebuild, the new architecture), has managed up to 56 direct reports, and builds things people use: Curvinha as founder, and open-source libraries other teams ship with (magic-modal, eslint-plugin-safe-jsx, react-native-magic-toast).
+An independent consultant (since 2025) who has done the hard migrations on a famous app (Coinbase Consumer App Infra: React Compiler, Expo Prebuild, the new architecture), has been responsible for up to 56 people across two levels (not direct reports), and builds things people use: Curvinha as founder, and open-source libraries other teams ship with (magic-modal, eslint-plugin-safe-jsx, react-native-magic-toast).
 
 The current role is "independent consultant" / "consultoria independente". G2i and Morgan & Morgan never appear as current employers anywhere (copy, meta, JSON-LD, llms.txt, resume). Past jobs stay exactly as listed.
 
@@ -43,7 +43,7 @@ Bilingual: en-US default, pt-BR. Desktop during work hours, phone when following
 
 ## Evidence on Hand
 
-- Outcomes already in copy: Coinbase coverage 25% → 45%, Groundswell 30% → 80%+, 16k lines of brittle tests removed, 4 to 56 direct reports, D-ID app built from zero, Mozeic design system, Ionic → React Native for 90+ franchises.
+- Outcomes already in copy: Coinbase coverage 25% → 45%, Groundswell 30% → 80%+, 16k lines of brittle tests removed, 56 people across two levels, D-ID app built from zero, Mozeic design system, Ionic → React Native for 90+ franchises.
 - Open source (GitHub, read 2026-10-19): magic-modal 650 stars; npm last 30 days to 2026-10-18: eslint-plugin-safe-jsx 7,228, react-native-magic-toast 1,350, magic-observability 1,077, magic-modal 466 plus the old name react-native-magic-modal (about 12.9k combined), react-native-code-push-plugin 378. Numbers drift: show them with a date and a source link.
 - Three merged security PRs (`/security`), talks 2023 to 2024, Space Cast host, five hackathon placements 2019 to 2020.
 - No headshot, client logos, testimonials or pricing exist. Do not fabricate any of them.

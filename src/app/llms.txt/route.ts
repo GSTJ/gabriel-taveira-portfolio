@@ -43,7 +43,7 @@ export async function GET() {
     "",
     `- Role: ${en.resume.role}`,
     `- Location: ${en.resume.location}`,
-    `- Availability: ${en.hero.status}`,
+    `- Role: ${en.hero.status}`,
     `- Email: ${CHANNELS.find((c) => c.id === "email")?.handle}`,
     "",
     "## Services",
