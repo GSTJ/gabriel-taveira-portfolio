@@ -226,7 +226,7 @@
     "items": {
       "consulting": {
         "title": "Independent consulting",
-        "blurb": "Mobile architecture, engineering leadership, and team craft for product companies. Client details under NDA."
+        "blurb": "Mobile architecture, engineering leadership and team craft for product companies, plus RL training environments and evals for AI models. Client details under NDA."
       },
       "coinbase": {
         "title": "Migrations on the Coinbase app",
@@ -560,13 +560,15 @@
       "leadership": "Leadership",
       "engineering": "Engineering",
       "stack": "Stack",
+      "ai": "AI",
       "languages": "Languages",
       "languagesList": "English, Portuguese (native)"
     },
     "jobs": {
       "consulting": [
         "Architecture reviews and large migrations for product companies. Client details under NDA.",
-        "Interim engineering lead while clients hire: rituals, code review standards and the hiring loop."
+        "Interim engineering lead while clients hire: rituals, code review standards and the hiring loop.",
+        "AI work: reinforcement learning (RL) training environments and evaluations for AI models."
       ],
       "coinbase": [
         "Helped with the app's large migrations on Consumer App Infra: React Native's new architecture, React Compiler, Expo Prebuild and the design system.",

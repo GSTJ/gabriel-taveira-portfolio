@@ -226,7 +226,7 @@
     "items": {
       "consulting": {
         "title": "Consultoria independente",
-        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time para empresas de produto. Detalhes dos clientes sob NDA."
+        "blurb": "Arquitetura mobile, liderança de engenharia e cultura de time para empresas de produto, e ambientes de treino por reforço (RL) e avaliações pra modelos de IA. Detalhes dos clientes sob NDA."
       },
       "coinbase": {
         "title": "Migrações no app da Coinbase",
@@ -560,13 +560,15 @@
       "leadership": "Liderança",
       "engineering": "Engenharia",
       "stack": "Stack",
+      "ai": "IA",
       "languages": "Idiomas",
       "languagesList": "Inglês, português (nativo)"
     },
     "jobs": {
       "consulting": [
         "Revisões de arquitetura e migrações grandes para empresas de produto. Clientes sob NDA.",
-        "Liderança de engenharia interina enquanto o cliente contrata: rituais, code review e processo seletivo."
+        "Liderança de engenharia interina enquanto o cliente contrata: rituais, code review e processo seletivo.",
+        "IA: ambientes de treino por reforço (RL) e avaliações pra modelos de IA."
       ],
       "coinbase": [
         "Ajudei nas migrações grandes do app no Consumer App Infra: nova arquitetura do React Native, React Compiler, Expo Prebuild e o design system.",

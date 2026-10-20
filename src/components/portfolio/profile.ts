@@ -49,6 +49,7 @@ export const SKILL_GROUPS = {
     "Swift",
     "SwiftUI",
   ],
+  ai: ["RL training environments", "Model evaluation", "AI agents"],
 } as const;
 
 /** Every keyword, flat: the JSON-LD `knowsAbout` and llms.txt. */

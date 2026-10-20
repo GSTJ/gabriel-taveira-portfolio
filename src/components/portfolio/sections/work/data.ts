@@ -44,7 +44,7 @@ export const WORK: readonly WorkItem[] = [
     orgs: ["Independent"],
     start: 2025,
     end: "now",
-    tags: ["Consulting", "Mobile", "Leadership"],
+    tags: ["Consulting", "Leadership", "AI"],
     billing: "current",
     href: LINKEDIN,
   },
