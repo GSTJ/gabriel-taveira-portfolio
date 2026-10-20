@@ -128,9 +128,7 @@ export const Footer = async () => {
         </div>
 
         <div className={cn("t-meta", styles.footFine)}>
-          <p>
-            © {NOW_UPDATED.getUTCFullYear()} Gabriel Taveira · {t("role")}
-          </p>
+          <p>© {NOW_UPDATED.getUTCFullYear()} Gabriel Taveira</p>
           <p>
             {t("updated", { date: currentMonthLabel(locale, NOW_UPDATED) })} ·{" "}
             {t("place")}

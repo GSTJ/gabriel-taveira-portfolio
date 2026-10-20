@@ -528,12 +528,11 @@
   border-top: 1px solid var(--rule);
 }
 
-/* Every place gets the numeral's line box, so names line up across a row. */
+/* Every place keeps the numeral's font on its own line box, so a smaller
+   label sits on the numerals' baseline and names line up across a row. */
 .place {
   grid-area: place;
   align-self: center;
-  display: flex;
-  align-items: flex-end;
   min-height: calc(var(--fs-h1) * var(--lh-heading));
   font-family: var(--font-narrow);
   font-size: var(--fs-h1);
@@ -561,9 +560,12 @@
 }
 
 .result[data-position="finalist"] .place {
-  font-size: var(--fs-title);
-  letter-spacing: var(--tr-title);
   color: var(--ink-3);
+}
+
+.result[data-position="finalist"] .place > :first-child {
+  font-size: 0.6em;
+  letter-spacing: var(--tr-title);
 }
 
 /* Hover a result and the rest of the board steps back while its medal pins
