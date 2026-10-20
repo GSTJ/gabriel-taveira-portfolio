@@ -24,6 +24,9 @@
      the control is findable; dividers stay on --rule. */
   --control: light-dark(#807e75, #76736d);
   --pen: light-dark(#2343c9, #93a6ff);
+  /* His signature: pen blue on light paper; on dark the blue reads heavy, so
+     it signs in plain ink. */
+  --sign: light-dark(#2343c9, #edebe5);
   --pen-wash: light-dark(rgb(35 67 201 / 0.1), rgb(147 166 255 / 0.14));
   /* Medal metal, only on a real placement: the disc, then its engraving. */
   --gold: light-dark(#c9971c, #e2b84a);

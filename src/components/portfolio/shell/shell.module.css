@@ -91,18 +91,54 @@
   white-space: nowrap;
 }
 
-/* His signature, in pen ink. A mask so it follows --pen in both themes. */
+/*
+ * His signature, the same one that signs the footer. A mask, so it takes
+ * --sign in both themes. Sized so its small letters (not the tall G and l)
+ * stand a little over the links' capitals, and centered on them by eye, not
+ * by box: those letters' middle sits 0.251 of the height below the box's,
+ * so it rises that much and 1px more, where the capitals' middle sits
+ * (measured on the rendered nav at both sizes).
+ */
 .signature {
+  --h: 32px;
   display: block;
-  height: 44px;
+  height: var(--h);
   aspect-ratio: 3.566;
-  background: var(--pen);
+  background: var(--sign);
   mask: url("/signature.svg") center / contain no-repeat;
+  translate: 0 calc(var(--h) * -0.251 - 1px);
 }
 
 @media (width < 760px) {
   .signature {
-    height: 36px;
+    --h: 28px;
+  }
+}
+
+/*
+ * One signature on screen at a time: as the footer's comes into view, this
+ * one drops away toward it, and comes back on the way up. Browsers without
+ * scroll-driven animations just keep it.
+ */
+@supports (animation-timeline: view()) {
+  .signature {
+    --drift: 0px;
+    animation: hand-off linear both;
+    animation-timeline: --signoff;
+    animation-range: entry 0% entry 70%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .signature {
+      --drift: 8px;
+    }
+  }
+}
+
+@keyframes hand-off {
+  to {
+    opacity: 0;
+    transform: translateY(var(--drift));
   }
 }
 
@@ -386,21 +422,23 @@
 .sign {
   position: relative;
   margin-block: var(--space-2) var(--space-5);
-  font-family: var(--font-hand);
   font-size: clamp(2.75rem, 1.2vw + 2.25rem, 3.5rem);
-  font-weight: 560;
   line-height: 1;
-  color: var(--pen);
+  view-timeline: --signoff;
 }
 
 .signName {
-  display: inline-block;
+  display: block;
+  height: 1.7em;
+  aspect-ratio: 3.566;
+  background: var(--sign);
+  mask: url("/signature.svg") center / contain no-repeat;
 }
 
 .flourish {
   position: absolute;
   left: -0.04em;
-  bottom: -0.3em;
+  bottom: -0.42em;
   width: calc(100% + 0.3em);
   height: 0.45em;
   overflow: visible;
@@ -409,7 +447,7 @@
 
 .flourish path {
   fill: none;
-  stroke: var(--pen);
+  stroke: var(--sign);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;

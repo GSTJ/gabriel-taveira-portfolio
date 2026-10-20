@@ -66,7 +66,8 @@ export const Footer = async () => {
           <div className={styles.signoff}>
             <p className={styles.closing}>{t("closing")}</p>
             <p className={styles.sign} data-draw="" suppressHydrationWarning>
-              <span className={styles.signName}>Gabriel Taveira</span>
+              <span className={styles.signName} aria-hidden="true" />
+              <span className="visually-hidden">Gabriel Taveira</span>
               <svg
                 className={styles.flourish}
                 viewBox="0 0 320 28"
