@@ -246,11 +246,6 @@
           "chip": "Construindo",
           "title": "Curvinha, um app iOS pra planejar a casa",
           "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D, com produtos reais de lojas brasileiras e a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
-        },
-        "mentoring": {
-          "chip": "Mentoria",
-          "title": "Space Squad na Rocketseat",
-          "body": "Embaixador no programa de comunidade da Rocketseat, ajudando devs no começo da carreira."
         }
       },
       "updated": "Atualizado em {date}."

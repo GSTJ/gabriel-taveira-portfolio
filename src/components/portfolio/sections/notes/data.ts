@@ -1,14 +1,13 @@
 import { MEDIUM, SPACE_CAST, SPACE_CAST_PLAYLIST } from "../../profile";
 
 export type NowItem = {
-  id: "building" | "mentoring";
+  id: "building";
   href?: string;
 };
 
 /** The Curvinha line keeps `?ct=gabrieltaveira-dev` (the project card has its own). */
 export const NOW: readonly NowItem[] = [
   { id: "building", href: "https://curvinha.app/?ct=gabrieltaveira-dev" },
-  { id: "mentoring" },
 ] as const;
 
 export const PUBLICATIONS = {

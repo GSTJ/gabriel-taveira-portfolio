@@ -246,11 +246,6 @@
           "chip": "Building",
           "title": "Curvinha, an iOS app for planning your home",
           "body": "Scan a room with LiDAR and get a layout in plan and 3D, with real products from Brazilian stores and the shopping list. Curated with architects from Curva Interiores."
-        },
-        "mentoring": {
-          "chip": "Mentoring",
-          "title": "Space Squad at Rocketseat",
-          "body": "Ambassador in Rocketseat's community program, helping devs who are early in their careers."
         }
       },
       "updated": "Updated {date}."
