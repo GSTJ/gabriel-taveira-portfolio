@@ -496,10 +496,11 @@
   gap: var(--space-3);
 }
 
+/* One per line: the copy column is narrow and tall, so a stack reads
+   cleaner than a row that wraps one link onto its own line. */
 .pgLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  display: grid;
+  justify-items: start;
   margin: 0;
   padding: 0;
   list-style: none;

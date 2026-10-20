@@ -116,11 +116,6 @@ export const WORK: readonly WorkItem[] = [
         id: "mozeic",
         href: "https://www.npmjs.com/package/@zedelivery/mozeic-app-design-system",
       },
-      // Merged 2021-09-13 on Zé's public code challenge repo.
-      {
-        id: "pr",
-        href: "https://github.com/ab-inbev-ze-company/ze-code-challenges/pull/35",
-      },
     ],
   },
   {
