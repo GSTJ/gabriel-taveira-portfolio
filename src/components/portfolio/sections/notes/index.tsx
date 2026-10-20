@@ -1,3 +1,5 @@
+import type { Article } from "./data";
+
 import type { CSSProperties, ReactNode } from "react";
 
 import Image from "next/image";
@@ -11,9 +13,10 @@ import { ArrowUpRight } from "../../ui/icons";
 import { Marginalia } from "../../ui/marginalia";
 import { reveal } from "../../ui/motion";
 import {
-  ARTICLES,
+  ALSO,
   AWARDS,
   EPISODES,
+  GUIDE,
   MAGIC_MODAL,
   NOW,
   NOW_UPDATED,
@@ -54,11 +57,14 @@ const Out = ({
   </a>
 );
 
-/** The `t.rich` tag for the library name in the writing note. */
-const magicModalLink = (chunks: ReactNode) => (
-  <a className={cn("t-mono", styles.pkgLink)} href={MAGIC_MODAL.href}>
-    {chunks}
-  </a>
+/** A number in the library receipt, set larger than its label. */
+const figure = (chunks: ReactNode) => (
+  <span className={cn("num", styles.figure)}>{chunks}</span>
+);
+
+/** A word that must not break at its hyphen, like X-Team. */
+const keepTogether = (chunks: ReactNode) => (
+  <span className={styles.nowrap}>{chunks}</span>
 );
 
 /** The library's first name, kept on one line. */
@@ -229,6 +235,56 @@ const Podcast = ({ t, locale }: { t: T; locale: string }) => (
   </section>
 );
 
+const LANG_NAME = { EN: "English", PT: "Português" } as const;
+
+/** One post: its language chip, the title as a link, then date, outlet and read time. */
+const Post = ({
+  article,
+  t,
+  locale,
+}: {
+  article: Article;
+  t: T;
+  locale: string;
+}) => (
+  <li className={styles.post}>
+    <abbr className={cn("t-meta", styles.lang)} title={LANG_NAME[article.lang]}>
+      {article.lang}
+    </abbr>
+    <div className={styles.postMain}>
+      <Out href={article.href} className={styles.postTitle}>
+        <span lang={article.lang === "PT" ? "pt-BR" : "en"}>
+          {t.rich(`writing.items.${article.id}`, { nb: keepTogether })}
+        </span>
+      </Out>
+      <p className="t-meta">
+        <time className="num" dateTime={article.date}>
+          {shortDate(article.date, locale)}
+        </time>{" "}
+        · {article.outlet} ·{" "}
+        <span className="num">
+          {t("writing.minutes", { n: article.minutes })}
+        </span>
+        {article.claps ? (
+          <>
+            {" "}
+            ·{" "}
+            <span className="num">
+              {t("writing.claps", {
+                n: article.claps.toLocaleString(locale),
+              })}
+            </span>
+          </>
+        ) : null}
+      </p>
+    </div>
+  </li>
+);
+
+/**
+ * The guide in his own words, its two editions, then his pen drawing the line
+ * from the guide down to the library it became. Other posts trail after.
+ */
 const Writing = ({ t, locale }: { t: T; locale: string }) => (
   <section className={styles.block} aria-labelledby="notes-writing">
     <div className={styles.head} {...reveal()}>
@@ -237,38 +293,62 @@ const Writing = ({ t, locale }: { t: T; locale: string }) => (
       </h3>
       <p className="t-small">{t("writing.sub")}</p>
     </div>
-    <ol className={styles.rows} {...reveal(1)}>
-      {ARTICLES.map((article) => (
-        <li key={article.id} className={styles.article}>
-          <Out href={article.href} className={styles.articleTitle}>
-            <span lang={article.lang === "PT" ? "pt-BR" : "en"}>
-              {t(`writing.items.${article.id}`)}
-            </span>
-          </Out>
-          <p className="t-meta">
-            <time className="num" dateTime={article.date}>
-              {shortDate(article.date, locale)}
-            </time>{" "}
-            · {article.outlet} ·{" "}
-            <abbr title={article.lang === "PT" ? "Português" : "English"}>
-              {article.lang}
-            </abbr>
-          </p>
-        </li>
-      ))}
-    </ol>
-    <div className={styles.stack} {...reveal(2)}>
-      <p className="t-small">
-        {t.rich("writing.became", {
-          stars: MAGIC_MODAL.stars.toLocaleString(locale),
-          downloads: MAGIC_MODAL.downloads.toLocaleString(locale),
-          link: magicModalLink,
-          old: oldName,
-        })}
-      </p>
-      <p className="t-meta">
-        {t("writing.source", { date: shortDate(MAGIC_MODAL.read, locale) })}
-      </p>
+    <figure className={styles.quote} {...reveal(1)}>
+      <blockquote>
+        <p>{t("writing.quote")}</p>
+      </blockquote>
+      <figcaption className="t-meta">{t("writing.quoteCite")}</figcaption>
+    </figure>
+    <div className={styles.lineage}>
+      <ol className={styles.posts} {...reveal(2)}>
+        {GUIDE.map((article) => (
+          <Post key={article.id} article={article} t={t} locale={locale} />
+        ))}
+      </ol>
+      <div
+        className={styles.became}
+        data-draw=""
+        suppressHydrationWarning
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 40 72" focusable="false">
+          <path pathLength={1} d="M14 3C6 20 7 40 18 56c2 3 4 6 6 9" />
+          <path pathLength={1} d="M15 62l9 3 1-10" />
+        </svg>
+        <span className="t-hand">{t("writing.became")}</span>
+      </div>
+      <div className={styles.lib} {...reveal(3)}>
+        <a className={cn("t-mono", styles.libName)} href={MAGIC_MODAL.href}>
+          magic-modal
+          <ArrowUpRight />
+        </a>
+        <p className={styles.figures}>
+          <span>
+            {t.rich("writing.stars", {
+              n: MAGIC_MODAL.stars.toLocaleString(locale),
+              num: figure,
+            })}
+          </span>
+          <span>
+            {t.rich("writing.downloads", {
+              n: MAGIC_MODAL.downloads.toLocaleString(locale),
+              num: figure,
+            })}
+          </span>
+        </p>
+        <p className="t-small">{t.rich("writing.library", { old: oldName })}</p>
+        <p className="t-meta">
+          {t("writing.source", { date: shortDate(MAGIC_MODAL.read, locale) })}
+        </p>
+      </div>
+    </div>
+    <div className={styles.stack} {...reveal(4)}>
+      <p className="t-meta">{t("writing.also")}</p>
+      <ol className={styles.posts}>
+        {ALSO.map((article) => (
+          <Post key={article.id} article={article} t={t} locale={locale} />
+        ))}
+      </ol>
       <Out href={PUBLICATIONS.medium} className="t-small">
         {t("writing.more")}
       </Out>
@@ -306,25 +386,39 @@ const Shipped = ({ t, locale }: { t: T; locale: string }) => (
   </section>
 );
 
+/**
+ * The five placements as a results board: the place set large, wins in full
+ * ink, then fading by result, so it reads honestly at a glance.
+ */
 const Awards = ({ t }: { t: T }) => (
-  <section
-    className={styles.awards}
-    aria-labelledby="notes-awards"
-    {...reveal()}
-  >
-    <h3 id="notes-awards" className="t-small">
-      {t("awards.title")}
-    </h3>
-    <p className="t-meta">{t("awards.sub")}</p>
-    <ul className={styles.awardList}>
-      {AWARDS.map((award) => (
-        <li key={award.id} className="t-meta">
-          <span className="num">{award.year}</span>{" "}
-          {t(`awards.items.${award.id}`)},{" "}
-          {t(`awards.positions.${award.position}`)}
+  <section className={styles.awards} aria-labelledby="notes-awards">
+    <div className={styles.head} {...reveal()}>
+      <h3 id="notes-awards" className="t-title">
+        {t("awards.title")}
+      </h3>
+      <p className="t-small">{t("awards.sub")}</p>
+    </div>
+    <ol className={styles.board}>
+      {AWARDS.map((award, i) => (
+        <li
+          key={award.id}
+          className={styles.result}
+          data-position={award.position}
+          {...reveal(i)}
+        >
+          <p className={styles.place}>
+            <span aria-hidden="true">
+              {t(`awards.ordinals.${award.position}`)}
+            </span>
+            <span className="visually-hidden">
+              {t(`awards.positions.${award.position}`)}
+            </span>
+          </p>
+          <p className={styles.event}>{t(`awards.items.${award.id}`)}</p>
+          <p className="t-meta num">{award.year}</p>
         </li>
       ))}
-    </ul>
+    </ol>
   </section>
 );
 
