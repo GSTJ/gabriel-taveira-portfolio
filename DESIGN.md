@@ -187,13 +187,14 @@ One curve family per job, from `tokens.css`:
 
 Durations: press 160, hover 160, small UI 240, exit 160 (exits beat entries), arrow 420, pen 640, text 700 opacity / 820 rise, note 760. Stagger 80ms in reading order. Text arrives 16px lower with a 5px blur.
 
-Three hooks, one layer (`ui.css` + `ui/boot.ts` + `ui/motion.ts`):
+Four hooks, one layer (`ui.css` + `ui/boot.ts` + `ui/motion.ts`):
 
 - `{...enter(delay)}`: first viewport. CSS keyframes from first paint, so the hero never waits for JS.
 - `{...reveal(index, delay)}`: below the fold. Hidden only when `<html class="js">` (set in `<head>` before paint), revealed once at 12% into view by one inline IntersectionObserver that runs before hydration. No JS means everything is visible.
 - `data-draw` (built into `PenUnderline` and `Marginalia`): strokes and notes draw the first time they are in view.
+- `{...scrub(moment)}`: scrubbed by scroll. GSAP + ScrollTrigger (`ui/scroll-moments.tsx`) load after the first scroll and only write `--scrub` (0 to 1); `ui.css` turns it into motion, and unset it is the finished state. `ink`: an interlude's words go from ink-3 to ink in reading order and a pen highlighter runs under its marked phrase (`quotes.*.mark`). `depth`: a project stage's layers drift by their own `--depth` (fit check 36px, Pegada phone 24px, Curvinha tour 12px), at rest when the stage is centered.
 
-Reduced motion: nothing starts hidden, nothing moves, strokes and notes are already drawn, the theme switch has no crossfade.
+Reduced motion: nothing starts hidden, nothing moves, strokes and notes are already drawn, quotes are already inked, GSAP never loads, the theme switch has no crossfade.
 
 ## Do's and Don'ts
 

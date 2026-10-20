@@ -8,6 +8,7 @@ import { cn } from "@/utils/cn";
 
 import { ArrowUpRight } from "../../ui/icons";
 import { Marginalia } from "../../ui/marginalia";
+import { scrub } from "../../ui/motion";
 import {
   CURVINHA_STACK,
   CURVINHA_STEPS,
@@ -112,7 +113,7 @@ export const CurvinhaCard = ({
         </div>
       </div>
 
-      <div className={styles.cvStage}>
+      <div className={styles.cvStage} {...scrub("depth")}>
         <TourScreen
           tour={tour}
           id={id}

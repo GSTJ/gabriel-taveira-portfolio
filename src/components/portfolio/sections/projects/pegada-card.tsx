@@ -7,6 +7,7 @@ import Image from "next/image";
 import { cn } from "@/utils/cn";
 
 import { ArrowUpRight } from "../../ui/icons";
+import { scrub } from "../../ui/motion";
 import {
   PEGADA_SHIPPED,
   PEGADA_STEPS,
@@ -101,7 +102,7 @@ export const PegadaCard = ({
         </div>
       </div>
 
-      <figure className={styles.pgStage}>
+      <figure className={styles.pgStage} {...scrub("depth")}>
         <div className={styles.pgPhoto}>
           <Image
             src="/projects/pegada/lua.webp"

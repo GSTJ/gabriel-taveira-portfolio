@@ -34,3 +34,15 @@ export const reveal = (index = 0, delay = 0) => ({
 
 /** For a primitive's own root: the timing style alone. */
 export const timingStyle = timing;
+
+/**
+ * Scroll moments, scrubbed by GSAP once it loads (scroll-moments.tsx). GSAP
+ * only writes `--scrub` (0 to 1) on the element; ui.css turns it into motion,
+ * and unset it means the finished state, so no JS and reduced motion get it.
+ *
+ *   <blockquote {...scrub("ink")}>  the words ink in reading order
+ *   <div {...scrub("depth")}>      each child drifts by its own `--depth`
+ */
+export type Scrub = "ink" | "depth";
+
+export const scrub = (moment: Scrub) => ({ "data-scrub": moment });

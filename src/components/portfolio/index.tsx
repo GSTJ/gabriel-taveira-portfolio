@@ -9,6 +9,7 @@ import { WorkSection } from "./sections/work";
 import { Footer } from "./shell/footer";
 import { Nav } from "./shell/nav";
 import { Interlude } from "./ui/interlude";
+import { ScrollMoments } from "./ui/scroll-moments";
 
 /**
  * The home page, in reading order: who he is and the offer, what he made,
@@ -36,6 +37,7 @@ export const Portfolio = async () => {
         <ContactSection />
       </main>
       <Footer />
+      <ScrollMoments />
     </>
   );
 };
