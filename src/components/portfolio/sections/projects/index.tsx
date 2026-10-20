@@ -8,6 +8,7 @@ import { Medal } from "../../ui/badges";
 import { reveal } from "../../ui/motion";
 import { CurvinhaCard } from "./curvinha-card";
 import {
+  CURVINHA_FACTS,
   CURVINHA_STACK,
   CURVINHA_STEPS,
   PEGADA_FACTS,
@@ -127,9 +128,28 @@ export const ProjectsSection = async () => {
                   },
                 ]),
               ) as Parameters<typeof CurvinhaCard>[0]["copy"]["steps"],
-              pieceAlt: t("items.curvinha.pieceAlt"),
+              roomAlt: t("items.curvinha.roomAlt"),
               fitAlt: t("items.curvinha.fitAlt"),
               fitNote: t("items.curvinha.fitNote"),
+              countedOn: t("items.curvinha.countedOn", {
+                date: day(CURVINHA_FACTS.read),
+              }),
+            }}
+            facts={{
+              swift: t.rich("items.curvinha.facts.swift", {
+                lines: fmt.format(CURVINHA_FACTS.swift.lines),
+                roomKit: fmt.format(CURVINHA_FACTS.swift.roomKit),
+                b: bold,
+              }),
+              tests: t.rich("items.curvinha.facts.tests", {
+                count: fmt.format(CURVINHA_FACTS.tests),
+                b: bold,
+              }),
+              versions: t.rich("items.curvinha.facts.versions", {
+                count: CURVINHA_FACTS.versions.count,
+                date: day(CURVINHA_FACTS.versions.since),
+                b: bold,
+              }),
             }}
           />
         </div>

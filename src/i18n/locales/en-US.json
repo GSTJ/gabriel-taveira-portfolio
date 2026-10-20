@@ -79,15 +79,15 @@
         "caption": "The app's sample room. Example products and prices.",
         "stepsLabel": "Curvinha, step by step",
         "steps": {
-          "measure": {
-            "title": "Measure the room",
-            "body": "Walk the walls once with your iPhone. About 2 to 5 minutes.",
-            "alt": "Curvinha's measure screen: Let's measure your room. It takes about 2 to 5 minutes."
+          "scan": {
+            "title": "Scan the room",
+            "body": "Walk the walls once. RoomPlan and LiDAR measure walls, doors and windows in about 2 to 5 minutes.",
+            "alt": "Curvinha scanning the sample room: a mini floor plan fills in live as each wall is measured, with a tip on where to walk next."
           },
-          "room": {
-            "title": "See it furnished in 3D",
-            "body": "Plan and 3D, laid out with real pieces from real stores.",
-            "alt": "Curvinha's 3D view of the sample living room, furnished with 12 suggested pieces from 5 stores."
+          "plan": {
+            "title": "Get the plan, furnished",
+            "body": "Every piece goes where it fits, in plan and in 3D.",
+            "alt": "Curvinha's floor plan of the sample living room from above, furnished with the 12 suggested pieces."
           },
           "list": {
             "title": "Buy from the list",
@@ -95,9 +95,15 @@
             "alt": "Curvinha's list: 12 pieces from 7 stores, each with a link to its store."
           }
         },
-        "pieceAlt": "Curvinha's page for one sofa: why it's for you, and the pieces that go well with it.",
+        "roomAlt": "Curvinha's 3D view of the sample living room, furnished with 12 suggested pieces from 5 stores.",
         "fitAlt": "Why it's for you: fits on the window wall with 121 cm to spare. R$ 533,71, within your R$ 4.000 to R$ 6.000. Material: linen, solid wood, eucalyptus, metal.",
-        "fitNote": "the fit check is plain math"
+        "fitNote": "the fit check is plain math",
+        "countedOn": "Counted in the app's code on {date}.",
+        "facts": {
+          "swift": "<b>{lines} lines of Swift</b>, {roomKit} of them in RoomKit, my own package for the scan, the geometry, the floor plan and the 3D.",
+          "tests": "<b>{count} Swift tests</b>, some checking that the phone places each piece where the server's TypeScript solver does.",
+          "versions": "<b>{count} versions</b> since the first commit, on {date}."
+        }
       },
       "magicModal": {
         "title": "magic-modal",

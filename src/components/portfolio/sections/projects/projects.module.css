@@ -338,17 +338,42 @@
   color: var(--ink);
 }
 
+/* Narrow, after the facts, which come later in the source. */
 .cvFoot {
+  order: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3) var(--space-4);
 }
 
+/* The repo's counts: lead words in ink, the date they were counted after.
+   Narrow, they sit between the steps and the link; wide, they run across
+   the card's foot. */
+.cvFacts {
+  display: grid;
+  gap: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.cvFacts ul {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cvFacts strong {
+  color: var(--ink);
+}
+
 /* The stage measures itself, so every piece is placed in its own width
-   (cqi): the tour on the left, a piece page on the right, and that page's
-   fit check lifted off and enlarged. Narrow, the check rests on the phones'
-   foot; wide, it covers the page's lower third. Nothing runs off the card. */
+   (cqi): the tour on the left, the 3D room on the right, and a piece page's
+   fit check enlarged over the room's foot. Narrow, the check rests on the
+   phones' foot; wide, it covers the room's lower third. Nothing runs off the
+   card. */
 .cvStage {
   position: relative;
   container-type: inline-size;
@@ -371,6 +396,20 @@
   top: 6cqi;
   right: 0;
   width: 47cqi;
+}
+
+/* The Dynamic Island, where the iPhone 17 Pro Max the captures come from has
+   it: measured on the scan capture, which shows it (x 215 to 385, y 19 to 69
+   of 600 x 1304), a pixel wider all round so it covers that one exactly. */
+.curvinha .screen::after {
+  content: "";
+  position: absolute;
+  top: 1.38%;
+  left: 35.67%;
+  width: 28.67%;
+  aspect-ratio: 172 / 52;
+  border-radius: var(--r-pill);
+  background: var(--bezel);
 }
 
 .cvPull {
@@ -414,31 +453,19 @@
     order: 0;
   }
 
-  .cvCopy /* What it's built in: Apple's frameworks, each with the job it does. */
-.cvStack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin: var(--space-1) 0 0;
-    padding: 0;
-    list-style: none;
-    font-size: var(--fs-meta);
-    color: var(--ink-3);
-  }
-
-  .cvStack li {
-    padding: var(--space-1) var(--space-3);
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--r-pill);
-  }
-
-  .cvStack span {
-    font-weight: var(--fw-medium);
-    color: var(--ink);
-  }
-
   .cvFoot {
     margin-top: auto;
+  }
+
+  .cvFacts {
+    grid-column: 1 / -1;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--rule);
+  }
+
+  .cvFacts ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
   }
 
   .cvStage {
@@ -458,8 +485,8 @@
     width: 37cqi;
   }
 
-  /* Wider than the page it came from and resting on its foot, so it reads
-     as lifted off, whatever height each language's capture has. */
+  /* Wider than the room's phone and resting on its foot, whatever height
+     each language's capture has. */
   .cvPull {
     top: 87cqi;
     width: 60cqi;
