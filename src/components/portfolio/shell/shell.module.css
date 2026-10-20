@@ -95,23 +95,23 @@
  * His signature, the same one that signs the footer. A mask, so it takes
  * --sign in both themes. Sized so its small letters (not the tall G and l)
  * stand a little over the links' capitals, and centered on them by eye, not
- * by box: those letters' middle sits 0.251 of the height below the box's,
+ * by box: those letters' middle sits 0.219 of the height below the box's,
  * so it rises that much and 1px more, where the capitals' middle sits
  * (measured on the rendered nav at both sizes).
  */
 .signature {
-  --h: 32px;
+  --h: 28px;
   display: block;
   height: var(--h);
-  aspect-ratio: 3.566;
+  aspect-ratio: 3.974;
   background: var(--sign);
   mask: url("/signature.svg") center / contain no-repeat;
-  translate: 0 calc(var(--h) * -0.251 - 1px);
+  translate: 0 calc(var(--h) * -0.219 - 1px);
 }
 
 @media (width < 760px) {
   .signature {
-    --h: 28px;
+    --h: 25px;
   }
 }
 
@@ -429,8 +429,8 @@
 
 .signName {
   display: block;
-  height: 1.7em;
-  aspect-ratio: 3.566;
+  height: 1.5em;
+  aspect-ratio: 3.974;
   background: var(--sign);
   mask: url("/signature.svg") center / contain no-repeat;
 }
