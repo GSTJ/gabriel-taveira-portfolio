@@ -33,14 +33,14 @@
     },
     "newTab": "abre em uma nova aba",
     "footer": {
-      "meta": "Gabriel Taveira · Consultor React Native & Expo · Ribeirão Preto, Brasil",
+      "meta": "Gabriel Taveira · Consultor independente · Ribeirão Preto, Brasil",
       "updated": "Atualizado em {date}"
     }
   },
   "hero": {
-    "status": "Consultor independente de React Native e Expo",
-    "title": "Faço apps em React Native e ajudo times a <pen>fazer os deles.</pen>",
-    "body": "Já fui responsável por <strong>56 pessoas</strong> em dois níveis, líderes e os times deles. No time de infra do app da Coinbase, puxei a adoção do React Compiler. Hoje sou consultor independente, construo a Curvinha e mantenho bibliotecas como magic-modal e safe-jsx.",
+    "status": "Consultor independente",
+    "title": "Faço apps e ajudo times a <pen>fazer os deles.</pen>",
+    "body": "Já cheguei a ter <strong>56 pessoas</strong> sob a minha gestão. No time de infra do app da Coinbase, puxei a adoção do React Compiler. Hoje sou consultor independente, construo a Curvinha e mantenho bibliotecas como magic-modal e safe-jsx.",
     "cta": {
       "getInTouch": "Fala comigo",
       "downloadPdf": "Baixar PDF",
@@ -208,7 +208,7 @@
       },
       "leadership": {
         "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já fui responsável por 56 pessoas em dois níveis, incluindo líderes que tocavam os próprios times."
+        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo. Já cheguei a ter 56 pessoas sob a minha gestão."
       },
       "systems": {
         "title": "Design systems e experiência de desenvolvimento",
@@ -365,7 +365,7 @@
     "role": "Consultor independente · React Native & Expo",
     "location": "Ribeirão Preto, Brasil · Remoto (horário dos EUA)",
     "summaryTitle": "Resumo",
-    "summary": "Líder de engenharia mobile e consultor React Native / Expo com mais de {years} anos de experiência profissional. Fui responsável por até 56 pessoas em dois níveis, com leads que tocavam os próprios times. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-criei o design system do Zé Delivery.",
+    "summary": "Líder de engenharia mobile e consultor React Native / Expo com mais de {years} anos de experiência profissional. Cheguei a ter 56 pessoas sob a minha gestão. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-criei o design system do Zé Delivery.",
     "skillsTitle": "Competências",
     "experienceTitle": "Experiência",
     "talksTitle": "Palestras",

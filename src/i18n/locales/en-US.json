@@ -33,14 +33,14 @@
     },
     "newTab": "opens in a new tab",
     "footer": {
-      "meta": "Gabriel Taveira · React Native & Expo Consultant · Ribeirão Preto, Brazil",
+      "meta": "Gabriel Taveira · Independent consultant · Ribeirão Preto, Brazil",
       "updated": "Updated {date}"
     }
   },
   "hero": {
-    "status": "Independent React Native and Expo consultant",
-    "title": "I build React Native apps and help teams <pen>build theirs.</pen>",
-    "body": "I've been responsible for <strong>56 people</strong> across two levels, leads and the teams they ran. On Coinbase's app infrastructure team I drove React Compiler adoption. Now I consult independently, build Curvinha and maintain libraries like magic-modal and safe-jsx.",
+    "status": "Independent consultant",
+    "title": "I build apps and help teams <pen>build theirs.</pen>",
+    "body": "At my largest, <strong>56 people</strong> reported up to me. On Coinbase's app infrastructure team I drove React Compiler adoption. Now I consult independently, build Curvinha and maintain libraries like magic-modal and safe-jsx.",
     "cta": {
       "getInTouch": "Get in touch",
       "downloadPdf": "Download PDF",
@@ -208,7 +208,7 @@
       },
       "leadership": {
         "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. I've been responsible for 56 people across two levels, including leads who ran their own teams."
+        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself. At my largest, 56 people reported up to me."
       },
       "systems": {
         "title": "Design systems and developer experience",
@@ -365,7 +365,7 @@
     "role": "Independent consultant · React Native & Expo",
     "location": "Ribeirão Preto, Brazil · Remote (US hours)",
     "summaryTitle": "Summary",
-    "summary": "Mobile engineering lead and React Native / Expo consultant with {years}+ years of professional experience. Responsible for up to 56 people across two levels, leads who ran their own teams. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-built Zé Delivery's design system.",
+    "summary": "Mobile engineering lead and React Native / Expo consultant with {years}+ years of professional experience. Managed an org of up to 56 people. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-built Zé Delivery's design system.",
     "skillsTitle": "Skills",
     "experienceTitle": "Experience",
     "talksTitle": "Talks",
