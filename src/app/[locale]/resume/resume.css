@@ -1,6 +1,8 @@
 /*
- * Light, print-first resume, whatever theme the rest of the site is in;
- * in print, backgrounds are off anyway.
+ * Light, print-first resume, whatever theme the rest of the site is in. On
+ * screen it is a sheet on the site's paper; in print, backgrounds are off and
+ * the sheet is the page. Static Bricolage (see fonts/README.md) so the PDF
+ * embeds real text, and pen blue as the one calm accent.
  */
 .resume {
   position: relative;
@@ -9,104 +11,223 @@
   box-sizing: border-box;
   max-width: none;
   margin: 0;
-  padding: 56px max(24px, calc((100vw - 760px) / 2));
+  padding: 48px 16px;
   color-scheme: light;
-  background: #fff;
-  color: #1a1a1a;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family:
+    var(--font-bricolage-text), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14.5px;
+  font-weight: 400;
   line-height: 1.5;
+  font-variant-numeric: lining-nums;
+}
+.resume-sheet {
+  box-sizing: border-box;
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 64px 72px;
+  background: #fff;
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow);
 }
 .resume a {
   color: inherit;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 0.2em;
 }
-/* The site's element rules give headings its variable display font (prints
-   as Type 3 glyphs some ATS parsers can't read) and light-on-dark colors.
-   `:where` keeps this at class specificity so the rules below still win. */
+/* The site's element rules give headings its variable display font and
+   theme colors. `:where` keeps this at class specificity so the rules below
+   still win. */
 .resume :where(h1, h2, h3, p, li, strong) {
   font-family: inherit;
   color: inherit;
 }
+.resume strong {
+  font-weight: 640;
+}
 .resume h1 {
   margin: 0;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 34px;
+  font-weight: 640;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 .resume-role {
-  margin: 4px 0 0;
-  font-size: 15px;
-  font-weight: 600;
-  color: #b85d12;
+  margin: 6px 0 0;
+  font-size: 16px;
+  color: var(--pen);
+}
+.resume-location {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
 }
 .resume-contact {
-  margin: 8px 0 0;
-  font-size: 12.5px;
-  color: #444;
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
 }
 .resume-screen-only {
   margin: 16px 0 0;
   font-size: 13px;
+  color: var(--ink-2);
+}
+.resume section {
+  margin-top: 30px;
 }
 .resume h2 {
-  margin: 24px 0 8px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #ddd;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+  font-size: 11.5px;
+  font-weight: 640;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  font-kerning: none;
   text-transform: uppercase;
-  color: #555;
+  color: var(--pen);
+}
+.resume :is(p, li) {
+  text-wrap: pretty;
 }
 .resume p {
   margin: 0;
 }
 .resume ul {
-  margin: 0;
-  padding-left: 18px;
+  margin: 4px 0 0;
+  padding-left: 1.1em;
+  list-style: disc;
+}
+.resume li {
+  padding-left: 0.2em;
+}
+.resume li::marker {
+  color: var(--ink-3);
 }
 .resume li + li {
-  margin-top: 2px;
+  margin-top: 3px;
 }
-.resume-job {
+.resume-entry {
   break-inside: avoid;
 }
-.resume-job + .resume-job {
-  margin-top: 12px;
+.resume-entry + .resume-entry {
+  margin-top: 16px;
 }
-.resume h3 {
+.resume-entry > p:not(.resume-org) {
+  margin-top: 4px;
+}
+.resume h3,
+.resume-list li {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  align-items: baseline;
+  gap: 24px;
+}
+.resume h3 {
   margin: 0;
-  font-size: 14.5px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 640;
+  line-height: 1.35;
+}
+.resume-org {
+  font-size: 13.5px;
+  color: var(--ink-2);
 }
 .resume-date {
   flex-shrink: 0;
   font-weight: 400;
-  color: #555;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
 }
-.resume-company {
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  color: #666;
+.resume :is(.resume-skills, .resume-list) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.resume :is(.resume-skills, .resume-list) li {
+  padding: 0;
+}
+.resume-skills li + li {
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .resume {
+    padding: 0;
+  }
+  .resume-sheet {
+    padding: 40px 24px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .resume h3,
+  .resume-list li {
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 @page {
   size: Letter;
-  margin: 0.5in 0.6in;
+  margin: 0.6in 0.7in;
 }
 @media print {
   .resume {
-    padding: 0;
     min-height: 0;
-    font-size: 11pt;
+    padding: 0;
+    font-size: 9.75pt;
+    line-height: 1.42;
+  }
+  .resume-sheet {
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
   }
   .resume a {
     text-decoration: none;
   }
   .resume-screen-only {
     display: none;
+  }
+  .resume h1 {
+    font-size: 24pt;
+  }
+  .resume-role {
+    margin-top: 3pt;
+    font-size: 11.5pt;
+  }
+  .resume-location {
+    margin-top: 8pt;
+    font-size: 9pt;
+  }
+  .resume-contact {
+    margin-top: 1pt;
+    font-size: 9pt;
+  }
+  .resume section {
+    margin-top: 17pt;
+  }
+  .resume h2 {
+    margin-bottom: 7pt;
+    font-size: 8pt;
+    break-after: avoid;
+  }
+  .resume h3 {
+    font-size: 10.5pt;
+  }
+  .resume-org {
+    font-size: 9.5pt;
+  }
+  .resume-date {
+    font-size: 9pt;
+  }
+  .resume-entry + .resume-entry {
+    margin-top: 10pt;
+  }
+  .resume ul {
+    margin-top: 2pt;
+  }
+  .resume li + li {
+    margin-top: 1.5pt;
   }
 }

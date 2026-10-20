@@ -534,19 +534,72 @@
     "sub": "Escolhe uma porta."
   },
   "resume": {
-    "title": "Gabriel Taveira · Currículo",
-    "role": "Consultor independente · React Native & Expo",
-    "location": "Ribeirão Preto, Brasil · Remoto (horário dos EUA)",
+    "title": "Gabriel Taveira, Currículo",
+    "role": "Fractional CTO · Líder de engenharia",
+    "location": "Ribeirão Preto, Brasil · Remoto com times dos EUA",
     "summaryTitle": "Resumo",
-    "summary": "Líder de engenharia mobile e consultor independente com mais de {years} anos de experiência profissional. Cheguei a ter 56 pessoas sob a minha gestão. Trabalhei no Consumer App Infra da Coinbase (React Compiler, Expo Prebuild, nova arquitetura do React Native), criei do zero o app mobile da D-ID e co-escrevi o código do design system do Zé Delivery.",
-    "skillsTitle": "Competências",
+    "summary": "Líder de engenharia e consultor independente, com mais de {years} anos em empresas de produto. Trabalho com arquitetura, times, contratação e entrega, e já cheguei a ter 56 pessoas sob a minha gestão. Recentemente: a infra do app da Coinbase, o app da D-ID feito do zero e a Curvinha, meu próprio produto.",
     "experienceTitle": "Experiência",
+    "projectsTitle": "Projetos e open source",
+    "skillsTitle": "Competências",
     "talksTitle": "Palestras",
     "awardsTitle": "Prêmios",
-    "linksTitle": "Links",
+    "educationTitle": "Formação",
     "backToSite": "Portfólio completo",
     "download": "Baixar PDF",
-    "present": "Atual"
+    "range": "{start} a {end}",
+    "rangeOpen": "{start} até o momento",
+    "founder": "Fundador",
+    "skills": {
+      "leadership": "Liderança",
+      "engineering": "Engenharia",
+      "stack": "Stack",
+      "languages": "Idiomas",
+      "languagesList": "Inglês, português (nativo)"
+    },
+    "jobs": {
+      "consulting": [
+        "Revisões de arquitetura e migrações grandes para empresas de produto. Clientes sob NDA.",
+        "Liderança de engenharia interina enquanto o cliente contrata: rituais, code review e processo seletivo."
+      ],
+      "coinbase": [
+        "Ajudei nas migrações grandes do app no Consumer App Infra: nova arquitetura do React Native, React Compiler, Expo Prebuild e o design system.",
+        "Apoiei os releases do app e subi a cobertura de testes dos arquivos do time de 25% para 45%."
+      ],
+      "ateam": [
+        "Construí do zero o novo produto principal da empresa, o app mobile, com React Native e Expo.",
+        "4,6 estrelas em 3,4 mil avaliações na App Store. Golden Kitty 2023 no Product Hunt, Best UX 2023 na A.Team."
+      ],
+      "meta": [
+        "Construí o design system open source e os SDKs para devs que integram com as APIs da Kustomer."
+      ],
+      "xteam": [
+        "Subi a cobertura de testes de 30% para 80%+ com MSW e deixei a página Discover 200% mais rápida.",
+        "Fundei o fórum Mobile Engineering Biweekly."
+      ],
+      "ze": [
+        "Reconstruí o módulo Browse e implementei deep-links que aumentaram a conversão das campanhas.",
+        "Co-escrevi o Mozeic, o design system interno (177 mil+ downloads no npm), e entrevistei candidatos de engenharia."
+      ],
+      "alfred": [
+        "Liderei a migração de Ionic para React Native de um app que atendia 90+ franquias."
+      ],
+      "micro": [
+        "Construí um tracker em tempo real do status de reparos e dashboards internos para uma Apple Service Provider."
+      ]
+    },
+    "projects": {
+      "curvinha": "App nativo de iPhone (SwiftUI, RoomPlan, RealityKit): você escaneia o cômodo e recebe a planta mobiliada com produtos reais e a lista de compras. Na App Store desde {since}.",
+      "pegada": "App de encontros pra cachorros no iOS e no Android, feito com Expo e React Native. #{rank} Product of the Day no Product Hunt, open source desde 2025.",
+      "openSource": "Open source",
+      "maintainer": "Mantenedor",
+      "openSourceBody": "magic-modal, eslint-plugin-safe-jsx, react-native-code-push-plugin e outros: {downloads} mil+ downloads no npm e {stars} estrelas no GitHub."
+    },
+    "education": {
+      "school": "Rocketseat",
+      "program": "GoStack Bootcamp",
+      "date": "2020"
+    }
   },
   "securityPage": {
     "navLabel": "Navegação do perfil de segurança",

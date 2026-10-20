@@ -58,14 +58,14 @@ Tokens (all in `src/app/tokens.css`): colors `--paper(-2,-3) --ink(-2,-3) --rule
 
 Add fields freely. Don't rename or remove these, or the routes break:
 
-| Slot     | Read by                     | Must keep                                                                                                                                                                                      |
-| -------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| hero     | llms.txt                    | `hero.status`                                                                                                                                                                                  |
-| projects | llms.txt                    | `PROJECTS[].id/href`, `projects.items.<id>.title/body`                                                                                                                                         |
-| work     | resume, llms.txt, JSON-LD   | `WORK[].id/orgs/start/end/href`, `workDates()`, `work.items.<id>.title/blurb` (blurb may use `<mark>`), `work.present`                                                                         |
-| services | JSON-LD, llms.txt           | `SERVICES[].id`, `services.items.<id>.title/body`                                                                                                                                              |
-| notes    | resume, llms.txt, JSON-LD   | `NOW[].id/href`, `TALKS[].id/date`, `AWARDS[].id/year/position`, `notes.now.items.<id>.chip/title/body`, `notes.talks.items.<id>.title/venue/city/description`, `notes.awards.items/positions` |
-| contact  | /links, llms.txt, /security | `CHANNELS[].id/handle/url`, `EMAIL`, `EMAIL_ADDR`, `contact.channels.<id>`; `ContactSection` also renders on /security, so it must not depend on the home page around it                       |
+| Slot     | Read by                     | Must keep                                                                                                                                                                                                  |
+| -------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hero     | llms.txt                    | `hero.status`                                                                                                                                                                                              |
+| projects | resume, llms.txt            | `PROJECTS[].id/href`, `projects.items.<id>.title/body`, `NPM_SINCE`, `PEGADA_FACTS.productHunt`, `getNpmLedger()`                                                                                          |
+| work     | resume, llms.txt, JSON-LD   | `WORK[].id/orgs/start/end/href`, `workDates()`, `work.items.<id>.title/blurb` (blurb may use `<mark>`), `work.present`                                                                                     |
+| services | JSON-LD, llms.txt           | `SERVICES[].id`, `services.items.<id>.title/body`                                                                                                                                                          |
+| notes    | resume, llms.txt, JSON-LD   | `NOW[].id/href/store.since`, `TALKS[].id/date`, `AWARDS[].id/year/position`, `notes.now.items.<id>.chip/title/body`, `notes.talks.items.<id>.title/venue/city/description`, `notes.awards.items/positions` |
+| contact  | /links, llms.txt, /security | `CHANNELS[].id/handle/url`, `EMAIL`, `EMAIL_ADDR`, `contact.channels.<id>`; `ContactSection` also renders on /security, so it must not depend on the home page around it                                   |
 
 Hard content rules that sit in one slot: the Now line "Building" keeps `https://curvinha.app/?ct=gabrieltaveira-dev` (notes); the Curvinha project card keeps `https://curvinha.app/?ct=gabriel-site` and the wording "curated with architects from Curva Interiores" / "curadoria com arquitetas da Curva Interiores", no Ana or Curva prices (projects); the current role is "independent consultant", past jobs stay as listed (work).
 

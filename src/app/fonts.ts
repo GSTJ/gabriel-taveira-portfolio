@@ -23,3 +23,17 @@ export const caveat = localFont({
   preload: false,
   variable: "--font-caveat",
 });
+
+/**
+ * Bricolage for print: two static instances (text optical size, full width).
+ * Chrome prints a variable font as Type 3 glyphs that ATS parsers can't read;
+ * a static TrueType embeds as real, extractable text. Only /resume loads it.
+ */
+export const bricolageText = localFont({
+  src: [
+    { path: "./fonts/bricolage-text-400.woff2", weight: "400" },
+    { path: "./fonts/bricolage-text-640.woff2", weight: "640" },
+  ],
+  display: "block",
+  variable: "--font-bricolage-text",
+});
