@@ -30,7 +30,7 @@ Bilingual: en-US default, pt-BR. Desktop during work hours, phone when following
 
 - Next.js 16 App Router, next-intl, hand-written CSS on tokens (no Tailwind), deployed on Vercel. Pages prerender per locale and revalidate daily.
 - Copy lives in `src/i18n/locales/*.json`, one top-level key per page section. Locale-neutral data lives next to the section that owns it (`src/components/portfolio/sections/<id>/data.ts`); cross-cutting facts in `src/components/portfolio/profile.ts`.
-- `/[locale]/resume` and `/curriculum.pdf` stay light, single-column and system-font for ATS parsing.
+- `/[locale]/resume` and `/curriculum.pdf` stay light and single-column for ATS parsing, in static Bricolage instances that embed as real text (`src/app/fonts/README.md`). Job titles and months live in `src/app/[locale]/resume/data.ts`.
 - `/llms.txt` and the JSON-LD are generated from the same copy and data as the page.
 - The contact form hands off to the visitor's mail client (no backend).
 - Native platform first. A new dependency must own a real capability.

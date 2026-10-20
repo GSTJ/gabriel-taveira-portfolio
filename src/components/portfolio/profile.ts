@@ -19,22 +19,37 @@ export const SPACE_CAST_PLAYLIST =
 export const CURRICULUM_PDF = "/curriculum.pdf";
 
 /**
- * Plain skill keywords, listed on the resume and emitted as `knowsAbout` in
- * the JSON-LD. Written the way recruiters and ATS filters search for them.
+ * Skill keywords by group, written the way recruiters and ATS filters search
+ * for them. English in both locales; the resume localizes the group labels.
+ * Leadership leads: the stack is one strength among several, not the identity.
  */
-export const SKILLS = [
-  "React Native",
-  "Expo",
-  "React",
-  "TypeScript",
-  "React Compiler",
-  "React Native New Architecture",
-  "iOS & Android",
-  "Mobile Architecture",
-  "Design Systems",
-  "Testing (Jest, MSW)",
-  "CI/CD & App Releases",
-  "Engineering Leadership",
-  "Technical Hiring",
-  "Mentoring",
-] as const;
+export const SKILL_GROUPS = {
+  leadership: [
+    "Engineering management",
+    "Technical hiring",
+    "Mentoring",
+    "Roadmaps",
+    "Remote teams",
+  ],
+  engineering: [
+    "App architecture",
+    "Migrations",
+    "Design systems",
+    "Testing",
+    "CI/CD",
+    "Developer experience",
+  ],
+  stack: [
+    "TypeScript",
+    "React",
+    "React Native",
+    "Expo",
+    "Next.js",
+    "Node.js",
+    "Swift",
+    "SwiftUI",
+  ],
+} as const;
+
+/** Every keyword, flat: the JSON-LD `knowsAbout` and llms.txt. */
+export const SKILLS = Object.values(SKILL_GROUPS).flat();

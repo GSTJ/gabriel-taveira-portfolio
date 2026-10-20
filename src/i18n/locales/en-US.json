@@ -530,19 +530,72 @@
     "sub": "Pick a doorway."
   },
   "resume": {
-    "title": "Gabriel Taveira · Resume",
-    "role": "Independent consultant · React Native & Expo",
-    "location": "Ribeirão Preto, Brazil · Remote (US hours)",
+    "title": "Gabriel Taveira, Resume",
+    "role": "Fractional CTO · Engineering Leader",
+    "location": "Ribeirão Preto, Brazil · Remote with US teams",
     "summaryTitle": "Summary",
-    "summary": "Mobile engineering lead and independent consultant with {years}+ years of professional experience. Managed an org of up to 56 people. Worked on Coinbase's Consumer App Infra (React Compiler, Expo Prebuild, React Native new architecture), built D-ID's mobile app from zero, and co-wrote the code for Zé Delivery's design system.",
-    "skillsTitle": "Skills",
+    "summary": "Engineering leader and independent consultant with {years}+ years in product companies. I work on architecture, teams, hiring and delivery, and at my largest, 56 people reported up to me. Recently: Coinbase's app infrastructure, D-ID's app built from zero, and Curvinha, my own product.",
     "experienceTitle": "Experience",
+    "projectsTitle": "Projects & Open Source",
+    "skillsTitle": "Skills",
     "talksTitle": "Talks",
     "awardsTitle": "Awards",
-    "linksTitle": "Links",
+    "educationTitle": "Education",
     "backToSite": "Full portfolio",
     "download": "Download PDF",
-    "present": "Present"
+    "range": "{start} to {end}",
+    "rangeOpen": "{start} to Present",
+    "founder": "Founder",
+    "skills": {
+      "leadership": "Leadership",
+      "engineering": "Engineering",
+      "stack": "Stack",
+      "languages": "Languages",
+      "languagesList": "English, Portuguese (native)"
+    },
+    "jobs": {
+      "consulting": [
+        "Architecture reviews and large migrations for product companies. Client details under NDA.",
+        "Interim engineering lead while clients hire: rituals, code review standards and the hiring loop."
+      ],
+      "coinbase": [
+        "Helped with the app's large migrations on Consumer App Infra: React Native's new architecture, React Compiler, Expo Prebuild and the design system.",
+        "Supported app releases and raised test coverage on team-owned files from 25% to 45%."
+      ],
+      "ateam": [
+        "Built the company's new core product, its mobile app, from zero with React Native and Expo.",
+        "4.6 stars from 3.4K App Store ratings. Golden Kitty 2023 on Product Hunt, Best UX 2023 at A.Team."
+      ],
+      "meta": [
+        "Built the open-source design system and SDKs for developers integrating with Kustomer's APIs."
+      ],
+      "xteam": [
+        "Raised test coverage from 30% to 80%+ with MSW and made the Discover page 200% faster.",
+        "Founded the Mobile Engineering Biweekly forum."
+      ],
+      "ze": [
+        "Rebuilt the Browse module and shipped deep-link handling that lifted campaign conversion.",
+        "Co-wrote Mozeic, the in-house design system (177k+ npm downloads), and interviewed engineering candidates."
+      ],
+      "alfred": [
+        "Led the migration from Ionic to React Native for an app serving 90+ franchises."
+      ],
+      "micro": [
+        "Built a real-time repair-status tracker and internal dashboards for an Apple Service Provider."
+      ]
+    },
+    "projects": {
+      "curvinha": "Native iPhone app (SwiftUI, RoomPlan, RealityKit): scan a room, get a furnished plan with real products and the shopping list. On the App Store since {since}.",
+      "pegada": "Dog dating app for iOS and Android, built with Expo and React Native. #{rank} Product of the Day on Product Hunt, open source since 2025.",
+      "openSource": "Open source",
+      "maintainer": "Maintainer",
+      "openSourceBody": "magic-modal, eslint-plugin-safe-jsx, react-native-code-push-plugin and more: {downloads}k+ npm downloads and {stars} GitHub stars."
+    },
+    "education": {
+      "school": "Rocketseat",
+      "program": "GoStack Bootcamp",
+      "date": "2020"
+    }
   },
   "securityPage": {
     "navLabel": "Security profile navigation",
