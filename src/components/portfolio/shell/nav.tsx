@@ -3,12 +3,10 @@ import { getTranslations } from "next-intl/server";
 import { cn } from "@/utils/cn";
 
 import { LanguageSwitch } from "./language-switch";
+import { NavLinks } from "./nav-links";
 import { ThemeToggle } from "./theme-toggle";
 
 import styles from "./shell.module.css";
-
-/** In page order. `notes` is reached by scrolling, it has no link of its own. */
-const SECTION_LINKS = ["projects", "work", "services", "contact"] as const;
 
 export const Nav = async () => {
   const t = await getTranslations("nav");
@@ -20,17 +18,15 @@ export const Nav = async () => {
         <a className={styles.brand} href="#hero">
           Gabriel Taveira
         </a>
-        <nav className={styles.links} aria-label={t("label")}>
-          {SECTION_LINKS.map((id) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={cn(id === "contact" && styles.ctaTwin)}
-            >
-              {t(`sections.${id}`)}
-            </a>
-          ))}
-        </nav>
+        <NavLinks
+          label={t("label")}
+          labels={{
+            projects: t("sections.projects"),
+            work: t("sections.work"),
+            services: t("sections.services"),
+            contact: t("sections.contact"),
+          }}
+        />
         <LanguageSwitch className={styles.langSlot} />
         <ThemeToggle
           labels={{

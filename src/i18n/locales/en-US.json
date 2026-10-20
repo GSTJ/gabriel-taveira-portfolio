@@ -33,7 +33,15 @@
     },
     "newTab": "opens in a new tab",
     "footer": {
-      "meta": "Gabriel Taveira · Independent consultant · Ribeirão Preto, Brazil",
+      "tagline": "I build apps and help teams build theirs.",
+      "site": "Site",
+      "elsewhere": "Elsewhere",
+      "files": "Files",
+      "resume": "Resume",
+      "pdf": "Resume PDF",
+      "links": "All links",
+      "role": "Independent consultant",
+      "place": "Ribeirão Preto, Brazil",
       "updated": "Updated {date}"
     }
   },
