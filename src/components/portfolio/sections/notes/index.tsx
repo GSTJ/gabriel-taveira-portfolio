@@ -286,7 +286,7 @@ const Post = ({
  * The guide in his own words, its two editions, then his pen drawing the line
  * from the guide down to the library it became. Other posts trail after.
  */
-type Library = { stars: number; downloads: number; read: string };
+type Library = { stars: number; read: string; downloads: number; end: string };
 
 const Writing = ({
   t,
@@ -349,7 +349,10 @@ const Writing = ({
         </p>
         <p className="t-small">{t.rich("writing.library", { old: oldName })}</p>
         <p className="t-meta">
-          {t("writing.source", { date: shortDate(lib.read, locale) })}
+          {t("writing.source", {
+            read: shortDate(lib.read, locale),
+            end: shortDate(lib.end, locale),
+          })}
         </p>
       </div>
     </div>
@@ -454,8 +457,9 @@ export const NotesSection = async () => {
   const modal = npm.rows.find((row) => row.id === "magicModal");
   const lib = {
     stars: github.stars.magicModal,
-    downloads: modal?.total ?? 0,
     read: github.read,
+    downloads: modal?.total ?? 0,
+    end: npm.end,
   };
 
   return (

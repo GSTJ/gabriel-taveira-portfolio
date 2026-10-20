@@ -477,7 +477,7 @@
       "stars": "<num>{n}</num> estrelas",
       "downloads": "<num>{n}</num> downloads no npm",
       "library": "Publicada primeiro como <old>react-native-magic-modal</old>. Os downloads somam os dois nomes.",
-      "source": "GitHub e npm, desde o início, lido em {date}.",
+      "source": "Estrelas lidas no GitHub em {read}. Downloads no npm, desde o início, até {end}.",
       "also": "Também no Medium",
       "more": "Todos os textos no Medium"
     },
