@@ -1,37 +1,82 @@
 /* Page chrome: the sticky nav, the language switch and the footer. */
 
+/*
+ * The bar always takes --nav-h in the flow (no layout shift). Only its
+ * drawing changes: at the top it is transparent; once the page scrolls
+ * (`data-scrolled` on <html>, set by boot.ts) a translucent paper with a
+ * blur and a hairline fade in, a little shorter than the box, and the bar
+ * rises half that difference to stay centered in it. The strip left under
+ * the paper lets clicks through.
+ */
 .nav {
+  --lift: 0px;
   position: sticky;
   top: 0;
   z-index: 20;
-  background: color-mix(in oklab, var(--paper) 88%, transparent);
-  backdrop-filter: saturate(1.2) blur(12px);
-  -webkit-backdrop-filter: saturate(1.2) blur(12px);
-  border-bottom: 1px solid transparent;
+  height: var(--nav-h);
+  pointer-events: none;
 }
 
-/* The hairline fades in over the first 24px of scroll, no JS. */
-@supports (animation-timeline: scroll()) {
+/*
+ * The paper and the hairline are their own layers, so they fade and stop
+ * short of the box without touching the bar. 96% paper on purpose: where a
+ * renderer skips the backdrop blur (WebKit without GPU compositing, some
+ * embedded previews) the content behind still can't be read.
+ */
+.nav::before,
+.nav::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  pointer-events: none;
+  transition: opacity var(--dur-ui) var(--ease-out);
+}
+
+.nav::before {
+  height: calc(100% - var(--lift));
+  background: color-mix(in oklab, var(--paper) 96%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+}
+
+.nav::after {
+  top: calc(100% - var(--lift) - 1px);
+  height: 1px;
+  background: var(--rule);
+}
+
+/* Without JS the paper is always on, so nothing ever reads through. */
+:global(.js):not([data-scrolled]) .nav::before,
+:global(.js):not([data-scrolled]) .nav::after {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .nav {
-    animation: nav-rule linear both;
-    animation-timeline: scroll();
-    animation-range: 0 24px;
+    --lift: var(--space-3);
   }
-}
 
-@keyframes nav-rule {
-  to {
-    border-bottom-color: var(--rule);
+  .bar {
+    transition: translate var(--dur-ui) var(--ease-out);
+  }
+
+  [data-scrolled] .bar {
+    translate: 0 calc(var(--lift) / -2);
   }
 }
 
 .bar {
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr auto auto auto;
   grid-template-areas: "brand links lang theme cta";
   align-items: center;
   column-gap: var(--space-3);
-  min-height: var(--nav-h);
+  height: 100%;
+}
+
+.bar > * {
+  pointer-events: auto;
 }
 
 .brand {
@@ -48,17 +93,59 @@
 
 .links {
   grid-area: links;
+  position: relative;
   display: flex;
-  gap: var(--space-5);
-  margin-left: var(--space-5);
+  gap: 2px;
+  margin-left: var(--space-3);
   font-size: 0.9375rem;
   color: var(--ink-2);
 }
 
 .links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding-inline: var(--space-3);
+  border-radius: var(--r-pill);
   text-decoration: none;
   white-space: nowrap;
   transition: color var(--dur-hover) ease;
+}
+
+.links a[aria-current] {
+  color: var(--ink);
+}
+
+/*
+ * One pill as wide as the row, clipped to the target link, so moving between
+ * links is a clip-path glide (no width animation). `data-jump` lands it
+ * without the glide when it appears from nothing.
+ */
+.pill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 34px;
+  margin-top: -17px;
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--ink) 6%, transparent);
+  clip-path: inset(0 var(--r, 100%) 0 var(--l, 0) round var(--r-pill));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-ui) var(--ease-out);
+}
+
+.pill[data-on] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pill:not([data-jump]) {
+    transition:
+      clip-path var(--dur-ui) var(--ease-out),
+      opacity var(--dur-ui) var(--ease-out);
+  }
 }
 
 .langSlot {
@@ -117,26 +204,30 @@
       "brand theme cta"
       "links links lang";
     row-gap: var(--space-1);
-    padding-block: var(--space-3) var(--space-2);
+    align-content: center;
   }
 
   .links {
     min-width: 0;
-    margin-left: 0;
-    gap: var(--space-4);
+    /* The first label lines up with the brand, the pill bleeds left. */
+    margin-left: calc(var(--space-2) * -1);
     overflow-x: auto;
     scrollbar-width: none;
     font-size: var(--fs-small);
   }
 
-  .links::-webkit-scrollbar {
-    display: none;
+  /* Tighter, so three pt-BR labels fit beside the language switch at 390. */
+  .links a {
+    padding-inline: var(--space-2);
   }
 
-  .links a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 36px;
+  .pill {
+    height: 30px;
+    margin-top: -15px;
+  }
+
+  .links::-webkit-scrollbar {
+    display: none;
   }
 
   .langSlot {
@@ -149,21 +240,165 @@
   }
 }
 
+/*
+ * Footer: the page ends the way a letter does. His pen runs across it once,
+ * the paper settles into a slightly deeper tone, and the rest is a quiet map:
+ * name and email, three short link columns, and a fine line with the date.
+ */
 .footer {
-  border-top: 1px solid var(--rule);
   padding-block: var(--space-7) var(--space-6);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--paper-2) 80%, transparent)
+  );
   font-size: var(--fs-small);
   color: var(--ink-2);
 }
 
-.footerRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3) var(--space-5);
+.sign {
+  width: 100%;
+  height: 40px;
+  margin-bottom: var(--space-7);
+  overflow: visible;
 }
 
-.footerTag {
+.sign path {
+  fill: none;
+  stroke: var(--pen);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Drawn left to right the first time it is in view (boot.ts marks it). The
+   dash is 3 for the same reason as the pen underline: non-scaling strokes
+   dash in screen space. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .sign path {
+    stroke-dasharray: 3;
+    transition: stroke-dashoffset calc(var(--dur-pen) * 2) var(--ease-pen);
+  }
+
+  :global(.js) .sign:not([data-in]) path {
+    stroke-dashoffset: 3;
+  }
+}
+
+.footCols {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.footBrand {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
+.footName {
+  font-size: 1.0625rem;
+  font-weight: var(--fw-strong);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.footBrand p {
+  max-width: 22em;
+}
+
+.footCols nav {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+}
+
+.footCols h2 {
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-regular);
+  letter-spacing: -0.005em;
   color: var(--ink-3);
+}
+
+.footCols nav a,
+.footMail {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  color: var(--ink-2);
+  font-weight: var(--fw-regular);
+  text-decoration: none;
+  transition: color var(--dur-hover) ease;
+}
+
+.footMail {
+  margin-top: var(--space-2);
+}
+
+.footIcon {
+  display: inline-grid;
+  color: var(--ink-3);
+  transition: color var(--dur-hover) ease;
+}
+
+.footIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* The arrow stays on the name's line, never alone on the next one. */
+.glue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  white-space: nowrap;
+}
+
+.footFine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footCols nav a:hover,
+  .footMail:hover,
+  .footName:hover {
+    color: var(--ink);
+  }
+
+  .footCols nav a:hover .footIcon,
+  .footMail:hover .footIcon {
+    color: var(--ink);
+  }
+}
+
+/* Narrow: name on its own row, the three columns two by two under it. */
+@media (width < 760px) {
+  .footCols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+  }
+
+  .footBrand {
+    grid-column: 1 / -1;
+  }
+
+  .sign {
+    margin-bottom: var(--space-6);
+  }
+
+  .footFine {
+    margin-top: var(--space-7);
+  }
 }

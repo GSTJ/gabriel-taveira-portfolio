@@ -33,7 +33,15 @@
     },
     "newTab": "abre em uma nova aba",
     "footer": {
-      "meta": "Gabriel Taveira · Consultor independente · Ribeirão Preto, Brasil",
+      "tagline": "Faço apps e ajudo times a fazer os deles.",
+      "site": "Site",
+      "elsewhere": "Por aí",
+      "files": "Arquivos",
+      "resume": "Currículo",
+      "pdf": "Currículo em PDF",
+      "links": "Todos os links",
+      "role": "Consultor independente",
+      "place": "Ribeirão Preto, Brasil",
       "updated": "Atualizado em {date}"
     }
   },
