@@ -95,7 +95,7 @@ const Sheet = ({
       <div className={styles.sheetTop}>
         <span className={styles.sbChip}>{label}</span>
         <button
-          className={cn("icon-btn", styles.sheetClose)}
+          className={styles.sheetClose}
           type="button"
           aria-label={copy.close}
           onClick={() => hide()}
