@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Gabriel Taveira · Consultor React Native & Expo",
-    "description": "Consultoria independente para times React Native e Expo: arquitetura, migrações e contratação. {years}+ anos, infra do app da Coinbase. Remoto.",
-    "jobTitle": "Consultor independente de React Native e Expo",
+    "title": "Gabriel Taveira · Fractional CTO e líder de engenharia",
+    "description": "Fractional CTO e líder de engenharia pra times de produto: arquitetura, migrações, times e contratação. {years}+ anos, da infra do app da Coinbase a apps feitos do zero. Remoto.",
+    "jobTitle": "Fractional CTO e consultor de engenharia",
     "worksFor": "Consultoria independente"
   },
   "nav": {
@@ -63,7 +63,7 @@
         "did": "construí do zero",
         "curvinha": "fundador",
         "ze": "refatorei o app",
-        "groundswell": "mentoria mobile",
+        "groundswell": "engenheiro sênior",
         "pegada": "fundador"
       }
     }
@@ -247,7 +247,7 @@
         }
       },
       "meta": {
-        "title": "Design system open-source na Kustomer",
+        "title": "Design system open-source na Kustomer, então da Meta",
         "blurb": "Padronizei a UI para devs externos. Entreguei SDKs que simplificaram a integração com as APIs da Kustomer. Escrevi a doc que subiu o score de DevX entre times.",
         "proof": {
           "sdk": {
@@ -257,7 +257,7 @@
         }
       },
       "xteam": {
-        "title": "Mentoria de engenharia mobile numa fintech",
+        "title": "Engenheiro sênior numa fintech",
         "blurb": "Fundei o fórum Mobile Engineering Biweekly. Subi a cobertura de <mark>30% pra 80%+</mark>. Apaguei 16k linhas de testes frágeis com MSW. Página Discover 200% mais rápida."
       },
       "ze": {

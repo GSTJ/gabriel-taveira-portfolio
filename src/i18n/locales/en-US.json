@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Gabriel Taveira · React Native & Expo Consultant",
-    "description": "Independent consultant for React Native and Expo teams: architecture, migrations, and hiring. {years}+ years, Coinbase app infra. Remote from Brazil.",
-    "jobTitle": "Independent React Native and Expo consultant",
+    "title": "Gabriel Taveira · Fractional CTO and engineering leader",
+    "description": "Fractional CTO and engineering leader for product teams: architecture, migrations, teams and hiring. {years}+ years, from Coinbase's app infra to apps built from zero. Remote from Brazil.",
+    "jobTitle": "Fractional CTO and engineering consultant",
     "worksFor": "Independent consulting"
   },
   "nav": {
@@ -63,7 +63,7 @@
         "did": "built from zero",
         "curvinha": "founder",
         "ze": "refactored the app",
-        "groundswell": "mentored mobile",
+        "groundswell": "senior engineer",
         "pegada": "founder"
       }
     }
@@ -247,7 +247,7 @@
         }
       },
       "meta": {
-        "title": "Open-source design system at Kustomer",
+        "title": "Open-source design system at Kustomer, then a Meta company",
         "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score.",
         "proof": {
           "sdk": {
@@ -257,7 +257,7 @@
         }
       },
       "xteam": {
-        "title": "Mentored mobile engineering at a fintech",
+        "title": "Senior engineer at a fintech",
         "blurb": "Founded the Mobile Engineering Biweekly forum. Lifted coverage <mark>30% → 80%+</mark>. Killed 16k lines of brittle tests with MSW. Discover page 200% faster."
       },
       "ze": {
