@@ -64,6 +64,9 @@
 
 .app img {
   display: block;
+  /* The global `max-width: 100%` would squeeze icons placed near the
+     column's right edge, where an absolute box has little room left. */
+  max-width: none;
   width: var(--icon);
   height: var(--icon);
   border-radius: inherit;
