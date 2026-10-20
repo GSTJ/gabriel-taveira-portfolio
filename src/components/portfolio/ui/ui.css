@@ -246,10 +246,12 @@
   font-weight: var(--fw-medium);
   text-decoration: none;
   transform: translateY(-200%);
+  clip-path: inset(50%);
 }
 
 .skip-link:focus-visible {
   transform: none;
+  clip-path: none;
 }
 
 /* ── Theme-specific content (images, icons) ─────────────────────────── */
