@@ -272,36 +272,63 @@
     },
     "items": {
       "audit": {
-        "title": "Revisão de arquitetura React Native",
-        "body": "Uma análise a fundo de performance, pipeline de release e estratégia de testes do seu app. Você sai com um plano priorizado que o time toca sem mim.",
+        "title": "Revisão de arquitetura do app",
+        "body": "Descubro por que o app tá lento, por que todo release dá medo e o que os testes deixam passar. Você sai com um plano em ordem de risco que o time toca sem mim.",
         "receipts": {
-          "coinbase": "Cobertura de testes <b>25% → 45%</b> nos arquivos do time",
-          "groundswell": "Cobertura de testes <b>30% → 80%+</b>, depois de cortar 16 mil linhas de testes frágeis"
+          "coinbase": {
+            "figure": "25% → 45%",
+            "text": "de cobertura de testes nos arquivos do time"
+          },
+          "groundswell": {
+            "figure": "30% → 80%+",
+            "text": "de cobertura, depois de apagar 16 mil linhas de testes frágeis"
+          }
         }
       },
       "migrations": {
-        "title": "Migrações para Expo, nova arquitetura e React Compiler",
-        "body": "Migrar para Expo Prebuild, a nova arquitetura do React Native ou React Compiler com o time seguindo nas features.",
+        "title": "Migrações grandes sem congelar o roadmap",
+        "body": "Expo Prebuild, nova arquitetura do React Native, React Compiler. A migração anda junto com o time, e as features não param de sair.",
         "receipts": {
-          "coinbase": "Ajudei a levar o app pra <b>Expo Prebuild</b>, a nova arquitetura e o React Compiler",
-          "alfred": "<b>Ionic → React Native</b> pra 90+ franquias, com o app antigo no ar durante 6 meses de transição"
+          "coinbase": {
+            "figure": "4",
+            "text": "migrações grandes em que ajudei: Expo Prebuild, nova arquitetura, React Compiler e design system"
+          },
+          "alfred": {
+            "figure": "90+",
+            "text": "franquias passaram de Ionic pra React Native, com o app antigo no ar nos 6 meses de transição"
+          }
         }
       },
       "leadership": {
-        "title": "Líder de engenharia mobile sob demanda",
-        "body": "Liderança interina enquanto você contrata: rituais, padrões de code review, roadmap e o próprio processo seletivo.",
+        "title": "Líder de engenharia sob demanda",
+        "body": "Seguro a liderança enquanto você contrata: rituais, padrão de code review, roadmap e o processo seletivo. Quem você contratar chega num time que já anda sozinho.",
         "receipts": {
-          "people": "Já cheguei a ter <b>56 pessoas</b> sob a minha gestão",
-          "hiring": "<b>Entrevistei e fiz o onboarding</b> de novos engenheiros",
-          "forum": "Criei o fórum <b>Mobile Engineering Biweekly</b>"
+          "teams": {
+            "figure": "6",
+            "text": "times ao mesmo tempo sob a minha liderança"
+          },
+          "people": {
+            "figure": "56",
+            "text": "pessoas sob a minha gestão, no auge"
+          },
+          "did": {
+            "figure": "4,6",
+            "text": "estrelas na App Store pro app da D-ID, que construí do zero como Lead Engineer"
+          }
         }
       },
       "systems": {
-        "title": "Design systems e experiência de desenvolvimento",
-        "body": "Bibliotecas de componentes e SDKs pros times de produto entregarem telas sem quebrar a UI.",
+        "title": "Design systems e experiência de dev",
+        "body": "Uma biblioteca de componentes que o time usa de verdade: cada tela nova sai mais rápido e com a cara do resto do app.",
         "receipts": {
-          "mozeic": "Co-criei o <b>Mozeic</b>, o design system da casa, e palestrei sobre ele no TDC 2024",
-          "kustomer": "Um <b>design system open source</b> e SDKs pra devs de fora"
+          "mozeic": {
+            "figure": "177 mil+",
+            "text": "downloads no npm. Co-escrevi o código do Mozeic, o design system do Zé"
+          },
+          "kustomer": {
+            "figure": "Open source",
+            "text": "o design system e os SDKs que fiz pra devs de fora integrarem com a Kustomer"
+          }
         }
       }
     },

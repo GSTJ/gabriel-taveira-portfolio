@@ -9,7 +9,10 @@ export type ReceiptSource =
   | { work: WorkItem["id"] | "all" }
   | { pr: { repo: string; name: string; number: number; year: number } };
 
-/** One outcome under an offer. Copy under `services.items.<id>.receipts.<receipt id>`. */
+/**
+ * One outcome under an offer: a `figure` set large, then the `text` that
+ * finishes the sentence. Copy under `services.items.<id>.receipts.<receipt id>`.
+ */
 export type Receipt = { id: string; source: ReceiptSource };
 
 export type ServiceItem = {
@@ -38,9 +41,11 @@ export const SERVICES: readonly ServiceItem[] = [
   {
     id: "leadership",
     receipts: [
+      // Gabriel, 2026-10-19: six teams at once. Kept apart from the 56 and
+      // from any one employer.
+      { id: "teams", source: { work: "all" } },
       { id: "people", source: { work: "all" } },
-      { id: "hiring", source: { work: "ze" } },
-      { id: "forum", source: { work: "xteam" } },
+      { id: "did", source: { work: "ateam" } },
     ],
   },
   {

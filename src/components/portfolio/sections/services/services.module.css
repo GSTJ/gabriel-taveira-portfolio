@@ -23,25 +23,57 @@
   margin-top: var(--space-4);
 }
 
-/* Each receipt: the outcome with its figure set in ink, then where it happened. */
+/*
+ * A ledger of receipts: the figures share one column so they read down like
+ * a stack of numbers, and each line finishes the figure's sentence beside it.
+ */
 .receipts {
   display: grid;
-  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-4);
+  max-width: var(--measure);
 }
 
 .receipt {
   display: grid;
-  gap: var(--space-1);
-  max-width: var(--measure);
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  row-gap: var(--space-1);
+  align-items: baseline;
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--rule);
 }
 
-.receipt p {
+.receipt:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.figure {
+  color: var(--ink);
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tr-title);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.text {
   text-wrap: pretty;
 }
 
-.receipt strong {
-  color: var(--ink);
-  font-weight: var(--fw-medium);
+/* From 600px the figures get their own column, one width for every offer. */
+@media (min-width: 600px) {
+  .receipts {
+    grid-template-columns: calc(var(--fs-title) * 7) minmax(0, 1fr);
+  }
+
+  .figure {
+    grid-row: span 2;
+  }
+
+  .cite {
+    grid-column: 2;
+  }
 }
 
 /* A citation: up when the proof is a row above, up-right when it leaves the page. */
