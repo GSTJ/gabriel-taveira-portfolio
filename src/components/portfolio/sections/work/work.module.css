@@ -9,7 +9,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
+  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 13rem;
   gap: var(--space-6);
   align-items: baseline;
   padding-block: var(--space-6);
@@ -49,8 +49,41 @@
   white-space: nowrap;
 }
 
-.go {
-  justify-self: end;
+/* ── Proof: the artifacts behind the blurb, then the company site ───── */
+
+.proof {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.link {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+  text-decoration: none;
+  text-wrap: pretty;
+}
+
+/* The last word and the arrow wrap as one. */
+.glue {
+  white-space: nowrap;
+}
+
+.glue svg {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.3em;
+  vertical-align: -0.05em;
+  color: var(--ink-3);
+  transition:
+    transform var(--dur-ui) var(--ease-out),
+    color var(--dur-hover) var(--ease-out);
+}
+
+.link + p {
+  margin-top: var(--space-1);
 }
 
 /* ── The career axis ───────────────────────────────────────────────── */
@@ -102,7 +135,7 @@
 
 .small {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 9rem;
+  grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.25fr) 13rem;
   gap: var(--space-6);
   align-items: baseline;
 }
@@ -136,6 +169,11 @@
   .row:hover .fill {
     background: var(--ink);
   }
+
+  .link:hover svg {
+    color: var(--ink);
+    transform: translate(2px, -2px);
+  }
 }
 
 /* ── Narrow ─────────────────────────────────────────────────────────── */
@@ -146,12 +184,16 @@
     gap: var(--space-3);
   }
 
-  .go {
-    justify-self: start;
+  .proof {
+    padding-top: var(--space-1);
   }
 
   .small {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-2);
+  }
+
+  .earlier ul {
+    gap: var(--space-6);
   }
 }

@@ -165,11 +165,27 @@
       },
       "ateam": {
         "title": "Lead Engineer on D-ID's mobile flagship",
-        "blurb": "Built the company's new core product, the mobile app, from zero. 1.5M registrants/week on the parent web app. Best UX 2023 on A.Team. Golden Kitty award on Product Hunt."
+        "blurb": "Built the company's new core product, the mobile app, from zero. 1.5M registrants/week on the parent web app. Best UX 2023 on A.Team. Golden Kitty award on Product Hunt.",
+        "proof": {
+          "app": {
+            "label": "D-ID on the App Store",
+            "meta": "4.6 stars from 3.4K ratings"
+          },
+          "kitty": {
+            "label": "Golden Kitty 2023",
+            "meta": "Product Hunt, Marketing & Sales"
+          }
+        }
       },
       "meta": {
         "title": "Open-source design system at Kustomer",
-        "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score."
+        "blurb": "Standardized UI for external developers. Shipped SDKs that simplified Kustomer's API integrations. Authored docs that lifted the cross-functional DevX score.",
+        "proof": {
+          "sdk": {
+            "label": "Apps SDK on npm",
+            "meta": "React components and design tokens"
+          }
+        }
       },
       "xteam": {
         "title": "Mentored mobile engineering at a fintech",
@@ -177,7 +193,17 @@
       },
       "ze": {
         "title": "Refactored Brazil's biggest beer app",
-        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built <mark>Mozeic</mark>, the in-house design system."
+        "blurb": "Interviewed and onboarded high-proficiency engineers. Rebuilt the Browse module. Shipped deep-link handling that lifted marketing-campaign conversion. Co-built <mark>Mozeic</mark>, the in-house design system.",
+        "proof": {
+          "mozeic": {
+            "label": "Mozeic on npm",
+            "meta": "177k+ downloads since 2020"
+          },
+          "pr": {
+            "label": "Code challenge, PR #35",
+            "meta": "Merged Sep 2021"
+          }
+        }
       },
       "alfred": {
         "title": "Led migration from Ionic to React Native",

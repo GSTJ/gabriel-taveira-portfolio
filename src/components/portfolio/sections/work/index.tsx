@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 
 import { cn } from "@/utils/cn";
 
+import { LINKEDIN } from "../../profile";
 import { ArrowUpRight } from "../../ui/icons";
 import { reveal } from "../../ui/motion";
 import { WORK, type WorkItem, workDates, workOrgs } from "./data";
@@ -42,6 +43,44 @@ const spanStyle = (item: WorkItem) => {
     "--span": `${((end - item.start) / AXIS_YEARS) * 100}%`,
   } as CSSProperties;
 };
+
+/** The arrow rides on the last word, so it never wraps onto a line alone. */
+const Arrowed = ({ text }: { text: string }) => {
+  const at = text.lastIndexOf(" ") + 1;
+  return (
+    <>
+      {text.slice(0, at)}
+      <span className={styles.glue}>
+        {text.slice(at)}
+        <ArrowUpRight />
+      </span>
+    </>
+  );
+};
+
+type Translate = Awaited<ReturnType<typeof getTranslations<"work">>>;
+
+/** A job's public artifacts, each with its number or date, then the company site. */
+const Proof = ({ item, t }: { item: WorkItem; t: Translate }) => (
+  <ul className={styles.proof}>
+    {item.proof?.map((proof) => {
+      const key = `items.${item.id}.proof.${proof.id}`;
+      return (
+        <li key={proof.id}>
+          <a className={styles.link} href={proof.href}>
+            <Arrowed text={keepHyphens(t(`${key}.label`))} />
+          </a>
+          <p className="t-meta num">{t(`${key}.meta`)}</p>
+        </li>
+      );
+    })}
+    <li>
+      <a className={styles.link} href={item.href}>
+        <Arrowed text={linkLabel(item.href, t("linkedin"))} />
+      </a>
+    </li>
+  </ul>
+);
 
 const Track = ({ item }: { item: WorkItem }) => (
   <span
@@ -97,10 +136,7 @@ export const WorkSection = async () => {
             <p className={cn("t-body", styles.blurb)}>
               {t.rich(`items.${item.id}.blurb`, blurbTags)}
             </p>
-            <a className={cn("link-arrow t-small", styles.go)} href={item.href}>
-              {linkLabel(item.href, t("linkedin"))}
-              <ArrowUpRight />
-            </a>
+            <Proof item={item} t={t} />
           </li>
         ))}
       </ol>
@@ -121,6 +157,7 @@ export const WorkSection = async () => {
               <p className="t-small">
                 {t.rich(`items.${item.id}.blurb`, blurbTags)}
               </p>
+              {item.href === LINKEDIN ? null : <Proof item={item} t={t} />}
             </li>
           ))}
         </ul>

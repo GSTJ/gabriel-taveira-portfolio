@@ -20,7 +20,13 @@ export type WorkItem = {
    * standard row, "agate" the small print at the end.
    */
   billing: "current" | "main" | "agate";
+  /** The company's own site, or LinkedIn when there's nothing public. */
   href: string;
+  /**
+   * Public artifacts behind the blurb, strongest first. Each `id` has a
+   * `label` and a `meta` line under `work.items.<job>.proof.<id>`.
+   */
+  proof?: readonly { id: string; href: string }[];
 };
 
 /** Newest first. `orgs`, `start` and `end` feed the resume, llms.txt and JSON-LD. */
@@ -51,6 +57,18 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Lead", "React Native", "AI"],
     billing: "main",
     href: "https://www.d-id.com/",
+    proof: [
+      // US App Store, fetched 2026-10-19: released 2023-10-23, 4.6 from 3,399 ratings.
+      {
+        id: "app",
+        href: "https://apps.apple.com/us/app/d-id-ai-video-generator/id6463755563",
+      },
+      // Golden Kitty Awards 2023 winners (Jan 2024): "Marketing & Sales: D-ID".
+      {
+        id: "kitty",
+        href: "https://www.producthunt.com/newsletters/archive/27186-and-the-award-goes-to",
+      },
+    ],
   },
   {
     id: "meta",
@@ -60,6 +78,13 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Design Systems", "DevX", "SDKs"],
     billing: "main",
     href: "https://www.kustomer.com/",
+    proof: [
+      // Public on npm since 2022-12-02: React components on @kustomer/apps-tokens.
+      {
+        id: "sdk",
+        href: "https://www.npmjs.com/package/@kustomer/apps-react-client",
+      },
+    ],
   },
   {
     id: "xteam",
@@ -78,6 +103,20 @@ export const WORK: readonly WorkItem[] = [
     tags: ["Hiring", "Native", "Design Systems"],
     billing: "main",
     href: "https://www.ze.delivery/",
+    proof: [
+      // Mozeic's three packages (app, web, style dictionary), Gabriel a listed
+      // maintainer on each. All-time npm downloads to 2026-10-18: 77,396 +
+      // 9,911 + 90,276 = 177,583.
+      {
+        id: "mozeic",
+        href: "https://www.npmjs.com/package/@zedelivery/mozeic-app-design-system",
+      },
+      // Merged 2021-09-13 on Zé's public code challenge repo.
+      {
+        id: "pr",
+        href: "https://github.com/ab-inbev-ze-company/ze-code-challenges/pull/35",
+      },
+    ],
   },
   {
     id: "alfred",
@@ -86,7 +125,7 @@ export const WORK: readonly WorkItem[] = [
     end: 2020,
     tags: ["Migration", "React Native"],
     billing: "agate",
-    href: LINKEDIN,
+    href: "https://alfreddelivery.com/",
   },
   {
     id: "micro",
