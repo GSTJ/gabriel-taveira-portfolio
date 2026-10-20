@@ -422,46 +422,95 @@
 }
 
 /* Narrow: section links and the language switch get their own row. */
+/*
+ * Narrow screens: one row. The section links go (the page is a scroll away),
+ * and the switches fold to one round button each, offering the other choice:
+ * the other language, the other theme. Fits a 375px iPhone SE.
+ */
 @media (width < 760px) {
   .bar {
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    grid-template-areas:
-      "brand theme cta"
-      "links links lang";
-    row-gap: var(--space-1);
-    align-content: center;
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    grid-template-areas: "brand lang theme cta";
+    column-gap: var(--space-2);
   }
 
   .links {
-    min-width: 0;
-    /* The first label lines up with the brand, the pill bleeds left. */
-    margin-left: calc(var(--space-2) * -1);
-    overflow-x: auto;
-    scrollbar-width: none;
-    font-size: var(--fs-small);
-  }
-
-  /* Tighter, so three pt-BR labels fit beside the language switch at 390. */
-  .links a {
-    padding-inline: var(--space-2);
-  }
-
-  .pill {
-    height: 30px;
-    margin-top: -15px;
-  }
-
-  .links::-webkit-scrollbar {
     display: none;
   }
 
-  .langSlot {
-    justify-self: end;
+  .lang a {
+    min-width: 30px;
+    padding: 0;
   }
 
-  /* The CTA right above already goes to #contact. */
-  .links .ctaTwin {
+  .lang a[aria-current="page"] {
     display: none;
+  }
+
+  .theme {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+  }
+
+  .knob {
+    display: none;
+  }
+
+  /* Both icons share the spot; the one for the theme in effect steps away. */
+  .theme svg {
+    grid-area: 1 / 1;
+  }
+
+  .theme .sun,
+  :root[data-theme="dark"] .theme .moon {
+    color: inherit;
+    opacity: 0;
+    scale: 0.6;
+  }
+
+  :root[data-theme="dark"] .theme .sun {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .theme .moon {
+      color: inherit;
+      opacity: 0;
+      scale: 0.6;
+    }
+
+    :root:not([data-theme]) .theme .sun {
+      opacity: 1;
+      scale: 1;
+      rotate: 0deg;
+    }
+  }
+}
+
+/* The first iPhone SE (320px) has room for the signature or the theme
+   switch; the theme then follows the system, as it does by default. */
+@media (width < 360px) {
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas: "brand lang cta";
+  }
+
+  .theme {
+    display: none;
+  }
+}
+
+@media (width < 760px) and (prefers-reduced-motion: no-preference) {
+  .theme svg {
+    transition:
+      opacity var(--dur-ui) var(--ease-out),
+      scale var(--dur-ui) var(--ease-out),
+      rotate var(--dur-ui) var(--ease-out);
   }
 }
 

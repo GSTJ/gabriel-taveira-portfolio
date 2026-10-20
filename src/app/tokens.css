@@ -141,13 +141,6 @@
   --rise-blur: 5px;
 }
 
-/* Narrow screens stack the nav into two rows: brand and actions, then links. */
-@media (width < 760px) {
-  :root {
-    --nav-h: 6.125rem;
-  }
-}
-
 /* An explicit choice from the toggle. No attribute means follow the system. */
 :root[data-theme="light"] {
   color-scheme: light;
