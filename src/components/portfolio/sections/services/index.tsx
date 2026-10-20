@@ -44,8 +44,6 @@ const citeText = ({ label, dates, external }: Cite) => {
   );
 };
 
-const figure = (chunks: ReactNode) => <strong className="num">{chunks}</strong>;
-
 /** The four offers, each with dated outcomes that link to their source, then how an engagement runs. */
 export const ServicesSection = async () => {
   const t = await getTranslations("services");
@@ -72,21 +70,24 @@ export const ServicesSection = async () => {
     };
   };
 
+  /** Figure first, so the column of numbers is what a skim lands on. */
   const receipts = (service: ServiceItem) => (
     <ul className={styles.receipts}>
       {service.receipts.map((receipt, index) => {
         const source = cite(receipt.source);
+        const key = `items.${service.id}.receipts.${receipt.id}` as const;
         return (
           <li
             key={receipt.id}
             className={styles.receipt}
             {...reveal(index + 1)}
           >
-            <p className="t-small">
-              {t.rich(`items.${service.id}.receipts.${receipt.id}`, {
-                b: figure,
-              })}
-            </p>
+            <strong className={cn("num", styles.figure)}>
+              {t(`${key}.figure`)}
+            </strong>{" "}
+            <span className={cn("t-small", styles.text)}>
+              {t(`${key}.text`)}
+            </span>
             <a className={cn("t-meta", styles.cite)} href={source.href}>
               {citeText(source)}
             </a>

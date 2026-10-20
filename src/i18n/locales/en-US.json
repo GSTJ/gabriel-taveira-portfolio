@@ -275,36 +275,63 @@
     },
     "items": {
       "audit": {
-        "title": "React Native architecture review",
-        "body": "A hard look at your app's performance, release pipeline, and test strategy. You get a prioritized plan your team can run without me.",
+        "title": "App architecture review",
+        "body": "I find out why the app is slow, why every release feels risky, and what the tests let through. You leave with a plan, ranked by risk, that your team runs without me.",
         "receipts": {
-          "coinbase": "Test coverage <b>25% → 45%</b> on team-owned files",
-          "groundswell": "Test coverage <b>30% → 80%+</b>, after cutting 16k lines of brittle tests"
+          "coinbase": {
+            "figure": "25% → 45%",
+            "text": "test coverage on team-owned files"
+          },
+          "groundswell": {
+            "figure": "30% → 80%+",
+            "text": "test coverage, after deleting 16k lines of brittle tests"
+          }
         }
       },
       "migrations": {
-        "title": "Expo, new architecture, and React Compiler upgrades",
-        "body": "Moving to Expo Prebuild, React Native's new architecture, or React Compiler while feature work keeps shipping.",
+        "title": "Big migrations without freezing the roadmap",
+        "body": "Expo Prebuild, React Native's new architecture, React Compiler. The migration runs alongside your team, and features keep shipping.",
         "receipts": {
-          "coinbase": "Helped move the app to <b>Expo Prebuild</b>, the new architecture, and React Compiler",
-          "alfred": "<b>Ionic → React Native</b> for 90+ franchises, with the old app live through a 6-month cutover"
+          "coinbase": {
+            "figure": "4",
+            "text": "big migrations I helped with: Expo Prebuild, the new architecture, React Compiler, and the design system"
+          },
+          "alfred": {
+            "figure": "90+",
+            "text": "franchises moved from Ionic to React Native, with the old app live through a 6‑month cutover"
+          }
         }
       },
       "leadership": {
-        "title": "Fractional mobile engineering lead",
-        "body": "An interim lead while you hire: rituals, code review standards, roadmaps, and the hiring loop itself.",
+        "title": "Fractional engineering lead",
+        "body": "I lead the team while you hire: rituals, code review standards, the roadmap, and the hiring loop. Whoever you hire walks into a team that already runs.",
         "receipts": {
-          "people": "<b>56 people</b> reported up to me at my largest",
-          "hiring": "<b>Interviewed and onboarded</b> new engineers",
-          "forum": "Founded the <b>Mobile Engineering Biweekly</b> forum"
+          "teams": {
+            "figure": "6",
+            "text": "teams at once under my lead"
+          },
+          "people": {
+            "figure": "56",
+            "text": "people reported up to me at my largest"
+          },
+          "did": {
+            "figure": "4.6",
+            "text": "App Store stars on D-ID's app, which I built from zero as Lead Engineer"
+          }
         }
       },
       "systems": {
         "title": "Design systems and developer experience",
-        "body": "Component libraries and SDKs that let product teams ship screens without breaking the UI.",
+        "body": "A component library your teams actually use, so every new screen ships faster and looks like the rest of the app.",
         "receipts": {
-          "mozeic": "Co-built <b>Mozeic</b>, the in-house design system, then gave a talk on it at TDC 2024",
-          "kustomer": "An <b>open-source design system</b> and SDKs for external developers"
+          "mozeic": {
+            "figure": "177k+",
+            "text": "npm downloads. Co-wrote Mozeic's code, Zé's in-house design system"
+          },
+          "kustomer": {
+            "figure": "Open source",
+            "text": "design system and SDKs I built for outside developers integrating with Kustomer"
+          }
         }
       }
     },
