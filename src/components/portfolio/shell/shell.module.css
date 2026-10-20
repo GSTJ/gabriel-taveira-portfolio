@@ -1,4 +1,4 @@
-/* Page chrome: the sticky nav, the language switch and the footer. */
+/* Page chrome: the sticky nav, the language and theme switches, the footer. */
 
 /*
  * The bar always takes --nav-h in the flow (no layout shift). Only its
@@ -185,6 +185,94 @@
   color: var(--paper);
 }
 
+/*
+ * Light / dark: the same track as the language switch, sun and moon on it,
+ * and an ink knob resting under the theme in effect. CSS places the knob
+ * (an explicit `data-theme`, else the system), so it is right before
+ * hydration; the button only flips the theme.
+ */
+.theme {
+  grid-area: theme;
+  position: relative;
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background-color var(--dur-hover) ease;
+}
+
+.knob {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.theme svg {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+}
+
+.sun {
+  color: var(--paper);
+}
+
+:root[data-theme="dark"] .knob {
+  translate: 32px 0;
+}
+
+:root[data-theme="dark"] .sun {
+  color: inherit;
+  rotate: -45deg;
+}
+
+:root[data-theme="dark"] .moon {
+  color: var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .knob {
+    translate: 32px 0;
+  }
+
+  :root:not([data-theme]) .sun {
+    color: inherit;
+    rotate: -45deg;
+  }
+
+  :root:not([data-theme]) .moon {
+    color: var(--paper);
+  }
+}
+
+/* The knob slides over and the sun turns away as it leaves. */
+@media (prefers-reduced-motion: no-preference) {
+  .knob {
+    transition:
+      translate var(--dur-ui) var(--ease-out),
+      scale var(--dur-press) var(--ease-out);
+  }
+
+  .theme svg {
+    transition:
+      color var(--dur-ui) var(--ease-out),
+      rotate var(--dur-ui) var(--ease-out);
+  }
+
+  .theme:active .knob {
+    scale: 0.92;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .links a:hover {
     color: var(--ink);
@@ -193,6 +281,10 @@
   .lang a:not([aria-current="page"]):hover {
     background: var(--paper-2);
     color: var(--ink);
+  }
+
+  .theme:hover {
+    background: var(--paper-2);
   }
 }
 
@@ -241,12 +333,13 @@
 }
 
 /*
- * Footer: the page ends the way a letter does. His pen runs across it once,
- * the paper settles into a slightly deeper tone, and the rest is a quiet map:
- * name and email, three short link columns, and a fine line with the date.
+ * Footer: the page ends the way a letter does. A closing line, his name
+ * written in his pen with a flourish under it, the line a signature carries
+ * and a P.S.; beside it a quiet map, and a fine line with the date. The paper
+ * settles into a slightly deeper tone on the way down.
  */
 .footer {
-  padding-block: var(--space-7) var(--space-6);
+  padding-block: var(--space-9) var(--space-6);
   background: linear-gradient(
     to bottom,
     transparent,
@@ -256,14 +349,50 @@
   color: var(--ink-2);
 }
 
-.sign {
-  width: 100%;
-  height: 40px;
-  margin-bottom: var(--space-7);
-  overflow: visible;
+.footCols {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
 }
 
-.sign path {
+.signoff {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+}
+
+.closing {
+  font-size: var(--fs-lede);
+  letter-spacing: -0.013em;
+  color: var(--ink);
+}
+
+/* Sized to the name, so the flourish runs exactly under it. */
+.sign {
+  position: relative;
+  margin-block: var(--space-2) var(--space-5);
+  font-family: var(--font-hand);
+  font-size: clamp(2.75rem, 1.2vw + 2.25rem, 3.5rem);
+  font-weight: 560;
+  line-height: 1;
+  color: var(--pen);
+}
+
+.signName {
+  display: inline-block;
+}
+
+.flourish {
+  position: absolute;
+  left: -0.04em;
+  bottom: -0.3em;
+  width: calc(100% + 0.3em);
+  height: 0.45em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.flourish path {
   fill: none;
   stroke: var(--pen);
   stroke-width: 2;
@@ -272,49 +401,58 @@
   vector-effect: non-scaling-stroke;
 }
 
-/* Drawn left to right the first time it is in view (boot.ts marks it). The
-   dash is 3 for the same reason as the pen underline: non-scaling strokes
-   dash in screen space. */
+/*
+ * Signed the first time it is in view (boot.ts marks it): the name writes in
+ * left to right, then the flourish runs under it. The dash is 1.5 for the
+ * same reason as the pen underline's 3: non-scaling strokes dash in screen
+ * space, and the flourish never stretches past 1.5x its viewBox.
+ */
 @media (prefers-reduced-motion: no-preference) {
-  :global(.js) .sign path {
-    stroke-dasharray: 3;
-    transition: stroke-dashoffset calc(var(--dur-pen) * 2) var(--ease-pen);
+  :global(.js) .signName {
+    clip-path: inset(-30% -12% -30% -6%);
+    transition: clip-path calc(var(--dur-note) * 1.5) var(--ease-pen);
   }
 
-  :global(.js) .sign:not([data-in]) path {
-    stroke-dashoffset: 3;
+  :global(.js) .sign:not([data-in]) .signName {
+    clip-path: inset(-30% 100% -30% -6%);
+  }
+
+  :global(.js) .flourish path {
+    stroke-dasharray: 1.5;
+    transition: stroke-dashoffset calc(var(--dur-pen) * 1.5) var(--ease-pen)
+      calc(var(--dur-note) * 1.2);
+  }
+
+  :global(.js) .sign:not([data-in]) .flourish path {
+    stroke-dashoffset: 1.5;
   }
 }
 
-.footCols {
-  display: grid;
-  grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
-  gap: var(--space-6);
-}
-
-.footBrand {
-  display: grid;
-  align-content: start;
-  justify-items: start;
-  gap: var(--space-2);
-}
-
-.footName {
-  font-size: 1.0625rem;
-  font-weight: var(--fw-strong);
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.footBrand p {
+.signoff > p:not([class]) {
   max-width: 22em;
+}
+
+.ps {
+  margin-top: var(--space-5);
+}
+
+.psMark {
+  font-family: var(--font-hand);
+  font-size: 1.35em;
+  font-weight: 560;
+  line-height: 0;
+  color: var(--pen);
+}
+
+.ps a {
+  color: var(--ink);
 }
 
 .footCols nav {
   display: grid;
   align-content: start;
   justify-items: start;
+  padding-top: var(--space-1);
 }
 
 .footCols h2 {
@@ -337,10 +475,6 @@
   transition: color var(--dur-hover) ease;
 }
 
-.footMail {
-  margin-top: var(--space-2);
-}
-
 .footIcon {
   display: inline-grid;
   color: var(--ink-3);
@@ -352,7 +486,7 @@
   height: 16px;
 }
 
-/* The arrow stays on the name's line, never alone on the next one. */
+/* The arrow stays on the last word's line, never alone on the next one. */
 .glue {
   display: inline-flex;
   align-items: center;
@@ -372,8 +506,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .footCols nav a:hover,
-  .footMail:hover,
-  .footName:hover {
+  .footMail:hover {
     color: var(--ink);
   }
 
@@ -383,19 +516,28 @@
   }
 }
 
-/* Narrow: name on its own row, the three columns two by two under it. */
+/* Touch: every footer link gets the full 44px. */
+@media (pointer: coarse) {
+  .footCols nav a,
+  .footMail {
+    min-height: 44px;
+  }
+}
+
+/* Narrow: the sign-off on its own row, the three columns two by two under it. */
 @media (width < 760px) {
+  .footer {
+    padding-top: var(--space-8);
+  }
+
   .footCols {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-6) var(--space-5);
   }
 
-  .footBrand {
+  .signoff {
     grid-column: 1 / -1;
-  }
-
-  .sign {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-2);
   }
 
   .footFine {

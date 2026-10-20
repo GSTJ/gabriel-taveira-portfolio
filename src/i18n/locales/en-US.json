@@ -33,6 +33,7 @@
     },
     "newTab": "opens in a new tab",
     "footer": {
+      "closing": "Thanks for reading this far.",
       "tagline": "I build apps and help teams build theirs.",
       "site": "Site",
       "elsewhere": "Elsewhere",
@@ -42,7 +43,9 @@
       "links": "All links",
       "role": "Independent consultant",
       "place": "Ribeirão Preto, Brazil",
-      "updated": "Updated {date}"
+      "updated": "Updated {date}",
+      "ps": "This site's code is open, signature included.",
+      "psLink": "See it on GitHub"
     }
   },
   "hero": {

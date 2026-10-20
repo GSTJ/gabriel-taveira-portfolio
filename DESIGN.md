@@ -155,7 +155,9 @@ Roles, as classes in `ui.css`: `.t-display` (hero, contact ask), `.t-h1` (a card
 
 ## Elevation & Depth
 
-Flat by default. Depth comes from paper steps (paper → paper-2 → paper-3), not shadows. `--shadow` is reserved for things that physically float: the phone frame, a modal sheet and the "Email copied" toast. The sticky nav uses an 88% paper with a 12px backdrop blur and fades in a hairline over the first 24px of scroll (CSS scroll timeline, no JS).
+Flat by default. Depth comes from paper steps (paper → paper-2 → paper-3), not shadows. `--shadow` is reserved for things that physically float: the phone frame, a modal sheet and the "Email copied" toast.
+
+The sticky nav always takes `--nav-h` in the flow, so it never shifts the page. At the top it is transparent. Once the page leaves the top (`data-scrolled` on `<html>`, set by the boot script before hydration) a 96% paper with `blur(16px) saturate(1.5)` and a hairline fade in, drawn `--lift` (12px) shorter than the box, and the bar rises half the lift to stay centered in it (curvinha.app's header). 96% on purpose: where a renderer skips the backdrop blur, the content behind still can't be read. Without JS the paper is always on. Reduced motion keeps the paper and drops the lift.
 
 ## Shapes
 
@@ -164,12 +166,13 @@ Pill for every button, the language switch and toggles. 14px for a card stage, 1
 ## Components
 
 - **Button** (`.btn`, `.btn-ghost`, `.btn-small`): ink fill or ghost outline, pill, 46/38px. Press scales to 0.97 in 160ms ease-out. Hover only under `(hover: hover) and (pointer: fine)`.
-- **Icon button** (`.icon-btn`): 38px circle, press 0.94. The theme toggle.
 - **Link arrow** (`.link-arrow` + `<ArrowUpRight />`): a link that leaves the page; the arrow nudges 2px up-right on hover.
 - **Pen underline** (`<PenUnderline>`): two quick strokes under a short phrase (no wrap), drawn left to right in 640ms on `--ease-pen`, the second stroke trailing at 45%.
 - **Marginalia** (`<Annotated>` + `<Marginalia note>`): his note on an anchor phrase. At 1000px and up it hangs in the right margin on the anchor's line with an arrow back to the text; below that it drops to its own line under the block, the anchor gets a pen underline and the arrow points up, so a sentence never breaks around it. Writes in through `clip-path` (760ms, `--ease-pen`), then the arrow draws (420ms). `placement="inline"` sits right after the anchor for notes beside a demo or a number. Screen readers hear it in parentheses.
-- **Theme toggle**: one button that flips the effective theme with a View Transition crossfade (240ms). Picking the theme the system already uses clears the choice, so the page returns to auto.
-- **Language switch**: EN / PT pill, plain links to the other locale.
+- **Nav pill**: one paper-tinted pill (ink at 6%) as wide as the link row, clipped to the hovered link or, at rest, to the section in view (`aria-current`). Moving between links is a `clip-path` glide (240ms `--ease-out`), so it never animates width. Appearing from nothing it lands in place and only fades in.
+- **Language switch**: EN / PT on a 38px hairline track, the current locale in an ink pill. Plain links to the other locale's static page.
+- **Theme toggle**: the same 38px track as the language switch, sun and moon on it, and an ink knob resting under the theme in effect. CSS places the knob (explicit `data-theme`, else the system), so it is right before hydration. On a flip the knob slides over (240ms `--ease-out`, press 0.92), the sun turns 45° away as it leaves, and the page crossfades with a View Transition (240ms). Picking the theme the system already uses clears the choice, so the page returns to auto.
+- **Footer**: the page signs off like a letter. A closing line ("Valeu por ler até aqui."), his name in Caveat in pen, written in left to right through `clip-path` the first time it is in view (1140ms `--ease-pen`), then a 2px pen flourish draws under it (960ms). Under the signature the line a signature carries (what he does, his email) and a P.S. with the site's public repo. Beside it a quiet map (Site, Elsewhere, Files) and a fine line with the date the page was last touched. The paper deepens toward paper-2 on the way down. Reduced motion: already signed.
 - **Card** (a section-local pattern, paper-2 on a 14px radius, 32px padding): only when the proof inside needs a stage.
 
 ### Motion

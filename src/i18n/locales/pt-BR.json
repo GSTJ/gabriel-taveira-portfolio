@@ -33,6 +33,7 @@
     },
     "newTab": "abre em uma nova aba",
     "footer": {
+      "closing": "Valeu por ler até aqui.",
       "tagline": "Faço apps e ajudo times a fazer os deles.",
       "site": "Site",
       "elsewhere": "Por aí",
@@ -42,7 +43,9 @@
       "links": "Todos os links",
       "role": "Consultor independente",
       "place": "Ribeirão Preto, Brasil",
-      "updated": "Atualizado em {date}"
+      "updated": "Atualizado em {date}",
+      "ps": "O código deste site é aberto, assinatura inclusa.",
+      "psLink": "Ver no GitHub"
     }
   },
   "hero": {
