@@ -85,6 +85,8 @@ const LocaleLayout = async ({
           // eslint-disable-next-line react/no-danger -- must run before first paint, so it cannot wait for a bundle. A static string from boot.ts, no input.
           dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }}
         />
+        {/* Ahrefs Web Analytics: cookieless, the data-key is public. */}
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="gT3X5WYXoMBK9s8qwl+74Q" async />
       </head>
       <body>
         <ObservabilityProviders>{children}</ObservabilityProviders>
