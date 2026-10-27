@@ -86,7 +86,11 @@ const LocaleLayout = async ({
           dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }}
         />
         {/* Ahrefs Web Analytics: cookieless, the data-key is public. */}
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="gT3X5WYXoMBK9s8qwl+74Q" async />
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="gT3X5WYXoMBK9s8qwl+74Q"
+          async
+        />
       </head>
       <body>
         <ObservabilityProviders>{children}</ObservabilityProviders>
