@@ -46,5 +46,5 @@
     "puppeteer": "^25.0.0",
     "wrangler": "4.150.0"
   },
-  "packageManager": "pnpm@12.12.1"
+  "packageManager": "pnpm@12.13.0"
 }
