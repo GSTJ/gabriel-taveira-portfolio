@@ -98,6 +98,17 @@ minimumReleaseAgeExclude:
   - js-yaml@4.3.1
   - miniflare@5.20260730.0-alpha
   - nanoid@3.3.18
+  # Security update: next@16.4.1 (GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw, GHSA-p3m5-59mp-jv5r); drop once past the 2 week age
+  - next@16.4.1
+  - "@next/env@16.4.1"
+  - "@next/swc-darwin-arm64@16.4.1"
+  - "@next/swc-darwin-x64@16.4.1"
+  - "@next/swc-linux-arm64-gnu@16.4.1"
+  - "@next/swc-linux-arm64-musl@16.4.1"
+  - "@next/swc-linux-x64-gnu@16.4.1"
+  - "@next/swc-linux-x64-musl@16.4.1"
+  - "@next/swc-win32-arm64-msvc@16.4.1"
+  - "@next/swc-win32-x64-msvc@16.4.1"
   # Security update: next@16.3.8 (advisories 213-218); drop once past the 2 week age
   - next@16.3.8
   - "@next/env@16.3.8"
