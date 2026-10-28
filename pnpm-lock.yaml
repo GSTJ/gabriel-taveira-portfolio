@@ -199,7 +199,7 @@ importers:
         version: 10.2.1(react@19.3.0)
       magic-observability:
         specifier: 1.0.5
-        version: 1.0.5(@posthog/react@1.11.3(@types/react@19.3.0)(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(posthog-node@5.56.0)(react@19.3.0)
+        version: 1.0.5(@posthog/react@1.11.3(@types/react@19.3.0)(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(posthog-node@5.56.1)(react@19.3.0)
       next:
         specifier: 16.4.1
         version: 16.4.1(@types/node@26.6.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -211,7 +211,7 @@ importers:
         version: 1.438.9(@types/react@19.3.0)(react@19.3.0)
       posthog-node:
         specifier: ^5.46.1
-        version: 5.56.0
+        version: 5.56.1
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -1780,12 +1780,15 @@ packages:
       react:
         optional: true
 
-  posthog-node@5.56.0:
-    resolution: {integrity: sha512-BOCNJfM+ZTivY+qvNpxyUsG2rV4dyGjiz1+j5OcEqSy7YoSKabTZvLyl8h8X+pADgq5TlqpN0UdT+bXQJjs3mQ==}
+  posthog-node@5.56.1:
+    resolution: {integrity: sha512-TlEeE5OHNbsIje/htLwvmxN45/X0FcMSsln15cHdQqybUGj9Ebd0yyziWec0Fi5YQwMHYCfJPcNdgol/s1lIFA==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
+      '@opentelemetry/api': ^1.2.0
       rxjs: ^7.0.0
     peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
       rxjs:
         optional: true
 
@@ -2807,11 +2810,11 @@ snapshots:
     dependencies:
       react: 19.3.0
 
-  magic-observability@1.0.5(@posthog/react@1.11.3(@types/react@19.3.0)(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(posthog-node@5.56.0)(react@19.3.0):
+  magic-observability@1.0.5(@posthog/react@1.11.3(@types/react@19.3.0)(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(posthog-node@5.56.1)(react@19.3.0):
     optionalDependencies:
       '@posthog/react': 1.11.3(@types/react@19.3.0)(posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
       posthog-js: 1.438.9(@types/react@19.3.0)(react@19.3.0)
-      posthog-node: 5.56.0
+      posthog-node: 5.56.1
       react: 19.3.0
 
   magic-oxfmt-config@1.2.5(oxfmt@0.72.0):
@@ -3001,7 +3004,7 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@5.56.0:
+  posthog-node@5.56.1:
     dependencies:
       '@posthog/core': 1.59.0
 
