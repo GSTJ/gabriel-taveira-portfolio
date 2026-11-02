@@ -1,4 +1,63 @@
 const { execFileSync } = require("node:child_process");
+const fs = require("node:fs");
+const os = require("node:os");
+const path = require("node:path");
+
+// GitHub's GraphQL updateRefs accepts commit objects only. Git transport can
+// publish annotated tags with an exact ref lease. This bare object store never
+// checks out source or creates feature commits.
+function pushAnnotation(repository, tag, original, annotation, options = {}) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "release-tag-"));
+  const remote = options.remote ?? `https://github.com/${repository}.git`;
+  const token = options.remote
+    ? undefined
+    : (process.env.GH_TOKEN ??
+      execFileSync("gh", ["auth", "token"], {
+        encoding: "utf8",
+        stdio: ["pipe", "pipe", "pipe"],
+      }).trim());
+  const env = { ...process.env, GIT_TERMINAL_PROMPT: "0" };
+  if (token && !options.remote) {
+    env.GIT_CONFIG_COUNT = "1";
+    env.GIT_CONFIG_KEY_0 = "http.https://github.com/.extraheader";
+    env.GIT_CONFIG_VALUE_0 = `AUTHORIZATION: basic ${Buffer.from(`x-access-token:${token}`).toString("base64")}`;
+  }
+  const git = (args, input) =>
+    execFileSync("git", ["-C", directory, ...args], {
+      input,
+      encoding: "utf8",
+      env,
+      stdio: ["pipe", "pipe", "pipe"],
+    }).trim();
+  try {
+    git(["init", "--bare", "--quiet"]);
+    git([
+      "fetch",
+      "--quiet",
+      "--no-tags",
+      "--depth=1",
+      remote,
+      `refs/tags/${tag}`,
+    ]);
+    if (git(["rev-parse", "FETCH_HEAD"]) !== original.sha)
+      throw new Error("Release tag changed before fetch");
+    const date = Math.floor(Date.parse(annotation.tagger.date) / 1000);
+    const object = `object ${original.sha}\ntype commit\ntag ${tag}\ntagger ${annotation.tagger.name} <${annotation.tagger.email}> ${date} +0000\n\n${annotation.message}`;
+    const sha = git(["hash-object", "-t", "tag", "-w", "--stdin"], object);
+    if (sha !== annotation.sha)
+      throw new Error("Local annotation bytes differ from GitHub");
+    options.beforePush?.();
+    git([
+      "push",
+      "--quiet",
+      `--force-with-lease=refs/tags/${tag}:${original.sha}`,
+      remote,
+      `${sha}:refs/tags/${tag}`,
+    ]);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
 
 // Convert only a lightweight release tag. The ref update has an atomic lease,
 // and the annotation points directly at the same commit as the original ref.
@@ -19,7 +78,12 @@ function validateAnnotation(annotation, original, release, tag) {
   }
 }
 
-async function annotateRelease(api, repository, version) {
+async function annotateRelease(
+  api,
+  repository,
+  version,
+  updateTag = pushAnnotation,
+) {
   if (!/^\d+\.\d+\.\d+$/.test(version))
     throw new Error("Invalid release version");
   const tag = `v${version}`;
@@ -72,24 +136,7 @@ async function annotateRelease(api, repository, version) {
   ) {
     throw new Error("Release changed while annotating");
   }
-  const { node_id: repositoryId } = await api(root);
-  await api("graphql", {
-    query:
-      "mutation($input: UpdateRefsInput!) { updateRefs(input: $input) { clientMutationId } }",
-    variables: {
-      input: {
-        repositoryId,
-        refUpdates: [
-          {
-            name: `refs/tags/${tag}`,
-            beforeOid: original.sha,
-            afterOid: annotation.sha,
-            force: true,
-          },
-        ],
-      },
-    },
-  });
+  await updateTag(repository, tag, original, annotation);
   const finalRef = await api(refPath);
   const final = finalRef.object;
   if (final.type !== "tag" || final.sha !== annotation.sha)
@@ -127,7 +174,7 @@ async function main() {
   );
 }
 
-module.exports = { annotateRelease };
+module.exports = { annotateRelease, pushAnnotation };
 if (require.main === module)
   main().catch((error) => {
     console.error(error.message);
