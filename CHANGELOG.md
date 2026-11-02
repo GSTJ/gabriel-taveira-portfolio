@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.2...v1.3.3) (2026-11-02)
+
+
+### Bug Fixes
+
+* publish annotated tags safely and patch vulnerable dependencies ([4c3bc73](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4c3bc732f4de734849e297c52ce2ded2d6c1828f))
+
 ## [1.3.2](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.1...v1.3.2) (2026-11-02)
 
 
