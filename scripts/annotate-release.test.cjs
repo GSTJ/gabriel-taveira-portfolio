@@ -1,6 +1,10 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { annotateRelease } = require("./annotate-release.cjs");
+const { execFileSync } = require("node:child_process");
+const fs = require("node:fs");
+const os = require("node:os");
+const path = require("node:path");
+const { annotateRelease, pushAnnotation } = require("./annotate-release.cjs");
 
 const commit = "a".repeat(40);
 const tagSha = "b".repeat(40);
@@ -38,32 +42,35 @@ function fixture(options = {}) {
       return annotation;
     }
     if (endpoint.endsWith(`/git/tags/${tagSha}`)) return annotation;
-    if (endpoint === "graphql") {
-      const [update] = body.variables.input.refUpdates;
-      assert.equal(update.name, "refs/tags/v1.3.2");
-      assert.equal(update.beforeOid, commit);
-      assert.equal(update.afterOid, tagSha);
-      assert.equal(body.variables.input.repositoryId, "repo-id");
-      if (options.race) throw new Error("lease rejected");
-      updates++;
-      ref = { sha: tagSha, type: "tag" };
-      if (options.postRace) ref = { sha: commit, type: "commit" };
-      return {};
-    }
     assert.equal(endpoint, "repos/GSTJ/test");
     return { node_id: "repo-id" };
   };
-  return { api, updates: () => updates, target: () => annotation?.object.sha };
+  const updateTag = (_repository, tag, original, annotation) => {
+    assert.equal(tag, "v1.3.2");
+    assert.equal(original.sha, commit);
+    assert.equal(annotation.sha, tagSha);
+    if (options.race) throw new Error("lease rejected");
+    updates++;
+    ref = options.postRace
+      ? { sha: commit, type: "commit" }
+      : { sha: tagSha, type: "tag" };
+  };
+  return {
+    api,
+    updateTag,
+    updates: () => updates,
+    target: () => annotation?.object.sha,
+  };
 }
 test("annotates with exact release notes and preserves commit; rerun writes nothing", async () => {
   const f = fixture();
   assert.match(
-    await annotateRelease(f.api, "GSTJ/test", "1.3.2"),
+    await annotateRelease(f.api, "GSTJ/test", "1.3.2", f.updateTag),
     /preserved commit/,
   );
   assert.equal(f.target(), commit);
   assert.equal(
-    await annotateRelease(f.api, "GSTJ/test", "1.3.2"),
+    await annotateRelease(f.api, "GSTJ/test", "1.3.2", f.updateTag),
     "Release tag already annotated",
   );
   assert.equal(f.updates(), 1);
@@ -71,7 +78,7 @@ test("annotates with exact release notes and preserves commit; rerun writes noth
 test("missing release is a no-op", async () => {
   const f = fixture({ missing: true });
   assert.equal(
-    await annotateRelease(f.api, "GSTJ/test", "1.3.2"),
+    await annotateRelease(f.api, "GSTJ/test", "1.3.2", f.updateTag),
     "No published release yet",
   );
   assert.equal(f.updates(), 0);
@@ -90,13 +97,15 @@ for (const [name, options] of Object.entries({
 })) {
   test(`refuses ${name}`, async () => {
     const f = fixture(options);
-    await assert.rejects(annotateRelease(f.api, "GSTJ/test", "1.3.2"));
+    await assert.rejects(
+      annotateRelease(f.api, "GSTJ/test", "1.3.2", f.updateTag),
+    );
     assert.equal(f.updates(), options.postRace ? 1 : 0);
   });
 }
 test("rejects an existing annotation with different notes", async () => {
   const f = fixture();
-  await annotateRelease(f.api, "GSTJ/test", "1.3.2");
+  await annotateRelease(f.api, "GSTJ/test", "1.3.2", f.updateTag);
   const api = (endpoint, body) =>
     endpoint.endsWith(`/git/tags/${tagSha}`)
       ? Promise.resolve({
@@ -106,7 +115,7 @@ test("rejects an existing annotation with different notes", async () => {
         })
       : f.api(endpoint, body);
   await assert.rejects(
-    annotateRelease(api, "GSTJ/test", "1.3.2"),
+    annotateRelease(api, "GSTJ/test", "1.3.2", f.updateTag),
     /Existing annotation differs/,
   );
   assert.equal(f.updates(), 1);
@@ -116,3 +125,68 @@ test("rejects invalid versions before API access", async () => {
     annotateRelease(() => assert.fail("API called"), "GSTJ/test", "../bad"),
   );
 });
+
+// Exercise real Git transport, including the annotated object rejected by
+// GraphQL and a remote update that races the final push.
+for (const race of [false, true]) {
+  test(`Git transport ${race ? "rejects a concurrent update" : "publishes an annotation without moving the commit"}`, () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "release-remote-"));
+    const git = (args, input) =>
+      execFileSync("git", ["-C", dir, ...args], {
+        input,
+        encoding: "utf8",
+        stdio: ["pipe", "pipe", "pipe"],
+      }).trim();
+    try {
+      git(["init", "--bare", "--quiet"]);
+      const tree = git(["hash-object", "-t", "tree", "-w", "--stdin"], "");
+      const makeCommit = (message) =>
+        git(
+          ["hash-object", "-t", "commit", "-w", "--stdin"],
+          `tree ${tree}\nauthor Gabriel Taveira <gabrielstaveira@gmail.com> 1700000000 +0000\ncommitter Gabriel Taveira <gabrielstaveira@gmail.com> 1700000000 +0000\n\n${message}\n`,
+        );
+      const first = makeCommit("first");
+      const second = makeCommit("second");
+      git(["update-ref", "refs/tags/v1.3.2", first]);
+      const message = "Exact release notes\nsecond line";
+      const object = `object ${first}\ntype commit\ntag v1.3.2\ntagger Gabriel Taveira <gabrielstaveira@gmail.com> 1700000000 +0000\n\n${message}`;
+      const sha = git(["hash-object", "-t", "tag", "--stdin"], object);
+      const annotation = {
+        sha,
+        message,
+        tagger: {
+          name: "Gabriel Taveira",
+          email: "gabrielstaveira@gmail.com",
+          date: "2023-11-14T22:13:20Z",
+        },
+      };
+      const action = () =>
+        pushAnnotation(
+          "GSTJ/test",
+          "v1.3.2",
+          { sha: first, type: "commit" },
+          annotation,
+          {
+            remote: `file://${dir}`,
+            ...(race
+              ? {
+                  beforePush: () =>
+                    git(["update-ref", "refs/tags/v1.3.2", second]),
+                }
+              : {}),
+          },
+        );
+      if (race) {
+        assert.throws(action, /stale info/);
+        assert.equal(git(["rev-parse", "refs/tags/v1.3.2"]), second);
+      } else {
+        action();
+        assert.equal(git(["cat-file", "-t", "refs/tags/v1.3.2"]), "tag");
+        assert.equal(git(["rev-parse", "refs/tags/v1.3.2^{}"]), first);
+        assert.equal(git(["cat-file", "-p", "refs/tags/v1.3.2"]), object);
+      }
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+}
