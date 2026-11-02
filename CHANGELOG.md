@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.3...v1.3.4) (2026-11-02)
+
+
+### Chores
+
+* **deps:** lock file maintenance ([#404](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/404)) ([aea629d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/aea629d5765c940f7c0c5ea8ccfa1b9b57884c33))
+
 ## [1.3.3](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.2...v1.3.3) (2026-11-02)
 
 
