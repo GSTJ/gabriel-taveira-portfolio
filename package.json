@@ -44,7 +44,7 @@
     "oxfmt": "0.73.0",
     "oxlint": "1.86.0",
     "puppeteer": "^25.0.0",
-    "wrangler": "4.151.1"
+    "wrangler": "4.151.2"
   },
   "packageManager": "pnpm@12.14.0"
 }
