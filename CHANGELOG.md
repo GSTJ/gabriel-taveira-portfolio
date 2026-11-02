@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.2](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.1...v1.3.2) (2026-11-02)
+
+
+### Bug Fixes
+
+* annotate release tags without moving their commits ([abdc07e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/abdc07e8aa7bbae1d91b40292f0e8fd883af2f65))
+* capture the resume and demo from the exact checkout ([#492](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/492)) ([d6dfa12](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d6dfa12f766cf3574e0c0dd85135baf2eda17b2c))
+
 ## [1.3.1](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.0...v1.3.1) (2026-11-02)
 
 
