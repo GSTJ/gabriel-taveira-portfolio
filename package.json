@@ -13,7 +13,8 @@
     "lint": "oxlint --report-unused-disable-directives",
     "lint:fix": "oxlint --report-unused-disable-directives --fix",
     "format": "oxfmt --check .",
-    "format:fix": "oxfmt ."
+    "format:fix": "oxfmt .",
+    "test": "node --test scripts/annotate-release.test.cjs"
   },
   "dependencies": {
     "@posthog/react": "^1.10.3",

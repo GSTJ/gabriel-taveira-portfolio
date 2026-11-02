@@ -2,7 +2,7 @@
 
 Welcome to my open-source portfolio! This project is built using Next.js, next-intl, and Server Components, styled with hand-written CSS on design tokens.
 
-<img width="1498" alt="preview" src="https://assets.gabrieltaveira.dev/demo.gif">
+<img width="1498" alt="preview" src="https://assets.gabrieltaveira.dev/demo.gif?capture=d6dfa12f766cf3574e0c0dd85135baf2eda17b2c">
 
 ## Features
 

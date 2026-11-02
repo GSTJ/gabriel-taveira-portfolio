@@ -28,9 +28,9 @@ jobs:
     with:
       node-version: "24"
       build-command: pnpm run build
+      test-command: pnpm test
       # No turbo here, so the cache proxy would just be a step that does
-      # nothing. There is no test suite yet either; the reusable workflow skips
-      # the step when the command is empty, which is the default.
+      # nothing. Release tag controls run through the explicit test command above.
       turbo-cache: false
 
   # main's ruleset requires a status check named exactly `verify`, and a called
