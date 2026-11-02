@@ -60,19 +60,31 @@ const getPdf = async () => {
     args: ["--disable-dev-shm-usage", "--no-first-run"],
   });
 
-  const page = await browser.newPage();
-  await page.goto(sourceUrl, { waitUntil: "networkidle0" });
+  try {
+    const page = await browser.newPage();
+    const response = await page.goto(sourceUrl, { waitUntil: "networkidle0" });
+    const title = await page.title();
+    const heading = await page.$eval("h1", (node) => node.textContent);
+    if (
+      !response?.ok() ||
+      title !== "Gabriel Taveira, Resume" ||
+      heading !== "Gabriel Taveira"
+    ) {
+      throw new Error("Capture source is not the resume page");
+    }
 
-  const pdf = await page.pdf({
-    format: "Letter",
-    preferCSSPageSize: true,
-    printBackground: false,
-    waitForFonts: true,
-    tagged: true,
-  });
+    const pdf = await page.pdf({
+      format: "Letter",
+      preferCSSPageSize: true,
+      printBackground: false,
+      waitForFonts: true,
+      tagged: true,
+    });
 
-  await browser.close();
-  fs.writeFileSync("public/curriculum.pdf", withInfo(Buffer.from(pdf)));
+    fs.writeFileSync("public/curriculum.pdf", withInfo(Buffer.from(pdf)));
+  } finally {
+    await browser.close();
+  }
 };
 
 void getPdf();

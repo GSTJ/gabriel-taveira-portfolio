@@ -39,11 +39,10 @@ env:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    # Browser automation and the third-party capture action stay in this job.
+    # Browser automation stays in this job.
     # R2 credentials only exist in the separate upload job below.
     permissions:
       contents: read
-      deployments: read
     env:
       # Ubuntu's AppArmor policy allows its packaged Chrome to create the user
       # namespace used by the browser sandbox. Puppeteer's downloaded Chrome
@@ -77,74 +76,31 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Capture the deployment for this exact commit. The workflow used to read
-      # the public site immediately and could publish assets from the previous
-      # deployment when Actions won the race against Vercel.
-      - name: 🚀 Wait for this commit's production deployment
-        id: production
-        env:
-          GH_TOKEN: ${{ github.token }}
+      # Render this checkout locally. Vercel's immutable deployment URL can
+      # redirect anonymous captures to its login page, even in Production.
+      - name: 🎞️ Install GIF encoder
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: 🏗 Build the capture source
+        run: pnpm run build
+
+      - name: 🖨️ Generate resume and demo from this checkout
         run: |
           set -euo pipefail
-
-          found=false
+          pnpm start --hostname 127.0.0.1 --port 3000 > /tmp/portfolio-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"; cat /tmp/portfolio-server.log' EXIT
+          ready=false
           for attempt in $(seq 1 60); do
-            deployment_id=$(gh api \
-              "repos/$GITHUB_REPOSITORY/deployments?sha=$GITHUB_SHA&environment=Production&per_page=10" \
-              --jq '.[0].id // empty')
-
-            if [ -z "$deployment_id" ]; then
-              echo "attempt $attempt: production deployment has not started"
-              sleep 10
-              continue
-            fi
-
-            deployment_status=$(gh api \
-              "repos/$GITHUB_REPOSITORY/deployments/$deployment_id/statuses" \
-              --jq '.[0].state // empty')
-
-            if [ "$deployment_status" = "success" ]; then
-              deployment_url=$(gh api \
-                "repos/$GITHUB_REPOSITORY/deployments/$deployment_id/statuses" \
-                --jq '.[0].environment_url // empty')
-
-              if [ -z "$deployment_url" ]; then
-                echo "::error::Production deployment $deployment_id has no URL"
-                exit 1
-              fi
-
-              echo "url=$deployment_url" >> "$GITHUB_OUTPUT"
-              echo "deployment=$deployment_id" >> "$GITHUB_OUTPUT"
-              echo "using production deployment $deployment_id at $deployment_url"
-              found=true
+            if curl --silent --fail http://127.0.0.1:3000/en-US/resume > /dev/null; then
+              ready=true
               break
             fi
-
-            case "$deployment_status" in
-              failure|error|inactive)
-                echo "::error::Production deployment $deployment_id concluded with $deployment_status"
-                exit 1
-                ;;
-            esac
-
-            echo "attempt $attempt: production deployment $deployment_id is $deployment_status"
-            sleep 10
+            sleep 1
           done
-
-          if [ "$found" != "true" ]; then
-            echo "::error::Timed out waiting for a successful production deployment of $GITHUB_SHA"
-            exit 1
-          fi
-
-      - name: 🖨️ Generate PDF
-        env:
-          PDF_SOURCE_URL: ${{ steps.production.outputs.url }}/en-US/resume
-        run: pnpm run get:pdf
-
-      - name: 🤖 Capture the site GIF
-        uses: PabloLec/website-to-gif@44056271a60cc6748fdfc990633a51bcb124a2cb # 2.1.5
-        with:
-          url: ${{ steps.production.outputs.url }}/en-US
+          [ "$ready" = true ]
+          PDF_SOURCE_URL=http://127.0.0.1:3000/en-US/resume pnpm run get:pdf
+          node scripts/get-demo.js
 
       - name: ✅ Validate generated assets
         run: |
