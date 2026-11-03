@@ -7,13 +7,13 @@ export type NowItem = {
   store?: { href: string; since: string };
 };
 
-/** The Curvinha line keeps `?ct=gabrieltaveira-dev` (the project card has its own). */
+/** The Curvinha line and its store date keep `?ct=gabrieltaveira-dev` (the project card has its own). curvinha.app picks the right store, so never a store link here. */
 export const NOW: readonly NowItem[] = [
   {
     id: "building",
     href: "https://curvinha.app/?ct=gabrieltaveira-dev",
     store: {
-      href: "https://apps.apple.com/br/app/id6816957870",
+      href: "https://curvinha.app/?ct=gabrieltaveira-dev",
       since: "2026-10-16",
     },
   },
