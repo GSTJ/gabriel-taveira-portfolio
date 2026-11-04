@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.6](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.5...v1.3.6) (2026-11-04)
+
+
+### Chores
+
+* **deps:** update oxlint and oxfmt ([#507](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/507)) ([87ae392](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/87ae392a74ba6d761e8818733280b6f7aaf14b9d))
+* **deps:** update pnpm to v12.15.0 ([#508](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/508)) ([eb8516a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/eb8516a73fc9be0b5eea01d5ef2ee7ed5fa37a8e))
+
 ## [1.3.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.4...v1.3.5) (2026-11-04)
 
 
