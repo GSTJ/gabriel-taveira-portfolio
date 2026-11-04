@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.5](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.4...v1.3.5) (2026-11-04)
+
+
+### Bug Fixes
+
+* **notes:** "On the App Store since", no storefront named ([#505](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/505)) ([d37e439](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d37e439375918119aeaf48bff3786b923e7729bc))
+* **notes:** the App Store date goes to curvinha.app, which picks the right store ([#501](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/501)) ([cb91b1a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/cb91b1a53f8a0a7f6342804a0609237dc7a69a87))
+
+
+### Chores
+
+* **deps:** update dependency posthog-js to v1.438.13 ([#506](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/506)) ([b6c1f80](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b6c1f804812543a5324dfc92355b9d08658e0942))
+* **deps:** update dependency puppeteer to v25.15.0 ([#504](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/504)) ([6eae65e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6eae65e2bb936572fd26fa2f55fee40c60ed29eb))
+* **deps:** update dependency wrangler to v4.151.3 ([#503](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/503)) ([6651fd8](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6651fd85a36750f18e21ff1924db074679c655dc))
+
 ## [1.3.4](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.3...v1.3.4) (2026-11-02)
 
 
