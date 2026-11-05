@@ -88,14 +88,14 @@
           "roomPlan": "o scan",
           "realityKit": "o 3D"
         },
-        "body": "Um app nativo de iPhone: você escaneia o cômodo com LiDAR e recebe uma proposta com produtos reais que dá pra comprar, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
+        "body": "Um app pra iPhone e Android: você mede o cômodo com a câmera do celular (sem precisar de LiDAR), ou desenha a planta ou envia uma foto dela, e recebe uma proposta com produtos reais de lojas do Brasil e dos EUA, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
         "cta": "Abrir curvinha.app",
         "caption": "Ambiente de exemplo do app. Produtos e preços de exemplo.",
         "stepsLabel": "Curvinha, passo a passo",
         "steps": {
           "scan": {
             "title": "Escaneie o ambiente",
-            "body": "Dê uma volta pelas paredes. RoomPlan e LiDAR medem paredes, portas e janelas em uns 2 a 5 minutos.",
+            "body": "Dê uma volta pelas paredes. A câmera do celular mede paredes, portas e janelas em uns 2 a 5 minutos. Com LiDAR fica ainda mais preciso.",
             "alt": "A Curvinha escaneando a sala de exemplo: a mini planta se completa ao vivo a cada parede medida, com a dica de pra onde andar."
           },
           "plan": {
@@ -389,8 +389,8 @@
       "items": {
         "building": {
           "chip": "Construindo",
-          "title": "Curvinha, um app iOS pra planejar a casa",
-          "body": "Escaneia o cômodo com LiDAR e devolve o projeto em planta e 3D, com produtos reais de lojas brasileiras e a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
+          "title": "Curvinha, um app pra iPhone e Android pra planejar a casa",
+          "body": "Mede o cômodo com a câmera do celular (sem precisar de LiDAR), ou você desenha a planta ou envia uma foto, e devolve o projeto em planta e 3D, com produtos reais de lojas do Brasil e dos EUA e a lista de compras. Curadoria feita com arquitetas da Curva Interiores."
         }
       },
       "updated": "Atualizado em {date}.",
@@ -601,7 +601,7 @@
       ]
     },
     "projects": {
-      "curvinha": "App nativo de iPhone (SwiftUI, RoomPlan, RealityKit): você escaneia o cômodo e recebe a planta mobiliada com produtos reais e a lista de compras. Na App Store desde {since}.",
+      "curvinha": "App pra iPhone e Android: você mede o cômodo com a câmera (sem precisar de LiDAR) e recebe a planta mobiliada com produtos reais de lojas do Brasil e dos EUA e a lista de compras. Na App Store desde {since}.",
       "pegada": "App de encontros pra cachorros no iOS e no Android, feito com Expo e React Native. #{rank} Product of the Day no Product Hunt, open source desde 2025.",
       "openSource": "Open source",
       "maintainer": "Mantenedor",

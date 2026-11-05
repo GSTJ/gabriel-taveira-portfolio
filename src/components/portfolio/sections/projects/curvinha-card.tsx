@@ -43,7 +43,7 @@ const PHONE = {
 
 /**
  * Two whole screens beside the copy: the front phone plays the three steps
- * from the LiDAR scan, the other holds the room RoomKit furnished in 3D, with
+ * from the room scan, the other holds the room RoomKit furnished in 3D, with
  * a piece page's "Why it's for you" block enlarged over its foot.
  */
 export const CurvinhaCard = ({
