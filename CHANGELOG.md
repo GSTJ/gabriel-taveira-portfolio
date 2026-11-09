@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.7](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.6...v1.3.7) (2026-11-08)
+
+
+### Chores
+
+* **deps:** update dependency next to v16.4.3 ([#518](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/518)) ([fb0ef2e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fb0ef2e497ad337501d8032d278e95cd3a06c016))
+* **deps:** update dependency posthog-js to v1.438.14 ([#512](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/512)) ([a34a606](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a34a6067bcc76973b10a383caa8b6918db41678e))
+* **deps:** update dependency posthog-node to v5.56.4 ([#510](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/510)) ([6754c91](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6754c91ad3e2a5d0005ab63d4584c84152ba7688))
+* **deps:** update dependency posthog-node to v5.57.2 ([#519](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/519)) ([07ea773](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/07ea773eac570cb81250eed18512302e7db51cd5))
+* **deps:** update dependency puppeteer to v25.16.0 ([#515](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/515)) ([c573f0d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/c573f0dba4a3d4b31299c002c22358257eed1e35))
+* **deps:** update dependency wrangler to v4.152.0 ([#516](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/516)) ([f7fb5e9](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/f7fb5e9e5f84f9cc6f4072f97ef2bdef7e07c17c))
+* **deps:** update posthog sdks ([#514](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/514)) ([4b77367](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4b77367e2eb66be73e520caab51cd07312ac2efa))
+* **deps:** update posthog sdks ([#517](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/517)) ([a2e1f5c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a2e1f5c5235e55d593bd4bb90ed78b92f633bd32))
+
 ## [1.3.6](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.5...v1.3.6) (2026-11-04)
 
 
