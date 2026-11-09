@@ -50,11 +50,11 @@ export const PROJECTS: readonly ProjectItem[] = [
 export const CURVINHA_STEPS = ["scan", "plan", "list"] as const;
 export type CurvinhaStep = (typeof CURVINHA_STEPS)[number];
 
-/** What Curvinha is built in: Apple's own frameworks, no cross-platform layer. */
+/** The app shares its UI and 3D scene across iPhone and Android. */
 export const CURVINHA_STACK = [
-  { id: "swiftUi", name: "SwiftUI" },
-  { id: "roomPlan", name: "RoomPlan" },
-  { id: "realityKit", name: "RealityKit" },
+  { id: "reactNative", name: "React Native" },
+  { id: "expo", name: "Expo" },
+  { id: "three", name: "Three.js" },
 ] as const;
 export type CurvinhaStackId = (typeof CURVINHA_STACK)[number]["id"];
 
