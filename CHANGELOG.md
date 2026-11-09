@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.8](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.7...v1.3.8) (2026-11-09)
+
+
+### Bug Fixes
+
+* update Curvinha platform copy and app stack ([#513](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/513)) ([750e32b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/750e32b4a563a9224eb7721ed48873a34acf05cc))
+
 ## [1.3.7](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.6...v1.3.7) (2026-11-08)
 
 
