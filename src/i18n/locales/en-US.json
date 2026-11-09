@@ -84,9 +84,9 @@
         "role": "Founder",
         "stackLabel": "Built with",
         "stack": {
-          "swiftUi": "the UI",
-          "roomPlan": "the scan",
-          "realityKit": "the 3D"
+          "reactNative": "the UI",
+          "expo": "the app",
+          "three": "the 3D"
         },
         "body": "An iPhone and Android app: scan a room with your phone camera (no LiDAR needed), or draw the plan or upload a photo of it, then get a proposal with real products from Brazilian and US stores, plus the shopping list. Curated with architects from Curva Interiores.",
         "cta": "Open curvinha.app",

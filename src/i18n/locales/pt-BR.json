@@ -84,9 +84,9 @@
         "role": "Fundador",
         "stackLabel": "Feito em",
         "stack": {
-          "swiftUi": "a interface",
-          "roomPlan": "o scan",
-          "realityKit": "o 3D"
+          "reactNative": "a interface",
+          "expo": "o app",
+          "three": "o 3D"
         },
         "body": "Um app pra iPhone e Android: você mede o cômodo com a câmera do celular (sem precisar de LiDAR), ou desenha a planta ou envia uma foto dela, e recebe uma proposta com produtos reais de lojas do Brasil e dos EUA, mais a lista de compras. Curadoria com arquitetas da Curva Interiores.",
         "cta": "Abrir curvinha.app",
