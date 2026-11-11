@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.3.9](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.8...v1.3.9) (2026-11-11)
+
+
+### Chores
+
+* **deps:** update dependency @ts-morph/common&gt;minimatch to v11.0.2 ([#532](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/532)) ([7cee32c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/7cee32cc380f1905aaf9e0f9883d938df1c79eed))
+* **deps:** update dependency oxfmt to v0.75.0 ([#527](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/527)) ([3ee8922](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/3ee8922fad1235c8d3fee21cd2ee861a2d1cff2f))
+* **deps:** update dependency oxlint to v1.90.0 ([#528](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/528)) ([5fdb2ef](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5fdb2ef2ee48d13dabddf40a4e57516230c0a517))
+* **deps:** update dependency posthog-js to v1.438.24 ([#524](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/524)) ([40148cb](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/40148cb7fc191e7a213b75f66962defa2fd8ed0e))
+* **deps:** update dependency posthog-js to v1.440.0 ([#530](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/530)) ([77ea158](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/77ea158ff3bd6fe811cb43d82b70894236732dc2))
+* **deps:** update dependency posthog-js to v1.441.0 ([#533](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/533)) ([3617c7b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/3617c7b42e3c4e7937253b946300e4094fbf9adb))
+* **deps:** update dependency wrangler to v4.153.0 ([#523](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/523)) ([6e278f3](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6e278f313450822aebe143165aaea0efad0705b1))
+* **deps:** update dependency wrangler to v4.154.0 ([#531](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/531)) ([ac8be4c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ac8be4c2c7d9f6c0507adafb323d7653b1bfd192))
+* **deps:** update pnpm to v12.16.0 ([#526](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/526)) ([5854b1d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5854b1daac3d8782559e77b9372404e4cb2e62ed))
+* **deps:** update pnpm to v12.16.1 ([#529](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/529)) ([93a317a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/93a317ac6e1e98617a5603c076a5a721779f8e32))
+
 ## [1.3.8](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.7...v1.3.8) (2026-11-09)
 
 
