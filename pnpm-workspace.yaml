@@ -22,7 +22,7 @@ overrides:
   # Security patches for the paths reported by pnpm audit.
   dompurify: "^3.4.17"
   "zod@4": "^4.6.6"
-  "@ts-morph/common>minimatch": "11.0.2"
+  "@ts-morph/common>minimatch": "11.0.3"
 
 # Keep new third-party releases out of installs until they have had two weeks
 # of registry exposure. magic-* is our first-party tooling and moves at once;
