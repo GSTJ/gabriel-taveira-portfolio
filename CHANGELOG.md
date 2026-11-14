@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.10](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.9...v1.3.10) (2026-11-14)
+
+
+### Chores
+
+* **deps:** update dependency @ts-morph/common&gt;minimatch to v11.0.3 ([#536](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/536)) ([ee29861](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ee2986120c507a29c41c54b9a577b7a86a2211e7))
+* **deps:** update dependency @types/node to v26.6.6 ([#534](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/534)) ([32afc2d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/32afc2dec291c1d36462756f013a37e2250fb2ee))
+* **deps:** update dependency wrangler to v4.156.0 ([#537](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/537)) ([e437ef6](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e437ef62a61487872fc9ac24d5ec6b478c12f00b))
+* **deps:** update pnpm to v12.17.0 ([#541](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/541)) ([26b2781](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/26b27816e71c511f343d81a93f39912fc80b005c))
+* **deps:** update posthog sdks ([#535](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/535)) ([deb9033](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/deb90332ed204b5b3b9f7578f02535d742e00870))
+* **deps:** update posthog sdks ([#539](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/539)) ([5ca5729](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5ca5729a61f7149748e662c52176ce7a566d9afb))
+* **deps:** update posthog sdks ([#540](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/540)) ([5a286fd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5a286fdd1d91e90cf0d7ea5df39741114b7845ac))
+
 ## [1.3.9](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.8...v1.3.9) (2026-11-11)
 
 
