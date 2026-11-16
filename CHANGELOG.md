@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.11](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.10...v1.3.11) (2026-11-16)
+
+
+### Chores
+
+* **deps:** update dependency next to v16.4.4 ([#544](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/544)) ([0706808](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/0706808783a84e4aa44b4f3c96566b84e2e770bd))
+* **deps:** update dependency posthog-js to v1.444.2 ([#545](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/545)) ([53b1ef1](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/53b1ef12421a561a7da4c285b4d7b435d8c5b15a))
+
 ## [1.3.10](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.9...v1.3.10) (2026-11-16)
 
 
