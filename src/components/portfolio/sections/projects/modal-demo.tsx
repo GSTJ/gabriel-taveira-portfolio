@@ -181,7 +181,7 @@ export const ModalDemo = ({
   useEffect(() => {
     if (status !== "open" || !pkg) return;
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let live = true;
+    const lifetime = new AbortController();
     const root = document.documentElement.style;
     root.overflow = "hidden";
     root.scrollbarGutter = "stable";
@@ -192,13 +192,13 @@ export const ModalDemo = ({
       animationOutTiming: still ? 1 : 160,
     });
     void handle.current.then((value) => {
-      if (!live) return;
+      if (lifetime.signal.aborted) return;
       setResult(format(value));
       setStatus("done");
     });
     // Resolving moves `status` on, and this cleanup gives the page its scroll back.
     return () => {
-      live = false;
+      lifetime.abort();
       root.overflow = "";
       root.scrollbarGutter = "";
     };
