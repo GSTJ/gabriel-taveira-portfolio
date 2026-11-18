@@ -63,12 +63,12 @@ export const useTour = (count: number, still = 0, rest = count - 1) => {
   useEffect(() => {
     const el = screen.current;
     if (!el) return;
-    let visible = false;
-    const sync = () => setInView(visible && !document.hidden);
+    const visibility = { current: false };
+    const sync = () => setInView(visibility.current && !document.hidden);
     // `isIntersecting` is true from the first pixel, so read the ratio.
     const io = new IntersectionObserver(
       ([entry]) => {
-        visible = (entry?.intersectionRatio ?? 0) >= VISIBLE;
+        visibility.current = (entry?.intersectionRatio ?? 0) >= VISIBLE;
         sync();
       },
       { threshold: [0, VISIBLE] },
