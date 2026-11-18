@@ -17,10 +17,10 @@ test("picomatch security patch is installed", () => {
 for (const copy of copies) {
   test(`${copy} bounds repeated wildcard extglobs and preserves ordinary globs`, () => {
     const modulePath = path.join(store, copy, "node_modules/picomatch");
+    const parser = readFileSync(path.join(modulePath, "lib/parse.js"));
+    const parserHash = createHash("sha256").update(parser).digest("hex");
     assert.equal(
-      createHash("sha256")
-        .update(readFileSync(path.join(modulePath, "lib/parse.js")))
-        .digest("hex"),
+      parserHash,
       "a37aea8127ca5f932bcf3ba220efc35dd0fdcbb7a3892a5b0b5ee8feb8af7e22",
       "expected the reviewed parser patch",
     );
