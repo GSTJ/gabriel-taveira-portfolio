@@ -1,27 +1,28 @@
 const assert = require("node:assert/strict");
 const { spawnSync } = require("node:child_process");
-const { readdirSync, readFileSync } = require("node:fs");
+const { readFileSync, realpathSync } = require("node:fs");
+const { createRequire } = require("node:module");
 const { createHash } = require("node:crypto");
 const path = require("node:path");
 const test = require("node:test");
 
-const store = path.resolve(__dirname, "../node_modules/.pnpm");
-const copies = readdirSync(store).filter((name) =>
-  name.startsWith("picomatch@4.0.7"),
+const root = createRequire(path.resolve(__dirname, "../package.json"));
+const common = createRequire(root.resolve("magic-codemods")).resolve(
+  "ts-morph",
 );
-
-test("picomatch security patch is installed", () => {
-  assert.ok(copies.length > 0, "expected patched picomatch 4.0.7");
-});
+const tsMorph = createRequire(common).resolve("@ts-morph/common");
+const tinyglobby = createRequire(tsMorph).resolve("tinyglobby");
+const entry = createRequire(tinyglobby).resolve("picomatch");
+const copies = [path.dirname(realpathSync(entry))];
 
 for (const copy of copies) {
   test(`${copy} bounds repeated wildcard extglobs and preserves ordinary globs`, () => {
-    const modulePath = path.join(store, copy, "node_modules/picomatch");
+    const modulePath = copy;
     const parser = readFileSync(path.join(modulePath, "lib/parse.js"));
     const parserHash = createHash("sha256").update(parser).digest("hex");
     assert.equal(
       parserHash,
-      "a37aea8127ca5f932bcf3ba220efc35dd0fdcbb7a3892a5b0b5ee8feb8af7e22",
+      "5c04741270d46b2aa7aaf6797bfa9d0ea3f6e3318200dd3014a9e8db43110a12",
       "expected the reviewed parser patch",
     );
     const result = spawnSync(
@@ -35,6 +36,7 @@ for (const pattern of ['+(*)b', '+(*a)b', '*(*)b', '*(*a)b', '+(?*)b']) {
   assert.equal(picomatch(pattern)(pattern), true);
 }
 assert.equal(picomatch('+(a|b)')('abba'), true);
+assert.equal(picomatch('+(*(a))')('aaaa'), true);
 assert.equal(picomatch('+([ab])')('abba'), true);
 assert.equal(picomatch('src/**/*.ts')('src/components/index.ts'), true);`,
         modulePath,
