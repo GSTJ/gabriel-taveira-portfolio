@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.3.12](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.11...v1.3.12) (2026-11-18)
+
+
+### Bug Fixes
+
+* preserve demo lifecycle state with oxlint 1.91 ([#558](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/558)) ([fe69429](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/fe69429f50fa0eef5afddd97c635a79ff5423628))
+
+
+### Chores
+
+* **deps:** update dependency gsap to v3.15.1 ([#554](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/554)) ([8d361b3](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/8d361b36ffc97cc761dd24f0190756aad3e39e01))
+* **deps:** update dependency next to v16.4.5 [security] ([#553](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/553)) ([76ba066](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/76ba066330dbd1c44a07a9441199a88eafeb19c5))
+* **deps:** update dependency oxfmt to v0.76.0 ([#551](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/551)) ([e77eb1e](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e77eb1e9792e38d3b0fa7ffdbdf7762a4beb24b5))
+* **deps:** update dependency wrangler to v4.156.2 ([#547](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/547)) ([7f00013](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/7f00013f4637f4f3294e0b7a66a7e7d348ae7226))
+* **deps:** update dependency wrangler to v4.157.0 ([#552](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/552)) ([a5390dd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a5390ddff9a0b8c73ad2b7c803264cd14ebb477f))
+* **deps:** update gstj/magic digest to f5c4fcc ([#559](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/559)) ([60a14be](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/60a14be0f7baad210c8af2791f9ef924e07be84a))
+* **deps:** update pnpm/action-setup action to v6.1.1 ([#555](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/555)) ([9383302](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/93833026cc8a593cebd14a64f62c3b5454cbc8ae))
+* **deps:** update posthog sdks ([#548](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/548)) ([b4d00bd](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/b4d00bd543474eec0a0334c5aa2f126a4ea6dcc5))
+
 ## [1.3.11](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.10...v1.3.11) (2026-11-16)
 
 
