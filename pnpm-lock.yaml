@@ -184,6 +184,9 @@ overrides:
   zod@4: ^4.6.6
   '@ts-morph/common>minimatch': 11.0.5
 
+patchedDependencies:
+  picomatch@4.0.7: cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29
+
 importers:
 
   .:
@@ -2430,7 +2433,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.7
+      picomatch: 4.0.7(patch_hash=cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29)
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.6.0
       '@parcel/watcher-darwin-arm64': 2.6.0
@@ -2776,9 +2779,9 @@ snapshots:
 
   eslint-plugin-safe-jsx@1.3.9: {}
 
-  fdir@6.5.0(picomatch@4.0.7):
+  fdir@6.5.0(picomatch@4.0.7(patch_hash=cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29)):
     optionalDependencies:
-      picomatch: 4.0.7
+      picomatch: 4.0.7(patch_hash=cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29)
 
   fflate@0.4.9: {}
 
@@ -2986,7 +2989,7 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  picomatch@4.0.7: {}
+  picomatch@4.0.7(patch_hash=cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29): {}
 
   po-parser@2.2.0: {}
 
@@ -3126,8 +3129,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.7)
-      picomatch: 4.0.7
+      fdir: 6.5.0(picomatch@4.0.7(patch_hash=cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29))
+      picomatch: 4.0.7(patch_hash=cab2b548e5c8a5d139d38c8208b182fff778d2637370c630fe3b61d58e20fd29)
 
   tinypool@2.2.0: {}
 
