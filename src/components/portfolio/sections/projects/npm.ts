@@ -33,7 +33,7 @@ const window = async (start: string, end: string) => {
   const sums: Record<string, number> = {};
   for (const name of NAMES) {
     const days = body[name]?.downloads;
-    if (!Array.isArray(days)) throw new Error(`npm: no ${name}`);
+    if (!Array.isArray(days)) throw new TypeError(`npm: no ${name}`);
     sums[name] = (days as { downloads?: unknown }[]).reduce<number>(
       (sum, d) => sum + count(d.downloads),
       0,

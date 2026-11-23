@@ -18,7 +18,7 @@ const get = (path: string) =>
 /** The day GitHub answered, from its own `Date` header, kept with the cached response. */
 const answeredOn = (res: Response) => {
   const date = new Date(res.headers.get("date") ?? "");
-  if (Number.isNaN(date.getTime())) throw new Error("github: no date");
+  if (Number.isNaN(date.getTime())) throw new TypeError("github: no date");
   return date.toISOString().slice(0, 10);
 };
 
