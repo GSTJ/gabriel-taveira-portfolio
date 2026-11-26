@@ -23,7 +23,7 @@
     "magic-modal": "10.2.1",
     "magic-observability": "1.0.5",
     "next": "16.4.6",
-    "next-intl": "4.15.0",
+    "next-intl": "4.15.1",
     "posthog-js": "^1.407.3",
     "posthog-node": "^5.46.1",
     "react": "19.3.1",
