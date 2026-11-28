@@ -1,5 +1,41 @@
 # Changelog
 
+## [1.3.14](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.13...v1.3.14) (2026-11-28)
+
+
+### Bug Fixes
+
+* handle malformed project data with oxlint 1.92 ([#572](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/572)) ([a21319c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a21319c4749a4fb5c8603dc0e309a84f771c55ee))
+
+
+### Chores
+
+* **deps:** update dependency @ts-morph/common&gt;minimatch to v11.0.6 ([#581](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/581)) ([665971f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/665971f52ec655a43d1d8c1f3237ea975b55468f))
+* **deps:** update dependency @ts-morph/common&gt;minimatch to v11.0.7 ([#584](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/584)) ([49041ec](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/49041ec14e3fa05901c977c48a13a3918f5cbc00))
+* **deps:** update dependency @ts-morph/common&gt;minimatch to v11.0.8 ([#586](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/586)) ([91e21ff](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/91e21ff3805b4bbf9d8231c82f73faef3cb69c96))
+* **deps:** update dependency next to v16.4.6 ([#575](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/575)) ([81a8347](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/81a8347e6f501ec1ced4ba733c1f7c9fbf2fa61c))
+* **deps:** update dependency next-intl to v4.14.10 ([#582](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/582)) ([09dc705](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/09dc70595d3544e454423cbb9078173f2d1511d2))
+* **deps:** update dependency next-intl to v4.15.0 ([#587](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/587)) ([14bad0d](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/14bad0dd0a3be9737c8f2b2d6e496f7fc433e533))
+* **deps:** update dependency next-intl to v4.15.1 ([#591](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/591)) ([121980b](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/121980be1fc25e4883800d1cbf562f41827e6462))
+* **deps:** update dependency oxfmt to v0.77.0 ([#567](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/567)) ([4b05287](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/4b0528715f8b655f7b253e87a00deda362a930b6))
+* **deps:** update dependency oxfmt to v0.78.0 ([#574](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/574)) ([28e4851](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/28e4851e0d0ed556249b50421f00053433834c91))
+* **deps:** update dependency oxlint to v1.93.0 ([#576](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/576)) ([ea82b12](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ea82b12b9db7e684c5c68552f38a456eeea40716))
+* **deps:** update dependency posthog-js to v1.447.12 ([#585](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/585)) ([8da5fc9](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/8da5fc92669c81c630b32e8df613d63ee924e77f))
+* **deps:** update dependency puppeteer to v25.17.0 ([#583](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/583)) ([a239a7a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/a239a7a15ec916975ebb124ba1112cd70e3ec44a))
+* **deps:** update dependency wrangler to v4.159.0 ([#577](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/577)) ([6613333](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6613333c1ee4ec84c4c83b7f81098e656e95b10f))
+* **deps:** update dependency wrangler to v4.160.0 ([#580](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/580)) ([6641b0f](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6641b0f223f5a24a5d52a6839b83885ca52ce20b))
+* **deps:** update dependency wrangler to v4.160.1 ([#588](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/588)) ([ab956b9](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ab956b951b717e688d4c72e731db54a75a3722f8))
+* **deps:** update dependency wrangler to v4.161.0 ([#592](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/592)) ([1e5d3e2](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1e5d3e2d7698c1b64f37dd73555b5d33bfe0a833))
+* **deps:** update dependency wrangler to v4.162.0 ([#594](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/594)) ([5e152db](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/5e152dbda75d0c71000ea5252a6c58621f4e228b))
+* **deps:** update pnpm to v12.19.0 ([#578](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/578)) ([d37fd53](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/d37fd537049d8733dc3596bbeb96ff45cb9fc9e5))
+* **deps:** update pnpm to v12.20.0 ([#590](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/590)) ([6c57b59](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/6c57b59e7d95e1b36607c6dcf5e519b702c3676a))
+* **deps:** update pnpm to v12.21.0 ([#595](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/595)) ([1be4705](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/1be47056d741053187cc4e3474fa06c4d28e6aae))
+* **deps:** update posthog sdks ([#569](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/569)) ([2e0ea17](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/2e0ea1745e30397737a03307a2c7cc757a774eb7))
+* **deps:** update posthog sdks ([#573](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/573)) ([e28e2f4](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/e28e2f412bcc3aeecc9e84c08564e6f079ecd285))
+* **deps:** update posthog sdks ([#579](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/579)) ([961c77a](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/961c77a2d7b80cec07650c3b87c09ddadf8a40f5))
+* **deps:** update posthog sdks ([#589](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/589)) ([ac5c06c](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/ac5c06cbf01f835adb2c0fe027ba2c9bdf495dfd))
+* **deps:** update posthog sdks ([#593](https://github.com/GSTJ/gabriel-taveira-portfolio/issues/593)) ([f580896](https://github.com/GSTJ/gabriel-taveira-portfolio/commit/f580896835af15969341f66fb9e55b59cfb54ec3))
+
 ## [1.3.13](https://github.com/GSTJ/gabriel-taveira-portfolio/compare/v1.3.12...v1.3.13) (2026-11-21)
 
 
